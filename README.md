@@ -149,11 +149,11 @@ results/research/
   sota_baselines_20260929/     scoring Effort and Forensics Adapter with their released weights
   ffpp_benchmark_20260925/     FF++ paired corpus, Celeb-DF-v2 / DFD frame lists, video-level AUC
   alipair_zeroshot_20260929/   unseen commercial service (Alibaba) before/after pairs
-pipeline.py, AIGuard/, filters/, android_benchmark/, ios_benchmark/
-                               earlier line: hierarchical ShuffleNetV2 detector with on-device (TFLite) deployment
 ```
 
-The setup and usage notes of the earlier line (environment, filter pipeline, Grad-CAM, output schema) are kept in
+The earlier line of this project (hierarchical ShuffleNetV2 detector `pipeline.py`, data cleaning and filter scripts,
+Android / iOS TFLite benchmarks) is preserved at the tag
+[`v8-archive`](https://github.com/Doreen1113/AIGC_Detection/tree/v8-archive); its setup notes are in
 [`docs/readme/LEGACY_README_v8.md`](docs/readme/LEGACY_README_v8.md).
 
 Datasets and model weights are not in the repository. Data: FaceForensics++, Celeb-DF-v2, DFD, Celeb-DF-B (on request

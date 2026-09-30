@@ -15,6 +15,9 @@
 !/docs/
 !/results/
 
+/assets/*
+!/assets/readme/
+
 # ---- docs/: only the paper, the meeting deck, README media and the browser demo --------------------------------------
 /docs/*
 !/docs/paper_v2/
@@ -100,6 +103,4 @@ CLAUDE.md
 Thumbs.db
 *.log
 *.txt
-!tip.txt
-!face_reshaping_report.txt
 !/requirements.txt
