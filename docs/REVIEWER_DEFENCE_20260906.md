@@ -1,5 +1,20 @@
 # Reviewer defence matrix (2026-09-06)
 
+> 🆕 **2026-09-12 PRODUCTION 版本變更更正（本文件以下內容凡涉及「production」者請以此段為準）**：
+> production 已從 **v8.17** 換成 **v8.19-rr**（Layer1 `v817sbi` 不變、Layer2 →
+> `shufflenet_v2_layer2_v819rr.pth`＝`render_rand_20260911` seed 3、artifact head `v6` 不變，
+> 並首次有 Layer2 門檻 `decision_rule.FILTER_THRESHOLD = 0.72`）。**新的正式數字**：
+> `fake_filter_stress` **3.23% [2.28, 4.26]**（舊 2.80%）、P3 濾鏡後真臉被判 fake **1.2%（3/249）**（舊 0.0%）、
+> B-LFW 真實 Instagram 濾鏡零樣本 **13.30%**（舊 0.45%）、FairBeauty **33.6%**（舊 12.9%）、
+> AIGuard/unseen AUROC **0.892**（舊 0.841）、True Test filter **90.76%**（舊 91.97%）、
+> Alibaba **96.80%**（舊 97.71%）、FF++ 零樣本 frame AUROC **0.550**（舊 0.575）。
+> 兩項代價都落在舊版自己的 95% CI 內；**外部安全基準 Celeb-DF-B 統計上不變（23.38%→23.55%）**，
+> 且**乾淨真臉誤判反而改善（0.277%→0.123%）**。以下段落若寫「production 為 v8.17」「stress 2.80%」
+> 「B-LFW 0.45%」等，皆為變更前的歷史記錄，數字本身仍正確但**不再代表現行 production**。
+> 依據：`results/research/promote_rr_20260912/FINDINGS.md`、
+> `docs/team/change_proposals/20260911_render_rand_layer2.md`、registry `RENDERRAND-PROMOTE-20260912`。
+
+
 Every question a reviewer of *"Filter-aware lightweight face manipulation detection"* would ask,
 the answer we can give **today**, and — where the answer is not yet good enough — the experiment
 that is running to fix it. Nothing in the "answer" column is aspirational: each cell cites a file
@@ -23,7 +38,7 @@ Legend: 🟢 answerable now · 🟡 running · 🔴 open limitation (must be wri
 | # | Question | Answer | Evidence |
 |---|---|---|---|
 | B1 | "Show me a same-protocol comparison, not literature numbers." | 🟢 13 models, 13,026 identical images, 3 protocols, per-image scores on disk, cluster-bootstrap CIs, threshold-matched. First such benchmark in the filter-aware setting. | `external_baselines_20260905/` |
-| B2 | "What do you actually win?" | 🟢 At a matched 5 % FPR on clean real faces, beauty filters push **every** published detector to 22.5–33.7 % false accusation of ordinary beautified faces; ours is **0.0 %** [0.0, 0.0], 13/13. | `analyze.py` P3, `cost_vs_safety.md` |
+| B2 | "What do you actually win?" | 🟢 At a matched 5 % FPR on clean real faces, beauty filters push **every** published detector that can be operated at that point (10 of 11; NPR saturates and is excluded, corrected 2026-09-11) to 22.5–33.7 % false accusation of ordinary beautified faces; ours is **0.0 %** (0/249, Clopper–Pearson 95 % upper bound 1.5 %; at exactly 5 % FPR on p_fake 2.0 % [0.9, 4.6]). Disclosed alongside: 27.7 % of clean reals are routed to `filter` at the native rule (True Test real recall 72.3 %). | `analyze.py` P3, `cost_vs_safety.md` |
 | B3 | "At what cost?" | 🟢 5.06 M params / 20.6 MB / 43 ms CPU — median 4.3× fewer parameters and 7.1× faster than the published detectors (UnivFD needs 427.6 M). | `cost.json`, `measure_cost.py` |
 | B4 | "That is your own filter data. Third-party?" | 🔴 **We lose.** On Celeb-DF-B (Libourel et al., IWBF 2024) ours falsely accuses 74 % of beautified real frames vs SBI's 19 %. Root cause found and being tested, see C2. Reported in the same table, not hidden. | `external_baselines_20260905/FINDINGS.md` §2 |
 | B5 | "Are the baselines fairly treated?" | 🟢 Each runs its own official preprocessing and published threshold, plus a threshold-matched operating point; one pre-declared verdict rule was found to be degenerate (matched recall drove baselines to 89–100 % FPR) and is reported as **not citable** rather than used to claim a win. | `FINDINGS.md` §1 |

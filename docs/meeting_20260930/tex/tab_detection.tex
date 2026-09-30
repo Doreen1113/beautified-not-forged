@@ -1,0 +1,22 @@
+\documentclass[border=4pt]{standalone}
+\usepackage{fontspec}\setmainfont{texgyretermes}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]
+\usepackage{booktabs,colortbl,xcolor}
+\definecolor{oursbg}{HTML}{E3ECF7}
+\begin{document}\large
+\begin{tabular}{lrcccrr}
+\toprule
+ & & Celeb-DF-v2 & DFD & Celeb-DF-B & FF++ beautified & Celeb-DF-B \\
+Detector & Params (M) & video AUC & video AUC & AUC & FA at MISS$\le$5 & $\Delta$MISS (pp) \\
+\midrule
+Xception & 21.9 & 0.772 & 0.882 & 0.811 & 19.1 & +9.9 \\
+EfficientNet-B4 & 19.3 & 0.807 & 0.860 & 0.811 & 19.2 & +3.4 \\
+UCF & 21.9 & 0.788 & 0.853 & 0.841 & 16.1 & +12.4 \\
+SBI & 17.6 & 0.872 & 0.876 & 0.875 & 40.4 & +35.5 \\
+Effort (CLIP) & 303.4 & 0.930 & 0.957 & 0.909 & 36.5 & +23.7 \\
+Forensics Adapter (CLIP) & 309.7 & 0.945 & 0.959 & 0.909 & 30.5 & +15.5 \\
+\midrule
+\rowcolor{oursbg}\textbf{Ours} (CLIP ViT-L/14 + LoRA) & 306.3 & \textbf{0.954} & \textbf{0.983} & \textbf{0.937} & \textbf{4.0} (0.6) & +2.9 \\
+\rowcolor{oursbg}Ours-lite (EfficientNet-B4) & 17.6 & 0.910 & 0.908 & 0.899 & 11.7 (0.5) & +3.9 \\
+\bottomrule
+\end{tabular}
+\end{document}

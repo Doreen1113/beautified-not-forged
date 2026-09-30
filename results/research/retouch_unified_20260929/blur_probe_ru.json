@@ -1,0 +1,14 @@
+{
+ "Ours (clipe4)": {
+  "orig": 9.7,
+  "down2": 12.0,
+  "blur1.5": 14.3,
+  "jpeg30": 15.7
+ },
+ "Ours-lite (ru4e)": {
+  "orig": 11.3,
+  "down2": 15.3,
+  "blur1.5": 16.7,
+  "jpeg30": 26.0
+ }
+}

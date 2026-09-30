@@ -139,6 +139,16 @@ each over the full 769-image True Test Set — reproduces `results/mobile_deploy
   these explicit args was found under `results/`, which is why the 98.1% figure is flagged
   UNVERIFIABLE in `RELEASE_RESULTS.md`. Running this command would be the correct way to
   produce that missing evidence (not done in this pass — read-only, no reruns).
+  > ⚠️ **2026-08-21 annotation (APPEND-ONLY, F2 audit)**: this file's mtime is 2026-08-13
+  > 11:41, i.e. it predates the same-day P0 repair (`alibaba_filter_ood_v811d_layer2v811_20260813.json`
+  > written at 12:07, `EVALUATION_INTEGRITY_REPAIR.md` at 12:38). The command above **has
+  > since been run** and its output is archived — the 98.1% figure is **no longer flagged
+  > UNVERIFIABLE in `RELEASE_RESULTS.md`**, which now cites
+  > `results/releases/v8.11_production_20260813/alibaba_filter_ood_v811d_layer2v811_20260813.json`
+  > directly (independently re-verified during the F2 audit — provenance SHA256 hashes and
+  > the 20,743/21,151 count match exactly). This paragraph is left as the historical record
+  > of what was true at 11:41; see `ORPHAN_AND_UNVERIFIABLE_REGISTER.md`'s matching annotation
+  > for the full timeline.
 - **True Test filter-recall-by-type breakdown**: `eval_truetest_filter_bytype_v811.py`
   defaults correctly to v811d/v811 (confirmed, lines 23-24), so:
   ```
@@ -146,6 +156,10 @@ each over the full 769-image True Test Set — reproduces `results/mobile_deploy
   ```
   is a confirmed-runnable command, but likewise has no archived output file found in
   `results/` in this pass.
+  > ⚠️ **2026-08-21 annotation (APPEND-ONLY, F2 audit)**: same stale-timing situation as
+  > above — this has since been run and archived at
+  > `results/releases/v8.11_production_20260813/truetest_filter_bytype_v811d_layer2v811_20260813_provenance.json`,
+  > cited in `RELEASE_RESULTS.md`'s official table.
 - **iPhone on-device benchmark**: TODO — no script found in the repo that performs on-device
   (as opposed to desktop CPU) benchmarking. This is consistent with TODO.md's own statement
   that this Freeze Gate item is still pending.

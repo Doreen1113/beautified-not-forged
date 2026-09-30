@@ -1,0 +1,28 @@
+\begin{tabular}{l c cc c c c c}
+\toprule
+ & originals & \multicolumn{2}{c}{retouched (pooled)} & & & paired rank at level 90 & smoothing-90 \\
+\cmidrule(lr){3-4}
+Model & real/fake/filter & $\to$filter & $\to$fake & balanced & paired rank & eye / white / lift / smooth & $\to$fake \\
+\midrule
+\multicolumn{8}{l}{\textit{FF++ c23 training only (zero-shot)}} \\
+three-way, RepViT-M0.9 & 0.8/2.5/96.7 & 92.6 & 6.4 & 47.9 & 48.4 & 73 / 55 / 52 / 15 & 17.7 \\
+three-way, observed fakes (SUP) & 36.8/5.7/57.5 & 66.5 & 9.1 & 54.5 & 79.8 & 97 / 89 / 79 / 59 & 27.3 \\
+three-way, hybrid fakes (HYB) & 33.8/16.7/49.5 & 54.6 & 22.1 & 52.6 & 69.2 & 92 / 83 / 65 / 44 & 50.2 \\
+HYB, faithful blend & 28.2/22.1/49.6 & 52.8 & 28.0 & 51.6 & 65.7 & 92 / 77 / 62 / 35 & 58.4 \\
+HYB + symmetric degradation & 31.7/26.3/42.0 & 45.3 & 33.6 & 51.7 & 64.3 & 89 / 76 / 63 / 35 & 63.1 \\
+three-way, part edits + evidence head & 16.7/55.9/27.4 & 28.6 & 59.4 & 50.6 & 60.9 & 89 / 78 / 60 / 20 & 85.8 \\
+\midrule
+\multicolumn{8}{l}{\textit{Vendor-trained variants (all single Alibaba reads)}} \\
+RU1 renders only (EffNet-B4, s1) & 93.4/0.8/5.8 & 38.1 & 0.6 & 66.1 & 92.8 & 99 / 85 / 95 / 100 & 0.1 \\
+RU1 renders only (RepViT) & 92.8/1.4/5.9 & 36.1 & 1.1 & 65.1 & 92.6 & 96 / 89 / 93 / 100 & 0.3 \\
+RU2 + components (EffNet-B4, s1) & 76.8/0.5/22.8 & 68.2 & 0.3 & 72.7 & 94.2 & 99 / 90 / 94 / 100 & 0.4 \\
+RU2 + components (EffNet-B4, s2) & 66.6/0.3/33.2 & 74.9 & 0.2 & 70.8 & 94.2 & 99 / 92 / 93 / 99 & 0.4 \\
+RU2 + components (RepViT) & 43.4/0.9/55.7 & 83.7 & 0.5 & 64.0 & 95.1 & 99 / 91 / 96 / 99 & 1.1 \\
+RU3 cleaned components (EffNet-B4, s1) & 76.7/0.4/22.9 & 68.8 & 0.3 & 72.9 & 94.9 & 99 / 92 / 94 / 99 & 0.5 \\
+RU3 + evidence head (EffNet-B4, s1) & 83.2/0.6/16.2 & 62.2 & 0.5 & 73.0 & 94.1 & 99 / 91 / 93 / 99 & 0.8 \\
+RU4 + part edits (lite) (EffNet-B4, s1) & 81.0/0.4/18.6 & 63.8 & 0.3 & 72.6 & 93.8 & 99 / 91 / 93 / 99 & 0.4 \\
+RU3 + evidence head, CLIP (CLIP-L/14, s1) & 77.4/0.4/22.2 & 71.4 & 0.2 & 74.6 & 93.8 & 98 / 90 / 94 / 100 & 0.2 \\
+RU3 + evidence head, CLIP (CLIP-L/14, s2) & 73.0/0.3/26.7 & 73.6 & 0.2 & 73.4 & 95.1 & 99 / 94 / 96 / 100 & 0.2 \\
+RU4 + part edits, CLIP (main) (CLIP-L/14, s1) & 57.9/0.3/41.9 & 82.3 & 0.1 & 70.2 & 94.8 & 98 / 94 / 95 / 100 & 0.0 \\
+\bottomrule
+\end{tabular}

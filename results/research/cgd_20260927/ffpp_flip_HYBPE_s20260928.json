@@ -1,0 +1,18 @@
+{
+ "n_items": 1500,
+ "n_detected": 1362,
+ "flip_ceiling_footprint": 0.8069016152716594,
+ "ceiling_per_method": {
+  "FaceSwap": 0.8108108108108109,
+  "NeuralTextures": 0.7664233576642335,
+  "Deepfakes": 0.8245363766048502,
+  "Face2Face": 0.6470588235294118
+ },
+ "scorecam": {
+  "flip_pred": 0.8142437591776799,
+  "flip_comp": 0.0014684287812041115,
+  "flip_rand": 0.7804698972099853,
+  "flip_centre": 0.7900146842878121,
+  "iou7_vs_footprint": 0.9211869407924689
+ }
+}

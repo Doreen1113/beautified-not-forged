@@ -1,0 +1,16 @@
+[
+ {
+  "x": "C:\\My_Project\\AIGC\\ffpp_partedit\\test\\donor\\682__f0867__nose.jpg",
+  "m": "C:\\My_Project\\AIGC\\ffpp_partedit\\test\\donor\\masks\\682__f0867__nose.npz",
+  "x0": "C:\\My_Project\\AIGC\\FaceForensics_protocol_frames\\test\\real\\682__f0867.jpg",
+  "part": "nose",
+  "mech": "donor"
+ },
+ {
+  "x": "C:\\My_Project\\AIGC\\ffpp_partedit\\test\\sd\\675__f0377__eyes.jpg",
+  "m": "C:\\My_Project\\AIGC\\ffpp_partedit\\test\\sd\\masks\\675__f0377__eyes.npz",
+  "x0": "C:\\My_Project\\AIGC\\FaceForensics_protocol_frames\\test\\real\\675__f0377.jpg",
+  "part": "eyes",
+  "mech": "sd"
+ }
+]

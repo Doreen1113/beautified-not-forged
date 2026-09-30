@@ -36,6 +36,7 @@ All A-tier Freeze Gate metrics pass, each now backed by a fresh, hash-verified r
 | CelebA real recall | ≥95% | 99.7% | PASSED |
 | StyleGAN2 fake recall | ≥95% | 99.6% | PASSED |
 | Alibaba filter OOD recall | ≥95% | 98.1% | PASSED |
+| ⚠️ 2026-08-26 annotation: "OOD" is wrong — 23.5% of the 21,151 Alibaba images content-overlap training (P1-R11 L3). Decontaminated v8.11d (dump) 98.18%; v8.17 on the clean split `ood_filter_ali_clean_20260821.txt` (16,183) **97.70%**, base-index cluster CI [97.20, 98.16]. Gate still PASSED; wording superseded. | | | |
 | fp32 TFLite combined size | ≤25 MB | 20.91 MB | PASSED |
 
 ## Stretch goals = NOT PASSED, but do not block freeze
@@ -107,3 +108,44 @@ benchmark, and explicitly not to be treated as blocking the freeze decision abov
 - Boundary/scope framing this decision assumes: `RELEASE_BOUNDARY.md`.
 - Evaluation-integrity evidence chain: `EVALUATION_INTEGRITY_REPAIR.md` and
   `results/releases/v8.11_production_20260813/RELEASE_EVALUATION_MANIFEST.json`.
+
+---
+
+## ⚠️ Post-hoc corrections (2026-08-21) — APPEND-ONLY, no verdict changed
+
+> Nothing above this line has been altered. **No gate result and no PASSED/NOT
+> PASSED verdict in this document changes.** Two annotations are recorded for a
+> future reader.
+
+### 1. Two gates in the table above are mislabelled as OOD
+
+| Row in the gate table | Measured content overlap with training data | Correct label |
+|---|---|---|
+| **StyleGAN2 fake recall** | **63.8% (6,376/10,000)** with `AIGuard/fake` + `fake_filter_hard_neg`, byte-identical images included | "StyleGAN2 fake detection" — **not** OOD |
+| **Alibaba filter OOD recall** | **23.5% (4,980/21,151)** — `AIGuard/real` and `filter_data/*` hold the same FFHQ base photos under different filenames | "Alibaba filter recall（跨濾鏡演算法，非 OOD——與訓練資料有 23.5% 內容重疊）" |
+
+The earlier clean verdict came from comparing **FFHQ index ranges**, which is
+blind to the same photo stored under a different name (registry Known trap #3).
+Decontaminated StyleGAN2 is ≈**99.07%**, still above its ≥95% gate, and Alibaba's
+point estimate is likewise far from its gate — **the freeze decision stands**.
+Still-clean cross-domain evidence in this same table: **CelebA real recall** and
+**AIGuard-unseen fake AUROC**, both separately verified; plus the True Test vs
+Shadow contrast (identical self-built filter code, different base-image
+photographic style).
+Evidence: `results/research/p1_r11_leakage_scaling_20260820/TASK1_LEAKAGE_AUDIT.md`.
+
+### 2. Two PASSED verdicts were never statistically established
+
+| Gate | Recorded | Statistical standing |
+|---|---|---|
+| True Test filter recall ≥90% | PASSED (93.6%) | ⚠️ **Cannot be confirmed** — n=249; 95% CI straddles the 90% threshold (v8.17 measured 91.97%, CI [87.92, 94.74]); needs n≈890. An expanded n=998 set still gives [89.80, 94.20], still straddling |
+| True Test paired balanced accuracy ≥80% | PASSED (81.1%) | ⚠️ **Cannot be confirmed** — n=249; CI [79.12, 84.94] straddles the 80% threshold; needs n≈1,340 |
+| AIGuard-unseen fake AUROC ≥0.80 | PASSED (0.8150) | ⚠️ **Marginal** — lower bound 0.8034, only 0.003 above the gate |
+
+The remaining gates (True Test fake recall, CelebA, StyleGAN2, Alibaba, fp32
+TFLite size) are decision-grade. **This is a data ceiling, not sampling
+laziness**: of 13,328 LFW images, all 8,918 that pass the project's standard
+cleaning are already used in some split; the 1,835 unused ones survive cleaning at
+a rate of 0. **The recommendation is to record these two gates in the paper's
+Limitations, not to launch another training round.**
+Evidence: `results/research/p1_bench_power_20260820/BENCHMARK_POWER_REPORT.md` §1.1, §3.

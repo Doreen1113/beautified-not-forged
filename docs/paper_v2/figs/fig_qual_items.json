@@ -1,0 +1,79 @@
+[
+ {
+  "kind": "beautified genuine",
+  "path": "C:\\My_Project\\AIGC\\external_data\\celebdfb\\frames_std32v3\\real_beautified\\id33_0000__f11.jpg",
+  "preset": "hawaii_grain",
+  "sbi": 0.9428141713142395,
+  "ours": [
+   0.3882310390472412,
+   0.0197872556746006,
+   0.5919816493988037
+  ]
+ },
+ {
+  "kind": "beautified genuine",
+  "path": "C:\\My_Project\\AIGC\\external_data\\celebdfb\\frames_std32v3\\real_beautified\\id10_0001__f12.jpg",
+  "preset": "relax_you_pretty",
+  "sbi": 0.9010300636291504,
+  "ours": [
+   0.08969170600175858,
+   0.3880840837955475,
+   0.5222242474555969
+  ]
+ },
+ {
+  "kind": "beautified genuine",
+  "path": "C:\\My_Project\\AIGC\\external_data\\celebdfb\\frames_std32v3\\real_beautified\\id13_0001__f24.jpg",
+  "preset": "relax_you_pretty",
+  "sbi": 0.9313485622406006,
+  "ours": [
+   0.21493050456047058,
+   0.32312190532684326,
+   0.46194759011268616
+  ]
+ },
+ {
+  "kind": "beautified deepfake",
+  "path": "C:\\My_Project\\AIGC\\external_data\\celebdfb\\frames_std32v3\\synthesis_beautified\\id8_id5_0002__f14.jpg",
+  "preset": "california_dreamin",
+  "sbi": 0.8280649781227112,
+  "ours": [
+   0.0061865318566560745,
+   0.9932554960250854,
+   0.0005580051802098751
+  ]
+ },
+ {
+  "kind": "beautified deepfake",
+  "path": "C:\\My_Project\\AIGC\\external_data\\celebdfb\\frames_std32v3\\synthesis_beautified\\id17_id35_0000__f06.jpg",
+  "preset": "hawaii_grain",
+  "sbi": 0.029627790674567223,
+  "ours": [
+   0.008808046579360962,
+   0.5323111414909363,
+   0.45888087153434753
+  ]
+ },
+ {
+  "kind": "beautified deepfake",
+  "path": "C:\\My_Project\\AIGC\\external_data\\celebdfb\\frames_std32v3\\synthesis_beautified\\id0_id9_0003__f14.jpg",
+  "preset": "brown",
+  "sbi": 0.5866342186927795,
+  "ours": [
+   0.05490357056260109,
+   0.8723610043525696,
+   0.07273541390895844
+  ]
+ },
+ {
+  "kind": "failure: beautified deepfake",
+  "path": "C:\\My_Project\\AIGC\\external_data\\celebdfb\\frames_std32v3\\synthesis_beautified\\id30_id16_0002__f20.jpg",
+  "preset": "california_dreamin",
+  "sbi": 0.18651002645492554,
+  "ours": [
+   0.7741475701332092,
+   0.20116113126277924,
+   0.024691278114914894
+  ]
+ }
+]

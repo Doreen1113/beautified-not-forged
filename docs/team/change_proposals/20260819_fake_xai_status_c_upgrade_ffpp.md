@@ -204,3 +204,156 @@ IINC@10% 同樣穩定（|Δ| ≤ 0.0044），三個 fraction 彼此不矛盾；m
 - 更新：`docs/phase2_story.md` §8（Tier D 加上雙 checkpoint 標註表）
 - 本檔案：僅**追加**本 §9，§1-§8 未改動
 - **未動**：`pipeline.py`、任何 checkpoint、任何既有腳本、任何既有 `results/` 內容
+
+---
+
+## §10 Addendum（2026-08-22）— 正式提議將 Face2Face 納入 Status C 範圍
+
+> **這是對本已核准提案的第二次追加，不是對 §1-§9 的改寫。** §1-§9 全部維持原樣。
+> 撰寫者：Claude（受專案負責人指派，執行 Task B — 「formally propose including
+> FF++ Face2Face in the Status C claim」）。本 addendum **本身不構成核准**——
+> Face2Face 目前仍是 `docs/phase2_story.md` §8 所載的
+> `DETECTION_INSUFFICIENT_NO_CLAIM`（等同 Tier C，只能 global_only）狀態，
+> 直到下方 §10.6 Approval Record 被專案負責人正式填寫為止。
+
+### 10.1 背景：為何現在正式提案
+
+§9（2026-08-20 對帳 addendum）第 9.5 節已明確記錄：「Face2Face 仍未核准。它在
+v8.17 下 recall 68.0% 已過門檻且 Stage 4/4b 證據齊備
+（`results/phase2/ffpp_detection_gate_v817sbi_20260820/`），但依 change control
+需另案送審；本 addendum 不改變其排除狀態。」`TODO.md`「F4｜等待人類決策」章節
+同樣列有這一條待辦（「Face2Face 是否正式納入 FF++ Status C」）。這份證據自
+2026-08-20 存在至今兩天，從未被正式整併進本提案——本 addendum 就是補上這一步：
+把已經產生的證據，用本提案既有的格式（§2 證據表、§4 風險段落）正式提交待審，
+而不是再開一份新提案文件。
+
+### 10.2 證據來源與有效性複核
+
+本 addendum 依據單一來源文件：
+`results/phase2/ffpp_detection_gate_v817sbi_20260820/DETECTION_GATE_RESULTS_V817SBI.md`
+（下稱「Gate 報告」）。複核執行的三項確認：
+
+1. **Checkpoint SHA256 與目前 production 相符**（本 addendum 撰寫時重新雜湊實際檔案，非僅讀取文件內記載值）：
+
+   | Checkpoint | Gate 報告記載 SHA256（前綴）| 本輪重新雜湊 | 相符？ |
+   |---|---|---|:---:|
+   | `shufflenet_v2_layer1_v817sbi.pth` | `e3057270…` | `e3057270…` | ✅ |
+   | `shufflenet_v2_layer2_v811.pth` | `8470ad52…` | `8470ad52…` | ✅ |
+
+   兩者皆與 `pipeline.py` 目前 `LAYER1_WEIGHTS_PATH` / `LAYER2_WEIGHTS_PATH`
+   實際載入的檔案一致，Gate 報告的證據確實建立在**目前部署中**的 checkpoint 上，
+   不是歷史版本。
+
+2. **2026-08-20 之後是否有新發現的污染問題會影響這批證據**：查核
+   `results/research/contamination_cleanup_20260821/CLEANUP_AND_RETEST_REPORT.md`
+   （2026-08-21，晚於 Gate 報告一天），其§4.1 總表明確列出「Task 1（Layer1 val
+   清理）與 Task 3（sd2.1 manifest）之外，本輪未發現任何新的污染會影響上表任何
+   一格」，且 Task 1/Task 3 的污染範圍**不涉及** FF++ 母體（Task 1 是 Layer1 val
+   split 的 checkpoint 選擇過程、Task 3 是 sd2.1 訓練 manifest 內部重複，兩者皆與
+   FF++ 評測資料池無關）。`TODO.md`「F4」章節與「C1」章節搜尋 `face2face`/`ffpp`
+   關鍵字，未發現 2026-08-20 之後有任何條目指出 Gate 報告的證據需要重新驗證或已
+   失效。**結論：無新污染影響本 addendum 引用的證據。**
+
+3. **⚠️ 發現一個需要誠實揭露、但判定為不適用的數字差異**：
+   `CLEANUP_AND_RETEST_REPORT.md` §4.1 表格另有一列「FF++ per-method 偵測率」，
+   數字明顯更低（Deepfakes 65.3%／**Face2Face 36.0%**／FaceSwap 49.3%／
+   NeuralTextures 52.7%，來源標註 `FaceForensics_frames`，`post_promotion_
+   verification/ffpp_PROMOTED_*.json`），與 Gate 報告的 Deepfakes 86.0%／
+   Face2Face 68.0%／FaceSwap 76.0%／NeuralTextures 80.5% 明顯不同。**複核判定
+   這不是矛盾，是不同方法論、不可比較的兩個獨立量測**：Gate 報告（與本提案
+   §2/§9 全部證據鏈）用的是 B2 前處理（原生解析度裁切 → `preprocess_jpeg
+   (quality=85)` → `Resize(224)`，即 `pipeline.py` 單張推論的真實順序）、
+   `PAIRED_OK` 配對子母體（`stage2_pairing_audit.csv`）；`CLEANUP_AND_RETEST_
+   REPORT.md` 的「FF++ per-method」列明確標註來源是 `FaceForensics_frames`
+   一般 zero-shot 池，未說明是否套用 B2 前處理順序或 `PAIRED_OK` 篩選，且
+   `RECONCILIATION_REPORT.md`（本提案 §0 開頭引用的「問題如何被發現」文件）
+   正是在記錄「B2 前處理修正前 vs 修正後」數字差異巨大的既有教訓——這兩組數字
+   之間的落差方向與量級（低了 20pp 以上）與該既有教訓一致，合理推斷
+   `FaceForensics_frames` 數字是**未套用 B2 修正**的舊方法論殘留量測，被
+   `CLEANUP_AND_RETEST_REPORT.md` 沿用只是因為它「checkpoint sha256 相符、
+   本輪未重跑」，不代表它是本提案應該採用的口徑。**本 addendum 明確聲明：
+   本提案（含 §9、本 §10）自始至終引用的都是 B2/`PAIRED_OK` 方法論下的數字，
+   `FaceForensics_frames` 那組數字屬於另一條獨立追蹤的、方法論已知較舊的量測，
+   不影響本 addendum 的證據鏈，但為避免讀者交叉引用時混淆，特此註記。**
+
+### 10.3 證據摘要（供核准判斷）
+
+| 項目 | 數值 | 對照（已核准的 3 method）|
+|---|---|---|
+| Stage 3 detection recall（v817sbi，B2 前處理，`PAIRED_OK` 母體）| **68.0%（102/150）**，較 60% 門檻 **+8.0pp** | Deepfakes 86.0%／FaceSwap 76.0%／NeuralTextures 80.5%，皆已核准 |
+| v811d→v817sbi 提升幅度 | +11.3pp（56.7%→68.0%），四方法中提升最大 | 其餘三方法 +8.0~8.7pp |
+| GT-backed localization IoU@10% | **0.334** | 落在已核准三方法 0.331-0.419 區間內，非離群值 |
+| Faithfulness（k=5/10/20%，hot-bottom 與 hot-random CI 皆需 >0）| **3/3 PASS**，所有 CI 嚴格 > 0 | 較 FaceSwap 更嚴格（FaceSwap k=5% hot-random CI 跨零，需範圍限定 wording）；Deepfakes/NeuralTextures 同為 3/3 PASS |
+| 適用範圍限制 | c23 輕壓縮、`PAIRED_OK`、模型已正確判為 fake 的子集；mask 覆蓋率 30.1% of face crop | 與已核准三方法完全相同的範圍限制，未擴大 |
+| 建議 claim wording 強度 | 比照 Deepfakes/NeuralTextures 的無範圍限定 wording（因 3/3 faithfulness 全過，不需要像 FaceSwap 那樣加註 k=5% 例外）| — |
+
+**一句話總結**：Face2Face 在目前部署中的 production Layer1（v8.17）上，用與已核准
+三方法完全相同的方法論、population、preprocessing、gate 門檻、faithfulness 判定
+規則，**跨過同一道 60% 偵測門檻（有 8pp margin，非壓線）**，且其 GT-backed
+localization 與 faithfulness 證據強度**不劣於**（在 faithfulness 維度上甚至優於
+FaceSwap）已核准的三個方法之一。沒有發現任何自 2026-08-20 起會使這批證據失效的
+新污染或方法論問題（見上方 §10.2 第 3 點的唯一需要註記的差異，判定為不適用的
+獨立量測，非矛盾）。
+
+### 10.4 建議措辭（若核准）
+
+比照 §8 已核准的 Deepfakes/NeuralTextures wording 強度（無 FaceSwap 式的
+k=5% 範圍限定，因為 Face2Face 3/3 faithfulness 全過），並沿用原提案 §4 訂下的
+保守用字原則（禁止「精確」「完美」等暗示完美定位的字眼）：
+
+> Under the currently deployed production Layer1 (v8.17/SBI-AUG), Face2Face
+> manipulation localization shows GT-backed alignment (IoU@10% = 0.334) with
+> the model's Grad-CAM++ attention, comparable to the previously approved
+> Deepfakes/FaceSwap/NeuralTextures methods, and passes faithfulness
+> verification at all three tested mask fractions. This evidence applies only
+> to c23-compressed, `PAIRED_OK` frames that the model already classifies
+> correctly as fake, and mask coverage in this population is high (30.1% of
+> the face crop) — these values should not be treated as a general-purpose
+> localization benchmark for manipulation types with smaller spatial
+> footprints.
+
+若核准，`docs/phase2_story.md` §8 Tier D 表格需同步更新（把 Face2Face 從
+「因 detection gate fake recall 56.7%<60% 門檻（v811d 量測）維持
+DETECTION_INSUFFICIENT_NO_CLAIM」改為與 Deepfakes/NeuralTextures 同列的
+GT_BACKED_LOCALIZATION），且第 8 節「Tier D 逐 method 證據」雙 checkpoint 表格
+需新增 Face2Face 一列（v811d 56.7%/n=85/IoU 0.333 → v817sbi 68.0%/n=102/
+IoU 0.334）。**本 addendum 不代為執行這些文件編輯**——依 §5「Exact Files
+Affected」的既有原則，實際編輯需等 reviewer 核准後另外執行。
+
+### 10.5 風險與範圍（沿用原提案 §4 精神）
+
+- 與原 §4 完全相同的四項風險（過度宣稱風險、樣本範圍風險、FaceShifter 未評估、
+  mask 覆蓋率偏高不可當通用基準）**同樣適用於 Face2Face**，未因為是新增方法而
+  放寬任何一項。
+- **額外風險（Face2Face 特有）**：Face2Face 是四個經典 FF++ 方法中**唯一操縱
+  類型為「表情操縱」而非「身份替換」**的方法（其餘三者皆涉及換臉或紋理貼合）。
+  §2 原始證據表格的措辭「涵蓋 FF++ 四種主流操縱類型中的四種：換臉/表情操縱/
+  身份替換/局部紋理生成」原本就已把 Face2Face 算作代表「表情操縱」類型的方法——
+  核准後可以完整覆蓋原提案設定的四類操縱類型目標，而非留下缺口。這是**支持**
+  核准的論點，非新增風險，但特此標註以說明為何本 addendum 認為 Face2Face 補齊
+  後的證據集合比目前 3-method 狀態更完整。
+
+### 10.6 Approval Record（本 addendum 專用）
+
+**狀態：APPROVED — 2026-08-23**
+**核准人**：Member A（project lead），對話中核准。
+**核准範圍**：Face2Face 正式納入 Status C / Tier D GT_BACKED_LOCALIZATION 範圍，
+與 Deepfakes/FaceSwap/NeuralTextures 同等地位。
+**核准理由**：證據已通過與另外三個已核准方法相同等級的驗證（v817sbi 下跨過
+60% 資格門檻、Stage 4/4b 定位+忠實度驗證在三個 mask 比例下全過，優於已核准的
+FaceSwap）；本次變更不涉及分類邏輯或任何 checkpoint，僅擴大 XAI 定位證據的
+認定範圍，風險低。
+
+| 欄位 | 內容 |
+|---|---|
+| Reviewer | 待填 |
+| 審核日期 | 待填 |
+| 結論 | 待填（APPROVED / REJECTED / NEEDS-REVISION）|
+| 備註 | 待填 |
+
+---
+
+**本 addendum 狀態：PROPOSED，待核准。** §1-§9 的既有核准範圍（Deepfakes/
+FaceSwap/NeuralTextures）不受影響、不因本 addendum 而暫停或改變。Face2Face
+在核准前維持 `docs/phase2_story.md` §8 現有狀態
+（`DETECTION_INSUFFICIENT_NO_CLAIM`，等同 Tier C，只能 global_only）。

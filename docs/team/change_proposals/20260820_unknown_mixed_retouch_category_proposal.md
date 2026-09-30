@@ -588,3 +588,33 @@ softmax runner-up 質量分辨**來源** AUROC 0.85，分辨**多操作 vs 單�
 `results/phase2/external_alibaba_artifact_validation_20260814/EXTERNAL_ALIBABA_CLAIM_RECOMMENDATION.md`,
 `FFHQ_four_process/four_process.txt`.
 **Files written**: this file only.
+
+---
+
+## 附錄 — 「Alibaba filter OOD」措辭更正（2026-08-21，僅更正措辭，不改數字、不改核准範圍）
+
+> **這是核准後追加的措辭更正註記，不是對提案內文或 §8 Approval Record 的改寫。**
+> 上方 §1–§8、Claim/non-claim 與 §9 全部維持原樣。本附錄不改變 PARTIAL APPROVAL 的
+> 範圍與結論，也不授權任何實作。
+
+本文件 §1 與 §2（證據表 E3）把 98.17% 稱為 **「Alibaba filter OOD recall」**。
+P1-R11 的內容層級稽核（解碼像素 SHA256 + dHash 篩選 + NCC/MAD 裁決）證實
+`FFHQ_ali_process` 與訓練資料有 **23.5%（4,980/21,151）內容重疊**——
+`AIGuard/real` 與 `filter_data/*` 含有相同的 FFHQ 底圖照片，以不同檔名存在，
+先前用 FFHQ index range 比對的查證方式偵測不到。**因此該集不是 out-of-distribution 集。**
+
+| 項目 | 狀態 |
+|---|---|
+| 98.17% 這個數字 | **不變**（來源檔案 `results/releases/v8.11_production_20260813/alibaba_filter_ood_v811d_layer2v811_20260813.json` 未動）|
+| E3「coarse『this is retouched』在同一外部 family 上獲強力驗證」 | **仍然成立**，但可宣稱範圍縮小為 **跨濾鏡演算法（不同公司實作）**，**不可**宣稱為分布外／跨域泛化 |
+| §1「the best-evidenced numbers the project owns」 | **需要弱化**：這個「最有證據支撐」的地位建立在該集是 OOD 的前提上；改以「跨濾鏡演算法、且與訓練資料有 23.5% 內容重疊」理解 |
+| §8 PARTIAL APPROVAL 的結論 | **不受影響**（核准範圍是 §6 量測計畫，與本更正無關）|
+
+正確措辭：**「Alibaba filter recall（跨濾鏡演算法，非 OOD——與訓練資料有 23.5% 內容重疊）」**。
+證據：`results/research/p1_r11_leakage_scaling_20260820/TASK1_LEAKAGE_AUDIT.md`。
+本專案目前**沒有**任何一組經內容層級驗證為乾淨的 filter algorithm-OOD 資料源；
+filter 側仍然有效的跨域對照是 **True Test vs Shadow**（同一套自建濾鏡程式碼、不同底圖攝影風格）。
+real／fake 側仍然乾淨的跨域證據為 **CelebA real recall** 與 **AIGuard/unseen AUROC**。
+
+**未動**：`pipeline.py`、schema、任何 threshold、任何 checkpoint、§8 Approval Record、
+本文件 §1–§9 的任何既有文字。

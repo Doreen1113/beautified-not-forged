@@ -55,7 +55,7 @@ Freeze Gate 與 stretch goal 表格中，從 v8.11 一開始被標記至今就�
 | True Test filter recall / AUROC / baseline confusion（`results/eval_v811d_gates.log`、`robustness_eval_v811d.json`） | **ID held-out**（同分布held-out，配對設計） | 影像來源與訓練分布相同（LFW real、DF40 diffusion fake、自建 filter pipeline），但是獨立held-out set，非訓練集切分洩漏 |
 | CelebA real recall | **Real OOD** | CelebA 未參與 filter/fake 訓練來源，作為「這是不是真的能辨識任意真人網路照片」的獨立驗證 |
 | StyleGAN2 fake recall | **Fake OOD（GAN）** | 與訓練用 DF40 diffusion/EFS 方法完全不同的 GAN 架構，驗證跨演算法 fake 泛化 |
-| Alibaba filter OOD | **Filter OOD（跨濾鏡演算法）** | 與訓練用 self-built/Megvii filter pipeline 完全不同公司的濾鏡演算法；v8.11d 的 98.1% 數字已於 2026-08-13 P0 repair 補上存檔結果檔（`results/releases/v8.11_production_20260813/alibaba_filter_ood_v811d_layer2v811_20260813.json`），見 `RELEASE_RESULTS.md` 官方表格 |
+| Alibaba filter OOD（⚠️ 2026-08-26：非 OOD——23.5% 內容重疊訓練資料，P1-R11 L3；正確稱呼「跨濾鏡演算法 filter recall」；乾淨 split 16,183 張 v8.17 = 97.70%） | **Filter OOD（跨濾鏡演算法）** | 與訓練用 self-built/Megvii filter pipeline 完全不同公司的濾鏡演算法；v8.11d 的 98.1% 數字已於 2026-08-13 P0 repair 補上存檔結果檔（`results/releases/v8.11_production_20260813/alibaba_filter_ood_v811d_layer2v811_20260813.json`），見 `RELEASE_RESULTS.md` 官方表格 |
 | AIGuard/unseen fake AUROC | **Fake OOD（held-out 來源）** | 獨立於訓練集的 fake 來源子集 |
 | Shadow domain-gap paired eval（real/filter/fake_gan/fake_diffusion，`eval_v811_layer1d_shadow.log`） | **Robustness stress test（跨底圖攝影風格）** | 刻意設計來測試「同一濾鏡演算法、不同底圖攝影風格」下是否仍成立；這是本專案已知最弱的一環，不是 ID/OOD 意義下的常規測試 |
 | Fake+filter 8 種濾鏡強度組合 stress test（`stress_test_v811d_pipeline.log`） | **Robustness stress test（對抗性組合）** | 刻意疊加 fake 圖像與濾鏡效果，測試分類器是否會被濾鏡效果「洗白」成 filter 判定，非常規分布測試 |
@@ -126,3 +126,34 @@ CLAUDE.md 於 2026-08-13 明確將 Phase 1 凍結為 `Phase1-v8.11-freeze`，理
   裝置上完成量測之前，不可宣稱「已驗證可在手機部署」，只能宣稱「桌機驗證通過、
   裝置驗證待補」。這是目前唯一未通過的 Freeze Gate 項目，見
   `PHASE1_FREEZE_DECISION.md`。
+
+---
+
+## ⚠️ 2026-08-21 事後更正 — 「各項測試的 ID / OOD / Robustness 分類」表中有兩列分類錯誤
+
+> **APPEND-ONLY。** 本節之上的 release 記錄內容一字未改（含上方分類表）。
+> **本更正不改變任何數字、不改變任何 gate 的 PASSED 判定、不改變 release 範圍。**
+
+上方「各項測試的 ID / OOD / Robustness 分類」表把兩項測試歸類為 OOD，
+內容層級稽核證實**兩者都不是 OOD**：
+
+| 表中原分類 | 實測內容重疊 | 正確分類 |
+|---|---|---|
+| StyleGAN2 fake recall = **Fake OOD（GAN）** | **63.8%（6,376/10,000）** 與 `AIGuard/fake` + `fake_filter_hard_neg` 重疊，含逐位元組完全相同的圖片（同一來源 140k Real-Fake Faces 語料庫被兩邊各自取樣）| **Fake detection（跨生成架構，非 OOD）**——「與訓練用 DF40 diffusion/EFS 方法不同的 GAN 架構」這一半仍成立，「分布外」不成立 |
+| Alibaba filter OOD = **Filter OOD（跨濾鏡演算法）** | **23.5%（4,980/21,151）** 與訓練資料重疊（`AIGuard/real` 與 `filter_data/*` 含相同 FFHQ 底圖照片、以不同檔名存在）| **Filter recall（跨濾鏡演算法，非 OOD）**——「不同公司的濾鏡演算法」這一半仍成立 |
+
+先前的乾淨判定是用 **FFHQ index range 比對**得出的；該方法對「同一張照片以不同檔名存在」
+完全隱形，這正是本專案 registry 的 Known trap #3。
+
+**未受影響、仍為有效 OOD／跨域證據的列**（本表其餘分類維持不變）：
+- **CelebA real recall = Real OOD** — CelebA 官方 partition 本身 identity-disjoint，已獨立查證乾淨。
+- **AIGuard/unseen fake AUROC = Fake OOD（held-out 來源）** — 完全 held-out，已獨立查證乾淨。
+- **Shadow domain-gap paired eval = Robustness stress test（跨底圖攝影風格）** — 與 True Test
+  構成同一套自建濾鏡程式碼、不同底圖攝影風格的對照，是本專案內有效的跨域對照。
+
+**去污染後 StyleGAN2 ≈99.07%，仍高於 ≥95% 門檻；Alibaba 的點估計同樣遠離門檻。
+因此 `PHASE1_FREEZE_DECISION.md` 的凍結決定不需要重新檢討。**
+往後措辭：「StyleGAN2 fake detection」與
+「Alibaba filter recall（跨濾鏡演算法，非 OOD——與訓練資料有 23.5% 內容重疊）」。
+
+證據：`results/research/p1_r11_leakage_scaling_20260820/TASK1_LEAKAGE_AUDIT.md`。

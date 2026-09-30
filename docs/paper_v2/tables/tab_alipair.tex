@@ -1,0 +1,15 @@
+\begin{tabular}{l c cc c c c c}
+\toprule
+ & originals & \multicolumn{2}{c}{retouched (pooled)} & & & paired rank at level 90 & smoothing-90 \\
+\cmidrule(lr){3-4}
+Model & real/fake/filter & $\to$filter & $\to$fake & balanced & paired rank & eye / white / lift / smooth & $\to$fake \\
+\midrule
+\multicolumn{8}{l}{\textit{FF++ c23 training only (zero-shot)}} \\
+three-way, observed fakes (SUP) & 36.8/5.7/57.5 & 66.5 & 9.1 & 54.5 & 79.8 & 97 / 89 / 79 / 59 & 27.3 \\
+three-way, part edits + evidence head & 16.7/55.9/27.4 & 28.6 & 59.4 & 50.6 & 60.9 & 89 / 78 / 60 / 20 & 85.8 \\
+\midrule
+\multicolumn{8}{l}{\textit{Trained with two vendors' renders and their single-operation components; Alibaba never seen (ours)}} \\
+\textbf{\ours{}} (CLIP ViT-L/14 + LoRA) & 57.9/0.3/41.9 & 82.3 & 0.1 & 70.2 & 94.8 & 98 / 94 / 95 / 100 & 0.0 \\
+\ours{}-lite (EfficientNet-B4) & 81.0/0.4/18.6 & 63.8 & 0.3 & 72.6 & 93.8 & 99 / 91 / 93 / 99 & 0.4 \\
+\bottomrule
+\end{tabular}

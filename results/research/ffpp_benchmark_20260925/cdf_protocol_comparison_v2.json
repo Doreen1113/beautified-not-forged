@@ -1,0 +1,129 @@
+{
+ "xception": {
+  "old_mp035_auc": 0.8063,
+  "std_auc": 0.7183,
+  "std_auc_ci": [
+   0.6847,
+   0.7491
+  ],
+  "published_frame_auc": 0.737,
+  "n_old": 389,
+  "n_std": 16059,
+  "offset_old_minus_std": 0.088,
+  "std_minus_published": -0.0187
+ },
+ "effnb4": {
+  "old_mp035_auc": 0.7801,
+  "std_auc": 0.7503,
+  "std_auc_ci": [
+   0.7164,
+   0.781
+  ],
+  "published_frame_auc": 0.749,
+  "n_old": 389,
+  "n_std": 16059,
+  "offset_old_minus_std": 0.0298,
+  "std_minus_published": 0.0013
+ },
+ "f3net": {
+  "old_mp035_auc": 0.8078,
+  "std_auc": 0.7078,
+  "std_auc_ci": [
+   0.6701,
+   0.7412
+  ],
+  "published_frame_auc": 0.735,
+  "n_old": 389,
+  "n_std": 16059,
+  "offset_old_minus_std": 0.1,
+  "std_minus_published": -0.0272
+ },
+ "spsl": {
+  "old_mp035_auc": 0.774,
+  "std_auc": 0.703,
+  "std_auc_ci": [
+   0.6687,
+   0.7375
+  ],
+  "published_frame_auc": 0.765,
+  "n_old": 389,
+  "n_std": 16059,
+  "offset_old_minus_std": 0.071,
+  "std_minus_published": -0.062
+ },
+ "sbi": {
+  "old_mp035_auc": 0.8928,
+  "std_auc": 0.8172,
+  "std_auc_ci": [
+   0.7901,
+   0.8434
+  ],
+  "published_frame_auc": 0.932,
+  "n_old": 389,
+  "n_std": 16059,
+  "offset_old_minus_std": 0.0756,
+  "std_minus_published": -0.1148
+ },
+ "ucf": {
+  "old_mp035_auc": 0.8312,
+  "std_auc": 0.7441,
+  "std_auc_ci": [
+   0.7114,
+   0.7745
+  ],
+  "published_frame_auc": 0.753,
+  "n_old": 389,
+  "n_std": 16059,
+  "offset_old_minus_std": 0.0871,
+  "std_minus_published": -0.0089
+ },
+ "recce": {
+  "old_mp035_auc": 0.7914,
+  "std_auc": 0.6882,
+  "std_auc_ci": [
+   0.6526,
+   0.7239
+  ],
+  "published_frame_auc": 0.732,
+  "n_old": 389,
+  "n_std": 16059,
+  "offset_old_minus_std": 0.1032,
+  "std_minus_published": -0.0438
+ },
+ "core": {
+  "old_mp035_auc": 0.8174,
+  "std_auc": 0.715,
+  "std_auc_ci": [
+   0.6781,
+   0.7493
+  ],
+  "published_frame_auc": 0.743,
+  "n_old": 389,
+  "n_std": 16059,
+  "offset_old_minus_std": 0.1024,
+  "std_minus_published": -0.028
+ },
+ "srm": {
+  "old_mp035_auc": 0.81,
+  "std_auc": 0.7174,
+  "std_auc_ci": [
+   0.6856,
+   0.7481
+  ],
+  "published_frame_auc": 0.755,
+  "n_old": 389,
+  "n_std": 16059,
+  "offset_old_minus_std": 0.0926,
+  "std_minus_published": -0.0376
+ },
+ "effort": {
+  "std_auc": 0.8808,
+  "n_std": 16059,
+  "note": "official weights, our frames"
+ },
+ "fadapter": {
+  "std_auc": 0.8874,
+  "n_std": 16059,
+  "note": "official weights, our frames"
+ }
+}

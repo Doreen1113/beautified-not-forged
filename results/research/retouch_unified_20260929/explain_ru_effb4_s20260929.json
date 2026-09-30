@@ -1,0 +1,202 @@
+[
+ {
+  "image": "C:\\My_Project\\AIGC\\ffhq_originals\\Part2\\17024.png",
+  "label": "real",
+  "probabilities": {
+   "real": 0.925,
+   "fake": 0.004,
+   "filter": 0.071
+  },
+  "operations": {
+   "eye": 0.006,
+   "jaw": 0.052,
+   "white": 0.004,
+   "smooth": 0.002
+  },
+  "quantities": {
+   "eye": "-0.2% eye width",
+   "jaw": "-0.5% jaw width",
+   "white": "+0.1 L*",
+   "smooth": "-0% skin texture"
+  },
+  "q_raw": [
+   -0.0019,
+   0.0047,
+   0.0062,
+   0.0005
+  ],
+  "explanation": "No manipulation detected.",
+  "alibaba_group": "original",
+  "measured_on_pair": null
+ },
+ {
+  "image": "C:\\My_Project\\AIGC\\FFHQ_ali_process\\Smoothing_90\\17000\\17024.png",
+  "label": "filter",
+  "probabilities": {
+   "real": 0.009,
+   "fake": 0.007,
+   "filter": 0.984
+  },
+  "operations": {
+   "eye": 0.878,
+   "jaw": 0.945,
+   "white": 0.911,
+   "smooth": 0.987
+  },
+  "quantities": {
+   "eye": "+0.3% eye width",
+   "jaw": "-1.5% jaw width",
+   "white": "+0.5 L*",
+   "smooth": "-15% skin texture"
+  },
+  "q_raw": [
+   0.003,
+   0.0149,
+   0.0226,
+   0.1513
+  ],
+  "explanation": "Beautification filter, identity preserved: eyes enlarged (+0.3% eye width); face slimmed (-1.5% jaw width); skin brightened (+0.5 L*); skin smoothed (-15% skin texture).",
+  "alibaba_group": "Smoothing_90",
+  "measured_on_pair": {
+   "eye": "+1.9% eye width",
+   "jaw": "-0.1% jaw width",
+   "white": "+3.1 L*",
+   "smooth": "-30% skin texture"
+  }
+ },
+ {
+  "image": "C:\\My_Project\\AIGC\\FFHQ_ali_process\\EyeEnlarging_90\\17000\\17024.png",
+  "label": "filter",
+  "probabilities": {
+   "real": 0.041,
+   "fake": 0.003,
+   "filter": 0.956
+  },
+  "operations": {
+   "eye": 0.892,
+   "jaw": 0.042,
+   "white": 0.006,
+   "smooth": 0.004
+  },
+  "quantities": {
+   "eye": "+2.9% eye width",
+   "jaw": "-0.2% jaw width",
+   "white": "+0.1 L*",
+   "smooth": "-0% skin texture"
+  },
+  "q_raw": [
+   0.0288,
+   0.0018,
+   0.0043,
+   0.0049
+  ],
+  "explanation": "Beautification filter, identity preserved: eyes enlarged (+2.9% eye width).",
+  "alibaba_group": "EyeEnlarging_90",
+  "measured_on_pair": {
+   "eye": "+11.0% eye width",
+   "jaw": "+0.2% jaw width",
+   "white": "-1.0 L*",
+   "smooth": "-3% skin texture"
+  }
+ },
+ {
+  "image": "C:\\My_Project\\AIGC\\FFHQ_ali_process\\Whitening_90\\17000\\17024.png",
+  "label": "real",
+  "probabilities": {
+   "real": 0.917,
+   "fake": 0.006,
+   "filter": 0.077
+  },
+  "operations": {
+   "eye": 0.006,
+   "jaw": 0.054,
+   "white": 0.006,
+   "smooth": 0.003
+  },
+  "quantities": {
+   "eye": "-0.2% eye width",
+   "jaw": "-0.4% jaw width",
+   "white": "+0.2 L*",
+   "smooth": "-0% skin texture"
+  },
+  "q_raw": [
+   -0.0019,
+   0.0044,
+   0.0092,
+   0.0018
+  ],
+  "explanation": "No manipulation detected.",
+  "alibaba_group": "Whitening_90",
+  "measured_on_pair": {
+   "eye": "-0.2% eye width",
+   "jaw": "-0.4% jaw width",
+   "white": "+26.7 L*",
+   "smooth": "-8% skin texture"
+  }
+ },
+ {
+  "image": "C:\\My_Project\\AIGC\\FFHQ_ali_process\\FaceLifting_90\\17000\\17024.png",
+  "label": "real",
+  "probabilities": {
+   "real": 0.894,
+   "fake": 0.004,
+   "filter": 0.102
+  },
+  "operations": {
+   "eye": 0.007,
+   "jaw": 0.112,
+   "white": 0.004,
+   "smooth": 0.003
+  },
+  "quantities": {
+   "eye": "-0.2% eye width",
+   "jaw": "-0.7% jaw width",
+   "white": "+0.1 L*",
+   "smooth": "-0% skin texture"
+  },
+  "q_raw": [
+   -0.0024,
+   0.007,
+   0.006,
+   0.0013
+  ],
+  "explanation": "No manipulation detected.",
+  "alibaba_group": "FaceLifting_90",
+  "measured_on_pair": {
+   "eye": "+2.2% eye width",
+   "jaw": "-3.2% jaw width",
+   "white": "-5.4 L*",
+   "smooth": "-2% skin texture"
+  }
+ },
+ {
+  "image": "C:\\My_Project\\AIGC\\FaceForensics_protocol_frames\\test\\Deepfakes\\024_073__f0030.jpg",
+  "label": "fake",
+  "probabilities": {
+   "real": 0.001,
+   "fake": 0.989,
+   "filter": 0.01
+  },
+  "operations": {
+   "eye": 0.009,
+   "jaw": 0.928,
+   "white": 0.004,
+   "smooth": 0.014
+  },
+  "quantities": {
+   "eye": "-0.3% eye width",
+   "jaw": "-2.8% jaw width",
+   "white": "-0.2 L*",
+   "smooth": "-2% skin texture"
+  },
+  "q_raw": [
+   -0.0032,
+   0.0284,
+   -0.0096,
+   0.0163
+  ],
+  "explanation": "Forgery detected (identity or content changed).",
+  "alibaba_group": "FF++ forgery",
+  "measured_on_pair": null
+ }
+]

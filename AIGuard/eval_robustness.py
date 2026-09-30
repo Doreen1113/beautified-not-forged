@@ -71,7 +71,13 @@ def _wtag(path):
 _parser = argparse.ArgumentParser(description=__doc__)
 _parser.add_argument("--layer1-weights", default=None, help="Path to Layer1 checkpoint (.pth). Required -- no default.")
 _parser.add_argument("--layer2-weights", default=None, help="Path to Layer2 checkpoint (.pth). Required -- no default.")
+_parser.add_argument("--filter-threshold", type=float, default=0.5,
+                     help="Layer2 gate: filter iff p_filter|manip > this. Default 0.5 "
+                          "is bit-exactly the old argmax rule, so historical numbers "
+                          "reproduce unchanged. Production v8.19-rr uses 0.72 "
+                          "(decision_rule.FILTER_THRESHOLD).")
 _args = _parser.parse_args()
+FILTER_THRESHOLD_CLI = _args.filter_threshold
 
 if not _args.layer1_weights or not _args.layer2_weights:
     print("ERROR: --layer1-weights and --layer2-weights are required. Refusing to fall back to a default checkpoint.")
@@ -109,9 +115,18 @@ PROVENANCE = {
     "git_commit": GIT_COMMIT,
     "command_line": COMMAND_LINE,
     "timestamp_utc": RUN_TIMESTAMP,
+    "filter_threshold": FILTER_THRESHOLD_CLI,
 }
 
-OUT_JSON = RELEASE_DIR / f"robustness_eval_{_wtag(L1_WEIGHTS)}_layer2{_wtag(L2_WEIGHTS)}_{RUN_DATE}.json"
+# The filename encodes the operating point as well as the weights: the same
+# Layer2 read at 0.5 and at 0.72 are different results and must not collide
+# (same reasoning as the 2026-08-11 fix that made these scripts name outputs
+# after the weights they actually loaded). Omitted at the legacy 0.5 so existing
+# filenames stay valid.
+_tsuffix = "" if abs(FILTER_THRESHOLD_CLI - 0.5) < 1e-12 else \
+    f"_tf{str(FILTER_THRESHOLD_CLI).replace('.', 'p')}"
+OUT_JSON = RELEASE_DIR / (f"robustness_eval_{_wtag(L1_WEIGHTS)}_layer2"
+                          f"{_wtag(L2_WEIGHTS)}{_tsuffix}_{RUN_DATE}.json")
 if OUT_JSON.exists():
     print(f"ERROR: refusing to overwrite existing result file: {OUT_JSON}")
     sys.exit(1)
@@ -189,7 +204,13 @@ def predict_pil(pil_img, jpeg_quality=85, skip_canonical_jpeg=False):
         return 0
     with torch.no_grad():
         l2_probs = torch.softmax(l2(t), dim=1)[0].cpu().numpy()
-    return 1 if l2_probs.argmax() == 0 else 2
+    # 2026-09-12: Layer2 gained an explicit threshold in v8.19-rr
+    # (decision_rule.FILTER_THRESHOLD = 0.72). This used to be a bare argmax;
+    # FILTER_THRESHOLD_CLI defaults to 0.5, at which "filter iff p_filter > 0.5"
+    # is identical to argmax (the two probabilities sum to 1, and the tie
+    # p_fake == p_filter == 0.5 resolves to fake under both), so every previously
+    # published robustness number reproduces bit-exactly unless the flag is set.
+    return 2 if float(l2_probs[1]) > FILTER_THRESHOLD_CLI else 1
 
 
 # ── True Test set ─────────────────────────────────────────────────────────

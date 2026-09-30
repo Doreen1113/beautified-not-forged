@@ -1,0 +1,275 @@
+[
+ {
+  "image": "C:\\My_Project\\AIGC\\ffpp_partedit\\test\\donor\\949__f0068__nose.jpg",
+  "label": "fake",
+  "probabilities": {
+   "real": 0.126,
+   "fake": 0.867,
+   "filter": 0.007
+  },
+  "evidence": {
+   "grid_7x7": [
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.12999999523162842,
+     0.4000000059604645,
+     0.14000000059604645,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.25999999046325684,
+     0.7900000214576721,
+     0.2800000011920929,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.07000000029802322,
+     0.20999999344348907,
+     0.07999999821186066,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   ],
+   "region_area": 0.12,
+   "parts_overlap": {
+    "eyes": 0.178,
+    "nose": 0.197,
+    "mouth": 0.083,
+    "skin": 0.542,
+    "contour": 0.0,
+    "background": 0.0
+   },
+   "named_parts": [
+    "skin",
+    "nose"
+   ],
+   "verified_faithfulness_note": "model-level, measured offline: restoring the named region to the unedited original removes 84-89% of detections on held-out part edits (ceiling 85-90%)"
+  },
+  "explanation": "Forgery detected; evidence concentrated on the skin, nose.",
+  "model": "EfficientNet-B4 three-way + evidence head (MASK)"
+ },
+ {
+  "image": "C:\\My_Project\\AIGC\\ffpp_filter_frames\\test\\012__f0292__smoothing_heavy.jpg",
+  "label": "filter",
+  "probabilities": {
+   "real": 0.0,
+   "fake": 0.144,
+   "filter": 0.856
+  },
+  "evidence": {
+   "grid_7x7": [
+    [
+     0.4399999976158142,
+     0.5600000023841858,
+     0.46000000834465027,
+     0.3400000035762787,
+     0.4000000059604645,
+     0.6299999952316284,
+     0.6800000071525574
+    ],
+    [
+     0.5299999713897705,
+     0.6499999761581421,
+     0.4699999988079071,
+     0.38999998569488525,
+     0.44999998807907104,
+     0.5299999713897705,
+     0.6100000143051147
+    ],
+    [
+     0.5799999833106995,
+     0.7400000095367432,
+     0.6000000238418579,
+     0.5899999737739563,
+     0.6200000047683716,
+     0.550000011920929,
+     0.5699999928474426
+    ],
+    [
+     0.5600000023841858,
+     0.6899999976158142,
+     0.6200000047683716,
+     0.6200000047683716,
+     0.44999998807907104,
+     0.5699999928474426,
+     0.6100000143051147
+    ],
+    [
+     0.5299999713897705,
+     0.5799999833106995,
+     0.6800000071525574,
+     0.6100000143051147,
+     0.38999998569488525,
+     0.5099999904632568,
+     0.4300000071525574
+    ],
+    [
+     0.41999998688697815,
+     0.36000001430511475,
+     0.49000000953674316,
+     0.3400000035762787,
+     0.27000001072883606,
+     0.44999998807907104,
+     0.2800000011920929
+    ],
+    [
+     0.25999999046325684,
+     0.30000001192092896,
+     0.3799999952316284,
+     0.23000000417232513,
+     0.23000000417232513,
+     0.4000000059604645,
+     0.20999999344348907
+    ]
+   ],
+   "region_area": 0.12,
+   "parts_overlap": {
+    "eyes": 0.245,
+    "nose": 0.042,
+    "mouth": 0.067,
+    "skin": 0.102,
+    "contour": 0.155,
+    "background": 0.428
+   },
+   "named_parts": [
+    "background",
+    "eyes"
+   ],
+   "verified_faithfulness_note": "model-level, measured offline: restoring the named region to the unedited original removes 84-89% of detections on held-out part edits (ceiling 85-90%)"
+  },
+  "explanation": "Beautification filter detected (identity preserved); evidence on the background, eyes; not a forgery.",
+  "model": "EfficientNet-B4 three-way + evidence head (MASK)"
+ },
+ {
+  "image": "C:\\My_Project\\AIGC\\FaceForensics_protocol_frames\\test\\real\\003__f0030.jpg",
+  "label": "real",
+  "probabilities": {
+   "real": 0.93,
+   "fake": 0.052,
+   "filter": 0.018
+  },
+  "evidence": {
+   "grid_7x7": [
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   ],
+   "region_area": 0.12,
+   "parts_overlap": {
+    "eyes": 0.299,
+    "nose": 0.095,
+    "mouth": 0.0,
+    "skin": 0.394,
+    "contour": 0.063,
+    "background": 0.148
+   },
+   "named_parts": [],
+   "verified_faithfulness_note": "model-level, measured offline: restoring the named region to the unedited original removes 84-89% of detections on held-out part edits (ceiling 85-90%)"
+  },
+  "explanation": "No manipulation detected.",
+  "model": "EfficientNet-B4 three-way + evidence head (MASK)"
+ }
+]

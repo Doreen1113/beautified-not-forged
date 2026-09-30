@@ -1,0 +1,27 @@
+\begin{tabular}{llccccccc}
+\toprule
+Variant & Fakes seen & CDFv2 & DFD & real & fake & filter & FA / MISS & B1 \\
+\midrule
+\ours{}-S (RepViT) & observed & 0.701 & 0.888 & 85.6 & 91.2 & 86.0 & 2.7 / 1.2 & 0/11 \\
+\ours{}-SB (self-blend only) & self-blend & 0.628 & 0.879 & 95.8 & 32.2 & 36.2 & 7.4 / 22.3 & 6/12 \\
+\ours{}-SUP (observed only) & observed & 0.784 & 0.912 & 80.7 & 95.0 & 88.4 & 4.9 / 0.5 & 0/13 \\
+\ours{} HYB, seed 1 & both & 0.757 & 0.917 & 85.9 & 94.4 & 84.7 & 5.8 / 0.6 & 0/12 \\
+\ours{} HYB, seed 2 & both & 0.770 & 0.913 & 87.6 & 92.8 & 84.3 & 4.9 / 0.7 & 0/12 \\
+\ours{} HYB-F (faithful blend) & both & 0.779 & 0.900 & 82.6 & 93.8 & 84.7 & 6.1 / 0.5 & 0/13 \\
+\ours{} HYB-D (+ symmetric degradation) & both & 0.807 & 0.882 & 81.6 & 91.8 & 83.7 & 5.2 / 0.8 & 0/13 \\
+\ours{} HYB-PE (+ part-level edits) & both+parts & 0.810 & 0.888 & 80.7 & 90.2 & 76.8 & 8.9 / 1.6 & 0/13 \\
+\ours{} HYB-PE + evidence head & both+parts & 0.819 & 0.907 & 79.0 & 90.0 & 84.0 & 7.0 / 2.1 & 0/13 \\
+\ours{}-RU1 (+ vendor composites) & both+vendor & 0.826 & 0.929 & 78.0 & 93.3 & 80.7 & 8.7 / 0.4 & 0/15 \\
+\textbf{\ours{}-RU2, seed 1} & both+vendor & 0.822 & 0.938 & 79.4 & 93.6 & 75.8 & 10.3 / 0.5 & 0/15 \\
+\textbf{\ours{}-RU2, seed 2} & both+vendor & 0.817 & 0.934 & 80.4 & 92.9 & 76.1 & 9.9 / 0.5 & 0/15 \\
+\ours{}-RU3 (cleaned components) & both+vendor & 0.832 & 0.938 & 79.8 & 93.7 & 74.9 & 10.4 / 0.6 & 0/15 \\
+\ours{}-RU3 + evidence head & both+vendor & 0.824 & 0.930 & 79.9 & 94.0 & 76.4 & 10.2 / 0.3 & 0/15 \\
+\textbf{\ours{}-RU3 + CLIP-L/14 LoRA, seed 1} & both+vendor & 0.878 & 0.957 & 76.7 & 94.6 & 87.9 & 5.5 / 0.2 & 0/15 \\
+\textbf{\ours{}-RU3 + CLIP-L/14 LoRA, seed 2} & both+vendor & 0.883 & 0.953 & 87.2 & 92.2 & 86.9 & 4.1 / 0.5 & 0/15 \\
+\ours{}-RU4 + evidence head (EffNet-B4) & both+vendor+parts & 0.848 & 0.915 & 74.2 & 93.3 & 76.4 & 11.7 / 0.5 & 0/15 \\
+\textbf{\ours{}-RU4 + CLIP-L/14 LoRA (unified)} & both+vendor+parts & 0.888 & 0.948 & 78.0 & 88.9 & 89.2 & 4.0 / 0.6 & 0/15 \\
+\midrule
+SBI recipe, our pipeline (binary) & self-blend & 0.620 & 0.852 & -- & -- & -- & 17.5 / 28.7 & -- \\
+SBI recipe, faithful blend (binary) & self-blend & 0.735 & 0.886 & -- & -- & -- & 19.3 / 20.2 & -- \\
+\bottomrule
+\end{tabular}

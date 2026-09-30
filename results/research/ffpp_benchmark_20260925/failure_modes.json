@@ -1,0 +1,938 @@
+{
+ "effnb4": {
+  "n_pairs": 1316,
+  "paired_shift_mean": 0.0786,
+  "paired_shift_median": 0.0102,
+  "pct_pairs_pushed_toward_fake": 60.64,
+  "per_op_shift": {
+   "eye_enlarging": {
+    "n": 152,
+    "mean_shift": -0.0278,
+    "pct_toward_fake": 31.6
+   },
+   "face_reshaping_slim": {
+    "n": 150,
+    "mean_shift": -0.0036,
+    "pct_toward_fake": 52.7
+   },
+   "pilgram:aden": {
+    "n": 45,
+    "mean_shift": 0.0649,
+    "pct_toward_fake": 77.8
+   },
+   "pilgram:brannan": {
+    "n": 49,
+    "mean_shift": -0.0431,
+    "pct_toward_fake": 28.6
+   },
+   "pilgram:gingham": {
+    "n": 36,
+    "mean_shift": 0.1905,
+    "pct_toward_fake": 94.4
+   },
+   "pilgram:hudson": {
+    "n": 58,
+    "mean_shift": -0.0026,
+    "pct_toward_fake": 46.6
+   },
+   "pilgram:lark": {
+    "n": 57,
+    "mean_shift": 0.0246,
+    "pct_toward_fake": 66.7
+   },
+   "pilgram:maven": {
+    "n": 43,
+    "mean_shift": -0.0612,
+    "pct_toward_fake": 20.9
+   },
+   "pilgram:nashville": {
+    "n": 65,
+    "mean_shift": 0.0328,
+    "pct_toward_fake": 61.5
+   },
+   "pilgram:rise": {
+    "n": 43,
+    "mean_shift": 0.0093,
+    "pct_toward_fake": 51.2
+   },
+   "pilgram:stinson": {
+    "n": 48,
+    "mean_shift": 0.0262,
+    "pct_toward_fake": 58.3
+   },
+   "pilgram:toaster": {
+    "n": 49,
+    "mean_shift": 0.2393,
+    "pct_toward_fake": 91.8
+   },
+   "pilgram:valencia": {
+    "n": 69,
+    "mean_shift": -0.0024,
+    "pct_toward_fake": 50.7
+   },
+   "pilgram:walden": {
+    "n": 46,
+    "mean_shift": 0.042,
+    "pct_toward_fake": 63.0
+   },
+   "pilgram:willow": {
+    "n": 47,
+    "mean_shift": -0.0352,
+    "pct_toward_fake": 40.4
+   },
+   "pilgram:xpro2": {
+    "n": 54,
+    "mean_shift": -0.0104,
+    "pct_toward_fake": 44.4
+   },
+   "smoothing": {
+    "n": 156,
+    "mean_shift": 0.5108,
+    "pct_toward_fake": 96.2
+   },
+   "whitening": {
+    "n": 149,
+    "mean_shift": 0.0479,
+    "pct_toward_fake": 81.9
+   }
+  },
+  "best_sum": {
+   "FA": 12.23,
+   "MISS": 8.59,
+   "sum": 20.83,
+   "t": 0.8754366040229797
+  },
+  "min_FA_at_MISS_le_5": 19.22,
+  "min_MISS_at_FA_le_5": 22.22,
+  "escape_score_by_condition": {
+   "combined_heavy": 0.9668,
+   "combined_medium": 0.9762,
+   "eye_enlarging": 0.9075,
+   "face_reshaping": 0.9304,
+   "smoothing_heavy": 0.985,
+   "smoothing_light": 0.9707,
+   "smoothing_medium": 0.9858,
+   "whitening_medium": 0.9151
+  },
+  "clean_fake_mean_score": 0.9124
+ },
+ "f3net": {
+  "n_pairs": 1316,
+  "paired_shift_mean": 0.1047,
+  "paired_shift_median": 0.0092,
+  "pct_pairs_pushed_toward_fake": 63.37,
+  "per_op_shift": {
+   "eye_enlarging": {
+    "n": 152,
+    "mean_shift": -0.02,
+    "pct_toward_fake": 28.9
+   },
+   "face_reshaping_slim": {
+    "n": 150,
+    "mean_shift": 0.0098,
+    "pct_toward_fake": 51.3
+   },
+   "pilgram:aden": {
+    "n": 45,
+    "mean_shift": 0.0318,
+    "pct_toward_fake": 71.1
+   },
+   "pilgram:brannan": {
+    "n": 49,
+    "mean_shift": 0.0928,
+    "pct_toward_fake": 87.8
+   },
+   "pilgram:gingham": {
+    "n": 36,
+    "mean_shift": 0.1934,
+    "pct_toward_fake": 88.9
+   },
+   "pilgram:hudson": {
+    "n": 58,
+    "mean_shift": -0.0758,
+    "pct_toward_fake": 22.4
+   },
+   "pilgram:lark": {
+    "n": 57,
+    "mean_shift": -0.0461,
+    "pct_toward_fake": 40.4
+   },
+   "pilgram:maven": {
+    "n": 43,
+    "mean_shift": -0.0279,
+    "pct_toward_fake": 46.5
+   },
+   "pilgram:nashville": {
+    "n": 65,
+    "mean_shift": 0.1144,
+    "pct_toward_fake": 76.9
+   },
+   "pilgram:rise": {
+    "n": 43,
+    "mean_shift": 0.0642,
+    "pct_toward_fake": 81.4
+   },
+   "pilgram:stinson": {
+    "n": 48,
+    "mean_shift": 0.0146,
+    "pct_toward_fake": 64.6
+   },
+   "pilgram:toaster": {
+    "n": 49,
+    "mean_shift": 0.1852,
+    "pct_toward_fake": 83.7
+   },
+   "pilgram:valencia": {
+    "n": 69,
+    "mean_shift": 0.024,
+    "pct_toward_fake": 76.8
+   },
+   "pilgram:walden": {
+    "n": 46,
+    "mean_shift": 0.1249,
+    "pct_toward_fake": 76.1
+   },
+   "pilgram:willow": {
+    "n": 47,
+    "mean_shift": -0.0194,
+    "pct_toward_fake": 40.4
+   },
+   "pilgram:xpro2": {
+    "n": 54,
+    "mean_shift": 0.0433,
+    "pct_toward_fake": 81.5
+   },
+   "smoothing": {
+    "n": 156,
+    "mean_shift": 0.6735,
+    "pct_toward_fake": 98.1
+   },
+   "whitening": {
+    "n": 149,
+    "mean_shift": 0.0048,
+    "pct_toward_fake": 59.7
+   }
+  },
+  "best_sum": {
+   "FA": 11.09,
+   "MISS": 7.31,
+   "sum": 18.41,
+   "t": 0.9488304257392883
+  },
+  "min_FA_at_MISS_le_5": 14.51,
+  "min_MISS_at_FA_le_5": 30.16,
+  "escape_score_by_condition": {
+   "combined_heavy": 0.9961,
+   "combined_medium": 0.9981,
+   "eye_enlarging": 0.9149,
+   "face_reshaping": 0.9424,
+   "smoothing_heavy": 0.9983,
+   "smoothing_light": 0.9931,
+   "smoothing_medium": 0.9984,
+   "whitening_medium": 0.924
+  },
+  "clean_fake_mean_score": 0.9319
+ },
+ "npr": {
+  "n_pairs": 1316,
+  "paired_shift_mean": 0.039,
+  "paired_shift_median": 0.0,
+  "pct_pairs_pushed_toward_fake": 56.31,
+  "per_op_shift": {
+   "eye_enlarging": {
+    "n": 152,
+    "mean_shift": 0.0046,
+    "pct_toward_fake": 48.0
+   },
+   "face_reshaping_slim": {
+    "n": 150,
+    "mean_shift": -0.005,
+    "pct_toward_fake": 47.3
+   },
+   "pilgram:aden": {
+    "n": 45,
+    "mean_shift": -0.0231,
+    "pct_toward_fake": 40.0
+   },
+   "pilgram:brannan": {
+    "n": 49,
+    "mean_shift": 0.0251,
+    "pct_toward_fake": 59.2
+   },
+   "pilgram:gingham": {
+    "n": 36,
+    "mean_shift": 0.0864,
+    "pct_toward_fake": 61.1
+   },
+   "pilgram:hudson": {
+    "n": 58,
+    "mean_shift": 0.0698,
+    "pct_toward_fake": 84.5
+   },
+   "pilgram:lark": {
+    "n": 57,
+    "mean_shift": 0.0622,
+    "pct_toward_fake": 70.2
+   },
+   "pilgram:maven": {
+    "n": 43,
+    "mean_shift": -0.0242,
+    "pct_toward_fake": 48.8
+   },
+   "pilgram:nashville": {
+    "n": 65,
+    "mean_shift": 0.2203,
+    "pct_toward_fake": 93.8
+   },
+   "pilgram:rise": {
+    "n": 43,
+    "mean_shift": -0.0,
+    "pct_toward_fake": 46.5
+   },
+   "pilgram:stinson": {
+    "n": 48,
+    "mean_shift": -0.0129,
+    "pct_toward_fake": 27.1
+   },
+   "pilgram:toaster": {
+    "n": 49,
+    "mean_shift": 0.3604,
+    "pct_toward_fake": 89.8
+   },
+   "pilgram:valencia": {
+    "n": 69,
+    "mean_shift": 0.0499,
+    "pct_toward_fake": 73.9
+   },
+   "pilgram:walden": {
+    "n": 46,
+    "mean_shift": 0.233,
+    "pct_toward_fake": 91.3
+   },
+   "pilgram:willow": {
+    "n": 47,
+    "mean_shift": -0.0755,
+    "pct_toward_fake": 0.0
+   },
+   "pilgram:xpro2": {
+    "n": 54,
+    "mean_shift": -0.0088,
+    "pct_toward_fake": 42.6
+   },
+   "smoothing": {
+    "n": 156,
+    "mean_shift": -0.0437,
+    "pct_toward_fake": 48.7
+   },
+   "whitening": {
+    "n": 149,
+    "mean_shift": 0.0455,
+    "pct_toward_fake": 59.1
+   }
+  },
+  "best_sum": {
+   "FA": 82.9,
+   "MISS": 13.78,
+   "sum": 96.68,
+   "t": 1.6125553195667382e-25
+  },
+  "min_FA_at_MISS_le_5": 92.4,
+  "min_MISS_at_FA_le_5": 100.0,
+  "escape_score_by_condition": {
+   "combined_heavy": 0.104,
+   "combined_medium": 0.1052,
+   "eye_enlarging": 0.1209,
+   "face_reshaping": 0.1117,
+   "smoothing_heavy": 0.0701,
+   "smoothing_light": 0.0874,
+   "smoothing_medium": 0.0832,
+   "whitening_medium": 0.1297
+  },
+  "clean_fake_mean_score": 0.1205
+ },
+ "ours3_mnv4_10ep": {
+  "n_pairs": 1316,
+  "paired_shift_mean": -0.0956,
+  "paired_shift_median": -0.0191,
+  "pct_pairs_pushed_toward_fake": 28.72,
+  "per_op_shift": {
+   "eye_enlarging": {
+    "n": 152,
+    "mean_shift": -0.0533,
+    "pct_toward_fake": 29.6
+   },
+   "face_reshaping_slim": {
+    "n": 150,
+    "mean_shift": -0.0726,
+    "pct_toward_fake": 28.7
+   },
+   "pilgram:aden": {
+    "n": 45,
+    "mean_shift": -0.0688,
+    "pct_toward_fake": 42.2
+   },
+   "pilgram:brannan": {
+    "n": 49,
+    "mean_shift": -0.1072,
+    "pct_toward_fake": 32.7
+   },
+   "pilgram:gingham": {
+    "n": 36,
+    "mean_shift": -0.0998,
+    "pct_toward_fake": 27.8
+   },
+   "pilgram:hudson": {
+    "n": 58,
+    "mean_shift": -0.1196,
+    "pct_toward_fake": 31.0
+   },
+   "pilgram:lark": {
+    "n": 57,
+    "mean_shift": -0.1164,
+    "pct_toward_fake": 29.8
+   },
+   "pilgram:maven": {
+    "n": 43,
+    "mean_shift": -0.0994,
+    "pct_toward_fake": 30.2
+   },
+   "pilgram:nashville": {
+    "n": 65,
+    "mean_shift": -0.1197,
+    "pct_toward_fake": 21.5
+   },
+   "pilgram:rise": {
+    "n": 43,
+    "mean_shift": -0.1481,
+    "pct_toward_fake": 20.9
+   },
+   "pilgram:stinson": {
+    "n": 48,
+    "mean_shift": -0.06,
+    "pct_toward_fake": 33.3
+   },
+   "pilgram:toaster": {
+    "n": 49,
+    "mean_shift": -0.0856,
+    "pct_toward_fake": 16.3
+   },
+   "pilgram:valencia": {
+    "n": 69,
+    "mean_shift": -0.1045,
+    "pct_toward_fake": 27.5
+   },
+   "pilgram:walden": {
+    "n": 46,
+    "mean_shift": -0.1817,
+    "pct_toward_fake": 21.7
+   },
+   "pilgram:willow": {
+    "n": 47,
+    "mean_shift": -0.1253,
+    "pct_toward_fake": 21.3
+   },
+   "pilgram:xpro2": {
+    "n": 54,
+    "mean_shift": -0.1331,
+    "pct_toward_fake": 35.2
+   },
+   "smoothing": {
+    "n": 156,
+    "mean_shift": -0.1227,
+    "pct_toward_fake": 27.6
+   },
+   "whitening": {
+    "n": 149,
+    "mean_shift": -0.0535,
+    "pct_toward_fake": 32.9
+   }
+  },
+  "best_sum": {
+   "FA": 6.08,
+   "MISS": 65.21,
+   "sum": 71.29,
+   "t": 0.2273101806640625
+  },
+  "min_FA_at_MISS_le_5": 88.22,
+  "min_MISS_at_FA_le_5": 67.5,
+  "escape_score_by_condition": {
+   "combined_heavy": 0.0613,
+   "combined_medium": 0.0987,
+   "eye_enlarging": 0.7039,
+   "face_reshaping": 0.8168,
+   "smoothing_heavy": 0.0469,
+   "smoothing_light": 0.167,
+   "smoothing_medium": 0.0758,
+   "whitening_medium": 0.505
+  },
+  "clean_fake_mean_score": 0.8072
+ },
+ "sbi": {
+  "n_pairs": 1316,
+  "paired_shift_mean": 0.1202,
+  "paired_shift_median": 0.0059,
+  "pct_pairs_pushed_toward_fake": 69.22,
+  "per_op_shift": {
+   "eye_enlarging": {
+    "n": 152,
+    "mean_shift": 0.0181,
+    "pct_toward_fake": 77.0
+   },
+   "face_reshaping_slim": {
+    "n": 150,
+    "mean_shift": 0.0588,
+    "pct_toward_fake": 82.0
+   },
+   "pilgram:aden": {
+    "n": 45,
+    "mean_shift": 0.0453,
+    "pct_toward_fake": 86.7
+   },
+   "pilgram:brannan": {
+    "n": 49,
+    "mean_shift": -0.0327,
+    "pct_toward_fake": 38.8
+   },
+   "pilgram:gingham": {
+    "n": 36,
+    "mean_shift": 0.0656,
+    "pct_toward_fake": 55.6
+   },
+   "pilgram:hudson": {
+    "n": 58,
+    "mean_shift": -0.0414,
+    "pct_toward_fake": 8.6
+   },
+   "pilgram:lark": {
+    "n": 57,
+    "mean_shift": -0.0247,
+    "pct_toward_fake": 24.6
+   },
+   "pilgram:maven": {
+    "n": 43,
+    "mean_shift": 0.0021,
+    "pct_toward_fake": 58.1
+   },
+   "pilgram:nashville": {
+    "n": 65,
+    "mean_shift": 0.0658,
+    "pct_toward_fake": 78.5
+   },
+   "pilgram:rise": {
+    "n": 43,
+    "mean_shift": 0.0046,
+    "pct_toward_fake": 58.1
+   },
+   "pilgram:stinson": {
+    "n": 48,
+    "mean_shift": -0.0081,
+    "pct_toward_fake": 58.3
+   },
+   "pilgram:toaster": {
+    "n": 49,
+    "mean_shift": 0.4702,
+    "pct_toward_fake": 95.9
+   },
+   "pilgram:valencia": {
+    "n": 69,
+    "mean_shift": -0.011,
+    "pct_toward_fake": 36.2
+   },
+   "pilgram:walden": {
+    "n": 46,
+    "mean_shift": 0.0891,
+    "pct_toward_fake": 63.0
+   },
+   "pilgram:willow": {
+    "n": 47,
+    "mean_shift": 0.0564,
+    "pct_toward_fake": 70.2
+   },
+   "pilgram:xpro2": {
+    "n": 54,
+    "mean_shift": 0.1236,
+    "pct_toward_fake": 92.6
+   },
+   "smoothing": {
+    "n": 156,
+    "mean_shift": 0.6687,
+    "pct_toward_fake": 98.7
+   },
+   "whitening": {
+    "n": 149,
+    "mean_shift": 0.023,
+    "pct_toward_fake": 71.8
+   }
+  },
+  "best_sum": {
+   "FA": 14.29,
+   "MISS": 18.59,
+   "sum": 32.88,
+   "t": 0.6518309712409973
+  },
+  "min_FA_at_MISS_le_5": 40.43,
+  "min_MISS_at_FA_le_5": 45.03,
+  "escape_score_by_condition": {
+   "combined_heavy": 0.983,
+   "combined_medium": 0.9494,
+   "eye_enlarging": 0.6001,
+   "face_reshaping": 0.7652,
+   "smoothing_heavy": 0.9899,
+   "smoothing_light": 0.8172,
+   "smoothing_medium": 0.9676,
+   "whitening_medium": 0.5993
+  },
+  "clean_fake_mean_score": 0.589
+ },
+ "spsl": {
+  "n_pairs": 1316,
+  "paired_shift_mean": 0.0167,
+  "paired_shift_median": -0.0035,
+  "pct_pairs_pushed_toward_fake": 46.81,
+  "per_op_shift": {
+   "eye_enlarging": {
+    "n": 152,
+    "mean_shift": -0.0261,
+    "pct_toward_fake": 37.5
+   },
+   "face_reshaping_slim": {
+    "n": 150,
+    "mean_shift": -0.0028,
+    "pct_toward_fake": 51.3
+   },
+   "pilgram:aden": {
+    "n": 45,
+    "mean_shift": 0.0037,
+    "pct_toward_fake": 46.7
+   },
+   "pilgram:brannan": {
+    "n": 49,
+    "mean_shift": -0.0864,
+    "pct_toward_fake": 14.3
+   },
+   "pilgram:gingham": {
+    "n": 36,
+    "mean_shift": 0.0286,
+    "pct_toward_fake": 63.9
+   },
+   "pilgram:hudson": {
+    "n": 58,
+    "mean_shift": -0.0489,
+    "pct_toward_fake": 25.9
+   },
+   "pilgram:lark": {
+    "n": 57,
+    "mean_shift": -0.0303,
+    "pct_toward_fake": 42.1
+   },
+   "pilgram:maven": {
+    "n": 43,
+    "mean_shift": -0.0387,
+    "pct_toward_fake": 34.9
+   },
+   "pilgram:nashville": {
+    "n": 65,
+    "mean_shift": -0.0866,
+    "pct_toward_fake": 18.5
+   },
+   "pilgram:rise": {
+    "n": 43,
+    "mean_shift": -0.0706,
+    "pct_toward_fake": 25.6
+   },
+   "pilgram:stinson": {
+    "n": 48,
+    "mean_shift": -0.0232,
+    "pct_toward_fake": 35.4
+   },
+   "pilgram:toaster": {
+    "n": 49,
+    "mean_shift": 0.1074,
+    "pct_toward_fake": 83.7
+   },
+   "pilgram:valencia": {
+    "n": 69,
+    "mean_shift": -0.0597,
+    "pct_toward_fake": 26.1
+   },
+   "pilgram:walden": {
+    "n": 46,
+    "mean_shift": -0.0952,
+    "pct_toward_fake": 26.1
+   },
+   "pilgram:willow": {
+    "n": 47,
+    "mean_shift": -0.0982,
+    "pct_toward_fake": 25.5
+   },
+   "pilgram:xpro2": {
+    "n": 54,
+    "mean_shift": -0.0292,
+    "pct_toward_fake": 35.2
+   },
+   "smoothing": {
+    "n": 156,
+    "mean_shift": 0.3387,
+    "pct_toward_fake": 94.2
+   },
+   "whitening": {
+    "n": 149,
+    "mean_shift": 0.0133,
+    "pct_toward_fake": 59.1
+   }
+  },
+  "best_sum": {
+   "FA": 14.89,
+   "MISS": 8.03,
+   "sum": 22.92,
+   "t": 0.9317303895950317
+  },
+  "min_FA_at_MISS_le_5": 19.91,
+  "min_MISS_at_FA_le_5": 26.06,
+  "escape_score_by_condition": {
+   "combined_heavy": 0.9764,
+   "combined_medium": 0.9855,
+   "eye_enlarging": 0.9608,
+   "face_reshaping": 0.9605,
+   "smoothing_heavy": 0.9883,
+   "smoothing_light": 0.9843,
+   "smoothing_medium": 0.9893,
+   "whitening_medium": 0.9603
+  },
+  "clean_fake_mean_score": 0.9655
+ },
+ "univfd": {
+  "n_pairs": 1316,
+  "paired_shift_mean": 0.0497,
+  "paired_shift_median": 0.0022,
+  "pct_pairs_pushed_toward_fake": 68.54,
+  "per_op_shift": {
+   "eye_enlarging": {
+    "n": 152,
+    "mean_shift": 0.0212,
+    "pct_toward_fake": 75.0
+   },
+   "face_reshaping_slim": {
+    "n": 150,
+    "mean_shift": 0.0076,
+    "pct_toward_fake": 74.0
+   },
+   "pilgram:aden": {
+    "n": 45,
+    "mean_shift": 0.0104,
+    "pct_toward_fake": 77.8
+   },
+   "pilgram:brannan": {
+    "n": 49,
+    "mean_shift": 0.0378,
+    "pct_toward_fake": 75.5
+   },
+   "pilgram:gingham": {
+    "n": 36,
+    "mean_shift": 0.0938,
+    "pct_toward_fake": 91.7
+   },
+   "pilgram:hudson": {
+    "n": 58,
+    "mean_shift": 0.0124,
+    "pct_toward_fake": 58.6
+   },
+   "pilgram:lark": {
+    "n": 57,
+    "mean_shift": 0.0179,
+    "pct_toward_fake": 63.2
+   },
+   "pilgram:maven": {
+    "n": 43,
+    "mean_shift": 0.0014,
+    "pct_toward_fake": 48.8
+   },
+   "pilgram:nashville": {
+    "n": 65,
+    "mean_shift": 0.1304,
+    "pct_toward_fake": 87.7
+   },
+   "pilgram:rise": {
+    "n": 43,
+    "mean_shift": 0.1057,
+    "pct_toward_fake": 74.4
+   },
+   "pilgram:stinson": {
+    "n": 48,
+    "mean_shift": -0.0001,
+    "pct_toward_fake": 45.8
+   },
+   "pilgram:toaster": {
+    "n": 49,
+    "mean_shift": 0.1266,
+    "pct_toward_fake": 75.5
+   },
+   "pilgram:valencia": {
+    "n": 69,
+    "mean_shift": 0.0162,
+    "pct_toward_fake": 75.4
+   },
+   "pilgram:walden": {
+    "n": 46,
+    "mean_shift": 0.0893,
+    "pct_toward_fake": 80.4
+   },
+   "pilgram:willow": {
+    "n": 47,
+    "mean_shift": -0.0144,
+    "pct_toward_fake": 34.0
+   },
+   "pilgram:xpro2": {
+    "n": 54,
+    "mean_shift": 0.1436,
+    "pct_toward_fake": 81.5
+   },
+   "smoothing": {
+    "n": 156,
+    "mean_shift": 0.147,
+    "pct_toward_fake": 75.0
+   },
+   "whitening": {
+    "n": 149,
+    "mean_shift": -0.0062,
+    "pct_toward_fake": 45.0
+   }
+  },
+  "best_sum": {
+   "FA": 16.03,
+   "MISS": 46.47,
+   "sum": 62.5,
+   "t": 0.22967024147510529
+  },
+  "min_FA_at_MISS_le_5": 80.17,
+  "min_MISS_at_FA_le_5": 64.38,
+  "escape_score_by_condition": {
+   "combined_heavy": 0.6107,
+   "combined_medium": 0.4258,
+   "eye_enlarging": 0.3306,
+   "face_reshaping": 0.3038,
+   "smoothing_heavy": 0.6646,
+   "smoothing_light": 0.281,
+   "smoothing_medium": 0.4608,
+   "whitening_medium": 0.2941
+  },
+  "clean_fake_mean_score": 0.3006
+ },
+ "xception": {
+  "n_pairs": 1316,
+  "paired_shift_mean": 0.1023,
+  "paired_shift_median": 0.0195,
+  "pct_pairs_pushed_toward_fake": 64.74,
+  "per_op_shift": {
+   "eye_enlarging": {
+    "n": 152,
+    "mean_shift": -0.0196,
+    "pct_toward_fake": 34.2
+   },
+   "face_reshaping_slim": {
+    "n": 150,
+    "mean_shift": 0.0017,
+    "pct_toward_fake": 46.7
+   },
+   "pilgram:aden": {
+    "n": 45,
+    "mean_shift": 0.0871,
+    "pct_toward_fake": 91.1
+   },
+   "pilgram:brannan": {
+    "n": 49,
+    "mean_shift": 0.0048,
+    "pct_toward_fake": 61.2
+   },
+   "pilgram:gingham": {
+    "n": 36,
+    "mean_shift": 0.1912,
+    "pct_toward_fake": 97.2
+   },
+   "pilgram:hudson": {
+    "n": 58,
+    "mean_shift": -0.116,
+    "pct_toward_fake": 15.5
+   },
+   "pilgram:lark": {
+    "n": 57,
+    "mean_shift": -0.0894,
+    "pct_toward_fake": 26.3
+   },
+   "pilgram:maven": {
+    "n": 43,
+    "mean_shift": -0.0271,
+    "pct_toward_fake": 37.2
+   },
+   "pilgram:nashville": {
+    "n": 65,
+    "mean_shift": 0.0146,
+    "pct_toward_fake": 55.4
+   },
+   "pilgram:rise": {
+    "n": 43,
+    "mean_shift": 0.1461,
+    "pct_toward_fake": 83.7
+   },
+   "pilgram:stinson": {
+    "n": 48,
+    "mean_shift": 0.111,
+    "pct_toward_fake": 89.6
+   },
+   "pilgram:toaster": {
+    "n": 49,
+    "mean_shift": 0.3115,
+    "pct_toward_fake": 91.8
+   },
+   "pilgram:valencia": {
+    "n": 69,
+    "mean_shift": 0.06,
+    "pct_toward_fake": 78.3
+   },
+   "pilgram:walden": {
+    "n": 46,
+    "mean_shift": 0.071,
+    "pct_toward_fake": 69.6
+   },
+   "pilgram:willow": {
+    "n": 47,
+    "mean_shift": 0.0695,
+    "pct_toward_fake": 63.8
+   },
+   "pilgram:xpro2": {
+    "n": 54,
+    "mean_shift": 0.0684,
+    "pct_toward_fake": 77.8
+   },
+   "smoothing": {
+    "n": 156,
+    "mean_shift": 0.5927,
+    "pct_toward_fake": 99.4
+   },
+   "whitening": {
+    "n": 149,
+    "mean_shift": 0.0311,
+    "pct_toward_fake": 74.5
+   }
+  },
+  "best_sum": {
+   "FA": 12.31,
+   "MISS": 9.06,
+   "sum": 21.37,
+   "t": 0.9197715520858765
+  },
+  "min_FA_at_MISS_le_5": 19.07,
+  "min_MISS_at_FA_le_5": 22.91,
+  "escape_score_by_condition": {
+   "combined_heavy": 0.9837,
+   "combined_medium": 0.9886,
+   "eye_enlarging": 0.9109,
+   "face_reshaping": 0.9363,
+   "smoothing_heavy": 0.9886,
+   "smoothing_light": 0.9899,
+   "smoothing_medium": 0.9896,
+   "whitening_medium": 0.9211
+  },
+  "clean_fake_mean_score": 0.9333
+ }
+}

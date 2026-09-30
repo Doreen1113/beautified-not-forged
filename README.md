@@ -1,189 +1,173 @@
-# AIGC & Filter Detection
+<div align="center">
 
-Lightweight + explainable AIGC/filter detection targeting edge devices (<8GB VRAM).
+# Beautified Is Not Forged
+### Separating Beautification from Face Forgery
 
-**Output:** Real / Fake / Filter-processed + structured natural language explanation
+**Qin-Ying Lin, Bo-Rong Chen, Chen-Shan Yu**
+
+[![Paper](https://img.shields.io/badge/paper-draft%20PDF-b64342)](docs/paper_v2/main_8page.pdf)
+[![Supplement](https://img.shields.io/badge/supplement-PDF-8a8a8a)](docs/paper_v2/supplement_latest.pdf)
+[![Slides](https://img.shields.io/badge/slides-2026--09--30-0f4d92)](docs/meeting_20260930/meeting_20260930_v3.pptx)
+[![Demo](https://img.shields.io/badge/browser%20demo-ONNX%20Runtime%20Web-2f7d32)](docs/demo_ru/)
+
+<img src="assets/readme/teaser.png" width="92%">
+
+*A binary detector (SBI) accuses a beautified genuine face and lets a beautified deepfake through.
+Our three-way detector calls the first **filter** and the second **fake**.*
+
+</div>
 
 ---
 
-## Configuration
+## TL;DR
 
-All scripts use a `BASE` variable pointing to the root of this repo on your local machine.
-**Each team member must update this to match their own path** before running any script.
+Most face photos are beautified by a camera app or a retouching service before anyone checks them. A real / fake
+detector has to put a beautified genuine face on one side or the other, and either choice is an error. We add a third
+label, **filter** (identity kept, appearance edited), and train it with supervision from paired originals:
+renders of two commercial retouching services split into single-operation components, and part-level forgeries with
+exact edit regions. One CLIP ViT-L/14 + LoRA model then
 
-Files to update:
+- **ignores beautification**: once re-encoding is accounted for, beautification changes its escape rate by **−0.6 pp**
+  on Celeb-DF-B (SBI +21.8, Effort +11.0, Forensics Adapter +15.3);
+- **does not accuse commercial retouching**: **0.1 %** of an unseen service's retouched faces are called fake
+  (published detectors: 9.5–14.8 % at 5 % FPR on the originals);
+- **detects forgeries as well as the 2025 CLIP detectors**: video AUC **0.954** on Celeb-DF-v2 and **0.983** on DFD
+  (paired bootstrap vs. Effort and Forensics Adapter: all intervals contain 0; vs. SBI: all above 0);
+- **explains where**: restoring the region its evidence head names removes **91 %** of its detections on held-out
+  part-level forgeries (ceiling 92 %), and the sentence names the edited part correctly in **98–99 %** of cases.
 
-| File | Line | Variable |
+What is not solved: telling lightly retouched faces from their originals on an unseen service reaches **70 %**
+balanced accuracy (our target was 75 %).
+
+## Demo
+
+<table>
+<tr>
+<td align="center"><img src="assets/readme/demo_system.gif" width="100%"><br>
+<sub><b>System output.</b> Decision, four operation scores, evidence map and a template sentence for examples fixed in
+advance; the wrong cases are kept (lifting and whitening are missed, one genuine frame is sent to filter).</sub></td>
+<td align="center"><img src="assets/readme/demo_counterfactual.gif" width="100%"><br>
+<sub><b>Is the explanation the cause?</b> Held-out part-level forgeries: restoring only the region the model names to
+the unedited original removes the <i>fake</i> decision.</sub></td>
+</tr>
+</table>
+
+A browser version (4.7 M-parameter RepViT, no upload, runs on a phone) is in [`docs/demo_ru`](docs/demo_ru/):
+```bash
+cd docs/demo_ru && python -m http.server 8000     # then open http://localhost:8000
+```
+
+## Method
+
+<img src="assets/readme/overview.png" width="100%">
+
+- **Three labels.** *real* (unedited), *fake* (identity swapped, reenacted or synthesised), *filter* (identity kept,
+  appearance edited). A beautified forgery is still *fake*.
+- **Supervision from paired originals.** Every edited training image has a pixel-aligned original, so both its label
+  and its exact edit region are known.
+- **Render decomposition.** Commercial services apply four edits at once; a model trained on their renders learns only
+  the co-occurrence. Dense optical flow and a low/high-pass split of the photometric residual turn each render into
+  eye, contour, tone and texture components that recompose it at 108 dB (≈50 k single-operation training images).
+- **Symmetric degradation.** The same blur or downscale is applied to the real, filter and fake image of each
+  training triplet, so sharpness no longer predicts the class.
+- **Three heads on one backbone.** Three-way decision, operation presence, and an evidence map trained with BCE + Dice
+  against the exact edit region.
+
+## Results
+
+All detectors are scored with their released weights on the same frames and crops.
+
+| Detector | Params (M) | Celeb-DF-v2 video AUC | DFD video AUC | Celeb-DF-B AUC | Escape added by beautification (pp) |
+|---|---:|---:|---:|---:|---:|
+| Xception | 21.9 | 0.772 | 0.882 | 0.811 | +10.9 |
+| UCF | 21.9 | 0.788 | 0.853 | 0.841 | +11.3 |
+| SBI | 17.6 | 0.872 | 0.876 | 0.875 | +21.8 |
+| Effort (CLIP) | 303.4 | 0.930 | 0.957 | 0.909 | +11.0 |
+| Forensics Adapter (CLIP) | 309.7 | 0.945 | 0.959 | 0.909 | +15.3 |
+| **Ours** (CLIP ViT-L/14 + LoRA) | 306.3 | **0.954** | **0.983** | **0.937** | **−0.6** |
+| Ours-lite (EfficientNet-B4) | 17.6 | 0.910 | 0.908 | 0.899 | +0.9 |
+
+<sub>Last column: change in the share of Celeb-DF-B deepfakes called real when the videos are beautified, with the
+re-encoding effect removed using the benchmark's compression-only videos; binary detectors at 5 % FPR on untreated
+genuine frames. Full table (13 detectors, frame-level AUC, paired-corpus errors) in the paper.</sub>
+
+<table>
+<tr>
+<td width="50%"><img src="assets/readme/frontier.png" width="100%"><br>
+<sub><b>No threshold reaches us.</b> Each grey curve is one published detector swept over all thresholds; none enters
+the box under our models.</sub></td>
+<td width="50%"><img src="assets/readme/escape.png" width="100%"><br>
+<sub><b>Beautification alone lets deepfakes escape</b>, including the 2025 CLIP detectors.</sub></td>
+</tr>
+<tr>
+<td><img src="assets/readme/blur.png" width="100%"><br>
+<sub><b>Blur looks fake to FF++-trained detectors.</b> Degrading all three images of a training triplet together
+removes the shortcut.</sub></td>
+<td><img src="assets/readme/flip.png" width="100%"><br>
+<sub><b>The evidence map is faithful.</b> Restoring the named region removes 91 % of detections; restoring the true
+edit region removes 92 %.</sub></td>
+</tr>
+</table>
+
+## How far the explanation can be trusted
+
+The sentence is a template filled from the three heads (no language model), so every word can be checked against a
+model output. On 379 test images it produces 14 distinct sentences; what differs per image is the numbers behind them.
+
+| The sentence says | Tested on | Correct |
 |---|---|---|
-| `pipeline.py` | 40 | `BASE = r"C:\Your\Path\AIGC"` |
-| `explainability/gradcam.py` | 22 | `BASE = r"C:\Your\Path\AIGC"` |
-| `explainability/explain.py` | 23 | `BASE = r"C:\Your\Path\AIGC"` |
-| `filters/pipeline.py` | 24 | `BASE = r"C:\Your\Path\AIGC"` |
-| `filters/generate_filter_dataset.py` | 27 | `BASE = r"C:\Your\Path\AIGC"` |
-| `AIGuard/train_*.py` | top | `BASE = r"C:\Your\Path\AIGC"` |
+| **which part** was forged | held-out part forgeries, 3 editors (SDXL unseen) | 98–99 % |
+| **is that part the cause** | restore the part to the original | 91 % of detections removed (ceiling 92 %) |
+| **which operation** was applied | held-out faces of the two training services | 0.50 (eyes) to 0.99 (smoothing) |
+| | an unseen service | 0.21 (eyes) to 0.96 (smoothing) |
+| **how much** was edited | predicted vs. measured amount | Spearman ≤ 0.47, not shown |
 
----
+## Limitations
 
-## Environments
+- On an unseen retouching service the main model sends 82 % of retouched faces to *filter* but also 42 % of untouched
+  originals (balanced accuracy 70 %; Ours-lite 73 %).
+- Eye enlargement and face reshaping are often not named on an unseen service; edit magnitudes are not estimated.
+- For whole-face swaps the evidence covers the face; no small region carries the decision.
+- Strong JPEG (quality 30) raises false alarms on genuine faces by 6 pp (Ours) and 15 pp (Ours-lite).
+- The main model and Ours-lite are single training runs.
 
-| Environment | Purpose |
-|---|---|
-| `base` (Anaconda) | Baseline training, Grad-CAM — has torch, timm, torchvision |
-| `mediapipe_env` | Filter pipeline — has mediapipe 0.10.9, cv2, numpy |
-
----
-
-## Project Structure
+## Repository
 
 ```
-AIGC_Detection/
-├── pipeline.py                     # Main entry: Real/Fake/Filter detection + explanation
-├── baseline_output.py              # Output format contract (binary baseline)
-│
-├── AIGuard/                        # Dataset + training scripts
-│   ├── train.py                    # Baseline training (4 models, Real/Fake)
-│   ├── train_3class_ffhq_v2.py     # 3-class model (Real/Fake/Filter) — current best
-│   ├── train_artifact_classifier.py# Artifact type classifier (4-class) — current best
-│   ├── real/ fake/ unseen/         # Dataset (gitignored)
-│
-├── filters/                        # Filter scripts
-│   ├── generate_filter_dataset.py  # Generate filter training data (32K images)
-│   ├── Smoothing/
-│   │   └── Skin-Smoothing.ipynb
-│   ├── whitening.py
-│   ├── eye_enlarging.py
-│   ├── face_reshaping.py
-│   └── pipeline.py                 # Unified filter pipeline (metrics only)
-│
-├── explainability/
-│   ├── gradcam.py                  # Grad-CAM++ on 3-class model (standalone)
-│   └── explain.py                  # Full explanation pipeline (alternative entry)
-│
-├── docs/
-│   ├── research_log.md             # Experiment log
-│   ├── baseline-output.schema.json # JSON Schema (baseline output)
-│   └── structured-output.schema.json # JSON Schema (detailed output, future)
-│
-├── results/                        # Experiment CSVs
-│
-└── README.md
+docs/paper_v2/                 paper and supplement (LaTeX), table and figure scripts (every number is read from a result file)
+docs/meeting_20260930/         progress-report slides, speaker notes, slide assets and their scripts
+docs/demo_ru/                  browser demo (MediaPipe crop + ONNX Runtime Web)
+docs/readme/make_media.py      the GIFs and figures on this page
+results/research/
+  retouch_unified_20260929/    main line: render decomposition, training (EfficientNet-B4 and CLIP + LoRA), evaluation,
+                               explanation (explain_ours.py), pre-registered targets (PRE_DECLARED.md), FINDINGS.md
+  cgd_20260927/                part-level forgeries, evidence head, faithfulness test
+  celebdfb_v2_20260927/        Celeb-DF-B escape / accusation protocol
+  sota_baselines_20260929/     scoring Effort and Forensics Adapter with their released weights
+  ffpp_benchmark_20260925/     FF++ paired corpus, Celeb-DF-v2 / DFD frame lists, video-level AUC
+  alipair_zeroshot_20260929/   unseen commercial service (Alibaba) before/after pairs
+pipeline.py, AIGuard/, filters/, android_benchmark/, ios_benchmark/
+                               earlier line: hierarchical ShuffleNetV2 detector with on-device (TFLite) deployment
 ```
 
----
+The setup and usage notes of the earlier line (environment, filter pipeline, Grad-CAM, output schema) are kept in
+[`docs/readme/LEGACY_README_v8.md`](docs/readme/LEGACY_README_v8.md).
 
-## Baseline Results
+Datasets and model weights are not in the repository. Data: FaceForensics++, Celeb-DF-v2, DFD, Celeb-DF-B (on request
+from its authors), RetouchingFFHQ and FFHQ, each under its own licence.
 
-4 models trained on DeepFake-450K (30000 real + 30000 fake, 15 epochs):
+## Citation
 
-| Model | Params | Acc | F1 | Precision | Recall | AUROC | ms/img | VRAM |
-|---|---|---|---|---|---|---|---|---|
-| MobileNetV4 | 2.50M | 0.9723 | 0.9717 | 0.9958 | 0.9487 | 0.9981 | 3.22 | 0.55GB |
-| EfficientNet-lite | 3.37M | 0.9834 | 0.9834 | 0.9817 | 0.9852 | 0.9981 | 2.35 | 1.69GB |
-| ResNet-lite | 11.18M | 0.9832 | 0.9832 | 0.9867 | 0.9797 | 0.9984 | 2.11 | 1.10GB |
-| **ShuffleNetV2** | **1.26M** | **0.9838** | **0.9837** | **0.9868** | **0.9807** | **0.9987** | **2.14** | **0.43GB** |
-
-→ **ShuffleNetV2 selected** as main backbone: lowest params, lowest VRAM, highest AUROC.
-
----
-
-
-## Filter Pipeline
-
-Runs all 4 filters on images and outputs metrics + before/after comparison images.
-
-```bash
-conda activate mediapipe_env
-python filters/pipeline.py
-```
-
-**Average metrics (10 real images from AIGuard/real):**
-
-| Filter | PSNR | SSIM | Key Metric |
-|---|---|---|---|
-| Smoothing | 37.65 dB | 0.9726 | texture_reduction = 43.26% |
-| Whitening | 31.02 dB | 0.9904 | brightness_delta(L) = +15.10 |
-| Eye Enlarging | 34.38 dB | 0.9783 | eye_ratio_change = +0.33% |
-| Face Reshaping | 26.22 dB | 0.8866 | cheek_width_shrink = 8.0% |
-
-Output images saved to `filter_output/<image_name>/`.
-
----
-
-## Grad-CAM++ (Explainability)
-
-Loads the 3-class model and runs Grad-CAM++ on 5 real + 5 fake + 5 filter images.
-
-```bash
-# base env
-python explainability/gradcam.py
-```
-
-- Model: `shufflenet_v2_3class_ffhq_v2.pth` (Real/Fake/Filter, filter F1=0.980)
-- Target layer: `model.spatial_branch.conv5`
-- Output: `gradcam_output/` — 3-panel per image: **Input | Grad-CAM++ heatmap | FakeShield binary mask**
-- Grad-CAM++ uses 2nd/3rd-order gradients (alpha weighting) for more precise localization than Grad-CAM
-- Binary mask: threshold=115 on CAM → white=suspicious region, black=background
-
----
-
-## Baseline Output Format
-
-The baseline is a binary retouching detector. It only reports whether the image
-was retouched and the confidence of that prediction. Retouching type, severity,
-location, and natural-language explanations are intentionally left for later
-versions.
-
-```json
-{
-  "schema_version": "1.0.0",
-  "is_retouched": true,
-  "confidence": 0.94
+```bibtex
+@misc{lin2026beautified,
+  title  = {Beautified Is Not Forged: Separating Beautification from Face Forgery},
+  author = {Lin, Qin-Ying and Chen, Bo-Rong and Yu, Chen-Shan},
+  year   = {2026},
+  note   = {Manuscript}
 }
 ```
 
-The dependency-free Python contract is in `baseline_output.py`; its JSON Schema
-is `docs/baseline-output.schema.json`.
+## Acknowledgements
 
-### Detailed Output Format (future version)
-
-The original detailed contract is also retained for later development. It
-separates real, AI-generated, and filter-processed images, and reports the
-retouching operation, level, suspicious regions, and explanation.
-
-```json
-{
-  "schema_version": "1.0.0",
-  "prediction": "filter_processed",
-  "confidence": 0.94,
-  "retouching": {
-    "eye_enlarging": {"level": 30, "level_name": "slight", "confidence": 0.91},
-    "face_lifting": {"level": 0, "level_name": "off", "confidence": 0.88},
-    "skin_smoothing": {"level": 60, "level_name": "medium", "confidence": 0.87},
-    "face_whitening": {"level": 0, "level_name": "off", "confidence": 0.95}
-  },
-  "suspicious_regions": [
-    {"region": "eye_area", "confidence": 0.91},
-    {"region": "cheek", "confidence": 0.87}
-  ],
-  "artifact_types": ["eye_enlarging", "skin_smoothing"],
-  "explanation": "Slight eye enlargement and medium skin smoothing detected."
-}
-```
-
-The JSON Schema for the detailed format is `docs/structured-output.schema.json`.
-
----
-
-## TODO
-
-- [x] Baseline (4 models) with full metrics
-- [x] Filter pipeline (4 filters, 10 images, avg metrics)
-- [x] 3-class model (Real/Fake/Filter) — filter F1=0.980 with RetouchingFFHQ
-- [x] Artifact type classifier (4-class, F1=0.985)
-- [x] Grad-CAM++ on 3-class model (15/15 correct, 3-panel output)
-- [x] Grad-CAM++ integrated into pipeline.py (heatmap + binary mask)
-- [x] RetouchingFFHQ dataset integrated (cross-domain filter detection 12% → 100%)
-- [x] Structured output format defined (baseline + detailed schema)
-- [ ] Artifact level prediction (0/30/60/90) to complete detailed output format
-- [ ] MAM attention module (needs FFHQ.zip for pair-based training)
-- [ ] Knowledge distillation: FakeVLM → ShuffleNetV2
+Celeb-DF-B was provided by Libourel et al. (IWBF 2024). Baseline checkpoints come from DeepfakeBench and from the
+official releases of SBI, Effort and Forensics Adapter. Commercial retouching renders are from RetouchingFFHQ.

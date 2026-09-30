@@ -1,0 +1,917 @@
+{
+ "core": {
+  "kind": "binary",
+  "auc_untreated": 0.8242,
+  "threshold": 0.8274697065353394,
+  "FA": 5.06,
+  "FA0": 5.01,
+  "MISS": 66.21,
+  "MISS0": 61.89,
+  "FAc": 4.49,
+  "MISSc": 55.0,
+  "dFA": 0.05,
+  "dMISS": 4.32,
+  "dFA_c": -0.52,
+  "dMISS_c": -6.89,
+  "ci": {
+   "dFA": [
+    -2.05,
+    2.42
+   ],
+   "dMISS": [
+    -1.1,
+    9.76
+   ],
+   "FA": [
+    2.79,
+    7.83
+   ],
+   "MISS": [
+    60.05,
+    72.41
+   ]
+  },
+  "per_preset": {
+   "brown": {
+    "FA": 7.99,
+    "MISS": 58.7,
+    "dFA": 1.4,
+    "dMISS": 1.54
+   },
+   "california_dreamin": {
+    "FA": 2.25,
+    "MISS": 67.09,
+    "dFA": -1.25,
+    "dMISS": 1.94
+   },
+   "hawaii_grain": {
+    "FA": 0.13,
+    "MISS": 93.16,
+    "dFA": -5.27,
+    "dMISS": 31.51
+   },
+   "relax_you_pretty": {
+    "FA": 9.35,
+    "MISS": 45.06,
+    "dFA": 4.82,
+    "dMISS": -18.57
+   }
+  }
+ },
+ "effnb4": {
+  "kind": "binary",
+  "auc_untreated": 0.8113,
+  "threshold": 0.8634999990463257,
+  "FA": 9.58,
+  "FA0": 5.01,
+  "MISS": 57.17,
+  "MISS0": 64.03,
+  "FAc": 5.78,
+  "MISSc": 53.25,
+  "dFA": 4.57,
+  "dMISS": -6.87,
+  "dFA_c": 0.78,
+  "dMISS_c": -10.79,
+  "ci": {
+   "dFA": [
+    1.78,
+    7.59
+   ],
+   "dMISS": [
+    -12.41,
+    -1.57
+   ],
+   "FA": [
+    6.28,
+    12.93
+   ],
+   "MISS": [
+    50.27,
+    63.73
+   ]
+  },
+  "per_preset": {
+   "brown": {
+    "FA": 5.62,
+    "MISS": 65.54,
+    "dFA": 0.01,
+    "dMISS": 4.38
+   },
+   "california_dreamin": {
+    "FA": 8.43,
+    "MISS": 55.56,
+    "dFA": 4.27,
+    "dMISS": -8.34
+   },
+   "hawaii_grain": {
+    "FA": 7.74,
+    "MISS": 70.85,
+    "dFA": 2.06,
+    "dMISS": 6.7
+   },
+   "relax_you_pretty": {
+    "FA": 17.62,
+    "MISS": 32.63,
+    "dFA": 13.03,
+    "dMISS": -34.38
+   }
+  }
+ },
+ "f3net": {
+  "kind": "binary",
+  "auc_untreated": 0.7995,
+  "threshold": 0.8511046767234802,
+  "FA": 8.34,
+  "FA0": 5.01,
+  "MISS": 65.28,
+  "MISS0": 69.7,
+  "FAc": 8.37,
+  "MISSc": 55.41,
+  "dFA": 3.34,
+  "dMISS": -4.43,
+  "dFA_c": 3.37,
+  "dMISS_c": -14.29,
+  "ci": {
+   "dFA": [
+    0.64,
+    6.3
+   ],
+   "dMISS": [
+    -10.14,
+    1.51
+   ],
+   "FA": [
+    5.33,
+    11.79
+   ],
+   "MISS": [
+    59.41,
+    71.47
+   ]
+  },
+  "per_preset": {
+   "brown": {
+    "FA": 8.42,
+    "MISS": 65.11,
+    "dFA": 1.94,
+    "dMISS": -4.23
+   },
+   "california_dreamin": {
+    "FA": 9.55,
+    "MISS": 56.27,
+    "dFA": 6.32,
+    "dMISS": -16.75
+   },
+   "hawaii_grain": {
+    "FA": 0.25,
+    "MISS": 93.92,
+    "dFA": -3.98,
+    "dMISS": 26.32
+   },
+   "relax_you_pretty": {
+    "FA": 15.72,
+    "MISS": 42.51,
+    "dFA": 9.6,
+    "dMISS": -26.29
+   }
+  }
+ },
+ "HYB-L": {
+  "kind": "three-way",
+  "auc_untreated": 0.8553,
+  "to_filter": {
+   "real": 7.83,
+   "real_beautified": 62.23,
+   "real_compressed": 14.94,
+   "synthesis": 1.4,
+   "synthesis_beautified": 25.36,
+   "synthesis_compressed": 2.07
+  },
+  "FA": 19.18,
+  "FA0": 50.39,
+  "MISS": 3.91,
+  "MISS0": 5.71,
+  "FAc": 44.52,
+  "MISSc": 4.36,
+  "dFA": -31.2,
+  "dMISS": -1.8,
+  "dFA_c": -5.87,
+  "dMISS_c": -1.35,
+  "ci": {
+   "dFA": [
+    -36.2,
+    -26.38
+   ],
+   "dMISS": [
+    -4.09,
+    0.63
+   ],
+   "FA": [
+    14.31,
+    24.27
+   ],
+   "MISS": [
+    1.81,
+    6.4
+   ]
+  },
+  "per_preset": {
+   "brown": {
+    "FA": 16.52,
+    "MISS": 0.98,
+    "dFA": -38.59,
+    "dMISS": -2.26
+   },
+   "california_dreamin": {
+    "FA": 21.63,
+    "MISS": 14.1,
+    "dFA": -26.1,
+    "dMISS": 6.51
+   },
+   "hawaii_grain": {
+    "FA": 12.69,
+    "MISS": 0.0,
+    "dFA": -39.17,
+    "dMISS": -5.61
+   },
+   "relax_you_pretty": {
+    "FA": 27.1,
+    "MISS": 1.98,
+    "dFA": -19.67,
+    "dMISS": -4.43
+   }
+  },
+  "E1_dominated_by": [],
+  "E1": true,
+  "E2": false
+ },
+ "npr": {
+  "kind": "binary",
+  "auc_untreated": 0.5047,
+  "threshold": 5.956511017757293e-07,
+  "FA": 2.18,
+  "FA0": 5.01,
+  "MISS": 97.85,
+  "MISS0": 94.65,
+  "FAc": 1.83,
+  "MISSc": 98.15,
+  "dFA": -2.82,
+  "dMISS": 3.2,
+  "dFA_c": -3.17,
+  "dMISS_c": 3.51,
+  "ci": {
+   "dFA": [
+    -5.03,
+    -0.3
+   ],
+   "dMISS": [
+    1.12,
+    5.42
+   ],
+   "FA": [
+    0.72,
+    4.03
+   ],
+   "MISS": [
+    96.23,
+    99.24
+   ]
+  },
+  "per_preset": {
+   "brown": {
+    "FA": 0.43,
+    "MISS": 99.24,
+    "dFA": -3.41,
+    "dMISS": 3.35
+   },
+   "california_dreamin": {
+    "FA": 3.51,
+    "MISS": 95.3,
+    "dFA": -0.21,
+    "dMISS": -0.5
+   },
+   "hawaii_grain": {
+    "FA": 2.41,
+    "MISS": 98.61,
+    "dFA": -2.93,
+    "dMISS": 3.66
+   },
+   "relax_you_pretty": {
+    "FA": 2.85,
+    "MISS": 97.74,
+    "dFA": -4.35,
+    "dMISS": 5.83
+   }
+  }
+ },
+ "ours_repvit20": {
+  "kind": "three-way",
+  "auc_untreated": 0.7587,
+  "to_filter": {
+   "real": 24.83,
+   "real_beautified": 74.68,
+   "real_compressed": 35.04,
+   "synthesis": 16.87,
+   "synthesis_beautified": 65.57,
+   "synthesis_compressed": 21.16
+  },
+  "FA": 10.97,
+  "FA0": 22.93,
+  "MISS": 5.61,
+  "MISS0": 21.38,
+  "FAc": 31.22,
+  "MISSc": 9.1,
+  "dFA": -11.97,
+  "dMISS": -15.77,
+  "dFA_c": 8.28,
+  "dMISS_c": -12.27,
+  "ci": {
+   "dFA": [
+    -16.1,
+    -7.94
+   ],
+   "dMISS": [
+    -19.13,
+    -12.47
+   ],
+   "FA": [
+    6.79,
+    15.37
+   ],
+   "MISS": [
+    3.06,
+    8.4
+   ]
+  },
+  "per_preset": {
+   "brown": {
+    "FA": 6.48,
+    "MISS": 3.15,
+    "dFA": -20.72,
+    "dMISS": -11.93
+   },
+   "california_dreamin": {
+    "FA": 14.04,
+    "MISS": 11.4,
+    "dFA": -6.24,
+    "dMISS": -13.34
+   },
+   "hawaii_grain": {
+    "FA": 0.0,
+    "MISS": 0.0,
+    "dFA": -22.93,
+    "dMISS": -23.35
+   },
+   "relax_you_pretty": {
+    "FA": 25.34,
+    "MISS": 9.32,
+    "dFA": 4.05,
+    "dMISS": -13.05
+   }
+  },
+  "E1_dominated_by": [],
+  "E1": true,
+  "E2": false
+ },
+ "ours_repvit40": {
+  "kind": "three-way",
+  "auc_untreated": 0.7317,
+  "to_filter": {
+   "real": 42.26,
+   "real_beautified": 89.35,
+   "real_compressed": 54.5,
+   "synthesis": 25.5,
+   "synthesis_beautified": 76.85,
+   "synthesis_compressed": 29.95
+  },
+  "FA": 8.6,
+  "FA0": 34.97,
+  "MISS": 0.42,
+  "MISS0": 6.57,
+  "FAc": 34.38,
+  "MISSc": 0.89,
+  "dFA": -26.37,
+  "dMISS": -6.15,
+  "dFA_c": -0.59,
+  "dMISS_c": -5.68,
+  "ci": {
+   "dFA": [
+    -30.27,
+    -21.45
+   ],
+   "dMISS": [
+    -7.86,
+    -4.56
+   ],
+   "FA": [
+    5.27,
+    12.16
+   ],
+   "MISS": [
+    0.11,
+    0.91
+   ]
+  },
+  "per_preset": {
+   "brown": {
+    "FA": 4.1,
+    "MISS": 0.11,
+    "dFA": -36.06,
+    "dMISS": -3.02
+   },
+   "california_dreamin": {
+    "FA": 14.47,
+    "MISS": 0.57,
+    "dFA": -21.73,
+    "dMISS": -7.13
+   },
+   "hawaii_grain": {
+    "FA": 0.0,
+    "MISS": 0.0,
+    "dFA": -31.61,
+    "dMISS": -8.34
+   },
+   "relax_you_pretty": {
+    "FA": 17.75,
+    "MISS": 1.13,
+    "dFA": -14.02,
+    "dMISS": -6.01
+   }
+  },
+  "E1_dominated_by": [],
+  "E1": true,
+  "E2": false
+ },
+ "recce": {
+  "kind": "binary",
+  "auc_untreated": 0.7854,
+  "threshold": 0.9349161386489868,
+  "FA": 5.25,
+  "FA0": 5.01,
+  "MISS": 73.87,
+  "MISS0": 69.9,
+  "FAc": 7.77,
+  "MISSc": 60.63,
+  "dFA": 0.24,
+  "dMISS": 3.97,
+  "dFA_c": 2.77,
+  "dMISS_c": -9.27,
+  "ci": {
+   "dFA": [
+    -2.0,
+    2.48
+   ],
+   "dMISS": [
+    -1.19,
+    8.75
+   ],
+   "FA": [
+    3.09,
+    7.54
+   ],
+   "MISS": [
+    67.77,
+    79.61
+   ]
+  },
+  "per_preset": {
+   "brown": {
+    "FA": 6.05,
+    "MISS": 73.48,
+    "dFA": -0.38,
+    "dMISS": 6.01
+   },
+   "california_dreamin": {
+    "FA": 4.21,
+    "MISS": 71.79,
+    "dFA": 0.0,
+    "dMISS": -0.84
+   },
+   "hawaii_grain": {
+    "FA": 0.0,
+    "MISS": 95.94,
+    "dFA": -4.45,
+    "dMISS": 26.63
+   },
+   "relax_you_pretty": {
+    "FA": 10.84,
+    "MISS": 51.84,
+    "dFA": 5.91,
+    "dMISS": -18.32
+   }
+  }
+ },
+ "SBI-L": {
+  "kind": "binary",
+  "auc_untreated": 0.7474,
+  "threshold": 0.4310062825679779,
+  "FA": 2.75,
+  "FA0": 5.01,
+  "MISS": 86.95,
+  "MISS0": 73.69,
+  "FAc": 1.52,
+  "MISSc": 84.63,
+  "dFA": -2.26,
+  "dMISS": 13.26,
+  "dFA_c": -3.49,
+  "dMISS_c": 10.94,
+  "ci": {
+   "dFA": [
+    -4.12,
+    -0.24
+   ],
+   "dMISS": [
+    9.2,
+    17.1
+   ],
+   "FA": [
+    1.35,
+    4.37
+   ],
+   "MISS": [
+    82.91,
+    90.7
+   ]
+  },
+  "per_preset": {
+   "brown": {
+    "FA": 2.38,
+    "MISS": 96.85,
+    "dFA": -2.62,
+    "dMISS": 23.07
+   },
+   "california_dreamin": {
+    "FA": 0.98,
+    "MISS": 92.45,
+    "dFA": -3.88,
+    "dMISS": 16.81
+   },
+   "hawaii_grain": {
+    "FA": 5.2,
+    "MISS": 75.79,
+    "dFA": -0.86,
+    "dMISS": 4.92
+   },
+   "relax_you_pretty": {
+    "FA": 2.3,
+    "MISS": 81.07,
+    "dFA": -1.77,
+    "dMISS": 6.65
+   }
+  }
+ },
+ "sbi": {
+  "kind": "binary",
+  "auc_untreated": 0.8784,
+  "threshold": 0.8840616345405579,
+  "FA": 1.74,
+  "FA0": 5.01,
+  "MISS": 72.39,
+  "MISS0": 44.07,
+  "FAc": 2.91,
+  "MISSc": 45.7,
+  "dFA": -3.27,
+  "dMISS": 28.33,
+  "dFA_c": -2.1,
+  "dMISS_c": 1.64,
+  "ci": {
+   "dFA": [
+    -4.78,
+    -1.71
+   ],
+   "dMISS": [
+    21.65,
+    34.83
+   ],
+   "FA": [
+    0.85,
+    2.76
+   ],
+   "MISS": [
+    66.09,
+    78.41
+   ]
+  },
+  "per_preset": {
+   "brown": {
+    "FA": 0.65,
+    "MISS": 86.52,
+    "dFA": -2.98,
+    "dMISS": 44.12
+   },
+   "california_dreamin": {
+    "FA": 0.84,
+    "MISS": 70.37,
+    "dFA": -2.98,
+    "dMISS": 24.33
+   },
+   "hawaii_grain": {
+    "FA": 0.63,
+    "MISS": 91.25,
+    "dFA": -7.27,
+    "dMISS": 52.57
+   },
+   "relax_you_pretty": {
+    "FA": 5.15,
+    "MISS": 35.03,
+    "dFA": 0.45,
+    "dMISS": -14.16
+   }
+  }
+ },
+ "spsl": {
+  "kind": "binary",
+  "auc_untreated": 0.7823,
+  "threshold": 0.9393842220306396,
+  "FA": 4.55,
+  "FA0": 5.01,
+  "MISS": 74.41,
+  "MISS0": 69.77,
+  "FAc": 6.45,
+  "MISSc": 61.9,
+  "dFA": -0.45,
+  "dMISS": 4.64,
+  "dFA_c": 1.44,
+  "dMISS_c": -7.87,
+  "ci": {
+   "dFA": [
+    -2.09,
+    1.67
+   ],
+   "dMISS": [
+    0.04,
+    9.32
+   ],
+   "FA": [
+    2.28,
+    7.59
+   ],
+   "MISS": [
+    69.23,
+    79.55
+   ]
+  },
+  "per_preset": {
+   "brown": {
+    "FA": 6.05,
+    "MISS": 74.78,
+    "dFA": -1.04,
+    "dMISS": 8.3
+   },
+   "california_dreamin": {
+    "FA": 3.79,
+    "MISS": 71.79,
+    "dFA": 0.13,
+    "dMISS": -2.75
+   },
+   "hawaii_grain": {
+    "FA": 0.13,
+    "MISS": 92.52,
+    "dFA": -2.93,
+    "dMISS": 22.59
+   },
+   "relax_you_pretty": {
+    "FA": 8.13,
+    "MISS": 56.36,
+    "dFA": 1.9,
+    "dMISS": -11.72
+   }
+  }
+ },
+ "srm": {
+  "kind": "binary",
+  "auc_untreated": 0.7925,
+  "threshold": 0.6486770510673523,
+  "FA": 4.58,
+  "FA0": 5.01,
+  "MISS": 77.36,
+  "MISS0": 70.6,
+  "FAc": 9.23,
+  "MISSc": 54.2,
+  "dFA": -0.42,
+  "dMISS": 6.76,
+  "dFA_c": 4.22,
+  "dMISS_c": -16.4,
+  "ci": {
+   "dFA": [
+    -2.37,
+    1.76
+   ],
+   "dMISS": [
+    1.67,
+    11.53
+   ],
+   "FA": [
+    2.49,
+    7.05
+   ],
+   "MISS": [
+    71.18,
+    82.71
+   ]
+  },
+  "per_preset": {
+   "brown": {
+    "FA": 3.46,
+    "MISS": 81.09,
+    "dFA": -2.26,
+    "dMISS": 12.24
+   },
+   "california_dreamin": {
+    "FA": 6.04,
+    "MISS": 66.38,
+    "dFA": 1.83,
+    "dMISS": -4.89
+   },
+   "hawaii_grain": {
+    "FA": 0.0,
+    "MISS": 97.59,
+    "dFA": -3.67,
+    "dMISS": 26.16
+   },
+   "relax_you_pretty": {
+    "FA": 9.49,
+    "MISS": 60.88,
+    "dFA": 3.03,
+    "dMISS": -10.01
+   }
+  }
+ },
+ "ucf": {
+  "kind": "binary",
+  "auc_untreated": 0.8425,
+  "threshold": 0.9312257766723633,
+  "FA": 6.76,
+  "FA0": 5.01,
+  "MISS": 55.53,
+  "MISS0": 54.41,
+  "FAc": 5.06,
+  "MISSc": 44.27,
+  "dFA": 1.76,
+  "dMISS": 1.12,
+  "dFA_c": 0.05,
+  "dMISS_c": -10.14,
+  "ci": {
+   "dFA": [
+    -0.83,
+    4.83
+   ],
+   "dMISS": [
+    -5.35,
+    7.51
+   ],
+   "FA": [
+    4.08,
+    9.77
+   ],
+   "MISS": [
+    48.88,
+    62.62
+   ]
+  },
+  "per_preset": {
+   "brown": {
+    "FA": 5.62,
+    "MISS": 54.78,
+    "dFA": 1.17,
+    "dMISS": 5.19
+   },
+   "california_dreamin": {
+    "FA": 3.51,
+    "MISS": 54.56,
+    "dFA": 0.5,
+    "dMISS": -5.95
+   },
+   "hawaii_grain": {
+    "FA": 0.25,
+    "MISS": 87.71,
+    "dFA": -5.53,
+    "dMISS": 35.51
+   },
+   "relax_you_pretty": {
+    "FA": 18.29,
+    "MISS": 21.61,
+    "dFA": 11.44,
+    "dMISS": -33.7
+   }
+  }
+ },
+ "univfd": {
+  "kind": "binary",
+  "auc_untreated": 0.6525,
+  "threshold": 0.14178839325904846,
+  "FA": 6.29,
+  "FA0": 5.01,
+  "MISS": 74.8,
+  "MISS0": 79.83,
+  "FAc": 2.05,
+  "MISSc": 83.04,
+  "dFA": 1.28,
+  "dMISS": -5.03,
+  "dFA_c": -2.95,
+  "dMISS_c": 3.21,
+  "ci": {
+   "dFA": [
+    -1.14,
+    3.69
+   ],
+   "dMISS": [
+    -9.62,
+    -0.17
+   ],
+   "FA": [
+    4.24,
+    8.52
+   ],
+   "MISS": [
+    69.17,
+    81.14
+   ]
+  },
+  "per_preset": {
+   "brown": {
+    "FA": 1.94,
+    "MISS": 86.74,
+    "dFA": -3.06,
+    "dMISS": 4.95
+   },
+   "california_dreamin": {
+    "FA": 7.44,
+    "MISS": 80.2,
+    "dFA": 2.52,
+    "dMISS": -0.25
+   },
+   "hawaii_grain": {
+    "FA": 10.79,
+    "MISS": 57.29,
+    "dFA": 5.78,
+    "dMISS": -20.14
+   },
+   "relax_you_pretty": {
+    "FA": 5.83,
+    "MISS": 73.45,
+    "dFA": 0.73,
+    "dMISS": -6.15
+   }
+  }
+ },
+ "xception": {
+  "kind": "binary",
+  "auc_untreated": 0.8141,
+  "threshold": 0.863211989402771,
+  "FA": 7.9,
+  "FA0": 5.01,
+  "MISS": 57.9,
+  "MISS0": 61.23,
+  "FAc": 8.37,
+  "MISSc": 47.77,
+  "dFA": 2.9,
+  "dMISS": -3.32,
+  "dFA_c": 3.37,
+  "dMISS_c": -13.46,
+  "ci": {
+   "dFA": [
+    0.51,
+    5.58
+   ],
+   "dMISS": [
+    -9.51,
+    2.36
+   ],
+   "FA": [
+    5.2,
+    10.73
+   ],
+   "MISS": [
+    51.07,
+    64.61
+   ]
+  },
+  "per_preset": {
+   "brown": {
+    "FA": 7.34,
+    "MISS": 54.57,
+    "dFA": 2.95,
+    "dMISS": -6.32
+   },
+   "california_dreamin": {
+    "FA": 8.29,
+    "MISS": 49.57,
+    "dFA": 4.3,
+    "dMISS": -13.56
+   },
+   "hawaii_grain": {
+    "FA": 0.51,
+    "MISS": 91.13,
+    "dFA": -4.33,
+    "dMISS": 32.15
+   },
+   "relax_you_pretty": {
+    "FA": 16.12,
+    "MISS": 33.47,
+    "dFA": 9.27,
+    "dMISS": -28.41
+   }
+  }
+ }
+}

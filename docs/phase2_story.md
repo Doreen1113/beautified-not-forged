@@ -47,6 +47,8 @@ Phase 2 最初的假設是：分類器能判斷「是什麼」（real/fake/filte
 
 三種濾鏡類型（300 次獨立比較）一致顯示：Grad-CAM++ 在 IoU 和 IINC 都明顯優於 region_head_v4，region_head_v4 至多打平 Pointing Game。LRP-approx 在所有類型上都是最差方法。**這是結構性發現，不是 eye_enlarging 的偶然結果。**
 
+> ⚠️ **2026-08-26 註**：本表為 **v8.8、n=100/型別** 的舊對照，已被 **P2-R1**（`results/research/p2_r1_tierA_localization_20260821/P2_R1_FINDINGS.md`，registry P2-R1；production **v8.17**、**8,784** 張像素級配對 GT、兩個底圖域）取代。P2-R1 的核心結果與本節「Grad-CAM++ 定位良好」的措辭相反：**在 production 操作點上，Grad-CAM++ 與 region_head_v4 都沒有贏過「完全不看影像的每型別固定常數遮罩」——aligned-crop 域 4 型別全輸、wild 域 4 型別輸 3（唯一例外 wild-domain whitening，效應小且對閾值敏感；15 格中 13 格的 APlift 判定在五個閾值下一致）**，Grad-CAM++ 的 IoU/AP 優勢不能歸因於它真的定位到濾鏡區域；2026-08-26 EVAL2/XAI-1 的 deletion/insertion 基線亦顯示 Grad-CAM++ 與「固定中心高斯」統計上無差異。撰稿引用定位品質時以 P2-R1 為準，本節保留為歷史記錄。
+
 **核心方法論觀察**：Pointing Game（只檢查峰值是否落在 GT 內）與 IoU（要求整個熱區形狀貼合 GT 邊界）給出完全不同的排名結論——若只報 Pointing Game，會誤導讀者以為 region_head_v4 優於 Grad-CAM++；用更嚴格的 IoU 才揭穿這個誤導。**這個指標選擇如何影響結論的發現，本身就是可以貢獻給 XAI 評估方法論討論的一段。**
 
 ### 6. 對論文的定位：Discussion 段落（可直接使用）
@@ -76,11 +78,16 @@ Phase 2 最初的假設是：分類器能判斷「是什麼」（real/fake/filte
 | Tier | 資料來源 | 有 before/after pair？ | Pixel-level GT？ | Faithfulness 可測？ | 可宣稱的文字強度 |
 |---|---|---|---|---|---|
 | **A** | 自建 filter pipeline（`filter_data/`，`generate_landmark_gt.py`） | ✅ 本專案自己生成，兩邊都有 | ✅ landmark 位移 + LAB diff，逐張計算 | ✅ | 「修改區域與 X 一致」（eye_enlarging 是 region-level；其餘三種是 GT-backed 的 whole-face，見第 7 節） |
-| **B** | RetouchingFFHQ 真實 App 輸出（four/megvii/ali） | ❌（2026-08-12 稽核確認：本地無原始 FFHQ 底圖，44,662 張 clean 圖 reliable pair count = 0，見 `results/retouchingffhq_pair_audit_20260812.json`） | ❌ | 理論上可測（尚未對 FFHQ 圖跑過，目前 faithfulness sample 是 filter_data + AIGuard） | 只能做 class/type 層級（filter type 分類、OOD recall），**不可宣稱任何 pixel-level 定位** |
+| **B** | RetouchingFFHQ 真實 App 輸出（four/megvii/ali） | ⛔ **2026-09-12 已推翻**：`ffhq_originals/` 現有 2,210 張 1024×1024（index 17001–19999），**2,210/2,210 皆有對應 Alibaba 修圖版本** ⇒ 真實廠牌配對存在、可用 1,770 組（扣除 benchmark 鎖定的 440 index）。原圖係 2026-08-12 稽核**之後**由 `retouching_benchmark_20260823/download_ffhq_originals.py` 下載，故舊結論當時正確、現已過時。~~（2026-08-12 稽核確認：本地無原始 FFHQ 底圖，44,662 張 clean 圖 reliable pair count = 0，見 `results/retouchingffhq_pair_audit_20260812.json`）~~ | ⛔ 同上，**pixel-level 定位對 Alibaba 子集不再是「不可能」，而是「尚未做且需自己的 pre-registration」**（`p2_pairjson_20260912/PRE_DECLARED.md` Addendum 2 Arm C） | 理論上可測（尚未對 FFHQ 圖跑過，目前 faithfulness sample 是 filter_data + AIGuard） | 只能做 class/type 層級（filter type 分類、filter recall；⚠️ 2026-08-21 更正：原寫「OOD recall」，`FFHQ_ali_process` 與訓練資料有 23.5% 內容重疊，**非 OOD**），**不可宣稱任何 pixel-level 定位** |
 | **C** | 一般 fake（AIGuard、DF40 diffusion/EFS） | ❌ 無官方 mask | ❌ | ✅（2026-08-13 已測，見下） | 只能說「模型主要依賴 X 區域做判斷」的**前提是 explanation 有指名區域**；但目前 `pipeline.py` 對 fake 刻意不輸出 region_claim（見 `pipeline.py` 第 488-501 行註解），所以現行文字停在「偵測到全圖層級異常」（global_only）。faithfulness 測試結果可以支持「若日後要對 fake 補上 attention-based 區域敘述，這個 tier 在方法論上是站得住的」，但目前沒有這樣的輸出 |
 | **D** | FF++ 官方 manipulation mask | ✅（3/4 method 已核准，見下方 2026-08-20 更新）| ✅ 有官方 mask，已取用 | ✅ | **Deepfakes/FaceSwap/NeuralTextures 3 個 method 已核准升級為 GT-backed localization 措辭**（`GT_BACKED_LOCALIZATION`，即原提案所稱 Status C）**；證據已於 2026-08-20 對帳到 production checkpoint `v817sbi`，逐 method 雙 checkpoint 數字見下方對帳表**；Face2Face 因 detection gate fake recall 56.7%<60% 門檻（v811d 量測）維持 `DETECTION_INSUFFICIENT_NO_CLAIM`（等同 Tier C，只能 global_only）——**注意：在 v817sbi 下該數字為 68.0%，已過門檻但尚未核准，狀態不變**；FaceShifter 官方無 mask，未評估，維持 Tier C |
 
-**Tier B 的決策**：2026-08-12 稽核發現本地沒有原始 FFHQ 底圖後，決定**不現在下載官方 70K FFHQ 資料集**——不是因為它不重要，而是因為現有的 Tier A（自建 pair）已經能回答「熱圖定位是否合理」，Tier C 的 faithfulness test 已經能回答「熱圖是否影響模型判斷」，兩者合起來已構成完整、可辯護的 XAI 驗證鏈；下載官方 FFHQ 只有在**要把「真實 app 濾鏡的 pixel-level 定位」當論文主貢獻**時才是必要的高成本擴充，目前不是 blocker。RetouchingFFHQ 三批繼續用於現有用途（filter OOD recall eval、filter classifier 訓練資料），只是不能再往上加「定位驗證」這個用途。
+**Tier B 的決策**：2026-08-12 稽核發現本地沒有原始 FFHQ 底圖後，決定**不現在下載官方 70K FFHQ 資料集**——不是因為它不重要，而是因為現有的 Tier A（自建 pair）已經能回答「熱圖定位是否合理」，Tier C 的 faithfulness test 已經能回答「熱圖是否影響模型判斷」，兩者合起來已構成完整、可辯護的 XAI 驗證鏈；下載官方 FFHQ 只有在**要把「真實 app 濾鏡的 pixel-level 定位」當論文主貢獻**時才是必要的高成本擴充，目前不是 blocker。RetouchingFFHQ 三批繼續用於現有用途（filter recall eval、filter classifier 訓練資料），只是不能再往上加「定位驗證」這個用途。
+> ⚠️ **2026-08-21 措辭更正**：上句原寫「filter **OOD** recall eval」。P1-R11 內容層級稽核證實
+> `FFHQ_ali_process`（即 Alibaba filter gate）與訓練資料有 **23.5%（4,980/21,151）內容重疊**，
+> **不是分布外評測**。往後一律稱「Alibaba filter recall（跨濾鏡演算法，非 OOD——與訓練資料有
+> 23.5% 內容重疊）」。**用途本身不變、數字不變**，本節其餘判定（本地無原圖 ⇒ 不可做 pixel-level
+> 定位驗證）**完全不受影響**。證據：`results/research/p1_r11_leakage_scaling_20260820/TASK1_LEAKAGE_AUDIT.md`
 
 **Tier C 的 faithfulness test 結果（2026-08-13，回應「random mask 分數下降 > hot-region mask」的異常發現）**：
 
@@ -189,6 +196,18 @@ Tier A 的 `paired_gt` claim 容易被誤讀成「系統在正式使用時會拿
 
 ### 11. Phase 2 現況（2026-08-13 定案，2026-08-13 收斂為鎖定版）
 
+> ⚠️ **2026-08-21 SUPERSEDE 註記（本節為 2026-08-13 鎖定版歷史內容，刻意不改寫）**：
+> 本節下方「Fake region-level 定位：正式標記為 pending」條目中，
+> **「FF++ 有官方 mask……但目前未下載、未訓練」這句在 2026-08-20 起已不成立**。
+> 第 8 節「**Tier D 正式啟用（2026-08-20 核准）**」記載 change proposal
+> `docs/team/change_proposals/20260819_fake_xai_status_c_upgrade_ffpp.md`
+> 已把 FF++ 官方 manipulation mask **實際用起來並跑完 Stage 1-5**，
+> 範圍收斂為 Deepfakes / FaceSwap / NeuralTextures 三個 method
+> （Face2Face 因 final fake recall 56.7% < 60% 門檻已排除）。
+> **本節的鎖定版文字保留原樣供歷史對照；`pending` 的實際狀態以第 8 節為準。**
+> 注意第 8 節同時載明的適用範圍限制（僅 c23 輕壓縮、PAIRED_OK、且模型已正確判為 fake
+> 的子集；mask 覆蓋率 24-31%），引用時不可省略。
+
 **已完成**：
 - Tier A paired-filter GT 框架（`generate_landmark_gt.py` + real+filter、fake+filter 兩種來源）
 - Grad-CAM++ vs region head 系統性對照（v8.8，第 5 節）+ production v8.11 重跑驗證（第 12 節）
@@ -209,6 +228,9 @@ Tier A 的 `paired_gt` claim 容易被誤讀成「系統在正式使用時會拿
 **Fake region-level 定位：正式標記為 pending，不是暫停也不是放棄**：
 - **現況**：只能 global-level explanation（全域紋理/頻率異常敘述），不做任何 region claim。
 - **卡住的原因**：缺乏可信的 fake manipulation mask——目前訓練來源（AIGuard、DF40 diffusion/EFS）沒有官方 mask；FF++ 有官方 mask（Deepfakes/Face2Face/FaceSwap/NeuralTextures）但目前未下載、未訓練。
+  > ⚠️ **2026-08-21：本行末段「但目前未下載、未訓練」已於 2026-08-20 被取代**，
+  > 見第 8 節「Tier D 正式啟用（2026-08-20 核准）」與本節開頭的 supersede 註記。
+  > 鎖定版原文保留不改寫。
 - **解除條件**：① 取得 FF++ masks，② Layer1 對 FF++ 來源要先有基本辨識能力（見 `docs/EXPERIMENT_REGISTRY.md` 的 Phase 1 stretch goal「FF++ fake recall ≥70%」，目前未達）。這兩個條件都不成立前，`pending` 狀態不變。
 - **這不是空白狀態**：Fake+Filter 組合圖的 filter 部分已經可以用 Tier A（見 P2-C1），fake 部分維持 global-level——兩者分開陳述，不互相拖累。
 
@@ -220,6 +242,18 @@ Tier A 的 `paired_gt` claim 容易被誤讀成「系統在正式使用時會拿
 - VLM 產生的文字當 ground truth
 
 **暫停，不主動開始**：新 region head 訓練、FakeVLM 訓練、VLM 自由生成 explanation、下載官方 FFHQ 資料集、Phase 2 新模型架構。
+
+> **2026-08-23 交叉參照**：`ARTIFACT_REGION_MAP` 提供的是操作層級的解剖學先驗（第 7 節），
+> 實際判斷「是哪一種 filter type」的模型是獨立的 `artifact_classifier_v6.pth`（2026-08-23
+> 起 production，取代 v3）——這是分類準確度問題，不是本節討論的定位/解釋忠實度問題，
+> 兩者不可混淆。v6 在 True Test（同演算法、跨底圖）大幅改善，但跨演算法（Alibaba）3/4
+> 型別仍 <35% 正確，且三種獨立修法機制皆測試失敗，判定為 structural limitation，
+> 完整證據見 `docs/limitations_framing.md` 第 4 節，不在本節（XAI 定位/忠實度）範圍內。
+> **2026-08-23 下午補充**：`retouching_benchmark_20260823` 在**真正乾淨（污染稽核後）
+> 的負類**上第一次重新確認這個結論（type-argmax 上界：僅 eye_enlarging 78.6% 顯著優於
+> 隨機，其餘三型別低於或接近 25% 隨機基準），且額外發現 v8.17 的二元「有無修圖」判斷本身
+> 在此乾淨集上 balanced accuracy 僅 50.7-51.2%（機會水準）——見
+> `docs/limitations_framing.md` 第 12 節，`docs/paper_draft_zh.md` Results 4.1（8）。
 
 **下一步先準備、不執行**：source-stratified composite explanation adapter（AIGuard fake / DF40-ff / DF40-cdf frozen replication 分開報告 coverage、filter-head AUROC、type accuracy、conditional 定位指標、faithfulness），見 `phase2_source_stratified_eval_adapter.py`——**尚未執行**，等 Phase 1 產出並完成 gate 驗收的 v8.16 checkpoint 後才跑。
 
@@ -256,6 +290,196 @@ Tier A 的 `paired_gt` claim 容易被誤讀成「系統在正式使用時會拿
 完整輸出：`results/phase2_p0_v811_filter_gradcam_validation_20260813.json`（含逐型別 summary、逐張 per_image、與 v8.8 study 的 delta table）。
 
 **Phase 2 現況一句話總結（2026-08-13）**：Phase 2 現在已經能對 production v8.11 的 filter 解釋做「按 filter type 分級」的誠實主張——眼睛放大（eye_enlarging）較可信、瘦臉（face_reshaping）可做全臉解釋，美白（whitening）與磨皮（smoothing）不能把熱圖峰值當作精確修改位置。Fake XAI 尚未完成 region-level GT 驗證；Fake+Filter XAI 只有 AIGuard in-domain 的初步 paired GT 結果，跨來源仍要等 v8.16 通過驗收。文字輸出現在可以依 evidence tier 安全產生，但不該進入 VLM 自由生成階段。
+
+### 13. Fake-class 空間解釋方法論定案：EFS vs. swap/reenactment 政策 + 忠實性測試框架（2026-08-22）
+
+本節把這次 session 建立的兩件事正式收斂為專案永久方法論（不是留在
+`results/research/` 的一次性產出），與第 7/8/9 節的既有分級架構銜接。完整過程
+見 `results/research/p2_fake_explanation_qa_20260822/FAKE_EXPLANATION_QA_FINDINGS.md`
+（QA 輪：量測現況 + 評估一個候選方案）與
+`results/research/p2_fake_explanation_fix_20260822/FAKE_EXPLANATION_FIX_FINDINGS.md`
+（FIX 輪：驗證根因 + 實作評估四種修法 + 提出並套用文字生成候選）。
+
+#### 13.1 政策：EFS vs. swap/reenactment 決定能否做區域宣稱
+
+`pipeline.py` 目前絕大多數 fake 訓練來源（`AIGuard/fake`、DF40 的
+sd2.1/DiT/SiT/ddim/pixart 五種擴散方法）是 **Entire-Face-Synthesis（EFS）**——
+整張臉是生成的，**結構性不存在**「原圖」可供比對，因此 region-level 定位主張
+在這個母體上**從根本上沒有 ground truth 可驗證**，不是「暫時沒做」而是「這類
+資料天生不支援」。與此相對，FF++ 經典四方法（Deepfakes/Face2Face/FaceSwap/
+NeuralTextures）屬於**身份替換／表情重演（swap/reenactment）**，有一支未竄改
+的來源影片可比對，官方也提供 binary manipulation mask（即第 8 節 Tier D）。
+這兩種來源在本專案訓練資料組成上**不對稱**：EFS 是主力（訓練資料的壓倒性多數），
+FF++ 完全不在訓練資料內，只作為 Tier D 的外部評測/定位證據來源。
+
+**本輪（QA + FIX 兩輪）用四種不同的區域選擇機制系統性測試「能否對 fake class
+做出可信的區域宣稱」，全部失敗於同一個失敗模式——對誤判樣本的 100% 過度宣稱**：
+
+| 機制 | 方法 | 主母體多樣性 | 忠實性（3 來源）| FF++ 偽陽性過度宣稱率 |
+|---|---|---|:---:|:---:|
+| 原始 Grad-CAM++ top-2（QA 輪候選）| 取 CAM 分數最高 2 個 `FACE_REGIONS` | 98.65-98.98% 眾數為 nose（近乎常數）| ✅ 通過 | 100%（194/194）|
+| Fix B：中心偏誤校正 | CAM 減去平均 fake CAM 基準圖 | 大幅改善（entropy ratio 0.98）| ❌ 3 來源中 2 個失敗 | 100%（194/194）|
+| Fix C：對比真實圖基準 | CAM 減去平均 real CAM 基準圖 | 大幅改善（entropy ratio 0.98）| ❌ 3 來源中 2 個失敗 | 100%（194/194）|
+| Fix A：因果 ablation 選區 | 逐區域遮蔽、選下降最大的 2 個 | 中度改善（眾數比例砍半）| ✅ 3/3 通過 | 100%（194/194）|
+| Fix D：Fix A + 效應量棄權門檻 | 用因果效應量校準棄權門檻 | — | TP/FP 效應量 AUROC=0.54，不顯著 | 無法選擇性棄權 |
+
+根因（`task0_center_bias.py`）：對 n=444 張 fake 與 n=260 張 real 分別平均
+Grad-CAM++ 熱圖，兩者峰值**逐像素完全重合**在 224×224 裁切正中央 (112,112)，
+與 class/checkpoint/母體無關——這是 `spatial_branch.conv5` 的感受野幾何特性
+造成的**架構級中心偏誤**，不是「fake 圖真的都在鼻子附近有異常」。去偏誤
+（Fix B/C）能改善多樣性，但代價是**用忠實性換多樣性**：去偏誤後選出的區域，
+在 3 個評測來源中的 2 個上，遮蔽它跟遮蔽隨機位置已無法統計區分。唯一忠實性
+完整通過的 Fix A（因果 ablation）仍有三個未解決的殘留問題：(a) 眾數依然是
+nose、未完全消除中心偏誤，(b) 對 FF++ 43.4% 的偽陽性（真實照片被誤判成 fake）
+依然 100% 自信點名一個具體區域——因為所有四種機制的區域選擇本身都沒有內建
+「這裡沒有真正竄改」的棄權輸出通道，(c) 額外成本 ~67ms/張非零。Fix D 嘗試用
+Fix A 自己的因果效應量當棄權門檻，但真陽性與偽陽性的效應量分佈幾乎完全重疊
+（Mann-Whitney AUROC=0.5402，p=0.15，不顯著），棄權會同等比例誤殺真陽性宣稱，
+不能選擇性地只讓偽陽性棄權。
+
+**目前 production 決策（已套用，2026-08-22）**：`pipeline.py` 對 fake class
+**不輸出任何空間 region 宣稱**（`suspicious_regions=[]`，見第 271 行起
+`run_single()` 的既有邏輯與註解，本輪未改變這個決策，只是首次系統性驗證它是
+正確的），解釋文字改為 `build_fake_explanation()`——依 confidence tier（3 段：
+≥0.90 高信心／0.75-0.90 中信心／<0.75 低信心且提示需額外檢視）與**該圖片自己
+實測的** `compute_skin_stats()` texture_var（沿用既有 `_SMOOTH_TEXTURE_THR=210`
+門檻，非新指標）產生兩種分支文字之一。這個設計本身也是本輪 QA+FIX 兩輪測試
+出來的結果，不是想當然耳的預設：texture 措辭在 FF++ 447 對同源配對（camera/
+壓縮鏈路完全相同，只差有沒有被竄改）上有統計顯著支持（Wilcoxon p=1.7e-27），
+但按操縱方法異質（Deepfakes 87.3%／NeuralTextures 95.3% 配對內 fake 紋理變異
+數更低；FaceSwap 45.6%，幾乎是 null，因為 FaceSwap 貼的是另一張真實臉的紋理，
+不是合成紋理）——這正是為何文字要**依該圖片自己量到的值有條件產生**，而不是
+對每張 fake 圖無條件斷言同一句「texture」宣稱（後者是 FIX 輪之前的做法，已被
+本輪的配對異質性發現否定）。另一個候選條件化軸「diffuseness」（Grad-CAM++
+熱圖活動集中 vs 分散）經測量後**誠實排除**：TP/FP 兩群幾乎是常數（std
+0.03-0.04，n=431 無一張落入「集中」tier，AUROC=0.4951 無鑑別力），不強行拿
+一個沒有變化的量去產生假多樣性。
+
+**適用範圍與升級路徑（正式定案，供未來 session 直接引用）**：
+1. **EFS 來源（訓練資料主力）**：政策為永久性，非暫時——region-level 定位
+   claim 對這個母體結構性不存在 GT，不因為未來出現更好的區域選擇演算法而改變，
+   除非未來引入的訓練來源本身帶有可信的 before/after pair。
+2. **Swap/reenactment 來源（FF++）**：理論上有 GT 支持 region-level claim
+   （第 8 節 Tier D），但本輪四種機制在**實作上**都沒有跳出中心偏誤/過度宣稱，
+   這是一個**明確標記為未解決、留給未來輪次的開放問題**，不是已放棄。若未來
+   要重新嘗試，至少需要解決兩件本輪暴露出的事：(a) 一個真正能區分「這裡的信心
+   下降是內容驅動還是架構偽影」的機制，(b) 一個真正能選擇性棄權（只讓偽陽性
+   棄權、不誤殺真陽性）的機制——Fix D 證明「用同一個信號的效應量大小」這個
+   最直接的嘗試不成立，需要不同性質的訊號。
+3. **推論時刻無法區分 EFS vs swap/reenactment**：`pipeline.py` 面對一張未知
+   來源的 fake 影像時，Layer1/Layer2 的判定分支完全沒有這個維度的訊號，這是
+   一個**真正的開放問題**，本輪未嘗試也不應假裝已解決。
+
+#### 13.2 忠實性測試框架：正式收編為可重用專案基礎設施
+
+本輪在 `results/research/p2_fake_explanation_qa_20260822/scripts/` 建立的
+兩種測試技術，設計時即以「可重複套用在任何未來的解釋候選（filter 或 fake、
+模板式或模型生成式）」為目標，非僅為本輪的 fake-class 問題客製，正式記錄為
+第 9-10 節既有 faithfulness 方法論的延伸與泛化版本：
+
+- **技術 1：Ablation/Deletion 忠實性測試**（`common_qa.py` + `task1_main_
+  population.py`）——沿用第 8 節「Tier D 正式啟用」段落已建立的 blur-composite
+  遮蔽方法（`CONTENT_BLUR_KSIZE=31/SIGMA=15` + 羽化邊界，刻意不用 constant-fill，
+  因為第 9 節已證實硬邊界常數填色會在 `FFTBranch` 注入寬頻雜訊、能反轉忠實性
+  排序），但本輪新增**離散版**：不只測連續 Grad-CAM++ 熱圖本身，而是測「候選
+  文字模板真正會講出來的那句話」——把候選要點名的具名區域當熱遮罩、其餘區域
+  當冷/隨機控制組，直接量測「遮住文字宣稱的那些區域」對分類信心的因果影響。
+  這填補了既有框架的一個缺口：舊版只驗證熱圖本身忠實，從未驗證「模板選出來
+  的具名區域子集」是否忠實——這才是候選模板實際要對讀者負責的宣稱單位。
+- **技術 2：內容控制對照測試（Content-controlled comparison）**（`task3_
+  ffpp_content_controlled.py`）——利用 FF++ 官方 real/fake 配對（同一支源影片，
+  一份未竄改、一份竄改）檢查解釋文字是否隨「是否真的被竄改」而變化：若一張
+  真的被竄改、正確判成 fake 的影格，與一張沒被竄改、卻被錯判成 fake 的影格
+  （false positive）得到逐字相同的解釋，即證明該文字只是預測 class 的復讀、
+  與影像內容無關。這是本專案已知失敗模式（FakeVLM teacher-inference「不管
+  真假都答『可能是AI生成』」，`docs/EXPERIMENT_REGISTRY.md` P3-M0）第一次被
+  正式化成可重複執行的測試，而非事後才發現。
+
+**判定規則（兩項技術通用，供未來套用時直接沿用）**：`hot_drop − bottom_drop`
+與 `hot_drop − mean_random_drop` 兩個 bootstrap 95% CI（2,000 次重抽樣）下界
+都要 > 0 才算通過（`passes_faithfulness`），Cohen's d 一併報告但不作為判定
+依據；至少在 3 個獨立來源母體上分別檢驗（不可只看 pooled 結果——本輪 Fix B/C
+的失敗正是 pooled 層級勉強通過、被單一來源的大效應撐住，拆開來看 3 個來源中
+2 個直接失敗）。
+
+**未來使用方式**：任何新的解釋生成候選（region 選擇機制的新版本、filter class
+的模板文字修訂、未來若導入 VLM 生成式解釋）在提出 change proposal 前，應先用
+這兩項技術跑過忠實性驗證與內容控制對照——不需要重新設計測試方法論，直接沿用
+`common_qa.py` 的共用工具（模型載入、離散區域遮罩、entropy/bootstrap 工具）。
+
+### 14. 棄權閘門（abstention gate）：受限但真實的能力，附帶未解決的推論時路由問題（P2-R8，2026-08-23/24）
+
+> 🏷️ **[EXPERIMENTAL CANDIDATE, NOT DEPLOYED — 整節皆是]**：棄權閘門（含 mask head、gate
+> logit、`region_claim` schema 擴充規劃）從未寫入 `pipeline.py`，是外加在（凍結或微調的）
+> production backbone 上的獨立研究模組。本節所有數字（AUROC 0.7717-0.7847、TP/FP 宣稱率、
+> EFS 母體 0.907-0.925 及其被證偽的 0.41-0.56）皆屬候選研究結果。**現行 production 沒有任何
+> 棄權行為，對每個 fake 判定一律給出空間解釋**；本節描述的是一條尚未部署的可能路徑。
+
+延續第 13 節「EFS vs swap/reenactment 決定能否做區域宣稱」的政策，以及第 13.1
+表格中 Fix D（因果效應量棄權門檻）的失敗——TP/FP 效應量分佈幾乎完全重疊
+（AUROC=0.5402，不顯著，無法選擇性棄權）——`p2_explanation_v2_20260823`
+（P2-R7）另外發現了一個**不同性質**的棄權訊號：把真實配對幀以全零 mask 一起
+訓練的 mask head，其**預測面積**本身在「真陽性 fake vs 偽陽性 real」上有分離度
+（單一 seed AUROC 0.7397/0.7682，對照 Fix D 的 0.5402 n.s.）——這是本專案第一個
+具「選擇性」（而非一致不敏感）的棄權機制。P2-R8（2026-08-24）把這個訊號發展
+成經過種子複現與跨語料驗證的操作點，同時系統性檢驗它是否真的泛化到 production
+實際服務的母體。
+
+**Part 1（操作點改善，PG0-PG3 事前門檻）**：B1（凍結骨幹，可部署）與 B2（微調，
+僅供參考）各 4 個新種子重跑。**PG0（可重現性）通過**：FF++ test 閘門 AUROC
+平均 0.7717/0.7847，最差種子 0.7664/0.7770——P2-R7 的單種子數字落在此分佈內，
+不是離群值。把讀出統計量從 P2-R7 的 `area05` 換成 `top10_mean`（在 FF++ **val**
+上選定，非在被評分的 test 上挑），是真實的 paired bootstrap 改善（8 個
+checkpoint 全部 CI 下界 > 0）。在 val 選定 60% TP 目標的門檻下，test 上達到
+**TP 宣稱率約 61-68%、FP 過度宣稱率約 22-28%**（4-seed CI），相對 FIX 輪的
+100%/100% 基線與 P2-R7 的單點 27.7%/7.6%，是實質更有用的操作點。3 種性質不同
+的分離度改善槓桿（real-partner loss 加權 ×2/×4、獨立訓練的顯式 gate logit、
+用 val 閘門 AUROC 而非 val mIoU 選 checkpoint）皆嘗試過，**沒有一個擊敗種子
+基準平均值**——這個架構/資料組合在此讀出方式下可能已接近上限。
+
+**Part 2（泛化，本輪最關鍵的發現）**：閘門在 production 實際服務、EFS 佔壓倒性
+多數的母體（DF40 sd2.1/DiT/SiT/ddim/pixart、MidJourney、StyleGAN3）上表面看起來
+很強（AUROC 0.907-0.925，PG4 表面通過），**但三個獨立對照逐一拆穿，證明這是
+語料庫指紋混淆，不是真實能力**：
+- **(C1)** production 自己的 `p_fake` 在 EFS 上已經達到同等分離度（AUROC
+  0.9192），閘門沒有加值；而在 swap/reenactment 上 `p_fake` 幾乎是亂猜
+  （0.48-0.52），閘門才是真正有價值的地方；
+- **(C2a)** 閘門能把「兩個都是真實照片」的語料庫互相分開（AUROC 0.88-0.94）——
+  它學到的是語料庫風格，不是操弄訊號；
+- **(C2b，決定性)** 限制在單一收集流程的語料庫內部（AIGuard/unseen real vs
+  fake）時，閘門崩到機會水準（AUROC 0.41-0.56），而 `p_fake` 在同一批圖上仍有
+  0.77——EFS 上的「訊號」完全是跨語料庫混淆，沒有語料庫內部的真實槓桿。
+
+**PG4 對 EFS 的判定是 FAIL，且是主動證偽，不只是未達標**。在 swap/reenactment
+母體（FF++ test、Celeb-DF-v2，加上第三個獨立語料 Ultimate Test Set 的
+DiffusionFace-DiffSwap）上，可部署的 B1（凍結骨幹）在 2/3 語料通過 PG4（在
+DiffusionFace-DiffSwap 上未過，AUROC 0.61-0.63，CI 下界 0.55-0.58）；不可部署
+的 B2（微調）三個語料全過（0.74-0.79）。**這把第 13 節的 EFS/swap 政策從
+「定位宣稱」延伸到「棄權宣稱」，用主動證偽而非假設支持，且沒有推翻原政策，
+反而強化了它。**
+
+**Part 3（可部署性規格，尚未套用）**：TFLite 四關全過（無 FFT/DFT op，head 只
+碰 ShuffleNetV2 conv/BN/ReLU/bilinear resize；max logit error 2.07e-5；fp32
+6.13MB；5.05ms CPU 中位數）。已具體規劃 `pipeline.py` 的 schema 擴充
+（`region_claim: {status, gate_statistic, threshold, mask}`），但**明確以解決
+第 13.1 節既有的開放問題（推論時刻無法區分 EFS vs swap/reenactment）為前提**——
+本輪未解決此問題，這不是「即將上線」，是「上線前提尚缺一塊」。實測新增延遲
+（5.03ms GPU / 27.76ms CPU）被標記為保守上界：目前實作重跑整個 ShuffleNetV2
+backbone（與 production Layer2 架構上共用），若重用 Layer2 已算出的特徵，真實
+整合成本會小得多（僅 decoder，342K 參數）。
+
+**對論文的定位**：Part 1（操作點改善）與 Part 2（泛化的證偽）必須分開陳述、
+不可合併成一句「有效」——前者是真實、可複現的改善，後者是主動查出的假訊號，
+混在一起講會誤導讀者以為棄權閘門已全面可用。**這也是本專案第三個獨立診斷出
+「語料庫捷徑」失敗模式的元件**（前兩個是第 8/13 節之外、Phase 1 的 Layer2
+語料庫捷徑診斷與 `artifact_classifier` 跨演算法泛化失敗，見 `docs/phase1_story.md`
+第 6 節與 `docs/limitations_framing.md` 第 4 節）——三者共同構成一個值得在
+Discussion/Limitations 獨立成段的 meta-finding，完整跨元件對照見
+`docs/limitations_framing.md` 第 13 節。完整數字見 `docs/EXPERIMENT_REGISTRY.md`
+「P2-R8」條目、`results/research/p2_abstention_20260823/`（`PRE_DECLARED.md`
+記錄事前門檻，`manifests/*.json` 為原始證據）。
+
+---
 
 ## 待補（撰稿階段處理，非本節範圍）
 

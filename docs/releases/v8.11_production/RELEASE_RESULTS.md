@@ -197,3 +197,34 @@ v8.8 historical baseline). They must never appear in the score tables above.
   output ("Init from cellC checkpoint"). Cross-source generalization improved (2.02%→4.53%)
   but remains far short of the informal target and left several filter types with "完全無殘留
   效果" (zero residual effect) per CLAUDE.md. Research evidence only.
+
+---
+
+## ⚠️ 2026-08-21 metric-naming correction (APPEND-ONLY — no number, file, hash or verdict changes)
+
+Throughout this release package — this file, `RELEASE_BOUNDARY.md`,
+`PHASE1_FREEZE_DECISION.md`, `EVALUATION_INTEGRITY_REPAIR.md`,
+`ORPHAN_AND_UNVERIFIABLE_REGISTER.md`, `REPRODUCTION_COMMANDS.md` — two metrics
+are named as OOD gates. **Neither evaluation set is out-of-distribution.**
+
+| metric as named here | measured content overlap with training data | correct name |
+|---|---|---|
+| "Alibaba filter OOD (overall / by type)" | **23.5% (4,980/21,151)** — `AIGuard/real` and `filter_data/*` contain the same FFHQ base photos under different filenames, which the earlier FFHQ-index-range check could not see | **Alibaba filter recall（跨濾鏡演算法，非 OOD——與訓練資料有 23.5% 內容重疊）** |
+| "StyleGAN2 fake recall" cited as a GAN OOD gate | **63.8% (6,376/10,000)** with `AIGuard/fake` + `fake_filter_hard_neg`, byte-identical images included (both sides sampled the same 140k Real-Fake Faces corpus) | **StyleGAN2 fake detection** |
+
+**Everything else in this document stands unchanged**: the recorded values
+(98.1%, 99.6%, etc.), the archived result files, the SHA256 hashes, the
+reproduction commands, and every PASSED verdict. Decontaminated StyleGAN2 is
+≈**99.07%**, still above its ≥95% gate. The **file and script names** containing
+`ood` (`alibaba_filter_ood_v811d_layer2v811_20260813.json`,
+`AIGuard/eval_ali_ood_v811.py`) are **deliberately left unrenamed** so archived
+paths and hashes stay valid — they are identifiers, not claims.
+
+**Still-clean cross-domain evidence in this release**: **CelebA real recall** and
+**AIGuard-unseen fake AUROC** (each separately verified clean), plus the True Test
+vs Shadow contrast (identical self-built filter code, different base-image
+photographic style).
+
+Evidence: `results/research/p1_r11_leakage_scaling_20260820/TASK1_LEAKAGE_AUDIT.md`.
+See also `PHASE1_FREEZE_DECISION.md` §"Post-hoc corrections (2026-08-21)" for the
+companion statistical-power annotation on two of the freeze gates.

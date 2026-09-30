@@ -1,0 +1,13 @@
+\begin{tabular}{lcccccccc}
+\toprule
+ & \multicolumn{2}{c}{CDFv2} & \multicolumn{2}{c}{DFD} & & & & Celeb-DF-B \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Variant & frame & video & frame & video & FF++ real/fake/filter & FA / MISS & B1 & AUC / accus. \\
+\midrule
+\ours{}-PE (no head) & 0.810 & 0.871 & 0.888 & 0.853 & 80.7/90.2/76.8 & 8.9 / 1.6 & 0/13 & 0.879 / 56.0 \\
+\textbf{+ evidence head (ours)} & 0.819 & 0.878 & 0.907 & 0.866 & 79.0/90.0/84.0 & 7.0 / 2.1 & 0/13 & 0.888 / 60.6 \\
++ evidence head + symmetric degradation & 0.817 & -- & 0.896 & -- & 82.8/81.3/79.7 & 5.5 / 4.8 & 0/13 & 0.894 / 17.9 \\
++ consistency loss (43k edits) & 0.794 & -- & 0.905 & -- & 83.1/89.1/87.2 & 3.2 / 2.6 & 0/13 & 0.870 / 50.7 \\
++ consistency + symmetric degradation & 0.781 & -- & 0.877 & -- & 84.7/80.8/79.6 & 6.2 / 5.1 & 0/13 & 0.875 / 15.1 \\
+\bottomrule
+\end{tabular}

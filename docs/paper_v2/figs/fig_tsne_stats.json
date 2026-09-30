@@ -1,0 +1,10 @@
+{
+ "(a) binary SBI (official checkpoint, EffNet-B4)": {
+  "beautified_fake_knn_fake_frac": 0.4216666666666667,
+  "beautified_fake_knn_real_frac": 0.117
+ },
+ "(b) three-way HYB (ours, EffNet-B4)": {
+  "beautified_fake_knn_fake_frac": 0.5433333333333333,
+  "beautified_fake_knn_real_frac": 0.042
+ }
+}

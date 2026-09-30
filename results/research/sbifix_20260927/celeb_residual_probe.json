@@ -1,0 +1,81 @@
+{
+ "FF++ real": {
+  "fake": 5.3,
+  "filter": 14.7,
+  "p_fake": 0.084
+ },
+ "CDF real": {
+  "fake": 32.2,
+  "filter": 21.5,
+  "p_fake": 0.319
+ },
+ "FF++ real, hist-matched to CDF": {
+  "fake": 12.3,
+  "filter": 62.3,
+  "p_fake": 0.151
+ },
+ "CDF real, hist-matched to FF++": {
+  "fake": 25.6,
+  "filter": 61.9,
+  "p_fake": 0.287
+ },
+ "FF++ real, saturation x0.7": {
+  "fake": 5.0,
+  "filter": 32.7,
+  "p_fake": 0.085
+ },
+ "CDF real, saturation x1.3": {
+  "fake": 32.2,
+  "filter": 14.1,
+  "p_fake": 0.334
+ },
+ "FF++ real, crop tighter 0.8": {
+  "fake": 11.0,
+  "filter": 10.3,
+  "p_fake": 0.141
+ },
+ "FF++ real, crop looser 1.25": {
+  "fake": 10.0,
+  "filter": 64.3,
+  "p_fake": 0.13
+ },
+ "CDF real, crop tighter 0.8": {
+  "fake": 41.1,
+  "filter": 13.3,
+  "p_fake": 0.401
+ },
+ "CDF real, crop looser 1.25": {
+  "fake": 25.9,
+  "filter": 63.7,
+  "p_fake": 0.291
+ },
+ "CDF real, unsharp": {
+  "fake": 26.3,
+  "filter": 23.7,
+  "p_fake": 0.285
+ },
+ "crop_h_median": {
+  "ff": 258.5,
+  "cdf": 255.0
+ },
+ "mean_rgb": {
+  "ff": [
+   123.8590078498442,
+   100.83625974021582,
+   96.76313892886013
+  ],
+  "cdf": [
+   113.84590149532376,
+   84.49824752396493,
+   78.64758760881057
+  ]
+ },
+ "mean_sat": {
+  "ff": 97.3328878650073,
+  "cdf": 106.1016238602807
+ },
+ "laplacian_var": {
+  "ff": 79.24162186712506,
+  "cdf": 35.23374988277412
+ }
+}

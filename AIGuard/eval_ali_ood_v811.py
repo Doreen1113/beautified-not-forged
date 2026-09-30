@@ -1,21 +1,33 @@
 """
-Filter OOD eval for v8.11 (Layer1c + Layer2): FFHQ_ali_process (Alibaba
-retouching API), held out entirely from training since v8.6.
+Filter recall eval for v8.11+ (Layer1 + Layer2): FFHQ_ali_process (Alibaba
+retouching API), held out entirely from TRAINING (not from all data pools)
+since v8.6.
 
-Verified 2026-08-02 (identity overlap check): Megvii training data spans
-FFHQ base-image indices 60002-69999; Alibaba eval data spans indices
-17000-19999 -- disjoint ranges (RetouchingFFHQ partitions the 70K FFHQ pool
-into non-overlapping index blocks per company), so this IS a genuine
-cross-identity, cross-algorithm OOD test, not an identity shortcut (unlike
-the StyleGAN3 case where identity overlap required the "unseen-algorithm,
-seen-identity" caveat).
+⚠️ 2026-08-21 CORRECTION -- the 2026-08-02 "index range disjoint therefore
+genuine cross-identity OOD" claim below is REFUTED, not verified. It only
+checked ONE leakage path (Megvii index range 60002-69999 vs Alibaba index
+range 17000-19999). Content-level SHA256 audit (P1-R11,
+results/research/p1_r11_leakage_scaling_20260820/TASK1_LEAKAGE_AUDIT.md)
+found a DIFFERENT leakage path the index-range check could not see: 4,980 /
+21,151 (23.5%) of this gate's images are pixel-near-duplicates of photos in
+`AIGuard/real` and `filter_data/*`, which ARE in training, regardless of
+index range. Visual proof: results/research/alibaba_overlap_visual_compare_20260821/.
+Whether the underlying human IDENTITIES are disjoint remains genuinely
+undetermined -- FFHQ has no identity ground truth to check against (F1 audit,
+results/research/f1f2_audit_20260821/F1F2_AUDIT_FINDINGS.md). Numeric impact
+is small (decontaminated score differs by <0.05pp, see the leakage audit) --
+this does not change any pass/fail gate or model-selection decision. What it
+does mean: do not call this an "OOD" test or a "cross-identity" test in the
+paper. Call it "Alibaba filter recall (cross-algorithm)" and use the
+`--split ood_filter_ali_clean_20260821.txt` option below for a version with
+the confirmed-duplicate rows removed.
 
 Uses pipeline.py's hierarchical_predict() and preprocess_jpeg() directly, so
-preprocessing is guaranteed consistent with the current v8.11 pipeline (not
+preprocessing is guaranteed consistent with the current pipeline (not
 a stale/divergent eval script -- the exact concern raised before citing this
 number).
 
-python AIGuard/eval_ali_ood_v811.py [layer1_weights] [layer2_weights]
+python AIGuard/eval_ali_ood_v811.py --layer1-weights ... --layer2-weights ... [--split ood_filter_ali_clean_20260821.txt]
 """
 import argparse, hashlib, json, subprocess, sys
 from datetime import datetime, timezone
@@ -64,6 +76,13 @@ def _weight_tag(path):
 _parser = argparse.ArgumentParser(description=__doc__)
 _parser.add_argument("--layer1-weights", default=None, help="Path to Layer1 checkpoint (.pth). Required -- no default.")
 _parser.add_argument("--layer2-weights", default=None, help="Path to Layer2 checkpoint (.pth). Required -- no default.")
+_parser.add_argument("--split", default="ood_filter_ali.txt",
+                      help="Split file under splits/ to evaluate. Default 'ood_filter_ali.txt' is the "
+                           "ORIGINAL, uncontaminated-content-unverified gate (21,151 rows). "
+                           "Pass 'ood_filter_ali_clean_20260821.txt' (16,183 rows) for the version with "
+                           "the 4,968 rows confirmed pixel-near-duplicate to AIGuard/real or filter_data "
+                           "training images removed -- see results/research/p1_r11_leakage_scaling_20260820/ "
+                           "and results/research/alibaba_overlap_visual_compare_20260821/.")
 _args = _parser.parse_args()
 
 if not _args.layer1_weights or not _args.layer2_weights:
@@ -123,9 +142,14 @@ def main():
     print(f"Command: {COMMAND_LINE}")
     print(f"Device: {device}")
 
-    rows = [l for l in (BASE / "splits" / "ood_filter_ali.txt").read_text(encoding="utf-8").splitlines()
+    split_path = BASE / "splits" / _args.split
+    if not split_path.is_file():
+        print(f"ERROR: split file not found: {split_path}")
+        sys.exit(1)
+    rows = [l for l in split_path.read_text(encoding="utf-8").splitlines()
             if l.strip() and not l.startswith("path\t")]
-    print(f"Alibaba OOD filter images: {len(rows)}")
+    print(f"Split file: {split_path.name}")
+    print(f"Alibaba filter images: {len(rows)}")
 
     correct_type = defaultdict(int)
     total_type = defaultdict(int)

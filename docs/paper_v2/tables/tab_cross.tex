@@ -1,0 +1,26 @@
+\begin{tabular}{lrcccccc}
+\toprule
+ & & \multicolumn{2}{c}{CDFv2} & \multicolumn{2}{c}{DFD} & Celeb-DF-B \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}
+Detector & Params (M) & frame & video & frame & video & frame \\
+\midrule
+\multicolumn{7}{l}{\textit{Published binary detectors, official weights, our frames}} \\
+Xception & 21.9 & 0.718 & 0.772 & 0.897 & 0.882 & 0.811 \\
+EfficientNet-B4 & 19.3 & 0.750 & 0.807 & 0.862 & 0.860 & 0.811 \\
+F3Net & 21.9 & 0.708 & 0.750 & 0.852 & 0.811 & 0.798 \\
+SPSL & 21.9 & 0.703 & 0.752 & 0.873 & 0.851 & 0.781 \\
+UCF & 21.9 & 0.744 & 0.788 & 0.877 & 0.853 & 0.841 \\
+RECCE & 47.7 & 0.688 & 0.731 & 0.900 & 0.877 & 0.785 \\
+CORE & 21.9 & 0.715 & 0.764 & 0.882 & 0.859 & 0.821 \\
+SRM & 53.2 & 0.717 & 0.778 & 0.893 & 0.869 & 0.789 \\
+SBI & 17.6 & 0.817 & 0.872 & 0.918 & 0.876 & 0.875 \\
+Effort (CLIP-L/14) & 303.4 & 0.881 & 0.930 & 0.935 & 0.957 & 0.909 \\
+Forensics Adapter (CLIP-L/14) & 309.7 & 0.887 & 0.945 & 0.942 & 0.959 & 0.909 \\
+UnivFD & 427.6 & -- & -- & -- & -- & 0.653 \\
+NPR & 1.4 & -- & -- & -- & -- & 0.503 \\
+\midrule
+\multicolumn{7}{l}{\textit{Three-way, trained with FF++ c23, two retouching vendors and part-level edits (ours)}} \\
+\textbf{\ours{}} (CLIP ViT-L/14 + LoRA) & 306.3 & 0.888 & 0.954 & 0.948 & 0.983 & 0.937 \\
+\ours{}-lite (EfficientNet-B4) & 17.6 & 0.848 & 0.910 & 0.915 & 0.908 & 0.899 \\
+\bottomrule
+\end{tabular}

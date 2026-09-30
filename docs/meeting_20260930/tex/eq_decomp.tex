@@ -1,0 +1,11 @@
+\documentclass[border=6pt]{standalone}
+\usepackage{fontspec}\setmainfont{texgyretermes}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]
+\usepackage{amsmath,amssymb}
+\begin{document}\Large
+$\begin{aligned}
+&O(\mathbf{u}+f(\mathbf{u}))\approx R(\mathbf{u}) \qquad P = R\circ(\mathrm{id}-f^{-1}) - O\\[6pt]
+&C_\text{eye} = \mathcal{W}(O;\,E\odot f) \qquad\; C_\text{contour} = \mathcal{W}(O;\,(1-E)\odot f)\\[4pt]
+&C_\text{tone} = O + G_\sigma * P \qquad\;\; C_\text{texture} = O + P - G_\sigma * P\\[6pt]
+&M(C_k) = \mathrm{dilate}\big(\mathbf{1}[\,\|C_k-O\|_\infty>6\,]\big)
+\end{aligned}$
+\end{document}

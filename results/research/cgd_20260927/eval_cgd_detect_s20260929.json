@@ -1,0 +1,38 @@
+{
+ "MASK": {
+  "cdf": {
+   "auc": 0.8243,
+   "ci": [
+    0.7977,
+    0.8493
+   ]
+  },
+  "dfd": {
+   "auc": 0.9037,
+   "ci": [
+    0.8688,
+    0.938
+   ]
+  },
+  "indomain": {
+   "real": 84.73,
+   "fake": 88.74,
+   "filter": 80.09
+  },
+  "FA": 8.51,
+  "MISS": 2.59,
+  "heldout13": {
+   "filter": 42.78,
+   "fake": 18.09,
+   "paired_excess_pp": 39.06
+  },
+  "b1_dominated_by": [],
+  "b1_n_detectors": 13,
+  "bars": {
+   "D1": false,
+   "D2": false,
+   "D3": true,
+   "D4": true
+  }
+ }
+}

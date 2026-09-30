@@ -1,0 +1,80 @@
+{
+ "n_images": 379,
+ "distinct_sentences": 14,
+ "per_label": {
+  "filter": {
+   "n": 91,
+   "distinct": 9,
+   "sentences": {
+    "Beautified, identity kept: skin brightened.": 18,
+    "Beautified, identity kept: skin smoothed.": 17,
+    "Beautified, identity kept: operation unclear.": 16,
+    "Beautified, identity kept: face reshaped.": 12,
+    "Beautified, identity kept: eyes enlarged.": 12,
+    "Beautified, identity kept: eyes enlarged, face reshaped, skin brightened, skin smoothed.": 11,
+    "Beautified, identity kept: eyes enlarged, face reshaped, skin smoothed.": 3,
+    "Beautified, identity kept: eyes enlarged, skin brightened, skin smoothed.": 1,
+    "Beautified, identity kept: eyes enlarged, skin smoothed.": 1
+   }
+  },
+  "real": {
+   "n": 106,
+   "distinct": 1,
+   "sentences": {
+    "No manipulation detected.": 106
+   }
+  },
+  "fake": {
+   "n": 182,
+   "distinct": 4,
+   "sentences": {
+    "Forgery detected; evidence across the whole face.": 55,
+    "Forgery detected; evidence on the nose.": 45,
+    "Forgery detected; evidence on the eyes.": 42,
+    "Forgery detected; evidence on the mouth.": 40
+   }
+  }
+ },
+ "per_group": {
+  "FF++ genuine": {
+   "No manipulation detected.": 79,
+   "Beautified, identity kept: face reshaped.": 6,
+   "Beautified, identity kept: operation unclear.": 5,
+   "Beautified, identity kept: skin smoothed.": 4,
+   "Forgery detected; evidence on the nose.": 3,
+   "Forgery detected; evidence across the whole face.": 1,
+   "Forgery detected; evidence on the eyes.": 1,
+   "Beautified, identity kept: eyes enlarged.": 1
+  },
+  "FF++ forgery": {
+   "Forgery detected; evidence across the whole face.": 54,
+   "Forgery detected; evidence on the nose.": 16,
+   "Forgery detected; evidence on the eyes.": 12,
+   "Forgery detected; evidence on the mouth.": 11,
+   "No manipulation detected.": 4,
+   "Beautified, identity kept: skin smoothed.": 3
+  },
+  "Alibaba render": {
+   "Beautified, identity kept: skin brightened.": 17,
+   "No manipulation detected.": 13,
+   "Beautified, identity kept: eyes enlarged, face reshaped, skin brightened, skin smoothed.": 11,
+   "Beautified, identity kept: eyes enlarged.": 10,
+   "Beautified, identity kept: operation unclear.": 10,
+   "Beautified, identity kept: skin smoothed.": 10,
+   "Beautified, identity kept: face reshaped.": 4,
+   "Beautified, identity kept: eyes enlarged, face reshaped, skin smoothed.": 3,
+   "Beautified, identity kept: eyes enlarged, skin brightened, skin smoothed.": 1,
+   "Beautified, identity kept: eyes enlarged, skin smoothed.": 1
+  },
+  "part forgery": {
+   "Forgery detected; evidence on the eyes.": 29,
+   "Forgery detected; evidence on the mouth.": 29,
+   "Forgery detected; evidence on the nose.": 26,
+   "No manipulation detected.": 10,
+   "Beautified, identity kept: face reshaped.": 2,
+   "Beautified, identity kept: operation unclear.": 1,
+   "Beautified, identity kept: eyes enlarged.": 1,
+   "Beautified, identity kept: skin brightened.": 1
+  }
+ }
+}

@@ -1,0 +1,9 @@
+{
+ "arm": "ru3",
+ "head": false,
+ "arch": "effb4",
+ "best": 0.8860085223119485,
+ "epochs": 12,
+ "seed": 20260929,
+ "n_single": 50112
+}

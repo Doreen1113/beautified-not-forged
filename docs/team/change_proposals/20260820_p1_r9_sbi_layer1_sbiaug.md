@@ -200,11 +200,22 @@ and generating them would have written into the frozen `results/mobile_export/`.
 
 ## 4. Risk / regression, and the caveat
 
-1. **True Test filter recall −1.60pp (93.57 → 91.97).** Still above its ≥90
-   gate, but it is the one metric that regresses consistently (−0.4 to −0.8pp
-   even at matched True Test real recall). This is the caveat on the
-   recommendation: a reviewer who weights True Test filter recall above the
-   stress metric should reject.
+1. **True Test filter recall, corrected 2026-08-21 (see §Addendum for full
+   derivation): true effect is −1.20pp (93.29% → 92.08% on the n=998 replicate,
+   not the originally-reported −1.60pp / 93.57→91.97 on n=249).** The effect IS
+   statistically significant (exact McNemar p=0.0118; cluster-bootstrap 95% CI
+   [−2.10, −0.30], excluding 0) — it is real, not noise. Still above the now
+   officially-decided ≥90% gate (decided 2026-08-21; see `TODO.md` Phase1-Freeze
+   Gate table). However, the same larger-n data shows real recall significantly
+   *better* (+3.60pp, p=0.0225) and the combined paired balanced accuracy
+   difference is **not** significant (+1.20pp, CI [−0.25, +2.80]). The evidence
+   therefore supports an **operating-point shift, not a net regression** — the
+   original "consistently regresses" framing is only partially supported: 0 of
+   4 per-type cells is individually significant; the aggregate significance
+   comes from summing four same-signed small effects, driven mainly by
+   eye_enlarging. This is still the caveat on the recommendation: a reviewer
+   who weights True Test filter recall above the stress metric and above the
+   real-recall gain should reject.
 2. **Alibaba filter OOD −0.46pp, CelebA −0.40pp, StyleGAN2 −0.03pp** — all
    within the range this project has previously treated as noise, all still far
    above their gates.
@@ -217,11 +228,17 @@ and generating them would have written into the frozen `results/mobile_export/`.
 4. **Layer2 untouched**, so Shadow end-to-end filter recall stays capped at
    ~15.8% and Shadow paired balanced does not improve. This proposal does not
    solve the Shadow domain gap.
-5. **Pre-existing integrity issue, not introduced here**:
-   `splits/v811_layer1_val.txt` contains 1,538 `FFHQ_ali_process` rows, i.e. the
-   Alibaba OOD gate is not fully independent of Layer1 checkpoint selection —
-   for production v8.11 as well as for this candidate. Recommend rebuilding that
-   val split before the next Layer1 round (see findings §8).
+5. **Pre-existing integrity issue, not introduced here — RESOLVED 2026-08-21.**
+   `splits/v811_layer1_val.txt` was found to contain **2,644** `FFHQ_ali_process`
+   rows (the 1,538 figure originally reported here was itself an undercount by
+   1.7x). The Alibaba OOD gate was therefore not fully independent of Layer1
+   checkpoint selection, for production v8.11 as well as for this candidate.
+   **Fixed**: `splits/v811_layer1_val_clean_20260821.txt` rebuilt with all 2,644
+   contaminated rows removed (14,676 → 12,031). All existing P1-R9 checkpoints
+   were rescored on the clean validation set — **no checkpoint selection
+   flipped**; the candidate promoted here still scores highest among available
+   snapshots on the decontaminated data. See
+   `results/research/contamination_cleanup_20260821/CLEANUP_AND_RETEST_REPORT.md`.
 
 ## 5. Exact files affected (if approved)
 
@@ -295,3 +312,127 @@ path string plus one added weight file.
   output.schema.json` stale since 2026-08-11) and logged as open follow-ups
   (`TODO.md` C1.9.12/C1.9.13) rather than silently fixed, since they fall
   outside this proposal's approved §5 file list.
+
+---
+
+## 附錄 — 事後統計檢定力複核（2026-08-21）
+
+> **APPEND-ONLY ADDENDUM.** Nothing above this line has been altered — §1–§8 and
+> the Approval Record are verbatim as approved on 2026-08-20. This addendum
+> records what a larger-n re-measurement says about §4 item 1's numbers and
+> wording. **It does not invalidate the approval decision, and it does not amend
+> the approved body text; amending an approved proposal is a human decision that
+> has not been taken.**
+>
+> Source (authoritative):
+> `results/research/p1_bench_power_20260820/BENCHMARK_POWER_REPORT.md` §2 and §4.
+> Method: the frozen 250 True Test base photos were re-crossed with all 4 filter
+> types (n=249 → **n=998**, no new base images — the LFW clean pool is exhausted),
+> and the frozen v1 subset reproduces every published number exactly on the same
+> harness (filter 229/249 = 91.97%, 233/249 = 93.57%, fake 269/270 = 99.63%).
+
+### A. The effect size in §4 item 1 is slightly overstated
+
+| §4 item 1 as written | Larger-n measurement (n=998) |
+|---|---|
+| True Test filter recall **−1.60pp** (93.57 → 91.97) | true effect is **−1.20pp** (93.29% → 92.08%), cluster-bootstrap 95% CI **[−2.10, −0.30]** |
+
+−1.60pp falls inside that CI but sits at its pessimistic end. The v1-subset
+reproduction of −1.60pp is itself correct; it is the four-type-balanced
+measurement that gives −1.20pp as the better estimate.
+
+### B. The regression IS statistically significant — this **supports** §4 item 1
+
+| test | result |
+|---|---|
+| exact McNemar, n=998 (b=4 / c=16) | **p = 0.0118 → significant** |
+| cluster permutation (whole base photos swapped, 10,000×) | **p = 0.0166 → significant** |
+| cluster bootstrap 95% CI of the difference | **[−2.10, −0.30], excludes 0** |
+| same comparison at the original n=249 (b=0 / c=4) | **p = 0.1250 — unresolvable** |
+
+The n=249 result was **not evidence of absence**: the frozen benchmark had
+exhausted all the evidence it could supply and still could not decide. So the
+proposal's core claim — that this is a real regression rather than noise — is
+**supported**, and could not have been established at the time it was written.
+
+### C. But real recall is significantly BETTER, and the combined metric is not significant
+
+| category | n | b / c | exact p | verdict |
+|---|---:|---:|---:|---|
+| real | 250 | 11 / 2 | **0.0225** | **significant, v8.17 better (+3.60pp)** |
+| fake | 921 | 0 / 1 | 1.0000 | not significant (both ≈99.7%) |
+| **paired balanced accuracy** | 250 bases | — | — | **+1.20pp, CI [−0.25, +2.80] — NOT significant** |
+
+**Therefore the evidence supports an operating-point shift, not a net
+regression.** v8.17 sits at a different point on the same real↔filter trade-off
+curve; there is no measurable change in overall discriminative ability.
+
+### D. "the one metric that regresses consistently" — direction supported, "consistently" only partly
+
+| per type | n | Δ (v8.17 − v8.11d) | exact McNemar p |
+|---|---:|---:|---:|
+| smoothing | 249 | 0.00pp | 1.0000 |
+| whitening | 249 | −0.80pp | 0.6250 |
+| face_reshaping | 250 | −1.20pp | 0.2500 |
+| eye_enlarging | 250 | **−2.80pp** | 0.0923 |
+
+- **"the one metric that regresses"** — **supported**. Of the three True Test
+  categories measured, filter recall is the only significant regression (fake
+  p=1.000, real significantly *improved*).
+- **"consistently"** — **only partially supported**. The direction is indeed
+  consistent (no type improves), but **0 of 4 per-type cells is individually
+  significant**; the overall significance comes from summing four same-signed
+  small effects, driven mainly by **eye_enlarging (−2.80pp)**. "Consistently"
+  should not be read as "every type regresses measurably" — that is 0 of 4.
+
+### E. Standing of this addendum
+
+- **The approval decision stands.** Every item here either supports §4 item 1's
+  core claim or refines a number inside its already-disclosed caveat; nothing
+  contradicts a gate verdict relied upon at approval.
+- **UPDATE 2026-08-21 (Member A, approver): §4 items 1 and 5 have now been
+  amended in place** to the corrected −1.20pp figure/operating-point framing
+  and the resolved val-split contamination count, per this addendum's findings.
+  This was a deliberate post-approval amendment by the approver, not a
+  reopening of the approval decision — the approval itself stands unchanged
+  (see above).
+- **Related, separately recorded**: the ≥90% True Test filter recall gate itself
+  cannot be statistically confirmed at n=249 (91.97%, CI [87.92, 94.74],
+  straddles the gate; needs n≈890; even n=998 gives [89.80, 94.20], still
+  straddling). See `TODO.md` "🔒 Phase 1 Freeze Gate" table, rightmost column.
+- **Nothing was modified**: `pipeline.py`, any checkpoint, any threshold, any
+  split, §1–§8 above, and the Approval Record are all untouched by this
+  addendum.
+
+---
+
+## 附錄 — 「Alibaba filter OOD」／「StyleGAN2」措辭更正（2026-08-21）
+
+> **APPEND-ONLY ADDENDUM. Nothing above is altered.** Framing correction only —
+> no number in §2/§4 changes, and no gate verdict changes.
+
+§4 item 2 and §4 item 5 refer to the **"Alibaba filter OOD"** gate, and §4 item 2
+lists **StyleGAN2** alongside it. The P1-R11 content-level audit (decoded-pixel
+SHA256 + dHash screen resolved by NCC/MAD) established that **neither set is
+out-of-distribution**:
+
+| set | content overlap with training data |
+|---|---|
+| `stylegan2_test/fake/` | **63.8% (6,376/10,000)** with `AIGuard/fake` + `fake_filter_hard_neg`, byte-identical images included (same 140k Real-Fake Faces corpus sampled by both sides). Decontaminated ≈**99.07%** |
+| `FFHQ_ali_process` | **23.5% (4,980/21,151)** — `AIGuard/real` and `filter_data/*` contain the same FFHQ base photos under different filenames, which the earlier FFHQ-index-range check could not see |
+
+Correct wording going forward: **"StyleGAN2 fake detection"** and
+**"Alibaba filter recall（跨濾鏡演算法，非 OOD——與訓練資料有 23.5% 內容重疊）"**.
+
+Note this makes §4 item 5 (`splits/v811_layer1_val.txt` contains 1,538
+`FFHQ_ali_process` rows) a *second*, independent reason that gate is not
+independent — the pre-existing integrity issue flagged there is real and is now
+compounded by content overlap. Both remain **pre-existing, not introduced by this
+proposal**, and neither changes its approval.
+
+Still-clean cross-domain evidence, unaffected by this correction: **CelebA real
+recall** and **AIGuard/unseen AUROC** (each separately verified clean), plus the
+**True Test vs Shadow** contrast (identical self-built filter code, different
+base-image photographic style).
+
+Evidence: `results/research/p1_r11_leakage_scaling_20260820/TASK1_LEAKAGE_AUDIT.md`.

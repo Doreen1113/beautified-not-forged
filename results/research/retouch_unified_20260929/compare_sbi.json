@@ -1,0 +1,70 @@
+{
+ "cdf": {
+  "SBI": {
+   "frame": 0.8172,
+   "video": 0.8716
+  },
+  "RU ru3e_effb4_s20260929": {
+   "frame": 0.8243,
+   "video": 0.8739,
+   "minus_SBI_frame_CI": [
+    -0.0242,
+    0.0379
+   ],
+   "minus_SBI_video_CI": [
+    -0.0248,
+    0.0288
+   ]
+  },
+  "RU ru4e_effb4_s20260929": {
+   "frame": 0.8475,
+   "video": 0.9102,
+   "minus_SBI_frame_CI": [
+    0.0024,
+    0.0601
+   ],
+   "minus_SBI_video_CI": [
+    0.0147,
+    0.0636
+   ]
+  },
+  "MASK": {
+   "frame": 0.8193,
+   "video": 0.8785
+  }
+ },
+ "dfd": {
+  "SBI": {
+   "frame": 0.9176,
+   "video": 0.876
+  },
+  "RU ru3e_effb4_s20260929": {
+   "frame": 0.9296,
+   "video": 0.9154,
+   "minus_SBI_frame_CI": [
+    -0.0106,
+    0.0355
+   ],
+   "minus_SBI_video_CI": [
+    0.0157,
+    0.0626
+   ]
+  },
+  "RU ru4e_effb4_s20260929": {
+   "frame": 0.9152,
+   "video": 0.9085,
+   "minus_SBI_frame_CI": [
+    -0.0311,
+    0.0238
+   ],
+   "minus_SBI_video_CI": [
+    0.0088,
+    0.0556
+   ]
+  },
+  "MASK": {
+   "frame": 0.9075,
+   "video": 0.8663
+  }
+ }
+}

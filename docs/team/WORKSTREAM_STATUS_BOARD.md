@@ -17,6 +17,14 @@
   （撰寫本文件當下已重新對照 `RELEASE_MANIFEST.json` 確認）。
 - **Core / OOD / robustness 評測** — 全部在 P0 Production Evaluation Integrity Repair
   （`results/releases/v8.11_production_20260813/`）中用新鮮、附 hash 的證據重新驗證過。
+  > ⚠️ **2026-08-21 更正（僅措辭，數字與驗證結果不變）**：上句的「OOD」不涵蓋
+  > **StyleGAN2** 與 **Alibaba** 兩項——內容層級稽核測得兩者與訓練資料分別有
+  > **63.8%（6,376/10,000）** 與 **23.5%（4,980/21,151）** 內容重疊（含逐位元組相同的圖片），
+  > **皆非分布外評測**。對外請改稱「StyleGAN2 fake detection」與
+  > 「Alibaba filter recall（跨濾鏡演算法，非 OOD——與訓練資料有 23.5% 內容重疊）」。
+  > **仍為真正 OOD 的是 CelebA real recall 與 AIGuard/unseen AUROC**（各自查證乾淨）；
+  > filter 側的有效跨域對照是 True Test vs Shadow。
+  > 證據：`results/research/p1_r11_leakage_scaling_20260820/TASK1_LEAKAGE_AUDIT.md`。
 - **fp32 桌機 TFLite** — 已驗證可載入、與 PyTorch 數值一致（769/769 決策一致），
   合計 20.91 MB（`results/mobile_deployment_benchmark.json`）。fp16 已確認損壞，
   int8 已確認數值不正確——不算「已凍結／完成」，明確標記為不可用。

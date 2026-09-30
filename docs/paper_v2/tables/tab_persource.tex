@@ -1,0 +1,16 @@
+\begin{tabular}{llrrrr}
+\toprule
+Class & Source & $n$ & $\to$real & $\to$fake & $\to$filter \\
+\midrule
+real & genuine & 1316 & \textbf{79.2} & 13.8 & 7.1 \\
+fake & Deepfakes & 1327 & 1.0 & \textbf{98.9} & 0.2 \\
+fake & Face2Face & 1326 & 4.0 & \textbf{94.8} & 1.2 \\
+fake & FaceSwap & 1323 & 7.6 & \textbf{92.3} & 0.2 \\
+fake & NeuralTextures & 1328 & 22.6 & \textbf{73.9} & 3.5 \\
+filter & smoothing & 156 & 0.0 & 7.1 & \textbf{92.9} \\
+filter & whitening & 149 & 3.4 & 8.1 & \textbf{88.6} \\
+filter & eye enlarging & 152 & 49.3 & 13.8 & \textbf{36.8} \\
+filter & face slimming & 150 & 16.7 & 4.7 & \textbf{78.7} \\
+filter & photometric (14) & 709 & 2.0 & 5.8 & \textbf{92.2} \\
+\bottomrule
+\end{tabular}

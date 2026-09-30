@@ -1,0 +1,54 @@
+{
+ "donor": {
+  "n": 987,
+  "detected_with_landmarks": 924,
+  "no_landmarks": 0,
+  "ruleA_top1": 11.9,
+  "ruleB_top1": 99.0,
+  "ruleB_confusion": {
+   "eyes->eyes": 321,
+   "eyes->nose": 1,
+   "mouth->eyes": 2,
+   "mouth->mouth": 289,
+   "mouth->nose": 4,
+   "nose->eyes": 2,
+   "nose->nose": 305
+  }
+ },
+ "sd": {
+  "n": 987,
+  "detected_with_landmarks": 881,
+  "no_landmarks": 0,
+  "ruleA_top1": 7.9,
+  "ruleB_top1": 98.5,
+  "ruleB_confusion": {
+   "eyes->eyes": 294,
+   "eyes->nose": 5,
+   "mouth->eyes": 1,
+   "mouth->mouth": 313,
+   "mouth->nose": 4,
+   "nose->eyes": 1,
+   "nose->mouth": 2,
+   "nose->nose": 261
+  }
+ },
+ "sdxl": {
+  "n": 987,
+  "detected_with_landmarks": 831,
+  "no_landmarks": 0,
+  "ruleA_top1": 8.8,
+  "ruleB_top1": 97.7,
+  "ruleB_confusion": {
+   "eyes->eyes": 265,
+   "eyes->mouth": 2,
+   "eyes->nose": 7,
+   "mouth->eyes": 2,
+   "mouth->mouth": 296,
+   "mouth->nose": 5,
+   "nose->eyes": 2,
+   "nose->mouth": 1,
+   "nose->nose": 251
+  }
+ },
+ "decision": "rule B"
+}

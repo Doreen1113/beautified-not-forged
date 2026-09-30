@@ -1,0 +1,219 @@
+[
+ {
+  "image": "C:\\My_Project\\AIGC\\FaceForensics_protocol_frames\\test\\real\\000__f0039.jpg",
+  "label": "filter",
+  "probabilities": {
+   "real": 0.448,
+   "fake": 0.02,
+   "filter": 0.532
+  },
+  "operations": {
+   "eye": 0.03,
+   "contour": 0.466,
+   "tone": 0.016,
+   "texture": 0.05
+  },
+  "evidence": {
+   "peak": 0.003,
+   "mean_per_part": {
+    "eyes": 0.001,
+    "nose": 0.0,
+    "mouth": 0.0,
+    "skin": 0.0,
+    "contour": 0.001
+   },
+   "named_parts": [
+    "eyes"
+   ]
+  },
+  "explanation": "Beautified, identity kept: operation unclear.",
+  "example": "genuine (FF++)",
+  "truth": "real"
+ },
+ {
+  "image": "C:\\My_Project\\AIGC\\FFHQ_ali_process\\EyeEnlarging_90\\17000\\17024.png",
+  "label": "filter",
+  "probabilities": {
+   "real": 0.042,
+   "fake": 0.001,
+   "filter": 0.957
+  },
+  "operations": {
+   "eye": 0.932,
+   "contour": 0.009,
+   "tone": 0.017,
+   "texture": 0.007
+  },
+  "evidence": {
+   "peak": 0.984,
+   "mean_per_part": {
+    "eyes": 0.959,
+    "nose": 0.731,
+    "mouth": 0.068,
+    "skin": 0.557,
+    "contour": 0.374
+   },
+   "named_parts": [
+    "eyes"
+   ]
+  },
+  "explanation": "Beautified, identity kept: eyes enlarged.",
+  "example": "Alibaba: eye enlargement",
+  "truth": "filter"
+ },
+ {
+  "image": "C:\\My_Project\\AIGC\\FFHQ_ali_process\\FaceLifting_90\\17000\\17024.png",
+  "label": "real",
+  "probabilities": {
+   "real": 0.704,
+   "fake": 0.003,
+   "filter": 0.293
+  },
+  "operations": {
+   "eye": 0.166,
+   "contour": 0.035,
+   "tone": 0.05,
+   "texture": 0.034
+  },
+  "evidence": {
+   "peak": 0.002,
+   "mean_per_part": {
+    "eyes": 0.001,
+    "nose": 0.0,
+    "mouth": 0.0,
+    "skin": 0.001,
+    "contour": 0.001
+   },
+   "named_parts": [
+    "eyes"
+   ]
+  },
+  "explanation": "No manipulation detected.",
+  "example": "Alibaba: face lifting",
+  "truth": "filter"
+ },
+ {
+  "image": "C:\\My_Project\\AIGC\\FFHQ_ali_process\\Whitening_90\\17000\\17024.png",
+  "label": "real",
+  "probabilities": {
+   "real": 0.639,
+   "fake": 0.003,
+   "filter": 0.358
+  },
+  "operations": {
+   "eye": 0.102,
+   "contour": 0.032,
+   "tone": 0.192,
+   "texture": 0.018
+  },
+  "evidence": {
+   "peak": 0.008,
+   "mean_per_part": {
+    "eyes": 0.004,
+    "nose": 0.002,
+    "mouth": 0.001,
+    "skin": 0.002,
+    "contour": 0.002
+   },
+   "named_parts": [
+    "eyes"
+   ]
+  },
+  "explanation": "No manipulation detected.",
+  "example": "Alibaba: whitening",
+  "truth": "filter"
+ },
+ {
+  "image": "C:\\My_Project\\AIGC\\FFHQ_ali_process\\Smoothing_90\\17000\\17024.png",
+  "label": "filter",
+  "probabilities": {
+   "real": 0.055,
+   "fake": 0.003,
+   "filter": 0.943
+  },
+  "operations": {
+   "eye": 0.473,
+   "contour": 0.089,
+   "tone": 0.139,
+   "texture": 0.89
+  },
+  "evidence": {
+   "peak": 0.954,
+   "mean_per_part": {
+    "eyes": 0.899,
+    "nose": 0.806,
+    "mouth": 0.723,
+    "skin": 0.73,
+    "contour": 0.626
+   },
+   "named_parts": [
+    "whole face"
+   ]
+  },
+  "explanation": "Beautified, identity kept: skin smoothed.",
+  "example": "Alibaba: smoothing",
+  "truth": "filter"
+ },
+ {
+  "image": "C:\\My_Project\\AIGC\\ffpp_partedit\\test\\donor\\682__f0867__nose.jpg",
+  "label": "fake",
+  "probabilities": {
+   "real": 0.0,
+   "fake": 1.0,
+   "filter": 0.0
+  },
+  "operations": {
+   "eye": 0.176,
+   "contour": 0.138,
+   "tone": 0.09,
+   "texture": 0.082
+  },
+  "evidence": {
+   "peak": 1.0,
+   "mean_per_part": {
+    "eyes": 0.405,
+    "nose": 0.991,
+    "mouth": 0.218,
+    "skin": 0.259,
+    "contour": 0.009
+   },
+   "named_parts": [
+    "nose"
+   ]
+  },
+  "explanation": "Forgery detected; evidence on the nose.",
+  "example": "part-level forgery (nose)",
+  "truth": "fake"
+ },
+ {
+  "image": "C:\\My_Project\\AIGC\\FaceForensics_protocol_frames\\test\\Deepfakes\\024_073__f0030.jpg",
+  "label": "fake",
+  "probabilities": {
+   "real": 0.0,
+   "fake": 1.0,
+   "filter": 0.0
+  },
+  "operations": {
+   "eye": 0.094,
+   "contour": 0.085,
+   "tone": 0.22,
+   "texture": 0.06
+  },
+  "evidence": {
+   "peak": 0.999,
+   "mean_per_part": {
+    "eyes": 0.995,
+    "nose": 0.998,
+    "mouth": 0.991,
+    "skin": 0.941,
+    "contour": 0.592
+   },
+   "named_parts": [
+    "whole face"
+   ]
+  },
+  "explanation": "Forgery detected; evidence across the whole face.",
+  "example": "whole-face deepfake (FF++)",
+  "truth": "fake"
+ }
+]

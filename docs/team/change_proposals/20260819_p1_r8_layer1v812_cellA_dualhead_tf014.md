@@ -86,7 +86,11 @@ Result files: `results/research/p1_r8_shadow_composite_tradeoff_20260819/`
 
 - **Three Freeze-Gate A metrics regress beyond this round's pre-declared noise
   tolerance** (±0.5pp recall, ±0.005 AUROC): True Test paired balanced −0.80pp,
-  AIGuard-unseen AUROC −0.0136, Alibaba filter OOD −1.56pp. All three still pass
+  AIGuard-unseen AUROC −0.0136, Alibaba filter recall −1.56pp (⚠️ 2026-08-21
+  framing correction: this gate was written here as "Alibaba filter OOD"; it is
+  **not** an OOD set — 23.5% (4,980/21,151) content overlap with training data,
+  per `results/research/p1_r11_leakage_scaling_20260820/TASK1_LEAKAGE_AUDIT.md`.
+  The number and the pass/fail verdict are unchanged; only the label is). All three still pass
   their absolute gates (80.32% ≥ 80%, 0.8014 ≥ 0.80, 96.61% ≥ 95%) but the AUROC
   and paired-balanced margins become thin (0.0014 and 0.32pp respectively).
   **This is the reason the proposer does not recommend promotion.**

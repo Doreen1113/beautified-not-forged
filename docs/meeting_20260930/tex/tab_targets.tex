@@ -1,0 +1,22 @@
+\documentclass[border=4pt]{standalone}
+\usepackage{fontspec}\setmainfont{texgyretermes}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]
+\usepackage{booktabs,colortbl,xcolor}
+\definecolor{pass}{HTML}{DCEFD9}\definecolor{fail}{HTML}{F6D5D2}
+\begin{document}\large
+\begin{tabular}{llll}
+\toprule
+Target set before training & Bar & \textsc{Ours} & \\
+\midrule
+Beautification escape on Celeb-DF-B & $\le$ +3 pp & +2.9 pp & \cellcolor{pass}\textbf{met} \\
+Retouched faces called fake (unseen service) & $\le$ 5\% & 0.1\% & \cellcolor{pass}\textbf{met} \\
+Cross-dataset AUC (CDFv2 / DFD) & $\ge$ 0.78 / 0.88 & 0.888 / 0.948 & \cellcolor{pass}\textbf{met} \\
+Binary detectors that dominate us & 0 & 0 of 15 & \cellcolor{pass}\textbf{met} \\
+Evidence: flip within 5 pp of ceiling, IoU$_7\ge$0.65 & $\le$ 5 pp, 0.65 & 0.3 pp, 0.83 & \cellcolor{pass}\textbf{met} \\
+\midrule
+Retouched vs.\ untouched (unseen service) & $\ge$ 75\% & 70.2\% & \cellcolor{fail}\textbf{missed} \\
+Per-operation recall vs.\ RetouchingFFHQ & 3 of 4 ops & 2 of 4 & \cellcolor{fail}\textbf{missed} \\
+FF++ recall, every class & $\ge$ 80\% & genuine 78.0\% & \cellcolor{fail}\textbf{missed} \\
+Edit-magnitude estimate & Spearman $\ge$ 0.6 & $\le$ 0.47 & \cellcolor{fail}\textbf{missed} \\
+\bottomrule
+\end{tabular}
+\end{document}

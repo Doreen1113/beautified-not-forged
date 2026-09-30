@@ -124,7 +124,12 @@ published 20.91 MB exactly. **No size or latency change** from this proposal.
 ## 3. Expected benefit (if approved)
 - fake+filter end-to-end error 2.36% → **0.79%**, meeting the ≤2% stretch goal
   that has been open since v8.4.
-- True Test filter recall +2.01pp, Alibaba OOD filter recall +1.22pp.
+- True Test filter recall +2.01pp, Alibaba filter recall +1.22pp (⚠️ 2026-08-21
+  framing correction: written here as "Alibaba OOD filter recall"; that set is
+  **not** OOD — 23.5% (4,980/21,151) content overlap with training data, per
+  `results/research/p1_r11_leakage_scaling_20260820/TASK1_LEAKAGE_AUDIT.md`.
+  Number unchanged; label corrected. Correct wording:
+  "Alibaba filter recall（跨濾鏡演算法，非 OOD——與訓練資料有 23.5% 內容重疊）").
 - FF++ zero-shot fake catch +0.8 to +4.5pp at 8/8 matched real-recall points.
 - Shadow Layer1 routing +9pp over the current threshold-only frontier at the
   tightest budgets.

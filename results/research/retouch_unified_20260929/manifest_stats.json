@@ -1,0 +1,15 @@
+{
+ "ffhq_orig": 7831,
+ "tencent": 7731,
+ "tencent_with_q": 7730,
+ "megvii": 13139,
+ "megvii_with_q": 13138,
+ "vendor_single": 82395,
+ "ffpp_train": {
+  "0": 41512,
+  "1": 41526,
+  "2": 41512
+ },
+ "train_rows": 224251,
+ "val_rows": 11395
+}

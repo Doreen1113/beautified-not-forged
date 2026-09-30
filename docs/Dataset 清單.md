@@ -1,6 +1,44 @@
 # Dataset 清單
 
+> ⚠️ **2026-08-21 版本現況更正（F5）：本文件正文停留在 v8.11，已不是現行 production。**
+> 自 2026-08-20 起 production 為 **v8.17**：Layer1 = `shufflenet_v2_layer1_v817sbi.pth`
+> （P1-R9 的 Self-Blended Images 候選），Layer2 = `shufflenet_v2_layer2_v811.pth`（**未變動**），
+> `pipeline.py` 的 `LAYER1_WEIGHTS_PATH` 已指向 v817sbi。核准依據見
+> `docs/team/change_proposals/20260820_p1_r9_sbi_layer1_sbiaug.md`（含 2026-08-21 事後統計複核附錄）。
+> **以下正文的「目前 production = v8.11」等敘述一律應讀作歷史紀錄**；v8.11 相關內容刻意保留不動，
+> 因為它是 `Phase1-v8.11-freeze` 的凍結紀錄。v8.17 主要數字：True Test fake recall 99.63%、
+> filter recall 91.97%、paired balanced 82.13%、AIGuard-unseen AUROC 0.8410、Alibaba 98.17%。
+> ✅ True Test filter recall 的 gate 門檻爭議（≥90% vs ≥92%）**已於 2026-08-21 裁定為
+> ≥90%**（正文中殘留的 ≥92% 為歷史記錄，不再是現行門檻）。v8.17 = 91.97%，對此門檻通過。
+> 裁定理由與統計限制見 `TODO.md` Phase1-Freeze Gate 表附註。
+
 > 最後更新：2026-08-10（**v8.11 Layer1d + 原始Layer2 hierarchical分類器為目前production版本，`pipeline.py` 已指向 Layer1d**。v8.8為舊flat 3-class架構的最佳版，已被hierarchical架構取代，保留為reference baseline。v8.11演進：Layer1c（2026-08-02拍板）→ Layer1d（2026-08-10，round4 hard-neg fine-tune後取代）。完整過程見下方及`TODO.md`。）
+
+> 🔴 **2026-08-21 全文措辭更正：本文件中「StyleGAN2 OOD」與「Alibaba filter OOD」的
+> 「OOD」二字一律不成立，請以本註記為準閱讀以下所有歷史表格與段落。**
+> P1-R11 內容層級稽核（K1 = 解碼像素 SHA256、K2 = dHash 篩選 + NCC/MAD 裁決）證實：
+> - `stylegan2_test/fake/`：**63.8%（6,376/10,000）與訓練資料（`AIGuard/fake` +
+>   `fake_filter_hard_neg`）內容重疊**，其中多組是逐位元組完全相同的圖片（同一來源
+>   140k Real-Fake Faces 語料庫被兩邊各自取樣）。去污染後仍有 **≈99.07%**。
+> - `FFHQ_ali_process`：**23.5%（4,980/21,151）與訓練資料內容重疊**
+>   （`AIGuard/real` 與 `filter_data/*` 含相同的 FFHQ 底圖照片）。
+>   ⚠️ 這一點也**直接推翻**本文件 2026-08-02 條目所依據的「FFHQ index range 不相交 ⇒
+>   overlap=0」推論——index range 比對只看檔名/編號，看不見「同一張照片以不同檔名存在」。
+>
+> **數字本身全部維持不變、任何已核准決策皆不需重新檢討**（污染圖片在各版本上一律表現
+> 「更差」而非「更好」）。需要更正的只有**敘述框架**：
+> - 往後一律稱 **「StyleGAN2 fake detection」**，不再稱 OOD／分布外；
+> - 往後一律稱 **「Alibaba filter recall（跨濾鏡演算法，非 OOD——與訓練資料有 23.5%
+>   內容重疊）」**。
+> 除非另外建立真正 image-disjoint 的子集，否則兩者都不可用來支撐「跨域泛化」主張。
+>
+> **仍然乾淨、可繼續引用的跨域證據**（未被本次更正削弱）：
+> ① **CelebA real recall**（官方 partition identity-disjoint，已獨立查證乾淨）；
+> ② **AIGuard/unseen AUROC**（完全 held-out，已獨立查證乾淨）；
+> ③ **True Test vs Shadow 對照**——同一套自建濾鏡程式碼、不同底圖攝影風格，
+> 是本專案內部有效的跨域對照（見下方 2026-08-11 條目）。
+>
+> 證據：`results/research/p1_r11_leakage_scaling_20260820/TASK1_LEAKAGE_AUDIT.md`。
 
 ---
 
@@ -46,7 +84,7 @@
 > 過程備註：ΔE 首次量測時樣本上限設 250 對，在取到任何 whitening 之前就截斷，整體比值被型別組成帶偏；已改全量 + per-type 比值。
 > 附帶查到一項小不一致：`filters/generate_filter_dataset.py` 的 `cv2.imwrite` 未指定品質參數（OpenCV 預設 95），與其餘生成腳本的 q90 不同；因 True Test 與 Shadow 兩邊同為 q90，不影響上述結論，但記錄備查。
 
-**結論：跨濾鏡演算法泛化良好（Alibaba OOD 98.1%，不同公司演算法），跨底圖攝影風格泛化失敗。** 現有 filter 訓練底圖（FFHQ / LFW / AIGuard-real）全是對齊裁切的一致構圖；唯一 in-the-wild 的 VGGFace2 就是失敗的那個（landmark 偵測成功率 82% vs 其餘 100%，直接反映難度差異）。
+**結論：跨濾鏡演算法泛化良好（Alibaba filter recall 98.1%，不同公司演算法；⚠️ 2026-08-21 更正：此非 OOD，該集與訓練資料有 23.5% 內容重疊，見文件開頭更正註記——「跨濾鏡演算法」這一半仍成立，「分布外」那一半不成立），跨底圖攝影風格泛化失敗。** 現有 filter 訓練底圖（FFHQ / LFW / AIGuard-real）全是對齊裁切的一致構圖；唯一 in-the-wild 的 VGGFace2 就是失敗的那個（landmark 偵測成功率 82% vs 其餘 100%，直接反映難度差異）。
 
 ### 3b. ✅ 因果驗證：v8.12（底圖多樣性）確認診斷正確，但有代價，暫不上 production
 
@@ -87,7 +125,7 @@
 |---|---:|---:|---|---|
 | True Test filter recall（總） | 94.0% | 93.6% | ≥92% | ✅ 過關（打平內雜訊範圍）|
 | ├ smoothing / whitening / eye_enlarging / face_reshaping | — | 100.0% / 95.2% / 82.3% / 96.8% | — | eye_enlarging最弱，跟其他來源同型別偏弱方向一致 |
-| Alibaba OOD filter recall（21,151張，index-disjoint演算法OOD） | 97.8% | **98.1%** | — | 略升，非退步 |
+| Alibaba filter recall（21,151張，跨濾鏡演算法；⚠️ **非 OOD**——原註「index-disjoint演算法OOD」已於 2026-08-21 更正，實測與訓練資料有 23.5% 內容重疊） | 97.8% | **98.1%** | — | 略升，非退步 |
 | AIGuard/unseen fake AUROC | 0.8112 | 0.8150 | ≥0.70 | ✅ 過關，更好 |
 | CelebA real recall (n=3000) | 99.7% | 99.7% | ≥95% | ✅ 打平 |
 | StyleGAN2 fake recall (n=3000) | 99.7% | 99.6% | ≥95% | ✅ 過關 |
@@ -96,14 +134,19 @@
 
 **沒有任何一項退步超過雜訊範圍，判定為淨正向改善，已正式取代Layer1c成為production Layer1**（`pipeline.py`的`LAYER1_WEIGHTS_PATH`已指向`shufflenet_v2_layer1_v811d.pth`，Layer1c保留在磁碟供對照）。
 
-**Filter recall跨來源對照，證實Shadow低是domain gap而非模型普遍弱**：True Test（93.6%）與Alibaba OOD（98.1%）都是93%+高分，且用的是完全不同的濾鏡演算法（自建pipeline vs Alibaba API）跟不同底圖來源，唯獨Shadow set（VGGFace2真人照片+自建filter pipeline）卡在15.7-28.1%。同一套自建filter pipeline在True Test（LFW底圖）拿93.6%、在Shadow（VGGFace2底圖）只拿51.2%（Layer1 isolated的filter→manipulated recall），差異只在底圖照片風格——問題定位在模型對VGGFace2這種「野生」照片風格的泛化能力，不是濾鏡辨識力本身。
+**Filter recall跨來源對照，證實Shadow低是domain gap而非模型普遍弱**：True Test（93.6%）與Alibaba filter recall（98.1%；⚠️ 2026-08-21 更正：非 OOD，見文件開頭）都是93%+高分，且用的是完全不同的濾鏡演算法（自建pipeline vs Alibaba API）跟不同底圖來源，唯獨Shadow set（VGGFace2真人照片+自建filter pipeline）卡在15.7-28.1%。同一套自建filter pipeline在True Test（LFW底圖）拿93.6%、在Shadow（VGGFace2底圖）只拿51.2%（Layer1 isolated的filter→manipulated recall），差異只在底圖照片風格——問題定位在模型對VGGFace2這種「野生」照片風格的泛化能力，不是濾鏡辨識力本身。
 
 **❌ FFHQ_four_process 859張未用圖片審計失敗，不可用作新filter OOD來源**：依序審計路徑/身份重疊 → 演算法重疊，兩關都沒過：
 1. `FFHQ_four_process`（無品牌）與已訓練的`FFHQ_megvii_four_process`（Megvii）共用**完全相同**的FFHQ base index range（60002-69999），不像Alibaba（17000-19999）是獨立不重疊的company分區——這兩個資料夾是同一批10K張FFHQ底圖，各自套用不同濾鏡pipeline。
 2. 859張未用圖片中，**727張（84.6%）的base FFHQ index已透過megvii版本用進`v811_layer2_train.txt`訓練**，即同一張人臉照片訓練時已見過（濾鏡演算法不同），不構成identity-disjoint OOD。
 3. 剩餘132張即使身份未撞，套用的仍是`v86_train_filter.txt`裡6,872張同源訓練資料用過的同一套「four」濾鏡演算法，樣本量小、演算法不新，不足以構成獨立OOD benchmark。
 
-**判定：不採用此資料源做inference、不因此觸發round5挖礦**。稽核腳本：`check_ffhq_four_process_overlap.py`（未用清單）、`check_ffhq_four_identity_overlap.py`（身份重疊比對）。目前唯一驗證過的乾淨filter algorithm-OOD只有Alibaba一組。
+**判定：不採用此資料源做inference、不因此觸發round5挖礦**。稽核腳本：`check_ffhq_four_process_overlap.py`（未用清單）、`check_ffhq_four_identity_overlap.py`（身份重疊比對）。~~目前唯一驗證過的乾淨filter algorithm-OOD只有Alibaba一組。~~
+> ⚠️ **2026-08-21 更正**：上一句已不成立。P1-R11 內容層級稽核證實 Alibaba（`FFHQ_ali_process`）
+> 本身就與訓練資料有 **23.5%（4,980/21,151）內容重疊**，**不是乾淨的 filter algorithm-OOD**。
+> 正確說法是：**本專案目前沒有任何一組經內容層級驗證為乾淨的 filter algorithm-OOD 資料源。**
+> Alibaba 仍可作為**跨濾鏡演算法**（不同公司實作）的證據，但不可稱為分布外測試。
+> filter 側仍然有效的跨域對照是 **True Test vs Shadow**（同一套自建濾鏡程式碼、不同底圖攝影風格）。
 
 ---
 
@@ -122,6 +165,16 @@
 ---
 
 ## 📋 v8.11 True Test Set 完整3×3混淆矩陣（2026-08-03，首次產出）
+
+> ⚠️ **2026-08-26 更正**：下表為 **Layer1c**（`results/v811_confusion_matrix.json`，2026-08-03，早於 Layer1d 建立日）的矩陣，**不是 production v8.11（Layer1d）**。現行 production **v8.17**（`shufflenet_v2_layer1_v817sbi` + `layer2_v811`）用同一 769 張重生（`results/research/remeasure_sweep_20260826/confusion_matrix_shufflenet_v2_layer1_v817sbi__shufflenet_v2_layer2_v811.json`，pipeline argmax 規則）：
+>
+> | Actual \ Predicted | real | fake | filter |
+> |---|---|---|---|
+> | real (n=250) | **182** | 0 | 68 |
+> | fake (n=270) | 1 | **269** | 0 |
+> | filter (n=249) | 20 | 0 | **229** |
+>
+> real recall 72.8%（harness tm=0.5 規則 72.4%：181/0/69）、fake 99.63%、filter 91.97%；real 誤判仍 100% 流向 filter、0 流向 fake，方向結論不變。`generate_v811_confusion_matrix.py` 已改為依載入權重命名輸出，舊檔不再被覆寫。
 
 **背景**：既有的v8.11 gate評估腳本（`eval_v811_gates.py`）只對各class分別跑不同資料集（True Test filter recall、AIGuard/unseen fake AUROC、CelebA real recall、StyleGAN2 fake recall），從未在同一批同時含real+fake+filter三類的資料上跑出完整混淆矩陣。True Test Set（`splits/truetest_{real,fake,filter}.txt`，共769張：LFW real 250 + DF40 diffusion fake 270 + LFW+filter 249）是唯一同時具備三個class的held-out集，用`generate_v811_confusion_matrix.py`（直接呼叫`pipeline.hierarchical_predict()`，與正式pipeline完全一致）補上。
 
@@ -408,6 +461,16 @@ v8.4 完整審查發現多項資料層級問題，v8.5 已修復，重訓進行�
 | 版本 | 相對前版的主要資料變動 | True Test Binary AUROC | Filter Recall（True Test） |
 |------|----------------------|------------------------|--------------------------|
 | v3 | DualBranch 基準（AIGuard only）| 0.1061（LFW 全判 fake）| — |
+
+> ⚠️ **2026-08-26：v8.3／v8.4／v8.5 用修正後（v8.6 起統一）前處理重量完成**（`results/research/remeasure_sweep_20260826/`，`AIGuard/eval_filter_recall.py` + `AIGuard/eval_crossdataset_v3_1.py`，archived checkpoints）：
+>
+> | 版本 | True Test filter overall | eye_enlarging | smoothing | whitening | face_reshaping | AIGuard/unseen AUROC | FakeClue AUROC（1,166） | WildDeepfake AUROC（800） |
+> |---|---|---|---|---|---|---|---|---|
+> | v8.3 | 91.6%（228/249）| 74.2% | 98.4% | 96.8% | 96.8% | 0.7371 | 0.5439 | 0.5260 |
+> | v8.4 | 94.8%（236/249）| 83.9% | 98.4% | 98.4% | 98.4% | 0.7226 | 0.5439 | 0.4814 |
+> | v8.5 | 94.0%（234/249）| 82.3% | 98.4% | 96.8% | 98.4% | 0.7345 | 0.5411 | 0.4183 |
+>
+> 重量後的數字**不等於**表格下方沿用多年的「v8.3=87.6% / v8.4=90.4% / v8.5=89.6%」——這批舊數字混雜了 v8.6 前的前處理不一致（C1）與 v8.4 的已知污染（45 張 MidJourney 洩漏、53% filter 重複，C2），兩者不可疊加比較。本表是「同一套 v8.6+ 前處理、原始（含已知污染）checkpoint」的乾淨重測，用途是让 C1 的「舊量測 vs 修正後」比較第一次有 v8.3-v8.5 的對照點；v8.4 仍受 C2 污染影響，不代表其 filter recall 是「乾淨」的最終數字（v8.5 才是 C2 修復版，但 C2 修復發生在 v8.6 前處理修正之前，故 v8.5 這裡的 94.0% 也是「舊 checkpoint、新前處理」的混合對照，不等於原文件的 89.6%）。
 | v5 | +LFW real + DF40 Diffusion fake | 0.9990 | 0%（LFW domain confusion）|
 | v5.1 | +LFW+filter | **1.0000** | 31% |
 | v6 | 純靜態（移除 WildDeepfake），init from v3 | **1.0000** | 67.5% |
@@ -450,17 +513,22 @@ v8.4 完整審查發現多項資料層級問題，v8.5 已修復，重訓進行�
 
 ---
 
-## Cross-dataset OOD Benchmarks
+## Cross-dataset Benchmarks（原標題為「Cross-dataset OOD Benchmarks」，⚠️ 2026-08-21 更正見下）
 
-> **靜態圖主評**（主要評估指標）：AIGuard/unseen AUROC + StyleGAN2 OOD fake detection。
+> **靜態圖主評**（主要評估指標）：AIGuard/unseen AUROC + StyleGAN2 fake detection。
 > 影片幀（FakeClue、Celeb-DF-v2、WildDeepfake）受 H.264 domain gap 影響，定位為輔助評估。
+>
+> ⚠️ **2026-08-21 更正**：本節原稱「OOD Benchmarks」，其中 **StyleGAN2 不是 OOD**
+> （63.8% 與訓練資料內容重疊，見文件開頭更正註記），故已改稱
+> **「StyleGAN2 fake detection」**。本節內 **AIGuard/unseen 仍是乾淨的 held-out 評測**，
+> 不受此更正影響。
 
 ### 靜態圖主評
 
 | Dataset | 組成 | 張數 | v8.3 AUROC | v8.4 AUROC | 備注 |
 |---------|------|------|-----------|-----------|------|
 | **AIGuard/unseen** | 靜態圖（real 238 / fake 216）| **454** | **0.7356** | 0.7127 | ↑ from v3 0.640；v8.4 tradeoff（real boundary 放寬）|
-| **StyleGAN2 OOD fake** | StyleGAN2 靜態生成（10K）| **10,000** | 99.9% correct | 99.7% correct | 全靜態，零 H.264；FFT branch OOD 泛化確認 |
+| **StyleGAN2 fake detection**（原稱「StyleGAN2 OOD fake」）| StyleGAN2 靜態生成（10K）| **10,000** | 99.9% correct | 99.7% correct | 全靜態，零 H.264；⚠️ **2026-08-21 更正：原備註「FFT branch OOD 泛化確認」不成立**——63.8% 與訓練資料內容重疊，此數字**不能**作為 OOD/跨域泛化證據，只能作為 StyleGAN2 fake 偵測能力的 in-distribution-contaminated 量測（去污染後 ≈99.07%）。⚠️ 2026-08-26：canonical 排除清單定為 **6,376 張**（CONFIRMED 6,252 + BORDERLINE-only 124；gapfill 的 6,252 是只取 CONFIRMED，差 124 張即此），檔案 `results/research/remeasure_sweep_20260826/stylegan2_decontam_exclusion_CANONICAL.json`；v8.17 全量 10,000 張（harness 前處理）raw **99.67%**、去污染 3,624 張 **99.25%**（污染子集本身 99.91%）；此欄 99.9%/99.7% 為 v8.3/v8.4 舊量測 |
 
 **AIGuard/unseen 說明**：
 - `AIGuard/unseen/` 從未進入任何訓練 split（完全 held-out），454 張均通過 Step1 清洗
@@ -476,11 +544,13 @@ v8.4 完整審查發現多項資料層級問題，v8.5 已修復，重訓進行�
 
 | Dataset | 組成 | 張數 | v8.3 AUROC | 備注 |
 |---------|------|------|-----------|------|
-| **FakeClue test** | FF++ + GenImage AIGC + Chameleon AIGC | **1,166** | 0.5117 | H.264 壓縮域差異；Phase 2 distillation 用 |
-| Celeb-DF-v2 blind holdout | 影片幀（real 200 / fake 200）| **400** | 0.5736（real=0/200）| H.264；非主評 |
+| **FakeClue test** | FF++ + GenImage AIGC + Chameleon AIGC | **1,166** | 0.5117 | H.264 壓縮域差異；Phase 2 distillation 用 ⚠️ 2026-08-26：0.5117 為舊量測（前處理修正前）；**v8.17 首測 0.518**（乾淨子集 1,132 張 0.518，見 `remeasure_sweep_20260826`）|
+| Celeb-DF-v2 blind holdout | 影片幀（real 200 / fake 200）| **400** | 0.5736（real=0/200）| H.264；非主評 ⚠️ 2026-08-26：0.5736/0/200 為 **v8.1**；**v8.17 實測 AUROC 0.568 [0.508, 0.625]，real 14.5%（29/200），fake 96.0%**（`remeasure_sweep_20260826`）|
+| WildDeepfake_subset test | 影片幀（real 400 / fake 400）| **800** | —（v8.1 時代 real 0/400）| ⚠️ 2026-08-26 **v8.17 首測 AUROC 0.744，real 10.25%（41/400），fake 100%**；語義與 AIGuard/fake 重疊，仍非主評 |
 
 > ⚠️ **WildDeepfake 從主評移除**（2026-07-28）：AIGuard/fake 官方文件確認使用 WildDeepfake 作為來源之一 → 不同幀但同分布（semantic overlap）；加上 H.264 domain gap，real recall=0/400 → 完整記錄見 Data Leakage 驗證。
 > ⚠️ FakeClue / Celeb-DF-v2 low real recall（≈0）均為 H.264 domain gap：FFT branch 將 H.264 壓縮特徵誤認為 fake。Phase 3 修復目標。
+> ⚠️ **2026-08-26 更正**：「FFT branch 誤認 H.264 = 架構限制」的因果解讀已被 `ffpp_protocol_20260823` 推翻（同架構在 FF++ 同域訓練 AUC 0.9155）；正確結論是訓練資料從未涵蓋 swap/reenactment 影片幀。v8.17 實測仍低（Celeb-DF real 14.5%、WildDeepfake real 10.25%、FakeClue AUROC 0.518），但屬資料覆蓋缺口，非架構缺陷（P1-A1 正在處理）。
 
 ---
 
@@ -502,7 +572,7 @@ v8.4 完整審查發現多項資料層級問題，v8.5 已修復，重訓進行�
 | Dataset | 原因 |
 |---------|------|
 | ~~CelebA 30K（v3 時代試驗）~~ | v3（binary 2-class）era：AUROC 0.673→0.608，風格不匹配；⚠️ v8.4 已重新以 18,315 張 CelebA train partition=0 加入 real class，效果顯著（CelebA OOD real recall 4.1%→99.6%） |
-| **Celeb-DF-v2**（4,711 清洗後 H.264 real 幀）| v8.2 實驗：WildDeepfake real 0→157/400（改善），但 filter recall −2.1%、FakeClue AUROC 0.480（↓ from 0.527）。H.264 問題為架構限制，加資料無法根治，且代價傷害核心指標 → 不採用 |
+| **Celeb-DF-v2**（4,711 清洗後 H.264 real 幀）| v8.2 實驗：WildDeepfake real 0→157/400（改善），但 filter recall −2.1%、FakeClue AUROC 0.480（↓ from 0.527）。H.264 問題為架構限制（⚠️ 2026-08-26：此因果解讀已被 `ffpp_protocol_20260823` 推翻，同架構同域訓練 AUC 0.9155；v8.2 的教訓只證明「4,711 張 Celeb-DF real 這種加法不划算」，不證明架構限制），加資料無法根治，且代價傷害核心指標 → 不採用 |
 | WildDeepfake train（v4 試用）| 影片幀讓 FFT branch 學到 H.264=fake shortcut，WildDeepfake AUROC 從 0.9378 反跌至 0.216 → v6 起永久移除 |
 | v3.1 JPEG augmentation | quality 10-85 aug 加深 compression shortcut，WildDeepfake AUROC 0.938→0.216（反轉）；廢棄 |
 
@@ -589,7 +659,7 @@ DF40（及學術文獻）將 deepfake 生成方法分為四類，以下逐一定
 | DF40 sd2.1 / DiT / SiT / ddim / pixart | **EFS**（Latent Diffusion，官方 Table 2 確認）| Fake | ✅ train | True Test fake（135張 sd2.1+ddim+pixart + 90張 DiT+SiT，皆EFS）|
 | DF40 MidJourney6 | **EFS**（Popular Application）| Fake | ✅ train（v8.5起排除test 45張）| True Test fake（45張）|
 | StyleGAN2 / StyleGAN3（DF40版，`Downloads/StyleGAN2.zip`等）| **EFS**（GAN based，seed取樣，未解壓）| Fake | ❌ 未加入（維持不解壓，理由見下）| — |
-| StyleGAN2（`stylegan2_test/fake/`，140k Real-Fake Faces 版）| EFS（StyleGAN2 靜態，非DF40同源）| Fake | ❌ 未加入 | ✅ OOD eval（99.7%） |
+| StyleGAN2（`stylegan2_test/fake/`，140k Real-Fake Faces 版）| EFS（StyleGAN2 靜態，非DF40同源）| Fake | ❌ 未加入（⚠️ 但**內容上** 63.8% 與 `AIGuard/fake` + `fake_filter_hard_neg` 重疊，見 2026-08-21 更正）| ⚠️ fake detection eval（99.7%），**非 OOD eval** |
 | FakeClue fake（FF++, cate=deepfake）| FR + FS | Fake | ❌ Phase1；✅ Phase2 region head 蒸餾來源之一 | ✅ 輔助 eval（H.264）|
 | FakeClue fake（chameleon + genimage, cate=human）| **⚠️ 非人臉內容混雜**（見下方視覺驗證）| Fake | ❌ Phase1；⚠️ **Phase2 region head 蒸餾污染來源**（見下方修正數字）| ✅ test 219張同樣混入cross-dataset AUROC |
 
@@ -600,6 +670,13 @@ DF40（及學術文獻）將 deepfake 生成方法分為四類，以下逐一定
 
 **EFS 訓練政策**（2026-07-29 確立，2026-07-31 補完整理由）：EFS 圖片可留在 **Phase 1 分類器訓練**，但應排除在 **Phase 2 region head explainability 蒸餾**之外。StyleGAN2/StyleGAN3 的 DF40 版本暫不解壓、不加入任何訓練，維持 `stylegan2_test/fake` 作為乾淨、未觸碰過的 detection-only OOD 指標。
 
+> ⚠️ **2026-08-21 更正（上一段最後一句）**：「維持 `stylegan2_test/fake` 作為乾淨、未觸碰過的
+> detection-only OOD 指標」**這個意圖沒有達成**。不解壓 DF40 版 StyleGAN2 確實避免了「同一個
+> DF40 來源」的污染，但 P1-R11 內容層級稽核發現真正的污染來自**另一條路徑**：
+> `AIGuard/fake` 與 `fake_filter_hard_neg` 本身就從同一個 140k Real-Fake Faces 語料庫取樣，
+> 造成 **63.8%（6,376/10,000）內容重疊**（含逐位元組相同的圖片）。
+> 此政策的其餘部分（EFS 可用於 Phase 1、不可用於 Phase 2 region head）**不受影響、繼續有效**。
+
 **完整理由（可供論文 Methods/Data section 引用）**：
 
 - **Phase 1（分類）為什麼可以用 EFS**：Phase 1 的任務是「這張圖整體是不是被合成/操縱過」的全域判斷（real/fake/filter 三選一），不需要局部對比或定位。EFS（Entire Face Synthesis，整張臉從雜訊/latent code 生成，非以某張真實臉為基礎做局部修改）在紋理、頻域上會留下 GAN/diffusion 特有的合成痕跡（checkerboard artifact、頻域不規則性、融合邊界不連續），這正是 FFT branch 設計要捕捉的訊號。EFS 圖片是有效的「全圖皆假」訓練樣本，跟分類任務的粒度完全匹配。
@@ -609,6 +686,11 @@ DF40（及學術文獻）將 deepfake 生成方法分為四類，以下逐一定
 
 > ⚠️ **2026-07-31 StyleGAN3 identity 重疊發現（Ultimate Held-out Test Set 建置過程中）**：解壓 `Downloads/StyleGAN3.zip`（DF40版）後確認其 `cdf`（Fake_from_Celeb-real 588 + Fake_from_Youtube-real 300）與 `ff`（FaceForensics++ 140）三個子集的 identity 資料夾名稱，跟已進訓練的 SiT/DiT/ddim/pixart 完全相同（實測 588/588、300/300、140/140 全部 100% 重疊）——這是 DF40 benchmark 的設計方式：全部生成方法共用同一批 ~1,028 個 Celeb-DF/FF++ real identity 作為條件生成依據。**結論：StyleGAN3 只能證明「未見過的生成架構」，不能證明「未見過的身份」**，因為訓練集透過 SiT/DiT/ddim/pixart（各 3,000 張，統計上幾乎必然覆蓋這 1,028 人的大部分）早已看過同一批人臉的（不同方法）合成版本。
 > - **命名降級**：StyleGAN3（以及原本 `stylegan2_test/fake` 的 99.7-99.9% OOD 數字）論文中不可稱為「identity-blind 泛化證明」，應標註為 **「unseen-generator, seen-identity」** 評測，跟 True Test 的 contamination bias 標註同一等級處理，不可過度宣稱。
+>   - ⚠️ **2026-08-21 二次降級**：對 `stylegan2_test/fake` 而言，連「unseen-generator」都不成立——
+>     P1-R11 證實其中 **63.8% 的影像內容本身就在訓練資料裡**（不只是同身份，是同一張照片）。
+>     `stylegan2_test/fake` 的正確標註是 **「StyleGAN2 fake detection，含 63.8% 內容重疊」**，
+>     論文中不可列為任何形式的 OOD／unseen 評測。StyleGAN3（DF40 版，未解壓）的
+>     「unseen-generator, seen-identity」標註**未受本次更正影響**，維持原判。
 > - **後續診斷 TODO（尚未執行，成本低，非阻塞）**：① ArcFace embedding + logistic regression 的 identity-only baseline，檢驗單靠身份能不能預測 fake/real（結果需謹慎解讀，因 ArcFace 對 GAN 生成臉的 embedding 本身可能因合成瑕疵失真，高準確率不等於確診 identity shortcut）；② 用官方 NVIDIA StyleGAN3 pretrained checkpoint 以 random Gaussian latent 生成全新、零身份依賴的補充驗證集（仍需留意 FFHQ style/quality 的 shortcut 風險，見 v3 教訓）。
 > - **完整修復（identity-disjoint retrain，範圍大，另立專案，非本次 Ultimate Test Set 任務範圍）**：若診斷確認問題存在，需將 DF40 全部方法依 1,028 個 identity 切 train/test disjoint 後重新訓練，成本遠高於單純建 eval set，暫不排入本輪工作。
 
@@ -670,7 +752,7 @@ DF40（及學術文獻）將 deepfake 生成方法分為四類，以下逐一定
 > - **Real recall代價可控**：77.6%→77.2%→75.5%，兩輪mining總共只讓real recall掉2.1pp，遠低於v8.9/v8.10系列動輒10+pp的翹翹板幅度，且始終遠高於70%驗收底線。
 > - **結論：Layer1已非常接近≤3%中期目標（差0.93pp），且沒有出現real recall被拖累的結構性風險**。兩輪mining呈現穩定遞減但非停滯的改善曲線（-1.14pp→-1.18pp），暗示還有繼續逼近的空間，但邊際樣本量已經很小（第2輪只挖到303張，遠少於第1輪的1,050張，反映真正困難樣本池正在收斂）。**判定：可以視為Layer1目前狀態已足夠進入Layer2設計階段**，剩餘的3.93%可以留待Layer1+Layer2完整串接後的系統性驗收再視情況決定是否要再迭代。
 
-> 🔬 **2026-08-02 v8.11 Layer2（fake vs filter）訓練+完整pipeline驗證 — fake+filter defense仍未追平v8.8，且發現Layer2嚴重filter recall退化**：`v811_layer2_train.txt`（146,425，base fake 52,798 + base filter 73,332 + hard core（v89d mined 1,050 + round2 mined 303）×15x oversample=20,295，佔訓練資料13.9%）。Init from v8.8，15 epochs，best macro F1=0.9981（val集上fake=0.997/filter=1.000，看似極佳）。
+> 🔬 **2026-08-02 v8.11 Layer2（fake vs filter）訓練+完整pipeline驗證 — fake+filter defense仍未追平v8.8，且發現Layer2嚴重filter recall退化**：`v811_layer2_train.txt`（146,425，base fake 52,798 + base filter 73,332 + hard core（v89d mined 1,050 + round2 mined 303）×15x oversample=20,295，佔訓練資料13.9%）。Init from v8.8，15 epochs，best macro F1=0.9981（val集上fake=0.997/filter=1.000，看似極佳）。⚠️ **2026-08-26 註：`v811_layer2_val.txt` 已證實飽和（P1-R16 等每個 Layer2 arm 都在 epoch 1 達 macro-F1 0.998，三 arm 同 epoch），此 val 對 epoch 選擇沒有鑑別力，「0.9981」不可作為 Layer2 品質證據；corpus-stratified Layer2 val 尚未建立（TODO open）。**
 > - **Shadow eval（Layer2單獨、忽略Layer1閘門，直接測真實fake/filter標籤）**：fake_gan→fake 100.0%；fake_diffusion→fake 69.4%；**filter→filter僅15.7%（84.3%的真實filter圖被誤判為fake）**；AUROC僅**0.5186（幾乎等同隨機）**。
 > - **根因診斷**：15x oversample的hard core（fake+filter邊界樣本，正確標籤是fake）大量出現在訓練集中，這批樣本的視覺特徵天生就介於fake和filter之間；模型為了正確分類這些邊界樣本，把決策邊界大幅往「fake」方向推，代價是犧牲了對真正filter class的辨識力。這跟v8.9/v8.10系列「一個類別佔比變大會侵蝕另一類別」的根本問題是同一種機制，只是現在發生在Layer2內部而非Layer1。
 > - **完整pipeline端到端結果（Layer1c+Layer2串接，AIGuard/unseen fake+filter stress test）**：TOTAL誤判率**3.93%**——與Layer1c單獨的洩漏率完全相同（3.93%=3.93%），代表**Layer2在這個特定測試集上沒有貢獻額外錯誤，也沒有修正任何Layer1的洩漏**（因為凡是通過Layer1的圖片，Layer2幾乎都正確判fake——這正是Layer2「傾向predict fake」偏見的正面效果，剛好符合這個測試集的需求）。**與v8.8原始1.35%相比，v8.11目前的end-to-end fake+filter defense仍然更差（3.93% > 1.35%）**。
@@ -757,13 +839,50 @@ DF40（及學術文獻）將 deepfake 生成方法分為四類，以下逐一定
 > ✅ **2026-08-02 Alibaba filter OOD雙重查證+v8.11實測完成 — 確認是真正跨域證據，可與AIGuard/unseen並列成兩項headline跨域結果**：用戶提出跟DF40同等懷疑態度質疑「Megvii/Alibaba的99.9-100%是否又是identity shortcut或eval pipeline不一致造成」，逐一查證：
 > - **✅ Identity overlap查證（乾淨）**：比對訓練用Megvii資料（`FFHQ_megvii_four_process`+`FFHQ_four_process`，7,694個唯一FFHQ底圖index，範圍60002-69999）與Alibaba OOD eval資料（`FFHQ_ali_process`，3,000個唯一FFHQ底圖index，範圍17000-19999）——**兩者index範圍完全不相交，overlap=0**。RetouchingFFHQ資料集本身把70K FFHQ底圖池切成不重疊的index區塊分給各公司，不是巧合。**確認Alibaba OOD不是identity shortcut**，跟StyleGAN3那種需要「unseen-algorithm, seen-identity」降級標註的情況不同，這裡是真正的跨身份+跨演算法泛化測試。
 > - **✅ Eval pipeline一致性查證**：`AIGuard/eval_ali_ood.py`原本就用`preprocess_jpeg(quality=85)`（明確標註「Matches pipeline.py's inference-time JPEG canonicalization」），與目前pipeline.py一致，不是v8.7踩過的那種前處理不一致陷阱。
-> - **✅ 補測v8.11實際數字**（原99.9-100%數字僅測過v8.6/v8.7/v8.8，從未在v8.11上跑過）：`AIGuard/eval_ali_ood_v811.py`，21,151張，**overall recall=97.8%**（EyeEnlarging 97.9%、FaceLifting 96.5%、Smoothing 99.8%、Whitening 97.2%；三種強度30/60/90皆97.7-98.1%，強度間無明顯差異）。比v8.6-v8.8的99.9-100%略低，方向與True Test filter recall（v8.11的94.0% vs v8.8的94.4%）的小幅下降一致，合理。
+> - **✅ 補測v8.11實際數字**（原99.9-100%數字僅測過v8.6/v8.7/v8.8，從未在v8.11上跑過）：`AIGuard/eval_ali_ood_v811.py`，21,151張，**overall recall=97.8%**（EyeEnlarging 97.9%、FaceLifting 96.5%、Smoothing 99.8%、Whitening 97.2%；三種強度30/60/90皆97.7-98.1%，強度間無明顯差異）。比v8.6-v8.8的99.9-100%略低，方向與True Test filter recall（v8.11的94.0% vs v8.8的94.4%）的小幅下降一致，合理。⚠️ **2026-08-26 註：此 97.8% 為 Layer1c 時代 `ali_ood_v811_output.txt` 的數字，不是 production v8.11（=Layer1d，98.1%）。現行 production v8.17 在乾淨 split `splits/ood_filter_ali_clean_20260821.txt`（16,183 張，剔除全部 CONFIRMED 內容重疊）上 recall = 97.70%（15,810/16,183；以 FFHQ base index 為 cluster 的 bootstrap 95% CI [97.20, 98.16]，1,706 clusters；EyeEnlarging 97.87／FaceLifting 96.38／Smoothing 99.93／Whitening 96.62），與 21,151 全量的 97.71% 幾乎相同——污染子集（4,980 張）本身 97.75%，未灌高分。見 `results/research/remeasure_sweep_20260826/`。**
 > - **結論：Alibaba OOD 97.8%是可信、可引用的headline跨域證據**，可與AIGuard/unseen AUROC=0.8112並列成本文filter/fake兩側的「真正跨域泛化」代表數字（相對地，DF40 benchmark的0.9999已誠實框定為in-distribution sanity check，不算跨域證據）。Filter類的跨域證據缺口至此已被現有資料填上，不需要再追Tencent（申請未核准）或勉強套用RetouchingFFHQ MAM文獻數字。
+>
+> 🔴 **2026-08-21 更正（本條目的核心結論已被削弱，數字不變）**：上方第一項「Identity overlap
+> 查證（乾淨）」所用的方法是**比對 FFHQ 底圖 index 範圍**（60002-69999 vs 17000-19999）。
+> P1-R11 內容層級稽核（解碼像素 SHA256 + dHash 篩選 + NCC/MAD 裁決）證實**這個方法看不見
+> 真正的重疊路徑**：`FFHQ_ali_process` 有 **23.5%（4,980/21,151）與訓練資料內容重疊**——
+> 重疊來源不是 Megvii（index 確實不相交），而是 **`AIGuard/real` 與 `filter_data/*` 裡含有
+> 相同的 FFHQ 底圖照片**，以不同檔名存在，index 比對因此完全偵測不到。
+> **因此「Alibaba = OOD／真正跨域泛化證據」這個結論不成立，必須降級。**
+> - **仍然成立**：97.8%／98.1% 的數字本身、eval pipeline 一致性查證、
+>   「模型能泛化到不同公司的濾鏡演算法實作」這個**跨演算法**主張。
+> - **不再成立**：「分布外」「真正跨域泛化」「filter 類跨域證據缺口已填上」。
+>   正確措辭：**「Alibaba filter recall（跨濾鏡演算法，非 OOD——與訓練資料有 23.5% 內容重疊）」**。
+> - **filter 側目前仍然有效的跨域證據**：True Test vs Shadow 對照（同一套自建濾鏡程式碼、
+>   不同底圖攝影風格），該對照**未受本次更正影響**。
+> - **不受影響**：下一條目的 CelebA real recall 與 AIGuard/unseen AUROC 皆已各自獨立查證乾淨。
+> 證據：`results/research/p1_r11_leakage_scaling_20260820/TASK1_LEAKAGE_AUDIT.md`。
+>
+> 🔬 **2026-08-21 F1 稽核追加（append-only，回答一個上面兩次更正都還沒問過的更窄問題）**：
+> 上面兩輪更正查的都是「同一張照片」（pixel/hash）層級的重疊。還有一個更難、從未被
+> 量測過的問題：**兩張不同照片、但是同一個人**（identity-level，而非 content-level）算不算
+> 重疊？這個問題**在本專案現有資料下無法完全回答**——FFHQ（以及所有 FFHQ 衍生集：
+> `FFHQ_ali_process`／`FFHQ_megvii_four_process`／`FFHQ_four_process`／`filter_data/*`）
+> **本身沒有身份標籤**（是 Flickr 爬蟲、未標註資料集，連原作者都不知道哪些照片是同一人），
+> 沒有 ground truth 可以校準任何相似度門檻。專案內既有的身份比對腳本
+> （`AIGuard/arcface_identity_baseline.py`、`AIGuard/identity_sanity_check.py`）都是針對
+> **Celeb-DF-v2 影格**（身份由檔名/資料夾結構保證），不適用於 FFHQ。
+> **判定：CANNOT BE DETERMINED WITH AVAILABLE DATA（身份層級，非內容層級）。**
+> 為了不留白，額外跑了一個**補充性、不做身份判定**的 ArcFace embedding 相似度探測
+> （`f1_identity_overlap_probe.py`，InsightFace buffalo_l，與 `face_attr_filter.py` 用的
+> 同一套現成工具，非自創方法）：400 張 Alibaba 樣本 vs. 1,200 張訓練相關 FFHQ/AIGuard 樣本
+> （Megvii/four/filter_data/AIGuard real 各 300），bulk best-match cosine 落在 0.16-0.29
+> （本域「非匹配」雜訊基準），2.75%（11/400，閾值 0.4）明顯高於此基準，其中最高兩筆
+> （0.968／0.955，皆匹配 `filter_data/clean_output` 的 eye_enlarging 衍生圖）很可能只是
+> 再次印證上面已知的 23.5% 像素重疊，不是新資訊；中段 0.3-0.7 的模糊地帶（約 5-8%）
+> **無法判定**是真的同一人不同照片、還是臉部特徵單純相似的不同人——沒有 ground truth
+> 可以排除任一種解釋。**不構成新的、可引用的跨身份數字，僅供未來需要時的參考起點。**
+> 完整方法與數字：`results/research/f1f2_audit_20260821/F1F2_AUDIT_FINDINGS.md`。
 
 > ✅ **2026-08-02 CelebA real OOD雙重查證完成 — 確認第三個headline跨域數字**：用戶要求對CelebA 99.7%（v8.11）比照Alibaba做同等級查證，避免論文出現「有些數字查過overlap、有些沒查」的不對稱嚴謹度。
 > - **✅ Identity/partition overlap查證**：CelebA官方`list_eval_partition.txt`協定本身就是identity-disjoint設計（前8,000個身分=train、接下來1,000個=val、最後1,000個=test，身分完全不重疊，這是CelebA論文的官方切分，非本專案自訂）。本地檔案層級逐一驗證：`celeba_train`（20,000張）100%屬於partition=0、`celeba_test`（19,962張）100%屬於partition=2、`celeba_val`（5,000張）100%屬於partition=1，**零混用**，未重演v8.10系列hard_neg資料夾那種意外搞混的風險。
 > - **✅ Eval pipeline一致性查證**：`eval_v811_gates.py`（產出v8.11 99.7%數字的腳本）直接import `pipeline.preprocess_jpeg`，其`transform_infer`/`DualBranchModel`/Layer1→Layer2決策邏輯與pipeline.py的`hierarchical_predict()`架構與數值完全一致（並行實作但邏輯相同），非v8.7踩過的前處理分岔陷阱。
-> - **結論：CelebA real recall=99.7%（v8.11）是可信的第三個headline跨域證據**，與Alibaba filter OOD=97.8%、AIGuard/unseen fake AUROC=0.8112並列成三個class各自的「真正跨域泛化」代表數字。**Shadow real recall=75.5%（v8.11）維持誠實框定為「未達80%門檻的robustness benchmark」，不與CelebA混為一談**——CelebA測的是「同樣是網路自然人臉照片、不同partition」的OOD，Shadow real測的是「完全不同身分來源+更貼近未來部署場景」的robustness壓力測試，兩者難度與定位不同，論文中應分開陳述，不可只挑CelebA漂亮數字而略去Shadow real的落差。
+> - **結論：CelebA real recall=99.7%（v8.11）是可信的第三個headline跨域證據**，與Alibaba filter OOD=97.8%（⚠️ **2026-08-21 更正：此項已降級為「跨濾鏡演算法，非 OOD」，見上一條目更正註記；CelebA 與 AIGuard/unseen 本身不受影響，仍是乾淨的跨域證據**）、AIGuard/unseen fake AUROC=0.8112並列成三個class各自的「真正跨域泛化」代表數字。**Shadow real recall=75.5%（v8.11）維持誠實框定為「未達80%門檻的robustness benchmark」，不與CelebA混為一談**——CelebA測的是「同樣是網路自然人臉照片、不同partition」的OOD，Shadow real測的是「完全不同身分來源+更貼近未來部署場景」的robustness壓力測試，兩者難度與定位不同，論文中應分開陳述，不可只挑CelebA漂亮數字而略去Shadow real的落差。
 
 > ⚠️ **2026-08-01 資料完整性bug：重新命名hard_neg資料夾意外弄斷v8.8舊split — 已修復**：建v8.9c時把原始`fake_filter_hard_neg`資料夾改名為`_v88_backup`後在原路徑生成新的大池，導致`v88_train_real_fake.txt`裡~17,725筆指向原hard_neg檔案的路徑全部失效（訓練v8.10a時才被DataLoader FileNotFoundError揭露）。**修復**：用robocopy merge（`/XC /XN /XO`，只補缺不覆蓋）把backup資料夾內容合併回現有`fake_filter_hard_neg`，兩批hard_neg（v8.8原始17,725 + v8.9c新增26,447）現在並存於同一資料夾。修復後驗證：`v88_train_real_fake.txt`全部104,288筆路徑、`v810a_train_real_fake.txt`全部118,364筆路徑皆100%存在。**教訓：重新命名/搬移任何已被split檔案引用（絕對路徑）的資料夾前，必須先確認沒有split正在依賴該路徑**，這類重構應優先用複製而非移動/改名。
 
@@ -825,7 +944,7 @@ DF40（及學術文獻）將 deepfake 生成方法分為四類，以下逐一定
 
 > ✅ **2026-07-31 ArcFace identity-only baseline 診斷完成**（`AIGuard/arcface_identity_baseline.py`）：抽樣 150 個 cdf 共用身份（同時存在於 Celeb-DF-v2 真實影片、SiT 訓練用渲染、StyleGAN3 測試用渲染），只用 ArcFace 512-dim embedding（無 texture/frequency 資訊）訓練 logistic regression 做 real vs fake，50 個 held-out 身份測試：**(a) real vs SiT-fake（見過的方法）AUROC=0.570；(b) real vs StyleGAN3-fake（沒見過的方法）AUROC=0.592**，兩者皆接近隨機（0.5），遠低於實際分類器在 StyleGAN3 上的 ~99.7% 準確率。**結論：沒有證據顯示身份/臉部幾何記憶是 StyleGAN3 高準確率的主要成因，模型應該是真的在偵測合成痕跡**；(a)(b) 數字相近也顯示身份層級沒有隨生成方法轉移的規律訊號。此結果緩解（但不完全排除）identity overlap 的疑慮，StyleGAN3 的「unseen-generator, seen-identity」降級標註仍保留（誠實揭露原則，不因單次診斷結果撤銷限制標註）。
 
-> ✅ **2026-07-31 Ultimate Held-out Test Set 封存**：`splits/ultimate_clean_test.txt`（1,052張，real 275 / fake 508（GAN 219+diffusion 289）/ filter 269）完成 MD5（788,881張既有pool，0重複）+ pHash（756,996張，寬鬆閾值d≤6命中1,086筆，但嚴格閾值d≤3僅18筆且全部是StyleGAN3對DiT/pixart/SiT的已知身份重疊，VGGFace2與DiffSwap在d≤3零命中）雙重查重，抽查多組d≤6案例（含最可疑的VGGFace2↔LFW撞名案例）皆視覺確認為不同人，屬pHash對人像構圖相似度的系統性誤報。**Lockbox規則正式生效：論文定稿前不得評估此測試集**，若因bug被迫重跑須降級為Dev-Test並重新抽一組。
+> ✅ **2026-07-31 Ultimate Held-out Test Set 封存**：`splits/ultimate_clean_test.txt`（1,052張，real 275 / fake 508（GAN 219+diffusion 289）/ filter 269）完成 MD5（788,881張既有pool，0重複）+ pHash（756,996張，寬鬆閾值d≤6命中1,086筆，但嚴格閾值d≤3僅18筆且全部是StyleGAN3對DiT/pixart/SiT的已知身份重疊，VGGFace2與DiffSwap在d≤3零命中）雙重查重，抽查多組d≤6案例（含最可疑的VGGFace2↔LFW撞名案例）皆視覺確認為不同人，屬pHash對人像構圖相似度的系統性誤報。**Lockbox規則正式生效：論文定稿前不得評估此測試集**，若因bug被迫重跑須降級為Dev-Test並重新抽一組。⚠️ **2026-08-26：規則已觸發——`splits/ultimate_clean_test.txt` 狀態 = DOWNGRADED TO DEV-TEST**（`p2_abstention_20260823/scripts/task3_generalization.py`／registry P2-R8 讀取 783 張 real+fake 子集並算了 production `p_fake`；filter 269 張未被讀但整份 split 不拆分認定）。新 lockbox 需從未用來源重抽。
 
 ---
 

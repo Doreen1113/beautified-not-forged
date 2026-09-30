@@ -8,9 +8,12 @@
 
 | File | Purpose | Movable |
 |---|---|---|
-| `pipeline.py` | Sole production inference entry point. Hardcodes `BASE = r"C:\My_Project\AIGC"` and loads `shufflenet_v2_layer1_v811d.pth`, `shufflenet_v2_layer2_v811.pth`, `artifact_classifier_v3.pth`, `face_landmarker.task` from that absolute root. | **No** |
-| `shufflenet_v2_layer1_v811d.pth` | Production Layer1 weights, loaded by `pipeline.py`. | **No** |
-| `shufflenet_v2_layer2_v811.pth` | Production Layer2 weights, loaded by `pipeline.py`. | **No** |
+| `pipeline.py` | Sole production inference entry point. Hardcodes `BASE = r"C:\My_Project\AIGC"` and loads `shufflenet_v2_layer1_v817sbi.pth`, `shufflenet_v2_layer2_v819rr.pth`, `artifact_classifier_v6.pth`, `face_landmarker.task` from that absolute root. ⚠️ **2026-09-12 correction: this row previously named `…layer1_v811d`, `…layer2_v811` and `artifact_classifier_v3`, which had been stale since the v8.17 (2026-08-20) and artifact-v6 (2026-08-22) promotions.** | **No** |
+| `decision_rule.py` | Shared decision rule imported by `pipeline.py` and ~20 research harnesses. Holds `MANIP_THRESHOLD = 0.5` and (since 2026-09-12) `FILTER_THRESHOLD = 0.72`. `decide()`'s own default stays at the legacy 0.5 so historical harnesses reproduce; production passes 0.72 explicitly. | **No** |
+| `shufflenet_v2_layer1_v817sbi.pth` | Production Layer1 weights (v8.17, SBIAUG arm), loaded by `pipeline.py`. SHA256 `e3057270…`. | **No** |
+| `shufflenet_v2_layer2_v819rr.pth` | Production Layer2 weights (v8.19-rr, rendering randomisation, `render_rand_20260911` seed 3), loaded by `pipeline.py`. SHA256 `005c364a…`. Ships as one unit with `FILTER_THRESHOLD = 0.72`. | **No** |
+| `artifact_classifier_v6.pth` | Production filter-type head, loaded by `pipeline.py`. SHA256 `56b4e399…`. | **No** |
+| `shufflenet_v2_layer2_v811.pth` | **Former** production Layer2 (through 2026-09-11); kept on disk for rollback. SHA256 `8470ad52…`. | No — rollback target |
 | `artifact_classifier_v3.pth` | Production artifact (filter-subtype) classifier, loaded by `pipeline.py`. | **No** |
 | `face_landmarker.task` (if present at root; referenced as `FACE_LANDMARKER_PATH`) | MediaPipe face-presence gate model, loaded by `pipeline.py`. | **No** |
 
@@ -20,7 +23,7 @@
 |---|---|---|
 | `AIGuard/eval_filter_recall.py` | True Test filter recall by type — cited directly in CLAUDE.md model tables. | No (path referenced by name in docs; moving requires updating all doc cross-references first) |
 | `eval_truetest_paired.py`, `AIGuard/eval_truetest.py` | True Test paired balanced-accuracy — current primary Freeze Gate metric. | No, same reason |
-| `AIGuard/eval_celeba_real.py`, `AIGuard/eval_stylegan2.py`, `AIGuard/eval_ali_ood_v811.py` | CelebA/StyleGAN2/Alibaba OOD gates. | No, same reason |
+| `AIGuard/eval_celeba_real.py`, `AIGuard/eval_stylegan2.py`, `AIGuard/eval_ali_ood_v811.py` | CelebA real-recall gate, StyleGAN2 fake-detection gate, Alibaba filter-recall gate. ⚠️ **2026-08-21 correction: only the CelebA one is an OOD gate.** P1-R11 content-level audit found StyleGAN2 overlaps training data by **63.8% (6,376/10,000)** and `FFHQ_ali_process` by **23.5% (4,980/21,151)**, byte-identical images included — neither is out-of-distribution. Numbers and verdicts unchanged; only the framing is corrected. The script filename `eval_ali_ood_v811.py` retains "ood" for path-stability reasons and should **not** be read as a claim. Evidence: `results/research/p1_r11_leakage_scaling_20260820/TASK1_LEAKAGE_AUDIT.md` | No, same reason |
 | `eval_v811_gates.py` | Full Freeze Gate table driver. | No |
 | `AIGuard/stress_test_v811_pipeline.py`, `AIGuard/eval_robustness.py`, `AIGuard/stress_test_layer1.py` | Fake+filter stress test; recently fixed (2026-08-11) to auto-name outputs by loaded weights instead of a fixed filename — moving these now would be safe re: the auto-naming fix but should still wait for Stage C checkpoint review since they take root-relative weight paths as CLI args. | Conditionally — Stage C only |
 | `eval_ABCD_cross_combination.py`, `analyze_L1_routing_shift.py` | Layer1×Layer2 diagnostic that isolated the v8.12/v8.13 regression to Layer2 — actively cited reasoning in TODO.md. | Yes, low risk (research script, output already captured in `results/`) |
@@ -57,9 +60,10 @@
 ## Explicit "cannot move" list with reasons
 
 1. **`pipeline.py`** — task instructions forbid modifying it; it also hardcodes an absolute `BASE` path and bare filenames for all three production checkpoints, so any relocation of those checkpoints breaks it silently (no error until `torch.load` fails).
-2. **`shufflenet_v2_layer1_v811d.pth`** — loaded by hardcoded relative-to-BASE path in `pipeline.py`.
-3. **`shufflenet_v2_layer2_v811.pth`** — same.
-4. **`artifact_classifier_v3.pth`** — same.
+2. **`shufflenet_v2_layer1_v817sbi.pth`** — loaded by hardcoded relative-to-BASE path in `pipeline.py`. (Was `…v811d.pth` when this list was written; corrected 2026-09-12.)
+3. **`shufflenet_v2_layer2_v819rr.pth`** — same. (Was `…v811.pth`; corrected 2026-09-12.)
+4. **`artifact_classifier_v6.pth`** — same. (Was `…v3.pth`; corrected 2026-09-12.)
+4b. **`decision_rule.py`** — imported by `pipeline.py` *and* by ~20 scripts under `results/research/`; moving it breaks both the product and the reproduction of every published gate number.
 5. **`face_landmarker.task`** — same (face-presence gate, added 2026-08-11).
 6. **`CLAUDE.md`** — is the project's single source of instruction truth per its own header; user/process explicitly maintains it in place.
 7. **`TODO.md`** — declared single source of truth for TODOs since 2026-07-31 per CLAUDE.md.

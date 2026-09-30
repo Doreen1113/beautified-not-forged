@@ -1,0 +1,21 @@
+\begin{tabular}{l cccc cccc cccc}
+\toprule
+ & \multicolumn{4}{c}{donor transplant} & \multicolumn{4}{c}{SD-1.5 inpaint} & \multicolumn{4}{c}{SDXL inpaint (unseen editor)} \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-9}\cmidrule(lr){10-13}
+Map & IoU$_7$ & flip & ceil. & compl. & IoU$_7$ & flip & ceil. & compl. & IoU$_7$ & flip & ceil. & compl. \\
+\midrule
+centre prior / random region (last col.) & 0.310 & 38.6 & -- & 17.0 & 0.249 & 40.9 & -- & 17.9 & 0.255 & 40.2 & -- & 17.7 \\
+\midrule
+no head, Grad-CAM & 0.367 & 50.9 & 85.8 & 15.2 & 0.259 & 45.4 & 85.2 & 25.0 & 0.269 & 48.0 & 85.9 & 23.6 \\
+no head, Grad-CAM++ & 0.414 & 51.7 & 85.8 & 7.2 & 0.327 & 47.8 & 85.2 & 16.7 & 0.330 & 48.8 & 85.9 & 19.1 \\
+no head, Score-CAM & 0.408 & 56.5 & 85.8 & 5.9 & 0.334 & 52.4 & 85.2 & 15.4 & 0.341 & 52.4 & 85.9 & 17.1 \\
+head, part edits, FF++ only & 0.723 & 84.0 & 84.7 & 0.4 & 0.752 & 82.6 & 83.2 & 0.7 & 0.746 & 82.9 & 83.8 & 0.7 \\
++ symmetric degradation & 0.723 & 86.3 & 87.1 & 0.4 & 0.719 & 82.5 & 83.7 & 2.0 & 0.728 & 83.7 & 84.4 & 1.5 \\
++ restoration-consistency loss & 0.759 & 89.4 & 90.0 & 0.4 & 0.614 & 75.2 & 79.8 & 4.4 & 0.684 & 82.5 & 84.6 & 2.6 \\
++ consistency + symmetric degradation & 0.722 & 88.4 & 89.3 & 0.7 & 0.723 & 85.2 & 86.1 & 2.4 & 0.732 & 86.1 & 86.9 & 1.8 \\
+head, vendor data, no part edits (EffNet-B4) & 0.418 & 61.4 & 82.4 & 12.0 & 0.280 & 39.5 & 63.5 & 23.4 & 0.315 & 46.2 & 72.3 & 22.5 \\
+head, vendor data, no part edits (CLIP) & 0.479 & 78.8 & 89.4 & 2.5 & 0.376 & 53.9 & 69.1 & 14.4 & 0.445 & 68.9 & 78.3 & 8.4 \\
+\ours{}-lite (EffNet-B4) & 0.804 & 87.8 & 87.8 & 0.1 & 0.820 & 87.4 & 87.6 & 0.4 & 0.812 & 86.9 & 87.2 & 0.4 \\
+\ours{} (CLIP ViT-L/14 + LoRA) & 0.832 & 91.7 & 91.9 & 0.1 & 0.845 & 91.5 & 91.6 & 0.2 & 0.827 & 90.9 & 91.2 & 0.5 \\
+\bottomrule
+\end{tabular}

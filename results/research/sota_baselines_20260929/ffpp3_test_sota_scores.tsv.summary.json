@@ -1,0 +1,78 @@
+{
+  "list": "results/research/ffpp_unified_20260925/ffpp3_test.txt",
+  "n_rows": 7936,
+  "detectors": {
+    "effort": {
+      "n_nan": 0,
+      "end_to_end_ms_per_img": 9.898780574721673,
+      "params_used_in_forward_M": 303.37853,
+      "params_total_M": 504.606722,
+      "missing_keys": 288,
+      "unexpected_keys": 0,
+      "auc_real_vs_fake": 0.9137503610282084,
+      "mean_p_fake_by_label": {
+        "0": 0.312142550945282,
+        "1": 0.8077834248542786,
+        "2": 0.39362022280693054
+      },
+      "per_group_auc": {
+        "Deepfakes": {
+          "n_fake": 1327,
+          "auc_vs_all_real": 0.9854615273613494,
+          "mean_p_fake": 0.9454313516616821
+        },
+        "Face2Face": {
+          "n_fake": 1326,
+          "auc_vs_all_real": 0.9160632338041599,
+          "mean_p_fake": 0.801169216632843
+        },
+        "FaceSwap": {
+          "n_fake": 1323,
+          "auc_vs_all_real": 0.9724295662202739,
+          "mean_p_fake": 0.9154090285301208
+        },
+        "NeuralTextures": {
+          "n_fake": 1328,
+          "auc_vs_all_real": 0.7813255300838612,
+          "mean_p_fake": 0.5696229934692383
+        }
+      }
+    },
+    "fadapter": {
+      "n_nan": 0,
+      "end_to_end_ms_per_img": 6.981338584615338,
+      "params_used_in_forward_M": 309.733576,
+      "params_total_M": 435.163337,
+      "missing_keys": 0,
+      "unexpected_keys": 0,
+      "auc_real_vs_fake": 0.9357899870259069,
+      "mean_p_fake_by_label": {
+        "0": 0.21188679337501526,
+        "1": 0.8375832438468933,
+        "2": 0.32263296842575073
+      },
+      "per_group_auc": {
+        "Deepfakes": {
+          "n_fake": 1327,
+          "auc_vs_all_real": 0.9905333006553163,
+          "mean_p_fake": 0.9692403078079224
+        },
+        "Face2Face": {
+          "n_fake": 1326,
+          "auc_vs_all_real": 0.9383730578974635,
+          "mean_p_fake": 0.826099157333374
+        },
+        "FaceSwap": {
+          "n_fake": 1323,
+          "auc_vs_all_real": 0.9570194845922158,
+          "mean_p_fake": 0.8945249915122986
+        },
+        "NeuralTextures": {
+          "n_fake": 1328,
+          "auc_vs_all_real": 0.8573591478375509,
+          "mean_p_fake": 0.6607650518417358
+        }
+      }
+    }
+  }
+}

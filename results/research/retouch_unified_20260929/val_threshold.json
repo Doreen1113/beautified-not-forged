@@ -1,0 +1,164 @@
+{
+ "clipe4_s20260929": {
+  "t_star": 0.8501,
+  "vendor_val_balanced": 84.45,
+  "ali_balanced": 72.4,
+  "ali_orig_to_filter": 12.58,
+  "ali_ret_to_filter": 57.39,
+  "ali_ret_to_fake": 0.12,
+  "ali_orig_to_fake": 0.27,
+  "ali_auroc_pfilter": 0.8069,
+  "per_op_to_filter": {
+   "EyeEnlarging": 41.1,
+   "FaceLifting": 41.2,
+   "Whitening": 53.7,
+   "Smoothing": 93.6
+  },
+  "argmax_balanced": 70.24,
+  "bar_secondary_balanced>=75": false
+ },
+ "clipe_s20260929": {
+  "t_star": 0.8715,
+  "vendor_val_balanced": 87.44,
+  "ali_balanced": 72.27,
+  "ali_orig_to_filter": 5.75,
+  "ali_ret_to_filter": 50.28,
+  "ali_ret_to_fake": 0.18,
+  "ali_orig_to_fake": 0.36,
+  "ali_auroc_pfilter": 0.824,
+  "per_op_to_filter": {
+   "EyeEnlarging": 37.6,
+   "FaceLifting": 32.2,
+   "Whitening": 41.7,
+   "Smoothing": 89.7
+  },
+  "argmax_balanced": 74.59,
+  "bar_secondary_balanced>=75": false
+ },
+ "clipe_s20260930": {
+  "t_star": 0.7074,
+  "vendor_val_balanced": 84.67,
+  "ali_balanced": 72.81,
+  "ali_orig_to_filter": 12.58,
+  "ali_ret_to_filter": 58.21,
+  "ali_ret_to_fake": 0.2,
+  "ali_orig_to_fake": 0.32,
+  "ali_auroc_pfilter": 0.8144,
+  "per_op_to_filter": {
+   "EyeEnlarging": 45.5,
+   "FaceLifting": 41.7,
+   "Whitening": 53.6,
+   "Smoothing": 92.1
+  },
+  "argmax_balanced": 73.44,
+  "bar_secondary_balanced>=75": false
+ },
+ "effb4_s20260929": {
+  "t_star": 0.3068,
+  "vendor_val_balanced": 73.5,
+  "ali_balanced": 67.78,
+  "ali_orig_to_filter": 10.72,
+  "ali_ret_to_filter": 46.28,
+  "ali_ret_to_fake": 0.63,
+  "ali_orig_to_fake": 0.77,
+  "ali_auroc_pfilter": 0.7488,
+  "per_op_to_filter": {
+   "EyeEnlarging": 43.2,
+   "FaceLifting": 21.1,
+   "Whitening": 25.3,
+   "Smoothing": 95.6
+  },
+  "argmax_balanced": 66.15,
+  "bar_secondary_balanced>=75": false
+ },
+ "ru2_effb4_s20260929": {
+  "t_star": 0.6561,
+  "vendor_val_balanced": 84.2,
+  "ali_balanced": 71.78,
+  "ali_orig_to_filter": 8.64,
+  "ali_ret_to_filter": 52.2,
+  "ali_ret_to_fake": 0.32,
+  "ali_orig_to_fake": 0.45,
+  "ali_auroc_pfilter": 0.7998,
+  "per_op_to_filter": {
+   "EyeEnlarging": 42.2,
+   "FaceLifting": 31.6,
+   "Whitening": 38.7,
+   "Smoothing": 96.3
+  },
+  "argmax_balanced": 72.72,
+  "bar_secondary_balanced>=75": false
+ },
+ "ru2_effb4_s20260930": {
+  "t_star": 0.7983,
+  "vendor_val_balanced": 83.84,
+  "ali_balanced": 69.64,
+  "ali_orig_to_filter": 5.88,
+  "ali_ret_to_filter": 45.16,
+  "ali_ret_to_fake": 0.25,
+  "ali_orig_to_fake": 0.27,
+  "ali_auroc_pfilter": 0.7961,
+  "per_op_to_filter": {
+   "EyeEnlarging": 30.0,
+   "FaceLifting": 24.0,
+   "Whitening": 31.2,
+   "Smoothing": 95.5
+  },
+  "argmax_balanced": 70.85,
+  "bar_secondary_balanced>=75": false
+ },
+ "ru3_effb4_s20260929": {
+  "t_star": 0.7074,
+  "vendor_val_balanced": 84.41,
+  "ali_balanced": 71.29,
+  "ali_orig_to_filter": 7.51,
+  "ali_ret_to_filter": 50.09,
+  "ali_ret_to_fake": 0.34,
+  "ali_orig_to_fake": 0.41,
+  "ali_auroc_pfilter": 0.8018,
+  "per_op_to_filter": {
+   "EyeEnlarging": 38.9,
+   "FaceLifting": 28.4,
+   "Whitening": 38.1,
+   "Smoothing": 94.9
+  },
+  "argmax_balanced": 72.92,
+  "bar_secondary_balanced>=75": false
+ },
+ "ru3e_effb4_s20260929": {
+  "t_star": 0.7804,
+  "vendor_val_balanced": 88.21,
+  "ali_balanced": 70.13,
+  "ali_orig_to_filter": 3.53,
+  "ali_ret_to_filter": 43.78,
+  "ali_ret_to_fake": 0.49,
+  "ali_orig_to_fake": 0.63,
+  "ali_auroc_pfilter": 0.8007,
+  "per_op_to_filter": {
+   "EyeEnlarging": 29.4,
+   "FaceLifting": 22.4,
+   "Whitening": 30.9,
+   "Smoothing": 92.4
+  },
+  "argmax_balanced": 73.0,
+  "bar_secondary_balanced>=75": false
+ },
+ "ru4e_effb4_s20260929": {
+  "t_star": 0.7192,
+  "vendor_val_balanced": 88.02,
+  "ali_balanced": 71.7,
+  "ali_orig_to_filter": 6.02,
+  "ali_ret_to_filter": 49.42,
+  "ali_ret_to_fake": 0.33,
+  "ali_orig_to_fake": 0.36,
+  "ali_auroc_pfilter": 0.7975,
+  "per_op_to_filter": {
+   "EyeEnlarging": 35.9,
+   "FaceLifting": 28.5,
+   "Whitening": 38.1,
+   "Smoothing": 95.1
+  },
+  "argmax_balanced": 72.61,
+  "bar_secondary_balanced>=75": false
+ }
+}

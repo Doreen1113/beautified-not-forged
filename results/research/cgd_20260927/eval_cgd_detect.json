@@ -1,0 +1,182 @@
+{
+ "HYBPE": {
+  "cdf": {
+   "auc": 0.81,
+   "ci": [
+    0.7811,
+    0.8368
+   ]
+  },
+  "dfd": {
+   "auc": 0.8876,
+   "ci": [
+    0.8482,
+    0.9252
+   ]
+  },
+  "indomain": {
+   "real": 80.7,
+   "fake": 90.21,
+   "filter": 76.82
+  },
+  "FA": 8.89,
+  "MISS": 1.62,
+  "heldout13": {
+   "filter": 45.82,
+   "fake": 17.17,
+   "paired_excess_pp": 39.21
+  },
+  "b1_dominated_by": [],
+  "b1_n_detectors": 13,
+  "bars": {
+   "D1": true,
+   "D2": true,
+   "D3": false,
+   "D4": true
+  }
+ },
+ "MASK": {
+  "cdf": {
+   "auc": 0.8193,
+   "ci": [
+    0.7916,
+    0.8444
+   ]
+  },
+  "dfd": {
+   "auc": 0.9075,
+   "ci": [
+    0.8735,
+    0.94
+   ]
+  },
+  "indomain": {
+   "real": 79.03,
+   "fake": 89.95,
+   "filter": 83.97
+  },
+  "FA": 6.99,
+  "MISS": 2.06,
+  "heldout13": {
+   "filter": 47.8,
+   "fake": 16.57,
+   "paired_excess_pp": 40.73
+  },
+  "b1_dominated_by": [],
+  "b1_n_detectors": 13,
+  "bars": {
+   "D1": true,
+   "D2": true,
+   "D3": false,
+   "D4": true
+  }
+ },
+ "MASKD": {
+  "cdf": {
+   "auc": 0.8171,
+   "ci": [
+    0.7881,
+    0.8435
+   ]
+  },
+  "dfd": {
+   "auc": 0.8963,
+   "ci": [
+    0.8565,
+    0.9325
+   ]
+  },
+  "indomain": {
+   "real": 82.75,
+   "fake": 81.32,
+   "filter": 79.71
+  },
+  "FA": 5.47,
+  "MISS": 4.78,
+  "heldout13": {
+   "filter": 42.25,
+   "fake": 18.16,
+   "paired_excess_pp": 35.94
+  },
+  "b1_dominated_by": [],
+  "b1_n_detectors": 13,
+  "bars": {
+   "D1": true,
+   "D2": true,
+   "D3": false,
+   "D4": true
+  }
+ },
+ "CGD": {
+  "cdf": {
+   "auc": 0.7944,
+   "ci": [
+    0.7657,
+    0.8211
+   ]
+  },
+  "dfd": {
+   "auc": 0.9055,
+   "ci": [
+    0.8713,
+    0.9372
+   ]
+  },
+  "indomain": {
+   "real": 83.13,
+   "fake": 89.12,
+   "filter": 87.16
+  },
+  "FA": 3.19,
+  "MISS": 2.62,
+  "heldout13": {
+   "filter": 51.6,
+   "fake": 9.8,
+   "paired_excess_pp": 43.69
+  },
+  "b1_dominated_by": [],
+  "b1_n_detectors": 13,
+  "bars": {
+   "D1": false,
+   "D2": true,
+   "D3": true,
+   "D4": true
+  }
+ },
+ "CGDD": {
+  "cdf": {
+   "auc": 0.7809,
+   "ci": [
+    0.7509,
+    0.8092
+   ]
+  },
+  "dfd": {
+   "auc": 0.8772,
+   "ci": [
+    0.833,
+    0.9164
+   ]
+  },
+  "indomain": {
+   "real": 84.65,
+   "fake": 80.81,
+   "filter": 79.64
+  },
+  "FA": 6.16,
+  "MISS": 5.12,
+  "heldout13": {
+   "filter": 45.06,
+   "fake": 13.98,
+   "paired_excess_pp": 38.45
+  },
+  "b1_dominated_by": [],
+  "b1_n_detectors": 13,
+  "bars": {
+   "D1": false,
+   "D2": false,
+   "D3": false,
+   "D4": true
+  }
+ }
+}

@@ -2,6 +2,158 @@
 
 > 完成立刻打 `[x]`；新 TODO 立刻加入。這份檔案是全專案 TODO 的唯一彙整（整合自舊 TODO 區塊 + 2026-07-31 session 新發現）。
 
+## 🚨 2026-09-13 發現：自建「瘦臉 face_reshaping」濾鏡其實是讓臉變寬（`results/research/face_reshaping_direction_audit_20260913/FINDINGS.md`）
+- [x] 使用者從審查頁一張圖發現，實測確認：**True Test 瘦臉 62 組臉寬 +6.2%（100% 變寬）**、訓練用 LFW 瘦臉 +6.4%（100% 變寬）；Alibaba 真實瘦臉 App −2.5%（僅 3% 變寬）；自建大眼（同寫法）臉寬不變、眼睛 +11.5%（正確）
+- [x] 根因：`cv2.remap` 是反向映射，`factor < 1` 等於放大；大眼用對了，瘦臉方向寫反。**全專案 16 份複製**（訓練資料生成、Shadow、fake+filter hard neg、所有 stress test）
+- [x] ~~🔴 需要決定~~ **使用者已選方案 ③**（變寬＋真瘦臉並存，見下方 09-13 條目與 `filter_slimming_20260913/PRE_DECLARED.md`）
+- [ ] 論文 `main.tex` 第 87 行「face slimming」與 `CLAUDE.md` artifact_classifier 表需更正為「face_widening／face_slimming 兩類並存」，**等 `l1_slim_resave_20260913` 三臂 verdict 出來後一次改**（現在改會與訓練結果不一致）
+- [x] ~~可寫進論文的正面發現：偵測器抓得到真實瘦臉~~ **已撤回**：沒修過的 FFHQ 原圖本身就有 93.9% 被判 filter，Alibaba 瘦臉 93.31% 只是底率；真正的瘦臉在 True Test 只抓到 21.0%（原圖誤判率 24.2%）
+- [x] 使用者選方案 ③（變寬＋真瘦臉並存）；`filters/geometry_warps.py` 共用模組完成，Gate S1 重現 True Test 62/62、S2 瘦臉臉寬 −5.6%（62/62 變窄）；True Test 新增 `test_set_true/filter_slimming/`（62 張）與 `splits/truetest_filter_slimming.txt`，原 249 張未動
+- [x] ~~🔴 依事先規則需要重訓 Layer2~~ **Addendum 1 自我更正為 Layer1**：62 張瘦臉圖中 49 張在 Layer1 就被判 real、Layer2 根本沒看到，重訓 Layer2 無法改變結果 → 已開 `l1_slim_resave_20260913`（見下方，進行中）
+- [ ] 🔴 **Alibaba gate 失效**：它量的是 FFHQ 照片的底率，不是修圖偵測 → 改用「修過 vs 自己的原圖」配對指標取代；論文、CLAUDE.md、release 文件中凡把 Alibaba 辨識率當跨演算法證據者一律撤回
+- [x] ~~artifact head 改 5 類（加 face_slimming）~~ **2026-09-14 使用者決定不改**：`face_reshaping` 為中性詞，涵蓋變寬與變窄，類別／資料／程式名稱都不動，head 維持 4 類。訓練資料實際只有變寬，論文引用時須註明變寬 93.5%／單獨瘦臉 21.0%
+- [ ] `main.tex:90`、`report.tex:59/95` 三處「face slimming」改為「face reshaping」（描述我們的濾鏡時用詞與實際不符）
+- [x] `l1_slim_resave_20260913` 跑完：SLIM／SLIMGEN 兩個 primary 皆未過 → **REJECT**，production 不動，自建瘦臉不進訓練；True Test 62 張瘦臉欄保留作量測
+- [x] ~~production Layer1 訓練已無法完全重現~~ **已修復**：缺的 20,295 列只是 1,353 張不重複圖（每張重複 15 次）；以原腳本重播抽樣（覆蓋率 100%）重生，對 220 張倖存原檔驗證 85 張逐像素相同、其餘 MAD 中位 0.047 灰階（`l1_slim_resave_20260913/regen_v89d_report.json`）
+- [x] ~~⚠️ 其他 production 權重的訓練切分是否也有缺檔尚未檢查~~ **已查（掃 45 份引用 v89d 或已知 production 切分的檔案）**：production Layer1 自己的來源切分 `p1_r9_sbi_pilot_20260819/layer1_sbi_augreal_train.txt`（256,968 列）與 production Layer2 血緣起點 `v811_layer2_train.txt` **0 缺檔**——重生的 1,353 張圖同時修好了這兩份與另外 8 個歷史研究輪次（p1_r10/r11/r14/r16/r18/r20）的切分，不只本輪自己的。有缺檔的只有非 production 項目：`v815b_pairs_*`（v8.15 已知非 production 研究支線，100% 缺）、`v89d_candidate_pool.txt`／`v89d_proxy_unseen_pool.txt`（抽樣前的完整候選池清單，非實際訓練切分）、`v811_layer1_round3_mined.txt`（9 列挖礦中間檔）——皆不影響任何現行權重
+- [x] Layer1 重訓輪 `l1_slim_resave_20260913` 已完成（見上，REJECT）
+- [x] ~~機制假說：局部低通＝filter~~ **大致不成立**：模糊只貢獻 8–13 pp；變寬 +53 pp 主要不是模糊；瘦臉讓臉比原圖更像真的（−21 pp）
+- [x] Alibaba gate 改配對指標（`ali_paired_gate_20260913`）：超額 filter 率 v8.17 +1.8 pp、v8.19-rr +2.7 pp，瘦臉 ≈0
+- [x] **True Test 發現「多存一次 JPEG」干擾**：真圖重存 q95 就 28.0% → 40.0% 判 filter（+12 pp）；對同樣重存的真圖配對後，自建濾鏡超額仍 +45～57 pp（干擾真實但非主導）
+- [ ] 論文與 gate 改用配對指標：True Test 報「vs 重存真圖的超額」，Alibaba 報「vs 自己原圖的超額」
+- [ ] Layer2 重訓（加真瘦臉）的 pre-registration 要用上面兩個配對指標當 gate，並讓訓練時真圖也經過同樣的重存，避免再學到存檔捷徑
+- [ ] `AIGuard/stress_test_v811_pipeline.py` 的 Layer2 仍寫死 argmax（同 09-12 修掉的 bug 家族）
+
+## 🏗️ 2026-09-24 開 `arch_v2_20260925`：把量到的缺陷改成架構（使用者要求「不是說爛就停」）
+- [x] 事前登記：四個變體各對應一個已量到的數字——CTRL（MobileNetV4、去 FFT）、SRM（局部雜訊殘差流取代全局 FFT）、MASK（468 landmark 凸包外背景抹灰，打語料指紋）、MRES（原圖／112 兩種渲染共享 backbone，打重採樣捷徑）
+- [x] 從 ImageNet 起訓、ARCH-1 配方、**刻意用沒有 FFHQ 的 production split**：P2「未修 FFHQ 原圖判 filter ≤60%（現 93.9）」變成純架構能否拒絕捷徑的測試；P1 為三語料探針（CelebA 仍判 real ≤40、VGGFace2 判 fake ≤40、LFW 判 filter ≥55）
+- [x] 統一 harness `eval_archv2.py`（True Test／unseen／CelebA／stress／B-LFW／FairBeauty／LFW 控制／P1-P2／探針／參數量／CPU 延遲）；四臂前向 smoke 通過（3.1–3.9M 參數）
+- [ ] 排隊中：等 paired seed 2 與遮罩預計算完成後依序 CTRL→MASK→SRM→MRES，各 L1+L2+eval（估 6–8 小時）
+- [ ] 判定後：BUILD 臂補 seed 2 → 整組 L1+L2 change proposal；若全數不過 P1 → 「語料指紋在臉內像素、只能靠資料覆蓋」的乾淨負面結論
+
+## ✅ 2026-09-24 配對 FFHQ 原圖進 real（`l1_paired_ffhq_20260924`）— **seed 1 BUILD，seed 2 進行中**
+- [x] 6,624 張配對原圖（7,694 底圖存活 86.1%），SHA-256 對 Alibaba／True Test／自建／ffhq_originals 全 0 重疊
+- [x] **全部門檻通過**：P1 93.9→**15.0%**、P2 +2.7→**+26.4pp**、TT filter 90.36／fake 99.63／real 74.30、unseen 0.891、CelebA 99.37、B-LFW 13.42、stress **3.89%**（≤5% 放寬門檻過；舊 3.76 不過）
+- [x] **事前預測被否證**：配對版 stress 3.89 ≈ 稀釋版 3.84/4.15——配對沒有比稀釋好，+0.5pp 是「real 類加 FFHQ」本身的代價。方法陳述改為「覆蓋語料」而非「配對設計」
+- [x] 探針重跑：只修好 FFHQ，CelebA／VGGFace2 路由不變——覆蓋規則是逐語料的
+- [x] 抓到並記錄 bug：複製訓練腳本時 `ROUND` 常數沒改，checkpoint 存錯資料夾（已修，seed2 腳本正確）
+- [x] seed 2（20260925）：P1 13.8／P2 +25.3／stress **3.58（連舊 3.76 也過）**／其餘全過，**唯 CelebA 98.90 差 0.10pp（3,000 張差 3 張，在抽樣雜訊內，且該 gate 本身是語料率）→ 依規則 PARTIAL**。四次獨立 run 主判準全部一致
+- [ ] change proposal 已草擬（`docs/team/change_proposals/20260924_paired_ffhq_layer1.md`），CelebA 0.1pp 明寫在最前面；**是否套用待使用者裁定**
+- [ ] 同輪順手：下載腳本重連例外未接住（已修 `fetch_paired.py`）、`.git` 16GB→146MB（gc）、DF40 溢出 39GB 搬 Ubuntu `~/aigc_offload/df40_pool_overflow/` 已驗證後刪本機、HF/pip 快取 22GB 清除；C 槽 27→98GB 可用
+
+## 🩺 2026-09-24 基礎體檢（`health_check_20260924`）＋ pure SBI（`ffpp_puresbi_20260924`）
+- [x] 覆蓋稽核：13 eval 集 8 紅燈（語料只在單一訓練類別）——見 `coverage_audit.md`
+- [x] 配對對照稽核：11 headline 只有 4 個有對照；**B-LFW 真實濾鏡：filter 13.3% < 未編輯對照 15.15%（零訊號），且 81.5% 真人判 fake**——系統最大未解洞
+- [x] 三語料探針：同一編輯 → LFW filter／CelebA real／VGGFace2 fake（63／67／66%）。CelebA 99.3% real recall 是語料率。corpus shortcut #11
+- [x] pure SBI：REJECT（CDFv2 0.7156／0.6805 vs 門檻 0.85）；靜態 12k 混合圖不足以複現 SBI，若再試需即時生成＋SBI 原排程
+- [ ] hard-neg 對照結果（REMOVE vs CTRL Layer2 的 B-LFW fake 率）→ 見 FINDINGS 末段，決定 fake+filter 硬負例占比是否為「不熟濾鏡→fake」的根因
+- [ ] **修法優先序（全部是資料／配方，非新方法）**：(a) 7,694 配對 FFHQ 原圖進 real（stress 門檻已放寬 5%）(b) 真人影片幀進 real (c) 依對照結果調 hard-neg 占比 (d) 拿掉 FFT 分支（spatial-only 已證不退步且解 int8）
+- [ ] 設計規則入 CLAUDE.md／論文 method：任何 manipulated 類底圖語料必須同時（配對）在 real 類；任何評 real recall 的語料必須有編輯版對照
+
+## 🎉 2026-09-22 高解析真圖修好 93.9% 誤判（`l1_hires_real_20260922`）— **主判準大勝，但各臂各差一項非退步，未達 BUILD**
+- [x] 加 6,563 張從沒訓練過的 FFHQ 高解析真圖（編號 20000-69999，對 Alibaba 考卷 SHA-256 零重疊）：**未修原圖誤判 93.9%→15.4%（HIRES）/18.4%（HIRESRR）**；**Alibaba 配對超額 +2.7pp→+25.5pp/+23.2pp**——gate 首次真正量到編輯訊號，不再是底率
+- [x] HIRESRR（+對稱隨機縮放）額外把 LFW@112 從 68.0%→**46.4%**，本輪最佳單一數字
+- [x] B-LFW 補測抓到 bug：複製的腳本沒接 production 實際門檻 0.72，silently 退回舊版 0.5（CLAUDE.md 記錄過的同一類 bug 第 5 次），修正後 PROD 重現 13.30% 完全吻合文件
+- [x] HIRESRR 補第二 seed：**REJECT，兩個獨立原因都在兩個 seed 重現**——True Test fake recall（96.67/97.04% vs 門檻 99%）、B-LFW（7.26/7.41% vs 門檻 8.3%，只剩一半）。對稱隨機縮放增強會讓模型在邊界更不願意判「有問題」，濾鏡和假圖一起漏
+- [x] HIRES 補第二 seed：CelebA 那項洗清是雜訊（98.70→99.27），**但 stress 沒有洗清、seed2 反而更差（3.84%→4.15% vs 門檻 3.76%）→ 依規則 REJECT**
+- [x] **四次獨立訓練（兩臂×兩seed）全部一致確認**：P1（未修原圖誤判）93.9%→13.7–18.4%、P2（Alibaba配對超額）+2.7pp→+23.1–25.5pp，**這個修復是真的、可重現**；但每一次都讓 stress 卡在或超過門檻（3.71–4.15% vs 3.76%），只有 HIRESRR seed1 過（2.36%，但那個臂因別的原因被拒）——加大真圖訓練量本身會把 Layer1 判定邊界往「較不判異常」推一點，不挑是否高解析或有無增強
+- [ ] 下一步（新一輪，需另寫 pre-registration）：真圖資料＋**針對性 fake+filter hard-neg 挖礦**一起做，而不是單獨加真圖或單獨加增強——這個槓桿在 `P1A1-FFPP-ADVMINE` 和 `p1a3_celebdfb` 都證實能守住安全軸同時吃到跨域/資料增益，本輪還沒試過這個組合
+
+## 🎯 2026-09-21/22 P1-A3 on Celeb-DF-B（`p1a3_celebdfb_20260921`）— **REJECT，但重現「挖礦不是 Pareto 交換」，且抓到 E2 才是真正的牆**
+- [x] 三臂跑完＋PROD 對照：CTRL（E1 20.5／E2 0.520／E3 82.8）、**FFPP 單獨加 FF++ 資料反而讓 E1 惡化到 51.3%**（全面偏向判 real，不是選擇性放過美顏假圖）、**FFPPMINE 挖礦後三項全面優於 CTRL**（E1 18.3／E2 0.595／E3 77.2），FF++ 官方測試 AUROC 也跟著漲（0.578→0.678 frame）——挖礦同時修安全性和泛化，不是互換，跟 `P1A1-FFPP-ADVMINE-20260904` 同一個發現首次在外部同協定基準重現
+- [x] scoring pipeline 驗證：PROD 重現已發布數字（E1 23.6 vs 23.4、E2 0.520 vs 0.521）
+- [ ] **卡住的是 E2**（未處理 Celeb-DF 換臉 AUROC）：最佳僅 0.595，門檻 0.75。根因非校準問題——Celeb-DF 換臉演算法跟 FF++ 四種都不同家族，是跨家族遷移，不是同家族泛化；`ADVMINE` 輪在 FF++ 自己的 test set 上用更重的挖礦（68,596 張、兩輪迭代）才到 0.816，本輪單輪挖礦（19,997 張）在 FF++ test 只到 0.678
+- [ ] 下一輪兩個槓桿（尚未跑，先決定再開）：①加碼挖礦迭代次數 ②改用 v811d 血緣暖啟動（`RECIPEGAP` 證實過的最大跨域槓桿）取代現在的 v817sbi 微調起點
+- [ ] Alibaba 這輪只查了原始 recall（96.8–97.7%），還沒補算宣告要用的配對超額指標——因為主判準已經沒過，先欠著沒補算，非退步結論不下定論
+
+## 🔬 2026-09-19 artifact classifier × 真實廠牌單一濾鏡（`artifact_vendor_20260919`）— **PARTIAL**
+- [x] Megvii 9,680 + Tencent 11,112（底圖 ≤16998，SHA-256 對 Alibaba／True Test／自建零重疊）加進 v6 配方重訓
+- [x] Alibaba 型別準確率平均 36.1%→**58.0%**（smoothing 32.9→88.3、whitening 24.8→54.0、face_reshaping 4.5→40.4），True Test 不退步；**但 eye_enlarging 82.2→49.2 跌破 CTRL−5pp 防線** → 依規則 PARTIAL，不送候選
+- [x] 250px 混淆檢查：whitening 進步只剩 24%、face_reshaping 只剩 38%（解析度效應）；smoothing 保留 69%（真的）→ 語料庫捷徑第 9 次出現
+- [x] `artifact_vendor_rr_20260920`（訓練時隨機縮放＋JPEG）：依規則 **REJECT**（eye_enlarging recall 39 vs 90 跌破防線；reshape 250px 只保 0.41），但 smoothing／whitening 的進步在 250px 下保住 0.86／0.58（之前 0.24）→ 捷徑已剔掉大半
+- [x] **eye_enlarging「退步」是假的**：CTRL 把 61–68% 的 Alibaba 美白／瘦臉都叫成大眼（precision 28–33%），舊的 82–90% recall 是 attractor；加廠牌資料後大眼 F1 46→52–55，**四型 macro-F1 33→61–63**。事前門檻用 recall 防線是設計錯誤，記錄在 FINDINGS
+- [x] `artifact_vendor_f1_20260920`（macro-F1 主判準＋雙 seed）：**PARTIAL**——seed B 四道門檻全過，seed A 只差 face_reshaping 的 250px 保留率（0.46 vs 門檻 0.5，兩次跑法裡最接近過關的一次）；兩 seed 的 Alibaba macro-F1 進步高度一致（21.7→61.5 vs 19.0→60.1，差距僅 1.4 點），smoothing／whitening 進步在兩個 seed 都穩健存活縮放測試。**未送 change proposal**（規則要求雙 seed 都過）
+- [x] 第三個 seed 已跑（Addendum 1）：**PARTIAL 維持**。seed C 換成 whitening 保留率 0.45 沒過（face_reshaping 0.60 反而過了）→ 規則的兩個條件都破。三 seed 證明主效果極穩（macro-F1 進步 +39.8/+41.1/+41.5，VENDOR 絕對值 61.5/60.1/61.8），**不穩的是保留率這個統計量本身**（whitening 0.45–0.73、face_reshaping 0.46–0.62，擺幅 0.16–0.28，0.5 門檻就落在雜訊帶裡）
+- [ ] 若未來要再判定解析度捷徑：①給保留率算信賴區間、要求 CI 下界過線，或②直接測「250px 下的進步是否 >0」（三 seed 每型皆正）。**本輪不套用**，需新一輪事先宣告
+- [ ] VONLY 診斷結果可寫論文：只用廠牌資料 True Test whitening／eye_enlarging 掉到 0% → 自建與廠牌資料互補、不可替代
+
+## 🔥🔥 2026-09-12 最高優先（v8.19-rr 翻案 + 解釋性主線開工）
+
+**A. v8.19-rr 已接線且六項驗證全部完成** — `results/research/promote_rr_20260912/FINDINGS.md`、change proposal §6、`CLAUDE.md` 頂部公告
+- [x] 產品路徑驗證 **18/18 PASS**（`results/research/promote_rr_20260912/verify_promotion.py`）
+- [x] P3 列重讀：**1.2048% [0.0, 2.81]**；P1 stress 3.2329%；**P1 乾淨真臉誤判改善 0.277%→0.123%**；**P2 外部 Celeb-DF-B 統計上不變**
+- [x] TFLite 重匯 G1-G4 全過 ＋ **769/769 label、296/296 子型別一致**
+- [x] web demo 更新（`layer2_v819rr.onnx` + JS `FILTER_THR=0.72`）
+- [x] Gate C 20 條件 ＋ 當日重跑的 v8.17 對照：最差 −0.8pp、real 20/20 相同、重度退化條件反轉變好
+- [x] 驗證中修掉 4 個潛在 bug（詳見 FINDINGS §6）
+- [ ] **全專案掃蕩過時數字**：凡「production 為 v8.17」「stress 2.80%」「B-LFW 0.45%」「0/249 = 0.0%」之處（含 `docs/paper/main.tex`、`report.tex`、`RESEARCH_BRIEF_zh.md`、`limitations_framing.md`、`REVIEWER_DEFENCE_20260906.md`、speaker notes）→ 新數字：stress **3.23%**、P3 **1.2%**、B-LFW **13.30%**、FairBeauty **33.6%**、unseen AUROC **0.892**、TT filter **90.76**
+- [ ] registry 補 `RENDERRAND-PROMOTE-20260912` 條目（含 τ=0.61 不採用的理由、4 個 bug、P2 外部不變這條）
+- [ ] `docs/demo/reference_outputs/` 仍是 v8.17 產出，需重新生成
+- [ ] 補 v8.17 自己的第二 seed（作為所有比較的基準從未複現）
+
+**B. 解釋性主線：區域隨機化局部偽造 pair 集 + GT 解釋 JSON**（`results/research/p2_pairjson_20260912/PRE_DECLARED.md` 已寫死，**開工前先讀，含 Addendum 1（SynthScars）與 Addendum 2（底圖池換人）**）
+- [x] G0 底圖池稽核完成（`G0_BASEPOOL_AUDIT.md`）：**內容互斥 PASS**（72,895 張評測影像、MD5 與解碼像素 SHA256 皆 0 命中，39/39 近似命中經人工判定全為不同人）；**但 §3 的「未訓練 + 身分互斥」FAIL**——IMDB-WIKI 21,112 張有 73.9% 已是訓練資料，清洗後只剩 **85 張**未訓練且那 85 張全在身分重疊清單上；7,041 個身分有 97.8% 已被訓練
+- [x] 底圖池改為 **`ffhq_originals/` 17001–19999 之中未被 benchmark 鎖定的 1,770 張**（1024×1024，未訓練）；⛔ UTKFace 排除（500 張是專案唯一 blind lockbox `splits/LOCKBOX_utkface_real_20260901.txt`）
+- [ ] 身分互斥 split（1,400 train / 370 test，依 index，生成前寫到磁碟）
+- [ ] **生成後的 corpus 仍須再跑一次 G0**（440 個鎖定 index 出現即自動 fail）
+- [ ] `generate_region_randomised_pairs.py`（Arm A splice，12 區域均勻抽樣、面積 3-15%，輸出 mask + boundary mask + JSON）
+- [ ] **G1 GT oracle 檢查（必須在訓練前跑）**：用 GT mask 當 evidence map，任一區域不得超過 20% 的圖 → 否則生成器有問題，停止
+- [ ] evidence head 以 12 區域詞彙重訓（R2 recipe 原封不動），對照 C1 中心先驗／C2 均勻先驗／C3 面積先驗
+- [ ] 真臉負例列（`verdict` 全 none）；宣稱率必須從現在的 **100%** 降到 ≤20%
+- [ ] Arm B（SD inpaint，Ubuntu box）視 Arm A 結果決定
+
+**B3. 新順序第 2 步：量測式 LPCVC JSON**（`results/research/p2_lpcvc_json_20260913/`）
+- [x] H1（圖內相對量測）**REJECTED 且已診斷**：真實 App 連脖子／背景一起改（美白 85-89%、磨皮 51-56%），自建濾鏡幾乎只改臉（0%／12%）
+- [x] JSON 判定表完成：28 格中只有 **磨皮×紋理**、**美白×亮度** 兩格可報值（`value_only`），0 格可宣稱
+- [ ] （探索性，需確認）landmark 皮膚區量測勝過 production XAI-2 中央裁切 → 若另輪確認，可開 change proposal 替換 `compute_skin_stats`
+- [ ] 🔴 新發現待寫進論文限制／根因：**自建濾鏡在空間上遠比真實 App 局部**，與「單一參數」並列為跨廠牌失敗成因
+
+**C. 文字層（新順序第 3 步；輸入改為 B3 的判定表，不再等 B 的 pair 集）**
+- [x] **解釋文字資料配方定案（`p2_gtcond_annot_20260913` round 5b，2026-09-19）**：Qwen2.5-VL-32B、只給亮暗／色彩／形狀方向事實、單張圖措辭、紋理只准往濾鏡已知方向寫、摘要刪除規則；自動檢查全過＋人工 15/15。90 張（Megvii 30／Tencent 30／自建 30）為首批可用文字；Alibaba 留作評估。下一步：擴量（Qwen3-VL-30B-A3B 對照）→ 訓練小解釋模型
+- [ ] JSON → 模板 → 小模型改寫（只吃 JSON，不看圖），claim-consistency 自動幻覺檢查
+- [ ] 對齊 LPCVC 2026 Track 3 八準則評分函數；BERTScore 對 FakeClue；之後考慮 DPO 治套話
+- [ ] 讀完 MARE（arXiv 2601.20433）全文 §3/§4 — 其 Alignment reward（文字提到的區域 vs bbox 的 Jaccard）＝我們的 claim-consistency，**必引且必須差異化**
+- [x] ~~新實驗構想~~ **已做（`ddvqa_region_gt_20260919`）**：DD-VQA 2,047 支假影片 × FF++ mask。結果 **無法在門檻下檢驗**——mask 在 5 個區域的覆蓋率都 97–99%（沒有「沒被改」的對照組）；連續相關 r≈0（−0.05～+0.05）、影片內排名反向（171 vs 233，p=0.0012）、原圖 0/628 被標。結論：FF++ 上人類區域描述是「假」判決的泛化延伸，不是定位；換臉的區域 GT 從 mask 端和人類端都沒有資訊 → 論文解釋章節補一段，fake 解釋限縮為邊界／統計證據
+
+**D. 其他本次確認的事**
+- [x] ~~`ffhq_originals/` 現在有 2,223 個檔案~~ → **已查證並且是本 session 最有價值的發現**：`ffhq_originals/` 有 **2,210 張 1024×1024（index 17001–19999）**，且 **2,210/2,210 全部都有對應的 `FFHQ_ali_process` 修圖版本**。這**推翻** `results/retouchingffhq_pair_audit_20260812.json` 記錄的 `reliable_pair_count: 0`（原圖是後來由 `retouching_benchmark_20260823/download_ffhq_originals.py` 抓下來的）。⇒ **專案現在擁有 2,210 組真實商用廠牌的精確 before/after 配對**，而至今所有 mask 與量測都只來自自建濾鏡（單一參數）——這正是跨廠牌崩潰（artifact head 3-35%、tag head F1 0.14、P1-B1 六個機制全失敗）的記載根因。可用 1,770 張（扣掉 `retouching_benchmark_20260823` 鎖定的 440 個負類 index）
+**B2. Arm C 進行中（`results/research/p2_armc_vendormask_20260913/`，PRE_DECLARED + Addendum 1 已寫死，訓練尚未開始）**
+- [x] 可行性四連檢查（全部在設定判準之前跑完，這是 FF++ 那輪的教訓）：①**像素對齊 144/144 皆 1024×1024 無需 resize**、0/144 無可用 mask、強度標籤真實（覆蓋率隨 vendor level 單調上升）②**沒有 FF++ 的退化**：pooled top region 最高只 46.5%（FF++ 是 99.9% nose）③區域答案**非底圖決定**（四型別同一張圖只有 6/24 給同一區域）、mask **能區分型別**（cross-type IoU 0.378）、**非固定模板**（same-type cross-photo IoU 0.09–0.15）④per-type 幾何符合語義（FaceLifting 質心 y=0.581＝下顎、EyeEnlarging 9.4% 集中眼部、Whitening 50% 全臉皮膚）
+- [x] **發現語料是兩個 regime**（`index_effect_check.py` + `block_regime_check.py`）：斷點在 index **18090**。低段（562 張）四種操作的 mask 幾乎不相交（cross-type IoU **0.066–0.104**）＝乾淨；高段（1,121 張）四種操作大量重疊（level 30 IoU **0.606**、中位數 0.699，連 eye-vs-whitening 都 0.508）＝型別標籤在該段幾乎不帶空間資訊。覆蓋率跨 bin 差距 Smoothing **15.1×**、Whitening 6.1×
+- [x] 據此修訂設計（Addendum 1）：**region bar 只在低段評**、split 改 400/62/100、高段作為獨立 regime 回報、**所有數字強制分段回報**
+- [x] 自己抓到一個偏離 pre-registration 的實作（先降到 224 再算差異 vs 文件寫的「先在 1024 算 mask 再降採樣」）——已改成照文件，Smoothing_30 覆蓋率從 0.3% 回到 0.6%（native 1.4%）
+- [x] 低段 split（400/62/100）＋ mask 抽取完成（5,544 vendor 訓練列、1,300 test、1,800 high、712 eval-only 負例）
+- [x] Arm C 與**同 backbone 的 CONTROL 臂**皆訓練完成（各 8 epoch；Addendum 2：因 production 於 09-12 換成 v8.19-rr，R2 baseline 不再可比，必須加對照臂）
+- [x] 評測完成 → **REJECT**（輸中心先驗 2/3 型別、輸 C3 全部）＋ **非回歸 FAIL**（True Test filter pooled Δ −0.0142 [−0.0228, −0.0059]，門檻 −0.01）
+- [x] Alibaba gate 驗證：兩個 production 權重 SHA256 逐位元組不變 ⇒ 分類器路徑同一批位元組，gate 不可能移動
+- [x] 🔴 **關鍵發現：C3（per-type 平均 mask 常數圖）是全表最強定位器**，勝過訓練 head 2-7 倍。與過去兩次不同，這次標的**事前已證明非退化**，所以極限在 head 不在標的。機制＝head 學到訓練池的邊際 mask 分布而非單張編輯（覆蓋率最大的 face_reshaping 是唯一改善型別；四操作重疊的高段 10/12 格改善）。**第七個語料捷徑元件**
+- [ ] 未解：未修原圖的區域宣稱率仍 **100%**（Layer2 head 沒有 real 類，本輪事前即聲明無法處理）→ 若要解，需要另一個標籤空間或一個獨立的「是否值得宣稱」閘門
+- [ ] 論文可用：C3 對照組這個設計（文獻的 XAI-for-forensics 沒人做 per-type 模板對照）值得單獨寫一段，它比「輸給中心先驗」更有殺傷力
+- [x] ~~Alibaba gate 分段重讀~~ → **完成，已發布數字不需更正**（`results/research/ali_block_reread_20260913/`）：pooled 精確重現 97.71%/96.80%；低段 97.45/96.43%、高段 97.86/97.02%，差距僅 0.4-0.6pp ⇒ **兩個 regime 只影響「定位」，不影響「分類」**。最弱格：低段 FaceLifting 在 v8.19-rr 為 93.31% [92.1, 94.3]。附帶發現：內容重疊清洗掉的列**全部在高段**
+- [ ] `retouching_benchmark_20260823`（440 負類、balanced accuracy 50.7-51.2%）尚未分段重讀，優先度低（gate 已證明對 regime 不敏感）
+- [ ] ~~**Arm C（新，優先度可能高於 B 本身）**~~（已開工，見上）：用那 1,770 組真實廠牌配對做 **cross-vendor mask 監督**——本專案從未有過的東西。需要自己的 pre-registration，並須明確論證「只訓練 frozen-backbone head 且 index 互斥 ⇒ Alibaba *分類器* gate 不受污染」（該 gate 讀的是修圖影像經 Layer1/Layer2，這條路徑不會被動到）。已記在 `p2_pairjson_20260912/PRE_DECLARED.md` Addendum 2，**明確標示不在本輪 bars 範圍內、不得用本輪判準宣稱**
+- [ ] 重跑 `retouchingffhq_pair_audit_20260812` 那支稽核並更新其結論（現在是錯的）
+- [ ] 重啟 FF++ 訓練覆蓋（`P1A1-FFPP-ADVMINE-20260904` 曾把 FF++ AUROC 0.5747→0.8161），**但先修 `fake_filter_stress` 的重複計數缺陷**（`P1A1-TARGETED-MINE-20260904`：287 張源圖中 24 張未加濾鏡即誤判，失敗集中在 69 張源圖）
+- [ ] ⛔ 不要下載 `zzy0123/AIGI-Holmes-Dataset`（`SFTDATA.jsonl` 202.5GB／`TestSet.zip` 40.5GB，無 mask，標註是 4 個 MLLM 投票產生）；要的是 SynthScars（12,236 張，polygon mask + 文字解釋 + artifact 類別）
+
+## 🔥 2026-09-11 總稽核（`AUDIT-20260911`，詳見 `docs/RESEARCH_AUDIT_20260911.md`）
+
+- [x] 論文主表三處統計錯誤已修：NPR 改 n/a（程式碼百分位規則 vs 論文最小門檻規則不一致，NPR 99.2% 分數為 0）；ours 0/249 改 Clopper–Pearson 上界 1.5%；ours 列補「原生規則／5% FPR 掃描 2.0%／27.7% 乾淨真臉→filter」
+- [x] Limitations 新增「Clean-face cost of the third class」（27.7% / 15.3% / 73.2%；濾鏡 vs 後處理 AUROC 0.38–0.52）
+- [x] 摘要補我們語料的二元對照 37.8%（BIN-N），修正因果歸因
+- [x] 手機延遲數字出處確認（`results/mobile_export/iphone_web_20260907/`），09-06 疑慮解除
+- [x] `render_rand_20260911`：Layer2 三 seed 複現（B-LFW 0.68→29–33%），seed 3 @0.72 六閘全過＝ELIGIBLE—HELD（change proposal 已寫，production 仍 v8.17）；Layer1 REJECT
+- [x] `p2_fake_evidence_wire_20260911`＋`p2_fake_mask_scale_20260911`：fake 區域解釋 DO_NOT_WIRE／REJECT；GT oracle 證明 5 區域詞彙在 FF++ 上結構性無資訊
+- [x] `ffpp_seeds_20260911`：5 seed MobileNetV4 與 Xception 同影格統計不可區分；第三類代價更正為 DFD −1.4 點
+- [ ] （可選）fake 的 blending-boundary 證據圖（Face X-ray 式），需另立 PRE_DECLARED
+- [ ] （可選）Layer2 RR 以含渲染變體的 val 集做 checkpoint 選擇的下一輪
+- [ ] `docs/paper/main.tex` 修改後需人工 `pdflatex` 兩次確認可編（本 shell 無互動 MiKTeX 未產出 PDF）
+- [ ] `docs/report/report.tex` 內文「eleven published detectors」措辭與腳註比照 main.tex 改
+- [ ] LOFO 二元對照臂（同 fold、filter→real 與 filter 不存在兩臂），補「B-LFW 域上第三類仍必要」
+- [x] fake evidence 通道接線前置檢查——完成，DO_NOT_WIRE（見上）
+- [ ] artifact head 論文措辭改為 dominant-operation classifier＋引 RetouchingFFHQ Table 5/7
+- [ ] v8.17 第二 seed（所有候選比較基準從未複現）
+
 ## 🔥 2026-09-01/02 session 六輪結果與「已診斷但未修」欠款清單（最新，優先看這段）
 
 > 這段是 2026-09-01 一整輪「挖設計說不通的地方並解決」的產出。**六輪全部有
@@ -3334,7 +3486,7 @@ Limitation 必須寫的一條。決策者：Member A。
       （FF++／Celeb-DF／DiffusionFace-DiffSwap 三語料，凍結骨幹版在 2/3 上
       通過門檻）。TFLite 四關全過，無 FFT 坑。**上線前提是先解決 §13.3 的
       EFS-vs-swap 推論時路由問題，本輪未解決，仍是開放問題。**
-- [ ] **若還要做區域解釋，先換資料**：需要竄改區域會**實質變動**的 fake 語料
+- [x] **若還要做區域解釋，先換資料**：需要竄改區域會**實質變動**的 fake 語料 → 2026-09-27 已建 `partedit_20260927`（FF++ 真圖部位級假圖，eyes/nose/mouth，跨身分移植＋SD-1.5 inpainting，精確 mask）；用於 `cgd_20260927`（Counterfactual-Grounded Detection，訓練中）
       （局部編修 / 局部 inpainting / 部分區域重繪）。在 FF++ 上「哪裡」的答案
       幾乎是常數，任何方法都只能重新發現那個常數——這是本輪的結構性結論。
 - [ ] ⛔ **不要再做的**（累計）：自由文字 VLM 蒸餾（3 次）、受限 VLM 屬性標註
@@ -3383,4 +3535,4 @@ production 的 backbone）的數字和**實際部署的 production checkpoint st
 
 - [x] 2026-09-07 Backbone 問題結案：MobileNetV4 flat（frontier KEEP，但 stress/Alibaba 不過）＋ hierarchical（6/8 gate 不過）→ KEEP-SHUFFLENET，論文最終版 = v8.17。證據 `results/research/backbone_swap_20260907/`、`backbone_hier_20260907/`。
 - [x] 2026-09-07 網頁 demo 補上 evidence head（單檔 ONNX）＋逐字移植 pipeline.py 解釋文字；`docs/demo/` 可直接上 GitHub Pages；`docs/demo/reference_outputs/` 三張圖＋桌機 JSON 供比對。
-- [ ] 手機端延遲數字（論文唯一紅色 TODO）：等 GitHub Pages 上線後用手機開 demo 跑 Latency benchmark，把 JSON 貼回。
+- [x] 2026-09-07 手機端延遲：iPhone iOS 26.2.1 Safari WASM 單執行緒，L1 38.0 / L2 37.9 / artifact 13.3 / evidence 14.2 ms，filter 路徑 103.4 ms；JSON 存 `results/mobile_export/iphone_web_20260907/`，論文紅色 TODO 已清零。

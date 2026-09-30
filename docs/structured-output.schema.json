@@ -1,26 +1,48 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://aigc-filter.local/schemas/structured-output-2.0.0.json",
+  "$id": "https://aigc-filter.local/schemas/structured-output-2.1.0.json",
   "title": "AIGC and filter detection output",
   "type": "object",
   "additionalProperties": false,
   "required": [
-    "schema_version", "prediction", "confidence",
-    "suspicious_regions", "artifact_types", "explanation"
+    "schema_version", "model_version", "image", "prediction", "confidence",
+    "class_probs", "suspicious_regions", "artifact_types", "explanation"
   ],
   "properties": {
-    "schema_version": { "const": "2.0.0" },
+    "schema_version": { "const": "2.1.0" },
+    "model_version": { "type": "string" },
+    "image": { "type": "string" },
     "prediction": {
       "type": "string",
-      "enum": ["real", "fake", "filter"]
+      "enum": ["real", "fake", "filter", "non_face"]
     },
-    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "confidence": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "null only when prediction == \"non_face\" (no classification was run)."
+    },
+    "class_probs": {
+      "type": ["object", "null"],
+      "description": "null only when prediction == \"non_face\". Otherwise a map of real/fake/filter -> probability.",
+      "properties": {
+        "real":   { "type": "number", "minimum": 0, "maximum": 1 },
+        "fake":   { "type": "number", "minimum": 0, "maximum": 1 },
+        "filter": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "additionalProperties": false
+    },
     "suspicious_regions": {
       "type": "array",
       "uniqueItems": true,
       "items": {
         "type": "string",
-        "enum": ["forehead", "left_eye", "right_eye", "nose", "left_cheek", "right_cheek", "mouth", "jaw"]
+        "enum": [
+          "forehead", "left_eye", "right_eye", "nose",
+          "left_cheek", "right_cheek", "mouth", "jaw",
+          "emp_smoothing_lower", "emp_smoothing_upper", "emp_whitening_center",
+          "emp_eye_left", "emp_eye_right", "emp_reshape_left", "emp_reshape_right"
+        ]
       }
     },
     "artifact_types": {
@@ -28,7 +50,7 @@
       "uniqueItems": true,
       "items": {
         "type": "string",
-        "enum": ["eye_enlarging", "face_reshaping", "over_smoothing", "whitening"]
+        "enum": ["eye_enlarging", "face_reshaping", "smoothing", "whitening", "unknown_filter"]
       }
     },
     "explanation": { "type": "string", "minLength": 1 }

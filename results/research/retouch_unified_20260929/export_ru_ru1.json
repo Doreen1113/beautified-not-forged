@@ -1,0 +1,15 @@
+{
+ "arm": "ru1",
+ "params_M": 4.72,
+ "G1": true,
+ "onnx_mb": 18.12,
+ "G2": true,
+ "tflite_mb": 18.06,
+ "G3": true,
+ "G4_max_dlogit": 1.4185905456542969e-05,
+ "G4_max_dprob": 5.125999450683594e-06,
+ "decision_agreement": "200/200",
+ "presence_agreement": "200/200",
+ "G4": true,
+ "cpu_ms_1thread": 9.69
+}

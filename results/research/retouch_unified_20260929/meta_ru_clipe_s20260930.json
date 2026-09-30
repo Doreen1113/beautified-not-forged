@@ -1,0 +1,9 @@
+{
+ "arm": "clip",
+ "head": true,
+ "best": 0.9192071480191748,
+ "epochs": 8,
+ "seed": 20260930,
+ "trainable_M": 3.158028,
+ "total_M": 306.337804
+}

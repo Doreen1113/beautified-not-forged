@@ -1,48 +1,103 @@
-# 資料集（太大）
+# =====================================================================================================================
+#  Whitelist policy (2026-09-30).  This working copy also holds datasets (>150k images), checkpoints, third-party data
+#  (Celeb-DF-B, RetouchingFFHQ, FFHQ) and other people's documents.  Nothing new at the repository root or under docs/
+#  and results/ is published unless it is listed below.  Files that were already tracked stay tracked.
+#  To publish something new, add a "!" line for it here instead of using `git add -f`.
+# =====================================================================================================================
+
+# ---- repository root: private by default -----------------------------------------------------------------------------
+/*
+!/.gitignore
+!/README.md
+!/LICENSE
+!/requirements.txt
+!/assets/
+!/docs/
+!/results/
+
+# ---- docs/: only the paper, the meeting deck, README media and the browser demo --------------------------------------
+/docs/*
+!/docs/paper_v2/
+!/docs/meeting_20260930/
+!/docs/readme/
+!/docs/demo_ru/
+# already-tracked folders stay tracked; new files in them are not added automatically
+/docs/paper_v2/main.pdf
+/docs/paper_v2/supplement.pdf
+/docs/paper_v2/main_pre_*.tex
+/docs/paper_v2/DRAFT*.md
+/docs/meeting_20260930/meeting_20260930.pptx
+/docs/meeting_20260930/meeting_20260930_v2.pptx
+/docs/meeting_20260930/tex/*.pdf
+/docs/**/*.bak
+
+# ---- results/: only the code, findings and small result files of the current paper -----------------------------------
+/results/*
+!/results/research/
+/results/research/*
+!/results/research/retouch_unified_20260929/
+!/results/research/cgd_20260927/
+!/results/research/celebdfb_v2_20260927/
+!/results/research/sota_baselines_20260929/
+!/results/research/ffpp_benchmark_20260925/
+!/results/research/alipair_zeroshot_20260929/
+!/results/research/partedit_20260927/
+!/results/research/sbifix_20260927/
+# inside those folders: no images, score dumps, manifests with local paths, logs or model files
+/results/research/**/*.jpg
+/results/research/**/*.jpeg
+/results/research/**/*.png
+/results/research/**/*.npz
+/results/research/**/*.npy
+/results/research/**/*.tsv
+/results/research/**/*.csv
+/results/research/**/*.log
+/results/research/**/*.err
+/results/research/**/*.done
+/results/research/**/*.onnx
+/results/research/**/*.tflite
+/results/research/**/*_manifest*.json
+/results/research/**/scores*/
+/results/research/**/ali_scores_*
+/results/research/**/*_scores_*
+
+# ---- never, anywhere -------------------------------------------------------------------------------------------------
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.task
+*.bak
+external_data/
+external_baselines/
+checkpoints/
+
+# ---- (kept from the previous .gitignore) -----------------------------------------------------------------------------
 AIGuard/real/
 AIGuard/fake/
 AIGuard/unseen/
-
-# 模型權重（大檔）
-*.pth
-*.pt
-*.task
-
-# 輸出圖片資料夾
 filter_output/
 gradcam_output/
 explanation_output/
 pipeline_test_input/
 pipeline_test_output*/
-
-# FFHQ / CelebA 資料（圖片太大）
 FFHQ_ali_process/
 FFHQ_four_process/
 FFHQ_megvii_four_process/
 celeba_real/
 filter_data/
-
-# 本地研究記錄（不推送）
 docs/research_log.md
-
-# 編輯器設定
 .vscode/
-
-# Python
 __pycache__/
 *.pyc
 *.pyo
 .ipynb_checkpoints/
-
 CLAUDE.md
 .claude/
-
-# 系統
 .DS_Store
 Thumbs.db
-
-# log
 *.log
 *.txt
 !tip.txt
 !face_reshaping_report.txt
+!/requirements.txt

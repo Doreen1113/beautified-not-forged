@@ -62,12 +62,13 @@ does when landmarks fail). Scores are raw model outputs, not calibrated probabil
 // ------------------------------------------------------------------ models (identical weights to pipeline.py)
 const MODELS = [
   { key: "layer1",   file: "models/layer1_v817sbi.onnx",         label: "Layer1 (real vs manipulated)" },
-  { key: "layer2",   file: "models/layer2_v811.onnx",            label: "Layer2 (fake vs filter)" },
+  { key: "layer2",   file: "models/layer2_v819rr.onnx",          label: "Layer2 (fake vs filter)" },
   { key: "artifact", file: "models/artifact_classifier_v6.onnx", label: "Artifact classifier (4 types)" },
   { key: "evidence", file: "models/evidence_head_patch.onnx",    label: "Patch evidence head (7x7)" },
 ];
 const ARTIFACTS = ["eye_enlarging", "face_reshaping", "smoothing", "whitening"];
-const WARMUP = 5, ITERS = 50, MANIP_THR = 0.5;   // decision_rule.decide operating point
+// decision_rule.decide operating point: MANIP_THRESHOLD / FILTER_THRESHOLD
+const WARMUP = 5, ITERS = 50, MANIP_THR = 0.5, FILTER_THR = 0.72;
 const MODEL_VERSION = "v8.17";
 const sess = {}, bytes = {};
 const $ = id => document.getElementById(id);
@@ -271,7 +272,10 @@ $("pick").onchange = async e => {
   const s2 = await run("layer2", tensor), pf_m = s2[0], pfl_m = s2[1];
   const p_fake = p_manip * pf_m, p_filter = p_manip * pfl_m;      // composite class_probs
   let prediction = "real";
-  if (p_manip >= MANIP_THR) prediction = pf_m >= pfl_m ? "fake" : "filter";
+  // 2026-09-12 (v8.19-rr): Layer 2 now has an explicit threshold as well.
+  // Was `pf_m >= pfl_m` (argmax); FILTER_THR = 0.72 mirrors
+  // decision_rule.FILTER_THRESHOLD. At 0.5 the two expressions are identical.
+  if (p_manip >= MANIP_THR) prediction = pfl_m > FILTER_THR ? "filter" : "fake";
   const confidence = { real: p_real, fake: p_fake, filter: p_filter }[prediction];
   let artifact_types = [], regions = [], evid = null, artProbs = null, explanation;
   if (prediction === "filter") {

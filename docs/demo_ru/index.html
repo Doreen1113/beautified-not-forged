@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Retouch or Forgery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.19.2/dist/ort.min.js"></script>
+<style>
+:root {
+  --bg: #f6f5f2; --panel: #ffffff; --ink: #1d1f24; --muted: #62666f; --line: #dcdad4;
+  --real: #2f7d4f; --fake: #b3342b; --filter: #9a6a00; --accent: #2b5d8a; --bar: #e9e7e1;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #16181c; --panel: #1f2227; --ink: #e8e6e1; --muted: #9ca0a8; --line: #33373e;
+    --real: #6cc08c; --fake: #ef7a6f; --filter: #e2b24a; --accent: #7fb0dc; --bar: #2c3036;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #16181c; --panel: #1f2227; --ink: #e8e6e1; --muted: #9ca0a8; --line: #33373e;
+  --real: #6cc08c; --fake: #ef7a6f; --filter: #e2b24a; --accent: #7fb0dc; --bar: #2c3036;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 "IBM Plex Sans", system-ui, sans-serif;
+       padding-inline: 16px; padding-block: 28px 48px; }
+main { max-width: 880px; margin: 0 auto; display: grid; gap: 20px; }
+h1 { font-size: 26px; font-weight: 600; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 4px 0 0; max-width: 65ch; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
+.row { display: grid; grid-template-columns: 240px 1fr; gap: 20px; align-items: start; }
+@media (max-width: 640px) { .row { grid-template-columns: 1fr; } }
+canvas { width: 100%; max-width: 240px; aspect-ratio: 1; background: var(--bar); border-radius: 6px; display: block; }
+button, label.btn { font: inherit; font-weight: 500; border: 1px solid var(--accent); color: var(--accent); background: transparent;
+                    padding: 8px 14px; border-radius: 6px; cursor: pointer; }
+button:focus-visible, label.btn:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+button:disabled { opacity: .45; cursor: default; }
+input[type=file] { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.label { font-size: 30px; font-weight: 600; letter-spacing: .01em; text-transform: uppercase; margin: 0 0 6px; }
+.label.real { color: var(--real); } .label.fake { color: var(--fake); } .label.filter { color: var(--filter); }
+.sentence { margin: 0 0 14px; max-width: 60ch; }
+.bars { display: grid; gap: 7px; }
+.bar { display: grid; grid-template-columns: 110px 1fr 52px; gap: 10px; align-items: center; font-size: 13.5px; }
+.track { height: 9px; background: var(--bar); border-radius: 5px; overflow: hidden; }
+.fill { height: 100%; border-radius: 5px; background: var(--accent); }
+.fill.real { background: var(--real); } .fill.fake { background: var(--fake); } .fill.filter { background: var(--filter); }
+.num { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; text-align: right; color: var(--muted); }
+h2 { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 16px 0 8px; }
+.status { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--muted); }
+.notes { color: var(--muted); font-size: 13.5px; max-width: 70ch; }
+.notes li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Retouch or forgery?</h1>
+    <p class="sub">Three-way face analysis in the browser: <b>real</b>, <b>fake</b> (identity or content changed) or
+      <b>filter</b> (beautified, identity kept), with the retouching operations the model sees. Nothing is uploaded; the
+      4.7&nbsp;M-parameter model runs on this device.</p>
+  </header>
+
+  <section class="panel">
+    <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center">
+      <label class="btn" for="file">Choose a face photo<input id="file" type="file" accept="image/*"></label>
+      <span id="status" class="status">loading models...</span>
+    </div>
+  </section>
+
+  <section class="panel row" id="result" hidden>
+    <div>
+      <canvas id="crop" width="224" height="224"></canvas>
+      <p class="status" id="cropinfo" style="margin-top:8px"></p>
+    </div>
+    <div>
+      <p class="label" id="label"></p>
+      <p class="sentence" id="sentence"></p>
+      <div class="bars" id="classbars"></div>
+      <h2 id="opsh">Retouching operations</h2>
+      <div class="bars" id="opbars"></div>
+      <p class="status" id="timing" style="margin-top:12px"></p>
+    </div>
+  </section>
+
+  <section class="panel notes">
+    <h2 style="margin-top:0">What the numbers mean</h2>
+    <ul>
+      <li>The face is cropped exactly as in training: 478 MediaPipe landmarks, their bounding box plus 35&nbsp;% on each side.</li>
+      <li>On a commercial retouching service never seen in training, this model family calls 0.3&nbsp;% of retouched faces
+        <i>fake</i> and separates retouched from untouched photos with 71&ndash;73&nbsp;% balanced accuracy. Smoothing is recognised
+        reliably; single eye enlargement, face slimming or whitening often are not, and some untouched photos are called
+        <i>filter</i>.</li>
+      <li>Operation probabilities are shown only when the label is <i>filter</i>. The model's estimates of <i>how much</i> was
+        changed did not pass our validation and are not shown.</li>
+      <li>Probabilities are raw model outputs, not calibrated confidence.</li>
+    </ul>
+  </section>
+</main>
+
+<script type="module">
+import { FilesetResolver, FaceLandmarker } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/vision_bundle.mjs";
+
+const MODEL = "models/ru_repvit.onnx";
+const CLS = ["real", "fake", "filter"];
+const OPS = [["eye", "eye enlargement"], ["jaw", "face slimming"], ["white", "skin brightening"], ["smooth", "skin smoothing"]];
+const $ = (id) => document.getElementById(id);
+let session = null, landmarker = null;
+
+async function init() {
+  try {
+    ort.env.wasm.numThreads = 1;
+    session = await ort.InferenceSession.create(MODEL, { executionProviders: ["wasm"] });
+    const fileset = await FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm");
+    landmarker = await FaceLandmarker.createFromOptions(fileset, {
+      baseOptions: { modelAssetPath: "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task" },
+      runningMode: "IMAGE", numFaces: 1 });
+    $("status").textContent = "ready";
+  } catch (e) { $("status").textContent = "could not load models: " + e.message; }
+}
+
+function cropBox(lm, w, h) {
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+  for (const p of lm) { const x = p.x * w, y = p.y * h; x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y); }
+  const bw = x1 - x0, bh = y1 - y0, m = 0.35;
+  return [Math.max(0, Math.floor(x0 - bw * m)), Math.max(0, Math.floor(y0 - bh * m)),
+          Math.min(w, Math.floor(x1 + bw * m)), Math.min(h, Math.floor(y1 + bh * m))];
+}
+
+function toTensor(canvas) {
+  const d = canvas.getContext("2d").getImageData(0, 0, 224, 224).data, n = 224 * 224, t = new Float32Array(3 * n);
+  for (let i = 0; i < n; i++) for (let c = 0; c < 3; c++) t[c * n + i] = (d[i * 4 + c] / 255 - 0.5) / 0.5;
+  return new ort.Tensor("float32", t, [1, 3, 224, 224]);
+}
+
+const softmax = (v) => { const m = Math.max(...v), e = v.map((x) => Math.exp(x - m)), s = e.reduce((a, b) => a + b); return e.map((x) => x / s); };
+const sigmoid = (x) => 1 / (1 + Math.exp(-x));
+
+function bars(el, rows) {
+  el.innerHTML = rows.map(([name, p, cls]) =>
+    `<div class="bar"><span>${name}</span><div class="track"><div class="fill ${cls || ""}" style="width:${(100 * p).toFixed(1)}%"></div></div><span class="num">${p.toFixed(2)}</span></div>`).join("");
+}
+
+async function analyse(file) {
+  const img = await createImageBitmap(file);
+  const res = landmarker.detect(img);
+  $("result").hidden = false;
+  if (!res.faceLandmarks || !res.faceLandmarks.length) {
+    $("label").className = "label"; $("label").textContent = "no face";
+    $("sentence").textContent = "No face was found. The model only analyses face crops."; $("classbars").innerHTML = ""; $("opbars").innerHTML = ""; $("opsh").hidden = true; return;
+  }
+  const [x0, y0, x1, y1] = cropBox(res.faceLandmarks[0], img.width, img.height);
+  const cv = $("crop"), ctx = cv.getContext("2d"); ctx.imageSmoothingQuality = "high";
+  ctx.drawImage(img, x0, y0, x1 - x0, y1 - y0, 0, 0, 224, 224);
+  $("cropinfo").textContent = `crop ${x1 - x0}×${y1 - y0} px → 224×224`;
+  const t0 = performance.now();
+  const out = await session.run({ input: toTensor(cv) });
+  const ms = performance.now() - t0;
+  const v = Array.from(out[session.outputNames[0]].data);
+  const p = softmax(v.slice(0, 3)), ops = v.slice(3, 7).map(sigmoid), k = p.indexOf(Math.max(...p)), label = CLS[k];
+  $("label").className = "label " + label; $("label").textContent = label;
+  const present = OPS.filter((_, j) => ops[j] >= 0.5).map(([, n]) => n);
+  $("sentence").textContent = label === "real" ? "No manipulation detected."
+    : label === "fake" ? "Forgery detected: identity or content appears to have been changed."
+    : "Beautification detected, identity preserved" + (present.length ? ": " + present.join(", ") + "." : "; the operation is unclear.");
+  bars($("classbars"), CLS.map((c, j) => [c, p[j], c]));
+  $("opsh").hidden = label !== "filter"; $("opbars").innerHTML = "";
+  if (label === "filter") bars($("opbars"), OPS.map(([, n], j) => [n, ops[j], "filter"]));
+  $("timing").textContent = `model inference ${ms.toFixed(1)} ms (WebAssembly, 1 thread)`;
+}
+
+$("file").addEventListener("change", (e) => { const f = e.target.files[0]; if (f && session && landmarker) analyse(f).catch((err) => { $("status").textContent = err.message; }); });
+init();
+</script>
+</body>
+</html>

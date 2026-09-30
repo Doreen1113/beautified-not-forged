@@ -1,0 +1,17 @@
+\documentclass[border=4pt]{standalone}
+\usepackage{fontspec}\setmainfont{texgyretermes}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]
+\usepackage{booktabs,colortbl,xcolor,amssymb}
+\definecolor{pass}{HTML}{DCEFD9}\definecolor{fail}{HTML}{F6D5D2}
+\begin{document}\Large
+\begin{tabular}{lll}
+\toprule
+The sentence says & Tested on & Correct \\
+\midrule
+\textbf{Which operation} (filter) & two training services, held-out faces & 0.50 (eyes) to 0.99 (smoothing) \\[2pt]
+ & unseen service & \cellcolor{fail}0.21 (eyes) to 0.96 (smoothing) \\[2pt]
+\textbf{Which part} (fake) & held-out part forgeries, 3 editors & \cellcolor{pass}98--99\% right \\[2pt]
+\textbf{Is it the cause?} & restore that part to the original & \cellcolor{pass}91\% of detections removed (ceiling 92\%) \\[2pt]
+\textbf{How much} was edited & predicted vs. measured amount & \cellcolor{fail}Spearman $\le$ 0.47, not shown \\[2pt]
+\bottomrule
+\end{tabular}
+\end{document}

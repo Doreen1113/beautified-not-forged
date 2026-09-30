@@ -28,10 +28,26 @@
 
 - v8.11 hierarchical 架構（Layer1 real-vs-manipulated → Layer2 fake-vs-filter）已凍結，
   全部通過 A 級 Freeze Gate 指標（True Test fake/filter recall、AIGuard-unseen AUROC、
-  CelebA/StyleGAN2/Alibaba OOD、fp32 TFLite ≤25MB），見
+  CelebA real recall、StyleGAN2 fake detection、Alibaba filter recall、fp32 TFLite ≤25MB），見
   `docs/releases/v8.11_production/PHASE1_FREEZE_DECISION.md`。所有頭條數字已在 P0
   Production Evaluation Integrity Repair（`results/releases/v8.11_production_20260813/`）
   中用新鮮、附 hash 的證據重新驗證過。
+  > ⚠️ **2026-08-21 兩項更正（數字與判定皆未變，只更正措辭與可宣稱範圍）**：
+  > 1. **上一行原寫「CelebA/StyleGAN2/Alibaba OOD」，其中只有 CelebA 是 OOD。**
+  >    P1-R11 內容層級稽核測得 `stylegan2_test/fake/` 有 **63.8%（6,376/10,000）**、
+  >    `FFHQ_ali_process` 有 **23.5%（4,980/21,151）** 與訓練資料內容重疊（含逐位元組相同的圖片）。
+  >    對外請改稱「StyleGAN2 fake detection」與
+  >    「Alibaba filter recall（跨濾鏡演算法，非 OOD——與訓練資料有 23.5% 內容重疊）」。
+  >    去污染後 StyleGAN2 ≈99.07%，仍過門檻，**不影響凍結決定**。
+  >    仍然乾淨可引用的跨域證據：**CelebA real recall、AIGuard/unseen AUROC**，
+  >    以及 **True Test vs Shadow** 對照（同一套自建濾鏡程式碼、不同底圖攝影風格）。
+  >    證據：`results/research/p1_r11_leakage_scaling_20260820/TASK1_LEAKAGE_AUDIT.md`。
+  > 2. **「全部通過」中有兩項在統計上從未被確立**：True Test filter recall（≥90%）與
+  >    True Test paired balanced accuracy（≥80%），兩者 95% CI 皆跨過自己的門檻
+  >    （分別需 n≈890、n≈1,340；LFW 乾淨底圖已耗盡，無法再加）。
+  >    AIGuard-unseen AUROC 通過但下界僅 0.8034（邊際）。
+  >    詳見 `results/research/p1_bench_power_20260820/BENCHMARK_POWER_REPORT.md` §3
+  >    與 `TODO.md`「🔒 Phase 1 Freeze Gate」表最右欄。
 - Cross-source fake+filter 泛化問題已深入診斷，尚未修復：
   - **P1-R1**（`results/research/p1_r1_cross_source_failure_anatomy_20260814/`）：確認
     DF40-cdf cross-source 失效最可能是與圖片原生解析度相關的 source shortcut（H2 成立），

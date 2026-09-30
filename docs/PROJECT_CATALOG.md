@@ -48,13 +48,13 @@ No `.pth` file for a *plain* "v8.15" (non-suffixed) or any other v8.15/v8.16 nam
 |---|---|
 | `AIGuard/real/`, `AIGuard/fake/` | Primary real/fake training pool (DeepFake-450K derived) |
 | `AIGuard/unseen/` | Held-out fake OOD eval (454 images, primary AUROC benchmark) |
-| `FFHQ_four_process/`, `FFHQ_megvii_four_process/`, `FFHQ_ali_process/` | RetouchingFFHQ filter-processed training/OOD sources |
+| `FFHQ_four_process/`, `FFHQ_megvii_four_process/`, `FFHQ_ali_process/` | RetouchingFFHQ filter-processed training / held-out eval sources. ⚠️ **2026-08-21: `FFHQ_ali_process` is NOT an OOD set** — 23.5% (4,980/21,151) content overlap with training data. Call it "Alibaba filter recall（跨濾鏡演算法，非 OOD——與訓練資料有 23.5% 內容重疊）" |
 | `filter_data/` | Self-built filter dataset (4 types, 25,213 images) |
 | `lfw/` | Real-face training source (v5+) |
 | `sd2.1/`, `DiT/`, `SiT/`, `ddim/`, `pixart/` | DF40 EFS fake sources (top-level dirs, not under a `DF40/` subdir) |
 | `FakeClue/`, `FakeClue_meta/` | Eval + Phase 2 distillation source (not Phase 1 training) |
 | `WildDeepfake_subset/` | Deprecated eval source (semantic/video overlap with AIGuard/fake) |
-| `stylegan2_test/` | StyleGAN2 static fake OOD eval (10,000 images) |
+| `stylegan2_test/` | StyleGAN2 static fake-detection eval (10,000 images). ⚠️ **2026-08-21: NOT an OOD set** — 63.8% (6,376/10,000) content overlap with `AIGuard/fake` + `fake_filter_hard_neg`, byte-identical images included (same 140k Real-Fake Faces corpus sampled by both sides). Decontaminated ≈99.07%; numbers unchanged, framing corrected. Evidence: `results/research/p1_r11_leakage_scaling_20260820/TASK1_LEAKAGE_AUDIT.md`. Genuinely clean cross-domain evidence remaining: CelebA real recall, AIGuard/unseen AUROC, and the True Test vs Shadow contrast |
 | `celeba_train/`, `celeba_val/`, `celeba_test/` | CelebA real-face partitions (train/val/OOD test) |
 | `MidJourney/` | Fake source, partially used in v8.4/v8.5 splits |
 | `Celeb-DF-v2/`, `FaceForensics_frames/`, `FaceForensics_raw/` | Video-frame sources — Phase 3 robustness / FF++ zero-shot only, not Phase 1 primary eval |
