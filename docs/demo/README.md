@@ -1,26 +1,24 @@
-# Browser demo (GitHub Pages)
+# Beautified or forged? (browser demo)
 
-Runs the full production stack (**v8.19-rr**, 2026-09-12: Layer1 v8.17 → Layer2 v8.19-rr → artifact
-head v6) **entirely in the browser** with ONNX Runtime Web (WASM). No server, no upload — the photo
-never leaves the device.
+Runs **Ours-lite** (EfficientNet-B4, 17.6 M parameters, three heads) entirely in the browser: MediaPipe FaceLandmarker
+(478 landmarks) crops the face (bounding box + 35 % per side, 380 × 380), ONNX Runtime Web runs the model, and
+`explain.js` turns its outputs into the label, the retouching operations, the evidence map, the evidence per facial part
+and a template sentence. Nothing is uploaded.
 
-> 2026-09-12: Layer2 swapped from `layer2_v811.onnx` to `layer2_v819rr.onnx` (rendering-randomised
-> Layer2, `render_rand_20260911` seed 3) and the JS decision rule gained the matching Layer2 gate
-> `FILTER_THR = 0.72`, mirroring `decision_rule.FILTER_THRESHOLD`. The rule used to be a bare argmax
-> on Layer2; at 0.72 that is no longer the product's rule, so leaving the argmax in place would have
-> made this page disagree with `pipeline.py` on any image whose p(filter) lands in (0.5, 0.72].
-> `reference_outputs/` were produced under the old v8.17 stack and have **not** been regenerated.
+## Run
+```
+cd docs/demo
+python -m http.server 8000
+```
+Open http://localhost:8000 (or http://<this machine's IP>:8000 on a phone in the same network).
 
-- `index.html` — UI + inference (mirrors `decision_rule.decide`, JPEG q85 round-trip, 224×224).
-- `models/` — four ONNX files (33 MB fp32): Layer1, Layer2, artifact-type head, patch evidence head. The DFT is baked in as constant MatMuls, so no FFT op.
-- Buttons: **Load models → Analyse a face photo** (verdict, decision trace, 7x7 evidence overlay + region ranking, structured explanation text mirrored verbatim from `pipeline.py`) and **Latency benchmark** (per-stage latency on *this* device).
+## Files
+- `models/ours_lite.onnx` exported by `results/research/retouch_unified_20260929/export_demo_onnx.py`; ONNX vs PyTorch on
+  60 FF++ test frames: max |difference| 2.2e-5, 60/60 identical decisions.
+- `explain.js` part naming (mean evidence per landmark part, rule B) and sentence template, as pure functions.
+- `test_explain.mjs` checks `explain.js` against the Python implementation on the crops written by
+  `results/research/retouch_unified_20260929/demo_parity_dump.py`: 128/128 identical part names (max difference of a
+  part mean 0.014), and the edited part named correctly in 81/81 detected held-out part forgeries.
 
-## Publishing
-Repository Settings → Pages → Source: *Deploy from a branch*, branch `main` (or `dev`), folder
-`/docs`. The page then lives at `https://<user>.github.io/<repo>/demo/`.
-
-## Known limits of the public page
-- GitHub Pages cannot send the `Cross-Origin-Opener-Policy`/`Embedder-Policy` headers, so WASM runs
-  **single-threaded** — latency on Pages is an upper bound versus the `serve.py` local host.
-- No MediaPipe face gate on the web path (the Android app has it); crop the face yourself.
-- Reported latency is the browser's; it is not the TFLite number in the paper.
+## Earlier demos
+`../demo_v8_legacy/` (v8.x hierarchical ShuffleNetV2 production line) and `../demo_ru/` (RU1 RepViT, 4.7 M).

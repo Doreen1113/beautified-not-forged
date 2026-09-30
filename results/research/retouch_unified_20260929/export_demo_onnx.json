@@ -1,0 +1,7 @@
+{
+ "onnx": "C:\\My_Project\\AIGC\\docs\\demo\\models\\ours_lite.onnx",
+ "size_MB": 70.2,
+ "n": 60,
+ "max_abs_diff": 2.2411346435546875e-05,
+ "decision_agreement": "60/60"
+}

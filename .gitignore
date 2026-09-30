@@ -20,6 +20,8 @@
 !/docs/paper_v2/
 !/docs/meeting_20260930/
 !/docs/readme/
+!/docs/demo/
+!/docs/demo_v8_legacy/
 !/docs/demo_ru/
 # already-tracked folders stay tracked; new files in them are not added automatically
 /docs/paper_v2/main.pdf

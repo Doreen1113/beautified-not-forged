@@ -8,7 +8,7 @@
 [![Paper](https://img.shields.io/badge/paper-draft%20PDF-b64342)](docs/paper_v2/main_8page.pdf)
 [![Supplement](https://img.shields.io/badge/supplement-PDF-8a8a8a)](docs/paper_v2/supplement_latest.pdf)
 [![Slides](https://img.shields.io/badge/slides-2026--09--30-0f4d92)](docs/meeting_20260930/meeting_20260930_v3.pptx)
-[![Demo](https://img.shields.io/badge/browser%20demo-ONNX%20Runtime%20Web-2f7d32)](docs/demo_ru/)
+[![Demo](https://img.shields.io/badge/live%20demo-try%20it%20in%20the%20browser-2f7d32)](https://doreen1113.github.io/AIGC_Detection/docs/demo/)
 
 <img src="assets/readme/teaser.png" width="92%">
 
@@ -52,9 +52,12 @@ the unedited original removes the <i>fake</i> decision.</sub></td>
 </tr>
 </table>
 
-A browser version (4.7 M-parameter RepViT, no upload, runs on a phone) is in [`docs/demo_ru`](docs/demo_ru/):
+**[Live demo](https://doreen1113.github.io/AIGC_Detection/docs/demo/)**: Ours-lite (EfficientNet-B4, same training
+signal and heads as the main model) runs in the browser, about 0.5 s per photo, nothing uploaded. It shows the label,
+the operation scores, the evidence map, the evidence per facial part and the sentence; its part names match the Python
+implementation on 128/128 test crops. To run it locally:
 ```bash
-cd docs/demo_ru && python -m http.server 8000     # then open http://localhost:8000
+cd docs/demo && python -m http.server 8000     # then open http://localhost:8000
 ```
 
 ## Method
@@ -136,7 +139,7 @@ model output. On 379 test images it produces 14 distinct sentences; what differs
 ```
 docs/paper_v2/                 paper and supplement (LaTeX), table and figure scripts (every number is read from a result file)
 docs/meeting_20260930/         progress-report slides, speaker notes, slide assets and their scripts
-docs/demo_ru/                  browser demo (MediaPipe crop + ONNX Runtime Web)
+docs/demo/                     browser demo of Ours-lite (MediaPipe crop + ONNX Runtime Web; demo_v8_legacy/, demo_ru/ are earlier ones)
 docs/readme/make_media.py      the GIFs and figures on this page
 results/research/
   retouch_unified_20260929/    main line: render decomposition, training (EfficientNet-B4 and CLIP + LoRA), evaluation,
