@@ -1,0 +1,58 @@
+[
+ {
+  "file": "samples/real_1.jpg",
+  "truth": "real",
+  "what": "untouched photo",
+  "ffhq": "17001",
+  "python_pred": "filter"
+ },
+ {
+  "file": "samples/real_2.jpg",
+  "truth": "real",
+  "what": "untouched photo",
+  "ffhq": "17002",
+  "python_pred": "real"
+ },
+ {
+  "file": "samples/filter_eyes.jpg",
+  "truth": "filter",
+  "what": "eyes enlarged",
+  "ffhq": "17003",
+  "python_pred": "real"
+ },
+ {
+  "file": "samples/filter_slim.jpg",
+  "truth": "filter",
+  "what": "face slimmed",
+  "ffhq": "17005",
+  "python_pred": "filter"
+ },
+ {
+  "file": "samples/filter_white.jpg",
+  "truth": "filter",
+  "what": "skin whitened",
+  "ffhq": "17006",
+  "python_pred": "filter"
+ },
+ {
+  "file": "samples/filter_smooth.jpg",
+  "truth": "filter",
+  "what": "skin smoothed",
+  "ffhq": "17007",
+  "python_pred": "filter"
+ },
+ {
+  "file": "samples/fake_nose.jpg",
+  "truth": "fake",
+  "what": "nose from another person",
+  "ffhq": "17010 + nose of 17011",
+  "python_pred": "filter"
+ },
+ {
+  "file": "samples/fake_mouth.jpg",
+  "truth": "fake",
+  "what": "mouth from another person",
+  "ffhq": "17011 + mouth of 17010",
+  "python_pred": "filter"
+ }
+]

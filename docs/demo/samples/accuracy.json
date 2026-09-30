@@ -1,0 +1,83 @@
+{
+ "real": {
+  "what": "untouched photo",
+  "truth": "real",
+  "n": 50,
+  "right": 38,
+  "pred": {
+   "real": 38,
+   "filter": 12
+  },
+  "accuracy": 76.0
+ },
+ "eyes": {
+  "what": "eyes enlarged",
+  "truth": "filter",
+  "n": 50,
+  "right": 28,
+  "pred": {
+   "filter": 28,
+   "real": 21,
+   "fake": 1
+  },
+  "accuracy": 56.0
+ },
+ "slim": {
+  "what": "face slimmed",
+  "truth": "filter",
+  "n": 50,
+  "right": 42,
+  "pred": {
+   "filter": 42,
+   "real": 8
+  },
+  "accuracy": 84.0
+ },
+ "white": {
+  "what": "skin whitened",
+  "truth": "filter",
+  "n": 50,
+  "right": 48,
+  "pred": {
+   "filter": 48,
+   "fake": 2
+  },
+  "accuracy": 96.0
+ },
+ "smooth": {
+  "what": "skin smoothed",
+  "truth": "filter",
+  "n": 50,
+  "right": 35,
+  "pred": {
+   "filter": 35,
+   "fake": 11,
+   "real": 4
+  },
+  "accuracy": 70.0
+ },
+ "nose": {
+  "what": "nose from another person",
+  "truth": "fake",
+  "n": 50,
+  "right": 32,
+  "pred": {
+   "fake": 32,
+   "real": 14,
+   "filter": 4
+  },
+  "accuracy": 64.0
+ },
+ "mouth": {
+  "what": "mouth from another person",
+  "truth": "fake",
+  "n": 50,
+  "right": 19,
+  "pred": {
+   "fake": 19,
+   "real": 20,
+   "filter": 11
+  },
+  "accuracy": 38.0
+ }
+}

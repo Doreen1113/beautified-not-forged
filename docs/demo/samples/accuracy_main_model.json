@@ -1,0 +1,60 @@
+{
+ "real": {
+  "n": 50,
+  "right": 28,
+  "pred": {
+   "filter": 22,
+   "real": 28
+  }
+ },
+ "eyes": {
+  "n": 50,
+  "right": 36,
+  "pred": {
+   "filter": 36,
+   "real": 14
+  }
+ },
+ "slim": {
+  "n": 50,
+  "right": 45,
+  "pred": {
+   "filter": 45,
+   "real": 5
+  }
+ },
+ "white": {
+  "n": 50,
+  "right": 50,
+  "pred": {
+   "filter": 50
+  }
+ },
+ "smooth": {
+  "n": 50,
+  "right": 19,
+  "pred": {
+   "filter": 19,
+   "fake": 28,
+   "real": 3
+  }
+ },
+ "nose": {
+  "n": 50,
+  "right": 46,
+  "pred": {
+   "fake": 46,
+   "real": 3,
+   "filter": 1
+  }
+ },
+ "mouth": {
+  "n": 50,
+  "right": 30,
+  "pred": {
+   "fake": 30,
+   "filter": 9,
+   "real": 11
+  }
+ }
+}

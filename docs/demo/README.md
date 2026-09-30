@@ -20,5 +20,12 @@ Open http://localhost:8000 (or http://<this machine's IP>:8000 on a phone in the
   `results/research/retouch_unified_20260929/demo_parity_dump.py`: 128/128 identical part names (max difference of a
   part mean 0.014), and the edited part named correctly in 81/81 detected held-out part forgeries.
 
+## Examples and video
+- `samples/` eight FFHQ faces (never used in training) with their known answer, and `accuracy.json`, the accuracy of this
+  model on 50 more faces per condition; made by `make_samples.py` (strengths = upper end of the training ranges, fixed
+  before any result). Ours-lite gets 4 of the 8 examples right; per condition 38-96 %.
+- `video/demo_walkthrough.mp4` a 54 s recording of the page (headless Chromium, Playwright): examples, two uploaded
+  FF++ images, the evidence-map toggle, the accuracy table.
+
 ## Earlier demos
 `../demo_v8_legacy/` (v8.x hierarchical ShuffleNetV2 production line) and `../demo_ru/` (RU1 RepViT, 4.7 M).

@@ -8,7 +8,7 @@
 [![Paper](https://img.shields.io/badge/paper-draft%20PDF-b64342)](docs/paper_v2/main_8page.pdf)
 [![Supplement](https://img.shields.io/badge/supplement-PDF-8a8a8a)](docs/paper_v2/supplement_latest.pdf)
 [![Slides](https://img.shields.io/badge/slides-2026--09--30-0f4d92)](docs/meeting_20260930/meeting_20260930_v3.pptx)
-[![Demo](https://img.shields.io/badge/live%20demo-try%20it%20in%20the%20browser-2f7d32)](https://doreen1113.github.io/AIGC_Detection/docs/demo/)
+[![Demo](https://img.shields.io/badge/live%20demo-try%20it%20in%20the%20browser-2f7d32)](https://doreen1113.github.io/beautified-not-forged/docs/demo/)
 
 <img src="assets/readme/teaser.png" width="92%">
 
@@ -52,10 +52,12 @@ the unedited original removes the <i>fake</i> decision.</sub></td>
 </tr>
 </table>
 
-**[Live demo](https://doreen1113.github.io/AIGC_Detection/docs/demo/)**: Ours-lite (EfficientNet-B4, same training
-signal and heads as the main model) runs in the browser, about 0.5 s per photo, nothing uploaded. It shows the label,
-the operation scores, the evidence map, the evidence per facial part and the sentence; its part names match the Python
-implementation on 128/128 test crops. To run it locally:
+**[Live demo](https://doreen1113.github.io/beautified-not-forged/docs/demo/)** ·
+**[walkthrough video (54 s)](docs/demo/video/demo_walkthrough.mp4)**: Ours-lite (EfficientNet-B4, same training signal
+and heads as the main model) runs in the browser, about 0.5 s per photo, nothing uploaded. It shows the label, the
+operation scores, the evidence map, the evidence per facial part and the sentence; its part names match the Python
+implementation on 128/128 test crops. The page has eight example faces with their known answers and the model's accuracy
+on 50 more faces of each kind, so a visitor can check it; it gets 4 of the 8 examples right. To run it locally:
 ```bash
 cd docs/demo && python -m http.server 8000     # then open http://localhost:8000
 ```
@@ -132,6 +134,9 @@ model output. On 379 test images it produces 14 distinct sentences; what differs
 - Eye enlargement and face reshaping are often not named on an unseen service; edit magnitudes are not estimated.
 - For whole-face swaps the evidence covers the face; no small region carries the decision.
 - Strong JPEG (quality 30) raises false alarms on genuine faces by 6 pp (Ours) and 15 pp (Ours-lite).
+- Part-level forgeries are detected in 98–99 % of cases on FF++ video frames, but on high-quality FFHQ still photos with
+  the same kind of transplant the main model detects 60–92 % and Ours-lite 38–64 %; our scripted strong smoothing on those
+  photos is called fake by the main model in 56 % of faces (`docs/demo/make_samples.py`).
 - The main model and Ours-lite are single training runs.
 
 ## Repository
@@ -153,7 +158,7 @@ results/research/
 
 The earlier line of this project (hierarchical ShuffleNetV2 detector `pipeline.py`, data cleaning and filter scripts,
 Android / iOS TFLite benchmarks) is preserved at the tag
-[`v8-archive`](https://github.com/Doreen1113/AIGC_Detection/tree/v8-archive); its setup notes are in
+[`v8-archive`](https://github.com/Doreen1113/beautified-not-forged/tree/v8-archive); its setup notes are in
 [`docs/readme/LEGACY_README_v8.md`](docs/readme/LEGACY_README_v8.md).
 
 Datasets and model weights are not in the repository. Data: FaceForensics++, Celeb-DF-v2, DFD, Celeb-DF-B (on request

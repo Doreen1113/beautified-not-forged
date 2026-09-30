@@ -217,3 +217,15 @@ part (not verifiable, no ground truth for whole-face swaps). filter: 9 (combinat
 The per-image structured output (probabilities, four operation scores, per-part evidence, the map) is what varies; the
 sentence is a template over it. No language model is used.
 
+## FFHQ still photos with scripted edits: the demo check (2026-09-30, `docs/demo/make_samples.py`)
+50 FFHQ faces never used in training (Part2, after the 8 page examples), 512 px, page crop (landmark box + 35 %). Strengths:
+upper end of the random_op_v2 training ranges (eye x1.25, slim 0.065, white 0.33, smooth frac 0.08 + blend 0.4). Forgeries:
+donor transplant of nose / mouth from the next FFHQ face (partedit donor algorithm). Accuracy, Ours-lite / Ours (clipe4):
+genuine 76 / 56 %, eyes 56 / 72, slim 84 / 90, white 96 / 100, smooth 70 / 38 (called FAKE: 11 / 28 of 50), nose 64 / 92,
+mouth 38 / 60. Readings: (1) part-forgery detection drops from 98-99 % on FF++ frames to 38-92 % on FFHQ stills, much more
+for Ours-lite; (2) the main model's genuine-to-filter problem (42 % on Alibaba originals) shows again (22/50); (3) scripted
+smoothing at the corner of the training range is called fake by the main model in 56 % of faces, unlike Alibaba smoothing
+(0.1 % retouched -> fake): the scripted bilateral smoothing is more forgery-like than the commercial one. A first version of
+the page examples used out-of-range strengths from the old v1 generator (smoothing blend 1.0 -> called fake 0.98); replaced
+by the rule above before publishing. Page examples (Ours-lite): 4 of 8 right.
+

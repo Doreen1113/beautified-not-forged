@@ -43,7 +43,7 @@ input[type=file] { position: absolute; width: 1px; height: 1px; opacity: 0; }
 .label.real { color: var(--real); } .label.fake { color: var(--fake); } .label.filter { color: var(--filter); }
 .sentence { margin: 0 0 14px; max-width: 60ch; font-weight: 500; }
 .bars { display: grid; gap: 7px; }
-.bar { display: grid; grid-template-columns: 120px 1fr 52px; gap: 10px; align-items: center; font-size: 13.5px; }
+.bar { display: grid; grid-template-columns: 170px 1fr 52px; gap: 10px; align-items: center; font-size: 13.5px; }
 .track { height: 9px; background: var(--bar); border-radius: 5px; overflow: hidden; }
 .fill { height: 100%; border-radius: 5px; background: var(--accent); }
 .fill.real { background: var(--real); } .fill.fake { background: var(--fake); } .fill.filter { background: var(--filter); }
@@ -54,6 +54,16 @@ h2 { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: u
 .notes ul { max-width: 78ch; padding-left: 18px; margin: 0; }
 .notes li { margin-bottom: 5px; }
 .legacy { font-size: 13px; color: var(--muted); }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; }
+.gallery button { padding: 0; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--panel);
+                  color: var(--ink); text-align: left; display: grid; }
+.gallery button:hover, .gallery button.active { border-color: var(--accent); }
+.gallery img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+.gallery span { font-size: 12px; padding: 4px 6px; line-height: 1.3; }
+.gallery b { text-transform: uppercase; font-size: 11px; letter-spacing: .04em; }
+.gallery b.real { color: var(--real); } .gallery b.fake { color: var(--fake); } .gallery b.filter { color: var(--filter); }
+.truth { margin: -2px 0 10px; font-size: 14px; color: var(--muted); }
+.truth .ok { color: var(--real); font-weight: 600; } .truth .no { color: var(--fake); font-weight: 600; }
 a { color: var(--accent); }
 </style>
 </head>
@@ -71,6 +81,12 @@ a { color: var(--accent); }
       <label class="btn" for="file">Choose a face photo<input id="file" type="file" accept="image/*"></label>
       <span id="status" class="status">loading the model (70 MB, first visit only)...</span>
     </div>
+    <h2>Or try an example with a known answer</h2>
+    <div class="gallery" id="gallery"></div>
+    <h2>How often this model is right on 50 more faces like these</h2>
+    <div class="bars" id="accbars"></div>
+    <p class="status" style="margin:8px 0 0">Examples: FFHQ faces the model never saw in training (NVIDIA, CC BY-NC-SA 4.0).
+      Filters were applied with our own scripts; forgeries transplant a part from another FFHQ face.</p>
   </section>
 
   <section class="panel row" id="result" hidden>
@@ -81,6 +97,7 @@ a { color: var(--accent); }
     </div>
     <div>
       <p class="label" id="label"></p>
+      <p class="truth" id="truth" hidden></p>
       <p class="sentence" id="sentence"></p>
       <div class="bars" id="classbars"></div>
       <div id="opsbox"><h2>Retouching operations</h2><div class="bars" id="opbars"></div></div>
@@ -95,9 +112,11 @@ a { color: var(--accent); }
       <li>Model: <b>Ours-lite</b>, EfficientNet-B4 with three heads (17.6&nbsp;M parameters), trained on FF++, two commercial
         retouching services split into single operations, and part-level forgeries with exact edit regions. The paper's main
         model uses a CLIP ViT-L/14 backbone (306&nbsp;M parameters), too large for a browser.</li>
-      <li><b>Where the forgery is</b>: on held-out part forgeries the edited part is named correctly in 98&ndash;99&nbsp;% of
-        detections, and restoring that part to the original removes 87&ndash;88&nbsp;% of them (ceiling 88&nbsp;%).
-        The part names on this page match the Python implementation on 128 of 128 test crops.</li>
+      <li><b>Where the forgery is</b>: on held-out part forgeries in FF++ video frames the edited part is named correctly in
+        98&ndash;99&nbsp;% of detections, and restoring that part to the original removes 87&ndash;88&nbsp;% of them (ceiling
+        88&nbsp;%). On high-quality still photos such as the examples above, this model detects far fewer part forgeries
+        (38&ndash;64&nbsp;%; the paper's larger model 60&ndash;92&nbsp;%). The part names on this page match the Python
+        implementation on 128 of 128 test crops.</li>
       <li><b>Which retouching operation</b>: reliable for smoothing; eye enlargement and face reshaping are often missed on
         services the model has not seen.</li>
       <li><b>Known weaknesses</b>: some untouched photos are called <i>filter</i>; about 40&nbsp;% of genuine Celeb-DF video
@@ -129,7 +148,34 @@ async function init() {
       baseOptions: { modelAssetPath: "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task" },
       runningMode: "IMAGE", numFaces: 1 });
     $("status").textContent = "ready";
+    if (pending) { const p = pending; pending = null; run(p.src, p.truth); }
   } catch (e) { $("status").textContent = "could not load: " + e.message; }
+}
+
+// a photo chosen before the model has loaded is kept and analysed as soon as it is ready
+let pending = null;
+function run(src, truth = null) {
+  if (!session || !landmarker) { pending = { src, truth }; $("status").textContent = "model still loading; your photo will be analysed when it is ready..."; return; }
+  $("status").textContent = "analysing...";
+  analyse(src, truth).then(() => { $("status").textContent = "ready"; })
+    .catch((err) => { $("status").textContent = "could not analyse this image: " + err.message; });
+}
+
+async function loadGallery() {
+  try {
+    const items = await (await fetch("samples/samples.json")).json();
+    $("gallery").innerHTML = items.map((it, i) => `<button type="button" data-i="${i}" aria-label="example: ${it.what}">
+      <img src="${it.file}" alt="" loading="lazy"><span><b class="${it.truth}">${it.truth}</b><br>${it.what}</span></button>`).join("");
+    $("gallery").querySelectorAll("button").forEach((b) => b.addEventListener("click", async () => {
+      $("gallery").querySelectorAll("button").forEach((x) => x.classList.remove("active")); b.classList.add("active");
+      const it = items[+b.dataset.i]; run(await (await fetch(it.file)).blob(), it);
+    }));
+  } catch (e) { $("gallery").textContent = "examples could not be loaded"; }
+  try {
+    const acc = await (await fetch("samples/accuracy.json")).json();
+    bars($("accbars"), Object.values(acc).map((r) => [`${r.what}`, r.accuracy / 100, r.truth]));
+    $("accbars").querySelectorAll(".num").forEach((n) => { n.textContent = Math.round(parseFloat(n.textContent) * 100) + " %"; });
+  } catch (e) { $("accbars").textContent = ""; }
 }
 
 function cropBox(lm, w, h) {
@@ -169,10 +215,10 @@ function bars(el, rows) {
     `<div class="bar"><span>${name}</span><div class="track"><div class="fill ${cls || ""}" style="width:${(100 * Math.min(1, p)).toFixed(1)}%"></div></div><span class="num">${p.toFixed(2)}</span></div>`).join("");
 }
 
-async function analyse(file) {
+async function analyse(file, truth = null) {
   const img = await createImageBitmap(file);
   const res = landmarker.detect(img);
-  $("result").hidden = false;
+  $("result").hidden = false; $("truth").hidden = true;
   if (!res.faceLandmarks || !res.faceLandmarks.length) {
     last = null; $("label").className = "label"; $("label").textContent = "no face";
     $("sentence").textContent = "No face was found. The model only analyses face crops.";
@@ -196,11 +242,22 @@ async function analyse(file) {
   $("partbox").hidden = last.label === "real";
   bars($("partbars"), PARTS.map((k) => [k, last.parts[k], last.label]));
   $("timing").textContent = `model ${ms.toFixed(0)} ms (WebAssembly)`;
+  if (truth) {
+    const ok = truth.truth === last.label;
+    $("truth").innerHTML = `Correct answer: <b>${truth.truth}</b> (${truth.what}) &nbsp;<span class="${ok ? "ok" : "no"}">${ok ? "✓ model agrees" : "✗ model is wrong here"}</span>`;
+    $("truth").hidden = false;
+  }
   draw();
+  $("result").scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
 $("showev").addEventListener("change", draw);
-$("file").addEventListener("change", (e) => { const f = e.target.files[0]; if (f && session && landmarker) analyse(f).catch((err) => { $("status").textContent = err.message; }); });
+$("file").addEventListener("change", (e) => {
+  const f = e.target.files[0]; e.target.value = "";   // reset so choosing the same photo again still triggers
+  $("gallery").querySelectorAll("button").forEach((x) => x.classList.remove("active"));
+  if (f) run(f);
+});
+loadGallery();
 init();
 </script>
 </body>
