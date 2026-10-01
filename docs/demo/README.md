@@ -24,8 +24,11 @@ Open http://localhost:8000 (or http://<this machine's IP>:8000 on a phone in the
 - `samples/` eight FFHQ faces (never used in training) with their known answer, and `accuracy.json`, the accuracy of this
   model on 50 more faces per condition; made by `make_samples.py` (strengths = upper end of the training ranges, fixed
   before any result). Ours-lite gets 4 of the 8 examples right; per condition 38-96 %.
-- `video/demo_walkthrough.mp4` a 54 s recording of the page (headless Chromium, Playwright): examples, two uploaded
-  FF++ images, the evidence-map toggle, the accuracy table.
+- `video/intro.mp4` a 2 min 29 s introduction: cards drawn from the paper figures (`video/make_intro_cards.py`), a
+  captioned recording of this page (`video/record_demo.py`, headless Chromium + Playwright) and the assembly
+  (`video/assemble_intro.py`, ffmpeg). Every caption states the result the page actually showed.
+- `video/demo_captioned.mp4` the demo alone (76 s): the same captioned recording without the cards (five examples,
+  two uploaded FF++ images, the evidence-map toggle, the accuracy table, the limits).
 
 ## Earlier demos
 `../demo_v8_legacy/` (v8.x hierarchical ShuffleNetV2 production line) and `../demo_ru/` (RU1 RepViT, 4.7 M).

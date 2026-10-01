@@ -1,0 +1,25 @@
+\documentclass[border=4pt]{standalone}
+\usepackage{fontspec}\setmainfont{texgyretermes}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]
+\usepackage{booktabs,colortbl,xcolor,amssymb,array}
+\definecolor{pass}{HTML}{DCEFD9}\definecolor{fail}{HTML}{F6D5D2}
+\definecolor{cr}{HTML}{2F7D4F}\definecolor{cf}{HTML}{B64342}\definecolor{cl}{HTML}{A8781A}
+\newcommand{\ours}{\textsc{Ours}}
+\begin{document}\Large
+\begin{tabular}{@{}llrrr|rrr|rrr@{}}
+\toprule
+ & & \multicolumn{3}{c|}{Images} & \multicolumn{3}{c|}{\ours{}} & \multicolumn{3}{c}{\ours{}-lite} \\
+Data & Class & train & val & test & train & val & test & train & val & test \\
+\midrule
+FF++ c23 & real & 41,512 & 530 & 1,316 & 94.2 & 80.9 & 78.0 & 96.9 & 78.5 & 74.2 \\
+ & fake & 41,526 & 529 & 5,304 & 89.6 & 90.7 & 88.9 & 94.0 & 92.6 & 93.3 \\
+ & filter & 41,512 & 530 & 1,316 & 91.3 & 90.0 & 89.2 & 83.3 & 75.1 & 76.4 \\
+ & macro-F1 &  &  &  & 91.8 & 87.2 & 82.4 & 91.4 & 81.9 & 81.0 \\
+\midrule
+Commercial & originals $\to$ real & 7,015 & 816 & 2,210 & \cellcolor{fail}59.5 & \cellcolor{fail}55.5 & \cellcolor{fail}57.9 & 89.6 & 79.3 & 81.0 \\
+ & renders $\to$ filter & 18,734 & 2,136 & 26,519 & 99.9 & 100.0 & 82.3 & 99.8 & 100.0 & 63.8 \\
+ & components $\to$ filter & 50,112 & 5,684 & -- & 94.8 & 94.2 & -- & 88.7 & 87.9 & -- \\
+\midrule
+Part-level & forgeries $\to$ fake & 61,510 & -- & 11,844 & 91.8 & -- & 89.3 & 93.8 & -- & 92.5 \\
+\bottomrule
+\end{tabular}
+\end{document}

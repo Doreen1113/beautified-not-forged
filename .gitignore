@@ -30,6 +30,7 @@
 /docs/paper_v2/main.pdf
 /docs/paper_v2/supplement.pdf
 /docs/paper_v2/main_pre_*.tex
+/docs/paper_v2/supplement_pre_*.tex
 /docs/paper_v2/DRAFT*.md
 /docs/meeting_20260930/meeting_20260930.pptx
 /docs/meeting_20260930/meeting_20260930_v2.pptx
@@ -104,3 +105,4 @@ Thumbs.db
 *.log
 *.txt
 !/requirements.txt
+/docs/meeting_20260930/notes_user_v4.json

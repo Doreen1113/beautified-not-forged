@@ -2,72 +2,92 @@
 
 ## 1. Beautified Is Not Forged
 
-大家好，今天報告我們專題目前的進度。題目是 Beautified Is Not Forged：現在大部分的人臉照片都修過圖，我們要讓偵測器分得出「真的照片」、「修過圖的照片」和「偽造的臉」這三種。
+大家好，今天報告我們專題目前的進度。題目是想解決：現在大部分的人臉照片都修過圖，我們要讓偵測器分得出「real」、「filter」和「fake」這三種。
 
 ## 2. Where we are, in one slide
 
-先講結論，這頁就是今天的重點。第一，美顏本身不會讓我們的模型漏抓 deepfake：扣掉影片重新壓縮的影響後，我們只差 -0.6 個百分點，SBI 是 +21.8，連 2025 年兩個用 CLIP 的方法也有 +11 和 +15。第二，商用修圖軟體修過的真人照片，我們只把 0.1% 誤判成假臉，已發表的方法是 9.5% 到 14.8%。第三，模型指出的可疑區域是真的有用的：把那塊還原成原圖，91% 的偽造判定會消失，理論上限是 92%。偵測能力本身跟最新的 CLIP 方法打平，明顯贏 SBI。還沒解決的是紅色這行：對沒看過的修圖廠牌，分辨「修過」跟「沒修過」目前只有 70%，我們自己訂的目標是 75%。
+先講結論。第一，圖片套上濾鏡之後不會讓我們的模型漏抓 deepfake圖片：扣掉影片重新壓縮的影響後，我們只差 -0.6 個百分點。比較的對象有兩種。第一種是 SBI，CVPR 2022 的方法：是目前 deepfake 偵測最常被拿來比較的基準方法。第二種是 CLIP 是 OpenAI 用大量圖片和文字訓練的大型模型，2025 年最新的偵測方法 。美顏讓 SBI 多漏抓 21.8 個百分點，連兩個 CLIP 方法 Effort 和 Forensics Adapter 也多了 11 和 15。第二，商用美顏app修過的照片，我們只把 0.1% 誤判成 fake，目前已發表的方法是 9.5% 到 14.8%。第三，模型指出的可疑區域是真的有用的：把那塊還原成原圖，91% 的fake 判定會消失。偵測能力本身跟 CLIP 方法打平，明顯贏 SBI。還沒解決的是：對外部修圖 dataset，分辨「修過」跟「沒修過」目前只有 70%，我們自己訂的目標是 75%。
 
 ## 3. Agenda
 
-接下來依序講：為什麼現有偵測器會出問題、我們的方法、結果、解釋性，最後是目前狀態和接下來兩週要做的事。
+接下來依序講：為什麼這個問題重要、real／filter／fake 三類的定義、我們的方法、結果（先補上 train、val、test 的成績），解釋性，最後是目前狀態和接下來兩週要做的事。
 
-## 4. Binary detectors must accuse beautified faces or miss deepfakes
+## 4. Why it matters: both errors of a binary detector have a cost
 
-先看問題。左邊是一段真的影片，套上手機 app 的美顏濾鏡之後，SBI 這個偵測器就說它是假的，這是誣告。右邊是一段 deepfake，美顏之後 SBI 反而說它是真的，這是漏抓。二元偵測器只有 real 跟 fake 兩個選項，美顏過的真人照片不管放哪一邊都會出錯，所以我們加第三個類別 filter：身分沒變、只是被修過圖。這張圖是挑 SBI 出錯的例子，整體的比例在後面的表。
+先講為什麼這個問題重要。偵測器會用在內容審核、遠端身分驗證、事實查核這些地方，判錯是有代價的。第一種代價是冤枉人，把美顏過的真人判成 fake：在 FF++ 上，如果要把美顏 deepfake 的漏抓壓在 5% 以內，13 個已發表的偵測器每一個都會把至少 14.5% 美顏過的真人判成 fake；換成沒看過的商用修圖，重度磨皮的真人照片有 36% 到 63% 被判成 fake。第二種代價是被利用：同一批 deepfake 加上美顏，扣掉重新壓縮的影響後，SBI 多漏抓 21.8 個百分點，2025 年的兩個 CLIP 方法也多漏 11 到 15。而修圖本身非常普遍，Bharati 等人在 TIFS 2016 就指出，修圖在社群媒體、照片分享網站，甚至證件照上都很常見。這兩種錯都來自只有 real 和 fake 兩個答案，調門檻只能在兩種錯之間交換，所以我們加第三類。
 
-## 5. No threshold of 13 published detectors reaches our pair of errors
+## 5. Binary detectors must accuse beautified faces or miss deepfakes
+
+先看問題。左邊是一段真的影片，套上手機 app 的美顏濾鏡之後，SBI 這個偵測器就說它是假的，這是誣告。右邊是一段 deepfake，美顏之後 SBI 反而說它是真的，這是漏抓。二元偵測器只有 real 跟 fake 兩個選項，美顏過的真人照片不管放哪一邊都會出錯，所以我們加第三個類別 filter，下一頁講它的定義。
+
+## 6. Three labels, decided by what an edit changes
+
+那 filter 和 fake 到底怎麼分？我們的原則是看「改了什麼」，不看用什麼工具改。real 是相機拍下來的原樣，包括相機本身的處理和壓縮。filter 是畫面上還是拍攝當下的那個人，表情、姿勢、說的話都沒變，只有這張臉的外觀被改了，例如膚色、皮膚紋理、五官的平滑變形，也就是磨皮、美白、大眼、瘦臉、調色。fake 是畫面呈現的人或動作不是拍到的那個：換臉、用別人的表演驅動這張臉的 reenactment、整張合成，或是某個部位換成別人的或生成的內容。只要含有 fake 的成分就算 fake，所以美顏過的 deepfake 還是 fake。右邊的表列出容易混淆的情況：化妝算 real；用神經網路做的美顏還是 filter；reenactment 雖然身分沒變，但動作不是拍到的，所以是 fake。最後一欄是我們的資料有沒有涵蓋，表情編輯和全合成臉我們沒有測，就標 not tested。
+
+## 7. No threshold of 13 published detectors reaches our pair of errors
 
 這張圖把 13 個已發表的偵測器所有可能的門檻都掃過一遍。橫軸是誣告率，縱軸是漏抓率，越靠左下越好。灰色每一條線是一個偵測器，紅色是 SBI。藍色星星和三角形是我們兩個模型，它們下面的方框是「要贏我們必須達到的區域」。沒有任何一條線進得了那個方框，也就是說，二元偵測器不管門檻怎麼調，都做不到我們這組誤差。
 
-## 6. Beautification alone lets deepfakes escape, even CLIP detectors
+## 8. Beautification alone lets deepfakes escape, even CLIP detectors
 
-這頁量的是「美顏會讓多少 deepfake 被放過」。Celeb-DF-B 這個資料集的美顏影片同時也被重新壓縮過，所以我們用它只壓縮、不美顏的版本把壓縮的影響扣掉，剩下的才是美顏本身造成的。SBI 多放過 21.8 個百分點，Forensics Adapter 15.3，Effort 11.0。我們的模型是 -0.6，也就是沒有可量測的影響。
+這頁量的是「美顏會讓多少 deepfake圖片被放過」。Celeb-DF-B 這個dateset 的美顏影片同時也被重新壓縮過，所以我們用它只壓縮、不美顏的版本把壓縮的影響扣掉，剩下的才是美顏本身造成的。SBI 多放過 21.8 個百分點；前面提到的兩個 2025 年 CLIP 方法，Forensics Adapter 是 15.3，Effort 是 11.0。我們的模型是 -0.6，也就是沒有影響到。
 
-## 7. One more label is not enough: blurred real faces look forged
+## 9. One more label is not enough: blurred real faces look forged
 
-但只加第三個類別還不夠。我們發現在 FF++ 上訓練的偵測器，都把「模糊」當成偽造的證據。同樣 300 張真臉加一點高斯模糊，SBI 有 67% 判成假，我們早期只用 FF++ 訓練的三類模型更嚴重，95%。原因是 self-blending 這類訓練方法本身會把合成的那一半弄模糊，模型就學到「糊的就是假的」。解法是訓練時對同一組 real、filter、fake 三張圖套一樣的模糊或縮放，模糊就不再跟類別有關。現在我們的模型是 14%。要老實說的是，很強的 JPEG 壓縮下，誤判還是會增加：主模型多 6 個百分點，小模型多 15 個。
+但只加第三個類別還不夠。我們發現在 FF++ 上訓練的偵測器，都把「模糊」當成偽造的證據。同樣 300 張真臉加一點高斯模糊，SBI 有 67% 判成假，我們早期只用 FF++ 訓練的三類模型更嚴重，95%。原因是 self-blending 這類訓練方法本身會把合成的那一半弄模糊，模型就學到「糊的就是假的」。解法是訓練時對同一組 real、filter、fake 三張圖套一樣的模糊或縮放，模糊就不再跟class 有關。
 
-## 8. One model, three heads, trained on paired originals
+## 10. One model, three heads, trained on paired originals
 
-這是整個方法的架構。關鍵是：每一張被修改過的訓練圖，我們都有它逐像素對齊的原圖，所以不只知道它屬於哪一類，還知道確切被改了哪裡，我們叫它 footprint。模型是一個 backbone 接三個 head：三分類 head 判 real/fake/filter，presence head 判四種修圖各有沒有做，evidence head 輸出一張熱圖，用 footprint 監督它。主模型是 CLIP ViT-L/14 加 LoRA，小模型是 EfficientNet-B4。
+這是整個方法的架構。關鍵是：每一張被修改過的訓練圖片，我們都有它逐像素對齊的原圖，所以不只知道它屬於哪一類，還知道確切被改了哪裡，我們叫它 footprint。模型是一個 backbone 接三個 head：第一個 head 判哪個 class，presence head 判四種修圖各有沒有做，evidence head 輸出一張熱圖，用 footprint 監督它。主模型是 CLIP ViT-L/14 加 LoRA，這跟 2025 年那兩個 CLIP 方法是同一個等級的骨幹，比較才公平。小模型是 EfficientNet-B4，一個輕量 CNN，可以在手機上跑。
 
-## 9. Key idea: split each commercial render into single operations
+## 11. Key idea: split each commercial render into single operations
 
-這是方法裡最核心的一步。商用修圖服務，例如騰訊和曠視，一次會同時做四種修圖。直接拿來訓練，模型只會學到「四種一起出現」，遇到只做一種的就認不出來。所以我們用光流把「形狀的改變」拆出來，再依眼睛區域分成眼睛放大和臉型；剩下的顏色差異再用低通和高通拆成美白和磨皮。四個部分加回去跟原本的修圖結果幾乎完全一樣，108 dB。這樣我們從兩家廠牌得到大約五萬張「只做一種修圖」的訓練資料。
+商用美顏的 dataset 他們，一次會同時做四種修圖。直接拿來訓練，模型只會學到「四種一起出現」，遇到只做一種的就認不出來。所以我們用光流把「形狀的改變」拆出來，再依眼睛區域分成眼睛放大和臉型；剩下的顏色差異再用低通和高通拆成美白和磨皮。四個部分加回去跟原本的修圖結果幾乎完全一樣。
 
-## 10. Detection: level with 2025 CLIP detectors, not broken by filters
+## 12. Training, validation and test accuracy
 
-這張是偵測能力的比較，所有方法都在同一批影格上重新跑過。我們在 Celeb-DF-v2、DFD、Celeb-DF-B 的 video AUC 數字是最高的，但要講清楚：跟 Effort 和 Forensics Adapter 做配對 bootstrap 檢定，信賴區間都包含 0，所以只能說「打平」，不是「比較好」；跟 SBI 的差距則是四個設定都顯著。右邊兩欄是差別所在：它們被美顏影響 15 到 24 個百分點，我們是 2.9，而且這 2.9 全部來自重新壓縮。
+上次教授問到 training 和 testing 的成績，這頁補上。左邊是每個資料來源在 train、val、test 各有幾張，右邊是兩個模型在三個 split 上的準確率。train 的準確率是從訓練資料每列隨機抽 2,000 張量的，val 和 test 是全部。FF++ 的 macro-F1，主模型從 train 91.8、val 87.2 到 test 82.4，掉最多的是 real，從 94% 掉到 78%。fake、filter 和部位偽造在 train 跟 test 之間差不到 3 個百分點。紅色這格是這次新發現的：商用修圖沒修過的原圖，主模型連訓練時看過的原圖也只有 59.5% 判成 real，跟 val 的 55.5、test 的 57.9 差不多。所以原圖被判成 filter 這個問題在訓練資料上就存在，不是泛化失敗，這是接下來要查的重點。
 
-## 11. Unseen retouching service: no false accusation, 70% separation
+## 13. Checkpoints are chosen on validation; no test set is used
 
-這頁是用一家完全沒看過的商用修圖廠牌，阿里巴巴，來測試。左圖：在只誤判 5% 原圖的門檻下，已發表的方法會把 36% 到 63%重度磨皮的真人照片判成假，我們是 1.4%，所有修圖合計 2.7%。右圖是「修過 vs 沒修過」的分辨能力：只用 FF++ 訓練的模型都在 50% 上下，也就是用猜的；我們提升到 70% 到 73%，但沒有達到訓練前訂的 75%。主要問題在紅色這行：我們會把 82% 修過的照片判成 filter，但同時也把 42% 沒修過的原圖判成 filter，特異性不夠。
+這頁是訓練過程。左邊是 training loss，兩個模型都穩定下降；中間是 FF++ validation 的 macro-F1，右邊是商用修圖 validation 的 filter F1。星號是選中的 checkpoint：取這兩個 validation 分數平均最高的 epoch，主模型是第 4 個（總共 8 個），小模型是第 12 個。test 資料完全沒有參與選擇。主模型的 validation macro-F1 在第 4 個 epoch 之後就持平了，training loss 還在下降。
 
-## 12. What the system outputs for one image
+## 14. The train–test gap is in genuine frames
 
-接下來是解釋性。這頁是系統對一張圖實際輸出的東西，例子是事先固定的，錯的也照放。每張圖會輸出：判斷結果和機率、四種修圖各自的分數、熱圖，還有一句英文說明。句子是用模板組的，沒有用語言模型：判 real 就固定一句；判 filter 會列出分數超過 0.5 的修圖種類；判 fake 會寫熱圖最集中的臉部部位，全臉都強就寫 whole face。可以看到眼睛放大、磨皮、部位偽造、整臉換臉都講對了；瘦臉和美白這兩張被漏判成 real，第一張真臉被誤判成 filter，這就是上一頁講的 70% 問題的實際樣子。
+這是 FF++ 在 train、val、test 三個 split 的 confusion matrix，每一列是真實類別，加起來是 100%，上排是主模型，下排是小模型。fake 和 filter 在三個 split 都很穩定，主模型的差距在 2.1 個百分點以內；主要的落差在 real 那一列：主模型的 real 在 train 是 94%，到 test 剩 78%，流失的部分 13% 跑到 filter、9% 跑到 fake。所以接下來要查的是真臉為什麼會往 filter 偏，FF++ 和商用修圖的原圖是同一個問題。
 
-## 13. How far each part of the sentence can be trusted
+## 15. Detection: level with 2025 CLIP detectors, not broken by filters
 
-這頁回答「這句話能相信到什麼程度」。偽造在哪個部位：在沒看過的測試資料上 98 到 99% 講對，而且把那個部位還原，91% 的判定會消失，代表那個部位真的是模型判斷的依據。做了哪種修圖：在訓練過的廠牌上磨皮、美白很準，眼睛和臉型比較弱；換到沒看過的廠牌，眼睛只剩 0.21、臉型 0.35。修了多少，例如眼睛放大幾 %，我們有試著預測，但驗證沒過，所以不輸出。另外今天做簡報時發現並修正一個 bug：原本用「面積比例」決定部位，皮膚面積最大所以幾乎都寫 skin，只有 8 到 12% 講對；改成看每個部位內的平均強度後是 98 到 99%。熱圖本身一直是對的，錯的是轉成文字那一步。順帶一提，句子是模板，所以 379 張測試圖一共只產生 14 種不同的句子；每張圖真正不同的是背後的數值輸出。
+這張是偵測能力的比較，所有方法都在同一批影格上重新跑過。我們在 Celeb-DF-v2、DFD、Celeb-DF-B 的 AUC 和CLIP 的作法成績差不多；比 SBI 的好。右邊兩欄是差別所在：它們被美顏影響 15 到 24 %，我們是 2.9。
 
-## 14. The evidence map marks the edited part
+## 16. Unseen retouching service: no false accusation, 70% separation
 
-這是部位偽造的例子。從左到右：輸入、真正被改的區域、我們的熱圖、沒有 evidence head 時用 Score-CAM 畫的圖、以及把熱圖指的區域還原成原圖之後的結果。可以看到我們的熱圖對準被改的鼻子和眼睛，Score-CAM 則散在整張臉中間；還原之後模型就改判成 real。
+這頁是用一家完全沒看過的商用美顏的dataset，阿里巴巴，來測試。左圖：在只誤判 5% 原圖的門檻下，已發表的方法會把 36% 到 63% 磨皮的real 判成 fake，我們是 1.4%，所有修圖合計 2.7%。右圖是「修過 vs 沒修過」的分辨能力：只用 FF++ 訓練的模型都在 50% 上下，也就是用猜的；我們提升到 70% 到 73%，但沒有達到訓練前訂的 75%。主要問題在紅色這行：我們會把 82% 修過的照片判成 filter，但同時也把 42% real 判成 filter，特異性不夠。
 
-## 15. Restoring the named region removes 91% of detections
+## 17. What the system outputs for one image
 
-這張把「還原指出的區域會讓多少判定消失」量化。紅色虛線是還原真正被改的區域能達到的上限，約 91 到 92%。我們的模型在三種編輯方式上都貼著上限，包括訓練時完全沒看過的 SDXL。比較組：隨機區域 11 到 15%、臉中央 42 到 52%、Score-CAM 約 52 到 57%。淺藍色是同一個模型但訓練時沒有部位偽造資料，只有 54 到 79%，說明是 footprint 監督讓熱圖變可信，不是 backbone 的關係。
+接下來是解釋性。這頁是系統對一張圖實際輸出的東西。每張圖會輸出：判斷結果和機率、四種修圖各自的分數、熱圖，還有一句英文說明。句子是用模板組的，沒有用VLM：判 real 就固定一句；判 filter 會列出分數超過 0.5 的修圖種類；判 fake 會寫熱力圖最集中的臉部部位，全臉都強就寫 whole face。可以看到眼睛放大、磨皮、region fake 、whole face 都講對了；瘦臉和美白這兩張被誤判成 real，第一張 real 被誤判成 filter，這就是上一頁講的 70% 問題的實際樣子。
 
-## 16. Targets we set before training: five met, four missed
+## 18. How far each part of the sentence can be trusted
 
-這是我們在訓練前就訂好的目標，結果照實列出來：五項達成，四項沒達成。沒達成的有三項跟商用修圖有關：分辨修過沒修過的 70%、各修圖種類的辨識率、修圖幅度的估計；另一項是 FF++ 真臉的 recall 78%，差 80% 一點。這些門檻都沒有在看到測試結果後改過。
+deepfake 在哪個部位：在沒看過的測試資料上 98 到 99% 講對，而且把那個部位還原，91% 的判定會消失，代表那個部位真的是模型判斷的依據。做了哪種修圖：在訓練過的廠牌上磨皮、美白很準，眼睛和臉型比較弱；換到沒看過的廠牌，眼睛只剩 0.21、臉型 0.35。
 
-## 17. Done and next
+## 19. The evidence map marks the edited part
 
-已完成：13 個已發表方法在同一批資料上的重新評測、一個同時做偵測、濾鏡判斷和熱圖的模型、完整的文字解釋輸出、以及可以在手機跑的小模型，TFLite 18 MB，單執行緒 9.7 毫秒。接下來兩週：第一，查清楚為什麼 44% 沒修過的原圖會被判成 filter，這是目前最大的問題；第二，只有在對應的 head 夠可靠時才在句子裡講出修圖種類，避免講錯；第三，主模型再訓練一次確認結果穩定；第四，在真實手機上量速度。
+這是局部 deepfake 的例子。從左到右：input、真正被改的區域、我們的熱圖、沒有 evidence head 時用 Score-CAM 畫的圖（Score-CAM 是常見的事後熱圖方法，模型訓練完之後再從它的內部特徵推回它在看哪裡）、以及把熱圖指的區域還原成原圖之後的結果。可以看到我們的熱圖對準被改的鼻子和眼睛，Score-CAM 則散在整張臉中間；把圖還原之後模型也會改判成 real。
 
-## 18. THANK YOU
+## 20. Restoring the named region removes 91% of detections
+
+這張把「還原指出的區域會讓多少判定消失」量化。紅色虛線是還原真正被改的區域能達到的上限。我們的模型在三種編輯方式上都貼著上限，包括訓練時完全沒看過的 SDXL。比較組：隨機區域 11 到 15%、臉中央 42 到 52%、Score-CAM 約 52 到 57%。淺藍色是同一個模型但訓練時沒有部位偽造資料，只有 54 到 79%，說明是 footprint 監督讓熱圖變可信，不是 backbone 的關係。
+
+## 21. Targets we set before training: five met, four missed
+
+這是我們在訓練前就訂好的目標：五項達成，四項沒達成。沒達成的有三項跟商用修圖有關：分辨修過沒修過的 70%、各修圖種類的辨識率、修圖幅度的估計；另一項是 FF++ real face 的 recall 78%，差 80% 一點。
+
+## 22. Done and next
+
+已完成：13 個已發表方法在同一批資料上的重新評測、一個同時做偵測、濾鏡判斷和熱圖的模型、簡單的文字解釋輸出、以及可以在手機跑的小模型，也補上了三類的定義和 train、val、test 的成績。接下來兩週：會查清楚為什麼 40% 到 44% 沒修過的原圖會被判成 filter，連訓練用的原圖也是；第二，只有在對應的 head 夠可靠時才在句子裡講出修圖種類，第三是產生針對特定影像的解釋，而非使用固定模板。
+
+## 23. THANK YOU
 
 以上是這次的進度報告，謝謝。

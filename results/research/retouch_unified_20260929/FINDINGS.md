@@ -229,3 +229,31 @@ smoothing at the corner of the training range is called fake by the main model i
 the page examples used out-of-range strengths from the old v1 generator (smoothing blend 1.0 -> called fake 0.98); replaced
 by the rule above before publishing. Page examples (Ours-lite): 4 of 8 right.
 
+
+## Train / validation / test accuracy of the two main models (2026-10-01, `split_eval.py` -> `split_eval.json`)
+Same preprocessing as every reported test number (`eval_ru.run`). Training rows: random samples (2,000 per row, FF++ fakes
+500 per method, 4,000 part-level forgeries, seed 20260930); validation and test: every image. Test FF++ recalls reproduce
+the published 77.96 / 88.88 / 89.21 exactly, vendor-val originals reproduce eval_vendor_val (55.51 real / 44.36 filter).
+
+| | Ours train / val / test | Ours-lite train / val / test |
+|---|---|---|
+| FF++ real | 94.2 / 80.9 / 78.0 | 96.9 / 78.5 / 74.2 |
+| FF++ fake | 89.6 / 90.7 / 88.9 | 94.0 / 92.6 / 93.3 |
+| FF++ filter | 91.3 / 90.0 / 89.2 | 83.3 / 75.1 / 76.4 |
+| FF++ macro-F1 | 91.8 / 87.2 / 82.4 | 91.4 / 81.9 / 81.0 |
+| commercial originals -> real (test = Alibaba) | 59.5 / 55.5 / 57.9 | 89.6 / 79.3 / 81.0 |
+| commercial renders -> filter | 99.9 / 100.0 / 82.3 | 99.8 / 100.0 / 63.8 |
+| cleaned components -> filter | 94.8 / 94.2 / - | 88.7 / 87.9 / - |
+| part-level forgeries -> fake | 91.8 / - / 89.3 | 93.8 / - / 92.5 |
+
+**Finding:** Ours keeps only 59.5 % of its *training* FFHQ originals real (40 % -> filter), the same as on validation
+(55.5) and the unseen service (57.9). The specificity loss is not a generalisation failure; it is present on training
+images. Likely cause to test next: weak single-operation components are near-identical to their originals but labelled
+filter. Ours-lite keeps 89.6 % of training originals real.
+
+**78.7 vs 55.5 resolved:** clipe4's checkpoint is epoch 4 of 8 (criterion 0.9107 = meta best); its log at epoch 4 says
+originals -> real 57.2 %. 78.7 % is the epoch-8 log line, not the saved model. With the training-validation preprocessing
+(cap before resize) the saved checkpoint gives 56.9 % (eval script 55.5 %). ru4e: epoch 12 of 12, 81.3 % vs 79.3 %.
+
+Paper: Table II (data and accuracy per partition), Sec. V-A, supplement Fig. S6 (curves, `make_fig_training.py`) and
+Fig. S7 (FF++ confusion matrices); label definitions rewritten by what an edit changes (Sec. III-A, Table I).

@@ -40,6 +40,14 @@ FF++-only three-way model, the FF++-only evidence-head model, \ours{}-lite and \
 \end{figure}
 \begin{figure}[h]
 \centering
+\includegraphics[width=0.6\linewidth]{fig_accuse}
+\caption{Retouched genuine faces from the unseen service called \emph{fake}, each detector at the threshold that calls 5\%
+of the untouched originals fake (chosen on the test originals, which favours the binary detectors). Dark: strongest
+smoothing; light: all operations and levels. Red: SBI and the two CLIP-based detectors.}
+\label{fig:accuse}
+\end{figure}
+\begin{figure}[h]
+\centering
 \includegraphics[width=0.5\linewidth]{fig_tradeoff}
 \caption{Untreated Celeb-DF-B AUC against balanced accuracy on the unseen service, for every three-way variant. Binary
 detectors have no filter class and appear as vertical lines.}
@@ -59,6 +67,8 @@ square $1.3\times$ crop cost our model 1.8 points. (3) Celeb-DF-B's treated vide
 filter-tinted bars, and the landmark detector then misses 57\% of treated frames against 3\% of untreated ones; trimming
 the bars restores 97\% coverage.
 
+\textbf{SBI checkpoint.} Our reproduction of the SBI recipe reached 0.735 on Celeb-DF-v2 against 0.817 for the released weights, so every SBI comparison uses the released checkpoint.
+
 \textbf{Paired controls.} Without its unedited control a filter rate is a base rate: a model trained on mixed corpora
 called 96.8\% of RetouchingFFHQ retouched faces \emph{filter}, and 93.9\% of their untouched originals.
 
@@ -70,6 +80,28 @@ components it calls 55.7\% of untouched originals \emph{filter}.
 \textbf{Edit-magnitude head.} A head regressing the measured quantities $q$ ranks the measured edit at Spearman
 $\rho\le0.47$ for every operation on the unseen service and barely better on the training services; it is not used.
 
+\section{Training curves and accuracy per partition}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth]{fig_training}
+\caption{Training loss and the two validation scores per epoch for \ours{} and \ours{}-lite. Star: the selected
+checkpoint, the epoch with the highest mean of FF++ validation macro-F1 and the filter F1 on held-out Tencent and Megvii
+bases. The commercial validation F1 here counts every validation component, including those under the noise floor that
+training drops, so it differs from the cleaned rows of the partition table in the main paper.}
+\label{fig:training}
+\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.72\linewidth]{fig_confusion}
+\caption{FF++ three-way confusion matrices, rows normalised to the true class (\%): a random sample of the training frames
+(2,000 per class, fakes 500 per method), the validation split and the test split.}
+\label{fig:confusion}
+\end{figure}
+Both checkpoints are chosen on the validation data; no test result enters the choice. \ours{} reaches its best validation
+score at epoch 4 of 8 and \ours{}-lite at its last epoch, 12. On FF++ the genuine class carries most of the gap between
+training and test: \ours{} recalls 94.2\% of genuine training frames and 78.0\% of genuine test frames, and the confusion
+matrices show these frames moving to both other classes.
+
 \section{Ablation over the training signal}
 \begin{table}[h]
 \centering
@@ -79,6 +111,9 @@ sets, and B1: number of binary detectors (/11 published, /12--13 with our SBI re
 \footnotesize
 \begin{adjustbox}{max width=\linewidth}\input{tables/tab_ablation.tex}\end{adjustbox}
 \end{table}
+
+\textbf{Why single-operation components.} A model trained on the renders alone sends single operations other than smoothing to \emph{filter} only 10--46\% of the time. On held-out Tencent and Megvii bases a whitening component with a lightness change near 20 is then called real
+90\% of the time, because in a four-operation render the texture change alone identifies the class.
 
 \section{Every vendor-trained variant on the unseen vendor}
 \begin{table}[h]

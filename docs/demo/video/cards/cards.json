@@ -1,0 +1,42 @@
+[
+ {
+  "file": "cards/00_title.png",
+  "secs": 4.5
+ },
+ {
+  "file": "cards/01_problem.png",
+  "secs": 8.5
+ },
+ {
+  "file": "cards/02_escape.png",
+  "secs": 7.5
+ },
+ {
+  "file": "cards/03_method.png",
+  "secs": 8.5
+ },
+ {
+  "file": "cards/04_decomp.png",
+  "secs": 8.0
+ },
+ {
+  "file": "cards/05_demo.png",
+  "secs": 3.5
+ },
+ {
+  "file": "cards/06_results.png",
+  "secs": 9.0
+ },
+ {
+  "file": "cards/07_evidence.png",
+  "secs": 8.0
+ },
+ {
+  "file": "cards/08_limits.png",
+  "secs": 10.0
+ },
+ {
+  "file": "cards/99_end.png",
+  "secs": 5.0
+ }
+]

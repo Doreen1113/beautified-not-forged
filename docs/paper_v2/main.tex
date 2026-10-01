@@ -11,6 +11,7 @@
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{array}
 \usepackage{adjustbox}
 \usepackage{xcolor}
 \usepackage{url}
@@ -46,8 +47,8 @@ retouching service. We measure what this does to thirteen published detectors, i
 2025. When genuine and forged FaceForensics++ frames receive the same beautification, keeping the escape of beautified
 forgeries under 5\% makes every detector accuse at least 14.5\% of beautified genuine faces. On Celeb-DF-B, app beautification raises the share of
 deepfakes called real by 3.4 to 35.5 percentage points for the eleven detectors that detect its deepfakes above chance.
-A third class, \emph{filter}, for identity-preserving edits removes this effect when everything else in training is
-held fixed. A filter class learnt from scripted operations, however, does not recognise commercial retouching:
+We add a third class, \emph{filter}, for edits that change how a face looks but not who it shows or what the person
+does; with everything else in training held fixed, it removes this effect. A filter class learnt from scripted operations, however, does not recognise commercial retouching:
 FF++-trained models separate retouched from untouched faces at chance. We train the three-way detector on the renders of
 two commercial retouching services, split by optical flow and frequency into single-operation components with exact
 edit footprints, and test it on a third service. A CLIP ViT-L/14 model with LoRA trained this way calls 0.1\% of the
@@ -59,21 +60,34 @@ retouched faces from their originals remains difficult (70\% balanced accuracy).
 
 % ----------------------------------------------------------------------------
 \section{Introduction}
-Skin smoothing, whitening, eye enlargement and face slimming are default options in camera apps and are sold as services
-by retouching APIs, so many of the genuine faces a detector sees have been edited. Face-forgery detectors are
-trained to separate genuine from manipulated faces, and beautification manipulates pixels without changing who is in
-the picture. Libourel et al.~\cite{libourel2024} released Celeb-DF-B, a beautified version of Celeb-DF, measured drops of
-0.15--0.16 in the video-level AUC of three detectors, and concluded that ``the use of a dedicated filter detection method
-is strongly advisable''. Saeed et al.~\cite{saeed2025} show that enhancement lets deepfakes evade detectors, and Concas
-et al.~\cite{concas2025} that beauty filters raise the error of deepfake and morphing-attack detectors.
+Face-forgery detectors are meant for content moderation, remote identity checks and fact-checking. In these settings a
+genuine face called fake accuses a real person, and a forgery called real is let through. Many of the genuine faces such
+a detector receives have been retouched: retouching is common on social media and photo-sharing sites and even on
+identification cards~\cite{bharati2016}, and skin smoothing, whitening, eye enlargement and face slimming are default
+options in camera apps and are sold by retouching APIs. Beautification edits the pixels of the face, which is what a
+forgery detector learns to inspect, but it changes neither who is shown nor what the person does.
 
-In a binary label space a beautified genuine face has to be called real or fake. Calling it fake is a false accusation.
-Calling it real teaches the detector that beautification is a sign of authenticity, and a beautified deepfake then passes
-as real (Fig.~\ref{fig:teaser}). A single threshold trades the two errors against each other. We sweep that threshold for thirteen published
-detectors and study a third label, \emph{filter}, for edits that keep the identity.
+We measure both errors on thirteen published detectors. On FaceForensics++ (FF++)~\cite{ffpp} frames beautified
+in the same way whether genuine or forged, no threshold of any detector lets at most 5\% of the beautified forgeries
+pass while calling fewer than 14.5\% of the beautified genuine faces fake. On a commercial retouching service that none of them was trained on, at a
+threshold that accuses 5\% of the untouched faces, the eleven detectors trained on FF++ accuse 36--63\% of the most
+strongly smoothed ones. Beautification also works as an evasion. On Celeb-DF-B~\cite{libourel2024}, once the effect of
+re-encoding is removed, app beautification lets 21.8, 11.0 and 15.3 percentage points more deepfakes pass
+SBI~\cite{sbi}, Effort~\cite{effort} and Forensics Adapter~\cite{forensicsadapter}. Libourel et al.~\cite{libourel2024},
+who released Celeb-DF-B, measured drops of 0.15--0.16 in the video-level AUC of three detectors and concluded that ``the
+use of a dedicated filter detection method is strongly advisable''. Saeed et al.~\cite{saeed2025} show that enhancement
+lets deepfakes evade detectors, and Concas et al.~\cite{concas2025} that beauty filters raise the error of deepfake and
+morphing-attack detectors.
 
-The third label does not suffice by itself. Detectors trained on FaceForensics++ (FF++)~\cite{ffpp} call blurred genuine
-faces fake, and a filter class trained on hand-written beautification scripts misses the retouching of commercial services.
+The two errors come from the label space. A binary detector has to call a beautified genuine face real or fake. Calling
+it fake is a false accusation. Calling it real teaches the detector that beautification is a sign of authenticity, and a
+beautified deepfake then passes as real (Fig.~\ref{fig:teaser}). A threshold only trades one error for the other, and
+for none of the thirteen detectors does any threshold reach the pair of errors of our three-way detector
+(Sec.~\ref{sec:results}). We add a third label, \emph{filter}, for edits that change how a face looks but not who it
+shows or what the person does, and define the three labels by what an edit changes rather than by the tool that made it
+(Sec.~\ref{sec:labels}).
+
+The third label does not suffice by itself. Detectors trained on FF++ call blurred genuine faces fake, and a filter class trained on hand-written beautification scripts misses the retouching of commercial services.
 Renders of commercial services would teach it, but they apply several operations at once, and a model trained on them
 learns which operations co-occur. We therefore split each render into single-operation components that are pixel-aligned
 with the original, which gives both a label and an exact footprint for every edit.
@@ -105,8 +119,8 @@ have no forgery class.
 
 \textbf{Generalisable forgery detection.} Face X-ray~\cite{facexray} and SBI~\cite{sbi} synthesise blending artefacts
 from real images, and UCF~\cite{ucf} separates common forgery features from content and method-specific ones.
-Effort~\cite{effort} and Forensics Adapter~\cite{forensicsadapter} adapt CLIP ViT-L/14 with few trainable parameters and
-report the strongest cross-dataset results of recent work. DeepfakeBench~\cite{deepfakebench} provides common
+Effort~\cite{effort} and Forensics Adapter~\cite{forensicsadapter} adapt CLIP ViT-L/14 with few trainable parameters; they
+are the most recent detectors in our comparison. DeepfakeBench~\cite{deepfakebench} provides common
 checkpoints for many detectors.
 
 \textbf{Explanations for detectors.} GAIN~\cite{gain} trains attention maps so that erasing the attended region removes
@@ -130,10 +144,46 @@ render from the unseen service.}
 \section{Method}
 \label{sec:method}
 \subsection{Labels and errors}
-The label of a face $x$ is $y\in\{\textsc{real},\textsc{fake},\textsc{filter}\}$. \textsc{real} is an unedited photograph,
-\textsc{fake} covers identity swap, reenactment and synthesis, and \textsc{filter} covers edits that keep the identity
-(smoothing, whitening, eye enlargement, face slimming, colour grading). A face that was forged and then beautified is
-\textsc{fake}. The detector outputs class probabilities $p(x)$, presence scores $\hat s(x)\in[0,1]^4$ for eye, contour,
+\label{sec:labels}
+The label of a face $x$ is $y\in\{\textsc{real},\textsc{fake},\textsc{filter}\}$, decided by what was changed after the
+capture, the photograph or video frame as recorded, including in-camera processing and compression.
+\begin{itemize}
+\item \textsc{real}: the capture, with no later edit of the face.
+\item \textsc{filter}: the face is still the captured person's own face at the captured moment, and only its appearance
+was changed: colour and tone, skin texture, or a smooth reshaping of the person's own features (smoothing, whitening,
+eye enlargement, face slimming, colour grading). Identity, expression, pose and speech are those of the capture.
+\item \textsc{fake}: the image shows a person or an action that was not captured: an identity swap, a reenactment (the
+captured identity driven by another performance), a synthesised face, or a facial part replaced by another person's
+part or by generated content.
+\end{itemize}
+An image that contains a fake edit is \textsc{fake} whatever else was applied, so a beautified forgery is \textsc{fake}.
+The tool does not decide the label: a retouching service that uses a neural network is \textsc{filter}, and a
+reenactment is \textsc{fake} although it keeps the identity. Table~\ref{tab:labels} lists cases near the boundary and
+whether our data contains them.
+
+\begin{table}[t]
+\centering
+\caption{Labels of cases near the class boundary. Last column: whether the case occurs in our training or test data.}
+\label{tab:labels}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.52\columnwidth}l>{\raggedright\arraybackslash}p{0.27\columnwidth}@{}}
+\toprule
+Case & Label & In our data \\
+\midrule
+Camera processing, JPEG, video coding & \textsc{real} & all sets \\
+Make-up worn at capture & \textsc{real} & incidental \\
+Beautification by an app or a service, neural or not & \textsc{filter} & scripted, 3 services, app presets \\
+Reenactment by another person's performance & \textsc{fake} & Face2Face, NeuralTextures \\
+A part from another face, or inpainted & \textsc{fake} & part-level forgeries \\
+Face swap & \textsc{fake} & FF++, Celeb-DF, DFD \\
+Beautified forgery & \textsc{fake} & FF++, Celeb-DF-B \\
+Expression editing; synthesised face & \textsc{fake} & not tested \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The detector outputs class probabilities $p(x)$, presence scores $\hat s(x)\in[0,1]^4$ for eye, contour,
 tone and texture edits, and an evidence map $\hat m(x)$. The decision is $\hat y=\arg\max_c p_c(x)$.
 
 Two error rates describe beautification. FA is the share of beautified genuine faces with $\hat y=\textsc{fake}$ and
@@ -235,17 +285,33 @@ does not flip.
 \textbf{Training.} CLIP: 224\,px, AdamW at $10^{-4}$ with warm-up and cosine decay, 8 epochs. EfficientNet-B4 (AdvProp
 weights~\cite{advprop}): 380\,px, SGD at $10^{-3}$ with SAM~\cite{sam}, 12 epochs. A batch holds 16 genuine bases (48
 items); fakes are drawn as self-blends (0.4), observed forgeries (0.3) or part-level forgeries (0.3). Checkpoints are
-selected on FF++ validation macro-F1 plus F1 on held-out Tencent and Megvii bases. No cross-dataset set is used for any
-choice.
+selected on FF++ validation macro-F1 plus F1 on held-out Tencent and Megvii bases, which picks epoch 4 of 8 for \ours{}
+and epoch 12 of 12 for \ours{}-lite (curves in the supplement). No test set is used for any choice.
 
 % ----------------------------------------------------------------------------
 \section{Experimental Setup}
 \label{sec:protocol}
-\textbf{Test sets.} FF++ c23 test (1,316 real, 5,304 fake and 1,316 filter frames) with 400 test forgeries under eight
-beautification conditions; Celeb-DF-v2~\cite{celebdf} (official list, 518 videos, 16,059 frames); DFD~\cite{dfd} (332
+\begin{table*}[t]
+\centering
+\caption{Data and accuracy (\%) per partition. FF++ rows: recall per class. Commercial: training and validation data
+are the two training services (validation: held-out FFHQ bases), test data the unseen service; originals should be
+called \emph{real}, renders and single-operation components \emph{filter}. Training images are counted before
+on-the-fly items (filters, self-blends) are added; training accuracy is measured on a random sample of 2,000 images
+per row (4,000 part-level forgeries), validation and test accuracy on every image.}
+\label{tab:splits}
+\footnotesize
+\begin{adjustbox}{max width=\textwidth}\input{tables/tab_splits.tex}\end{adjustbox}
+\end{table*}
+
+\textbf{Partitions.} Table~\ref{tab:splits} gives the training, validation and test data of each source. FF++ follows
+the official video split, so no video is shared between partitions, and part-level forgeries are built on frames of the
+matching partition. The commercial validation data are FFHQ bases of the two training services that were held out from
+training; the commercial test data come from a third service.
+
+\textbf{Test sets.} FF++ c23 test with 400 test forgeries under eight beautification conditions; Celeb-DF-v2~\cite{celebdf} (official list, 518 videos, 16,059 frames); DFD~\cite{dfd} (332
 held-out videos, 4,221 frames); Celeb-DF-B in the release provided by its authors, with 232 genuine and 232 synthesis
 videos, each untreated, beautified by one of four app presets and re-encoded without a filter (43,363 frames); and the
-Alibaba pairs (2,210 FFHQ originals, 26,519 renders, four operations at three levels). Video sets use 32 evenly spaced
+Alibaba pairs (four operations at three levels). Video sets use 32 evenly spaced
 frames per video.
 
 \textbf{Metrics.} Frame-level AUC and video-level AUC (mean of the 32 frame scores), with 95\% video-cluster bootstrap
@@ -276,7 +342,7 @@ smallest values belong to detectors that barely detect Celeb-DF-B deepfakes (Uni
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.8\textwidth]{fig_frontier}
+\includegraphics[width=0.7\textwidth]{fig_frontier}
 \caption{Threshold sweeps. Each grey curve is one published detector over all thresholds, SBI in red. Markers are the
 three-way models at their native rule; the shaded box under a marker is where a binary detector would have to reach to
 dominate it. (a) FF++ c23 test, beautification applied to the same frames. (b) Celeb-DF-B, app beautification. No curve
@@ -286,6 +352,18 @@ enters a box.}
 
 \section{Results}
 \label{sec:results}
+\subsection{Training, validation and test accuracy}
+On FF++, macro-F1 falls from 91.8 on training frames to 87.2 on validation and 82.4 on test for \ours{} (91.4, 81.9 and
+81.0 for \ours{}-lite; Table~\ref{tab:splits}). Most of the fall is on genuine frames, whose recall drops from 94.2 to
+78.0; on test, 13.2\% of them go to \textsc{filter} and 8.8\% to \textsc{fake}. Fake and filter recall stay within 2.1
+points of training, and part-level forgeries fall by 2.5 points over the three test editors, one of which (SDXL) training
+never saw. Renders of
+the training services are recognised on held-out bases as on training bases (100\%), and 82.3\% of the unseen service's
+renders go to \textsc{filter} (63.8\% for \ours{}-lite). Untouched commercial originals behave differently: \ours{}
+keeps 59.5\% of its training originals \textsc{real}, close to the 55.5\% on validation and 57.9\% on test. Its loss of
+specificity (Sec.~\ref{sec:ali}) is present on images it was trained on, so it is not a failure to generalise;
+\ours{}-lite keeps 89.6\% of its training originals \textsc{real}. Curves and confusion matrices are in the supplement.
+
 \subsection{Threshold sweeps}
 On the FF++ corpus, keeping MISS at or below 5\% makes the published detectors accuse between 14.5\% (F3Net) and 92.4\%
 (NPR) of beautified genuine faces (Table~\ref{tab:main}, Fig.~\ref{fig:frontier}). \ours{} accuses 4.0\% and misses
@@ -298,8 +376,7 @@ fake class contains only self-blends is dominated by six of twelve detectors on 
 We fix each binary detector at 5\% FPR on untreated Celeb-DF-B genuine frames and compare the share of deepfakes called
 real before and after beautification ($\Delta$MISS in Table~\ref{tab:main}). The share rises by 3.4 to 35.5\,pp for the
 eleven detectors that separate untreated Celeb-DF-B deepfakes above chance, all with intervals above zero: SBI from
-44.3\% to 79.8\%, Effort from 27.8\% to 51.4\%, Forensics Adapter from 31.1\% to 46.5\%. UnivFD and NPR move by less than
-2\,pp, but their untreated AUC is 0.65 and 0.50. Celeb-DF-B re-encodes every treated video, and its compression-only
+44.3\% to 79.8\%, Effort from 27.8\% to 51.4\%, Forensics Adapter from 31.1\% to 46.5\%. Celeb-DF-B re-encodes every treated video, and its compression-only
 videos separate the two causes. Re-encoding alone raises the escape of SBI by 13.7\,pp, leaving 21.8\,pp for
 beautification; the remainder is 11.0\,pp for Effort and 15.3\,pp for Forensics Adapter. \ours{} rises by 2.9\,pp
 overall and by 3.4\,pp under re-encoding alone, so beautification adds nothing measurable; \ours{}-lite adds 0.9\,pp.
@@ -312,8 +389,7 @@ official SBI, while the three-way model trained with the same blending changes b
 
 \subsection{Blur}
 On 300 genuine FF++ test frames, a Gaussian blur with $\sigma=1.5$ makes SBI call 67\% of them fake, Xception 53\%,
-EfficientNet-B4 57\% and UCF 42\%, and our FF++-only three-way model 91--95\%. JPEG compression at quality 30 changes
-none of these by more than 5\,pp. Self-blending softens one side of the blend, and a detector trained on it learns that a
+EfficientNet-B4 57\% and UCF 42\%, and our FF++-only three-way model 91--95\%. Self-blending softens one side of the blend, and a detector trained on it learns that a
 soft face is a forged one. Celeb-DF genuine frames are softer than FF++ frames at the same crop size, and the FF++-only
 model calls 43--51\% of untreated Celeb-DF-B genuine frames fake. Degrading the three items of a triplet together reduces
 blurred genuine frames called fake to 10\% and the untreated Celeb-DF-B accusation to 28\%. \ours{} calls 16.9\% of
@@ -330,20 +406,29 @@ own original (50 means no signal). Native argmax rule. All other variants are in
 \footnotesize
 \begin{adjustbox}{max width=\textwidth}\input{tables/tab_alipair.tex}\end{adjustbox}
 \end{table*}
-\begin{figure}[t]
+\begin{table*}[t]
 \centering
-\includegraphics[width=\columnwidth]{fig_accuse}
-\caption{Retouched genuine faces from the unseen service called \emph{fake}, each detector at the threshold that calls 5\%
-of the untouched originals fake (chosen on the test originals, which favours the binary detectors). Dark: strongest
-smoothing; light: all operations and levels. Red: SBI and the two CLIP-based detectors.}
-\label{fig:accuse}
-\end{figure}
-Table~\ref{tab:alipair} and Fig.~\ref{fig:accuse} use the Alibaba service, which applies one operation per render.
+\caption{Explanations on held-out part-level forgeries (FF++ test frames, detected items only). IoU$_7$: IoU with the
+exact footprint on a 7$\times$7 grid. Flip: share of items that leave \emph{fake} when the named region, of the same
+area as the footprint, is restored to the original. Ceil.: the same for the true footprint. Compl.: the same for the
+complement. SDXL was never used in training. Full table in the supplement.}
+\label{tab:cgd_explain}
+\footnotesize
+\begin{adjustbox}{max width=\textwidth}\input{tables/tab_cgd_explain.tex}\end{adjustbox}
+\end{table*}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.62\textwidth]{fig_evidence}
+\caption{Held-out part-level forgeries: input, exact footprint, evidence map with the three-way decision, Score-CAM on the
+same backbone without the head, and the result of restoring the named region to the original.}
+\label{fig:evidence}
+\end{figure*}
+Table~\ref{tab:alipair} uses the Alibaba service, which applies one operation per render.
 Three-way models trained on FF++ alone separate retouched from untouched faces at chance (balanced accuracy 48--55\%
 for all six variants). They move originals away from \textsc{real} and call commercial smoothing fake, up to 86\% of
 faces at the strongest level. The eleven published detectors trained on FF++ do the same. At a threshold that calls 5\% of the originals fake,
 chosen on these originals, they call 9.5--14.8\% of retouched faces and 36--63\% of the most strongly smoothed ones
-fake.
+fake (per-detector rates in the supplement).
 
 \ours{} calls 0.1\% of retouched faces fake, and at the same 5\% threshold 2.7\% of them and 1.4\% of the most strongly
 smoothed ones. It sends 82.3\% of retouched faces to \textsc{filter} (levels 30/60/90: eye enlargement 70/79/85\%,
@@ -370,23 +455,6 @@ as are the genuine (74.2\%) and filter (76.4\%) recall of \ours{}-lite.
 
 \subsection{Localisation of part-level forgeries}
 \label{sec:cgd}
-\begin{table*}[t]
-\centering
-\caption{Explanations on held-out part-level forgeries (FF++ test frames, detected items only). IoU$_7$: IoU with the
-exact footprint on a 7$\times$7 grid. Flip: share of items that leave \emph{fake} when the named region, of the same
-area as the footprint, is restored to the original. Ceil.: the same for the true footprint. Compl.: the same for the
-complement. SDXL was never used in training. Full table in the supplement.}
-\label{tab:cgd_explain}
-\footnotesize
-\begin{adjustbox}{max width=\textwidth}\input{tables/tab_cgd_explain.tex}\end{adjustbox}
-\end{table*}
-\begin{figure*}[t]
-\centering
-\includegraphics[width=0.72\textwidth]{fig_evidence}
-\caption{Held-out part-level forgeries: input, exact footprint, evidence map with the three-way decision, Score-CAM on the
-same backbone without the head, and the result of restoring the named region to the original.}
-\label{fig:evidence}
-\end{figure*}
 On the three held-out editors the evidence head of \ours{} reaches IoU$_7$ 0.83--0.85 with the true footprint, and
 restoring the region it names removes 90.9--91.7\% of its detections, against 91.2--91.9\% when the true footprint is
 restored (Table~\ref{tab:cgd_explain}, Fig.~\ref{fig:evidence}). Restoring the complement removes at most 0.5\%, a centred region 42--52\% and a
@@ -402,14 +470,12 @@ method and a random region 14--21\%.
 \subsection{Contribution of each training signal}
 The supplement varies one signal at a time. The renders alone already stop the accusation of commercial retouching
 (0.6\% fake) but send single operations other than smoothing to \textsc{filter} only 10--46\% of the time (balanced
-66.1\%). On held-out Tencent and Megvii bases a whitening component with a lightness change near 20 is then called real
-90\% of the time, because in a four-operation render the texture change alone identifies the class. The single-operation
+66.1\%). The single-operation
 components raise balanced accuracy to 70.9--72.7\% over two seeds. The CLIP backbone adds 0.05 frame AUC on Celeb-DF-v2
 at equal data (73.4--74.6\% balanced over two seeds), and the part-level forgeries add the evidence head and 0.005--0.010 on
 Celeb-DF-v2. On the CLIP backbone they also raise the share of held-out training-service originals called
 \textsc{filter} from 25--28\% to 44\% and lower balanced accuracy by 3--4\,pp; on EfficientNet-B4 the share moves from
-17\% to 20\%. A RepViT-M0.9 version with the renders
-(4.7\,M parameters) runs in 9.7\,ms on one CPU thread as an 18\,MB TFLite file.
+17\% to 20\%.
 
 % ----------------------------------------------------------------------------
 \section{Limitations}
@@ -419,16 +485,15 @@ service's originals to \textsc{filter}. Per-operation recall is below the publis
 enlargement and lifting, and edit magnitudes could not be estimated. The test service applies one operation per image,
 so combined retouching is only tested on the training services. App filters are tested through four Celeb-DF-B presets,
 and \ours{}-lite accuses 40\% of untreated Celeb-DF-B genuine frames. The evidence head localises part-level forgeries
-and filters, not whole-face swaps. Our reproduction of the SBI recipe reached 0.735 on Celeb-DF-v2 against 0.817 for the
-released weights, so every SBI comparison uses the released checkpoint. \ours{} and \ours{}-lite are single training
+and filters, not whole-face swaps. \ours{} and \ours{}-lite are single training
 runs; two seeds of the CLIP model without part-level forgeries agree within 0.005 AUC.
 
 \section{Conclusion}
 Beautification puts binary face-forgery detectors in a trade-off that no threshold resolves: on a paired corpus and on
 Celeb-DF-B, each of thirteen published detectors either accuses beautified genuine faces or lets beautified deepfakes
 through. A filter class removes the trade-off when it is trained with real forgeries, with degradation shared by all
-classes and with commercial renders split into single operations. A CLIP-based detector trained this way matches the
-strongest published detectors on cross-dataset forgery detection, is not measurably affected by beautification, and
+classes and with commercial renders split into single operations. A CLIP-based detector trained this way matches Effort
+and Forensics Adapter on cross-dataset forgery detection, is not measurably affected by beautification, and
 names the regions of part-level forgeries its decision depends on. Recognising light retouching from an unseen service is the part
 that remains open.
 

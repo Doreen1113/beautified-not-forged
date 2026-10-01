@@ -59,7 +59,7 @@ def escape_split():
     ax.set_xlabel("extra deepfakes called real, caused by beautification (pp)")
     ax.tick_params(axis="y", length=0)
     save(fig, "escape_split")
-    return {NAMES[k]: (round(t, 1), round(c, 1), round(b, 1)) for k, t, c, b in zip(keys, total, comp, beauty)}
+    return {NAMES[k]: (round(t + 1e-9, 1), round(c + 1e-9, 1), round(b + 1e-9, 1)) for k, t, c, b in zip(keys, total, comp, beauty)}   # half-up, as the bar labels
 
 
 # ---------------------------------------------------------------- blur: genuine frames called fake

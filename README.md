@@ -7,8 +7,9 @@
 
 [![Paper](https://img.shields.io/badge/paper-draft%20PDF-b64342)](docs/paper_v2/main_8page.pdf)
 [![Supplement](https://img.shields.io/badge/supplement-PDF-8a8a8a)](docs/paper_v2/supplement_latest.pdf)
-[![Slides](https://img.shields.io/badge/slides-2026--09--30-0f4d92)](docs/meeting_20260930/meeting_20260930_v3.pptx)
+[![Slides](https://img.shields.io/badge/slides-2026--09--30-0f4d92)](docs/meeting_20260930/meeting_20260930_v4.pptx)
 [![Demo](https://img.shields.io/badge/live%20demo-try%20it%20in%20the%20browser-2f7d32)](https://doreen1113.github.io/beautified-not-forged/docs/demo/)
+[![Video](https://img.shields.io/badge/video-2.5%20min%20introduction-0f4d92)](docs/demo/video/intro.mp4)
 
 <img src="assets/readme/teaser.png" width="92%">
 
@@ -23,7 +24,7 @@ Our three-way detector calls the first **filter** and the second **fake**.*
 
 Most face photos are beautified by a camera app or a retouching service before anyone checks them. A real / fake
 detector has to put a beautified genuine face on one side or the other, and either choice is an error. We add a third
-label, **filter** (identity kept, appearance edited), and train it with supervision from paired originals:
+label, **filter** (same person at the same moment, only the appearance of their face edited), and train it with supervision from paired originals:
 renders of two commercial retouching services split into single-operation components, and part-level forgeries with
 exact edit regions. One CLIP ViT-L/14 + LoRA model then
 
@@ -52,8 +53,11 @@ the unedited original removes the <i>fake</i> decision.</sub></td>
 </tr>
 </table>
 
+**[Introduction video (2 min 29 s)](docs/demo/video/intro.mp4)**: problem, method, a captioned live demo, results and
+limitations.
+
 **[Live demo](https://doreen1113.github.io/beautified-not-forged/docs/demo/)** ·
-**[walkthrough video (54 s)](docs/demo/video/demo_walkthrough.mp4)**: Ours-lite (EfficientNet-B4, same training signal
+[demo video with captions (76 s)](docs/demo/video/demo_captioned.mp4): Ours-lite (EfficientNet-B4, same training signal
 and heads as the main model) runs in the browser, about 0.5 s per photo, nothing uploaded. It shows the label, the
 operation scores, the evidence map, the evidence per facial part and the sentence; its part names match the Python
 implementation on 128/128 test crops. The page has eight example faces with their known answers and the model's accuracy
@@ -66,8 +70,10 @@ cd docs/demo && python -m http.server 8000     # then open http://localhost:8000
 
 <img src="assets/readme/overview.png" width="100%">
 
-- **Three labels.** *real* (unedited), *fake* (identity swapped, reenacted or synthesised), *filter* (identity kept,
-  appearance edited). A beautified forgery is still *fake*.
+- **Three labels, defined by what an edit changes.** *real*: the capture as recorded. *filter*: still the captured
+  person at the captured moment, only the appearance of their own face changed (smoothing, whitening, eye enlargement,
+  slimming, colour grading), whatever tool did it. *fake*: shows a person or an action that was not captured (face swap,
+  reenactment, synthesis, a facial part from another person or generated). A beautified forgery is still *fake*.
 - **Supervision from paired originals.** Every edited training image has a pixel-aligned original, so both its label
   and its exact edit region are known.
 - **Render decomposition.** Commercial services apply four edits at once; a model trained on their renders learns only

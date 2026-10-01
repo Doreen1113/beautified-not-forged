@@ -1,0 +1,22 @@
+\documentclass[border=4pt]{standalone}
+\usepackage{fontspec}\setmainfont{texgyretermes}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]
+\usepackage{booktabs,colortbl,xcolor,amssymb,array}
+\definecolor{pass}{HTML}{DCEFD9}\definecolor{fail}{HTML}{F6D5D2}
+\definecolor{cr}{HTML}{2F7D4F}\definecolor{cf}{HTML}{B64342}\definecolor{cl}{HTML}{A8781A}
+\newcommand{\ours}{\textsc{Ours}}
+\begin{document}\Large
+\begin{tabular}{>{\raggedright\arraybackslash}p{8.6cm}l>{\raggedright\arraybackslash}p{5.6cm}}
+\toprule
+Case & Label & In our data \\
+\midrule
+Camera processing, JPEG, video coding & \textcolor{cr}{\textbf{real}} & all sets \\[3pt]
+Make-up worn at capture & \textcolor{cr}{\textbf{real}} & incidental \\[3pt]
+Beautification by an app or a service, neural or not & \textcolor{cl}{\textbf{filter}} & scripted, 3 services, app presets \\[3pt]
+Reenactment by another person's performance & \textcolor{cf}{\textbf{fake}} & Face2Face, NeuralTextures \\[3pt]
+A part from another face, or inpainted & \textcolor{cf}{\textbf{fake}} & part-level forgeries \\[3pt]
+Face swap & \textcolor{cf}{\textbf{fake}} & FF++, Celeb-DF, DFD \\[3pt]
+Beautified forgery & \textcolor{cf}{\textbf{fake}} & FF++, Celeb-DF-B \\[3pt]
+Expression editing; synthesised face & \textcolor{cf}{\textbf{fake}} & \cellcolor{fail}not tested \\
+\bottomrule
+\end{tabular}
+\end{document}
