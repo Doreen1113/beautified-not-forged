@@ -1,0 +1,41 @@
+% fig_protocol (column width, 3.5 in): measurement protocol. Source: docs/paper_v2/main_v6b.tex Sec. "Problem and Evaluation
+% Rule" (sources, rule, deployable threshold, threshold-free paired share) and the 17 detectors of the measurement section.
+\documentclass[tikz,border=1.5pt]{standalone}
+\input{style}
+\newcommand{\tagc}[2]{{\setlength{\fboxsep}{0.9pt}\colorbox{#1}{\fontsize{5.2}{5.6}\selectfont\bfseries\textcolor{white}{#2}}}}
+\newcommand{\fa}{\tagc{errc}{FA}}
+\newcommand{\miss}{\tagc{amber}{MISS}}
+\newcommand{\pair}{\tagc{ours}{paired}}
+\newcommand{\src}[6]{% name, x, y, title, body, tags
+  \node[plain, anchor=north west, minimum width=4.25cm, minimum height=0.86cm, align=left, text width=4.0cm, font=\fontsize{5.9}{6.9}\selectfont] (#1) at (#2,#3)
+  {\textbf{#4}\\#5};\node[anchor=south east, inner sep=2.2pt] at (#1.south east) {#6};}
+\begin{document}
+\hyphenpenalty=10000\exhyphenpenalty=10000
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[anchor=west, font=\smallfont\bfseries, inner sep=0pt] at (0,0.22) {six beautification sources};
+\src{a}{0}{0}{Celeb-DF-B app presets}{232 videos per condition, 4 presets; genuine and deepfake}{\fa\,\miss}
+\src{b}{4.45}{0}{Celeb-DF-v2 + 11 colour filters}{516 test videos; filters never used in\\training; development source}{\fa\,\miss}
+\src{c}{0}{-0.98}{DFD + 16 filters, second library}{332 videos; built after every method decision}{\fa\,\miss}
+\src{d}{4.45}{-0.98}{Commercial retouching}{2,210 FFHQ originals and their renders, 4 operations × 3 levels}{\fa\,\pair}
+\src{e}{0}{-1.96}{Instagram AR filters}{FairBeauty 2,927 and B-LFW 3,000 photo pairs}{\fa\,\pair}
+\src{f}{4.45}{-1.96}{Scripted smoothing}{4,016 Celeb-DF-v2 frames, whole-crop and skin-only, both classes}{\fa\,\miss}
+
+\node[net, anchor=north, minimum width=8.7cm, text width=8.4cm, align=center, font=\fontsize{5.9}{7}\selectfont] (det) at (4.35,-3.3)
+  {\textbf{17 published detectors}, each with its own released weights and preprocessing\\[0.5pt]
+   \textcolor{muted}{12 CNN: Xception, EfficientNet-B4, F3Net, SPSL, UCF, RECCE, CORE, SRM, SBI, NPR, CADDM, LAA-Net}\\[-0.5pt]
+   \textcolor{muted}{5 CLIP ViT-L/14: UnivFD, Effort, Forensics Adapter, GenD, DFD-HR}\quad (+ ours)};
+\draw[flow] (4.35,-2.92) -- node[right, note, inner sep=2pt]{every source × every detector} (det.north);
+
+\node[code, anchor=north, minimum width=8.7cm, text width=8.4cm, align=left, font=\fontsize{5.9}{7}\selectfont] (rule) at ([yshift=-0.38cm]det.south)
+  {\textbf{one rule} on $P(\text{fake})$: threshold $t$ = 95th percentile on each source's \emph{untreated} genuine faces (5\,\% FPR); both errors counted\\[1pt]
+   \textcolor{muted}{also: one deployable $t$ per detector from 530 FF++ validation genuine frames; and the threshold-free paired share, the fraction of pairs scored above their own original}};
+\draw[flow] (det.south) -- (rule.north);
+
+\node[anchor=north, draw=errc, fill=fFall, rounded corners=2.2pt, minimum width=4.25cm, text width=4.0cm, align=center, font=\fontsize{5.9}{7}\selectfont, inner sep=2.4pt] (fa)
+  at ([xshift=-2.225cm, yshift=-0.42cm]rule.south) {\textcolor{errc}{\textbf{false alarm (FA)}}\\ beautified genuine face called fake};
+\node[anchor=north, draw=amber, fill=fLLM, rounded corners=2.2pt, minimum width=4.25cm, text width=4.0cm, align=center, font=\fontsize{5.9}{7}\selectfont, inner sep=2.4pt] (ms)
+  at ([xshift=2.225cm, yshift=-0.42cm]rule.south) {\textcolor{amber!85!black}{\textbf{miss (MISS)}}\\ beautified forgery not called fake};
+\draw[errflow, line width=0.8pt] (rule.south -| fa.north) -- (fa.north);
+\draw[->, draw=amber, line width=0.8pt] (rule.south -| ms.north) -- (ms.north);
+\end{tikzpicture}
+\end{document}

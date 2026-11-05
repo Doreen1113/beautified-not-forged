@@ -1,0 +1,44 @@
+\begin{tabular}{@{}l ccc cc@{}}
+\toprule
+ & \multicolumn{3}{c}{Smoothing-90 renders} & \multicolumn{2}{c}{all renders} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-6}
+Detector & above own original (\%) & median $P(\text{fake})$ orig.\ $\rightarrow$ render & above 5\%-FPR thr.\ (\%) & above 5\%-FPR thr.\ (\%) & AUROC render vs orig. \\
+\midrule
+Xception~\cite{xception} & 95.2 & 0.291 $\rightarrow$ 0.944 & 51.6 & 12.2 & 0.563 \\
+EfficientNet-B4~\cite{efficientnet} & 93.7 & 0.316 $\rightarrow$ 0.964 & 36.3 & 9.4 & 0.545 \\
+F3Net~\cite{f3net} & 97.8 & 0.131 $\rightarrow$ 0.974 & 50.6 & 11.8 & 0.568 \\
+SPSL~\cite{spsl} & 97.3 & 0.463 $\rightarrow$ 0.963 & 51.2 & 12.1 & 0.567 \\
+UCF~\cite{ucf} & 95.4 & 0.031 $\rightarrow$ 0.984 & 41.4 & 11.2 & 0.575 \\
+RECCE~\cite{recce} & 96.5 & 0.120 $\rightarrow$ 0.944 & 36.8 & 9.5 & 0.558 \\
+CORE~\cite{core} & 96.6 & 0.249 $\rightarrow$ 0.947 & 54.8 & 12.4 & 0.569 \\
+SRM~\cite{srm} & 99.3 & 0.461 $\rightarrow$ 0.668 & 62.8 & 13.9 & 0.570 \\
+SBI~\cite{sbi} & 96.2 & 0.208 $\rightarrow$ 0.991 & 37.3 & 11.3 & 0.582 \\
+UnivFD$^\ddagger$~\cite{univfd} & 90.4 & 0.005 $\rightarrow$ 0.019 & 16.6 & 7.3 & 0.526 \\
+NPR$^\ddagger$~\cite{npr} & n/a (saturated) & n/a & n/a & n/a & n/a \\
+Effort~\cite{effort} & 95.6 & 0.319 $\rightarrow$ 0.595 & 43.2 & 14.8 & 0.599 \\
+Forensics Adapter~\cite{forensicsadapter} & 93.3 & 0.058 $\rightarrow$ 0.354 & 39.7 & 10.2 & 0.541 \\
+GenD~\cite{gend2026} & 98.5 & 0.228 $\rightarrow$ 0.921 & 68.7 & 16.8 & 0.596 \\
+DFD-HR~\cite{dfdhr2026} & 99.0 & 0.210 $\rightarrow$ 0.711 & 64.9 & 15.7 & 0.554 \\
+CADDM~\cite{caddm} & 60.9 & 0.538 $\rightarrow$ 0.745 & 6.3 & 5.6 & 0.523 \\
+LAA-Net~\cite{laanet} & 89.2 & 0.234 $\rightarrow$ 0.969 & 17.2 & 7.6 & 0.578 \\
+\midrule
+\ours{}, three-way, full data & 32.5 & 0.002 $\rightarrow$ 0.001 & 8.6 & 4.7 & 0.371 \\
+\ours{}, symmetric-view variant & 30.0 & 0.003 $\rightarrow$ 0.001 & 8.1 & 4.8 & 0.375 \\
+\ours{}, binary control & 70.5 & 0.000 $\rightarrow$ 0.001 & 9.1 & 5.2 & 0.490 \\
+\midrule
+\multicolumn{6}{@{}l}{\ours{}, FF++ only, exposure arms (seed 1)} \\
+\quad P0 & 98.5 & 0.049 $\rightarrow$ 0.968 & 54.2 & 13.5 & 0.576 \\
+\quad P2 & 84.1 & 0.009 $\rightarrow$ 0.116 & 11.7 & 5.9 & 0.528 \\
+\quad P2 no smoothing & 98.6 & 0.017 $\rightarrow$ 0.988 & 55.3 & 12.7 & 0.553 \\
+\quad P2 smoothing only & 27.3 & 0.053 $\rightarrow$ 0.020 & 2.3 & 3.7 & 0.449 \\
+\quad P1 & 43.5 & 0.004 $\rightarrow$ 0.004 & 3.7 & 5.3 & 0.500 \\
+\quad P1 smoothing only & 2.6 & 0.074 $\rightarrow$ 0.000 & 0.7 & 4.9 & 0.437 \\
+\quad P2 symmetric smoothing & 53.7 & 0.017 $\rightarrow$ 0.022 & 5.9 & 4.9 & 0.488 \\
+\midrule
+\multicolumn{6}{@{}l}{\ours{} pipeline, FF++ only, Effort's tuning scheme (seed 1)} \\
+\quad Effort scheme, no beautified views & 99.1 & 0.028 $\rightarrow$ 0.963 & 56.9 & 13.3 & 0.587 \\
+\quad Effort scheme, symmetric smoothing & 88.4 & 0.029 $\rightarrow$ 0.095 & 14.5 & 7.2 & 0.541 \\
+\quad released Effort fine-tuned, no beautified views & 98.5 & 0.091 $\rightarrow$ 0.306 & 55.3 & 14.4 & 0.564 \\
+\quad released Effort fine-tuned, symmetric smoothing & 96.6 & 0.080 $\rightarrow$ 0.174 & 39.9 & 11.5 & 0.553 \\
+\bottomrule
+\end{tabular}

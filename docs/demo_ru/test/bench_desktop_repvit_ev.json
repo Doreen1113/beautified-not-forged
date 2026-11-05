@@ -1,0 +1,87 @@
+{
+ "date": "2026-11-01T14:33:44.686Z",
+ "model": "repvit_ev",
+ "model_file": "models/ru4e_repvit.onnx",
+ "model_download_ms": 43,
+ "model_session_create_ms": 477,
+ "images": 4,
+ "timed_runs": 40,
+ "warmup_runs": 4,
+ "wasm_threads": 1,
+ "warmup_labels": [
+  "real",
+  "fake",
+  "filter",
+  "fake"
+ ],
+ "summary": {
+  "landmarks": {
+   "median_ms": 19.7,
+   "p90_ms": 23.9
+  },
+  "preprocess": {
+   "median_ms": 6,
+   "p90_ms": 12
+  },
+  "inference": {
+   "median_ms": 64.8,
+   "p90_ms": 69.6
+  },
+  "evidence": {
+   "median_ms": 60.2,
+   "p90_ms": 69.1
+  },
+  "total": {
+   "median_ms": 151.8,
+   "p90_ms": 172.7
+  }
+ },
+ "device": {
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+  "hardwareConcurrency": 16,
+  "deviceMemoryGB": 32,
+  "screen": "412x1400@2"
+ },
+ "raw_total_ms": [
+  137.9,
+  162.5,
+  180.3,
+  150.5,
+  147.3,
+  182.8,
+  170.2,
+  141.9,
+  134.9,
+  153.8,
+  166.3,
+  141.9,
+  135.3,
+  159.8,
+  165.8,
+  145.2,
+  134.9,
+  159,
+  173.2,
+  141.3,
+  133.9,
+  156.6,
+  172.7,
+  139.4,
+  133.6,
+  156.9,
+  170.3,
+  146.7,
+  139,
+  154,
+  170.1,
+  143,
+  140.1,
+  153.1,
+  165.2,
+  144.4,
+  133.2,
+  157.5,
+  172.6,
+  142.3
+ ]
+}

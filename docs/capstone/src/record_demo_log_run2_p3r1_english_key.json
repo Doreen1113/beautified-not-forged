@@ -1,0 +1,214 @@
+{
+ "lang": "zh",
+ "nl_server_reachable": true,
+ "http_port": 64674,
+ "load_state": "ready",
+ "ex3": "範例 3 的答案：商用美顏：眼睛放大（訓練時沒看過的修圖服務）。模型判斷相符。\n\n是否偽造\n未偵測到偽造\n偽造分數 0.00（模型原始輸出，不是校準過的機率）\n美顏\n明顯修圖\n美顏分數 0.97\n\n模型的三類判定：美顏修圖（真實 0.03・偽造 0.00・美顏 0.97）\n\n為什麼這樣判斷\n模板\n\n模型判定為美顏修圖（分數 0.97）。\n證據集中在眼睛（證據平均 0.95）。\n達到門檻 0.5 的操作：眼睛放大（0.86）。\n分數是模型原始輸出，不是校準過的機率。\n\n可能的修圖操作\n大眼\n0.86\n瘦臉\n0.05\n美白\n0.42\n磨皮\n0.05\n\n分數達到中線（0.5）視為有這項操作。單獨的大眼、瘦臉、美白常常抓不到。\n\n想知道更多\n為什麼判定為假？\n哪裡被改了？\n有沒有美顏？\n這個分數代表什麼？\n可以確定嗎？\n和原圖比差在哪？\n是誰？\n為什麼不是真的？\n\n其餘四題需要在「設定」開啟伺服器模式。\n\n數值與規則",
+ "ex2": "範例 2 的答案：局部偽造：嘴巴換成了另一個人的。模型判斷相符。\n\n是否偽造\n偽造\n偽造分數 1.00（模型原始輸出，不是校準過的機率）\n美顏\n未偵測到\n美顏分數 0.00\n\n模型的三類判定：偽造（真實 0.00・偽造 1.00・美顏 0.00）\n\n為什麼這樣判斷\n模板\n\n模型判定為偽造（分數 1.00）。\n證據集中在嘴巴（證據平均 0.98）。\n分數是模型原始輸出，不是校準過的機率。\n\n想知道更多\n為什麼判定為假？\n哪裡被改了？\n有沒有美顏？\n這個分數代表什麼？\n可以確定嗎？\n和原圖比差在哪？\n是誰？\n為什麼不是真的？\n\n其餘四題需要在「設定」開啟伺服器模式。\n\n數值與規則",
+ "server_badge": "LLM 撰寫文字，數字與分數說明由程式加上，已通過檢查",
+ "server_text": "判定是偽造（判定分數 1.00）。證據集中在嘴巴。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。",
+ "fixed_answer": "可以確定嗎？\n\n無法確定。分數是模型的原始輸出，不是校準過的機率，判定也可能出錯。\n\n固定回答",
+ "llm_question_index": 0,
+ "llm_answer": "為什麼判定為假？\n\n模型的判定是 fake，證據集中在嘴巴。\n\nLLM 生成，已通過自動檢查",
+ "nl_calls": [
+  {
+   "url": "http://127.0.0.1:8787/explain",
+   "req": {
+    "facts": {
+     "decision": "fake",
+     "probabilities": {
+      "real": 0,
+      "fake": 1,
+      "filter": 0
+     },
+     "operations": {
+      "eye_enlargement": 0.36,
+      "face_slimming": 0.24,
+      "skin_brightening": 0.17,
+      "skin_smoothing": 0.15
+     },
+     "operation_threshold": 0.5,
+     "calibration_note": "scores are raw model outputs, not calibrated probabilities",
+     "evidence_mean_per_part": {
+      "eyes": 0.01,
+      "nose": 0.41,
+      "mouth": 0.98,
+      "skin": 0.27,
+      "contour": 0.04
+     },
+     "named_parts": [
+      "mouth"
+     ],
+     "whole_face": false,
+     "operations_raw": {
+      "eye_enlargement": 0.3593991925983788,
+      "face_slimming": 0.2384016779065078,
+      "skin_brightening": 0.16751047959489085,
+      "skin_smoothing": 0.1474832688707339
+     }
+    },
+    "style": "general",
+    "lang": "zh",
+    "prompt": "p3"
+   },
+   "res": {
+    "text": "判定是偽造（判定分數 1.00）。證據集中在嘴巴。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。",
+    "source": "llm",
+    "gate": {
+     "passed": true,
+     "stage": "greedy",
+     "H1_strict": false,
+     "H2": false,
+     "H3": false,
+     "H4": false,
+     "H5": false,
+     "H6": false,
+     "G7": false,
+     "facts": false,
+     "G8": false,
+     "G9": false,
+     "why": [],
+     "llm_part": {
+      "H1": false,
+      "H2": false,
+      "H3": false,
+      "H4": false,
+      "H5": false,
+      "H6": false,
+      "G7": false,
+      "G8": false,
+      "G9": false,
+      "G10": false,
+      "facts": false
+     }
+    },
+    "llm_text": "判定是偽造。證據集中在嘴巴。",
+    "code_added": {
+     "parentheticals": [
+      "判定分數 1.00"
+     ],
+     "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+    },
+    "attempts": [
+     {
+      "stage": "greedy",
+      "passed": true,
+      "why": [],
+      "llm_text": "判定是偽造。證據集中在嘴巴。"
+     }
+    ],
+    "ms": 1039.5,
+    "lang": "zh",
+    "prompt": "p3r1"
+   }
+  },
+  {
+   "url": "http://127.0.0.1:8787/qa",
+   "req": {
+    "facts": {
+     "decision": "fake",
+     "probabilities": {
+      "real": 0,
+      "fake": 1,
+      "filter": 0
+     },
+     "operations": {
+      "eye_enlargement": 0.36,
+      "face_slimming": 0.24,
+      "skin_brightening": 0.17,
+      "skin_smoothing": 0.15
+     },
+     "operation_threshold": 0.5,
+     "calibration_note": "scores are raw model outputs, not calibrated probabilities",
+     "evidence_mean_per_part": {
+      "eyes": 0.01,
+      "nose": 0.41,
+      "mouth": 0.98,
+      "skin": 0.27,
+      "contour": 0.04
+     },
+     "named_parts": [
+      "mouth"
+     ],
+     "whole_face": false,
+     "operations_raw": {
+      "eye_enlargement": 0.3593991925983788,
+      "face_slimming": 0.2384016779065078,
+      "skin_brightening": 0.16751047959489085,
+      "skin_smoothing": 0.1474832688707339
+     }
+    },
+    "question_id": 0,
+    "lang": "zh",
+    "prompt": "p3"
+   },
+   "res": {
+    "text": "模型的判定是 fake，證據集中在嘴巴。",
+    "source": "llm",
+    "gate": {
+     "passed": true,
+     "stage": "greedy",
+     "H1_strict": false,
+     "H2": false,
+     "H3": false,
+     "H4": false,
+     "H5": false,
+     "H6": false,
+     "G7": false,
+     "facts": false,
+     "G8": false,
+     "G9": false,
+     "why": [],
+     "llm_part": {
+      "H1": false,
+      "H2": false,
+      "H3": false,
+      "H4": false,
+      "H5": false,
+      "H6": false,
+      "G7": false,
+      "G8": false,
+      "G9": false,
+      "G10": false,
+      "facts": false
+     }
+    },
+    "llm_text": "模型的判定是 fake，證據集中在嘴巴。",
+    "code_added": {
+     "parentheticals": [],
+     "calibration": null
+    },
+    "attempts": [
+     {
+      "stage": "greedy",
+      "passed": true,
+      "why": [],
+      "llm_text": "模型的判定是 fake，證據集中在嘴巴。"
+     }
+    ],
+    "ms": 793.3,
+    "lang": "zh",
+    "prompt": "p3r1",
+    "question": "為什麼判定為假？"
+   }
+  }
+ ],
+ "step7_fixed_question": false,
+ "server_caption": "5. 伺服器模式（範例 2）：LLM 寫文字，分數與校準句由程式加上，通過查核",
+ "llmq_caption": "7. 追問「{q}」：LLM 回答，通過查核",
+ "server_source": "llm",
+ "llmq_source": "llm",
+ "server_prompt": "p3r1",
+ "server_llm_text": "判定是偽造。證據集中在嘴巴。",
+ "server_code_added": {
+  "parentheticals": [
+   "判定分數 1.00"
+  ],
+  "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+ },
+ "llmq_prompt": "p3r1",
+ "llmq_llm_text": "模型的判定是 fake，證據集中在嘴巴。",
+ "frames_captured": 97,
+ "frames_written": 23,
+ "seconds": 52.01
+}

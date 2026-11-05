@@ -1,0 +1,8416 @@
+{
+ "sbi": {
+  "auc_untreated": 0.8753,
+  "auc_beautified": 0.7518,
+  "auc_compressed": 0.8612,
+  "miss0": 44.34,
+  "miss_b": 79.83,
+  "miss_c": 58.06,
+  "fa_b": 1.79,
+  "fa_c": 2.41,
+  "d_miss": 35.5,
+  "d_miss_c": 13.72,
+  "d_miss_beauty_only": 21.78,
+  "ci": {
+   "auc_beautified": [
+    0.7183,
+    0.7845
+   ],
+   "d_miss_beauty_only": [
+    17.31,
+    26.08
+   ],
+   "fa_b": [
+    1.14,
+    2.54
+   ],
+   "miss_b": [
+    74.71,
+    84.36
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.0957,
+    -0.0199
+   ],
+   "fadapter": [
+    -0.1142,
+    -0.0414
+   ],
+   "dfdhr": [
+    -0.1228,
+    -0.0501
+   ],
+   "gend": [
+    -0.0923,
+    -0.0182
+   ],
+   "caddm": [
+    -0.0488,
+    0.0312
+   ]
+  },
+  "d_miss_beauty_only_minus": {
+   "effort": [
+    6.3,
+    14.85
+   ],
+   "fadapter": [
+    2.08,
+    11.38
+   ],
+   "dfdhr": [
+    13.84,
+    22.28
+   ],
+   "gend": [
+    5.43,
+    13.95
+   ],
+   "caddm": [
+    20.47,
+    29.3
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 77.5,
+    "fake": 22.5,
+    "filter": 0.0
+   },
+   "real_beautified": {
+    "real": 88.3,
+    "fake": 11.7,
+    "filter": 0.0
+   },
+   "real_compressed": {
+    "real": 84.8,
+    "fake": 15.2,
+    "filter": 0.0
+   },
+   "synthesis": {
+    "real": 19.6,
+    "fake": 80.4,
+    "filter": 0.0
+   },
+   "synthesis_beautified": {
+    "real": 55.9,
+    "fake": 44.1,
+    "filter": 0.0
+   },
+   "synthesis_compressed": {
+    "real": 30.1,
+    "fake": 69.9,
+    "filter": 0.0
+   }
+  }
+ },
+ "effort": {
+  "auc_untreated": 0.9091,
+  "auc_beautified": 0.8073,
+  "auc_compressed": 0.8822,
+  "miss0": 27.75,
+  "miss_b": 51.43,
+  "miss_c": 40.44,
+  "fa_b": 5.38,
+  "fa_c": 3.3,
+  "d_miss": 23.68,
+  "d_miss_c": 12.69,
+  "d_miss_beauty_only": 11.0,
+  "ci": {
+   "auc_beautified": [
+    0.7775,
+    0.8361
+   ],
+   "d_miss_beauty_only": [
+    7.66,
+    14.5
+   ],
+   "fa_b": [
+    3.62,
+    7.5
+   ],
+   "miss_b": [
+    44.86,
+    58.24
+   ]
+  },
+  "auc_beautified_minus": {
+   "fadapter": [
+    -0.0405,
+    -0.0033
+   ],
+   "sbi": [
+    0.0199,
+    0.0957
+   ],
+   "dfdhr": [
+    -0.0549,
+    -0.0061
+   ],
+   "gend": [
+    -0.0235,
+    0.0242
+   ],
+   "caddm": [
+    0.0087,
+    0.082
+   ]
+  },
+  "d_miss_beauty_only_minus": {
+   "fadapter": [
+    -6.52,
+    -1.6
+   ],
+   "sbi": [
+    -14.85,
+    -6.3
+   ],
+   "dfdhr": [
+    5.04,
+    10.0
+   ],
+   "gend": [
+    -3.69,
+    1.87
+   ],
+   "caddm": [
+    9.69,
+    18.55
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 70.9,
+    "fake": 29.1,
+    "filter": 0.0
+   },
+   "real_beautified": {
+    "real": 69.1,
+    "fake": 30.9,
+    "filter": 0.0
+   },
+   "real_compressed": {
+    "real": 75.3,
+    "fake": 24.7,
+    "filter": 0.0
+   },
+   "synthesis": {
+    "real": 10.6,
+    "fake": 89.4,
+    "filter": 0.0
+   },
+   "synthesis_beautified": {
+    "real": 25.3,
+    "fake": 74.7,
+    "filter": 0.0
+   },
+   "synthesis_compressed": {
+    "real": 16.7,
+    "fake": 83.3,
+    "filter": 0.0
+   }
+  }
+ },
+ "fadapter": {
+  "auc_untreated": 0.9087,
+  "auc_beautified": 0.8282,
+  "auc_compressed": 0.894,
+  "miss0": 31.07,
+  "miss_b": 46.54,
+  "miss_c": 31.3,
+  "fa_b": 7.89,
+  "fa_c": 7.76,
+  "d_miss": 15.48,
+  "d_miss_c": 0.23,
+  "d_miss_beauty_only": 15.25,
+  "ci": {
+   "auc_beautified": [
+    0.8005,
+    0.8555
+   ],
+   "d_miss_beauty_only": [
+    11.88,
+    18.56
+   ],
+   "fa_b": [
+    5.85,
+    10.2
+   ],
+   "miss_b": [
+    40.82,
+    52.95
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0033,
+    0.0405
+   ],
+   "sbi": [
+    0.0414,
+    0.1142
+   ],
+   "dfdhr": [
+    -0.0322,
+    0.0124
+   ],
+   "gend": [
+    -0.0019,
+    0.0444
+   ],
+   "caddm": [
+    0.0318,
+    0.1004
+   ]
+  },
+  "d_miss_beauty_only_minus": {
+   "effort": [
+    1.6,
+    6.52
+   ],
+   "sbi": [
+    -11.38,
+    -2.08
+   ],
+   "dfdhr": [
+    8.96,
+    14.05
+   ],
+   "gend": [
+    0.11,
+    6.2
+   ],
+   "caddm": [
+    13.91,
+    22.4
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 81.5,
+    "fake": 18.5,
+    "filter": 0.0
+   },
+   "real_beautified": {
+    "real": 78.2,
+    "fake": 21.8,
+    "filter": 0.0
+   },
+   "real_compressed": {
+    "real": 76.8,
+    "fake": 23.2,
+    "filter": 0.0
+   },
+   "synthesis": {
+    "real": 15.7,
+    "fake": 84.3,
+    "filter": 0.0
+   },
+   "synthesis_beautified": {
+    "real": 28.2,
+    "fake": 71.8,
+    "filter": 0.0
+   },
+   "synthesis_compressed": {
+    "real": 15.2,
+    "fake": 84.8,
+    "filter": 0.0
+   }
+  }
+ },
+ "ucf": {
+  "auc_untreated": 0.8405,
+  "auc_beautified": 0.7767,
+  "auc_compressed": 0.8294,
+  "miss0": 54.7,
+  "miss_b": 67.14,
+  "miss_c": 55.87,
+  "fa_b": 5.74,
+  "fa_c": 5.57,
+  "d_miss": 12.44,
+  "d_miss_c": 1.17,
+  "d_miss_beauty_only": 11.27,
+  "ci": {
+   "auc_beautified": [
+    0.7455,
+    0.8079
+   ],
+   "d_miss_beauty_only": [
+    7.6,
+    15.43
+   ],
+   "fa_b": [
+    4.18,
+    7.55
+   ],
+   "miss_b": [
+    61.48,
+    73.0
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.063,
+    0.0033
+   ],
+   "fadapter": [
+    -0.0808,
+    -0.0214
+   ],
+   "sbi": [
+    -0.0107,
+    0.0605
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 82.1,
+    "fake": 17.9,
+    "filter": 0.0
+   },
+   "real_beautified": {
+    "real": 82.2,
+    "fake": 17.8,
+    "filter": 0.0
+   },
+   "real_compressed": {
+    "real": 80.9,
+    "fake": 19.1,
+    "filter": 0.0
+   },
+   "synthesis": {
+    "real": 31.2,
+    "fake": 68.8,
+    "filter": 0.0
+   },
+   "synthesis_beautified": {
+    "real": 43.7,
+    "fake": 56.3,
+    "filter": 0.0
+   },
+   "synthesis_compressed": {
+    "real": 31.9,
+    "fake": 68.1,
+    "filter": 0.0
+   }
+  }
+ },
+ "xception": {
+  "auc_untreated": 0.8113,
+  "auc_beautified": 0.7366,
+  "auc_compressed": 0.7948,
+  "miss0": 61.31,
+  "miss_b": 71.23,
+  "miss_c": 60.37,
+  "fa_b": 5.66,
+  "fa_c": 7.39,
+  "d_miss": 9.92,
+  "d_miss_c": -0.94,
+  "d_miss_beauty_only": 10.86,
+  "ci": {
+   "auc_beautified": [
+    0.7017,
+    0.7727
+   ],
+   "d_miss_beauty_only": [
+    7.4,
+    14.09
+   ],
+   "fa_b": [
+    4.38,
+    6.91
+   ],
+   "miss_b": [
+    65.46,
+    76.69
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.109,
+    -0.0322
+   ],
+   "fadapter": [
+    -0.126,
+    -0.0559
+   ],
+   "sbi": [
+    -0.048,
+    0.0216
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 65.4,
+    "fake": 34.6,
+    "filter": 0.0
+   },
+   "real_beautified": {
+    "real": 65.7,
+    "fake": 34.3,
+    "filter": 0.0
+   },
+   "real_compressed": {
+    "real": 58.6,
+    "fake": 41.4,
+    "filter": 0.0
+   },
+   "synthesis": {
+    "real": 21.3,
+    "fake": 78.7,
+    "filter": 0.0
+   },
+   "synthesis_beautified": {
+    "real": 33.2,
+    "fake": 66.8,
+    "filter": 0.0
+   },
+   "synthesis_compressed": {
+    "real": 18.5,
+    "fake": 81.5,
+    "filter": 0.0
+   }
+  }
+ },
+ "RU-clipe4": {
+  "auc_untreated": 0.9367,
+  "auc_beautified": 0.8433,
+  "auc_compressed": 0.9188,
+  "miss0": 26.59,
+  "miss_b": 47.28,
+  "miss_c": 36.32,
+  "fa_b": 8.93,
+  "fa_c": 3.76,
+  "d_miss": 20.68,
+  "d_miss_c": 9.72,
+  "d_miss_beauty_only": 10.96,
+  "ci": {
+   "auc_beautified": [
+    0.8147,
+    0.8707
+   ],
+   "d_miss_beauty_only": [
+    7.93,
+    13.68
+   ],
+   "fa_b": [
+    6.46,
+    11.56
+   ],
+   "miss_b": [
+    41.26,
+    53.51
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0042,
+    0.0701
+   ],
+   "fadapter": [
+    -0.0128,
+    0.0443
+   ],
+   "sbi": [
+    0.0576,
+    0.122
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 67.8,
+    "fake": 16.9,
+    "filter": 15.3
+   },
+   "real_beautified": {
+    "real": 44.7,
+    "fake": 18.4,
+    "filter": 36.9
+   },
+   "real_compressed": {
+    "real": 69.9,
+    "fake": 13.7,
+    "filter": 16.4
+   },
+   "synthesis": {
+    "real": 6.8,
+    "fake": 88.3,
+    "filter": 4.8
+   },
+   "synthesis_beautified": {
+    "real": 9.7,
+    "fake": 70.8,
+    "filter": 19.5
+   },
+   "synthesis_compressed": {
+    "real": 10.3,
+    "fake": 81.7,
+    "filter": 8.0
+   }
+  }
+ },
+ "RU-clipe4r": {
+  "auc_untreated": 0.9324,
+  "auc_beautified": 0.8607,
+  "auc_compressed": 0.9183,
+  "miss0": 28.53,
+  "miss_b": 52.25,
+  "miss_c": 37.44,
+  "fa_b": 5.23,
+  "fa_c": 3.36,
+  "d_miss": 23.72,
+  "d_miss_c": 8.9,
+  "d_miss_beauty_only": 14.81,
+  "ci": {
+   "auc_beautified": [
+    0.8336,
+    0.8855
+   ],
+   "d_miss_beauty_only": [
+    11.77,
+    18.2
+   ],
+   "fa_b": [
+    3.69,
+    7.16
+   ],
+   "miss_b": [
+    45.53,
+    58.5
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0251,
+    0.0847
+   ],
+   "fadapter": [
+    0.0089,
+    0.0582
+   ],
+   "sbi": [
+    0.0763,
+    0.1391
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 58.4,
+    "fake": 28.7,
+    "filter": 12.9
+   },
+   "real_beautified": {
+    "real": 41.0,
+    "fake": 25.7,
+    "filter": 33.3
+   },
+   "real_compressed": {
+    "real": 60.6,
+    "fake": 25.6,
+    "filter": 13.8
+   },
+   "synthesis": {
+    "real": 4.0,
+    "fake": 93.4,
+    "filter": 2.6
+   },
+   "synthesis_beautified": {
+    "real": 6.8,
+    "fake": 81.1,
+    "filter": 12.1
+   },
+   "synthesis_compressed": {
+    "real": 6.1,
+    "fake": 89.9,
+    "filter": 4.0
+   }
+  }
+ },
+ "RU-clipe4r-s2": {
+  "auc_untreated": 0.9336,
+  "auc_beautified": 0.8475,
+  "auc_compressed": 0.917,
+  "miss0": 28.56,
+  "miss_b": 48.25,
+  "miss_c": 36.61,
+  "fa_b": 7.97,
+  "fa_c": 4.01,
+  "d_miss": 19.69,
+  "d_miss_c": 8.04,
+  "d_miss_beauty_only": 11.64,
+  "ci": {
+   "auc_beautified": [
+    0.8192,
+    0.8735
+   ],
+   "d_miss_beauty_only": [
+    8.42,
+    15.14
+   ],
+   "fa_b": [
+    6.01,
+    10.19
+   ],
+   "miss_b": [
+    41.85,
+    54.2
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0104,
+    0.0715
+   ],
+   "fadapter": [
+    -0.0067,
+    0.0461
+   ],
+   "sbi": [
+    0.0627,
+    0.1251
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 71.4,
+    "fake": 18.6,
+    "filter": 10.1
+   },
+   "real_beautified": {
+    "real": 42.5,
+    "fake": 22.3,
+    "filter": 35.1
+   },
+   "real_compressed": {
+    "real": 71.6,
+    "fake": 16.4,
+    "filter": 11.9
+   },
+   "synthesis": {
+    "real": 7.3,
+    "fake": 89.2,
+    "filter": 3.5
+   },
+   "synthesis_beautified": {
+    "real": 7.6,
+    "fake": 75.6,
+    "filter": 16.8
+   },
+   "synthesis_compressed": {
+    "real": 9.7,
+    "fake": 84.2,
+    "filter": 6.1
+   }
+  }
+ },
+ "RU4e-effb4": {
+  "auc_untreated": 0.8989,
+  "auc_beautified": 0.8131,
+  "auc_compressed": 0.886,
+  "miss0": 37.41,
+  "miss_b": 75.01,
+  "miss_c": 51.13,
+  "fa_b": 1.74,
+  "fa_c": 2.81,
+  "d_miss": 37.6,
+  "d_miss_c": 13.71,
+  "d_miss_beauty_only": 23.88,
+  "ci": {
+   "auc_beautified": [
+    0.7839,
+    0.8423
+   ],
+   "d_miss_beauty_only": [
+    20.21,
+    27.73
+   ],
+   "fa_b": [
+    1.08,
+    2.61
+   ],
+   "miss_b": [
+    69.02,
+    80.59
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.0267,
+    0.0416
+   ],
+   "fadapter": [
+    -0.0462,
+    0.0181
+   ],
+   "sbi": [
+    0.0328,
+    0.0901
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 42.5,
+    "fake": 40.3,
+    "filter": 17.2
+   },
+   "real_beautified": {
+    "real": 35.1,
+    "fake": 21.8,
+    "filter": 43.1
+   },
+   "real_compressed": {
+    "real": 50.8,
+    "fake": 29.4,
+    "filter": 19.8
+   },
+   "synthesis": {
+    "real": 3.4,
+    "fake": 92.6,
+    "filter": 4.0
+   },
+   "synthesis_beautified": {
+    "real": 7.3,
+    "fake": 68.0,
+    "filter": 24.7
+   },
+   "synthesis_compressed": {
+    "real": 6.3,
+    "fake": 87.0,
+    "filter": 6.6
+   }
+  }
+ },
+ "RU-clipe5": {
+  "auc_untreated": 0.9377,
+  "auc_beautified": 0.866,
+  "auc_compressed": 0.9176,
+  "miss0": 24.91,
+  "miss_b": 40.68,
+  "miss_c": 34.02,
+  "fa_b": 9.5,
+  "fa_c": 4.58,
+  "d_miss": 15.77,
+  "d_miss_c": 9.11,
+  "d_miss_beauty_only": 6.66,
+  "ci": {
+   "auc_beautified": [
+    0.8414,
+    0.8896
+   ],
+   "d_miss_beauty_only": [
+    4.04,
+    9.49
+   ],
+   "fa_b": [
+    7.2,
+    12.22
+   ],
+   "miss_b": [
+    34.88,
+    47.07
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0301,
+    0.0893
+   ],
+   "fadapter": [
+    0.0127,
+    0.0638
+   ],
+   "sbi": [
+    0.0794,
+    0.1467
+   ],
+   "dfdhr": [
+    0.0054,
+    0.0525
+   ],
+   "gend": [
+    0.0324,
+    0.0863
+   ],
+   "caddm": [
+    0.0739,
+    0.1352
+   ]
+  },
+  "d_miss_beauty_only_minus": {
+   "effort": [
+    -7.47,
+    -1.0
+   ],
+   "fadapter": [
+    -11.56,
+    -4.9
+   ],
+   "sbi": [
+    -19.41,
+    -10.48
+   ],
+   "dfdhr": [
+    0.17,
+    6.11
+   ],
+   "gend": [
+    -8.16,
+    -2.01
+   ],
+   "caddm": [
+    6.37,
+    12.95
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 70.8,
+    "fake": 16.0,
+    "filter": 13.2
+   },
+   "real_beautified": {
+    "real": 30.5,
+    "fake": 22.1,
+    "filter": 47.4
+   },
+   "real_compressed": {
+    "real": 68.3,
+    "fake": 15.5,
+    "filter": 16.2
+   },
+   "synthesis": {
+    "real": 8.3,
+    "fake": 88.0,
+    "filter": 3.6
+   },
+   "synthesis_beautified": {
+    "real": 5.4,
+    "fake": 78.0,
+    "filter": 16.6
+   },
+   "synthesis_compressed": {
+    "real": 10.6,
+    "fake": 83.7,
+    "filter": 5.6
+   }
+  }
+ },
+ "RU-clipe5x": {
+  "auc_untreated": 0.9467,
+  "auc_beautified": 0.8848,
+  "auc_compressed": 0.9324,
+  "miss0": 22.79,
+  "miss_b": 40.16,
+  "miss_c": 31.32,
+  "fa_b": 7.36,
+  "fa_c": 3.7,
+  "d_miss": 17.36,
+  "d_miss_c": 8.53,
+  "d_miss_beauty_only": 8.83,
+  "ci": {
+   "auc_beautified": [
+    0.8631,
+    0.905
+   ],
+   "d_miss_beauty_only": [
+    6.33,
+    11.51
+   ],
+   "fa_b": [
+    5.33,
+    9.71
+   ],
+   "miss_b": [
+    34.13,
+    46.91
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0499,
+    0.1075
+   ],
+   "fadapter": [
+    0.0342,
+    0.0818
+   ],
+   "sbi": [
+    0.0999,
+    0.1658
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 54.6,
+    "fake": 21.6,
+    "filter": 23.7
+   },
+   "real_beautified": {
+    "real": 21.0,
+    "fake": 24.5,
+    "filter": 54.5
+   },
+   "real_compressed": {
+    "real": 51.4,
+    "fake": 20.2,
+    "filter": 28.4
+   },
+   "synthesis": {
+    "real": 4.1,
+    "fake": 91.9,
+    "filter": 4.0
+   },
+   "synthesis_beautified": {
+    "real": 3.1,
+    "fake": 83.6,
+    "filter": 13.3
+   },
+   "synthesis_compressed": {
+    "real": 5.5,
+    "fake": 88.3,
+    "filter": 6.2
+   }
+  }
+ },
+ "RU-clipe6": {
+  "auc_untreated": 0.9224,
+  "auc_beautified": 0.877,
+  "auc_compressed": 0.9097,
+  "miss0": 32.66,
+  "miss_b": 43.22,
+  "miss_c": 37.64,
+  "fa_b": 6.47,
+  "fa_c": 4.71,
+  "d_miss": 10.56,
+  "d_miss_c": 4.98,
+  "d_miss_beauty_only": 5.58,
+  "ci": {
+   "auc_beautified": [
+    0.8538,
+    0.8973
+   ],
+   "d_miss_beauty_only": [
+    3.56,
+    7.96
+   ],
+   "fa_b": [
+    5.44,
+    7.66
+   ],
+   "miss_b": [
+    37.06,
+    49.75
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0432,
+    0.0993
+   ],
+   "fadapter": [
+    0.0259,
+    0.0733
+   ],
+   "sbi": [
+    0.0916,
+    0.1588
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 66.1,
+    "fake": 15.8,
+    "filter": 18.1
+   },
+   "real_beautified": {
+    "real": 23.6,
+    "fake": 17.0,
+    "filter": 59.4
+   },
+   "real_compressed": {
+    "real": 60.4,
+    "fake": 15.3,
+    "filter": 24.3
+   },
+   "synthesis": {
+    "real": 10.2,
+    "fake": 84.3,
+    "filter": 5.5
+   },
+   "synthesis_beautified": {
+    "real": 4.5,
+    "fake": 74.8,
+    "filter": 20.8
+   },
+   "synthesis_compressed": {
+    "real": 10.6,
+    "fake": 81.4,
+    "filter": 8.0
+   }
+  }
+ },
+ "RU-clipe5-s2": {
+  "auc_untreated": 0.9411,
+  "auc_beautified": 0.8828,
+  "auc_compressed": 0.9261,
+  "miss0": 24.82,
+  "miss_b": 41.29,
+  "miss_c": 32.94,
+  "fa_b": 6.68,
+  "fa_c": 3.99,
+  "d_miss": 16.48,
+  "d_miss_c": 8.12,
+  "d_miss_beauty_only": 8.35,
+  "ci": {
+   "auc_beautified": [
+    0.8605,
+    0.9021
+   ],
+   "d_miss_beauty_only": [
+    5.62,
+    10.96
+   ],
+   "fa_b": [
+    5.1,
+    8.26
+   ],
+   "miss_b": [
+    35.58,
+    47.56
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0497,
+    0.1028
+   ],
+   "fadapter": [
+    0.031,
+    0.079
+   ],
+   "sbi": [
+    0.0987,
+    0.1622
+   ],
+   "dfdhr": [
+    0.0223,
+    0.0683
+   ],
+   "gend": [
+    0.0505,
+    0.104
+   ],
+   "caddm": [
+    0.0903,
+    0.1532
+   ]
+  },
+  "d_miss_beauty_only_minus": {
+   "effort": [
+    -5.82,
+    0.45
+   ],
+   "fadapter": [
+    -9.69,
+    -3.71
+   ],
+   "sbi": [
+    -17.61,
+    -9.04
+   ],
+   "dfdhr": [
+    2.12,
+    7.37
+   ],
+   "gend": [
+    -6.9,
+    -0.24
+   ],
+   "caddm": [
+    8.04,
+    14.89
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 60.0,
+    "fake": 19.3,
+    "filter": 20.7
+   },
+   "real_beautified": {
+    "real": 21.5,
+    "fake": 21.6,
+    "filter": 56.9
+   },
+   "real_compressed": {
+    "real": 56.7,
+    "fake": 18.2,
+    "filter": 25.1
+   },
+   "synthesis": {
+    "real": 5.5,
+    "fake": 90.6,
+    "filter": 3.9
+   },
+   "synthesis_beautified": {
+    "real": 3.3,
+    "fake": 80.6,
+    "filter": 16.1
+   },
+   "synthesis_compressed": {
+    "real": 6.8,
+    "fake": 86.8,
+    "filter": 6.3
+   }
+  }
+ },
+ "RU-clipe5g0": {
+  "auc_untreated": 0.9413,
+  "auc_beautified": 0.8629,
+  "auc_compressed": 0.9242,
+  "miss0": 22.19,
+  "miss_b": 43.91,
+  "miss_c": 29.47,
+  "fa_b": 6.84,
+  "fa_c": 4.37,
+  "d_miss": 21.72,
+  "d_miss_c": 7.28,
+  "d_miss_beauty_only": 14.44,
+  "ci": {
+   "auc_beautified": [
+    0.8368,
+    0.8868
+   ],
+   "d_miss_beauty_only": [
+    11.17,
+    17.78
+   ],
+   "fa_b": [
+    5.09,
+    8.95
+   ],
+   "miss_b": [
+    38.39,
+    49.95
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0269,
+    0.086
+   ],
+   "fadapter": [
+    0.0102,
+    0.0574
+   ],
+   "sbi": [
+    0.0804,
+    0.1406
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 71.3,
+    "fake": 14.3,
+    "filter": 14.4
+   },
+   "real_beautified": {
+    "real": 51.4,
+    "fake": 16.9,
+    "filter": 31.8
+   },
+   "real_compressed": {
+    "real": 73.0,
+    "fake": 12.7,
+    "filter": 14.2
+   },
+   "synthesis": {
+    "real": 8.2,
+    "fake": 88.3,
+    "filter": 3.6
+   },
+   "synthesis_beautified": {
+    "real": 10.9,
+    "fake": 72.1,
+    "filter": 17.0
+   },
+   "synthesis_compressed": {
+    "real": 12.0,
+    "fake": 82.8,
+    "filter": 5.2
+   }
+  }
+ },
+ "RU-clipe5v0": {
+  "auc_untreated": 0.9364,
+  "auc_beautified": 0.8773,
+  "auc_compressed": 0.9217,
+  "miss0": 24.39,
+  "miss_b": 34.31,
+  "miss_c": 31.59,
+  "fa_b": 11.17,
+  "fa_c": 4.49,
+  "d_miss": 9.92,
+  "d_miss_c": 7.2,
+  "d_miss_beauty_only": 2.73,
+  "ci": {
+   "auc_beautified": [
+    0.853,
+    0.8985
+   ],
+   "d_miss_beauty_only": [
+    0.35,
+    5.6
+   ],
+   "fa_b": [
+    8.65,
+    13.28
+   ],
+   "miss_b": [
+    29.5,
+    40.12
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0425,
+    0.0993
+   ],
+   "fadapter": [
+    0.0245,
+    0.0743
+   ],
+   "sbi": [
+    0.093,
+    0.1566
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 74.7,
+    "fake": 14.1,
+    "filter": 11.3
+   },
+   "real_beautified": {
+    "real": 37.1,
+    "fake": 21.7,
+    "filter": 41.2
+   },
+   "real_compressed": {
+    "real": 73.6,
+    "fake": 12.7,
+    "filter": 13.7
+   },
+   "synthesis": {
+    "real": 9.8,
+    "fake": 86.8,
+    "filter": 3.4
+   },
+   "synthesis_beautified": {
+    "real": 5.8,
+    "fake": 80.3,
+    "filter": 13.9
+   },
+   "synthesis_compressed": {
+    "real": 12.8,
+    "fake": 82.2,
+    "filter": 5.0
+   }
+  }
+ },
+ "RU-clipe5b": {
+  "auc_untreated": 0.9486,
+  "auc_beautified": 0.8958,
+  "auc_compressed": 0.9339,
+  "miss0": 23.32,
+  "miss_b": 36.61,
+  "miss_c": 29.62,
+  "fa_b": 7.36,
+  "fa_c": 5.02,
+  "d_miss": 13.29,
+  "d_miss_c": 6.31,
+  "d_miss_beauty_only": 6.99,
+  "ci": {
+   "auc_beautified": [
+    0.8744,
+    0.9149
+   ],
+   "d_miss_beauty_only": [
+    4.68,
+    8.99
+   ],
+   "fa_b": [
+    6.03,
+    8.89
+   ],
+   "miss_b": [
+    30.62,
+    42.42
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.06,
+    0.1195
+   ],
+   "fadapter": [
+    0.0422,
+    0.0937
+   ],
+   "sbi": [
+    0.1079,
+    0.1775
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 4.9,
+    "fake": 25.9,
+    "filter": 69.3
+   },
+   "real_beautified": {
+    "real": 6.0,
+    "fake": 31.1,
+    "filter": 62.9
+   },
+   "real_compressed": {
+    "real": 5.2,
+    "fake": 25.4,
+    "filter": 69.3
+   },
+   "synthesis": {
+    "real": 0.2,
+    "fake": 94.1,
+    "filter": 5.6
+   },
+   "synthesis_beautified": {
+    "real": 0.7,
+    "fake": 89.1,
+    "filter": 10.3
+   },
+   "synthesis_compressed": {
+    "real": 0.3,
+    "fake": 92.2,
+    "filter": 7.5
+   }
+  }
+ },
+ "RU-clipe5f": {
+  "auc_untreated": 0.9384,
+  "auc_beautified": 0.8722,
+  "auc_compressed": 0.9154,
+  "miss0": 24.89,
+  "miss_b": 38.79,
+  "miss_c": 31.32,
+  "fa_b": 7.83,
+  "fa_c": 6.0,
+  "d_miss": 13.9,
+  "d_miss_c": 6.44,
+  "d_miss_beauty_only": 7.46,
+  "ci": {
+   "auc_beautified": [
+    0.8461,
+    0.894
+   ],
+   "d_miss_beauty_only": [
+    4.82,
+    10.5
+   ],
+   "fa_b": [
+    5.72,
+    10.16
+   ],
+   "miss_b": [
+    33.04,
+    44.94
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0406,
+    0.0921
+   ],
+   "fadapter": [
+    0.0195,
+    0.0675
+   ],
+   "sbi": [
+    0.0895,
+    0.1524
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 58.8,
+    "fake": 10.9,
+    "filter": 30.3
+   },
+   "real_beautified": {
+    "real": 16.0,
+    "fake": 15.6,
+    "filter": 68.5
+   },
+   "real_compressed": {
+    "real": 52.1,
+    "fake": 12.9,
+    "filter": 35.0
+   },
+   "synthesis": {
+    "real": 8.3,
+    "fake": 84.1,
+    "filter": 7.6
+   },
+   "synthesis_beautified": {
+    "real": 2.8,
+    "fake": 72.3,
+    "filter": 24.8
+   },
+   "synthesis_compressed": {
+    "real": 8.9,
+    "fake": 80.2,
+    "filter": 10.9
+   }
+  }
+ },
+ "RU-clipe7": {
+  "auc_untreated": 0.9496,
+  "auc_beautified": 0.8692,
+  "auc_compressed": 0.9307,
+  "miss0": 22.06,
+  "miss_b": 43.44,
+  "miss_c": 26.25,
+  "fa_b": 6.59,
+  "fa_c": 6.6,
+  "d_miss": 21.38,
+  "d_miss_c": 4.18,
+  "d_miss_beauty_only": 17.19,
+  "ci": {
+   "auc_beautified": [
+    0.8461,
+    0.8906
+   ],
+   "d_miss_beauty_only": [
+    14.2,
+    20.99
+   ],
+   "fa_b": [
+    5.23,
+    8.4
+   ],
+   "miss_b": [
+    37.72,
+    49.74
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0336,
+    0.0932
+   ],
+   "fadapter": [
+    0.0144,
+    0.0667
+   ],
+   "sbi": [
+    0.0835,
+    0.148
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 79.3,
+    "fake": 9.1,
+    "filter": 11.6
+   },
+   "real_beautified": {
+    "real": 28.1,
+    "fake": 11.6,
+    "filter": 60.3
+   },
+   "real_compressed": {
+    "real": 70.3,
+    "fake": 11.8,
+    "filter": 18.0
+   },
+   "synthesis": {
+    "real": 12.1,
+    "fake": 85.0,
+    "filter": 2.9
+   },
+   "synthesis_beautified": {
+    "real": 6.5,
+    "fake": 66.9,
+    "filter": 26.6
+   },
+   "synthesis_compressed": {
+    "real": 12.8,
+    "fake": 82.6,
+    "filter": 4.6
+   }
+  }
+ },
+ "RU-clipe5f-s2": {
+  "auc_untreated": 0.933,
+  "auc_beautified": 0.8701,
+  "auc_compressed": 0.9135,
+  "miss0": 26.62,
+  "miss_b": 41.61,
+  "miss_c": 32.47,
+  "fa_b": 7.55,
+  "fa_c": 5.48,
+  "d_miss": 14.99,
+  "d_miss_c": 5.85,
+  "d_miss_beauty_only": 9.14,
+  "ci": {
+   "auc_beautified": [
+    0.8434,
+    0.8919
+   ],
+   "d_miss_beauty_only": [
+    6.15,
+    12.27
+   ],
+   "fa_b": [
+    5.59,
+    9.67
+   ],
+   "miss_b": [
+    35.62,
+    47.48
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.035,
+    0.09
+   ],
+   "fadapter": [
+    0.0164,
+    0.0665
+   ],
+   "sbi": [
+    0.0846,
+    0.1495
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 67.2,
+    "fake": 9.4,
+    "filter": 23.4
+   },
+   "real_beautified": {
+    "real": 24.3,
+    "fake": 12.8,
+    "filter": 62.9
+   },
+   "real_compressed": {
+    "real": 61.4,
+    "fake": 10.4,
+    "filter": 28.1
+   },
+   "synthesis": {
+    "real": 11.3,
+    "fake": 81.4,
+    "filter": 7.3
+   },
+   "synthesis_beautified": {
+    "real": 5.4,
+    "fake": 68.7,
+    "filter": 25.8
+   },
+   "synthesis_compressed": {
+    "real": 13.2,
+    "fake": 76.7,
+    "filter": 10.1
+   }
+  }
+ },
+ "RU-clipe5fg0": {
+  "auc_untreated": 0.9288,
+  "auc_beautified": 0.8491,
+  "auc_compressed": 0.9033,
+  "miss0": 27.87,
+  "miss_b": 46.68,
+  "miss_c": 32.6,
+  "fa_b": 7.2,
+  "fa_c": 6.6,
+  "d_miss": 18.81,
+  "d_miss_c": 4.72,
+  "d_miss_beauty_only": 14.09,
+  "ci": {
+   "auc_beautified": [
+    0.8195,
+    0.8756
+   ],
+   "d_miss_beauty_only": [
+    10.74,
+    17.79
+   ],
+   "fa_b": [
+    5.18,
+    9.59
+   ],
+   "miss_b": [
+    39.84,
+    53.95
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0131,
+    0.0715
+   ],
+   "fadapter": [
+    -0.0066,
+    0.0485
+   ],
+   "sbi": [
+    0.0628,
+    0.1314
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 52.7,
+    "fake": 17.4,
+    "filter": 29.9
+   },
+   "real_beautified": {
+    "real": 41.2,
+    "fake": 23.2,
+    "filter": 35.6
+   },
+   "real_compressed": {
+    "real": 52.2,
+    "fake": 19.9,
+    "filter": 27.8
+   },
+   "synthesis": {
+    "real": 6.1,
+    "fake": 87.7,
+    "filter": 6.2
+   },
+   "synthesis_beautified": {
+    "real": 8.3,
+    "fake": 76.7,
+    "filter": 14.9
+   },
+   "synthesis_compressed": {
+    "real": 7.4,
+    "fake": 84.9,
+    "filter": 7.7
+   }
+  }
+ },
+ "effnb4": {
+  "auc_untreated": 0.8113,
+  "auc_beautified": 0.7625,
+  "auc_compressed": 0.7977,
+  "miss0": 64.35,
+  "miss_b": 67.7,
+  "miss_c": 64.29,
+  "fa_b": 7.82,
+  "fa_c": 6.14,
+  "d_miss": 3.35,
+  "d_miss_c": -0.06,
+  "d_miss_beauty_only": 3.4,
+  "ci": {
+   "auc_beautified": [
+    0.7288,
+    0.7977
+   ],
+   "d_miss_beauty_only": [
+    0.88,
+    5.87
+   ],
+   "fa_b": [
+    6.19,
+    10.18
+   ],
+   "miss_b": [
+    60.27,
+    73.55
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.0831,
+    -0.0052
+   ],
+   "fadapter": [
+    -0.1001,
+    -0.0296
+   ],
+   "sbi": [
+    -0.0294,
+    0.0524
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 68.7,
+    "fake": 31.3,
+    "filter": 0.0
+   },
+   "real_beautified": {
+    "real": 55.8,
+    "fake": 44.2,
+    "filter": 0.0
+   },
+   "real_compressed": {
+    "real": 66.9,
+    "fake": 33.1,
+    "filter": 0.0
+   },
+   "synthesis": {
+    "real": 23.8,
+    "fake": 76.2,
+    "filter": 0.0
+   },
+   "synthesis_beautified": {
+    "real": 18.9,
+    "fake": 81.1,
+    "filter": 0.0
+   },
+   "synthesis_compressed": {
+    "real": 23.4,
+    "fake": 76.6,
+    "filter": 0.0
+   }
+  }
+ },
+ "f3net": {
+  "auc_untreated": 0.7983,
+  "auc_beautified": 0.7312,
+  "auc_compressed": 0.7823,
+  "miss0": 70.92,
+  "miss_b": 77.73,
+  "miss_c": 66.81,
+  "fa_b": 5.37,
+  "fa_c": 7.29,
+  "d_miss": 6.81,
+  "d_miss_c": -4.11,
+  "d_miss_beauty_only": 10.92,
+  "ci": {
+   "auc_beautified": [
+    0.6965,
+    0.7673
+   ],
+   "d_miss_beauty_only": [
+    7.43,
+    14.79
+   ],
+   "fa_b": [
+    3.7,
+    7.33
+   ],
+   "miss_b": [
+    71.06,
+    83.45
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.1135,
+    -0.0378
+   ],
+   "fadapter": [
+    -0.1321,
+    -0.0612
+   ],
+   "sbi": [
+    -0.0572,
+    0.0175
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 82.7,
+    "fake": 17.3,
+    "filter": 0.0
+   },
+   "real_beautified": {
+    "real": 81.2,
+    "fake": 18.8,
+    "filter": 0.0
+   },
+   "real_compressed": {
+    "real": 78.1,
+    "fake": 21.9,
+    "filter": 0.0
+   },
+   "synthesis": {
+    "real": 41.6,
+    "fake": 58.4,
+    "filter": 0.0
+   },
+   "synthesis_beautified": {
+    "real": 52.5,
+    "fake": 47.5,
+    "filter": 0.0
+   },
+   "synthesis_compressed": {
+    "real": 38.3,
+    "fake": 61.7,
+    "filter": 0.0
+   }
+  }
+ },
+ "spsl": {
+  "auc_untreated": 0.781,
+  "auc_beautified": 0.727,
+  "auc_compressed": 0.769,
+  "miss0": 68.93,
+  "miss_b": 81.99,
+  "miss_c": 69.59,
+  "fa_b": 3.38,
+  "fa_c": 5.8,
+  "d_miss": 13.06,
+  "d_miss_c": 0.66,
+  "d_miss_beauty_only": 12.4,
+  "ci": {
+   "auc_beautified": [
+    0.6898,
+    0.7616
+   ],
+   "d_miss_beauty_only": [
+    9.32,
+    15.48
+   ],
+   "fa_b": [
+    2.62,
+    4.16
+   ],
+   "miss_b": [
+    76.99,
+    86.49
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.1201,
+    -0.0389
+   ],
+   "fadapter": [
+    -0.1382,
+    -0.0631
+   ],
+   "sbi": [
+    -0.0625,
+    0.0137
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 33.5,
+    "fake": 66.5,
+    "filter": 0.0
+   },
+   "real_beautified": {
+    "real": 40.6,
+    "fake": 59.4,
+    "filter": 0.0
+   },
+   "real_compressed": {
+    "real": 31.2,
+    "fake": 68.8,
+    "filter": 0.0
+   },
+   "synthesis": {
+    "real": 5.8,
+    "fake": 94.2,
+    "filter": 0.0
+   },
+   "synthesis_beautified": {
+    "real": 12.1,
+    "fake": 87.9,
+    "filter": 0.0
+   },
+   "synthesis_compressed": {
+    "real": 5.4,
+    "fake": 94.6,
+    "filter": 0.0
+   }
+  }
+ },
+ "recce": {
+  "auc_untreated": 0.7847,
+  "auc_beautified": 0.7227,
+  "auc_compressed": 0.7651,
+  "miss0": 70.03,
+  "miss_b": 81.78,
+  "miss_c": 68.03,
+  "fa_b": 4.14,
+  "fa_c": 7.76,
+  "d_miss": 11.75,
+  "d_miss_c": -2.01,
+  "d_miss_beauty_only": 13.76,
+  "ci": {
+   "auc_beautified": [
+    0.6874,
+    0.7576
+   ],
+   "d_miss_beauty_only": [
+    10.67,
+    17.14
+   ],
+   "fa_b": [
+    2.74,
+    5.55
+   ],
+   "miss_b": [
+    76.6,
+    86.2
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.1241,
+    -0.0453
+   ],
+   "fadapter": [
+    -0.1407,
+    -0.0711
+   ],
+   "sbi": [
+    -0.0638,
+    0.0092
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 75.7,
+    "fake": 24.3,
+    "filter": 0.0
+   },
+   "real_beautified": {
+    "real": 79.5,
+    "fake": 20.5,
+    "filter": 0.0
+   },
+   "real_compressed": {
+    "real": 68.8,
+    "fake": 31.2,
+    "filter": 0.0
+   },
+   "synthesis": {
+    "real": 34.9,
+    "fake": 65.1,
+    "filter": 0.0
+   },
+   "synthesis_beautified": {
+    "real": 50.1,
+    "fake": 49.9,
+    "filter": 0.0
+   },
+   "synthesis_compressed": {
+    "real": 30.9,
+    "fake": 69.1,
+    "filter": 0.0
+   }
+  }
+ },
+ "core": {
+  "auc_untreated": 0.8211,
+  "auc_beautified": 0.7517,
+  "auc_compressed": 0.8082,
+  "miss0": 62.08,
+  "miss_b": 75.9,
+  "miss_c": 62.4,
+  "fa_b": 4.02,
+  "fa_c": 6.2,
+  "d_miss": 13.82,
+  "d_miss_c": 0.32,
+  "d_miss_beauty_only": 13.5,
+  "ci": {
+   "auc_beautified": [
+    0.7179,
+    0.7856
+   ],
+   "d_miss_beauty_only": [
+    10.23,
+    16.59
+   ],
+   "fa_b": [
+    2.77,
+    5.42
+   ],
+   "miss_b": [
+    70.86,
+    80.64
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.0939,
+    -0.0183
+   ],
+   "fadapter": [
+    -0.1115,
+    -0.04
+   ],
+   "sbi": [
+    -0.0354,
+    0.0341
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 68.1,
+    "fake": 31.9,
+    "filter": 0.0
+   },
+   "real_beautified": {
+    "real": 72.9,
+    "fake": 27.1,
+    "filter": 0.0
+   },
+   "real_compressed": {
+    "real": 66.1,
+    "fake": 33.9,
+    "filter": 0.0
+   },
+   "synthesis": {
+    "real": 21.2,
+    "fake": 78.8,
+    "filter": 0.0
+   },
+   "synthesis_beautified": {
+    "real": 37.0,
+    "fake": 63.0,
+    "filter": 0.0
+   },
+   "synthesis_compressed": {
+    "real": 21.2,
+    "fake": 78.8,
+    "filter": 0.0
+   }
+  }
+ },
+ "srm": {
+  "auc_untreated": 0.7894,
+  "auc_beautified": 0.7333,
+  "auc_compressed": 0.7688,
+  "miss0": 71.01,
+  "miss_b": 88.03,
+  "miss_c": 72.76,
+  "fa_b": 2.82,
+  "fa_c": 6.18,
+  "d_miss": 17.02,
+  "d_miss_c": 1.74,
+  "d_miss_beauty_only": 15.28,
+  "ci": {
+   "auc_beautified": [
+    0.6975,
+    0.7675
+   ],
+   "d_miss_beauty_only": [
+    12.12,
+    18.71
+   ],
+   "fa_b": [
+    2.03,
+    3.88
+   ],
+   "miss_b": [
+    83.78,
+    91.14
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.1109,
+    -0.0391
+   ],
+   "fadapter": [
+    -0.1289,
+    -0.0615
+   ],
+   "sbi": [
+    -0.0513,
+    0.0171
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 58.0,
+    "fake": 42.0,
+    "filter": 0.0
+   },
+   "real_beautified": {
+    "real": 60.2,
+    "fake": 39.8,
+    "filter": 0.0
+   },
+   "real_compressed": {
+    "real": 53.1,
+    "fake": 46.9,
+    "filter": 0.0
+   },
+   "synthesis": {
+    "real": 16.9,
+    "fake": 83.1,
+    "filter": 0.0
+   },
+   "synthesis_beautified": {
+    "real": 25.7,
+    "fake": 74.3,
+    "filter": 0.0
+   },
+   "synthesis_compressed": {
+    "real": 15.3,
+    "fake": 84.7,
+    "filter": 0.0
+   }
+  }
+ },
+ "univfd": {
+  "auc_untreated": 0.6534,
+  "auc_beautified": 0.6236,
+  "auc_compressed": 0.6368,
+  "miss0": 80.04,
+  "miss_b": 79.79,
+  "miss_c": 86.97,
+  "fa_b": 7.64,
+  "fa_c": 3.11,
+  "d_miss": -0.25,
+  "d_miss_c": 6.93,
+  "d_miss_beauty_only": -7.18,
+  "ci": {
+   "auc_beautified": [
+    0.5792,
+    0.6627
+   ],
+   "d_miss_beauty_only": [
+    -10.18,
+    -4.94
+   ],
+   "fa_b": [
+    6.18,
+    9.87
+   ],
+   "miss_b": [
+    73.99,
+    84.32
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.2312,
+    -0.1328
+   ],
+   "fadapter": [
+    -0.2553,
+    -0.157
+   ],
+   "sbi": [
+    -0.183,
+    -0.0757
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 99.6,
+    "fake": 0.4,
+    "filter": 0.0
+   },
+   "real_beautified": {
+    "real": 99.2,
+    "fake": 0.8,
+    "filter": 0.0
+   },
+   "real_compressed": {
+    "real": 99.8,
+    "fake": 0.2,
+    "filter": 0.0
+   },
+   "synthesis": {
+    "real": 92.6,
+    "fake": 7.4,
+    "filter": 0.0
+   },
+   "synthesis_beautified": {
+    "real": 93.8,
+    "fake": 6.2,
+    "filter": 0.0
+   },
+   "synthesis_compressed": {
+    "real": 96.3,
+    "fake": 3.7,
+    "filter": 0.0
+   }
+  }
+ },
+ "npr": {
+  "auc_untreated": 0.503,
+  "auc_beautified": 0.4976,
+  "auc_compressed": 0.5034,
+  "miss0": 94.8,
+  "miss_b": 96.4,
+  "miss_c": 97.07,
+  "fa_b": 3.41,
+  "fa_c": 2.5,
+  "d_miss": 1.6,
+  "d_miss_c": 2.27,
+  "d_miss_beauty_only": -0.67,
+  "ci": {
+   "auc_beautified": [
+    0.4525,
+    0.5427
+   ],
+   "d_miss_beauty_only": [
+    -2.19,
+    0.39
+   ],
+   "fa_b": [
+    1.47,
+    5.4
+   ],
+   "miss_b": [
+    92.89,
+    98.96
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.3681,
+    -0.2519
+   ],
+   "fadapter": [
+    -0.3851,
+    -0.2752
+   ],
+   "sbi": [
+    -0.3055,
+    -0.2008
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 97.9,
+    "fake": 2.1,
+    "filter": 0.0
+   },
+   "real_beautified": {
+    "real": 99.3,
+    "fake": 0.7,
+    "filter": 0.0
+   },
+   "real_compressed": {
+    "real": 99.6,
+    "fake": 0.4,
+    "filter": 0.0
+   },
+   "synthesis": {
+    "real": 97.7,
+    "fake": 2.3,
+    "filter": 0.0
+   },
+   "synthesis_beautified": {
+    "real": 99.3,
+    "fake": 0.7,
+    "filter": 0.0
+   },
+   "synthesis_compressed": {
+    "real": 99.5,
+    "fake": 0.5,
+    "filter": 0.0
+   }
+  }
+ },
+ "RU-clipe5af_s20260929": {
+  "auc_untreated": 0.9305,
+  "auc_beautified": 0.8642,
+  "auc_compressed": 0.9074,
+  "miss0": 26.9,
+  "miss_b": 40.1,
+  "miss_c": 31.89,
+  "fa_b": 8.32,
+  "fa_c": 6.5,
+  "d_miss": 13.21,
+  "d_miss_c": 4.99,
+  "d_miss_beauty_only": 8.21,
+  "ci": {
+   "auc_beautified": [
+    0.837,
+    0.8865
+   ],
+   "d_miss_beauty_only": [
+    5.71,
+    10.99
+   ],
+   "fa_b": [
+    6.14,
+    10.64
+   ],
+   "miss_b": [
+    34.74,
+    46.24
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0294,
+    0.0848
+   ],
+   "fadapter": [
+    0.0097,
+    0.061
+   ],
+   "sbi": [
+    0.0798,
+    0.1443
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 46.9,
+    "fake": 9.0,
+    "filter": 44.1
+   },
+   "real_beautified": {
+    "real": 12.8,
+    "fake": 12.9,
+    "filter": 74.2
+   },
+   "real_compressed": {
+    "real": 40.1,
+    "fake": 10.8,
+    "filter": 49.1
+   },
+   "synthesis": {
+    "real": 7.2,
+    "fake": 79.7,
+    "filter": 13.1
+   },
+   "synthesis_beautified": {
+    "real": 2.4,
+    "fake": 67.2,
+    "filter": 30.4
+   },
+   "synthesis_compressed": {
+    "real": 7.1,
+    "fake": 75.7,
+    "filter": 17.2
+   }
+  }
+ },
+ "RU-clipe5rf_s20260929": {
+  "auc_untreated": 0.932,
+  "auc_beautified": 0.8756,
+  "auc_compressed": 0.9085,
+  "miss0": 26.1,
+  "miss_b": 40.57,
+  "miss_c": 32.68,
+  "fa_b": 7.68,
+  "fa_c": 6.0,
+  "d_miss": 14.48,
+  "d_miss_c": 6.58,
+  "d_miss_beauty_only": 7.89,
+  "ci": {
+   "auc_beautified": [
+    0.8496,
+    0.8969
+   ],
+   "d_miss_beauty_only": [
+    5.3,
+    10.92
+   ],
+   "fa_b": [
+    5.68,
+    9.76
+   ],
+   "miss_b": [
+    35.31,
+    46.74
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0405,
+    0.0969
+   ],
+   "fadapter": [
+    0.0214,
+    0.0731
+   ],
+   "sbi": [
+    0.0891,
+    0.158
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 67.6,
+    "fake": 8.1,
+    "filter": 24.3
+   },
+   "real_beautified": {
+    "real": 19.2,
+    "fake": 10.7,
+    "filter": 70.1
+   },
+   "real_compressed": {
+    "real": 58.7,
+    "fake": 9.7,
+    "filter": 31.7
+   },
+   "synthesis": {
+    "real": 12.0,
+    "fake": 79.8,
+    "filter": 8.2
+   },
+   "synthesis_beautified": {
+    "real": 5.0,
+    "fake": 64.5,
+    "filter": 30.5
+   },
+   "synthesis_compressed": {
+    "real": 12.2,
+    "fake": 74.5,
+    "filter": 13.3
+   }
+  }
+ },
+ "RU-clipe5kf_s20260929": {
+  "auc_untreated": 0.9278,
+  "auc_beautified": 0.8673,
+  "auc_compressed": 0.9033,
+  "miss0": 26.39,
+  "miss_b": 45.23,
+  "miss_c": 32.31,
+  "fa_b": 5.62,
+  "fa_c": 5.89,
+  "d_miss": 18.84,
+  "d_miss_c": 5.92,
+  "d_miss_beauty_only": 12.92,
+  "ci": {
+   "auc_beautified": [
+    0.8413,
+    0.8896
+   ],
+   "d_miss_beauty_only": [
+    10.03,
+    15.88
+   ],
+   "fa_b": [
+    3.98,
+    7.59
+   ],
+   "miss_b": [
+    39.26,
+    52.04
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0314,
+    0.0898
+   ],
+   "fadapter": [
+    0.011,
+    0.066
+   ],
+   "sbi": [
+    0.0827,
+    0.1488
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 58.3,
+    "fake": 7.8,
+    "filter": 33.9
+   },
+   "real_beautified": {
+    "real": 20.3,
+    "fake": 8.4,
+    "filter": 71.2
+   },
+   "real_compressed": {
+    "real": 49.6,
+    "fake": 9.1,
+    "filter": 41.3
+   },
+   "synthesis": {
+    "real": 10.9,
+    "fake": 78.8,
+    "filter": 10.4
+   },
+   "synthesis_beautified": {
+    "real": 5.6,
+    "fake": 60.7,
+    "filter": 33.7
+   },
+   "synthesis_compressed": {
+    "real": 10.8,
+    "fake": 73.7,
+    "filter": 15.5
+   }
+  }
+ },
+ "RU-clipe5awpf_s20260929": {
+  "auc_untreated": 0.9282,
+  "auc_beautified": 0.8685,
+  "auc_compressed": 0.9045,
+  "miss0": 27.58,
+  "miss_b": 47.9,
+  "miss_c": 32.78,
+  "fa_b": 5.17,
+  "fa_c": 6.16,
+  "d_miss": 20.32,
+  "d_miss_c": 5.19,
+  "d_miss_beauty_only": 15.13,
+  "ci": {
+   "auc_beautified": [
+    0.8426,
+    0.8899
+   ],
+   "d_miss_beauty_only": [
+    12.12,
+    17.98
+   ],
+   "fa_b": [
+    3.66,
+    6.55
+   ],
+   "miss_b": [
+    41.82,
+    54.2
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0341,
+    0.089
+   ],
+   "fadapter": [
+    0.0144,
+    0.0659
+   ],
+   "sbi": [
+    0.0845,
+    0.1487
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 57.4,
+    "fake": 12.3,
+    "filter": 30.3
+   },
+   "real_beautified": {
+    "real": 17.7,
+    "fake": 12.0,
+    "filter": 70.3
+   },
+   "real_compressed": {
+    "real": 51.4,
+    "fake": 14.5,
+    "filter": 34.1
+   },
+   "synthesis": {
+    "real": 8.7,
+    "fake": 83.4,
+    "filter": 7.9
+   },
+   "synthesis_beautified": {
+    "real": 3.8,
+    "fake": 66.1,
+    "filter": 30.1
+   },
+   "synthesis_compressed": {
+    "real": 8.7,
+    "fake": 79.8,
+    "filter": 11.5
+   }
+  }
+ },
+ "RU-clipe5awpb_s20260930": {
+  "auc_untreated": 0.9416,
+  "auc_beautified": 0.8919,
+  "auc_compressed": 0.9301,
+  "miss0": 26.74,
+  "miss_b": 40.56,
+  "miss_c": 30.89,
+  "fa_b": 5.97,
+  "fa_c": 4.67,
+  "d_miss": 13.81,
+  "d_miss_c": 4.15,
+  "d_miss_beauty_only": 9.66,
+  "ci": {
+   "auc_beautified": [
+    0.871,
+    0.9099
+   ],
+   "d_miss_beauty_only": [
+    7.27,
+    12.1
+   ],
+   "fa_b": [
+    4.83,
+    7.56
+   ],
+   "miss_b": [
+    34.56,
+    46.55
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0571,
+    0.115
+   ],
+   "fadapter": [
+    0.0361,
+    0.0906
+   ],
+   "sbi": [
+    0.1053,
+    0.1722
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 0.0,
+    "fake": 34.0,
+    "filter": 66.0
+   },
+   "real_beautified": {
+    "real": 0.0,
+    "fake": 36.8,
+    "filter": 63.2
+   },
+   "real_compressed": {
+    "real": 0.0,
+    "fake": 34.2,
+    "filter": 65.8
+   },
+   "synthesis": {
+    "real": 0.0,
+    "fake": 95.8,
+    "filter": 4.2
+   },
+   "synthesis_beautified": {
+    "real": 0.0,
+    "fake": 91.7,
+    "filter": 8.3
+   },
+   "synthesis_compressed": {
+    "real": 0.0,
+    "fake": 94.4,
+    "filter": 5.6
+   }
+  }
+ },
+ "RU-clipe5awptf_s20260929": {
+  "auc_untreated": 0.9239,
+  "auc_beautified": 0.8556,
+  "auc_compressed": 0.9062,
+  "miss0": 26.29,
+  "miss_b": 44.29,
+  "miss_c": 31.27,
+  "fa_b": 5.73,
+  "fa_c": 4.45,
+  "d_miss": 18.0,
+  "d_miss_c": 4.98,
+  "d_miss_beauty_only": 13.02,
+  "ci": {
+   "auc_beautified": [
+    0.8275,
+    0.8796
+   ],
+   "d_miss_beauty_only": [
+    10.04,
+    15.93
+   ],
+   "fa_b": [
+    4.36,
+    7.55
+   ],
+   "miss_b": [
+    38.09,
+    50.52
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0207,
+    0.0763
+   ],
+   "fadapter": [
+    0.0012,
+    0.0527
+   ],
+   "sbi": [
+    0.07,
+    0.1365
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 63.9,
+    "fake": 6.1,
+    "filter": 30.0
+   },
+   "real_beautified": {
+    "real": 19.2,
+    "fake": 6.5,
+    "filter": 74.3
+   },
+   "real_compressed": {
+    "real": 58.6,
+    "fake": 5.9,
+    "filter": 35.6
+   },
+   "synthesis": {
+    "real": 14.9,
+    "fake": 76.3,
+    "filter": 8.8
+   },
+   "synthesis_beautified": {
+    "real": 5.6,
+    "fake": 56.5,
+    "filter": 37.9
+   },
+   "synthesis_compressed": {
+    "real": 14.8,
+    "fake": 72.4,
+    "filter": 12.9
+   }
+  }
+ },
+ "RU-clipe5feb_s20260929": {
+  "auc_untreated": 0.9302,
+  "auc_beautified": 0.8771,
+  "auc_compressed": 0.9147,
+  "miss0": 31.09,
+  "miss_b": 44.04,
+  "miss_c": 37.45,
+  "fa_b": 7.2,
+  "fa_c": 4.77,
+  "d_miss": 12.94,
+  "d_miss_c": 6.36,
+  "d_miss_beauty_only": 6.59,
+  "ci": {
+   "auc_beautified": [
+    0.8535,
+    0.8991
+   ],
+   "d_miss_beauty_only": [
+    4.71,
+    8.94
+   ],
+   "fa_b": [
+    5.8,
+    8.59
+   ],
+   "miss_b": [
+    37.52,
+    51.14
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0382,
+    0.1003
+   ],
+   "fadapter": [
+    0.0209,
+    0.0776
+   ],
+   "sbi": [
+    0.0893,
+    0.1596
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 60.9,
+    "fake": 29.4,
+    "filter": 9.7
+   },
+   "real_beautified": {
+    "real": 54.9,
+    "fake": 32.3,
+    "filter": 12.8
+   },
+   "real_compressed": {
+    "real": 60.8,
+    "fake": 28.9,
+    "filter": 10.3
+   },
+   "synthesis": {
+    "real": 4.1,
+    "fake": 93.3,
+    "filter": 2.6
+   },
+   "synthesis_beautified": {
+    "real": 7.3,
+    "fake": 88.3,
+    "filter": 4.4
+   },
+   "synthesis_compressed": {
+    "real": 5.8,
+    "fake": 90.5,
+    "filter": 3.7
+   }
+  }
+ },
+ "RU-clipe5fbp0_s20260929": {
+  "auc_untreated": 0.9271,
+  "auc_beautified": 0.86,
+  "auc_compressed": 0.9014,
+  "miss0": 27.06,
+  "miss_b": 50.35,
+  "miss_c": 33.31,
+  "fa_b": 5.1,
+  "fa_c": 6.68,
+  "d_miss": 23.29,
+  "d_miss_c": 6.25,
+  "d_miss_beauty_only": 17.04,
+  "ci": {
+   "auc_beautified": [
+    0.8341,
+    0.8845
+   ],
+   "d_miss_beauty_only": [
+    13.84,
+    20.57
+   ],
+   "fa_b": [
+    3.47,
+    6.58
+   ],
+   "miss_b": [
+    44.66,
+    57.27
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0256,
+    0.0812
+   ],
+   "fadapter": [
+    0.0068,
+    0.0577
+   ],
+   "sbi": [
+    0.0759,
+    0.1427
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 7.0,
+    "fake": 21.8,
+    "filter": 71.1
+   },
+   "real_beautified": {
+    "real": 10.4,
+    "fake": 18.3,
+    "filter": 71.3
+   },
+   "real_compressed": {
+    "real": 7.4,
+    "fake": 24.5,
+    "filter": 68.1
+   },
+   "synthesis": {
+    "real": 0.5,
+    "fake": 88.3,
+    "filter": 11.2
+   },
+   "synthesis_beautified": {
+    "real": 2.5,
+    "fake": 73.7,
+    "filter": 23.8
+   },
+   "synthesis_compressed": {
+    "real": 0.9,
+    "fake": 85.8,
+    "filter": 13.2
+   }
+  }
+ },
+ "RU-clipe5fb_s20260929": {
+  "auc_untreated": 0.9288,
+  "auc_beautified": 0.8795,
+  "auc_compressed": 0.9075,
+  "miss0": 27.85,
+  "miss_b": 41.71,
+  "miss_c": 31.89,
+  "fa_b": 5.59,
+  "fa_c": 6.32,
+  "d_miss": 13.86,
+  "d_miss_c": 4.04,
+  "d_miss_beauty_only": 9.82,
+  "ci": {
+   "auc_beautified": [
+    0.8542,
+    0.901
+   ],
+   "d_miss_beauty_only": [
+    7.28,
+    12.99
+   ],
+   "fa_b": [
+    4.05,
+    7.19
+   ],
+   "miss_b": [
+    36.0,
+    48.28
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0446,
+    0.101
+   ],
+   "fadapter": [
+    0.0247,
+    0.0773
+   ],
+   "sbi": [
+    0.0964,
+    0.1619
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 73.2,
+    "fake": 21.6,
+    "filter": 5.1
+   },
+   "real_beautified": {
+    "real": 68.8,
+    "fake": 23.2,
+    "filter": 8.0
+   },
+   "real_compressed": {
+    "real": 69.8,
+    "fake": 24.3,
+    "filter": 5.9
+   },
+   "synthesis": {
+    "real": 9.0,
+    "fake": 88.9,
+    "filter": 2.1
+   },
+   "synthesis_beautified": {
+    "real": 13.8,
+    "fake": 81.4,
+    "filter": 4.8
+   },
+   "synthesis_compressed": {
+    "real": 10.7,
+    "fake": 86.5,
+    "filter": 2.8
+   }
+  }
+ },
+ "RU-clipe5fbp1_s20260929": {
+  "auc_untreated": 0.9281,
+  "auc_beautified": 0.8439,
+  "auc_compressed": 0.9081,
+  "miss0": 25.7,
+  "miss_b": 52.4,
+  "miss_c": 30.89,
+  "fa_b": 4.55,
+  "fa_c": 6.06,
+  "d_miss": 26.7,
+  "d_miss_c": 5.2,
+  "d_miss_beauty_only": 21.51,
+  "ci": {
+   "auc_beautified": [
+    0.8134,
+    0.8724
+   ],
+   "d_miss_beauty_only": [
+    17.62,
+    25.37
+   ],
+   "fa_b": [
+    2.99,
+    5.96
+   ],
+   "miss_b": [
+    46.56,
+    58.95
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0052,
+    0.0674
+   ],
+   "fadapter": [
+    -0.0151,
+    0.0432
+   ],
+   "sbi": [
+    0.0601,
+    0.1252
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 14.1,
+    "fake": 22.9,
+    "filter": 63.1
+   },
+   "real_beautified": {
+    "real": 20.1,
+    "fake": 15.1,
+    "filter": 64.8
+   },
+   "real_compressed": {
+    "real": 15.4,
+    "fake": 23.8,
+    "filter": 60.8
+   },
+   "synthesis": {
+    "real": 1.4,
+    "fake": 89.6,
+    "filter": 8.9
+   },
+   "synthesis_beautified": {
+    "real": 6.8,
+    "fake": 69.0,
+    "filter": 24.2
+   },
+   "synthesis_compressed": {
+    "real": 2.1,
+    "fake": 87.2,
+    "filter": 10.7
+   }
+  }
+ },
+ "RU-clipe5awps3f_s20260929": {
+  "auc_untreated": 0.9217,
+  "auc_beautified": 0.8585,
+  "auc_compressed": 0.8913,
+  "miss0": 29.22,
+  "miss_b": 43.75,
+  "miss_c": 34.79,
+  "fa_b": 7.59,
+  "fa_c": 6.74,
+  "d_miss": 14.52,
+  "d_miss_c": 5.57,
+  "d_miss_beauty_only": 8.95,
+  "ci": {
+   "auc_beautified": [
+    0.8321,
+    0.8808
+   ],
+   "d_miss_beauty_only": [
+    6.53,
+    11.55
+   ],
+   "fa_b": [
+    5.72,
+    9.57
+   ],
+   "miss_b": [
+    38.43,
+    49.6
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0221,
+    0.0808
+   ],
+   "fadapter": [
+    0.0032,
+    0.0554
+   ],
+   "sbi": [
+    0.0727,
+    0.1404
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 61.4,
+    "fake": 9.7,
+    "filter": 28.9
+   },
+   "real_beautified": {
+    "real": 23.2,
+    "fake": 12.2,
+    "filter": 64.6
+   },
+   "real_compressed": {
+    "real": 53.9,
+    "fake": 12.3,
+    "filter": 33.8
+   },
+   "synthesis": {
+    "real": 11.4,
+    "fake": 78.6,
+    "filter": 10.0
+   },
+   "synthesis_beautified": {
+    "real": 5.7,
+    "fake": 64.9,
+    "filter": 29.4
+   },
+   "synthesis_compressed": {
+    "real": 11.6,
+    "fake": 74.7,
+    "filter": 13.7
+   }
+  }
+ },
+ "RU-clipe5fbp0_s20260930": {
+  "auc_untreated": 0.9368,
+  "auc_beautified": 0.8828,
+  "auc_compressed": 0.9165,
+  "miss0": 23.23,
+  "miss_b": 41.52,
+  "miss_c": 27.29,
+  "fa_b": 5.58,
+  "fa_c": 6.32,
+  "d_miss": 18.28,
+  "d_miss_c": 4.05,
+  "d_miss_beauty_only": 14.23,
+  "ci": {
+   "auc_beautified": [
+    0.8579,
+    0.9042
+   ],
+   "d_miss_beauty_only": [
+    11.23,
+    17.71
+   ],
+   "fa_b": [
+    4.1,
+    7.44
+   ],
+   "miss_b": [
+    35.77,
+    47.46
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0496,
+    0.1023
+   ],
+   "fadapter": [
+    0.0293,
+    0.0786
+   ],
+   "sbi": [
+    0.0958,
+    0.1666
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 33.6,
+    "fake": 20.6,
+    "filter": 45.8
+   },
+   "real_beautified": {
+    "real": 29.0,
+    "fake": 17.7,
+    "filter": 53.3
+   },
+   "real_compressed": {
+    "real": 32.0,
+    "fake": 22.8,
+    "filter": 45.2
+   },
+   "synthesis": {
+    "real": 5.2,
+    "fake": 89.8,
+    "filter": 5.0
+   },
+   "synthesis_beautified": {
+    "real": 8.2,
+    "fake": 78.5,
+    "filter": 13.3
+   },
+   "synthesis_compressed": {
+    "real": 5.9,
+    "fake": 87.6,
+    "filter": 6.5
+   }
+  }
+ },
+ "RU-clipe5fb_s20260930": {
+  "auc_untreated": 0.9334,
+  "auc_beautified": 0.8929,
+  "auc_compressed": 0.9178,
+  "miss0": 25.15,
+  "miss_b": 38.88,
+  "miss_c": 28.61,
+  "fa_b": 5.29,
+  "fa_c": 5.56,
+  "d_miss": 13.74,
+  "d_miss_c": 3.46,
+  "d_miss_beauty_only": 10.27,
+  "ci": {
+   "auc_beautified": [
+    0.8688,
+    0.9138
+   ],
+   "d_miss_beauty_only": [
+    7.6,
+    13.22
+   ],
+   "fa_b": [
+    3.85,
+    6.58
+   ],
+   "miss_b": [
+    33.29,
+    44.61
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0581,
+    0.1136
+   ],
+   "fadapter": [
+    0.0386,
+    0.0905
+   ],
+   "sbi": [
+    0.1064,
+    0.1757
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 43.6,
+    "fake": 23.1,
+    "filter": 33.2
+   },
+   "real_beautified": {
+    "real": 41.1,
+    "fake": 20.5,
+    "filter": 38.4
+   },
+   "real_compressed": {
+    "real": 41.7,
+    "fake": 24.6,
+    "filter": 33.6
+   },
+   "synthesis": {
+    "real": 5.4,
+    "fake": 90.6,
+    "filter": 4.0
+   },
+   "synthesis_beautified": {
+    "real": 8.4,
+    "fake": 82.2,
+    "filter": 9.4
+   },
+   "synthesis_compressed": {
+    "real": 6.1,
+    "fake": 88.7,
+    "filter": 5.2
+   }
+  }
+ },
+ "RU-clipe5fbp0E_s20260929": {
+  "auc_untreated": 0.9426,
+  "auc_beautified": 0.882,
+  "auc_compressed": 0.9322,
+  "miss0": 21.49,
+  "miss_b": 36.96,
+  "miss_c": 26.87,
+  "fa_b": 7.75,
+  "fa_c": 5.14,
+  "d_miss": 15.47,
+  "d_miss_c": 5.38,
+  "d_miss_beauty_only": 10.09,
+  "ci": {
+   "auc_beautified": [
+    0.8578,
+    0.9053
+   ],
+   "d_miss_beauty_only": [
+    7.09,
+    13.41
+   ],
+   "fa_b": [
+    5.41,
+    10.21
+   ],
+   "miss_b": [
+    29.79,
+    44.0
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0524,
+    0.0999
+   ],
+   "fadapter": [
+    0.0319,
+    0.0767
+   ],
+   "sbi": [
+    0.0974,
+    0.1647
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 32.8,
+    "fake": 9.9,
+    "filter": 57.3
+   },
+   "real_beautified": {
+    "real": 28.0,
+    "fake": 14.6,
+    "filter": 57.4
+   },
+   "real_compressed": {
+    "real": 29.6,
+    "fake": 10.4,
+    "filter": 60.0
+   },
+   "synthesis": {
+    "real": 5.2,
+    "fake": 85.5,
+    "filter": 9.2
+   },
+   "synthesis_beautified": {
+    "real": 7.2,
+    "fake": 74.2,
+    "filter": 18.6
+   },
+   "synthesis_compressed": {
+    "real": 5.4,
+    "fake": 82.5,
+    "filter": 12.0
+   }
+  }
+ },
+ "RU-clipe5fbp1_s20260930": {
+  "auc_untreated": 0.9309,
+  "auc_beautified": 0.851,
+  "auc_compressed": 0.9128,
+  "miss0": 25.78,
+  "miss_b": 51.66,
+  "miss_c": 29.89,
+  "fa_b": 3.87,
+  "fa_c": 5.64,
+  "d_miss": 25.87,
+  "d_miss_c": 4.1,
+  "d_miss_beauty_only": 21.77,
+  "ci": {
+   "auc_beautified": [
+    0.8195,
+    0.8802
+   ],
+   "d_miss_beauty_only": [
+    18.04,
+    25.67
+   ],
+   "fa_b": [
+    2.58,
+    5.25
+   ],
+   "miss_b": [
+    45.43,
+    57.87
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0144,
+    0.0749
+   ],
+   "fadapter": [
+    -0.0069,
+    0.05
+   ],
+   "sbi": [
+    0.0643,
+    0.131
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 17.8,
+    "fake": 24.2,
+    "filter": 58.0
+   },
+   "real_beautified": {
+    "real": 18.2,
+    "fake": 14.9,
+    "filter": 66.9
+   },
+   "real_compressed": {
+    "real": 17.5,
+    "fake": 25.5,
+    "filter": 57.0
+   },
+   "synthesis": {
+    "real": 2.5,
+    "fake": 90.6,
+    "filter": 6.9
+   },
+   "synthesis_beautified": {
+    "real": 6.1,
+    "fake": 70.8,
+    "filter": 23.0
+   },
+   "synthesis_compressed": {
+    "real": 3.2,
+    "fake": 88.1,
+    "filter": 8.7
+   }
+  }
+ },
+ "RU-clipe5fbE_s20260929": {
+  "auc_untreated": 0.9381,
+  "auc_beautified": 0.8892,
+  "auc_compressed": 0.9291,
+  "miss0": 23.73,
+  "miss_b": 32.97,
+  "miss_c": 27.51,
+  "fa_b": 7.98,
+  "fa_c": 5.61,
+  "d_miss": 9.24,
+  "d_miss_c": 3.78,
+  "d_miss_beauty_only": 5.46,
+  "ci": {
+   "auc_beautified": [
+    0.8648,
+    0.9104
+   ],
+   "d_miss_beauty_only": [
+    2.87,
+    7.93
+   ],
+   "fa_b": [
+    5.61,
+    10.28
+   ],
+   "miss_b": [
+    26.86,
+    39.74
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0583,
+    0.1091
+   ],
+   "fadapter": [
+    0.0377,
+    0.0853
+   ],
+   "sbi": [
+    0.1044,
+    0.1711
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 43.8,
+    "fake": 6.8,
+    "filter": 49.4
+   },
+   "real_beautified": {
+    "real": 37.5,
+    "fake": 10.8,
+    "filter": 51.8
+   },
+   "real_compressed": {
+    "real": 40.6,
+    "fake": 7.4,
+    "filter": 52.0
+   },
+   "synthesis": {
+    "real": 9.4,
+    "fake": 80.1,
+    "filter": 10.5
+   },
+   "synthesis_beautified": {
+    "real": 10.8,
+    "fake": 71.8,
+    "filter": 17.4
+   },
+   "synthesis_compressed": {
+    "real": 10.2,
+    "fake": 76.5,
+    "filter": 13.3
+   }
+  }
+ },
+ "RU-clipe5mf_s20260929": {
+  "auc_untreated": 0.9373,
+  "auc_beautified": 0.8775,
+  "auc_compressed": 0.9166,
+  "miss0": 24.79,
+  "miss_b": 45.5,
+  "miss_c": 30.56,
+  "fa_b": 4.97,
+  "fa_c": 5.66,
+  "d_miss": 20.71,
+  "d_miss_c": 5.77,
+  "d_miss_beauty_only": 14.94,
+  "ci": {
+   "auc_beautified": [
+    0.852,
+    0.8995
+   ],
+   "d_miss_beauty_only": [
+    12.0,
+    18.25
+   ],
+   "fa_b": [
+    3.42,
+    6.64
+   ],
+   "miss_b": [
+    39.87,
+    51.8
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0432,
+    0.0981
+   ],
+   "fadapter": [
+    0.0249,
+    0.0736
+   ],
+   "sbi": [
+    0.0934,
+    0.1603
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 48.2,
+    "fake": 13.3,
+    "filter": 38.6
+   },
+   "real_beautified": {
+    "real": 20.9,
+    "fake": 13.5,
+    "filter": 65.6
+   },
+   "real_compressed": {
+    "real": 46.1,
+    "fake": 14.5,
+    "filter": 39.3
+   },
+   "synthesis": {
+    "real": 7.1,
+    "fake": 86.3,
+    "filter": 6.6
+   },
+   "synthesis_beautified": {
+    "real": 4.3,
+    "fake": 71.9,
+    "filter": 23.8
+   },
+   "synthesis_compressed": {
+    "real": 7.9,
+    "fake": 82.6,
+    "filter": 9.5
+   }
+  }
+ },
+ "RU-clipe5mfp0_s20260929": {
+  "auc_untreated": 0.9417,
+  "auc_beautified": 0.8907,
+  "auc_compressed": 0.9233,
+  "miss0": 21.72,
+  "miss_b": 41.27,
+  "miss_c": 26.52,
+  "fa_b": 4.44,
+  "fa_c": 5.99,
+  "d_miss": 19.55,
+  "d_miss_c": 4.8,
+  "d_miss_beauty_only": 14.74,
+  "ci": {
+   "auc_beautified": [
+    0.8668,
+    0.9116
+   ],
+   "d_miss_beauty_only": [
+    11.36,
+    17.9
+   ],
+   "fa_b": [
+    2.71,
+    6.44
+   ],
+   "miss_b": [
+    35.5,
+    46.94
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0574,
+    0.1105
+   ],
+   "fadapter": [
+    0.0388,
+    0.0854
+   ],
+   "sbi": [
+    0.1069,
+    0.1721
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 91.0,
+    "fake": 9.0,
+    "filter": 0.0
+   },
+   "real_beautified": {
+    "real": 92.3,
+    "fake": 7.7,
+    "filter": 0.0
+   },
+   "real_compressed": {
+    "real": 88.8,
+    "fake": 11.2,
+    "filter": 0.0
+   },
+   "synthesis": {
+    "real": 16.8,
+    "fake": 83.2,
+    "filter": 0.0
+   },
+   "synthesis_beautified": {
+    "real": 33.0,
+    "fake": 67.0,
+    "filter": 0.0
+   },
+   "synthesis_compressed": {
+    "real": 19.9,
+    "fake": 80.1,
+    "filter": 0.0
+   }
+  }
+ },
+ "RU-clipe5fbp0E_s20260930": {
+  "auc_untreated": 0.9477,
+  "auc_beautified": 0.8859,
+  "auc_compressed": 0.9374,
+  "miss0": 19.38,
+  "miss_b": 34.98,
+  "miss_c": 24.27,
+  "fa_b": 8.14,
+  "fa_c": 5.66,
+  "d_miss": 15.6,
+  "d_miss_c": 4.89,
+  "d_miss_beauty_only": 10.71,
+  "ci": {
+   "auc_beautified": [
+    0.8626,
+    0.9066
+   ],
+   "d_miss_beauty_only": [
+    7.49,
+    13.84
+   ],
+   "fa_b": [
+    5.45,
+    10.93
+   ],
+   "miss_b": [
+    28.67,
+    42.35
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0566,
+    0.1046
+   ],
+   "fadapter": [
+    0.0361,
+    0.0802
+   ],
+   "sbi": [
+    0.0997,
+    0.1682
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 84.4,
+    "fake": 9.9,
+    "filter": 5.7
+   },
+   "real_beautified": {
+    "real": 80.5,
+    "fake": 15.4,
+    "filter": 4.1
+   },
+   "real_compressed": {
+    "real": 85.1,
+    "fake": 10.6,
+    "filter": 4.3
+   },
+   "synthesis": {
+    "real": 13.0,
+    "fake": 86.5,
+    "filter": 0.5
+   },
+   "synthesis_beautified": {
+    "real": 24.1,
+    "fake": 75.1,
+    "filter": 0.8
+   },
+   "synthesis_compressed": {
+    "real": 16.2,
+    "fake": 83.2,
+    "filter": 0.6
+   }
+  }
+ },
+ "RU-clipe5fbE_s20260930": {
+  "auc_untreated": 0.9425,
+  "auc_beautified": 0.8902,
+  "auc_compressed": 0.9325,
+  "miss0": 22.12,
+  "miss_b": 31.39,
+  "miss_c": 25.9,
+  "fa_b": 9.01,
+  "fa_c": 5.71,
+  "d_miss": 9.27,
+  "d_miss_c": 3.78,
+  "d_miss_beauty_only": 5.49,
+  "ci": {
+   "auc_beautified": [
+    0.8666,
+    0.9109
+   ],
+   "d_miss_beauty_only": [
+    3.08,
+    7.9
+   ],
+   "fa_b": [
+    6.8,
+    11.31
+   ],
+   "miss_b": [
+    25.92,
+    37.0
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0586,
+    0.1097
+   ],
+   "fadapter": [
+    0.0389,
+    0.0873
+   ],
+   "sbi": [
+    0.1052,
+    0.1723
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 88.5,
+    "fake": 5.6,
+    "filter": 5.9
+   },
+   "real_beautified": {
+    "real": 85.5,
+    "fake": 10.0,
+    "filter": 4.5
+   },
+   "real_compressed": {
+    "real": 89.4,
+    "fake": 6.3,
+    "filter": 4.3
+   },
+   "synthesis": {
+    "real": 20.5,
+    "fake": 78.7,
+    "filter": 0.8
+   },
+   "synthesis_beautified": {
+    "real": 28.9,
+    "fake": 70.1,
+    "filter": 1.0
+   },
+   "synthesis_compressed": {
+    "real": 24.2,
+    "fake": 74.9,
+    "filter": 0.9
+   }
+  }
+ },
+ "RU-clipe5fbp0_s20261001": {
+  "auc_untreated": 0.9443,
+  "auc_beautified": 0.8833,
+  "auc_compressed": 0.9274,
+  "miss0": 20.34,
+  "miss_b": 36.14,
+  "miss_c": 25.32,
+  "fa_b": 6.84,
+  "fa_c": 5.59,
+  "d_miss": 15.8,
+  "d_miss_c": 4.98,
+  "d_miss_beauty_only": 10.82,
+  "ci": {
+   "auc_beautified": [
+    0.8592,
+    0.9045
+   ],
+   "d_miss_beauty_only": [
+    7.83,
+    14.01
+   ],
+   "fa_b": [
+    4.82,
+    9.06
+   ],
+   "miss_b": [
+    31.2,
+    41.9
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0498,
+    0.1022
+   ],
+   "fadapter": [
+    0.0311,
+    0.0786
+   ],
+   "sbi": [
+    0.0966,
+    0.1657
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 46.7,
+    "fake": 33.0,
+    "filter": 20.3
+   },
+   "real_beautified": {
+    "real": 36.9,
+    "fake": 34.2,
+    "filter": 28.9
+   },
+   "real_compressed": {
+    "real": 44.4,
+    "fake": 37.5,
+    "filter": 18.1
+   },
+   "synthesis": {
+    "real": 4.3,
+    "fake": 94.5,
+    "filter": 1.2
+   },
+   "synthesis_beautified": {
+    "real": 7.1,
+    "fake": 88.1,
+    "filter": 4.8
+   },
+   "synthesis_compressed": {
+    "real": 5.0,
+    "fake": 93.9,
+    "filter": 1.1
+   }
+  }
+ },
+ "RU-clipe5fb_s20261001": {
+  "auc_untreated": 0.9346,
+  "auc_beautified": 0.877,
+  "auc_compressed": 0.9159,
+  "miss0": 23.36,
+  "miss_b": 39.98,
+  "miss_c": 27.15,
+  "fa_b": 5.41,
+  "fa_c": 6.36,
+  "d_miss": 16.62,
+  "d_miss_c": 3.79,
+  "d_miss_beauty_only": 12.83,
+  "ci": {
+   "auc_beautified": [
+    0.851,
+    0.8993
+   ],
+   "d_miss_beauty_only": [
+    10.44,
+    15.87
+   ],
+   "fa_b": [
+    4.04,
+    6.8
+   ],
+   "miss_b": [
+    35.01,
+    45.87
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0415,
+    0.0992
+   ],
+   "fadapter": [
+    0.0227,
+    0.0748
+   ],
+   "sbi": [
+    0.0906,
+    0.1605
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 66.2,
+    "fake": 17.0,
+    "filter": 16.9
+   },
+   "real_beautified": {
+    "real": 58.7,
+    "fake": 18.0,
+    "filter": 23.3
+   },
+   "real_compressed": {
+    "real": 64.5,
+    "fake": 20.9,
+    "filter": 14.6
+   },
+   "synthesis": {
+    "real": 8.3,
+    "fake": 88.4,
+    "filter": 3.3
+   },
+   "synthesis_beautified": {
+    "real": 14.6,
+    "fake": 77.2,
+    "filter": 8.2
+   },
+   "synthesis_compressed": {
+    "real": 10.2,
+    "fake": 86.5,
+    "filter": 3.3
+   }
+  }
+ },
+ "RU-clipe5fbp1_s20261001": {
+  "auc_untreated": 0.9394,
+  "auc_beautified": 0.8638,
+  "auc_compressed": 0.9199,
+  "miss0": 22.04,
+  "miss_b": 47.33,
+  "miss_c": 26.97,
+  "fa_b": 3.66,
+  "fa_c": 5.84,
+  "d_miss": 25.3,
+  "d_miss_c": 4.93,
+  "d_miss_beauty_only": 20.37,
+  "ci": {
+   "auc_beautified": [
+    0.8366,
+    0.8906
+   ],
+   "d_miss_beauty_only": [
+    16.57,
+    24.12
+   ],
+   "fa_b": [
+    2.34,
+    4.99
+   ],
+   "miss_b": [
+    41.82,
+    53.3
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0278,
+    0.0855
+   ],
+   "fadapter": [
+    0.0086,
+    0.0619
+   ],
+   "sbi": [
+    0.0804,
+    0.1427
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 71.3,
+    "fake": 19.4,
+    "filter": 9.3
+   },
+   "real_beautified": {
+    "real": 74.4,
+    "fake": 12.5,
+    "filter": 13.2
+   },
+   "real_compressed": {
+    "real": 71.3,
+    "fake": 20.8,
+    "filter": 8.0
+   },
+   "synthesis": {
+    "real": 9.4,
+    "fake": 89.5,
+    "filter": 1.1
+   },
+   "synthesis_beautified": {
+    "real": 25.2,
+    "fake": 70.7,
+    "filter": 4.2
+   },
+   "synthesis_compressed": {
+    "real": 12.4,
+    "fake": 86.4,
+    "filter": 1.2
+   }
+  }
+ },
+ "RU-clipe5fbEi0_s20260929": {
+  "auc_untreated": 0.909,
+  "auc_beautified": 0.8082,
+  "auc_compressed": 0.8797,
+  "miss0": 28.51,
+  "miss_b": 52.44,
+  "miss_c": 41.29,
+  "fa_b": 4.7,
+  "fa_c": 3.6,
+  "d_miss": 23.94,
+  "d_miss_c": 12.79,
+  "d_miss_beauty_only": 11.15,
+  "ci": {
+   "auc_beautified": [
+    0.7784,
+    0.8366
+   ],
+   "d_miss_beauty_only": [
+    7.93,
+    14.78
+   ],
+   "fa_b": [
+    3.13,
+    6.49
+   ],
+   "miss_b": [
+    46.18,
+    60.34
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.0035,
+    0.0053
+   ],
+   "fadapter": [
+    -0.0397,
+    -0.0003
+   ],
+   "sbi": [
+    0.0205,
+    0.0961
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 9.4,
+    "fake": 63.1,
+    "filter": 27.5
+   },
+   "real_beautified": {
+    "real": 10.1,
+    "fake": 59.0,
+    "filter": 30.9
+   },
+   "real_compressed": {
+    "real": 9.9,
+    "fake": 60.6,
+    "filter": 29.5
+   },
+   "synthesis": {
+    "real": 0.9,
+    "fake": 96.4,
+    "filter": 2.7
+   },
+   "synthesis_beautified": {
+    "real": 1.2,
+    "fake": 89.0,
+    "filter": 9.7
+   },
+   "synthesis_compressed": {
+    "real": 1.2,
+    "fake": 94.6,
+    "filter": 4.2
+   }
+  }
+ },
+ "RU-clipe5fbEi_s20260929": {
+  "auc_untreated": 0.8948,
+  "auc_beautified": 0.8035,
+  "auc_compressed": 0.856,
+  "miss0": 28.71,
+  "miss_b": 42.79,
+  "miss_c": 40.09,
+  "fa_b": 10.33,
+  "fa_c": 3.97,
+  "d_miss": 14.08,
+  "d_miss_c": 11.38,
+  "d_miss_beauty_only": 2.7,
+  "ci": {
+   "auc_beautified": [
+    0.7732,
+    0.8313
+   ],
+   "d_miss_beauty_only": [
+    -0.26,
+    5.81
+   ],
+   "fa_b": [
+    7.63,
+    13.04
+   ],
+   "miss_b": [
+    37.17,
+    49.05
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.0137,
+    0.0053
+   ],
+   "fadapter": [
+    -0.047,
+    -0.0036
+   ],
+   "sbi": [
+    0.0157,
+    0.0911
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 12.3,
+    "fake": 6.0,
+    "filter": 81.6
+   },
+   "real_beautified": {
+    "real": 7.8,
+    "fake": 11.3,
+    "filter": 80.9
+   },
+   "real_compressed": {
+    "real": 9.1,
+    "fake": 4.5,
+    "filter": 86.4
+   },
+   "synthesis": {
+    "real": 2.2,
+    "fake": 72.0,
+    "filter": 25.8
+   },
+   "synthesis_beautified": {
+    "real": 1.9,
+    "fake": 58.1,
+    "filter": 40.0
+   },
+   "synthesis_compressed": {
+    "real": 1.9,
+    "fake": 60.4,
+    "filter": 37.7
+   }
+  }
+ },
+ "RU-clipe5fbp0Ei_s20260929": {
+  "auc_untreated": 0.903,
+  "auc_beautified": 0.8052,
+  "auc_compressed": 0.8667,
+  "miss0": 26.57,
+  "miss_b": 43.29,
+  "miss_c": 37.51,
+  "fa_b": 9.43,
+  "fa_c": 3.97,
+  "d_miss": 16.72,
+  "d_miss_c": 10.94,
+  "d_miss_beauty_only": 5.78,
+  "ci": {
+   "auc_beautified": [
+    0.7757,
+    0.8341
+   ],
+   "d_miss_beauty_only": [
+    2.64,
+    8.82
+   ],
+   "fa_b": [
+    6.71,
+    11.84
+   ],
+   "miss_b": [
+    37.71,
+    49.92
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.0112,
+    0.0065
+   ],
+   "fadapter": [
+    -0.0441,
+    -0.0026
+   ],
+   "sbi": [
+    0.0182,
+    0.0924
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 12.0,
+    "fake": 6.5,
+    "filter": 81.5
+   },
+   "real_beautified": {
+    "real": 7.8,
+    "fake": 11.2,
+    "filter": 81.0
+   },
+   "real_compressed": {
+    "real": 8.8,
+    "fake": 5.2,
+    "filter": 86.0
+   },
+   "synthesis": {
+    "real": 1.8,
+    "fake": 75.1,
+    "filter": 23.0
+   },
+   "synthesis_beautified": {
+    "real": 1.9,
+    "fake": 58.8,
+    "filter": 39.3
+   },
+   "synthesis_compressed": {
+    "real": 1.7,
+    "fake": 64.4,
+    "filter": 34.0
+   }
+  }
+ },
+ "gend": {
+  "auc_untreated": 0.9245,
+  "auc_beautified": 0.8074,
+  "auc_compressed": 0.8981,
+  "miss0": 29.79,
+  "miss_b": 48.1,
+  "miss_c": 36.11,
+  "fa_b": 9.89,
+  "fa_c": 6.28,
+  "d_miss": 18.31,
+  "d_miss_c": 6.32,
+  "d_miss_beauty_only": 11.99,
+  "ci": {
+   "auc_beautified": [
+    0.7762,
+    0.8358
+   ],
+   "d_miss_beauty_only": [
+    8.18,
+    15.64
+   ],
+   "fa_b": [
+    7.12,
+    13.26
+   ],
+   "miss_b": [
+    40.56,
+    55.5
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.0242,
+    0.0235
+   ],
+   "fadapter": [
+    -0.0444,
+    0.0019
+   ],
+   "sbi": [
+    0.0182,
+    0.0923
+   ],
+   "dfdhr": [
+    -0.0507,
+    -0.01
+   ],
+   "caddm": [
+    0.0112,
+    0.0809
+   ]
+  },
+  "d_miss_beauty_only_minus": {
+   "effort": [
+    -1.87,
+    3.69
+   ],
+   "fadapter": [
+    -6.2,
+    -0.11
+   ],
+   "sbi": [
+    -13.95,
+    -5.43
+   ],
+   "dfdhr": [
+    5.78,
+    10.65
+   ],
+   "caddm": [
+    10.55,
+    19.07
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 79.1,
+    "fake": 20.9,
+    "filter": 0.0
+   },
+   "real_beautified": {
+    "real": 67.1,
+    "fake": 32.9,
+    "filter": 0.0
+   },
+   "real_compressed": {
+    "real": 76.2,
+    "fake": 23.8,
+    "filter": 0.0
+   },
+   "synthesis": {
+    "real": 10.5,
+    "fake": 89.5,
+    "filter": 0.0
+   },
+   "synthesis_beautified": {
+    "real": 21.3,
+    "fake": 78.7,
+    "filter": 0.0
+   },
+   "synthesis_compressed": {
+    "real": 12.9,
+    "fake": 87.1,
+    "filter": 0.0
+   }
+  }
+ },
+ "dfdhr": {
+  "auc_untreated": 0.9375,
+  "auc_beautified": 0.8376,
+  "auc_compressed": 0.915,
+  "miss0": 23.57,
+  "miss_b": 34.69,
+  "miss_c": 31.1,
+  "fa_b": 14.62,
+  "fa_c": 4.8,
+  "d_miss": 11.12,
+  "d_miss_c": 7.54,
+  "d_miss_beauty_only": 3.58,
+  "ci": {
+   "auc_beautified": [
+    0.8071,
+    0.8636
+   ],
+   "d_miss_beauty_only": [
+    0.56,
+    6.81
+   ],
+   "fa_b": [
+    11.29,
+    17.96
+   ],
+   "miss_b": [
+    29.6,
+    40.88
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0061,
+    0.0549
+   ],
+   "fadapter": [
+    -0.0124,
+    0.0322
+   ],
+   "sbi": [
+    0.0501,
+    0.1228
+   ],
+   "gend": [
+    0.01,
+    0.0507
+   ],
+   "caddm": [
+    0.0413,
+    0.1084
+   ]
+  },
+  "d_miss_beauty_only_minus": {
+   "effort": [
+    -10.0,
+    -5.04
+   ],
+   "fadapter": [
+    -14.05,
+    -8.96
+   ],
+   "sbi": [
+    -22.28,
+    -13.84
+   ],
+   "gend": [
+    -10.65,
+    -5.78
+   ],
+   "caddm": [
+    3.02,
+    10.3
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 90.0,
+    "fake": 10.0,
+    "filter": 0.0
+   },
+   "real_beautified": {
+    "real": 76.0,
+    "fake": 24.0,
+    "filter": 0.0
+   },
+   "real_compressed": {
+    "real": 89.7,
+    "fake": 10.3,
+    "filter": 0.0
+   },
+   "synthesis": {
+    "real": 16.4,
+    "fake": 83.6,
+    "filter": 0.0
+   },
+   "synthesis_beautified": {
+    "real": 24.5,
+    "fake": 75.5,
+    "filter": 0.0
+   },
+   "synthesis_compressed": {
+    "real": 22.5,
+    "fake": 77.5,
+    "filter": 0.0
+   }
+  }
+ },
+ "caddm": {
+  "auc_untreated": 0.8862,
+  "auc_beautified": 0.7619,
+  "auc_compressed": 0.8503,
+  "miss0": 43.21,
+  "miss_b": 54.23,
+  "miss_c": 57.1,
+  "fa_b": 13.82,
+  "fa_c": 3.94,
+  "d_miss": 11.02,
+  "d_miss_c": 13.89,
+  "d_miss_beauty_only": -2.87,
+  "ci": {
+   "auc_beautified": [
+    0.7302,
+    0.7902
+   ],
+   "d_miss_beauty_only": [
+    -5.81,
+    0.06
+   ],
+   "fa_b": [
+    11.59,
+    16.16
+   ],
+   "miss_b": [
+    48.47,
+    59.5
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.082,
+    -0.0087
+   ],
+   "fadapter": [
+    -0.1004,
+    -0.0318
+   ],
+   "sbi": [
+    -0.0312,
+    0.0488
+   ],
+   "dfdhr": [
+    -0.1084,
+    -0.0413
+   ],
+   "gend": [
+    -0.0809,
+    -0.0112
+   ]
+  },
+  "d_miss_beauty_only_minus": {
+   "effort": [
+    -18.55,
+    -9.69
+   ],
+   "fadapter": [
+    -22.4,
+    -13.91
+   ],
+   "sbi": [
+    -29.3,
+    -20.47
+   ],
+   "dfdhr": [
+    -10.3,
+    -3.02
+   ],
+   "gend": [
+    -19.07,
+    -10.55
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 85.1,
+    "fake": 14.9,
+    "filter": 0.0
+   },
+   "real_beautified": {
+    "real": 69.3,
+    "fake": 30.7,
+    "filter": 0.0
+   },
+   "real_compressed": {
+    "real": 87.4,
+    "fake": 12.6,
+    "filter": 0.0
+   },
+   "synthesis": {
+    "real": 25.5,
+    "fake": 74.5,
+    "filter": 0.0
+   },
+   "synthesis_beautified": {
+    "real": 31.9,
+    "fake": 68.1,
+    "filter": 0.0
+   },
+   "synthesis_compressed": {
+    "real": 38.1,
+    "fake": 61.9,
+    "filter": 0.0
+   }
+  }
+ },
+ "laanetr": {
+  "auc_untreated": 0.8888,
+  "auc_beautified": 0.6983,
+  "auc_compressed": 0.8701,
+  "miss0": 42.67,
+  "miss_b": 73.33,
+  "miss_c": 58.64,
+  "fa_b": 6.01,
+  "fa_c": 2.69,
+  "d_miss": 30.66,
+  "d_miss_c": 15.97,
+  "d_miss_beauty_only": 14.7,
+  "ci": {
+   "auc_beautified": [
+    0.6603,
+    0.7372
+   ],
+   "d_miss_beauty_only": [
+    10.88,
+    18.65
+   ],
+   "fa_b": [
+    4.31,
+    7.89
+   ],
+   "miss_b": [
+    68.37,
+    77.74
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.1482,
+    -0.0711
+   ],
+   "fadapter": [
+    -0.1679,
+    -0.0944
+   ],
+   "sbi": [
+    -0.0844,
+    -0.0235
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 86.2,
+    "fake": 13.8,
+    "filter": 0.0
+   },
+   "real_beautified": {
+    "real": 87.0,
+    "fake": 13.0,
+    "filter": 0.0
+   },
+   "real_compressed": {
+    "real": 91.4,
+    "fake": 8.6,
+    "filter": 0.0
+   },
+   "synthesis": {
+    "real": 24.8,
+    "fake": 75.2,
+    "filter": 0.0
+   },
+   "synthesis_beautified": {
+    "real": 58.2,
+    "fake": 41.8,
+    "filter": 0.0
+   },
+   "synthesis_compressed": {
+    "real": 39.9,
+    "fake": 60.1,
+    "filter": 0.0
+   }
+  }
+ },
+ "RU-clipe5fbg0o_s20260929": {
+  "auc_untreated": 0.9197,
+  "auc_beautified": 0.8654,
+  "auc_compressed": 0.8953,
+  "miss0": 29.33,
+  "miss_b": 44.09,
+  "miss_c": 33.94,
+  "fa_b": 5.76,
+  "fa_c": 6.34,
+  "d_miss": 14.76,
+  "d_miss_c": 4.6,
+  "d_miss_beauty_only": 10.15,
+  "ci": {
+   "auc_beautified": [
+    0.8378,
+    0.8891
+   ],
+   "d_miss_beauty_only": [
+    7.72,
+    13.33
+   ],
+   "fa_b": [
+    4.38,
+    7.14
+   ],
+   "miss_b": [
+    38.43,
+    50.39
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0289,
+    0.0884
+   ],
+   "fadapter": [
+    0.0096,
+    0.0635
+   ],
+   "sbi": [
+    0.077,
+    0.1509
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 19.0,
+    "fake": 25.9,
+    "filter": 55.1
+   },
+   "real_beautified": {
+    "real": 20.2,
+    "fake": 27.4,
+    "filter": 52.4
+   },
+   "real_compressed": {
+    "real": 16.6,
+    "fake": 28.8,
+    "filter": 54.7
+   },
+   "synthesis": {
+    "real": 1.4,
+    "fake": 89.2,
+    "filter": 9.3
+   },
+   "synthesis_beautified": {
+    "real": 3.6,
+    "fake": 81.6,
+    "filter": 14.8
+   },
+   "synthesis_compressed": {
+    "real": 1.5,
+    "fake": 86.8,
+    "filter": 11.7
+   }
+  }
+ },
+ "RU-clipe5fbg0o_s20260930": {
+  "auc_untreated": 0.9233,
+  "auc_beautified": 0.8704,
+  "auc_compressed": 0.9018,
+  "miss0": 28.2,
+  "miss_b": 46.9,
+  "miss_c": 33.2,
+  "fa_b": 3.85,
+  "fa_c": 6.43,
+  "d_miss": 18.7,
+  "d_miss_c": 5.0,
+  "d_miss_beauty_only": 13.7,
+  "ci": {
+   "auc_beautified": [
+    0.8433,
+    0.8935
+   ],
+   "d_miss_beauty_only": [
+    11.27,
+    16.52
+   ],
+   "fa_b": [
+    3.0,
+    4.94
+   ],
+   "miss_b": [
+    41.08,
+    52.82
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0349,
+    0.0942
+   ],
+   "fadapter": [
+    0.0166,
+    0.0686
+   ],
+   "sbi": [
+    0.0817,
+    0.1541
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 35.2,
+    "fake": 16.3,
+    "filter": 48.5
+   },
+   "real_beautified": {
+    "real": 30.2,
+    "fake": 14.5,
+    "filter": 55.3
+   },
+   "real_compressed": {
+    "real": 32.6,
+    "fake": 18.6,
+    "filter": 48.8
+   },
+   "synthesis": {
+    "real": 6.3,
+    "fake": 84.7,
+    "filter": 9.0
+   },
+   "synthesis_beautified": {
+    "real": 8.8,
+    "fake": 71.8,
+    "filter": 19.4
+   },
+   "synthesis_compressed": {
+    "real": 7.4,
+    "fake": 81.9,
+    "filter": 10.7
+   }
+  }
+ },
+ "RU-clipe5fbn_s20260929": {
+  "auc_untreated": 0.9279,
+  "auc_beautified": 0.8789,
+  "auc_compressed": 0.9063,
+  "miss0": 27.17,
+  "miss_b": 42.51,
+  "miss_c": 29.62,
+  "fa_b": 5.73,
+  "fa_c": 7.1,
+  "d_miss": 15.34,
+  "d_miss_c": 2.45,
+  "d_miss_beauty_only": 12.89,
+  "ci": {
+   "auc_beautified": [
+    0.8532,
+    0.9012
+   ],
+   "d_miss_beauty_only": [
+    9.95,
+    16.16
+   ],
+   "fa_b": [
+    3.86,
+    7.47
+   ],
+   "miss_b": [
+    37.05,
+    49.14
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.044,
+    0.1008
+   ],
+   "fadapter": [
+    0.0245,
+    0.0775
+   ],
+   "sbi": [
+    0.0924,
+    0.1622
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 4.9,
+    "fake": 16.8,
+    "filter": 78.4
+   },
+   "real_beautified": {
+    "real": 7.8,
+    "fake": 16.8,
+    "filter": 75.4
+   },
+   "real_compressed": {
+    "real": 5.3,
+    "fake": 21.3,
+    "filter": 73.4
+   },
+   "synthesis": {
+    "real": 0.7,
+    "fake": 85.7,
+    "filter": 13.7
+   },
+   "synthesis_beautified": {
+    "real": 2.1,
+    "fake": 76.3,
+    "filter": 21.6
+   },
+   "synthesis_compressed": {
+    "real": 0.9,
+    "fake": 84.0,
+    "filter": 15.1
+   }
+  }
+ },
+ "RU-clipe5fbn_s20260930": {
+  "auc_untreated": 0.9291,
+  "auc_beautified": 0.8734,
+  "auc_compressed": 0.9106,
+  "miss0": 27.34,
+  "miss_b": 43.9,
+  "miss_c": 30.96,
+  "fa_b": 5.77,
+  "fa_c": 5.56,
+  "d_miss": 16.56,
+  "d_miss_c": 3.63,
+  "d_miss_beauty_only": 12.93,
+  "ci": {
+   "auc_beautified": [
+    0.8476,
+    0.8955
+   ],
+   "d_miss_beauty_only": [
+    9.71,
+    15.86
+   ],
+   "fa_b": [
+    3.96,
+    7.79
+   ],
+   "miss_b": [
+    37.92,
+    49.37
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.035,
+    0.0949
+   ],
+   "fadapter": [
+    0.0174,
+    0.0724
+   ],
+   "sbi": [
+    0.0869,
+    0.1546
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 28.4,
+    "fake": 18.7,
+    "filter": 52.9
+   },
+   "real_beautified": {
+    "real": 24.7,
+    "fake": 18.0,
+    "filter": 57.3
+   },
+   "real_compressed": {
+    "real": 26.2,
+    "fake": 21.0,
+    "filter": 52.8
+   },
+   "synthesis": {
+    "real": 5.4,
+    "fake": 88.2,
+    "filter": 6.4
+   },
+   "synthesis_beautified": {
+    "real": 8.2,
+    "fake": 77.4,
+    "filter": 14.4
+   },
+   "synthesis_compressed": {
+    "real": 6.7,
+    "fake": 85.1,
+    "filter": 8.2
+   }
+  }
+ },
+ "RU-clipe5fbg0p1o_s20260929": {
+  "auc_untreated": 0.9337,
+  "auc_beautified": 0.8872,
+  "auc_compressed": 0.9124,
+  "miss0": 24.51,
+  "miss_b": 37.65,
+  "miss_c": 29.06,
+  "fa_b": 5.99,
+  "fa_c": 6.89,
+  "d_miss": 13.14,
+  "d_miss_c": 4.54,
+  "d_miss_beauty_only": 8.6,
+  "ci": {
+   "auc_beautified": [
+    0.862,
+    0.9088
+   ],
+   "d_miss_beauty_only": [
+    6.19,
+    11.38
+   ],
+   "fa_b": [
+    4.73,
+    7.34
+   ],
+   "miss_b": [
+    32.45,
+    43.0
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0514,
+    0.1099
+   ],
+   "fadapter": [
+    0.0337,
+    0.0844
+   ],
+   "sbi": [
+    0.0994,
+    0.1698
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 10.7,
+    "fake": 37.2,
+    "filter": 52.1
+   },
+   "real_beautified": {
+    "real": 10.6,
+    "fake": 42.1,
+    "filter": 47.3
+   },
+   "real_compressed": {
+    "real": 10.7,
+    "fake": 40.0,
+    "filter": 49.3
+   },
+   "synthesis": {
+    "real": 0.8,
+    "fake": 94.6,
+    "filter": 4.6
+   },
+   "synthesis_beautified": {
+    "real": 1.3,
+    "fake": 91.5,
+    "filter": 7.2
+   },
+   "synthesis_compressed": {
+    "real": 0.8,
+    "fake": 93.7,
+    "filter": 5.4
+   }
+  }
+ },
+ "RU-clipe5fbp1n_s20260929": {
+  "auc_untreated": 0.9177,
+  "auc_beautified": 0.8382,
+  "auc_compressed": 0.8921,
+  "miss0": 30.21,
+  "miss_b": 55.59,
+  "miss_c": 34.45,
+  "fa_b": 4.05,
+  "fa_c": 6.52,
+  "d_miss": 25.38,
+  "d_miss_c": 4.24,
+  "d_miss_beauty_only": 21.14,
+  "ci": {
+   "auc_beautified": [
+    0.8063,
+    0.867
+   ],
+   "d_miss_beauty_only": [
+    17.06,
+    24.97
+   ],
+   "fa_b": [
+    2.53,
+    5.62
+   ],
+   "miss_b": [
+    49.99,
+    61.24
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0018,
+    0.0608
+   ],
+   "fadapter": [
+    -0.0191,
+    0.0375
+   ],
+   "sbi": [
+    0.0517,
+    0.1193
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 15.0,
+    "fake": 22.6,
+    "filter": 62.4
+   },
+   "real_beautified": {
+    "real": 29.5,
+    "fake": 14.5,
+    "filter": 56.1
+   },
+   "real_compressed": {
+    "real": 14.7,
+    "fake": 26.4,
+    "filter": 58.9
+   },
+   "synthesis": {
+    "real": 2.0,
+    "fake": 87.2,
+    "filter": 10.8
+   },
+   "synthesis_beautified": {
+    "real": 9.4,
+    "fake": 66.5,
+    "filter": 24.2
+   },
+   "synthesis_compressed": {
+    "real": 2.4,
+    "fake": 84.7,
+    "filter": 12.9
+   }
+  }
+ },
+ "RU-clipe5fbg0p1o_s20260930": {
+  "auc_untreated": 0.9395,
+  "auc_beautified": 0.8959,
+  "auc_compressed": 0.9237,
+  "miss0": 21.71,
+  "miss_b": 33.76,
+  "miss_c": 25.25,
+  "fa_b": 6.86,
+  "fa_c": 6.29,
+  "d_miss": 12.05,
+  "d_miss_c": 3.55,
+  "d_miss_beauty_only": 8.51,
+  "ci": {
+   "auc_beautified": [
+    0.8718,
+    0.9175
+   ],
+   "d_miss_beauty_only": [
+    6.06,
+    11.3
+   ],
+   "fa_b": [
+    4.91,
+    8.81
+   ],
+   "miss_b": [
+    27.94,
+    39.57
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0621,
+    0.1174
+   ],
+   "fadapter": [
+    0.0429,
+    0.0925
+   ],
+   "sbi": [
+    0.1093,
+    0.1797
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 32.0,
+    "fake": 33.0,
+    "filter": 35.0
+   },
+   "real_beautified": {
+    "real": 30.2,
+    "fake": 34.1,
+    "filter": 35.7
+   },
+   "real_compressed": {
+    "real": 30.8,
+    "fake": 37.3,
+    "filter": 31.9
+   },
+   "synthesis": {
+    "real": 3.3,
+    "fake": 94.0,
+    "filter": 2.7
+   },
+   "synthesis_beautified": {
+    "real": 5.3,
+    "fake": 89.9,
+    "filter": 4.8
+   },
+   "synthesis_compressed": {
+    "real": 3.5,
+    "fake": 93.7,
+    "filter": 2.8
+   }
+  }
+ },
+ "RU-clipe5fbg0p1o_s20261001": {
+  "auc_untreated": 0.9414,
+  "auc_beautified": 0.8931,
+  "auc_compressed": 0.9248,
+  "miss0": 22.01,
+  "miss_b": 33.62,
+  "miss_c": 26.33,
+  "fa_b": 6.5,
+  "fa_c": 5.68,
+  "d_miss": 11.61,
+  "d_miss_c": 4.32,
+  "d_miss_beauty_only": 7.29,
+  "ci": {
+   "auc_beautified": [
+    0.871,
+    0.9138
+   ],
+   "d_miss_beauty_only": [
+    5.0,
+    10.07
+   ],
+   "fa_b": [
+    4.96,
+    8.31
+   ],
+   "miss_b": [
+    28.91,
+    39.5
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.059,
+    0.1141
+   ],
+   "fadapter": [
+    0.039,
+    0.0892
+   ],
+   "sbi": [
+    0.1047,
+    0.178
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 42.4,
+    "fake": 40.7,
+    "filter": 16.9
+   },
+   "real_beautified": {
+    "real": 38.4,
+    "fake": 45.0,
+    "filter": 16.6
+   },
+   "real_compressed": {
+    "real": 43.4,
+    "fake": 43.9,
+    "filter": 12.6
+   },
+   "synthesis": {
+    "real": 3.4,
+    "fake": 95.7,
+    "filter": 0.9
+   },
+   "synthesis_beautified": {
+    "real": 4.9,
+    "fake": 92.9,
+    "filter": 2.2
+   },
+   "synthesis_compressed": {
+    "real": 3.9,
+    "fake": 95.1,
+    "filter": 1.0
+   }
+  }
+ },
+ "RU-clipe5fbg0oy_s20260929": {
+  "auc_untreated": 0.9202,
+  "auc_beautified": 0.8658,
+  "auc_compressed": 0.9001,
+  "miss0": 28.56,
+  "miss_b": 45.84,
+  "miss_c": 31.64,
+  "fa_b": 5.47,
+  "fa_c": 6.7,
+  "d_miss": 17.28,
+  "d_miss_c": 3.08,
+  "d_miss_beauty_only": 14.2,
+  "ci": {
+   "auc_beautified": [
+    0.8387,
+    0.8896
+   ],
+   "d_miss_beauty_only": [
+    10.98,
+    17.09
+   ],
+   "fa_b": [
+    3.86,
+    7.24
+   ],
+   "miss_b": [
+    39.76,
+    52.34
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0305,
+    0.0876
+   ],
+   "fadapter": [
+    0.0113,
+    0.0637
+   ],
+   "sbi": [
+    0.0779,
+    0.1498
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 34.2,
+    "fake": 9.1,
+    "filter": 56.8
+   },
+   "real_beautified": {
+    "real": 41.3,
+    "fake": 9.5,
+    "filter": 49.2
+   },
+   "real_compressed": {
+    "real": 35.7,
+    "fake": 11.9,
+    "filter": 52.4
+   },
+   "synthesis": {
+    "real": 7.0,
+    "fake": 77.6,
+    "filter": 15.3
+   },
+   "synthesis_beautified": {
+    "real": 15.7,
+    "fake": 63.0,
+    "filter": 21.3
+   },
+   "synthesis_compressed": {
+    "real": 8.4,
+    "fake": 75.6,
+    "filter": 16.0
+   }
+  }
+ },
+ "RU-clipe5fbg0oy_s20260930": {
+  "auc_untreated": 0.9334,
+  "auc_beautified": 0.8884,
+  "auc_compressed": 0.9136,
+  "miss0": 24.21,
+  "miss_b": 38.01,
+  "miss_c": 27.58,
+  "fa_b": 6.23,
+  "fa_c": 6.57,
+  "d_miss": 13.8,
+  "d_miss_c": 3.36,
+  "d_miss_beauty_only": 10.44,
+  "ci": {
+   "auc_beautified": [
+    0.8637,
+    0.9099
+   ],
+   "d_miss_beauty_only": [
+    7.64,
+    13.87
+   ],
+   "fa_b": [
+    4.6,
+    7.9
+   ],
+   "miss_b": [
+    32.52,
+    45.59
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0546,
+    0.1094
+   ],
+   "fadapter": [
+    0.0337,
+    0.0849
+   ],
+   "sbi": [
+    0.102,
+    0.1744
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 42.4,
+    "fake": 17.0,
+    "filter": 40.6
+   },
+   "real_beautified": {
+    "real": 35.8,
+    "fake": 19.7,
+    "filter": 44.5
+   },
+   "real_compressed": {
+    "real": 38.1,
+    "fake": 20.2,
+    "filter": 41.7
+   },
+   "synthesis": {
+    "real": 6.4,
+    "fake": 88.0,
+    "filter": 5.6
+   },
+   "synthesis_beautified": {
+    "real": 8.9,
+    "fake": 80.4,
+    "filter": 10.7
+   },
+   "synthesis_compressed": {
+    "real": 7.2,
+    "fake": 85.6,
+    "filter": 7.1
+   }
+  }
+ },
+ "RU-clipe5fbg0oyE_s20260929": {
+  "auc_untreated": 0.9364,
+  "auc_beautified": 0.8905,
+  "auc_compressed": 0.9266,
+  "miss0": 23.03,
+  "miss_b": 38.44,
+  "miss_c": 27.89,
+  "fa_b": 4.77,
+  "fa_c": 5.09,
+  "d_miss": 15.41,
+  "d_miss_c": 4.87,
+  "d_miss_beauty_only": 10.55,
+  "ci": {
+   "auc_beautified": [
+    0.8649,
+    0.9121
+   ],
+   "d_miss_beauty_only": [
+    7.95,
+    13.48
+   ],
+   "fa_b": [
+    3.62,
+    6.48
+   ],
+   "miss_b": [
+    31.7,
+    45.38
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.06,
+    0.1101
+   ],
+   "fadapter": [
+    0.0384,
+    0.0863
+   ],
+   "sbi": [
+    0.1051,
+    0.1749
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 41.5,
+    "fake": 8.2,
+    "filter": 50.3
+   },
+   "real_beautified": {
+    "real": 37.0,
+    "fake": 8.9,
+    "filter": 54.2
+   },
+   "real_compressed": {
+    "real": 38.5,
+    "fake": 8.6,
+    "filter": 52.9
+   },
+   "synthesis": {
+    "real": 8.2,
+    "fake": 83.4,
+    "filter": 8.4
+   },
+   "synthesis_beautified": {
+    "real": 12.5,
+    "fake": 69.4,
+    "filter": 18.1
+   },
+   "synthesis_compressed": {
+    "real": 9.6,
+    "fake": 79.2,
+    "filter": 11.2
+   }
+  }
+ },
+ "RU-clipe5fbg0oyEi_s20260929": {
+  "auc_untreated": 0.8902,
+  "auc_beautified": 0.7914,
+  "auc_compressed": 0.8488,
+  "miss0": 29.55,
+  "miss_b": 49.44,
+  "miss_c": 41.99,
+  "fa_b": 6.41,
+  "fa_c": 3.59,
+  "d_miss": 19.89,
+  "d_miss_c": 12.43,
+  "d_miss_beauty_only": 7.45,
+  "ci": {
+   "auc_beautified": [
+    0.7589,
+    0.8212
+   ],
+   "d_miss_beauty_only": [
+    4.42,
+    10.75
+   ],
+   "fa_b": [
+    4.84,
+    8.92
+   ],
+   "miss_b": [
+    43.22,
+    55.13
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.0277,
+    -0.0048
+   ],
+   "fadapter": [
+    -0.0604,
+    -0.0139
+   ],
+   "sbi": [
+    0.0034,
+    0.0792
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 12.5,
+    "fake": 5.3,
+    "filter": 82.2
+   },
+   "real_beautified": {
+    "real": 8.1,
+    "fake": 6.8,
+    "filter": 85.1
+   },
+   "real_compressed": {
+    "real": 9.1,
+    "fake": 3.8,
+    "filter": 87.0
+   },
+   "synthesis": {
+    "real": 2.3,
+    "fake": 70.7,
+    "filter": 26.9
+   },
+   "synthesis_beautified": {
+    "real": 2.3,
+    "fake": 50.8,
+    "filter": 46.9
+   },
+   "synthesis_compressed": {
+    "real": 2.2,
+    "fake": 58.0,
+    "filter": 39.8
+   }
+  }
+ },
+ "RU-clipe5y_s20260929": {
+  "auc_untreated": 0.9413,
+  "auc_beautified": 0.8681,
+  "auc_compressed": 0.9249,
+  "miss0": 24.16,
+  "miss_b": 42.54,
+  "miss_c": 32.55,
+  "fa_b": 9.22,
+  "fa_c": 4.33,
+  "d_miss": 18.38,
+  "d_miss_c": 8.4,
+  "d_miss_beauty_only": 9.99,
+  "ci": {
+   "auc_beautified": [
+    0.8434,
+    0.8913
+   ],
+   "d_miss_beauty_only": [
+    6.99,
+    13.09
+   ],
+   "fa_b": [
+    6.89,
+    11.68
+   ],
+   "miss_b": [
+    37.11,
+    49.11
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.032,
+    0.0915
+   ],
+   "fadapter": [
+    0.0146,
+    0.0645
+   ],
+   "sbi": [
+    0.0821,
+    0.1465
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 68.7,
+    "fake": 17.1,
+    "filter": 14.2
+   },
+   "real_beautified": {
+    "real": 30.3,
+    "fake": 21.5,
+    "filter": 48.1
+   },
+   "real_compressed": {
+    "real": 66.8,
+    "fake": 14.8,
+    "filter": 18.4
+   },
+   "synthesis": {
+    "real": 6.9,
+    "fake": 89.3,
+    "filter": 3.7
+   },
+   "synthesis_beautified": {
+    "real": 5.0,
+    "fake": 77.6,
+    "filter": 17.4
+   },
+   "synthesis_compressed": {
+    "real": 9.3,
+    "fake": 84.9,
+    "filter": 5.8
+   }
+  }
+ },
+ "RU-clipe5fbp3_s20260929": {
+  "auc_untreated": 0.9428,
+  "auc_beautified": 0.8565,
+  "auc_compressed": 0.9219,
+  "miss0": 21.73,
+  "miss_b": 22.75,
+  "miss_c": 25.09,
+  "fa_b": 24.6,
+  "fa_c": 7.54,
+  "d_miss": 1.01,
+  "d_miss_c": 3.35,
+  "d_miss_beauty_only": -2.34,
+  "ci": {
+   "auc_beautified": [
+    0.8285,
+    0.8824
+   ],
+   "d_miss_beauty_only": [
+    -4.8,
+    0.45
+   ],
+   "fa_b": [
+    20.33,
+    28.82
+   ],
+   "miss_b": [
+    18.42,
+    27.86
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0186,
+    0.0831
+   ],
+   "fadapter": [
+    -0.0015,
+    0.0586
+   ],
+   "sbi": [
+    0.065,
+    0.1461
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 19.2,
+    "fake": 18.1,
+    "filter": 62.6
+   },
+   "real_beautified": {
+    "real": 17.3,
+    "fake": 44.2,
+    "filter": 38.5
+   },
+   "real_compressed": {
+    "real": 18.5,
+    "fake": 23.8,
+    "filter": 57.7
+   },
+   "synthesis": {
+    "real": 2.0,
+    "fake": 89.3,
+    "filter": 8.7
+   },
+   "synthesis_beautified": {
+    "real": 2.4,
+    "fake": 89.6,
+    "filter": 8.1
+   },
+   "synthesis_compressed": {
+    "real": 2.0,
+    "fake": 88.2,
+    "filter": 9.8
+   }
+  }
+ },
+ "RU-clipe5y_s20260930": {
+  "auc_untreated": 0.9449,
+  "auc_beautified": 0.8879,
+  "auc_compressed": 0.9338,
+  "miss0": 23.29,
+  "miss_b": 34.06,
+  "miss_c": 30.91,
+  "fa_b": 8.71,
+  "fa_c": 3.77,
+  "d_miss": 10.77,
+  "d_miss_c": 7.62,
+  "d_miss_beauty_only": 3.15,
+  "ci": {
+   "auc_beautified": [
+    0.8647,
+    0.9069
+   ],
+   "d_miss_beauty_only": [
+    0.61,
+    5.8
+   ],
+   "fa_b": [
+    6.93,
+    10.56
+   ],
+   "miss_b": [
+    29.05,
+    39.66
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0552,
+    0.1073
+   ],
+   "fadapter": [
+    0.0365,
+    0.0844
+   ],
+   "sbi": [
+    0.1022,
+    0.1684
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 75.5,
+    "fake": 14.9,
+    "filter": 9.6
+   },
+   "real_beautified": {
+    "real": 27.7,
+    "fake": 22.2,
+    "filter": 50.1
+   },
+   "real_compressed": {
+    "real": 73.8,
+    "fake": 13.3,
+    "filter": 12.9
+   },
+   "synthesis": {
+    "real": 8.9,
+    "fake": 89.0,
+    "filter": 2.1
+   },
+   "synthesis_beautified": {
+    "real": 4.7,
+    "fake": 81.5,
+    "filter": 13.8
+   },
+   "synthesis_compressed": {
+    "real": 10.9,
+    "fake": 85.2,
+    "filter": 3.9
+   }
+  }
+ },
+ "RU-clipe5b_s20260930": {
+  "auc_untreated": 0.9553,
+  "auc_beautified": 0.9039,
+  "auc_compressed": 0.9393,
+  "miss0": 19.61,
+  "miss_b": 30.93,
+  "miss_c": 25.2,
+  "fa_b": 8.26,
+  "fa_c": 5.06,
+  "d_miss": 11.32,
+  "d_miss_c": 5.58,
+  "d_miss_beauty_only": 5.74,
+  "ci": {
+   "auc_beautified": [
+    0.8836,
+    0.922
+   ],
+   "d_miss_beauty_only": [
+    3.52,
+    7.85
+   ],
+   "fa_b": [
+    6.74,
+    10.15
+   ],
+   "miss_b": [
+    25.91,
+    35.89
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0704,
+    0.1252
+   ],
+   "fadapter": [
+    0.0513,
+    0.1004
+   ],
+   "sbi": [
+    0.1186,
+    0.1843
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 28.1,
+    "fake": 30.6,
+    "filter": 41.3
+   },
+   "real_beautified": {
+    "real": 24.7,
+    "fake": 36.2,
+    "filter": 39.2
+   },
+   "real_compressed": {
+    "real": 26.1,
+    "fake": 31.7,
+    "filter": 42.2
+   },
+   "synthesis": {
+    "real": 1.7,
+    "fake": 96.1,
+    "filter": 2.2
+   },
+   "synthesis_beautified": {
+    "real": 3.3,
+    "fake": 92.1,
+    "filter": 4.6
+   },
+   "synthesis_compressed": {
+    "real": 2.3,
+    "fake": 94.4,
+    "filter": 3.2
+   }
+  }
+ },
+ "RU-clipe5z_s20260929": {
+  "auc_untreated": 0.8811,
+  "auc_beautified": 0.8452,
+  "auc_compressed": 0.8674,
+  "miss0": 44.74,
+  "miss_b": 47.83,
+  "miss_c": 48.64,
+  "fa_b": 7.48,
+  "fa_c": 4.67,
+  "d_miss": 3.1,
+  "d_miss_c": 3.9,
+  "d_miss_beauty_only": -0.81,
+  "ci": {
+   "auc_beautified": [
+    0.8183,
+    0.8701
+   ],
+   "d_miss_beauty_only": [
+    -3.68,
+    1.89
+   ],
+   "fa_b": [
+    5.91,
+    10.53
+   ],
+   "miss_b": [
+    38.43,
+    55.69
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0025,
+    0.0732
+   ],
+   "fadapter": [
+    -0.0145,
+    0.0492
+   ],
+   "sbi": [
+    0.0505,
+    0.135
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 76.7,
+    "fake": 6.3,
+    "filter": 17.0
+   },
+   "real_beautified": {
+    "real": 30.8,
+    "fake": 10.2,
+    "filter": 59.0
+   },
+   "real_compressed": {
+    "real": 71.0,
+    "fake": 6.6,
+    "filter": 22.5
+   },
+   "synthesis": {
+    "real": 26.3,
+    "fake": 61.0,
+    "filter": 12.7
+   },
+   "synthesis_beautified": {
+    "real": 9.4,
+    "fake": 57.7,
+    "filter": 32.9
+   },
+   "synthesis_compressed": {
+    "real": 25.1,
+    "fake": 58.1,
+    "filter": 16.8
+   }
+  }
+ },
+ "RU-clipe5bz_s20260929": {
+  "auc_untreated": 0.8731,
+  "auc_beautified": 0.8365,
+  "auc_compressed": 0.8569,
+  "miss0": 48.04,
+  "miss_b": 48.14,
+  "miss_c": 50.57,
+  "fa_b": 8.39,
+  "fa_c": 4.98,
+  "d_miss": 0.1,
+  "d_miss_c": 2.54,
+  "d_miss_beauty_only": -2.44,
+  "ci": {
+   "auc_beautified": [
+    0.8089,
+    0.8624
+   ],
+   "d_miss_beauty_only": [
+    -5.27,
+    -0.07
+   ],
+   "fa_b": [
+    6.68,
+    10.95
+   ],
+   "miss_b": [
+    40.0,
+    56.6
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.005,
+    0.0681
+   ],
+   "fadapter": [
+    -0.0236,
+    0.043
+   ],
+   "sbi": [
+    0.0413,
+    0.127
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 3.9,
+    "fake": 14.2,
+    "filter": 81.9
+   },
+   "real_beautified": {
+    "real": 7.2,
+    "fake": 24.1,
+    "filter": 68.7
+   },
+   "real_compressed": {
+    "real": 4.0,
+    "fake": 14.9,
+    "filter": 81.1
+   },
+   "synthesis": {
+    "real": 0.5,
+    "fake": 70.9,
+    "filter": 28.5
+   },
+   "synthesis_beautified": {
+    "real": 1.1,
+    "fake": 74.7,
+    "filter": 24.2
+   },
+   "synthesis_compressed": {
+    "real": 0.8,
+    "fake": 69.0,
+    "filter": 30.2
+   }
+  }
+ },
+ "RU-clipe5bzl0_s20260929": {
+  "auc_untreated": 0.9373,
+  "auc_beautified": 0.8908,
+  "auc_compressed": 0.9246,
+  "miss0": 26.55,
+  "miss_b": 39.6,
+  "miss_c": 31.75,
+  "fa_b": 6.83,
+  "fa_c": 4.78,
+  "d_miss": 13.05,
+  "d_miss_c": 5.2,
+  "d_miss_beauty_only": 7.85,
+  "ci": {
+   "auc_beautified": [
+    0.8688,
+    0.9109
+   ],
+   "d_miss_beauty_only": [
+    5.09,
+    10.08
+   ],
+   "fa_b": [
+    5.47,
+    8.72
+   ],
+   "miss_b": [
+    33.15,
+    45.98
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0551,
+    0.1148
+   ],
+   "fadapter": [
+    0.0367,
+    0.0879
+   ],
+   "sbi": [
+    0.1031,
+    0.1726
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 7.9,
+    "fake": 29.7,
+    "filter": 62.4
+   },
+   "real_beautified": {
+    "real": 12.3,
+    "fake": 31.2,
+    "filter": 56.5
+   },
+   "real_compressed": {
+    "real": 8.2,
+    "fake": 30.1,
+    "filter": 61.8
+   },
+   "synthesis": {
+    "real": 0.6,
+    "fake": 93.3,
+    "filter": 6.1
+   },
+   "synthesis_beautified": {
+    "real": 1.3,
+    "fake": 89.3,
+    "filter": 9.5
+   },
+   "synthesis_compressed": {
+    "real": 0.7,
+    "fake": 92.5,
+    "filter": 6.8
+   }
+  }
+ },
+ "RU-clipe5bzsg_s20260929": {
+  "auc_untreated": 0.9057,
+  "auc_beautified": 0.8348,
+  "auc_compressed": 0.8913,
+  "miss0": 35.03,
+  "miss_b": 43.7,
+  "miss_c": 40.53,
+  "fa_b": 10.83,
+  "fa_c": 4.74,
+  "d_miss": 8.67,
+  "d_miss_c": 5.5,
+  "d_miss_beauty_only": 3.17,
+  "ci": {
+   "auc_beautified": [
+    0.8068,
+    0.8631
+   ],
+   "d_miss_beauty_only": [
+    0.61,
+    5.62
+   ],
+   "fa_b": [
+    8.82,
+    13.36
+   ],
+   "miss_b": [
+    37.37,
+    49.98
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.0069,
+    0.0639
+   ],
+   "fadapter": [
+    -0.0227,
+    0.0383
+   ],
+   "sbi": [
+    0.0435,
+    0.118
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 87.5,
+    "fake": 10.3,
+    "filter": 2.2
+   },
+   "real_beautified": {
+    "real": 73.0,
+    "fake": 19.9,
+    "filter": 7.0
+   },
+   "real_compressed": {
+    "real": 87.3,
+    "fake": 10.1,
+    "filter": 2.6
+   },
+   "synthesis": {
+    "real": 22.0,
+    "fake": 75.4,
+    "filter": 2.5
+   },
+   "synthesis_beautified": {
+    "real": 23.8,
+    "fake": 69.5,
+    "filter": 6.7
+   },
+   "synthesis_compressed": {
+    "real": 25.3,
+    "fake": 71.0,
+    "filter": 3.7
+   }
+  }
+ },
+ "RU-clipe5bzl03_s20260929": {
+  "auc_untreated": 0.9006,
+  "auc_beautified": 0.8595,
+  "auc_compressed": 0.8851,
+  "miss0": 40.22,
+  "miss_b": 46.06,
+  "miss_c": 44.79,
+  "fa_b": 7.87,
+  "fa_c": 4.87,
+  "d_miss": 5.84,
+  "d_miss_c": 4.57,
+  "d_miss_beauty_only": 1.27,
+  "ci": {
+   "auc_beautified": [
+    0.8354,
+    0.8826
+   ],
+   "d_miss_beauty_only": [
+    -1.12,
+    3.4
+   ],
+   "fa_b": [
+    6.36,
+    9.97
+   ],
+   "miss_b": [
+    38.61,
+    53.49
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0208,
+    0.0872
+   ],
+   "fadapter": [
+    0.0023,
+    0.0621
+   ],
+   "sbi": [
+    0.0682,
+    0.1462
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 9.2,
+    "fake": 19.4,
+    "filter": 71.4
+   },
+   "real_beautified": {
+    "real": 20.8,
+    "fake": 27.7,
+    "filter": 51.5
+   },
+   "real_compressed": {
+    "real": 12.8,
+    "fake": 20.7,
+    "filter": 66.4
+   },
+   "synthesis": {
+    "real": 2.0,
+    "fake": 82.8,
+    "filter": 15.2
+   },
+   "synthesis_beautified": {
+    "real": 4.2,
+    "fake": 82.2,
+    "filter": 13.6
+   },
+   "synthesis_compressed": {
+    "real": 2.9,
+    "fake": 80.9,
+    "filter": 16.2
+   }
+  }
+ },
+ "RU-clipe5bzsg_s20260930": {
+  "auc_untreated": 0.8655,
+  "auc_beautified": 0.8044,
+  "auc_compressed": 0.8523,
+  "miss0": 46.37,
+  "miss_b": 52.36,
+  "miss_c": 53.35,
+  "fa_b": 10.03,
+  "fa_c": 4.16,
+  "d_miss": 5.99,
+  "d_miss_c": 6.98,
+  "d_miss_beauty_only": -0.99,
+  "ci": {
+   "auc_beautified": [
+    0.7746,
+    0.8344
+   ],
+   "d_miss_beauty_only": [
+    -3.74,
+    1.62
+   ],
+   "fa_b": [
+    7.63,
+    12.32
+   ],
+   "miss_b": [
+    45.8,
+    58.94
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.037,
+    0.0339
+   ],
+   "fadapter": [
+    -0.0578,
+    0.0111
+   ],
+   "sbi": [
+    0.0115,
+    0.0907
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 75.9,
+    "fake": 12.7,
+    "filter": 11.5
+   },
+   "real_beautified": {
+    "real": 54.0,
+    "fake": 21.6,
+    "filter": 24.4
+   },
+   "real_compressed": {
+    "real": 73.7,
+    "fake": 12.0,
+    "filter": 14.3
+   },
+   "synthesis": {
+    "real": 25.4,
+    "fake": 69.7,
+    "filter": 4.9
+   },
+   "synthesis_beautified": {
+    "real": 22.4,
+    "fake": 67.5,
+    "filter": 10.1
+   },
+   "synthesis_compressed": {
+    "real": 28.2,
+    "fake": 64.3,
+    "filter": 7.5
+   }
+  }
+ },
+ "RU-clipe5fbzsg_s20260929": {
+  "auc_untreated": 0.8877,
+  "auc_beautified": 0.8292,
+  "auc_compressed": 0.866,
+  "miss0": 34.85,
+  "miss_b": 44.59,
+  "miss_c": 38.02,
+  "fa_b": 9.55,
+  "fa_c": 5.89,
+  "d_miss": 9.74,
+  "d_miss_c": 3.16,
+  "d_miss_beauty_only": 6.57,
+  "ci": {
+   "auc_beautified": [
+    0.8011,
+    0.8555
+   ],
+   "d_miss_beauty_only": [
+    3.99,
+    9.42
+   ],
+   "fa_b": [
+    7.71,
+    11.63
+   ],
+   "miss_b": [
+    38.39,
+    50.77
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.0123,
+    0.0557
+   ],
+   "fadapter": [
+    -0.0313,
+    0.032
+   ],
+   "sbi": [
+    0.0406,
+    0.1162
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 35.2,
+    "fake": 5.1,
+    "filter": 59.7
+   },
+   "real_beautified": {
+    "real": 45.6,
+    "fake": 9.9,
+    "filter": 44.6
+   },
+   "real_compressed": {
+    "real": 35.2,
+    "fake": 6.2,
+    "filter": 58.6
+   },
+   "synthesis": {
+    "real": 6.7,
+    "fake": 64.8,
+    "filter": 28.5
+   },
+   "synthesis_beautified": {
+    "real": 15.5,
+    "fake": 55.5,
+    "filter": 29.0
+   },
+   "synthesis_compressed": {
+    "real": 7.7,
+    "fake": 61.7,
+    "filter": 30.6
+   }
+  }
+ },
+ "RU-clipe5bzl01_s20260929": {
+  "auc_untreated": 0.919,
+  "auc_beautified": 0.8818,
+  "auc_compressed": 0.9046,
+  "miss0": 33.39,
+  "miss_b": 40.21,
+  "miss_c": 38.54,
+  "fa_b": 7.45,
+  "fa_c": 4.92,
+  "d_miss": 6.82,
+  "d_miss_c": 5.15,
+  "d_miss_beauty_only": 1.67,
+  "ci": {
+   "auc_beautified": [
+    0.8601,
+    0.9024
+   ],
+   "d_miss_beauty_only": [
+    -0.91,
+    3.61
+   ],
+   "fa_b": [
+    5.86,
+    9.61
+   ],
+   "miss_b": [
+    33.02,
+    47.55
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0433,
+    0.1067
+   ],
+   "fadapter": [
+    0.0263,
+    0.0813
+   ],
+   "sbi": [
+    0.093,
+    0.1664
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 43.5,
+    "fake": 19.0,
+    "filter": 37.5
+   },
+   "real_beautified": {
+    "real": 33.2,
+    "fake": 27.7,
+    "filter": 39.1
+   },
+   "real_compressed": {
+    "real": 41.7,
+    "fake": 20.0,
+    "filter": 38.3
+   },
+   "synthesis": {
+    "real": 4.8,
+    "fake": 86.3,
+    "filter": 8.9
+   },
+   "synthesis_beautified": {
+    "real": 4.0,
+    "fake": 85.6,
+    "filter": 10.4
+   },
+   "synthesis_compressed": {
+    "real": 5.2,
+    "fake": 84.1,
+    "filter": 10.7
+   }
+  }
+ },
+ "RU-clipe5bzsgl01_s20260929": {
+  "auc_untreated": 0.9202,
+  "auc_beautified": 0.8706,
+  "auc_compressed": 0.9049,
+  "miss0": 29.35,
+  "miss_b": 43.04,
+  "miss_c": 35.67,
+  "fa_b": 7.07,
+  "fa_c": 4.56,
+  "d_miss": 13.69,
+  "d_miss_c": 6.32,
+  "d_miss_beauty_only": 7.37,
+  "ci": {
+   "auc_beautified": [
+    0.8474,
+    0.8925
+   ],
+   "d_miss_beauty_only": [
+    4.73,
+    10.03
+   ],
+   "fa_b": [
+    5.32,
+    9.2
+   ],
+   "miss_b": [
+    37.18,
+    50.28
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0333,
+    0.095
+   ],
+   "fadapter": [
+    0.0151,
+    0.0687
+   ],
+   "sbi": [
+    0.0842,
+    0.1517
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 2.6,
+    "fake": 17.9,
+    "filter": 79.5
+   },
+   "real_beautified": {
+    "real": 8.2,
+    "fake": 21.8,
+    "filter": 70.1
+   },
+   "real_compressed": {
+    "real": 2.5,
+    "fake": 18.1,
+    "filter": 79.4
+   },
+   "synthesis": {
+    "real": 0.5,
+    "fake": 84.9,
+    "filter": 14.6
+   },
+   "synthesis_beautified": {
+    "real": 0.7,
+    "fake": 78.7,
+    "filter": 20.5
+   },
+   "synthesis_compressed": {
+    "real": 0.6,
+    "fake": 82.0,
+    "filter": 17.5
+   }
+  }
+ },
+ "RU-clipe5bzsgG_s20260929": {
+  "auc_untreated": 0.8743,
+  "auc_beautified": 0.8192,
+  "auc_compressed": 0.8541,
+  "miss0": 44.32,
+  "miss_b": 50.46,
+  "miss_c": 53.06,
+  "fa_b": 8.92,
+  "fa_c": 3.87,
+  "d_miss": 6.14,
+  "d_miss_c": 8.74,
+  "d_miss_beauty_only": -2.6,
+  "ci": {
+   "auc_beautified": [
+    0.7899,
+    0.8465
+   ],
+   "d_miss_beauty_only": [
+    -4.99,
+    0.02
+   ],
+   "fa_b": [
+    7.02,
+    11.22
+   ],
+   "miss_b": [
+    44.2,
+    57.32
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.0214,
+    0.0441
+   ],
+   "fadapter": [
+    -0.0381,
+    0.0223
+   ],
+   "sbi": [
+    0.0277,
+    0.1056
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 23.1,
+    "fake": 12.1,
+    "filter": 64.9
+   },
+   "real_beautified": {
+    "real": 34.6,
+    "fake": 20.2,
+    "filter": 45.2
+   },
+   "real_compressed": {
+    "real": 26.6,
+    "fake": 9.8,
+    "filter": 63.7
+   },
+   "synthesis": {
+    "real": 5.7,
+    "fake": 69.4,
+    "filter": 24.9
+   },
+   "synthesis_beautified": {
+    "real": 13.2,
+    "fake": 66.5,
+    "filter": 20.3
+   },
+   "synthesis_compressed": {
+    "real": 8.3,
+    "fake": 61.7,
+    "filter": 30.0
+   }
+  }
+ },
+ "RU-clipe5bz_s20260930": {
+  "auc_untreated": 0.8667,
+  "auc_beautified": 0.8285,
+  "auc_compressed": 0.8505,
+  "miss0": 48.13,
+  "miss_b": 46.93,
+  "miss_c": 51.04,
+  "fa_b": 8.89,
+  "fa_c": 4.92,
+  "d_miss": -1.2,
+  "d_miss_c": 2.91,
+  "d_miss_beauty_only": -4.11,
+  "ci": {
+   "auc_beautified": [
+    0.8016,
+    0.855
+   ],
+   "d_miss_beauty_only": [
+    -6.71,
+    -1.81
+   ],
+   "fa_b": [
+    7.06,
+    11.25
+   ],
+   "miss_b": [
+    39.18,
+    54.51
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.0154,
+    0.059
+   ],
+   "fadapter": [
+    -0.0329,
+    0.0343
+   ],
+   "sbi": [
+    0.0331,
+    0.1195
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 80.6,
+    "fake": 14.3,
+    "filter": 5.1
+   },
+   "real_beautified": {
+    "real": 60.2,
+    "fake": 26.4,
+    "filter": 13.4
+   },
+   "real_compressed": {
+    "real": 78.9,
+    "fake": 15.4,
+    "filter": 5.7
+   },
+   "synthesis": {
+    "real": 25.6,
+    "fake": 70.1,
+    "filter": 4.3
+   },
+   "synthesis_beautified": {
+    "real": 18.4,
+    "fake": 74.9,
+    "filter": 6.7
+   },
+   "synthesis_compressed": {
+    "real": 27.0,
+    "fake": 68.5,
+    "filter": 4.6
+   }
+  }
+ },
+ "RU-clipe5bzsgl03_s20260929": {
+  "auc_untreated": 0.9015,
+  "auc_beautified": 0.8395,
+  "auc_compressed": 0.8844,
+  "miss0": 36.15,
+  "miss_b": 42.03,
+  "miss_c": 41.76,
+  "fa_b": 11.68,
+  "fa_c": 5.24,
+  "d_miss": 5.88,
+  "d_miss_c": 5.62,
+  "d_miss_beauty_only": 0.26,
+  "ci": {
+   "auc_beautified": [
+    0.8123,
+    0.8664
+   ],
+   "d_miss_beauty_only": [
+    -1.9,
+    2.97
+   ],
+   "fa_b": [
+    9.36,
+    14.56
+   ],
+   "miss_b": [
+    35.47,
+    49.55
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.0023,
+    0.0673
+   ],
+   "fadapter": [
+    -0.017,
+    0.0419
+   ],
+   "sbi": [
+    0.0474,
+    0.124
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 87.3,
+    "fake": 10.2,
+    "filter": 2.5
+   },
+   "real_beautified": {
+    "real": 67.0,
+    "fake": 20.5,
+    "filter": 12.6
+   },
+   "real_compressed": {
+    "real": 86.3,
+    "fake": 11.0,
+    "filter": 2.8
+   },
+   "synthesis": {
+    "real": 22.5,
+    "fake": 74.1,
+    "filter": 3.3
+   },
+   "synthesis_beautified": {
+    "real": 19.5,
+    "fake": 72.0,
+    "filter": 8.5
+   },
+   "synthesis_compressed": {
+    "real": 25.6,
+    "fake": 70.2,
+    "filter": 4.3
+   }
+  }
+ },
+ "RU-clipe5bzsgl01_s20260930": {
+  "auc_untreated": 0.9133,
+  "auc_beautified": 0.8678,
+  "auc_compressed": 0.9011,
+  "miss0": 32.43,
+  "miss_b": 40.64,
+  "miss_c": 37.45,
+  "fa_b": 8.04,
+  "fa_c": 4.62,
+  "d_miss": 8.21,
+  "d_miss_c": 5.02,
+  "d_miss_beauty_only": 3.19,
+  "ci": {
+   "auc_beautified": [
+    0.8436,
+    0.8897
+   ],
+   "d_miss_beauty_only": [
+    0.92,
+    6.03
+   ],
+   "fa_b": [
+    6.73,
+    9.59
+   ],
+   "miss_b": [
+    35.02,
+    47.27
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0297,
+    0.0941
+   ],
+   "fadapter": [
+    0.0114,
+    0.0675
+   ],
+   "sbi": [
+    0.0792,
+    0.1508
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 60.3,
+    "fake": 21.2,
+    "filter": 18.5
+   },
+   "real_beautified": {
+    "real": 40.2,
+    "fake": 27.2,
+    "filter": 32.6
+   },
+   "real_compressed": {
+    "real": 60.7,
+    "fake": 20.4,
+    "filter": 19.0
+   },
+   "synthesis": {
+    "real": 9.5,
+    "fake": 85.6,
+    "filter": 4.9
+   },
+   "synthesis_beautified": {
+    "real": 8.3,
+    "fake": 82.5,
+    "filter": 9.2
+   },
+   "synthesis_compressed": {
+    "real": 11.2,
+    "fake": 82.8,
+    "filter": 6.0
+   }
+  }
+ },
+ "RU-clipe5bzsgh_s20260929": {
+  "auc_untreated": 0.9339,
+  "auc_beautified": 0.8799,
+  "auc_compressed": 0.9177,
+  "miss0": 26.58,
+  "miss_b": 44.62,
+  "miss_c": 32.86,
+  "fa_b": 7.07,
+  "fa_c": 4.77,
+  "d_miss": 18.04,
+  "d_miss_c": 6.28,
+  "d_miss_beauty_only": 11.76,
+  "ci": {
+   "auc_beautified": [
+    0.8564,
+    0.9003
+   ],
+   "d_miss_beauty_only": [
+    8.75,
+    14.44
+   ],
+   "fa_b": [
+    5.19,
+    9.01
+   ],
+   "miss_b": [
+    38.4,
+    51.05
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0437,
+    0.1046
+   ],
+   "fadapter": [
+    0.0256,
+    0.0778
+   ],
+   "sbi": [
+    0.0933,
+    0.161
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 45.5,
+    "fake": 32.2,
+    "filter": 22.3
+   },
+   "real_beautified": {
+    "real": 20.9,
+    "fake": 32.6,
+    "filter": 46.5
+   },
+   "real_compressed": {
+    "real": 43.8,
+    "fake": 31.4,
+    "filter": 24.7
+   },
+   "synthesis": {
+    "real": 3.7,
+    "fake": 94.0,
+    "filter": 2.4
+   },
+   "synthesis_beautified": {
+    "real": 2.3,
+    "fake": 88.8,
+    "filter": 8.9
+   },
+   "synthesis_compressed": {
+    "real": 4.6,
+    "fake": 91.7,
+    "filter": 3.7
+   }
+  }
+ },
+ "RU-clipe5bzsgl003_s20260929": {
+  "auc_untreated": 0.9329,
+  "auc_beautified": 0.8857,
+  "auc_compressed": 0.9187,
+  "miss0": 27.19,
+  "miss_b": 40.2,
+  "miss_c": 32.47,
+  "fa_b": 7.16,
+  "fa_c": 4.82,
+  "d_miss": 13.01,
+  "d_miss_c": 5.29,
+  "d_miss_beauty_only": 7.73,
+  "ci": {
+   "auc_beautified": [
+    0.8633,
+    0.9064
+   ],
+   "d_miss_beauty_only": [
+    4.89,
+    10.46
+   ],
+   "fa_b": [
+    5.56,
+    9.44
+   ],
+   "miss_b": [
+    33.75,
+    46.64
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0498,
+    0.1094
+   ],
+   "fadapter": [
+    0.0319,
+    0.0822
+   ],
+   "sbi": [
+    0.1003,
+    0.1659
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 54.4,
+    "fake": 21.5,
+    "filter": 24.1
+   },
+   "real_beautified": {
+    "real": 26.5,
+    "fake": 25.3,
+    "filter": 48.2
+   },
+   "real_compressed": {
+    "real": 49.0,
+    "fake": 21.4,
+    "filter": 29.5
+   },
+   "synthesis": {
+    "real": 5.5,
+    "fake": 89.7,
+    "filter": 4.8
+   },
+   "synthesis_beautified": {
+    "real": 3.7,
+    "fake": 85.1,
+    "filter": 11.1
+   },
+   "synthesis_compressed": {
+    "real": 5.7,
+    "fake": 87.4,
+    "filter": 6.9
+   }
+  }
+ },
+ "RU-clipe5bzsgl003_s20260930": {
+  "auc_untreated": 0.9244,
+  "auc_beautified": 0.8763,
+  "auc_compressed": 0.9081,
+  "miss0": 30.19,
+  "miss_b": 40.48,
+  "miss_c": 36.03,
+  "fa_b": 7.66,
+  "fa_c": 4.69,
+  "d_miss": 10.29,
+  "d_miss_c": 5.84,
+  "d_miss_beauty_only": 4.45,
+  "ci": {
+   "auc_beautified": [
+    0.8532,
+    0.8969
+   ],
+   "d_miss_beauty_only": [
+    1.97,
+    6.79
+   ],
+   "fa_b": [
+    6.18,
+    9.78
+   ],
+   "miss_b": [
+    34.63,
+    47.21
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.039,
+    0.1016
+   ],
+   "fadapter": [
+    0.0216,
+    0.0759
+   ],
+   "sbi": [
+    0.0862,
+    0.1595
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 30.2,
+    "fake": 24.1,
+    "filter": 45.6
+   },
+   "real_beautified": {
+    "real": 47.8,
+    "fake": 28.5,
+    "filter": 23.8
+   },
+   "real_compressed": {
+    "real": 29.7,
+    "fake": 23.9,
+    "filter": 46.4
+   },
+   "synthesis": {
+    "real": 3.7,
+    "fake": 89.5,
+    "filter": 6.7
+   },
+   "synthesis_beautified": {
+    "real": 9.6,
+    "fake": 85.0,
+    "filter": 5.4
+   },
+   "synthesis_compressed": {
+    "real": 4.4,
+    "fake": 87.3,
+    "filter": 8.3
+   }
+  }
+ },
+ "RU-clipe5bzsgh_s20260930": {
+  "auc_untreated": 0.9197,
+  "auc_beautified": 0.8598,
+  "auc_compressed": 0.9039,
+  "miss0": 34.16,
+  "miss_b": 49.62,
+  "miss_c": 42.28,
+  "fa_b": 6.66,
+  "fa_c": 3.91,
+  "d_miss": 15.46,
+  "d_miss_c": 8.11,
+  "d_miss_beauty_only": 7.34,
+  "ci": {
+   "auc_beautified": [
+    0.834,
+    0.8828
+   ],
+   "d_miss_beauty_only": [
+    4.83,
+    9.91
+   ],
+   "fa_b": [
+    5.11,
+    8.39
+   ],
+   "miss_b": [
+    43.22,
+    56.98
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.022,
+    0.0867
+   ],
+   "fadapter": [
+    0.0045,
+    0.0592
+   ],
+   "sbi": [
+    0.0699,
+    0.1433
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 48.2,
+    "fake": 24.6,
+    "filter": 27.2
+   },
+   "real_beautified": {
+    "real": 52.7,
+    "fake": 25.4,
+    "filter": 21.9
+   },
+   "real_compressed": {
+    "real": 48.3,
+    "fake": 23.1,
+    "filter": 28.6
+   },
+   "synthesis": {
+    "real": 6.8,
+    "fake": 89.5,
+    "filter": 3.7
+   },
+   "synthesis_beautified": {
+    "real": 12.2,
+    "fake": 81.4,
+    "filter": 6.4
+   },
+   "synthesis_compressed": {
+    "real": 9.3,
+    "fake": 86.0,
+    "filter": 4.7
+   }
+  }
+ },
+ "RU-clipe5bzsgG_s20260930": {
+  "auc_untreated": 0.8745,
+  "auc_beautified": 0.8214,
+  "auc_compressed": 0.8537,
+  "miss0": 44.38,
+  "miss_b": 43.52,
+  "miss_c": 51.74,
+  "fa_b": 12.52,
+  "fa_c": 4.69,
+  "d_miss": -0.85,
+  "d_miss_c": 7.36,
+  "d_miss_beauty_only": -8.21,
+  "ci": {
+   "auc_beautified": [
+    0.7912,
+    0.8493
+   ],
+   "d_miss_beauty_only": [
+    -10.44,
+    -5.65
+   ],
+   "fa_b": [
+    10.02,
+    15.12
+   ],
+   "miss_b": [
+    37.77,
+    49.51
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.0223,
+    0.0493
+   ],
+   "fadapter": [
+    -0.0393,
+    0.0255
+   ],
+   "sbi": [
+    0.0284,
+    0.1071
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 44.8,
+    "fake": 8.8,
+    "filter": 46.4
+   },
+   "real_beautified": {
+    "real": 44.3,
+    "fake": 19.1,
+    "filter": 36.6
+   },
+   "real_compressed": {
+    "real": 48.6,
+    "fake": 8.2,
+    "filter": 43.3
+   },
+   "synthesis": {
+    "real": 15.5,
+    "fake": 64.9,
+    "filter": 19.6
+   },
+   "synthesis_beautified": {
+    "real": 15.2,
+    "fake": 66.2,
+    "filter": 18.6
+   },
+   "synthesis_compressed": {
+    "real": 20.0,
+    "fake": 57.9,
+    "filter": 22.1
+   }
+  }
+ },
+ "RU-clipe5M_s20260929": {
+  "auc_untreated": 0.9441,
+  "auc_beautified": 0.8804,
+  "auc_compressed": 0.9247,
+  "miss0": 22.55,
+  "miss_b": 40.86,
+  "miss_c": 29.64,
+  "fa_b": 6.94,
+  "fa_c": 4.26,
+  "d_miss": 18.32,
+  "d_miss_c": 7.09,
+  "d_miss_beauty_only": 11.23,
+  "ci": {
+   "auc_beautified": [
+    0.8562,
+    0.9016
+   ],
+   "d_miss_beauty_only": [
+    8.48,
+    13.97
+   ],
+   "fa_b": [
+    5.26,
+    9.0
+   ],
+   "miss_b": [
+    35.23,
+    45.92
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0458,
+    0.1026
+   ],
+   "fadapter": [
+    0.0296,
+    0.0761
+   ],
+   "sbi": [
+    0.0964,
+    0.1599
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 63.0,
+    "fake": 14.3,
+    "filter": 22.7
+   },
+   "real_beautified": {
+    "real": 15.7,
+    "fake": 16.9,
+    "filter": 67.4
+   },
+   "real_compressed": {
+    "real": 55.6,
+    "fake": 14.2,
+    "filter": 30.3
+   },
+   "synthesis": {
+    "real": 6.6,
+    "fake": 88.1,
+    "filter": 5.2
+   },
+   "synthesis_beautified": {
+    "real": 2.5,
+    "fake": 75.9,
+    "filter": 21.7
+   },
+   "synthesis_compressed": {
+    "real": 7.1,
+    "fake": 84.0,
+    "filter": 8.9
+   }
+  }
+ },
+ "RU-clipe5fbp0F2_s20260929": {
+  "auc_untreated": 0.9324,
+  "auc_beautified": 0.8682,
+  "auc_compressed": 0.9137,
+  "miss0": 23.79,
+  "miss_b": 43.75,
+  "miss_c": 31.85,
+  "fa_b": 4.59,
+  "fa_c": 3.9,
+  "d_miss": 19.96,
+  "d_miss_c": 8.06,
+  "d_miss_beauty_only": 11.9,
+  "ci": {
+   "auc_beautified": [
+    0.8408,
+    0.8925
+   ],
+   "d_miss_beauty_only": [
+    8.59,
+    15.02
+   ],
+   "fa_b": [
+    2.73,
+    6.55
+   ],
+   "miss_b": [
+    37.08,
+    50.7
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0342,
+    0.0881
+   ],
+   "fadapter": [
+    0.014,
+    0.0658
+   ],
+   "sbi": [
+    0.081,
+    0.1514
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 20.5,
+    "fake": 6.6,
+    "filter": 72.9
+   },
+   "real_beautified": {
+    "real": 33.0,
+    "fake": 6.2,
+    "filter": 60.8
+   },
+   "real_compressed": {
+    "real": 23.4,
+    "fake": 5.2,
+    "filter": 71.4
+   },
+   "synthesis": {
+    "real": 2.8,
+    "fake": 79.1,
+    "filter": 18.1
+   },
+   "synthesis_beautified": {
+    "real": 9.4,
+    "fake": 60.7,
+    "filter": 29.9
+   },
+   "synthesis_compressed": {
+    "real": 4.1,
+    "fake": 71.9,
+    "filter": 24.0
+   }
+  }
+ },
+ "RU-clipe5fbEM_s20260929": {
+  "auc_untreated": 0.9397,
+  "auc_beautified": 0.8909,
+  "auc_compressed": 0.9301,
+  "miss0": 22.71,
+  "miss_b": 35.91,
+  "miss_c": 26.87,
+  "fa_b": 6.44,
+  "fa_c": 5.56,
+  "d_miss": 13.19,
+  "d_miss_c": 4.16,
+  "d_miss_beauty_only": 9.03,
+  "ci": {
+   "auc_beautified": [
+    0.8675,
+    0.9121
+   ],
+   "d_miss_beauty_only": [
+    6.54,
+    11.43
+   ],
+   "fa_b": [
+    4.6,
+    8.28
+   ],
+   "miss_b": [
+    30.01,
+    42.45
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.059,
+    0.1106
+   ],
+   "fadapter": [
+    0.0399,
+    0.0879
+   ],
+   "sbi": [
+    0.105,
+    0.1731
+   ],
+   "dfdhr": [
+    0.0345,
+    0.074
+   ],
+   "gend": [
+    0.0598,
+    0.1106
+   ],
+   "caddm": [
+    0.0979,
+    0.1618
+   ]
+  },
+  "d_miss_beauty_only_minus": {
+   "effort": [
+    -5.27,
+    0.86
+   ],
+   "fadapter": [
+    -9.32,
+    -2.66
+   ],
+   "sbi": [
+    -17.49,
+    -8.22
+   ],
+   "dfdhr": [
+    2.97,
+    8.13
+   ],
+   "gend": [
+    -6.02,
+    0.5
+   ],
+   "caddm": [
+    8.22,
+    15.36
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 42.8,
+    "fake": 6.4,
+    "filter": 50.8
+   },
+   "real_beautified": {
+    "real": 35.6,
+    "fake": 8.0,
+    "filter": 56.3
+   },
+   "real_compressed": {
+    "real": 39.4,
+    "fake": 6.7,
+    "filter": 53.9
+   },
+   "synthesis": {
+    "real": 9.6,
+    "fake": 79.6,
+    "filter": 10.7
+   },
+   "synthesis_beautified": {
+    "real": 11.9,
+    "fake": 67.4,
+    "filter": 20.7
+   },
+   "synthesis_compressed": {
+    "real": 10.3,
+    "fake": 75.8,
+    "filter": 13.9
+   }
+  }
+ },
+ "RU-clipe5M_s20260930": {
+  "auc_untreated": 0.9394,
+  "auc_beautified": 0.8779,
+  "auc_compressed": 0.9223,
+  "miss0": 25.74,
+  "miss_b": 41.99,
+  "miss_c": 34.09,
+  "fa_b": 7.69,
+  "fa_c": 4.15,
+  "d_miss": 16.25,
+  "d_miss_c": 8.35,
+  "d_miss_beauty_only": 7.9,
+  "ci": {
+   "auc_beautified": [
+    0.856,
+    0.8995
+   ],
+   "d_miss_beauty_only": [
+    5.53,
+    10.18
+   ],
+   "fa_b": [
+    5.7,
+    9.59
+   ],
+   "miss_b": [
+    35.53,
+    48.89
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.043,
+    0.1013
+   ],
+   "fadapter": [
+    0.0269,
+    0.0761
+   ],
+   "sbi": [
+    0.0911,
+    0.1598
+   ],
+   "dfdhr": [
+    0.0182,
+    0.0645
+   ],
+   "gend": [
+    0.0439,
+    0.1004
+   ],
+   "caddm": [
+    0.0858,
+    0.1483
+   ]
+  },
+  "d_miss_beauty_only_minus": {
+   "effort": [
+    -6.78,
+    0.11
+   ],
+   "fadapter": [
+    -10.72,
+    -3.95
+   ],
+   "sbi": [
+    -18.18,
+    -9.44
+   ],
+   "dfdhr": [
+    1.18,
+    7.24
+   ],
+   "gend": [
+    -7.54,
+    -0.63
+   ],
+   "caddm": [
+    7.37,
+    14.17
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 56.3,
+    "fake": 18.7,
+    "filter": 25.0
+   },
+   "real_beautified": {
+    "real": 19.2,
+    "fake": 24.9,
+    "filter": 55.9
+   },
+   "real_compressed": {
+    "real": 53.8,
+    "fake": 17.4,
+    "filter": 28.9
+   },
+   "synthesis": {
+    "real": 5.3,
+    "fake": 90.1,
+    "filter": 4.6
+   },
+   "synthesis_beautified": {
+    "real": 2.3,
+    "fake": 83.4,
+    "filter": 14.4
+   },
+   "synthesis_compressed": {
+    "real": 6.4,
+    "fake": 85.9,
+    "filter": 7.7
+   }
+  }
+ },
+ "RU-clipe5bzxs_s20260929": {
+  "auc_untreated": 0.909,
+  "auc_beautified": 0.8362,
+  "auc_compressed": 0.8939,
+  "miss0": 33.1,
+  "miss_b": 38.37,
+  "miss_c": 38.58,
+  "fa_b": 9.99,
+  "fa_c": 4.12,
+  "d_miss": 5.27,
+  "d_miss_c": 5.48,
+  "d_miss_beauty_only": -0.21,
+  "ci": {
+   "auc_beautified": [
+    0.8046,
+    0.8641
+   ],
+   "d_miss_beauty_only": [
+    -3.96,
+    4.0
+   ],
+   "fa_b": [
+    6.3,
+    14.93
+   ],
+   "miss_b": [
+    30.28,
+    48.43
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.0092,
+    0.067
+   ],
+   "fadapter": [
+    -0.0281,
+    0.0427
+   ],
+   "sbi": [
+    0.0448,
+    0.1224
+   ],
+   "dfdhr": [
+    -0.0348,
+    0.0311
+   ],
+   "gend": [
+    -0.0091,
+    0.0681
+   ],
+   "caddm": [
+    0.0381,
+    0.11
+   ]
+  },
+  "d_miss_beauty_only_minus": {
+   "effort": [
+    -15.96,
+    -6.35
+   ],
+   "fadapter": [
+    -20.3,
+    -9.97
+   ],
+   "sbi": [
+    -27.32,
+    -16.27
+   ],
+   "dfdhr": [
+    -8.41,
+    0.91
+   ],
+   "gend": [
+    -17.0,
+    -7.18
+   ],
+   "caddm": [
+    -1.59,
+    7.51
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 62.5,
+    "fake": 0.7,
+    "filter": 36.8
+   },
+   "real_beautified": {
+    "real": 71.3,
+    "fake": 0.4,
+    "filter": 28.3
+   },
+   "real_compressed": {
+    "real": 74.0,
+    "fake": 0.4,
+    "filter": 25.6
+   },
+   "synthesis": {
+    "real": 10.2,
+    "fake": 41.8,
+    "filter": 48.0
+   },
+   "synthesis_beautified": {
+    "real": 24.8,
+    "fake": 28.1,
+    "filter": 47.1
+   },
+   "synthesis_compressed": {
+    "real": 17.5,
+    "fake": 35.2,
+    "filter": 47.3
+   }
+  }
+ },
+ "RU-clipe7W_s20260929": {
+  "auc_untreated": 0.9439,
+  "auc_beautified": 0.867,
+  "auc_compressed": 0.9233,
+  "miss0": 23.33,
+  "miss_b": 35.12,
+  "miss_c": 26.55,
+  "fa_b": 12.91,
+  "fa_c": 7.51,
+  "d_miss": 11.78,
+  "d_miss_c": 3.22,
+  "d_miss_beauty_only": 8.56,
+  "ci": {
+   "auc_beautified": [
+    0.8426,
+    0.8913
+   ],
+   "d_miss_beauty_only": [
+    5.98,
+    11.62
+   ],
+   "fa_b": [
+    10.3,
+    15.9
+   ],
+   "miss_b": [
+    30.02,
+    40.77
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0309,
+    0.0902
+   ],
+   "fadapter": [
+    0.0141,
+    0.0658
+   ],
+   "sbi": [
+    0.0794,
+    0.1475
+   ],
+   "dfdhr": [
+    0.0033,
+    0.0545
+   ],
+   "gend": [
+    0.0308,
+    0.0895
+   ],
+   "caddm": [
+    0.0743,
+    0.1382
+   ]
+  },
+  "d_miss_beauty_only_minus": {
+   "effort": [
+    -5.75,
+    1.1
+   ],
+   "fadapter": [
+    -9.77,
+    -3.15
+   ],
+   "sbi": [
+    -17.4,
+    -8.6
+   ],
+   "dfdhr": [
+    2.2,
+    7.96
+   ],
+   "gend": [
+    -6.38,
+    0.26
+   ],
+   "caddm": [
+    7.83,
+    15.23
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 75.8,
+    "fake": 10.1,
+    "filter": 14.1
+   },
+   "real_beautified": {
+    "real": 33.0,
+    "fake": 20.0,
+    "filter": 47.0
+   },
+   "real_compressed": {
+    "real": 67.7,
+    "fake": 13.9,
+    "filter": 18.4
+   },
+   "synthesis": {
+    "real": 11.6,
+    "fake": 84.6,
+    "filter": 3.8
+   },
+   "synthesis_beautified": {
+    "real": 6.8,
+    "fake": 77.0,
+    "filter": 16.2
+   },
+   "synthesis_compressed": {
+    "real": 11.8,
+    "fake": 83.1,
+    "filter": 5.1
+   }
+  }
+ },
+ "RU-clipe7W_s20260930": {
+  "auc_untreated": 0.9335,
+  "auc_beautified": 0.8674,
+  "auc_compressed": 0.915,
+  "miss0": 27.53,
+  "miss_b": 35.34,
+  "miss_c": 31.74,
+  "fa_b": 11.64,
+  "fa_c": 6.0,
+  "d_miss": 7.81,
+  "d_miss_c": 4.21,
+  "d_miss_beauty_only": 3.6,
+  "ci": {
+   "auc_beautified": [
+    0.8439,
+    0.888
+   ],
+   "d_miss_beauty_only": [
+    0.75,
+    6.54
+   ],
+   "fa_b": [
+    9.36,
+    14.17
+   ],
+   "miss_b": [
+    30.14,
+    41.08
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0334,
+    0.089
+   ],
+   "fadapter": [
+    0.0166,
+    0.0643
+   ],
+   "sbi": [
+    0.0805,
+    0.1492
+   ],
+   "dfdhr": [
+    0.0072,
+    0.0521
+   ],
+   "gend": [
+    0.0338,
+    0.0865
+   ],
+   "caddm": [
+    0.0739,
+    0.1358
+   ]
+  },
+  "d_miss_beauty_only_minus": {
+   "effort": [
+    -10.68,
+    -4.08
+   ],
+   "fadapter": [
+    -14.57,
+    -8.12
+   ],
+   "sbi": [
+    -22.56,
+    -13.85
+   ],
+   "dfdhr": [
+    -2.65,
+    2.73
+   ],
+   "gend": [
+    -11.48,
+    -5.14
+   ],
+   "caddm": [
+    2.89,
+    10.27
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 75.1,
+    "fake": 8.5,
+    "filter": 16.4
+   },
+   "real_beautified": {
+    "real": 30.3,
+    "fake": 18.6,
+    "filter": 51.1
+   },
+   "real_compressed": {
+    "real": 67.8,
+    "fake": 10.1,
+    "filter": 22.1
+   },
+   "synthesis": {
+    "real": 15.0,
+    "fake": 79.3,
+    "filter": 5.7
+   },
+   "synthesis_beautified": {
+    "real": 7.6,
+    "fake": 73.7,
+    "filter": 18.7
+   },
+   "synthesis_compressed": {
+    "real": 15.4,
+    "fake": 76.5,
+    "filter": 8.1
+   }
+  }
+ },
+ "RU-clipe5bR25_s20260929": {
+  "auc_untreated": 0.9391,
+  "auc_beautified": 0.8794,
+  "auc_compressed": 0.9216,
+  "miss0": 25.18,
+  "miss_b": 41.22,
+  "miss_c": 30.06,
+  "fa_b": 6.82,
+  "fa_c": 5.63,
+  "d_miss": 16.05,
+  "d_miss_c": 4.89,
+  "d_miss_beauty_only": 11.16,
+  "ci": {
+   "auc_beautified": [
+    0.8573,
+    0.9014
+   ],
+   "d_miss_beauty_only": [
+    8.71,
+    13.95
+   ],
+   "fa_b": [
+    5.3,
+    8.43
+   ],
+   "miss_b": [
+    34.94,
+    48.15
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0446,
+    0.1039
+   ],
+   "fadapter": [
+    0.0255,
+    0.0766
+   ],
+   "sbi": [
+    0.0937,
+    0.1616
+   ],
+   "dfdhr": [
+    0.0198,
+    0.0664
+   ],
+   "gend": [
+    0.0456,
+    0.101
+   ],
+   "caddm": [
+    0.0883,
+    0.1494
+   ]
+  },
+  "d_miss_beauty_only_minus": {
+   "effort": [
+    -2.71,
+    3.51
+   ],
+   "fadapter": [
+    -6.86,
+    -0.35
+   ],
+   "sbi": [
+    -14.74,
+    -5.97
+   ],
+   "dfdhr": [
+    4.92,
+    10.75
+   ],
+   "gend": [
+    -3.65,
+    3.01
+   ],
+   "caddm": [
+    11.19,
+    17.63
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 62.4,
+    "fake": 36.7,
+    "filter": 0.9
+   },
+   "real_beautified": {
+    "real": 60.5,
+    "fake": 38.3,
+    "filter": 1.2
+   },
+   "real_compressed": {
+    "real": 52.5,
+    "fake": 47.1,
+    "filter": 0.4
+   },
+   "synthesis": {
+    "real": 3.9,
+    "fake": 95.8,
+    "filter": 0.3
+   },
+   "synthesis_beautified": {
+    "real": 8.6,
+    "fake": 90.8,
+    "filter": 0.7
+   },
+   "synthesis_compressed": {
+    "real": 3.7,
+    "fake": 96.1,
+    "filter": 0.2
+   }
+  }
+ },
+ "RU-clipe5R25_s20260929": {
+  "auc_untreated": 0.9357,
+  "auc_beautified": 0.8593,
+  "auc_compressed": 0.9204,
+  "miss0": 25.99,
+  "miss_b": 43.77,
+  "miss_c": 35.36,
+  "fa_b": 7.93,
+  "fa_c": 3.9,
+  "d_miss": 17.79,
+  "d_miss_c": 9.37,
+  "d_miss_beauty_only": 8.41,
+  "ci": {
+   "auc_beautified": [
+    0.8345,
+    0.8824
+   ],
+   "d_miss_beauty_only": [
+    6.17,
+    10.96
+   ],
+   "fa_b": [
+    5.99,
+    10.14
+   ],
+   "miss_b": [
+    37.9,
+    49.71
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    0.0243,
+    0.0816
+   ],
+   "fadapter": [
+    0.0063,
+    0.0561
+   ],
+   "sbi": [
+    0.0745,
+    0.1408
+   ],
+   "dfdhr": [
+    -0.0018,
+    0.0446
+   ],
+   "gend": [
+    0.026,
+    0.08
+   ],
+   "caddm": [
+    0.0679,
+    0.129
+   ]
+  },
+  "d_miss_beauty_only_minus": {
+   "effort": [
+    -5.84,
+    0.9
+   ],
+   "fadapter": [
+    -9.93,
+    -3.27
+   ],
+   "sbi": [
+    -17.83,
+    -8.78
+   ],
+   "dfdhr": [
+    1.89,
+    7.93
+   ],
+   "gend": [
+    -6.73,
+    0.21
+   ],
+   "caddm": [
+    7.89,
+    14.89
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 71.1,
+    "fake": 18.0,
+    "filter": 10.9
+   },
+   "real_beautified": {
+    "real": 35.4,
+    "fake": 22.0,
+    "filter": 42.6
+   },
+   "real_compressed": {
+    "real": 70.0,
+    "fake": 15.8,
+    "filter": 14.2
+   },
+   "synthesis": {
+    "real": 8.6,
+    "fake": 89.3,
+    "filter": 2.1
+   },
+   "synthesis_beautified": {
+    "real": 7.9,
+    "fake": 77.8,
+    "filter": 14.2
+   },
+   "synthesis_compressed": {
+    "real": 11.4,
+    "fake": 85.0,
+    "filter": 3.6
+   }
+  }
+ },
+ "RU7We-effb4": {
+  "auc_untreated": 0.9052,
+  "auc_beautified": 0.8352,
+  "auc_compressed": 0.8922,
+  "miss0": 36.92,
+  "miss_b": 65.8,
+  "miss_c": 46.69,
+  "fa_b": 2.36,
+  "fa_c": 3.3,
+  "d_miss": 28.88,
+  "d_miss_c": 9.77,
+  "d_miss_beauty_only": 19.11,
+  "ci": {
+   "auc_beautified": [
+    0.8093,
+    0.8627
+   ],
+   "d_miss_beauty_only": [
+    16.22,
+    22.11
+   ],
+   "fa_b": [
+    1.63,
+    3.26
+   ],
+   "miss_b": [
+    60.39,
+    71.13
+   ]
+  },
+  "auc_beautified_minus": {
+   "effort": [
+    -0.0054,
+    0.0637
+   ],
+   "fadapter": [
+    -0.0233,
+    0.0385
+   ],
+   "sbi": [
+    0.0491,
+    0.1193
+   ],
+   "dfdhr": [
+    -0.0321,
+    0.0304
+   ],
+   "gend": [
+    -0.0035,
+    0.0632
+   ],
+   "caddm": [
+    0.0418,
+    0.1094
+   ]
+  },
+  "d_miss_beauty_only_minus": {
+   "effort": [
+    4.18,
+    12.11
+   ],
+   "fadapter": [
+    0.16,
+    8.04
+   ],
+   "sbi": [
+    -6.93,
+    1.41
+   ],
+   "dfdhr": [
+    12.04,
+    19.1
+   ],
+   "gend": [
+    3.12,
+    11.3
+   ],
+   "caddm": [
+    18.9,
+    25.48
+   ]
+  },
+  "native": {
+   "real": {
+    "real": 70.5,
+    "fake": 14.4,
+    "filter": 15.0
+   },
+   "real_beautified": {
+    "real": 42.0,
+    "fake": 8.0,
+    "filter": 50.0
+   },
+   "real_compressed": {
+    "real": 68.5,
+    "fake": 11.1,
+    "filter": 20.4
+   },
+   "synthesis": {
+    "real": 15.1,
+    "fake": 79.5,
+    "filter": 5.4
+   },
+   "synthesis_beautified": {
+    "real": 16.5,
+    "fake": 53.7,
+    "filter": 29.9
+   },
+   "synthesis_compressed": {
+    "real": 18.8,
+    "fake": 71.6,
+    "filter": 9.6
+   }
+  }
+ }
+}

@@ -1,0 +1,109 @@
+{
+ "tag": "clipe5fb_s20260930",
+ "ffhq_orig": {
+  "n": 816,
+  "real": 50.49,
+  "fake": 25.12,
+  "filter": 24.39
+ },
+ "tencent": {
+  "n": 807,
+  "real": 46.96,
+  "fake": 33.71,
+  "filter": 19.33
+ },
+ "megvii": {
+  "n": 1329,
+  "real": 44.62,
+  "fake": 37.1,
+  "filter": 18.28
+ },
+ "vendor_single": {
+  "n": 8443,
+  "real": 46.46,
+  "fake": 31.68,
+  "filter": 21.85
+ },
+ "components": {
+  "tencent_eye": {
+   "n": 795,
+   "to_filter": 20.13,
+   "to_real": 51.19,
+   "TP": 0.804,
+   "TN_same_image": 0.005,
+   "spearman": -0.003,
+   "pred_mean": -0.361,
+   "meas_mean": 0.0185
+  },
+  "megvii_eye": {
+   "n": 1317,
+   "to_filter": 23.39,
+   "to_real": 48.67,
+   "TP": 0.801,
+   "TN_same_image": 0.014,
+   "spearman": 0.068,
+   "pred_mean": -0.3619,
+   "meas_mean": 0.008
+  },
+  "tencent_jaw": {
+   "n": 795,
+   "to_filter": 23.77,
+   "to_real": 49.31,
+   "TP": 0.496,
+   "TN_same_image": 0.013,
+   "spearman": 0.028,
+   "pred_mean": -0.1832,
+   "meas_mean": 0.0093
+  },
+  "megvii_jaw": {
+   "n": 1316,
+   "to_filter": 23.18,
+   "to_real": 49.47,
+   "TP": 0.502,
+   "TN_same_image": 0.008,
+   "spearman": 0.026,
+   "pred_mean": -0.175,
+   "meas_mean": 0.0104
+  },
+  "tencent_white": {
+   "n": 796,
+   "to_filter": 25.0,
+   "to_real": 47.24,
+   "TP": 0.72,
+   "TN_same_image": 0.01,
+   "spearman": -0.034,
+   "pred_mean": 0.4699,
+   "meas_mean": 1.0015
+  },
+  "megvii_white": {
+   "n": 1315,
+   "to_filter": 24.87,
+   "to_real": 49.89,
+   "TP": 0.71,
+   "TN_same_image": 0.017,
+   "spearman": -0.046,
+   "pred_mean": 0.4615,
+   "meas_mean": 0.1137
+  },
+  "tencent_smooth": {
+   "n": 792,
+   "to_filter": 19.44,
+   "to_real": 43.94,
+   "TP": 0.74,
+   "TN_same_image": 0.021,
+   "spearman": -0.015,
+   "pred_mean": -0.2059,
+   "meas_mean": 0.0455
+  },
+  "megvii_smooth": {
+   "n": 1317,
+   "to_filter": 15.41,
+   "to_real": 34.32,
+   "TP": 0.696,
+   "TN_same_image": 0.022,
+   "spearman": -0.055,
+   "pred_mean": -0.2604,
+   "meas_mean": 0.0266
+  }
+ }
+}

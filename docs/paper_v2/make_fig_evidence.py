@@ -1,7 +1,10 @@
 """fig_evidence: held-out part edits with GT footprint, evidence head map, Score-CAM on HYBPE, and the restored
 counterfactual (CGD region restored) with the model's decision on it.
 
-python docs/paper_v2/make_fig_evidence.py
+python docs/paper_v2/make_fig_evidence.py                 (runs the two models, caches the tiles in figs/fig_evidence_tiles.npz, draws)
+python docs/paper_v2/make_fig_evidence.py --render-only   (redraws from the cache)
+Drawing: shared style docs/paper_v2/figstyle.py (same overlays as docs/capstone/paper/src/make_fig_evidence_vs_gradcam.py): true footprint
+in blue (dashed on the map panels), the region cut from the evidence map (the one that is restored) in yellow.
 """
 import json
 import sys
@@ -18,12 +21,16 @@ import matplotlib.pyplot as plt  # noqa: E402
 BASE = Path(r"C:\My_Project\AIGC")
 sys.path.insert(0, str(BASE / "docs/paper_v2")); sys.path.insert(0, str(BASE / "results/research/cgd_20260927"))
 import make_figures as MF  # noqa: E402
+import figstyle as FS  # noqa: E402
+FS.apply()   # after make_figures, which sets its own rcParams on import
 from eval_cgd_explain import CAM, TF, SIZE, dilate_t, footprint_gt, load_items, region_from_map  # noqa: E402
 from train_cgd import CGDNet  # noqa: E402
 from PIL import Image  # noqa: E402
 
 CK = BASE / "checkpoints/research/cgd_20260927"
 CLS = ["real", "fake", "filter"]
+MECH = {"donor": "donor", "sd": "SD-1.5"}
+CACHE = BASE / "docs/paper_v2/figs/fig_evidence_tiles.npz"
 
 
 def load(arm):
@@ -51,35 +58,60 @@ def main():
             picks.append(it)
             if sum(p["mech"] == mech for p in picks) == 1:
                 break
-    fig, axes = plt.subplots(len(picks), 5, figsize=(7.1, 1.5 * len(picks)))
-    for r, it in enumerate(picks):
+    T = {k: [] for k in ("img", "gt", "ev", "reg", "sc", "rest", "p", "pr", "label")}
+    for it in picks:
         im = Image.open(it["x"]).convert("RGB"); im0 = Image.open(it["x0"]).convert("RGB").resize(im.size)
         x, x0 = TF(im)[None].cuda(), TF(im0)[None].cuda()
         gt = footprint_gt(im, im0); area = gt.mean().item()
         with torch.no_grad():
             lo, ev = cgd(x); p = torch.softmax(lo, 1)[0].cpu().numpy()
-            e = torch.sigmoid(ev[0, 0]).float(); reg = dilate_t(region_from_map(e, area))
+            e = torch.sigmoid(ev[0, 0]).float(); reg0 = region_from_map(e, area); reg = dilate_t(reg0)
             xr = (1 - reg[None, None]) * x + reg[None, None] * x0
             pr = torch.softmax(cgd(xr)[0], 1)[0].cpu().numpy()
         sc = cam.scorecam(x, 1)
-        S = (200, 240)
-        base = np.array(im.resize(S))
-        e_up = cv2.resize(torch.nn.functional.interpolate(e[None, None], size=(SIZE, SIZE), mode="bilinear")[0, 0].cpu().numpy(), S)
-        sc_up = cv2.resize((sc / (sc.max() + 1e-8)).cpu().numpy(), S)
-        gt_up = cv2.resize(gt.cpu().numpy(), S)
-        rest = ((xr[0].cpu().permute(1, 2, 0).numpy() * 0.5 + 0.5) * 255).astype(np.uint8); rest = cv2.resize(rest, S)
-        tiles = [(base, f"{it['mech']} {it['part']}"), (heat(base, gt_up), "GT footprint"), (heat(base, e_up), f"evidence head  ({CLS[p.argmax()]} {p.max():.2f})"),
-                 (heat(base, sc_up), "Score-CAM (no head)"), (rest, f"region restored -> {CLS[pr.argmax()]} {pr.max():.2f}")]
-        for c, (t, cap) in enumerate(tiles):
-            ax = axes[r, c]; ax.imshow(t); ax.set_xticks([]); ax.set_yticks([])
-            ax.set_xlabel(cap, fontsize=6.3)
-            for s in ax.spines.values():
-                s.set_visible(True); s.set_linewidth(0.5); s.set_color(MF.MUTED)
-    fig.tight_layout(pad=0.3)
-    MF.save(fig, "fig_evidence")
+        e_up = torch.nn.functional.interpolate(e[None, None], size=(SIZE, SIZE), mode="bilinear")[0, 0].cpu().numpy()
+        sc_up = cv2.resize((sc / (sc.max() + 1e-8)).cpu().numpy(), (SIZE, SIZE))
+        rest = ((xr[0].cpu().permute(1, 2, 0).numpy() * 0.5 + 0.5) * 255).clip(0, 255).astype(np.uint8)
+        for k, v in (("img", np.array(im.resize((SIZE, SIZE)))), ("gt", gt.cpu().numpy()), ("ev", np.clip(e_up, 0, 1)),   # sigmoid map drawn as is (as before)
+                     ("reg", reg0.cpu().numpy()), ("sc", np.clip(sc_up, 0, 1)), ("rest", rest), ("p", p), ("pr", pr),
+                     ("label", f"{MECH[it['mech']]}, {it['part']}")):
+            T[k].append(v)
+    np.savez_compressed(CACHE, **{k: np.stack(v) if k != "label" else np.array(v) for k, v in T.items()})
     json.dump([{k: str(v) for k, v in p.items()} for p in picks], open(MF.OUT / "fig_evidence_items.json", "w"), indent=1)
-    print("fig_evidence done")
+
+
+def render():
+    """2 x 5 grid at final size (5.0 in wide in the supplement): same overlays as the capstone evidence figure (figstyle)."""
+    z = np.load(CACHE); n = len(z["img"])
+    heads = ["input", "true footprint", "evidence map (ours)", "Score-CAM (no head)", "region restored"]
+    W, lm, gap, hgap, top = 5.0, 0.17, 0.05, 0.2, 0.17
+    tw = (W - lm - 4 * gap - 0.01) / 5; H = top + n * tw + (n - 1) * hgap + 0.17
+    fig = plt.figure(figsize=(W, H))
+    for r in range(n):
+        y0 = H - top - (r + 1) * tw - r * hgap
+        img, gt, p, pr = z["img"][r], z["gt"][r], z["p"][r], z["pr"][r]
+        for c in range(5):
+            ax = fig.add_axes([(lm + c * (tw + gap)) / W, y0 / H, tw / W, tw / H]); FS.frame(ax, color=FS.MUTED, lw=0.4)
+            if c == 0:
+                ax.imshow(img); ax.set_ylabel(str(z["label"][r]), fontsize=FS.FS_NOTE, labelpad=2)
+            elif c == 1:
+                FS.footprint(ax, img, gt)
+            elif c == 2:
+                ax.imshow(FS.overlay(img, z["ev"][r])); FS.footprint(ax, None, gt, fill=False); FS.region(ax, z["reg"][r])
+                d = int(p.argmax()); ax.set_xlabel(f"{CLS[d]} {p.max():.2f}", fontsize=FS.FS_NOTE, labelpad=1.5, color=FS.ERR if d == 1 else FS.OK)
+            elif c == 3:
+                ax.imshow(FS.overlay(img, z["sc"][r])); FS.footprint(ax, None, gt, fill=False)
+            else:
+                ax.imshow(z["rest"][r]); FS.region(ax, z["reg"][r])
+                d = int(pr.argmax()); ax.set_xlabel(f"→ {CLS[d]} {pr.max():.2f}", fontsize=FS.FS_NOTE, labelpad=1.5, color=FS.ERR if d == 1 else FS.OK)
+            if r == 0:
+                ax.set_title(heads[c], fontsize=FS.FS_NOTE, pad=3)
+    FS.save(fig, MF.OUT / "fig_evidence")
+    print("fig_evidence done", [(str(l), CLS[int(a.argmax())], round(float(a.max()), 2), CLS[int(b.argmax())], round(float(b.max()), 2))
+                                for l, a, b in zip(z["label"], z["p"], z["pr"])])
 
 
 if __name__ == "__main__":
-    main()
+    if "--render-only" not in sys.argv:
+        main()
+    render()

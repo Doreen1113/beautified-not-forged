@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evidence Page Check</title>
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.19.2/dist/ort.min.js"></script>
+<script src="../explain_t2.js"></script>
+<script src="../evidence_overlay.js"></script>
+<script src="../face_masks.js"></script>
+<script src="../demo_core.js"></script>
+<script>
+// ?model=repvit_ev runs the same 20 images through that DemoCore.MODELS entry against its own Python reference
+window.EV_MODEL = new URLSearchParams(location.search).get("model") || "effb4";
+document.write('<script src="fixture_ev' + (window.EV_MODEL === "effb4" ? "" : "_" + window.EV_MODEL) + '.js"><\/script>');
+</script>
+<style>
+:root { --bg: #f6f5f2; --panel: #fff; --ink: #1d1f24; --muted: #62666f; --line: #dcdad4; --ok: #2f7d4f; --bad: #b3342b; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181c; --panel: #1f2227; --ink: #e8e6e1; --muted: #9ca0a8; --line: #33373e; --ok: #6cc08c; --bad: #ef7a6f; } }
+:root[data-theme="dark"] { --bg: #16181c; --panel: #1f2227; --ink: #e8e6e1; --muted: #9ca0a8; --line: #33373e; --ok: #6cc08c; --bad: #ef7a6f; }
+body { margin: 0; padding: 24px 16px; background: var(--bg); color: var(--ink); font: 14px/1.5 system-ui, sans-serif; }
+main { max-width: 1100px; margin: 0 auto; }
+h1 { font-size: 20px; margin: 0 0 6px; }
+#summary { font-weight: 600; font-size: 16px; margin: 12px 0; }
+table { border-collapse: collapse; width: 100%; background: var(--panel); border: 1px solid var(--line); }
+td, th { border-top: 1px solid var(--line); padding: 6px 8px; vertical-align: top; text-align: left; font-size: 13px; }
+.PASS { color: var(--ok); font-weight: 600; } .FAIL { color: var(--bad); font-weight: 600; }
+pre { margin: 0; white-space: pre-wrap; font: 12px/1.4 ui-monospace, monospace; }
+canvas { background: #777; border-radius: 4px; display: block; }
+</style>
+</head>
+<body>
+<main>
+  <h1>瀏覽器完整路徑（MediaPipe → 裁切 → ru4e_effb4.onnx → 部位遮罩 → rule B → T2 四句）與 Python 參考比對</h1>
+  <p>每張固定集影像：瀏覽器用 <code>demo_core.js</code>（與 index.html 相同的路徑）得到判定、命名部位、四句；與 <code>fixture_ev.js</code>
+    裡 Python 的參考（同一 ONNX、PIL 縮放、cv2 遮罩、explain_v2 造句）逐項比對。逐筆結果寫進 <code>#report</code>，並 POST 到 <code>/__done</code> 供 headless 跑者讀取。</p>
+  <p id="summary">running…</p>
+  <pre id="report" hidden></pre>
+  <table id="rows"><tr><th>#</th><th>id</th><th>crop</th><th>browser</th><th>python</th><th>ms</th><th>result</th></tr></table>
+</main>
+<img id="hold" src="/__hold" alt="" width="1" height="1" style="position:absolute;opacity:0">
+<script type="module">
+import { FilesetResolver, FaceLandmarker } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/vision_bundle.mjs";
+const F = window.EV_FIXTURE, rows = document.getElementById("rows"), lines = [], results = [];
+const base = location.pathname.replace(/test\/[^/]*$/, "");   // ../ relative to this page
+let pass = 0, fail = 0, loadInfo = {};
+async function main() {
+  ort.env.wasm.numThreads = 1;
+  const t0 = performance.now();
+  const fileset = await FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm");
+  const landmarker = await FaceLandmarker.createFromOptions(fileset, {
+    baseOptions: { modelAssetPath: "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task" },
+    runningMode: "IMAGE", numFaces: 1 });
+  loadInfo.landmarker_ms = performance.now() - t0;
+  const model = await DemoCore.loadModel(window.EV_MODEL, base); loadInfo.model_ms = model.loadMs;
+  for (let i = 0; i < F.records.length; i++) {
+    const r = F.records[i], tA = performance.now();
+    const blob = await (await fetch(r.file)).blob(); const img = await createImageBitmap(blob);
+    const tB = performance.now(); const res = landmarker.detect(img); const lmMs = performance.now() - tB;
+    let out, err = null;
+    if (!res.faceLandmarks || !res.faceLandmarks.length) err = "no face";
+    else out = await DemoCore.analyse(img, res.faceLandmarks[0], model, {});
+    const wall = performance.now() - tA;
+    const exp = r.record, expS = r.t2_sentences, got = out ? ExplainT2.t2Sentences(out.record) : [];
+    const okDec = out && out.record.decision === exp.decision;
+    const okNamed = out && JSON.stringify(out.record.named_parts || null) === JSON.stringify(exp.named_parts);
+    const okS = out && got.length === 4 && got.every((s, k) => s === expS[k]);
+    const ok = okDec && okNamed && okS; ok ? pass++ : fail++;
+    const dp = out ? Math.max(...out.p.map((v, k) => Math.abs(v - r.p_raw[k]))) : null;
+    lines.push([ok ? "PASS" : "FAIL", r.id, "decision=" + (okDec ? "ok" : "DIFF"), "named=" + (okNamed ? "ok" : "DIFF"), "sentences=" + (okS ? "ok" : "DIFF"),
+                "wall_ms=" + wall.toFixed(0), "infer_ms=" + (out ? out.timing.inference.toFixed(0) : "-"), "lm_ms=" + lmMs.toFixed(0), "dp=" + (dp === null ? "-" : dp.toFixed(4))].join("\t"));
+    results.push({ id: r.id, ok, okDec, okNamed, okS, err, wall_ms: wall, landmark_ms: lmMs, timing: out ? out.timing : null, box: out ? out.box : null,
+                   decision: out ? out.record.decision : null, p: out ? out.p : null, ops: out ? out.ops : null, record: out ? out.record : null, sentences: got,
+                   evidence_map16: out && out.evidence ? out.evidence.evidence_map16 : null, parts3: out && out.evidence ? out.evidence.parts3 : null,
+                   named_parts: out && out.evidence ? out.evidence.named_parts : null, landmarks_grid: out ? out.landmarksGrid.map(([a, b]) => [+a.toFixed(2), +b.toFixed(2)]) : null,
+                   expected: { decision: exp.decision, named_parts: exp.named_parts, sentences: expS, box: r.box } });
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${i + 1}</td><td>${r.id}</td><td></td><td><pre></pre></td><td><pre></pre></td><td>${wall.toFixed(0)}</td><td class="${ok ? "PASS" : "FAIL"}">${ok ? "PASS" : "FAIL"}</td>`;
+    if (out) { const cv = document.createElement("canvas"); cv.width = cv.height = 112; const ctx = cv.getContext("2d");
+      ctx.drawImage(img, out.box[0], out.box[1], out.box[2] - out.box[0], out.box[3] - out.box[1], 0, 0, 112, 112);
+      if (out.evidence && out.label !== "real") EvidenceOverlay.drawContours(ctx, out.evidence.evidence_map16, 112, 112); tr.children[2].appendChild(cv); }
+    tr.querySelectorAll("pre")[0].textContent = (out ? out.record.decision + " " + JSON.stringify(out.record.named_parts || null) + "\n" + got.filter(Boolean).join("\n") : err);
+    tr.querySelectorAll("pre")[1].textContent = exp.decision + " " + JSON.stringify(exp.named_parts) + "\n" + expS.filter(Boolean).join("\n");
+    rows.appendChild(tr);
+  }
+}
+main().catch((e) => { lines.push("ERROR\t" + (e && e.message)); fail = Math.max(fail, 1); }).then(async () => {
+  const summary = `evidence page: ${pass} PASS / ${fail} FAIL of ${F.records.length}`;
+  document.getElementById("summary").textContent = summary; document.getElementById("summary").className = fail ? "FAIL" : "PASS";
+  document.getElementById("report").textContent = "EV_RESULT\t" + pass + "\t" + fail + "\t" + F.records.length + "\n" + lines.join("\n") + "\nEV_END";
+  try { await fetch("/__done", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ pass, fail, n: F.records.length, load: loadInfo, results }) }); } catch (e) {}
+});
+</script>
+</body>
+</html>

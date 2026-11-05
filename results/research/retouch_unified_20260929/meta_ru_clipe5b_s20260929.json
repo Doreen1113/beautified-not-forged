@@ -1,0 +1,10 @@
+{
+ "arm": "ru5",
+ "factorised": true,
+ "binary": true,
+ "grade": true,
+ "vendor_fake": true,
+ "epochs": 8,
+ "seed": 20260929,
+ "trainable_M": 3.157003
+}

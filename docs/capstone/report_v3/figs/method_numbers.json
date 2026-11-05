@@ -1,0 +1,51 @@
+{
+ "fake": {
+  "image": "C:\\My_Project\\AIGC\\ffpp_partedit\\test\\donor\\682__f0867__nose.jpg",
+  "part": "nose",
+  "p_real_fake_filter": [
+   0.0,
+   1.0,
+   0.0
+  ],
+  "ops_eye_contour_tone_texture": [
+   0.23,
+   0.043,
+   0.083,
+   0.214
+  ],
+  "part_means": {
+   "eyes": 0.25,
+   "nose": 0.992,
+   "mouth": 0.361,
+   "skin": 0.248,
+   "contour": 0.008,
+   "background": 0.003
+  },
+  "named": "nose"
+ },
+ "filter": {
+  "image": "C:\\My_Project\\AIGC\\FFHQ_ali_process\\EyeEnlarging_90\\17000\\17024.png",
+  "group": "EyeEnlarging_90",
+  "p_real_fake_filter": [
+   0.015,
+   0.001,
+   0.984
+  ],
+  "ops_eye_contour_tone_texture": [
+   0.975,
+   0.008,
+   0.003,
+   0.001
+  ],
+  "part_means": {
+   "eyes": 0.976,
+   "nose": 0.494,
+   "mouth": 0.023,
+   "skin": 0.546,
+   "contour": 0.373,
+   "background": 0.064
+  },
+  "named": "eyes"
+ },
+ "model": "clipe5_s20260929"
+}

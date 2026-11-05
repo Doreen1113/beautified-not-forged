@@ -1,0 +1,51 @@
+% Department cover of the capstone report (official format: A4, 12 pt, margins 2.54 / 3.17 cm). build.sh compiles it
+% and puts it in front of the IEEE two-column body (report.tex), as the 2025 winners did.
+\documentclass[12pt,a4paper]{article}
+\usepackage[top=2.54cm,bottom=2.54cm,left=3.17cm,right=3.17cm]{geometry}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setmainfont{Liberation Serif}
+\setCJKmainfont{Noto Serif TC}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,calc,shapes.geometric}
+\usepackage{pifont}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\newcommand{\member}[1]{\textcolor{blue}{[#1]}}
+\pagestyle{empty}
+\begin{document}
+\begin{titlepage}
+\centering
+{\large 國立清華大學資訊工程系 115 學年度上學期專題報告}\\[0.3em]
+{\normalsize National Tsing Hua University, Department of Computer Science, Undergraduate Project Report, Fall 2026}\\[1.6em]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}p{3.2cm}|X|}
+\hline
+專題名稱 & \textbf{Beautified Is Not Forged: A Face Checker That Separates Beautification from Forgery and Shows Checkable Evidence} \\
+\hline
+參加競賽或計畫 & \member{□ 參加對外競賽　□ 參與其他計畫　□ 無參加對外競賽或任何計畫} \\
+\hline
+\end{tabularx}\\[0.8em]
+\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}p{3.2cm}|X|X|X|}
+\hline
+學號 & \member{student ID} & \member{student ID} & \member{student ID} \\
+\hline
+姓名 & \member{name} & \member{name} & \member{name} \\
+\hline
+\end{tabularx}\\[0.8em]
+\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}p{3.2cm}|X|}
+\hline
+摘要 &
+\small \input{abstract.tex} \\
+\hline
+\end{tabularx}\\[2em]
+{\large 中華民國 115 年 11 月}
+\end{titlepage}
+\end{document}

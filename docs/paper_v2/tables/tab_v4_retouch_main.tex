@@ -1,0 +1,27 @@
+\begin{tabular}{@{}l ccc@{}}
+\toprule
+Detector & above own orig.\ (\%) & median $P(\text{fake})$ & above thr.\ (\%) \\
+\midrule
+Xception & 95.2 & 0.291 $\rightarrow$ 0.944 & 51.6 \\
+EfficientNet-B4 & 93.7 & 0.316 $\rightarrow$ 0.964 & 36.3 \\
+F3Net & 97.8 & 0.131 $\rightarrow$ 0.974 & 50.6 \\
+SPSL & 97.3 & 0.463 $\rightarrow$ 0.963 & 51.2 \\
+UCF & 95.4 & 0.031 $\rightarrow$ 0.984 & 41.4 \\
+RECCE & 96.5 & 0.120 $\rightarrow$ 0.944 & 36.8 \\
+CORE & 96.6 & 0.249 $\rightarrow$ 0.947 & 54.8 \\
+SRM & 99.3 & 0.461 $\rightarrow$ 0.668 & 62.8 \\
+SBI~\cite{sbi} & 96.2 & 0.208 $\rightarrow$ 0.991 & 37.3 \\
+UnivFD & 90.4 & 0.005 $\rightarrow$ 0.019 & 16.6 \\
+NPR & n/a & n/a & n/a \\
+Effort~\cite{effort} & 95.6 & 0.319 $\rightarrow$ 0.595 & 43.2 \\
+Forensics Adapter~\cite{forensicsadapter} & 93.3 & 0.058 $\rightarrow$ 0.354 & 39.7 \\
+GenD~\cite{gend2026} & 98.5 & 0.228 $\rightarrow$ 0.921 & 68.7 \\
+DFD-HR~\cite{dfdhr2026} & 99.0 & 0.210 $\rightarrow$ 0.711 & 64.9 \\
+CADDM~\cite{caddm} & 60.9 & 0.538 $\rightarrow$ 0.745 & 6.3 \\
+LAA-Net~\cite{laanet} & 89.2 & 0.234 $\rightarrow$ 0.969 & 17.2 \\
+\midrule
+\ours{} & 32.5 & 0.002 $\rightarrow$ 0.001 & 8.6 \\
+\quad symmetric-view variant & 30.0 & 0.003 $\rightarrow$ 0.001 & 8.1 \\
+binary control & 70.5 & 0.000 $\rightarrow$ 0.001 & 9.1 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Device Latency Bench</title>
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.19.2/dist/ort.min.js"></script>
+<script src="explain_t2.js"></script>
+<script src="evidence_overlay.js"></script>
+<script src="face_masks.js"></script>
+<script src="demo_core.js"></script>
+<style>
+:root { --bg:#f6f7f9; --fg:#14202e; --muted:#5b6675; --line:#d5dbe3; --accent:#0f4d92; }
+@media (prefers-color-scheme: dark) { :root { --bg:#10161d; --fg:#e6ebf1; --muted:#9aa6b4; --line:#2a3440; --accent:#7fb2ec; } }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 20px 16px 40px; background: var(--bg); color: var(--fg);
+       font: 16px/1.5 system-ui, -apple-system, "Segoe UI", "Noto Sans TC", sans-serif; max-width: 720px; margin-inline: auto; }
+h1 { font-size: 20px; margin: 0 0 6px; }
+p { color: var(--muted); margin: 6px 0; }
+button { font: inherit; min-height: 48px; padding: 0 20px; border-radius: 10px; border: 0; background: var(--accent); color: #fff; }
+button:disabled { opacity: .5; }
+select { font: inherit; min-height: 44px; padding: 0 8px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 14px 0; }
+#status { font-variant-numeric: tabular-nums; color: var(--fg); }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; margin-top: 12px; }
+th, td { text-align: right; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+th:first-child, td:first-child { text-align: left; }
+textarea { width: 100%; height: 180px; margin-top: 12px; font: 12px/1.4 ui-monospace, Consolas, monospace;
+           background: var(--bg); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+</style>
+</head>
+<body>
+<h1>手機延遲量測</h1>
+<p>用網頁同一條流程（MediaPipe 人臉 → 裁切 → ONNX 模型 → 部位比對），把 4 張範例圖各跑 1 次暖機，再各跑 10 次計時，報中位數與 90 百分位。量測時請把手機接上電源、關掉其他 App、螢幕保持亮著。</p>
+<div class="row">
+  <label for="model">模型</label>
+  <select id="model">
+    <option value="effb4">EfficientNet-B4 證據版（預設，67 MB）</option>
+    <option value="repvit_ev">RepViT 證據版（小，19 MB）</option>
+  </select>
+  <button id="go" disabled>開始量測</button>
+</div>
+<p id="status">載入人臉模型中…</p>
+<table id="tbl" hidden>
+  <thead><tr><th>步驟</th><th>中位數 ms</th><th>P90 ms</th></tr></thead>
+  <tbody></tbody>
+</table>
+<p id="hint" hidden>把下面整段文字複製或截圖傳回來即可。</p>
+<textarea id="out" readonly hidden></textarea>
+
+<script type="module">
+import { FilesetResolver, FaceLandmarker } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/vision_bundle.mjs";
+
+const IMGS = ["examples/ex1.png", "examples/ex2.png", "examples/ex3.png", "examples/ex4.png"];
+const ROUNDS = 10;
+const $ = (id) => document.getElementById(id);
+const q = (a, f) => { const s = [...a].sort((x, y) => x - y); return s[Math.min(s.length - 1, Math.floor(f * s.length))]; };
+const med = (a) => { const s = [...a].sort((x, y) => x - y), n = s.length; return n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2; };
+
+let landmarker, bitmaps;
+ort.env.wasm.numThreads = 1;                        // same as index.html
+
+async function init() {
+  const t0 = performance.now();
+  const fileset = await FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm");
+  landmarker = await FaceLandmarker.createFromOptions(fileset, {
+    baseOptions: { modelAssetPath: "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task" },
+    runningMode: "IMAGE", numFaces: 1 });
+  bitmaps = await Promise.all(IMGS.map(async (u) => createImageBitmap(await (await fetch(u)).blob())));
+  $("status").textContent = `人臉模型就緒（${(performance.now() - t0).toFixed(0)} ms）。選模型後按「開始量測」。`;
+  $("go").disabled = false;
+}
+
+async function bench() {
+  $("go").disabled = true; $("tbl").hidden = true; $("out").hidden = true; $("hint").hidden = true;
+  const key = $("model").value;
+  $("status").textContent = "下載並載入 ONNX 模型中…";
+  const tl = performance.now();
+  const bytes = new Uint8Array(await (await fetch(DemoCore.MODELS[key].file, { cache: "no-store" })).arrayBuffer());
+  const downloadMs = performance.now() - tl;
+  const model = await DemoCore.loadModel(key, "", bytes);
+  const rec = { landmarks: [], preprocess: [], inference: [], evidence: [], total: [] };
+  const labels = [];
+  const total = IMGS.length * (ROUNDS + 1);
+  let k = 0;
+  for (let r = 0; r <= ROUNDS; r++) {
+    for (let i = 0; i < bitmaps.length; i++) {
+      const t0 = performance.now();
+      const det = landmarker.detect(bitmaps[i]);
+      const lm = performance.now() - t0;
+      const a = await DemoCore.analyse(bitmaps[i], det.faceLandmarks[0], model, {});
+      const wall = performance.now() - t0;
+      if (r > 0) {                                   // round 0 is warm-up, not recorded
+        rec.landmarks.push(lm); rec.preprocess.push(a.timing.preprocess); rec.inference.push(a.timing.inference);
+        rec.evidence.push(a.timing.evidence); rec.total.push(wall);
+      } else labels.push(a.label);
+      k++; $("status").textContent = `計時中 ${k}/${total}`;
+      await new Promise((res) => setTimeout(res, 0));
+    }
+  }
+  const names = { landmarks: "人臉偵測（MediaPipe）", preprocess: "裁切與前處理", inference: "模型推論（ONNX）", evidence: "部位比對與組句前置", total: "整張照片（端到端）" };
+  const summary = {};
+  $("tbl").tBodies[0].innerHTML = Object.keys(rec).map((s) => {
+    summary[s] = { median_ms: +med(rec[s]).toFixed(1), p90_ms: +q(rec[s], 0.9).toFixed(1) };
+    return `<tr${s === "total" ? ' style="font-weight:700"' : ""}><td>${names[s]}</td><td>${summary[s].median_ms}</td><td>${summary[s].p90_ms}</td></tr>`;
+  }).join("");
+  const report = {
+    date: new Date().toISOString(), model: key, model_file: DemoCore.MODELS[key].file,
+    model_download_ms: +downloadMs.toFixed(0), model_session_create_ms: +model.loadMs.toFixed(0),
+    images: IMGS.length, timed_runs: rec.total.length, warmup_runs: IMGS.length, wasm_threads: 1,
+    warmup_labels: labels, summary,
+    device: { userAgent: navigator.userAgent, hardwareConcurrency: navigator.hardwareConcurrency ?? null,
+              deviceMemoryGB: navigator.deviceMemory ?? null, screen: `${screen.width}x${screen.height}@${devicePixelRatio}` },
+    raw_total_ms: rec.total.map((x) => +x.toFixed(1)),
+  };
+  $("out").value = JSON.stringify(report, null, 1);
+  $("tbl").hidden = false; $("out").hidden = false; $("hint").hidden = false;
+  $("status").textContent = `完成：整張照片中位數 ${summary.total.median_ms} ms（${rec.total.length} 次）。`;
+  $("go").disabled = false;
+}
+
+$("go").addEventListener("click", () => bench().catch((e) => { console.error(e); $("status").textContent = "量測失敗：" + e.message; $("go").disabled = false; }));
+init().catch((e) => { console.error(e); $("status").textContent = "載入失敗：" + e.message; });
+</script>
+</body>
+</html>

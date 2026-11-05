@@ -1,0 +1,27 @@
+# Direction A: commercial skin smoothing (Alibaba Smoothing-90), 2210 pixel-aligned pairs; bootstrap over pairs (unit = FFHQ index)
+
+| detector | render scored above own original % [CI] | FA on smoothed genuine at 5 % FPR of originals % [CI] | native decision orig / S90 |
+|---|---|---|---|
+| xception | 95.2 [94.3, 96.1] | 51.6 [49.5, 53.7] |  |
+| effnb4 | 93.7 [92.6, 94.7] | 36.3 [34.3, 38.4] |  |
+| f3net | 97.8 [97.1, 98.3] | 50.6 [48.5, 52.6] |  |
+| spsl | 97.3 [96.7, 98.0] | 51.2 [49.1, 53.3] |  |
+| ucf | 95.4 [94.5, 96.2] | 41.4 [39.4, 43.3] |  |
+| recce | 96.5 [95.7, 97.2] | 36.8 [34.8, 38.8] |  |
+| core | 96.6 [95.8, 97.3] | 54.8 [52.7, 56.8] |  |
+| srm | 99.3 [98.9, 99.6] | 62.8 [60.8, 64.8] |  |
+| sbi | 96.2 [95.4, 97.0] | 37.3 [35.2, 39.2] |  |
+| effort | 95.6 [94.8, 96.5] | 43.2 [41.1, 45.3] |  |
+| fadapter | 93.3 [92.3, 94.4] | 39.7 [37.8, 41.9] |  |
+| univfd | 90.4 [89.1, 91.7] | 16.6 [15.0, 18.1] |  |
+| npr | 31.8 [29.7, 33.6] | 0.0 [0.0, 0.0] |  |
+| gend | 98.5 [97.9, 99.0] | 68.7 [66.8, 70.7] |  |
+| dfdhr | 99.0 [98.6, 99.5] | 64.9 [62.8, 66.8] |  |
+| caddm | 60.9 [58.8, 62.9] | 6.3 [5.3, 7.4] |  |
+| laanetr | 89.2 [87.8, 90.5] | 17.2 [15.7, 18.9] |  |
+| ours main s1 | 32.5 [30.5, 34.4] | 8.6 [7.4, 9.7] | {'real': 78.4, 'fake': 0.8, 'filter': 20.8} / {'real': 0.5, 'fake': 0.8, 'filter': 98.8} |
+| ours main s2 | 41.3 [39.3, 43.3] | 12.5 [11.1, 13.8] | {'real': 79.8, 'fake': 0.5, 'filter': 19.6} / {'real': 0.2, 'fake': 0.6, 'filter': 99.2} |
+
+Paired difference (ours minus published) of the share, 95 % CI; the interval excludes 0 = different at the pair level:
+- ours main s1: xception [-64.8, -60.8]; effnb4 [-63.2, -59.2]; f3net [-67.2, -63.4]; spsl [-66.8, -62.9]; ucf [-64.9, -60.9]; recce [-66.1, -62.1]; core [-66.1, -62.1]; srm [-68.7, -64.8]; sbi [-65.8, -61.6]; effort [-65.1, -61.1]; fadapter [-62.9, -58.9]; univfd [-60.1, -55.7]; npr [-1.7, 3.1]; gend [-68.0, -64.0]; dfdhr [-68.6, -64.7]; caddm [-31.2, -25.5]; laanetr [-59.0, -54.4]
+- ours main s2: xception [-56.0, -51.9]; effnb4 [-54.4, -50.2]; f3net [-58.6, -54.4]; spsl [-58.1, -53.9]; ucf [-56.2, -51.9]; recce [-57.3, -53.2]; core [-57.4, -53.2]; srm [-60.1, -56.0]; sbi [-57.1, -52.8]; effort [-56.4, -52.3]; fadapter [-54.2, -50.0]; univfd [-51.4, -46.8]; npr [7.1, 12.0]; gend [-59.2, -55.1]; dfdhr [-59.8, -55.7]; caddm [-22.4, -16.7]; laanetr [-50.3, -45.5]

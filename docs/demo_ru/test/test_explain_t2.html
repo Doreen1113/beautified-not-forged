@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T2 Equivalence Check</title>
+<script src="../explain_t2.js"></script>
+<script src="../evidence_overlay.js"></script>
+<script src="fixture_t2.js"></script>
+<style>
+:root { --bg: #f6f5f2; --panel: #fff; --ink: #1d1f24; --muted: #62666f; --line: #dcdad4; --ok: #2f7d4f; --bad: #b3342b; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181c; --panel: #1f2227; --ink: #e8e6e1; --muted: #9ca0a8; --line: #33373e; --ok: #6cc08c; --bad: #ef7a6f; } }
+:root[data-theme="dark"] { --bg: #16181c; --panel: #1f2227; --ink: #e8e6e1; --muted: #9ca0a8; --line: #33373e; --ok: #6cc08c; --bad: #ef7a6f; }
+body { margin: 0; padding: 24px 16px; background: var(--bg); color: var(--ink); font: 14px/1.5 system-ui, sans-serif; }
+main { max-width: 960px; margin: 0 auto; }
+h1 { font-size: 20px; margin: 0 0 6px; }
+#summary { font-weight: 600; font-size: 16px; margin: 12px 0; }
+table { border-collapse: collapse; width: 100%; background: var(--panel); border: 1px solid var(--line); }
+td, th { border-top: 1px solid var(--line); padding: 6px 8px; vertical-align: top; text-align: left; font-size: 13px; }
+.PASS { color: var(--ok); font-weight: 600; } .FAIL { color: var(--bad); font-weight: 600; }
+pre { margin: 0; white-space: pre-wrap; font: 12px/1.4 ui-monospace, monospace; }
+.maps { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
+canvas { background: #777; border-radius: 4px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>explain_t2.js 與 explain_v2.py（T2）等價檢查</h1>
+  <p>每筆紀錄：JS 的四句（verdict／region／operations／calibration）與 Python 產生的 <code>t2_sentences</code> 逐字比對，
+    <code>compose()</code> 與 <code>t2_text</code> 逐字比對。本頁不載入模型；逐筆結果也以純文字寫進 <code>#report</code>，供 headless 瀏覽器讀取。</p>
+  <p id="summary">running…</p>
+  <pre id="report" hidden></pre>
+  <table id="rows"><tr><th>#</th><th>id</th><th>decision</th><th>result</th><th>JS text</th><th>expected</th></tr></table>
+  <h2 style="font-size:15px">Evidence 輪廓線（前 8 筆非 real 紀錄的 16×16 map，無底圖）</h2>
+  <p style="color:var(--muted)">黃＝top-12 % 區域邊界（0.88 分位數），青＝0.5 等值線；只畫線不填色，與 vlm_explain.overlay 相同。</p>
+  <div class="maps" id="maps"></div>
+</main>
+<script>
+(function () {
+  const F = window.T2_FIXTURE, E = window.ExplainT2, O = window.EvidenceOverlay;
+  const rows = document.getElementById("rows"), lines = [];
+  let pass = 0, fail = 0;
+  F.records.forEach((r, i) => {
+    const got = E.t2Sentences(r), exp = r.t2_sentences, text = E.compose(r);
+    const okS = got.length === 4 && got.every((s, k) => s === exp[k]), okT = text === r.t2_text;
+    const ok = okS && okT; ok ? pass++ : fail++;
+    lines.push((ok ? "PASS" : "FAIL") + "\t" + r.id + "\t" + (okS ? "sentences=ok" : "sentences=DIFF") + "\t" + (okT ? "text=ok" : "text=DIFF"));
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${i + 1}</td><td>${r.id}</td><td>${r.decision}</td><td class="${ok ? "PASS" : "FAIL"}">${ok ? "PASS" : "FAIL"}</td><td><pre></pre></td><td><pre></pre></td>`;
+    tr.querySelectorAll("pre")[0].textContent = text; tr.querySelectorAll("pre")[1].textContent = r.t2_text; rows.appendChild(tr);
+  });
+  const summary = `T2 equivalence: ${pass} PASS / ${fail} FAIL of ${F.records.length}`;
+  document.getElementById("summary").textContent = summary; document.getElementById("summary").className = fail ? "FAIL" : "PASS";
+  document.getElementById("report").textContent = "T2_RESULT\t" + pass + "\t" + fail + "\t" + F.records.length + "\n" + lines.join("\n") + "\nT2_END";
+  // overlay smoke check: the contour routine runs on real maps and reports its thresholds
+  const box = document.getElementById("maps"); let shown = 0;
+  for (const r of F.records) {
+    if (r.decision === "real" || shown >= 8) continue; shown++;
+    const cv = document.createElement("canvas"); cv.width = 224; cv.height = 224; cv.title = r.id;
+    const ctx = cv.getContext("2d"), up = O.upsample(r.evidence_map16, 224, 224), img = ctx.createImageData(224, 224);
+    for (let k = 0; k < up.length; k++) { const g = Math.round(255 * Math.min(1, up[k] / 0.6)); img.data[4 * k] = img.data[4 * k + 1] = img.data[4 * k + 2] = g; img.data[4 * k + 3] = 255; }
+    ctx.putImageData(img, 0, 0);
+    const info = O.drawContours(ctx, r.evidence_map16, 224, 224);
+    const wrap = document.createElement("div"); wrap.appendChild(cv);
+    const cap = document.createElement("div"); cap.style.cssText = "font-size:11px;color:var(--muted);max-width:224px";
+    cap.textContent = `${r.id} · top-12% thr ${info.thrTop12.toFixed(3)} · peak ${r.evidence_peak}`; wrap.appendChild(cap); box.appendChild(wrap);
+  }
+})();
+</script>
+</body>
+</html>

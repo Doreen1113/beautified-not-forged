@@ -54,6 +54,9 @@ def _explain_rows(spec):
     rows = []
     for k, meth, lab in spec:
         e = jl(R / f"explain_{k}_s{'20260929' if k.startswith('RU') else '20260928'}.json")
+        e2 = jl(R / f"explain_{k}_s20260929_donor_v2.json") if k.startswith("RU") else None   # donor test set rebuilt with test-video donors (2026-10-06)
+        if e is not None and e2 is not None and "donor_v2" in e2:
+            e = dict(e, donor=e2["donor_v2"])
         if e is None or meth not in e.get("donor", {}):
             continue
         cells = []
@@ -81,17 +84,17 @@ def _explain_table(rows, name):
 
 
 def tab_explain():
-    main = [("HYBPE", "scorecam", r"Score-CAM, same backbone, no head"),
+    main = [("HYBPE", "scorecam", r"Score-CAM~\cite{scorecam}, same backbone, no head"),
             ("RUCLIPE", "evidence", r"head, vendor data, no part edits (CLIP)"),
             ("MASK", "evidence", r"head, part edits, FF++ only (EffNet-B4)"),
             ("RU4E", "evidence", r"\ours{}-lite (EffNet-B4)"),
-            ("RUCLIPE4", "evidence", r"\textbf{\ours{}} (CLIP ViT-L/14 + LoRA)")]
+            ("RUCLIPE5", "evidence", r"\textbf{\ours{}} (CLIP ViT-L/14 + LoRA)")]
     _explain_table(_explain_rows(main), "tab_cgd_explain.tex")
-    full = [("HYBPE", "gradcam", r"no head, Grad-CAM"), ("HYBPE", "gradcampp", r"no head, Grad-CAM++"), ("HYBPE", "scorecam", r"no head, Score-CAM"),
+    full = [("HYBPE", "gradcam", r"no head, Grad-CAM~\cite{gradcam}"), ("HYBPE", "gradcampp", r"no head, Grad-CAM++~\cite{gradcampp}"), ("HYBPE", "scorecam", r"no head, Score-CAM~\cite{scorecam}"),
             ("MASK", "evidence", r"head, part edits, FF++ only"), ("MASKD", "evidence", r"+ symmetric degradation"),
             ("CGD", "evidence", r"+ restoration-consistency loss"), ("CGDD", "evidence", r"+ consistency + symmetric degradation"),
             ("RU3E", "evidence", r"head, vendor data, no part edits (EffNet-B4)"), ("RUCLIPE", "evidence", r"head, vendor data, no part edits (CLIP)"),
-            ("RU4E", "evidence", r"\ours{}-lite (EffNet-B4)"), ("RUCLIPE4", "evidence", r"\ours{} (CLIP ViT-L/14 + LoRA)")]
+            ("RU4E", "evidence", r"\ours{}-lite (EffNet-B4)"), ("RUCLIPE4", "evidence", r"RU4, CLIP (filter-F1 selected, superseded)"), ("RUCLIPE5", "evidence", r"\ours{} (CLIP ViT-L/14 + LoRA)")]
     _explain_table(_explain_rows(full), "tab_cgd_explain_all.tex")
 
 

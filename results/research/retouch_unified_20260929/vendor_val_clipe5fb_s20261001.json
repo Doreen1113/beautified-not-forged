@@ -1,0 +1,109 @@
+{
+ "tag": "clipe5fb_s20261001",
+ "ffhq_orig": {
+  "n": 816,
+  "real": 72.92,
+  "fake": 10.66,
+  "filter": 16.42
+ },
+ "tencent": {
+  "n": 807,
+  "real": 70.26,
+  "fake": 12.89,
+  "filter": 16.85
+ },
+ "megvii": {
+  "n": 1329,
+  "real": 66.14,
+  "fake": 15.5,
+  "filter": 18.36
+ },
+ "vendor_single": {
+  "n": 8443,
+  "real": 68.08,
+  "fake": 15.31,
+  "filter": 16.61
+ },
+ "components": {
+  "tencent_eye": {
+   "n": 795,
+   "to_filter": 14.59,
+   "to_real": 72.83,
+   "TP": 0.206,
+   "TN_same_image": 0.131,
+   "spearman": 0.021,
+   "pred_mean": -0.1152,
+   "meas_mean": 0.0185
+  },
+  "megvii_eye": {
+   "n": 1317,
+   "to_filter": 15.49,
+   "to_real": 71.07,
+   "TP": 0.215,
+   "TN_same_image": 0.125,
+   "spearman": -0.007,
+   "pred_mean": -0.1035,
+   "meas_mean": 0.008
+  },
+  "tencent_jaw": {
+   "n": 795,
+   "to_filter": 16.1,
+   "to_real": 70.82,
+   "TP": 0.725,
+   "TN_same_image": 0.213,
+   "spearman": -0.08,
+   "pred_mean": -0.6327,
+   "meas_mean": 0.0093
+  },
+  "megvii_jaw": {
+   "n": 1316,
+   "to_filter": 16.19,
+   "to_real": 70.9,
+   "TP": 0.719,
+   "TN_same_image": 0.196,
+   "spearman": -0.081,
+   "pred_mean": -0.6022,
+   "meas_mean": 0.0104
+  },
+  "tencent_white": {
+   "n": 796,
+   "to_filter": 15.7,
+   "to_real": 71.86,
+   "TP": 0.582,
+   "TN_same_image": 0.148,
+   "spearman": 0.039,
+   "pred_mean": 0.0014,
+   "meas_mean": 1.0015
+  },
+  "megvii_white": {
+   "n": 1315,
+   "to_filter": 16.35,
+   "to_real": 72.02,
+   "TP": 0.617,
+   "TN_same_image": 0.144,
+   "spearman": 0.047,
+   "pred_mean": 0.0163,
+   "meas_mean": 0.1137
+  },
+  "tencent_smooth": {
+   "n": 792,
+   "to_filter": 19.95,
+   "to_real": 63.01,
+   "TP": 0.179,
+   "TN_same_image": 0.085,
+   "spearman": 0.026,
+   "pred_mean": -0.1983,
+   "meas_mean": 0.0455
+  },
+  "megvii_smooth": {
+   "n": 1317,
+   "to_filter": 18.45,
+   "to_real": 54.59,
+   "TP": 0.294,
+   "TN_same_image": 0.085,
+   "spearman": -0.001,
+   "pred_mean": -0.2507,
+   "meas_mean": 0.0266
+  }
+ }
+}

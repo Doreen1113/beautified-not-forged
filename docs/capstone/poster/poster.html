@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>Beautified Is Not Forged</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Source+Sans+3:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+/* 90 x 120 cm portrait poster, the department template's banner on top. Lengths in inches, type in points. */
+@page { size: 35.43056in 47.20833in; margin: 0; }
+:root {
+  --ink: #1f2937; --muted: #5b6471; --line: #d9dee6; --card: #f6f8fb; --page: #ffffff;
+  --green: #009e73; --amber: #c98a00; --red: #d55e00; --blue: #0f4d92; --purple: #7b3fa0; --cyan: #26a6dc; --grey: #6b7280;
+  --green-bg: #e4f5ef; --amber-bg: #fbf1d9; --red-bg: #fbe8dc; --blue-bg: #e4ecf7;
+  --sans: "Source Sans 3", "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  --serif: "Source Serif 4", Georgia, "Noto Serif TC", "PMingLiU", serif;
+  --cjk: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--page); }
+body { width: 35.43056in; height: 47.20833in; overflow: hidden; position: relative; color: var(--ink);
+       font-family: var(--cjk); font-size: 30pt; line-height: 1.3; font-variant-numeric: tabular-nums; }
+.en { font-family: var(--sans); }
+b, strong { font-weight: 700; }
+.muted { color: var(--muted); }
+p { margin: 0; }
+
+/* ---- banner (template, 113 -> 115 done in make_banner.py) ---- */
+.banner { position: absolute; left: 0; top: -0.19444in; width: 35.43056in; height: 8.05556in; }
+.banner img { position: absolute; left: 0; top: 0; width: 35.43056in; height: 8.05556in; }
+
+/* ---- page body ---- */
+main { position: absolute; left: 0.7in; top: 8.0in; width: 34.03056in; height: 38.65in; display: flex; flex-direction: column; gap: 0.3in; }
+header.title { display: grid; grid-template-columns: 1fr 9.6in; gap: 0.6in; align-items: start; height: 3.5in; flex: none; }
+h1 { margin: 0; font-family: var(--serif); font-weight: 700; font-size: 140pt; line-height: 1.0; letter-spacing: -0.01em; }
+.subtitle { margin: 0.2in 0 0; font-size: 50pt; line-height: 1.2; font-weight: 500; }
+.authors { margin: 0.16in 0 0; font-size: 36pt; color: var(--muted); }
+.authors b { color: var(--ink); font-weight: 500; }
+.claim { background: var(--blue-bg); border-left: 0.14in solid var(--blue); padding: 0.26in 0.36in; font-size: 32pt; line-height: 1.35; color: var(--blue); margin-top: 0.12in; }
+
+section { display: flex; flex-direction: column; gap: 0.14in; flex: none; }
+.sechead { display: flex; align-items: baseline; gap: 0.35in; height: 0.95in; }
+.sechead .num { font-family: var(--serif); font-size: 66pt; font-weight: 700; color: var(--blue); line-height: 1; }
+.sechead h2 { margin: 0; font-size: 60pt; font-weight: 700; line-height: 1.1; }
+.sechead .lead { font-size: 30pt; color: var(--muted); margin-left: auto; white-space: nowrap; }
+
+.card { background: var(--card); border: 2px solid var(--line); border-radius: 0.3in; padding: 0.32in 0.4in; position: relative; overflow: hidden; }
+.chip { display: inline-block; padding: 0.06in 0.38in; border-radius: 1in; color: #fff; font-weight: 700; font-size: 36pt; line-height: 1.25; }
+.chip.red { background: var(--red); } .chip.amber { background: var(--amber); } .chip.blue { background: var(--blue); }
+.pill { display: inline-block; padding: 0.02in 0.26in; border-radius: 1in; font-weight: 700; line-height: 1.3; }
+.p-real { background: var(--green-bg); color: var(--green); } .p-beau { background: var(--amber-bg); color: var(--amber); }
+.p-fake { background: var(--red-bg); color: var(--red); } .p-blue { background: var(--blue-bg); color: var(--blue); }
+.face { border-radius: 0.2in; object-fit: cover; display: block; }
+.face.g { outline: 0.07in solid var(--green); outline-offset: -0.07in; } .face.b { outline: 0.07in solid var(--amber); outline-offset: -0.07in; }
+.face.f { outline: 0.07in solid var(--red); outline-offset: -0.07in; }
+.stat .big { font-family: var(--serif); font-weight: 700; line-height: 1; white-space: nowrap; }
+.stat .lab { font-size: 26pt; line-height: 1.28; color: var(--muted); margin-top: 0.08in; }
+
+/* ---- 1 problem ---- */
+.problem .grid { display: grid; grid-template-columns: 1fr 1fr 10.6in; grid-template-rows: minmax(0, 1fr); gap: 0.3in; height: 9.6in; }
+.case .faces { display: grid; grid-template-columns: 3.3in 1.7in 3.3in; align-items: center; justify-content: center; gap: 0.18in; margin-top: 0.22in; }
+.case .faces img { width: 3.3in; height: 3.3in; }
+.case .arrow { text-align: center; font-size: 26pt; color: var(--muted); line-height: 1.15; }
+.case .arrow .ar { display: block; height: 0.08in; background: var(--ink); position: relative; margin: 0.12in auto 0; width: 1.2in; }
+.case .arrow .ar:after { content: ""; position: absolute; right: -0.04in; top: -0.13in; border: 0.17in solid transparent; border-left: 0.28in solid var(--ink); border-right: 0; }
+.case .cap { display: grid; grid-template-columns: 3.3in 1.7in 3.3in; justify-content: center; gap: 0.18in; text-align: center; font-size: 28pt; margin-top: 0.08in; }
+.bars { margin-top: 0.2in; display: grid; grid-template-columns: 2.6in 1fr 1fr; column-gap: 0.26in; row-gap: 0.12in; align-items: center; }
+.bars .h { font-size: 25pt; color: var(--muted); text-align: center; }
+.bars .n { font-size: 27pt; text-align: right; font-family: var(--sans); }
+.bar { display: grid; grid-template-columns: 1fr 2.5in; align-items: center; gap: 0.14in; }
+.track { height: 0.34in; background: #e3e7ee; border-radius: 1in; position: relative; }
+.track .fill { position: absolute; left: 0; top: 0; height: 100%; border-radius: 1in; }
+.track .tick { position: absolute; top: -0.08in; width: 0.06in; height: 0.5in; background: var(--ink); }
+.bar .v { font-size: 27pt; font-weight: 700; white-space: nowrap; font-family: var(--sans); }
+.verdict { margin-top: 0.2in; font-size: 28pt; line-height: 1.3; }
+.ours .row4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.18in; margin-top: 0.22in; }
+.ours .row4 img { width: 100%; height: 2.25in; }
+.ours .row4 .lab { text-align: center; margin-top: 0.1in; font-size: 26pt; line-height: 1.2; }
+.ours .why { margin-top: 0.26in; background: var(--blue-bg); color: var(--blue); border-radius: 0.2in; padding: 0.2in 0.3in; font-size: 28pt; line-height: 1.32; }
+.ours .audit { margin-top: 0.26in; display: grid; grid-template-columns: 1fr 1fr; gap: 0.3in; }
+.ours .audit .big { font-size: 70pt; color: var(--red); }
+
+/* ---- 2 method ---- */
+.method .grid { display: grid; grid-template-columns: 21.6in 1fr; grid-template-rows: minmax(0, 1fr); gap: 0.4in; height: 8.9in; }
+.method .fig { width: 21.6in; height: 8.9in; object-fit: contain; object-position: left top; }
+.method .notes { display: flex; flex-direction: column; gap: 0.25in; }
+.method .note { padding: 0.2in 0.32in; border-radius: 0.26in; background: var(--card); border: 2px solid var(--line); font-size: 26pt; line-height: 1.28; flex: 1; overflow: hidden; }
+.method .note h3 { margin: 0 0 0.08in; font-size: 34pt; color: var(--blue); font-family: var(--sans); }
+
+/* ---- 3 results ---- */
+.results .grid { display: grid; grid-template-columns: 8.6in 1fr 11.2in; grid-template-rows: 5.4in 3.7in; gap: 0.3in; height: 9.4in; }
+.card h3.ch { margin: 0 0 0.16in; font-size: 36pt; line-height: 1.2; }
+.card h3.ch small { font-size: 26pt; color: var(--muted); font-weight: 400; }
+.exp { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.14in; align-items: end; height: 2.6in; }
+.exp .col { text-align: center; font-size: 24pt; line-height: 1.15; }
+.exp .col .b { width: 1.2in; margin: 0.04in auto 0.08in; border-radius: 0.1in 0.1in 0 0; }
+.exp .col .v { font-weight: 700; font-size: 30pt; font-family: var(--sans); }
+.exp .col .k { font-weight: 700; font-size: 28pt; font-family: var(--sans); }
+.exp .col .w { color: var(--muted); font-size: 24pt; display: block; height: 0.5in; }
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 0.26in 0.4in; }
+.tiles .stat .big { font-size: 60pt; }
+.tiles .stat .lab { font-size: 25pt; }
+.evrow { width: 88%; display: block; margin: 0 auto; }
+.evstats { display: grid; grid-template-columns: 1fr 1fr 1.5fr; gap: 0.3in; margin-top: 0.12in; }
+.evstats .big { font-size: 54pt; }
+.evstats .lab { font-size: 23pt; }
+.fair { display: grid; grid-template-columns: 3.3in 1fr; gap: 0.3in; align-items: start; }
+.fair .bb { display: flex; align-items: flex-end; gap: 0.2in; height: 1.5in; margin-top: 0.5in; }
+.fair .bb .b { width: 1.45in; border-radius: 0.12in 0.12in 0 0; position: relative; }
+.fair .bb .b span { position: absolute; left: -0.3in; right: -0.3in; top: -0.52in; text-align: center; font-family: var(--serif); font-weight: 700; font-size: 36pt; }
+.fair .bb .b i { position: absolute; left: -0.35in; right: -0.35in; bottom: -0.42in; text-align: center; font-style: normal; font-size: 24pt; color: var(--muted); white-space: nowrap; font-family: var(--sans); }
+.fair p { font-size: 24pt; line-height: 1.32; }
+.sys { display: grid; grid-template-columns: 4.5in 1fr; gap: 0.3in; align-items: start; }
+.sys img { width: 100%; border-radius: 0.18in; border: 2px solid var(--line); display: block; }
+.sys p { font-size: 26pt; line-height: 1.34; }
+
+/* ---- footer ---- */
+footer { display: grid; grid-template-columns: 1fr 11.2in; gap: 0.3in; height: 2.3in; flex: none; }
+footer .card { padding: 0.24in 0.4in; }
+footer h3 { margin: 0 0 0.08in; font-size: 32pt; }
+footer p { font-size: 26pt; line-height: 1.34; }
+footer .repo { font-size: 34pt; font-weight: 700; color: var(--blue); }
+</style>
+</head>
+<body>
+
+<div class="banner"><img src="assets/banner_115.png" alt=""></div>
+
+<main>
+
+<header class="title">
+  <div>
+    <h1>Beautified Is Not Forged</h1>
+    <p class="subtitle">分得出美顏與偽造、證據可以查核的人臉偵測系統</p>
+    <p class="authors"><span class="en">NTHU CS Capstone 2026</span>　<b>林沁瑩　陳柏融　游宸山</b></p>
+  </div>
+  <div class="claim">以前的偵測器只有 <b class="en">real / fake</b> 兩個答案。經過美顏的真人照片兩邊都不是，於是被判成假的。我們把 <b class="en">beautified</b> 做成第三類，每個判定都附上可以驗證的 evidence。</div>
+</header>
+
+<!-- ============================================================ 1 problem -->
+<section class="problem">
+  <div class="sechead"><span class="num">1</span><h2>同一個美顏，讓 deepfake 偵測器犯兩種錯</h2><span class="lead">17 個已發表偵測器，官方權重，逐張重跑</span></div>
+  <div class="grid">
+    <div class="card case">
+      <span class="chip red">(a) 真人照片，磨皮後被判成假</span>
+      <div class="faces">
+        <img class="face g" src="../report_v3/figs/teaser_orig.png" alt="">
+        <div class="arrow">商用修圖<br><span class="en">Smoothing-90</span><span class="ar"></span></div>
+        <img class="face f" src="../report_v3/figs/teaser_smooth.png" alt="">
+      </div>
+      <div class="cap"><span><span class="pill p-real en">genuine</span></span><span></span><span><span class="pill p-fake en">accused</span></span></div>
+      <div class="bars" id="barsA"><div></div><div class="h">修圖前</div><div class="h">修圖後</div></div>
+      <p class="verdict"><b class="en">False alarm</b>：四個偵測器全都從 genuine 翻成 forged。</p>
+    </div>
+    <div class="card case">
+      <span class="chip amber">(b) 換臉影片，美顏後被放過</span>
+      <div class="faces">
+        <img class="face f" src="../report_v3/figs/teaser_swap.png" alt="">
+        <div class="arrow">手機 app<br>美顏預設<span class="ar"></span></div>
+        <img class="face f" src="../report_v3/figs/teaser_swap_beauty.png" alt="">
+      </div>
+      <div class="cap"><span><span class="pill p-fake en">forged</span></span><span></span><span><span class="pill p-real en">missed</span></span></div>
+      <div class="bars" id="barsB"><div></div><div class="h">美顏前</div><div class="h">美顏後</div></div>
+      <p class="verdict"><b class="en">Miss</b>：同樣四個，有三個讓這支換臉通過。</p>
+    </div>
+    <div class="card ours">
+      <span class="chip blue">我們：三個答案 + evidence</span>
+      <div class="row4">
+        <div><img class="face g" src="../report_v3/figs/teaser_orig.png" alt=""><div class="lab"><span class="pill p-real en">real</span></div></div>
+        <div><img class="face b" src="../report_v3/figs/teaser_smooth.png" alt=""><div class="lab"><span class="pill p-beau en">beautified</span></div></div>
+        <div><img class="face f" src="../report_v3/figs/teaser_swap.png" alt=""><div class="lab"><span class="pill p-fake en">forged</span></div></div>
+        <div><img class="face f" src="../report_v3/figs/teaser_swap_beauty.png" alt=""><div class="lab"><span class="pill p-fake en">forged</span><br><span class="muted" style="font-size:23pt">美顏過的換臉還是 forged</span></div></div>
+      </div>
+      <div class="why">模型給 <b class="en">forged</b> 和 <b class="en">beautified</b> 兩個分數；forged 的判定只看 forged 分數，美顏分數再高也搶不走。evidence head 標出判定依據的部位。</div>
+      <div class="audit">
+        <div class="stat"><div class="big">16 / 17</div><div class="lab">已發表偵測器把磨皮真人判得比原圖更假</div></div>
+        <div class="stat"><div class="big">36–69%</div><div class="lab">其中 13 個在自己門檻下把這麼多磨皮真人判成 forged；我們 <b style="color:var(--blue)">8.6%</b></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 2 method -->
+<section class="method">
+  <div class="sechead"><span class="num">2</span><h2>方法：拆開商用修圖，兩類都看過美顏，evidence 用精確 footprint 監督</h2></div>
+  <div class="grid">
+    <img class="fig" src="assets/fig_overview_top.png" alt="">
+    <div class="notes">
+      <div class="note"><h3>1 &nbsp;Data engine</h3>商用 app 一次套好幾種美顏。用 optical flow 把形狀變化拆成 <span class="en">eye</span> 和 <span class="en">contour</span>，殘差用低通濾波拆成 <span class="en">tone</span> 和 <span class="en">texture</span>；每個分量都有像素對齊的原圖，footprint M 因此精確。18,734 張修圖 → 50,112 筆單一操作。</div>
+      <div class="note"><h3>2 &nbsp;Model</h3>CLIP ViT-L/14 全部凍結，只在 24 層 attention 加 LoRA r=16，訓練 3.16 M 個參數。CLS token 接 classification、operation、quantity 三個 head；256 個 patch token 接 evidence head，輸出 16×16 evidence map，用 M 監督。</div>
+      <div class="note"><h3>3 &nbsp;Output</h3>evidence map 對到臉部部位，點名最強的一個。說明文字不用語言模型：程式依模型輸出組句，每句顯示前都經過規則檢查，不符合的句子不會出現。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 3 results -->
+<section class="results">
+  <div class="sechead"><span class="num">3</span><h2>成果</h2><span class="lead">數字皆來自書面報告，主模型 seed 1</span></div>
+  <div class="grid">
+    <div class="card">
+      <h3 class="ch">原因：訓練時哪一類看過磨皮</h3>
+      <div class="exp" id="exp"></div>
+      <p class="muted" style="margin-top:0.12in;font-size:24pt;line-height:1.3">同模型、同資料、同 recipe。磨皮真人在 5% FPR 下被判 forged 的比例：P1 最低，但磨皮過的換臉多漏掉 51 點；P2 兩邊都好。</p>
+    </div>
+    <div class="card">
+      <h3 class="ch">三類判定，以及訓練沒見過的修圖服務</h3>
+      <div class="tiles">
+        <div class="stat"><div class="big" style="color:var(--blue)">82.7 / 90.9 / 86.7</div><div class="lab">FF++ 測試集 recall，real / forged / beautified；美顏被判 forged 只有 4.3%</div></div>
+        <div class="stat"><div class="big" style="color:var(--amber)">98.8%</div><div class="lab">阿里（訓練沒見過的修圖服務）的商用磨皮判成 beautified</div></div>
+        <div class="stat"><div class="big" style="color:var(--green)">&le; 0.8%</div><div class="lab">同一批修圖，任何操作、任何強度被判 forged 的上限</div></div>
+        <div class="stat"><div class="big" style="color:var(--blue)">0.59 s</div><div class="lab">瀏覽器裡一張照片的時間（iPhone Safari 中位數），照片不上傳</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3 class="ch" style="font-size:33pt">evidence head 通過的測試，heat map 過不了</h3>
+      <img class="evrow" src="assets/fig_evidence_row.png" alt="">
+      <div class="evstats">
+        <div class="stat"><div class="big" style="color:var(--green)">94%</div><div class="lab">還原標出的區域後，forged 判定消失（上限 94.1%）</div></div>
+        <div class="stat"><div class="big" style="color:var(--grey)">45–57%</div><div class="lab">同一個測試，Grad-CAM / Score-CAM 這類 heat map</div></div>
+        <div class="stat"><div class="big" style="color:var(--red)">51–53%</div><div class="lab">VLM 自由描述盲配對 ≈ 擲硬幣；所以句子全由程式組成並檢查，361 / 361 通過</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3 class="ch">公平比較 <small>只用同樣的 FF++ 訓練影片</small></h3>
+      <div class="fair">
+        <div class="bb">
+          <div class="b" style="height:1.5in;background:var(--blue)"><span style="color:var(--blue)">0.872</span><i>ours</i></div>
+          <div class="b" style="height:1.15in;background:#9aa3ae"><span style="color:var(--grey)">0.838</span><i>best published</i></div>
+        </div>
+        <p class="muted">Celeb-DF-B 美顏後的 AUC，高於所有已發表偵測器；對 Effort、Forensics Adapter、SBI 的配對區間不含 0。一般換臉偵測則與最新方法打平。</p>
+      </div>
+    </div>
+    <div class="card" style="grid-column: 2 / 4">
+      <h3 class="ch">整套系統在瀏覽器裡執行</h3>
+      <div class="sys">
+        <img src="../../meeting_20261103/assets/screenshot.png" alt="">
+        <p>MediaPipe 找臉 → ONNX Runtime 跑網頁版模型（EfficientNet-B4，67 MB）→ 程式畫出 evidence 輪廓、點名部位、組句並檢查。沒有伺服器，照片不離開裝置。<br><span class="pill p-real en" style="font-size:25pt">nothing uploaded</span> <span class="pill p-blue en" style="font-size:25pt">no server</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="card">
+    <h3>限制與下一步</h3>
+    <p>Reenactment 類偽造尚未涵蓋（Celeb-DF domain AUC 0.50 / 0.56）；20.8% 沒修過的 FFHQ 原圖被判成 beautified；黑白濾鏡（inkwell、moon）是最弱的一組；多種操作疊在同一張臉時，operation head 只點得出磨皮。</p>
+  </div>
+  <div class="card">
+    <h3>Code, scores, benchmark manifest</h3>
+    <p class="repo en">github.com/Doreen1113/beautified-not-forged</p>
+    <p class="muted">17 個偵測器的逐張分數、scorer、事前宣告與網頁 demo 都在 repo。</p>
+  </div>
+</footer>
+
+</main>
+
+<script>
+(() => {
+  const R = "#d55e00", G = "#009e73";
+  const A = [["Effort", .11, .72, .66], ["Forensics Ad.", .17, .95, .59], ["GenD", .19, .97, .84], ["DFD-HR", .27, .94, .54]];
+  const B = [["Effort", .97, .44, .81], ["Forensics Ad.", 1.00, .67, .85], ["GenD", .89, .70, .86], ["DFD-HR", .99, .74, .63]];
+  function bar(v, thr) {
+    const f = v > thr, c = f ? R : G;
+    return `<div class="bar"><div class="track"><div class="fill" style="width:${(v * 100).toFixed(1)}%;background:${c}"></div><div class="tick" style="left:calc(${(thr * 100).toFixed(1)}% - 0.03in)"></div></div><div class="v" style="color:${c}">${v.toFixed(2)} ${f ? "forged" : "genuine"}</div></div>`;
+  }
+  for (const [id, rows] of [["barsA", A], ["barsB", B]]) {
+    const el = document.getElementById(id);
+    rows.forEach(([n, a, b, thr]) => { el.insertAdjacentHTML("beforeend", `<div class="n">${n}</div>${bar(a, thr)}${bar(b, thr)}`); });
+  }
+  const ARMS = [["P0", "都沒看過", 54.2, "#9aa3ae"], ["P3", "只有 forged", 63.8, R], ["P1", "只有真人", 3.7, "#c98a00"], ["P2", "兩類都看", 11.7, G]];
+  const ex = document.getElementById("exp");
+  ARMS.forEach(([k, w, v, c]) => { ex.insertAdjacentHTML("beforeend", `<div class="col"><div class="v" style="color:${c}">${v.toFixed(1)}%</div><div class="b" style="height:${(v * 0.018).toFixed(2)}in;background:${c}"></div><span class="k">${k}</span><span class="w">${w}</span></div>`); });
+})();
+</script>
+</body>
+</html>

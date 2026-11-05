@@ -1,0 +1,30 @@
+\begin{tabular}{@{}l ccccc@{}}
+\toprule
+Detector & above own orig.\ (\%) & median $P(\text{fake})$ & median $\Delta$logit [95\% CI] & accused (\%) & FF++-val.\ thr.\ (\%) \\
+\midrule
+Xception~\cite{xception} & 95.2 & 0.29 $\rightarrow$ 0.94 & +3.32 [+3.17, +3.45] & 51.6 & 65.0 \\
+EfficientNet-B4~\cite{efficientnet} & 93.7 & 0.32 $\rightarrow$ 0.96 & +3.48 [+3.33, +3.57] & 36.3 & 63.8 \\
+F3Net~\cite{f3net} & 97.8 & 0.13 $\rightarrow$ 0.97 & +4.92 [+4.74, +5.08] & 50.6 & 69.0 \\
+SPSL~\cite{spsl} & 97.3 & 0.46 $\rightarrow$ 0.96 & +3.05 [+2.95, +3.12] & 51.2 & 56.3 \\
+UCF~\cite{ucf} & 95.4 & 0.03 $\rightarrow$ 0.98 & +5.47 [+5.20, +5.73] & 41.4 & 48.4 \\
+RECCE~\cite{recce} & 96.5 & 0.12 $\rightarrow$ 0.94 & +3.82 [+3.70, +3.96] & 36.8 & 60.0 \\
+CORE~\cite{core} & 96.6 & 0.25 $\rightarrow$ 0.95 & +3.90 [+3.74, +4.03] & 54.8 & 66.7 \\
+SRM~\cite{srm} & 99.3 & 0.46 $\rightarrow$ 0.67 & +0.68 [+0.65, +0.71] & 62.8 & 62.0 \\
+SBI~\cite{sbi} & 96.2 & 0.21 $\rightarrow$ 0.99 & +4.88 [+4.72, +5.04] & 37.3 & 93.3 \\
+UnivFD$^\ddagger$~\cite{univfd} & 90.4 & 0.01 $\rightarrow$ 0.02 & +1.22 [+1.17, +1.28] & 16.6 & 15.2 \\
+NPR$^\ddagger$~\cite{npr} & n/a & n/a & n/a & n/a & n/a \\
+Effort~\cite{effort} & 95.6 & 0.32 $\rightarrow$ 0.59 & +0.96 [+0.90, +1.02] & 43.2 & 31.1 \\
+Forensics Adapter~\cite{forensicsadapter} & 93.3 & 0.06 $\rightarrow$ 0.35 & +1.72 [+1.59, +1.87] & 39.7 & 32.5 \\
+GenD~\cite{gend2026} & 98.5 & 0.23 $\rightarrow$ 0.92 & +3.27 [+3.19, +3.35] & 68.7 & 67.4 \\
+DFD-HR~\cite{dfdhr2026} & 99.0 & 0.21 $\rightarrow$ 0.71 & +2.06 [+1.93, +2.15] & 64.9 & 56.2 \\
+CADDM~\cite{caddm} & 60.9 & 0.54 $\rightarrow$ 0.74 & +0.67 [+0.53, +0.81] & 6.3 & 42.3 \\
+LAA-Net~\cite{laanet} & 89.2 & 0.23 $\rightarrow$ 0.97 & +3.60 [+3.36, +3.79] & 17.2 & 81.0 \\
+\midrule
+P0 & 98.5 & 0.05 $\rightarrow$ 0.97 & +5.17 [+5.05, +5.38] & 54.2 & -- \\
+P2-sym & 53.7 & 0.02 $\rightarrow$ 0.02 & +0.09 [+0.03, +0.12] & 5.9 & -- \\
+\oursB{}$^\dagger$ & 70.5 & 0.00 $\rightarrow$ 0.00 & +0.41 [+0.38, +0.44] & 9.1 & 0.2 \\
+\quad second seed$^\dagger$ & 68.2 & 0.00 $\rightarrow$ 0.00 & +0.19 [+0.16, +0.19] & 6.5 & 0.1 \\
+\oursF{}$^\dagger$ & 32.5 & 0.00 $\rightarrow$ 0.00 & -1.20 [-1.28, -1.12] & 8.6 & 0.5 \\
+\oursF{}, sym.\ view$^\dagger$ & 30.0 & 0.00 $\rightarrow$ 0.00 & -1.09 [-1.19, -1.00] & 8.1 & 0.1 \\
+\bottomrule
+\end{tabular}

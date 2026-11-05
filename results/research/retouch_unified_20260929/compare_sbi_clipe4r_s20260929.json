@@ -1,0 +1,46 @@
+{
+ "cdf": {
+  "SBI": {
+   "frame": 0.8172,
+   "video": 0.8716
+  },
+  "RU clipe4r_s20260929": {
+   "frame": 0.8889,
+   "video": 0.9479,
+   "minus_SBI_frame_CI": [
+    0.0432,
+    0.1005
+   ],
+   "minus_SBI_video_CI": [
+    0.0534,
+    0.101
+   ]
+  },
+  "MASK": {
+   "frame": 0.8193,
+   "video": 0.8785
+  }
+ },
+ "dfd": {
+  "SBI": {
+   "frame": 0.9176,
+   "video": 0.876
+  },
+  "RU clipe4r_s20260929": {
+   "frame": 0.9542,
+   "video": 0.976,
+   "minus_SBI_frame_CI": [
+    0.0157,
+    0.0607
+   ],
+   "minus_SBI_video_CI": [
+    0.0706,
+    0.132
+   ]
+  },
+  "MASK": {
+   "frame": 0.9075,
+   "video": 0.8663
+  }
+ }
+}

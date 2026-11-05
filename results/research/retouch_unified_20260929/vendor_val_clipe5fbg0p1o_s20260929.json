@@ -1,0 +1,109 @@
+{
+ "tag": "clipe5fbg0p1o_s20260929",
+ "ffhq_orig": {
+  "n": 816,
+  "real": 2.7,
+  "fake": 31.99,
+  "filter": 65.32
+ },
+ "tencent": {
+  "n": 807,
+  "real": 5.95,
+  "fake": 25.28,
+  "filter": 68.77
+ },
+ "megvii": {
+  "n": 1329,
+  "real": 8.58,
+  "fake": 10.16,
+  "filter": 81.26
+ },
+ "vendor_single": {
+  "n": 8443,
+  "real": 3.51,
+  "fake": 32.74,
+  "filter": 63.76
+ },
+ "components": {
+  "tencent_eye": {
+   "n": 795,
+   "to_filter": 60.75,
+   "to_real": 2.14,
+   "TP": 0.073,
+   "TN_same_image": 0.181,
+   "spearman": 0.014,
+   "pred_mean": -0.1389,
+   "meas_mean": 0.0185
+  },
+  "megvii_eye": {
+   "n": 1317,
+   "to_filter": 62.19,
+   "to_real": 2.58,
+   "TP": 0.072,
+   "TN_same_image": 0.188,
+   "spearman": -0.002,
+   "pred_mean": -0.0936,
+   "meas_mean": 0.008
+  },
+  "tencent_jaw": {
+   "n": 795,
+   "to_filter": 65.53,
+   "to_real": 2.39,
+   "TP": 0.797,
+   "TN_same_image": 0.713,
+   "spearman": 0.031,
+   "pred_mean": -0.0389,
+   "meas_mean": 0.0093
+  },
+  "megvii_jaw": {
+   "n": 1316,
+   "to_filter": 64.36,
+   "to_real": 3.19,
+   "TP": 0.773,
+   "TN_same_image": 0.71,
+   "spearman": 0.026,
+   "pred_mean": -0.0539,
+   "meas_mean": 0.0104
+  },
+  "tencent_white": {
+   "n": 796,
+   "to_filter": 57.79,
+   "to_real": 3.14,
+   "TP": 0.24,
+   "TN_same_image": 0.198,
+   "spearman": -0.018,
+   "pred_mean": 0.0382,
+   "meas_mean": 1.0015
+  },
+  "megvii_white": {
+   "n": 1315,
+   "to_filter": 62.28,
+   "to_real": 3.73,
+   "TP": 0.23,
+   "TN_same_image": 0.226,
+   "spearman": -0.02,
+   "pred_mean": 0.0737,
+   "meas_mean": 0.1137
+  },
+  "tencent_smooth": {
+   "n": 792,
+   "to_filter": 68.31,
+   "to_real": 5.56,
+   "TP": 0.019,
+   "TN_same_image": 0.158,
+   "spearman": 0.078,
+   "pred_mean": 0.4662,
+   "meas_mean": 0.0455
+  },
+  "megvii_smooth": {
+   "n": 1317,
+   "to_filter": 67.81,
+   "to_real": 5.01,
+   "TP": 0.029,
+   "TN_same_image": 0.1,
+   "spearman": 0.027,
+   "pred_mean": 0.5766,
+   "meas_mean": 0.0266
+  }
+ }
+}

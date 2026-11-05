@@ -1,0 +1,56 @@
+% Shared visual language of the TikZ figures (fig_arch, fig_system, fig_protocol, fig_exposure, fig_explain_layers).
+% Colours are the palette of docs/paper_v2/figstyle.py: house blue for our model, Okabe-Ito green / vermillion for correct /
+% error, light fills by stage type (network, code, language model, check, fallback, input/output), thin dark arrows.
+% Text: TeX Gyre Heros (Helvetica metrics), 7 pt body; tensor shapes in DejaVu Sans Mono 5.5 pt.
+\usepackage{fontspec}
+\setsansfont{texgyreheros}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]
+\setmonofont{DejaVuSansMono}[Path=/usr/share/fonts/truetype/dejavu/,Extension=.ttf,BoldFont=*-Bold,Scale=0.92]
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{amsmath}
+\usepackage[italic]{mathastext}
+\usetikzlibrary{positioning,arrows.meta,fit,backgrounds,calc,shapes.misc,decorations.pathreplacing}
+
+% ---- palette (figstyle.py) -----------------------------------------------------------------------------------------
+\definecolor{ink}{HTML}{222222}
+\definecolor{muted}{HTML}{6B6B6B}
+\definecolor{gridc}{HTML}{E5E5E5}
+\definecolor{ours}{HTML}{0F4D92}     % house blue: our model, trainable parts
+\definecolor{oursarm}{HTML}{5B9BD5}
+\definecolor{okc}{HTML}{009E73}      % genuine / correct
+\definecolor{errc}{HTML}{D55E00}     % forged / error
+\definecolor{amber}{HTML}{C98A00}    % language model (deck palette)
+\definecolor{plum}{HTML}{A8538A}     % checks
+\definecolor{truth}{HTML}{56B4E9}    % ground-truth footprint
+\definecolor{hilite}{HTML}{FFD700}
+% light fills by stage type
+\definecolor{fNet}{HTML}{E2EBF6}
+\definecolor{fCode}{HTML}{DFF2EA}
+\definecolor{fLLM}{HTML}{FCEFD6}
+\definecolor{fChk}{HTML}{F6E6F0}
+\definecolor{fFall}{HTML}{FBE4D8}
+\definecolor{fIO}{HTML}{F4F4F4}
+
+\newcommand{\bodyfont}{\fontsize{7}{8.2}\selectfont}
+\newcommand{\smallfont}{\fontsize{6.2}{7.2}\selectfont}
+\newcommand{\shp}[1]{{\fontsize{5.6}{6.4}\selectfont\ttfamily\color{muted}#1}}   % tensor-shape annotation
+\newcommand{\hd}[1]{{\bfseries #1}}
+
+\tikzset{
+  every picture/.style={line width=0.5pt, font=\bodyfont, >={Stealth[length=3.4pt,width=2.8pt]}},
+  stage/.style={rounded corners=2.2pt, draw=#1!75!black, line width=0.5pt, align=center, inner sep=2.6pt},
+  net/.style={stage=ours, fill=fNet},
+  code/.style={stage=okc, fill=fCode},
+  llm/.style={stage=amber, fill=fLLM},
+  chk/.style={stage=plum, fill=fChk},
+  fall/.style={stage=errc, fill=fFall},
+  io/.style={stage=muted, fill=fIO},
+  plain/.style={rounded corners=2.2pt, draw=ink!55, fill=white, align=center, inner sep=2.6pt},
+  flow/.style={->, draw=ink, line width=0.55pt},
+  tflow/.style={->, draw=ink, line width=0.55pt, dash pattern=on 2.2pt off 1.4pt},   % training-time only
+  errflow/.style={->, draw=errc, line width=0.6pt},
+  okflow/.style={->, draw=okc, line width=0.6pt},
+  thumb/.style={inner sep=0pt, draw=muted, line width=0.35pt},
+  lbl/.style={font=\smallfont, text=ink, align=center, inner sep=1pt},
+  note/.style={font=\smallfont, text=muted, align=center, inner sep=1pt},
+  badge/.style={rounded corners=5pt, draw=#1, fill=white, line width=0.5pt, font=\smallfont\bfseries, text=#1, inner xsep=3pt, inner ysep=1.6pt},
+}

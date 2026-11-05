@@ -247,6 +247,20 @@
    "real_called_fake_video": 2.88
   }
  },
+ "RU-clipe4r": {
+  "cdf": {
+   "frame": 0.8889,
+   "video": 0.9479,
+   "real_called_fake_frame": 31.34,
+   "real_called_fake_video": 23.16
+  },
+  "dfd": {
+   "frame": 0.9542,
+   "video": 0.976,
+   "real_called_fake_frame": 7.58,
+   "real_called_fake_video": 4.81
+  }
+ },
  "xception": {
   "cdf": {
    "frame": 0.7183,

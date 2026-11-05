@@ -1,0 +1,214 @@
+{
+ "lang": "en",
+ "nl_server_reachable": true,
+ "http_port": 64516,
+ "load_state": "ready",
+ "ex3": "Answer for example 3: Commercial beauty retouching: eye enlargement (a service not seen in training). The model agrees.\n\nForgery\nNo forgery detected\nFake score 0.00 (raw model output, not a calibrated probability)\nRetouch\nClearly retouched\nRetouch score 0.97\n\nModel's three-way decision: Beauty retouch (real 0.03 · fake 0.00 · retouch 0.97)\n\nWhy this decision\nTemplate\n\nThe model's decision is filter (score 0.97).\nThe evidence is concentrated on the eyes (mean evidence 0.95).\nOperations at or above the threshold of 0.5: eye enlargement (0.86).\nThe score is the model's raw output, not a calibrated probability.\n\nPossible retouching operations\nBig eyes\n0.86\nSlim face\n0.05\nWhitening\n0.42\nSmoothing\n0.05\n\nA score at or above the middle line (0.5) counts as the operation being present. Eye enlargement, face slimming and whitening on their own are often missed.\n\nWant to know more?\nWhy is it judged fake?\nWhere was it changed?\nWas it retouched?\nWhat does this score mean?\nIs this certain?\nWhere does it differ from the original photo?\nWho is this?\nWhy is it not real?\n\nThe other four questions need server mode (turn it on in Settings).\n\nNumbers and rules",
+ "ex2": "Answer for example 2: Partial forgery: the mouth was replaced with another person's. The model agrees.\n\nForgery\nFake\nFake score 1.00 (raw model output, not a calibrated probability)\nRetouch\nNot detected\nRetouch score 0.00\n\nModel's three-way decision: Fake (real 0.00 · fake 1.00 · retouch 0.00)\n\nWhy this decision\nTemplate\n\nThe model's decision is fake (score 1.00).\nThe evidence is concentrated on the mouth (mean evidence 0.98).\nThe score is the model's raw output, not a calibrated probability.\n\nWant to know more?\nWhy is it judged fake?\nWhere was it changed?\nWas it retouched?\nWhat does this score mean?\nIs this certain?\nWhere does it differ from the original photo?\nWho is this?\nWhy is it not real?\n\nThe other four questions need server mode (turn it on in Settings).\n\nNumbers and rules",
+ "server_badge": "LLM wording, numbers and score note by code; passed the checks",
+ "server_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class (decision score 1.00). The evidence is concentrated on the mouth. The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct.",
+ "fixed_answer": "Is this certain?\n\nNo. The score is the model's raw output, not a calibrated probability, and the decision can be wrong.\n\nFixed answer",
+ "llm_question_index": 0,
+ "llm_answer": "Why is it judged fake?\n\nThe model's decision is that the photo is fake, with the evidence concentrated on the mouth.\n\nLLM-written, passed the automatic checks",
+ "nl_calls": [
+  {
+   "url": "http://127.0.0.1:8787/explain",
+   "req": {
+    "facts": {
+     "decision": "fake",
+     "probabilities": {
+      "real": 0,
+      "fake": 1,
+      "filter": 0
+     },
+     "operations": {
+      "eye_enlargement": 0.36,
+      "face_slimming": 0.24,
+      "skin_brightening": 0.17,
+      "skin_smoothing": 0.15
+     },
+     "operation_threshold": 0.5,
+     "calibration_note": "scores are raw model outputs, not calibrated probabilities",
+     "evidence_mean_per_part": {
+      "eyes": 0.01,
+      "nose": 0.41,
+      "mouth": 0.98,
+      "skin": 0.27,
+      "contour": 0.04
+     },
+     "named_parts": [
+      "mouth"
+     ],
+     "whole_face": false,
+     "operations_raw": {
+      "eye_enlargement": 0.3593991925983788,
+      "face_slimming": 0.2384016779065078,
+      "skin_brightening": 0.16751047959489085,
+      "skin_smoothing": 0.1474832688707339
+     }
+    },
+    "style": "general",
+    "lang": "en",
+    "prompt": "p3"
+   },
+   "res": {
+    "text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class (decision score 1.00). The evidence is concentrated on the mouth. The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct.",
+    "source": "llm",
+    "gate": {
+     "passed": true,
+     "stage": "greedy",
+     "H1": false,
+     "H2": false,
+     "H3": false,
+     "H4": false,
+     "H5": false,
+     "H6": false,
+     "G7": false,
+     "facts": false,
+     "G8": false,
+     "G9": false,
+     "why": [],
+     "llm_part": {
+      "H1": false,
+      "H2": false,
+      "H3": false,
+      "H4": false,
+      "H5": false,
+      "H6": false,
+      "G7": false,
+      "G8": false,
+      "G9": false,
+      "G10": false,
+      "facts": false
+     }
+    },
+    "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is concentrated on the mouth.",
+    "code_added": {
+     "parentheticals": [
+      "decision score 1.00"
+     ],
+     "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+    },
+    "attempts": [
+     {
+      "stage": "greedy",
+      "passed": true,
+      "why": [],
+      "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is concentrated on the mouth."
+     }
+    ],
+    "ms": 1478.6,
+    "lang": "en",
+    "prompt": "p3en1"
+   }
+  },
+  {
+   "url": "http://127.0.0.1:8787/qa",
+   "req": {
+    "facts": {
+     "decision": "fake",
+     "probabilities": {
+      "real": 0,
+      "fake": 1,
+      "filter": 0
+     },
+     "operations": {
+      "eye_enlargement": 0.36,
+      "face_slimming": 0.24,
+      "skin_brightening": 0.17,
+      "skin_smoothing": 0.15
+     },
+     "operation_threshold": 0.5,
+     "calibration_note": "scores are raw model outputs, not calibrated probabilities",
+     "evidence_mean_per_part": {
+      "eyes": 0.01,
+      "nose": 0.41,
+      "mouth": 0.98,
+      "skin": 0.27,
+      "contour": 0.04
+     },
+     "named_parts": [
+      "mouth"
+     ],
+     "whole_face": false,
+     "operations_raw": {
+      "eye_enlargement": 0.3593991925983788,
+      "face_slimming": 0.2384016779065078,
+      "skin_brightening": 0.16751047959489085,
+      "skin_smoothing": 0.1474832688707339
+     }
+    },
+    "question_id": 0,
+    "lang": "en",
+    "prompt": "p3"
+   },
+   "res": {
+    "text": "The model's decision is that the photo is fake, with the evidence concentrated on the mouth.",
+    "source": "llm",
+    "gate": {
+     "passed": true,
+     "stage": "greedy",
+     "H1": false,
+     "H2": false,
+     "H3": false,
+     "H4": false,
+     "H5": false,
+     "H6": false,
+     "G7": false,
+     "facts": false,
+     "G8": false,
+     "G9": false,
+     "why": [],
+     "llm_part": {
+      "H1": false,
+      "H2": false,
+      "H3": false,
+      "H4": false,
+      "H5": false,
+      "H6": false,
+      "G7": false,
+      "G8": false,
+      "G9": false,
+      "G10": false,
+      "facts": false
+     }
+    },
+    "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the mouth.",
+    "code_added": {
+     "parentheticals": [],
+     "calibration": null
+    },
+    "attempts": [
+     {
+      "stage": "greedy",
+      "passed": true,
+      "why": [],
+      "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the mouth."
+     }
+    ],
+    "ms": 997.8,
+    "lang": "en",
+    "prompt": "p3en1",
+    "question": "Why is it judged fake?"
+   }
+  }
+ ],
+ "step7_fixed_question": false,
+ "server_caption": "5. Server mode (General): LLM writes the words; code adds the score and calibration sentence",
+ "llmq_caption": "7. \"{q}\": LLM answer, no numbers; passed the checks",
+ "server_source": "llm",
+ "llmq_source": "llm",
+ "server_prompt": "p3en1",
+ "server_llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is concentrated on the mouth.",
+ "server_code_added": {
+  "parentheticals": [
+   "decision score 1.00"
+  ],
+  "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+ },
+ "llmq_prompt": "p3en1",
+ "llmq_llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the mouth.",
+ "frames_captured": 102,
+ "frames_written": 22,
+ "seconds": 52.0
+}

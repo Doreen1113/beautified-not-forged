@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Page checker test</title>
+<script src="../explain_t2.js"></script>
+<script src="fixture_t2.js"></script>
+</head>
+<body>
+<pre id="out"></pre>
+<script>
+// 2026-10-30. checkT2 (page runtime checker) on the 50 fixture records, Chinese and English, with the page rule
+// (namedOps = skin smoothing) and the research rule (all four operations), plus negative cases that each rule must reject.
+// run_test_checker_headless.py reads the CHECK_RESULT block from the dumped DOM.
+(function () {
+  const E = ExplainT2, recs = (window.T2_FIXTURE.records || window.T2_FIXTURE), opts = { namedOps: ["skin_smoothing"] };
+  const lines = []; let page = 0, research = 0, n = 0, negOk = 0, negN = 0;
+  for (const r of recs) {
+    for (const lg of ["zh", "en"]) {
+      n++;
+      const s = E.t2Sentences(r, lg, opts), c = E.checkT2(r, s, lg, opts);
+      if (c.ok) page++; else lines.push("PAGE_FAIL\t" + r.id + "\t" + lg + "\t" + c.fails.join(",") + "\t" + s.filter(Boolean).join(" | "));
+      const s0 = E.t2Sentences(r, lg), c0 = E.checkT2(r, s0, lg);
+      if (c0.ok) research++; else lines.push("RESEARCH_FAIL\t" + r.id + "\t" + lg + "\t" + c0.fails.join(",") + "\t" + s0.filter(Boolean).join(" | "));
+    }
+  }
+  // negative cases on the first filter record and the first fake record
+  const neg = (name, r, lg, mutate, want) => {
+    const s = E.t2Sentences(r, lg, opts).slice(); mutate(s); const c = E.checkT2(r, s, lg, opts); negN++;
+    const ok = !c.ok && c.fails.includes(want); if (ok) negOk++;
+    lines.push((ok ? "NEG_PASS" : "NEG_FAIL") + "\t" + name + "\t" + lg + "\tgot=" + c.fails.join(",") + "\twant=" + want);
+  };
+  const rf = recs.find((x) => x.decision === "filter"), rk = recs.find((x) => x.decision === "fake" && !E.isWhole(x));
+  const f2 = (x) => Number(x).toFixed(2);
+  neg("certainty word", rk, "en", (s) => { s[0] = s[0].replace("decision is", "decision is certainly"); }, "G8");
+  neg("certainty word", rk, "zh", (s) => { s[0] = s[0] + "可以確定是偽造。"; }, "G8");
+  neg("number not in record", rk, "en", (s) => { s[0] = s[0].replace(/\d\.\d\d/, "0.42"); }, "H4");
+  neg("wrong decision", rk, "en", (s) => { s[0] = s[0].replace("is fake", "is real"); }, "H1");
+  neg("part outside region", rk, "en", (s) => { const other = ["eyes", "nose", "mouth"].find((p) => !rk.named_parts.includes(p)); s[1] = "The evidence is concentrated on " + E.PART_EN[other] + "."; }, "H2");
+  neg("unnamed operation", rf, "en", (s) => { s[2] = "At or above the threshold of 0.5: eye enlargement (" + f2(rf.operations.eye_enlargement) + ")."; }, "H3");
+  neg("operations on a fake", rk, "en", (s) => { s[2] = "At or above the threshold of 0.5: skin smoothing (" + f2(rk.operations.skin_smoothing) + ")."; }, "H3");
+  neg("missing sentences", rk, "en", (s) => { s[1] = null; s[3] = null; }, "H6");
+  const ex = E.t2Sentences(rf, "en", opts).filter(Boolean).join(" "), exz = E.t2Sentences(rf, "zh", opts).filter(Boolean).join("");
+  document.getElementById("out").textContent = "CHECK_RESULT\t" + page + "\t" + research + "\t" + n + "\t" + negOk + "\t" + negN + "\n" +
+    "EXAMPLE_EN\t" + rf.id + "\t" + ex + "\nEXAMPLE_ZH\t" + rf.id + "\t" + exz + "\n" + lines.join("\n") + "\nCHECK_END";
+})();
+</script>
+</body>
+</html>

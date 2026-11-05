@@ -1,0 +1,31 @@
+\begin{tabular}{@{}l ccc ccc@{}}
+\toprule
+ & \multicolumn{3}{c}{level 90} & \multicolumn{3}{c}{smoothing} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+Detector & whitening & face slimming & eye enlarging & level 30 & level 60 & level 90 \\
+\midrule
+Xception~\cite{xception} & 5.7 & 3.7 & 4.6 & 16.6 & 36.2 & 51.6 \\
+EfficientNet-B4~\cite{efficientnet} & 5.1 & 4.0 & 4.7 & 11.5 & 23.9 & 36.3 \\
+F3Net~\cite{f3net} & 5.4 & 4.2 & 4.4 & 15.0 & 33.2 & 50.6 \\
+SPSL~\cite{spsl} & 5.2 & 4.9 & 4.9 & 14.9 & 34.1 & 51.2 \\
+UCF~\cite{ucf} & 6.6 & 4.0 & 4.2 & 16.8 & 32.5 & 41.4 \\
+RECCE~\cite{recce} & 5.3 & 4.1 & 4.5 & 11.9 & 22.7 & 36.8 \\
+CORE~\cite{core} & 5.7 & 4.4 & 4.8 & 14.8 & 36.6 & 54.8 \\
+SRM~\cite{srm} & 4.5 & 3.8 & 4.7 & 18.7 & 45.0 & 62.8 \\
+SBI~\cite{sbi} & 5.4 & 6.2 & 5.5 & 14.8 & 31.6 & 37.3 \\
+UnivFD$^\ddagger$~\cite{univfd} & 6.2 & 5.7 & 11.7 & 6.8 & 12.3 & 16.6 \\
+NPR$^\ddagger$~\cite{npr} & n/a & n/a & n/a & n/a & n/a & n/a \\
+Effort~\cite{effort} & 11.1 & 9.6 & 16.8 & 13.2 & 27.2 & 43.2 \\
+Forensics Adapter~\cite{forensicsadapter} & 5.4 & 6.2 & 7.0 & 10.2 & 25.8 & 39.7 \\
+GenD~\cite{gend2026} & 8.1 & 6.4 & 7.5 & 20.7 & 55.3 & 68.7 \\
+DFD-HR~\cite{dfdhr2026} & 7.7 & 8.0 & 9.6 & 17.2 & 46.7 & 64.9 \\
+CADDM~\cite{caddm} & 4.7 & 6.0 & 5.9 & 5.4 & 5.6 & 6.3 \\
+LAA-Net~\cite{laanet} & 5.2 & 4.8 & 4.8 & 11.5 & 17.2 & 17.2 \\
+\midrule
+\oursB{} & 5.4 & 5.0 & 4.3 & 5.6 & 6.3 & 9.1 \\
+\oursF{} & 4.8 & 3.7 & 3.6 & 6.2 & 5.0 & 8.6 \\
+\oursF{}, sym.\ view & 6.3 & 3.0 & 3.3 & 7.3 & 5.3 & 8.1 \\
+P0 & 6.8 & 5.8 & 5.4 & 17.0 & 40.8 & 54.2 \\
+P2-sym & 5.8 & 5.0 & 5.0 & 4.5 & 3.9 & 5.9 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,20 @@
+\begin{tabular}{@{}l cc cc cc@{}}
+\toprule
+ & \multicolumn{2}{c}{Celeb-DF-v2 frame AUC} & \multicolumn{2}{c}{Celeb-DF-v2 video AUC} & \multicolumn{2}{c}{DFD frame AUC} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Detector & published & ours, DFB crop / our crop & published & ours, DFB crop / our crop & published & ours, DFB crop / our crop \\
+\midrule
+Xception~\cite{xception} & 0.737 & 0.744 / 0.718 & -- & 0.821 / 0.772 & -- & 0.845 / 0.854 \\
+EfficientNet-B4~\cite{efficientnet} & 0.749 & 0.754 / 0.750 & -- & 0.813 / 0.807 & -- & 0.818 / 0.810 \\
+F3Net~\cite{f3net} & 0.735 & 0.732 / 0.708 & -- & 0.793 / 0.750 & -- & 0.781 / 0.781 \\
+SPSL~\cite{spsl} & 0.765 & 0.732 / 0.703 & -- & 0.803 / 0.752 & -- & 0.812 / 0.829 \\
+UCF~\cite{ucf} & 0.753 & 0.775 / 0.744 & -- & 0.841 / 0.788 & -- & 0.818 / 0.822 \\
+RECCE~\cite{recce} & 0.732 & 0.744 / 0.688 & -- & 0.827 / 0.731 & -- & 0.839 / 0.833 \\
+CORE~\cite{core} & 0.743 & 0.744 / 0.715 & -- & 0.814 / 0.764 & -- & 0.830 / 0.827 \\
+SRM~\cite{srm} & 0.755 & 0.763 / 0.717 & -- & 0.844 / 0.778 & -- & 0.837 / 0.830 \\
+Effort~\cite{effort} & 0.901 & 0.879 / 0.881 & 0.956 & 0.927 / 0.930 & 0.923 & 0.933 / 0.939 \\
+Forensics Adapter~\cite{forensicsadapter} & 0.900 & 0.899 / 0.887 & 0.957 & 0.956 / 0.945 & 0.933 & 0.940 / 0.940 \\
+GenD~\cite{gend2026} & -- & 0.900 / 0.891 & 0.960 & 0.960 / 0.954 & -- & 0.932 / 0.934 \\
+DFD-HR~\cite{dfdhr2026} & 0.910 & 0.886 / 0.879 & 0.960 & 0.951 / 0.943 & 0.953 & 0.942 / 0.943 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,11 @@
+% Abstract, shared by cover.tex and report.tex.
+Face-forgery detectors answer ``real'' or ``fake''. A genuine photograph that has only been through a beauty app or a
+retouching service is neither, and once the skin is smoothed the detectors tend to call it fake. On pixel-aligned pairs of
+genuine faces and their commercially smoothed renders, sixteen of seventeen published detectors score the smoothed face as more
+forged than its own original. A controlled training experiment shows that the cause is which class saw skin smoothing during
+training: showing it to both classes lowers the accusation from 54 to 12 percent. We build on that recipe a face checker that
+answers real, forged or beautified, marks the face part its evidence came from, and shows only sentences that code composes from
+the model's output and checks before display. Restoring the marked region to its original pixels removes 94 percent of the
+model's part-level forgery decisions, about twice what a post-hoc heat map achieves, and free-form descriptions written by
+vision-language models fail a blind matching test, so no model is allowed to describe the image. The checker runs in a web
+browser and the photograph never leaves the device.

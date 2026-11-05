@@ -1,0 +1,81 @@
+{
+ "_note": "Published cross-dataset AUCs for the supplement's reported-versus-reproduced table. Sources: CNN frame-level numbers are DeepfakeBench's (results/research/ffpp_benchmark_20260925/cdf_protocol_comparison_v2.json); Effort and Forensics Adapter numbers were read from the papers' full text on 2026-10-08 (docs/literature/TOP_VENUE_STANDARDS_20261007.md, sections A1 and A2, which name the tables). SBI numbers remain to be verified against the SBI paper's table.",
+ "xception": {
+  "cdf_frame": 0.737,
+  "source": "DeepfakeBench Table (FF++ c23 -> CDF-v2, frame-level)"
+ },
+ "effnb4": {
+  "cdf_frame": 0.749,
+  "source": "DeepfakeBench"
+ },
+ "f3net": {
+  "cdf_frame": 0.735,
+  "source": "DeepfakeBench"
+ },
+ "spsl": {
+  "cdf_frame": 0.765,
+  "source": "DeepfakeBench"
+ },
+ "ucf": {
+  "cdf_frame": 0.753,
+  "source": "DeepfakeBench"
+ },
+ "recce": {
+  "cdf_frame": 0.732,
+  "source": "DeepfakeBench"
+ },
+ "core": {
+  "cdf_frame": 0.743,
+  "source": "DeepfakeBench"
+ },
+ "srm": {
+  "cdf_frame": 0.755,
+  "source": "DeepfakeBench"
+ },
+ "sbi": {
+  "cdf_video": 0.9318,
+  "dfd_video": 0.9756,
+  "source": "SBI (CVPR 2022) Table 2, cross-dataset video-level AUC with the official RetinaFace pipeline: CDF 93.18, DFD 97.56, DFDC 72.42, DFDCP 86.15; checked 2026-10-12"
+ },
+ "effort": {
+  "cdf_frame": 0.901,
+  "dfd_frame": 0.923,
+  "dfdc_frame": 0.798,
+  "cdf_video": 0.956,
+  "dfd_video": 0.965,
+  "dfdc_video": 0.843,
+  "dfdcp_video": 0.909,
+  "source": "Effort (ICML 2025): Table 7 frame-level, Table 1 video-level; read 2026-10-08 (TOP_VENUE_STANDARDS A1)"
+ },
+ "fadapter": {
+  "cdf_frame": 0.9,
+  "dfd_frame": 0.933,
+  "dfdc_frame": 0.843,
+  "dfdcp_frame": 0.89,
+  "cdf_video": 0.957,
+  "dfd_video": 0.972,
+  "dfdc_video": 0.872,
+  "dfdcp_video": 0.929,
+  "source": "Forensics Adapter (CVPR 2025): Table 1 frame-level, Tables 2-3 video-level; read 2026-10-08 (TOP_VENUE_STANDARDS A2)"
+ },
+ "_reproductions_by_others": {
+  "effort_cdf_video": {
+   "GenD_released_weights": 0.932,
+   "TSRL_retrained": 0.871
+  },
+  "fadapter_dfdcp_video": {
+   "QTFP_rerun": 0.851
+  },
+  "source": "TOP_VENUE_STANDARDS_20261007.md A7, A13, A15"
+ },
+ "gend": {
+  "cdf_video": 0.96,
+  "source": "GenD (WACV 2026, arXiv 2508.06248v4) Table 2, video-level; five-seed mean in Table 4 is 0.946"
+ },
+ "dfdhr": {
+  "cdf_frame": 0.91,
+  "cdf_video": 0.96,
+  "dfd_frame": 0.953,
+  "source": "DFD-HR (CVPR 2026) Table 2 frame-level, Table 1 video-level"
+ }
+}

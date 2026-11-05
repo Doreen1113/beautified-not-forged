@@ -39,7 +39,9 @@ OURS = {"HYB-L-s2": (BASE / "checkpoints/research/sbiscale_20260926/sbiscale_HYB
         "RU3-effb4": (BASE / "checkpoints/research/retouch_unified_20260929/ru_ru3_effb4_s20260929.pth", "runet3:effb4:0", 380, 3),
         "RU3e-effb4": (BASE / "checkpoints/research/retouch_unified_20260929/ru_ru3e_effb4_s20260929.pth", "runet3:effb4:1", 380, 3),
         "RU4e-effb4": (BASE / "checkpoints/research/retouch_unified_20260929/ru_ru4e_effb4_s20260929.pth", "runet3:effb4:1", 380, 3),
-        "RU-clipe4": (BASE / "checkpoints/research/retouch_unified_20260929/ru_clipe4_s20260929.pth", "ruclipt:clipe4_s20260929", 224, 3)}
+        "RU-clipe4": (BASE / "checkpoints/research/retouch_unified_20260929/ru_clipe4_s20260929.pth", "ruclipt:clipe4_s20260929", 224, 3),
+        "RU-clipe4r": (BASE / "checkpoints/research/retouch_unified_20260929/ru_clipe4r_s20260929.pth", "ruclipt:clipe4r_s20260929", 224, 3),
+        "RU-clipe4r-s2": (BASE / "checkpoints/research/retouch_unified_20260929/ru_clipe4r_s20260930.pth", "ruclipt:clipe4r_s20260930", 224, 3)}
 
 
 class DS(Dataset):

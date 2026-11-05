@@ -1,0 +1,35 @@
+\begin{tabular}{@{}l cc cc cc cc@{}}
+\toprule
+ & \multicolumn{2}{c}{commercial Smoothing-90} & \multicolumn{2}{c}{untreated video AUC} & \multicolumn{2}{c}{DF40, FF++ domain} & \multicolumn{2}{c}{DF40, Celeb-DF domain} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}
+Score & above 5\%-FPR thr.\ (\%) & above own orig.\ (\%) & Celeb-DF-v2 & DFD & FS & FR & FS & FR \\
+\midrule
+\multicolumn{9}{@{}l}{GenD~\cite{gend2026} with CADDM~\cite{caddm}} \\
+\quad first member alone & 68.7 & 98.5 & 0.954 & 0.977 & 0.966 & 0.935 & 0.947 & 0.828 \\
+\quad CADDM alone & 6.3 & 60.9 & 0.930 & 0.918 & 0.869 & 0.794 & 0.788 & 0.542 \\
+\quad fusion, mean & 28.7 & 92.2 & 0.970 & 0.964 & 0.955 & 0.942 & 0.914 & 0.761 \\
+\quad fusion, minimum & 23.4 & 78.2 & 0.962 & 0.956 & 0.925 & 0.922 & 0.867 & 0.708 \\
+\quad fusion, product & 27.6 & 87.2 & 0.969 & 0.966 & 0.944 & 0.935 & 0.895 & 0.733 \\
+\midrule
+\multicolumn{9}{@{}l}{DFD-HR~\cite{dfdhr2026} with CADDM~\cite{caddm}} \\
+\quad first member alone & 64.9 & 99.0 & 0.943 & 0.976 & 0.982 & 0.932 & 0.940 & 0.698 \\
+\quad CADDM alone & 6.3 & 60.9 & 0.930 & 0.918 & 0.869 & 0.794 & 0.788 & 0.542 \\
+\quad fusion, mean & 25.0 & 91.5 & 0.963 & 0.964 & 0.964 & 0.942 & 0.912 & 0.673 \\
+\quad fusion, minimum & 21.8 & 78.1 & 0.956 & 0.955 & 0.932 & 0.924 & 0.866 & 0.659 \\
+\quad fusion, product & 24.5 & 87.2 & 0.962 & 0.967 & 0.951 & 0.935 & 0.893 & 0.658 \\
+\midrule
+\multicolumn{9}{@{}l}{Effort~\cite{effort} with CADDM~\cite{caddm}} \\
+\quad first member alone & 43.2 & 95.6 & 0.930 & 0.972 & 0.944 & 0.808 & 0.935 & 0.710 \\
+\quad CADDM alone & 6.3 & 60.9 & 0.930 & 0.918 & 0.869 & 0.794 & 0.788 & 0.542 \\
+\quad fusion, mean & 24.6 & 86.9 & 0.965 & 0.966 & 0.945 & 0.881 & 0.910 & 0.686 \\
+\quad fusion, minimum & 22.0 & 77.4 & 0.956 & 0.957 & 0.915 & 0.853 & 0.868 & 0.658 \\
+\quad fusion, product & 23.7 & 84.3 & 0.963 & 0.967 & 0.935 & 0.869 & 0.894 & 0.667 \\
+\midrule
+\multicolumn{9}{@{}l}{\ours{} P0 (FF++ only, no beautified views) with CADDM~\cite{caddm}} \\
+\quad first member alone & 54.2 & 98.5 & 0.938 & 0.981 & 0.981 & 0.906 & 0.925 & 0.692 \\
+\quad CADDM alone & 6.3 & 60.9 & 0.930 & 0.918 & 0.869 & 0.794 & 0.788 & 0.542 \\
+\quad fusion, mean & 24.4 & 91.9 & 0.961 & 0.969 & 0.960 & 0.939 & 0.893 & 0.678 \\
+\quad fusion, minimum & 20.0 & 79.1 & 0.955 & 0.962 & 0.929 & 0.923 & 0.850 & 0.665 \\
+\quad fusion, product & 24.2 & 87.6 & 0.961 & 0.971 & 0.949 & 0.933 & 0.876 & 0.663 \\
+\bottomrule
+\end{tabular}

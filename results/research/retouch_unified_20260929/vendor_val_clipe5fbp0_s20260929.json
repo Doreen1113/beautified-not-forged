@@ -1,0 +1,109 @@
+{
+ "tag": "clipe5fbp0_s20260929",
+ "ffhq_orig": {
+  "n": 816,
+  "real": 4.78,
+  "fake": 17.65,
+  "filter": 77.57
+ },
+ "tencent": {
+  "n": 807,
+  "real": 5.08,
+  "fake": 33.83,
+  "filter": 61.09
+ },
+ "megvii": {
+  "n": 1329,
+  "real": 2.18,
+  "fake": 66.29,
+  "filter": 31.53
+ },
+ "vendor_single": {
+  "n": 8443,
+  "real": 3.97,
+  "fake": 29.49,
+  "filter": 66.54
+ },
+ "components": {
+  "tencent_eye": {
+   "n": 795,
+   "to_filter": 74.97,
+   "to_real": 3.52,
+   "TP": 0.054,
+   "TN_same_image": 0.049,
+   "spearman": 0.001,
+   "pred_mean": -0.0599,
+   "meas_mean": 0.0185
+  },
+  "megvii_eye": {
+   "n": 1317,
+   "to_filter": 74.87,
+   "to_real": 4.33,
+   "TP": 0.051,
+   "TN_same_image": 0.052,
+   "spearman": -0.027,
+   "pred_mean": -0.0597,
+   "meas_mean": 0.008
+  },
+  "tencent_jaw": {
+   "n": 795,
+   "to_filter": 78.49,
+   "to_real": 3.77,
+   "TP": 0.938,
+   "TN_same_image": 0.688,
+   "spearman": -0.02,
+   "pred_mean": -0.0945,
+   "meas_mean": 0.0093
+  },
+  "megvii_jaw": {
+   "n": 1316,
+   "to_filter": 77.13,
+   "to_real": 4.41,
+   "TP": 0.933,
+   "TN_same_image": 0.681,
+   "spearman": 0.029,
+   "pred_mean": -0.1093,
+   "meas_mean": 0.0104
+  },
+  "tencent_white": {
+   "n": 796,
+   "to_filter": 74.62,
+   "to_real": 4.77,
+   "TP": 0.29,
+   "TN_same_image": 0.069,
+   "spearman": -0.046,
+   "pred_mean": 0.1861,
+   "meas_mean": 1.0015
+  },
+  "megvii_white": {
+   "n": 1315,
+   "to_filter": 76.65,
+   "to_real": 4.33,
+   "TP": 0.266,
+   "TN_same_image": 0.065,
+   "spearman": 0.005,
+   "pred_mean": 0.2513,
+   "meas_mean": 0.1137
+  },
+  "tencent_smooth": {
+   "n": 792,
+   "to_filter": 54.42,
+   "to_real": 5.43,
+   "TP": 0.03,
+   "TN_same_image": 0.052,
+   "spearman": 0.016,
+   "pred_mean": 0.4541,
+   "meas_mean": 0.0455
+  },
+  "megvii_smooth": {
+   "n": 1317,
+   "to_filter": 27.64,
+   "to_real": 1.82,
+   "TP": 0.05,
+   "TN_same_image": 0.041,
+   "spearman": -0.045,
+   "pred_mean": 0.5402,
+   "meas_mean": 0.0266
+  }
+ }
+}

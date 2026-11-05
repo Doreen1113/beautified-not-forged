@@ -1,0 +1,10 @@
+{
+ "addendum": 70,
+ "arm": "ru7we",
+ "arch": "effb4",
+ "recipe": "W (Addendum 58: RUData7 p_ar=0)",
+ "optimiser": "SAM (train_ru3)",
+ "epochs": 12,
+ "seed": 20260929,
+ "grid": 12
+}

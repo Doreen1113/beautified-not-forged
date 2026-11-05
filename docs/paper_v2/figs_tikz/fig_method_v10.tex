@@ -1,0 +1,161 @@
+% fig_method_v10 (2026-10-28): fig_method_v8b with 7.2 / 6.8 pt text and the formula strip in ink (REVIEW_V9 D5-2).
+% fig_method_v8b (full width, 7.16 in): method overview of main_v8.tex. (a) the measurement protocol, (b) the companion three-way
+% detector and its training pool. Thumbnails from make_fig_method_v8b.py (figs_tikz/img/m8_*.png). Every fact drawn here is
+% checked in FIGURES_V8B.md against its source:
+%  (a) 2,210 pairs, 232 + 232 videos, seven forms, 17 detectors (11 / 4 / 2), 5 % FPR rule: main_v8.tex Sec. II and
+%      docs/capstone/MAIN_CLAIMS_20261022.md; 2 x 2 exposure arms P0..P3: main_v8.tex Sec. III-C, fig_exposure_v8b.
+%  (b) model: results/research/retouch_unified_20260929/train_ru5.py (RUCLIP5: fz = 2 logits, pres 4, q 4, ev 1024 -> 1 on the
+%      256 patch tokens = 16 x 16 map) and train_ru_clip.py (LoRA r = 16 on q/k/v/out of all 24 blocks, frozen backbone);
+%      3.2 M / 306 M: main_v8.tex Sec. IV. Pool: manifest_train.tsv (src counts) and train_ru_clipe5_s20260929.log
+%      ("single 50,112 | parts 61,510"); recipe (forged item beautified with p = 0.5): train_ru5.py RUData5.__getitem__.
+\documentclass[tikz,border=1pt]{standalone}
+\input{style}
+\renewcommand{\bodyfont}{\fontsize{7.2}{8.4}\selectfont}
+\renewcommand{\smallfont}{\fontsize{6.8}{7.8}\selectfont}
+\definecolor{amberc}{HTML}{C98A00}
+\definecolor{panel}{HTML}{FAFAFA}
+\definecolor{slab}{HTML}{EDEDED}
+\tikzset{
+  pframe/.style={rounded corners=3pt, draw=ink!22, fill=panel, line width=0.5pt},
+  ptag/.style={font=\fontsize{7.5}{9}\selectfont\bfseries, text=ink, anchor=north east, inner sep=0pt},
+  ptitle/.style={font=\fontsize{7.5}{9}\selectfont\bfseries, text=ink, anchor=west, inner sep=0pt},
+  capt/.style={font=\bodyfont\bfseries, text=ink, anchor=west, inner sep=0pt},
+  sub/.style={font=\smallfont, text=muted, anchor=west, inner sep=0pt},
+  tl/.style={font=\smallfont, text=ink, anchor=north, inner sep=1.4pt},
+  box/.style={rounded corners=2pt, draw=ink!45, fill=white, line width=0.5pt, align=center, inner sep=2pt},
+  oursbox/.style={rounded corners=2pt, draw=ours, fill=fNet, line width=0.6pt, align=center, inner sep=2pt},
+  auxbox/.style={rounded corners=2pt, draw=ink!35, fill=white, line width=0.45pt, align=center, inner sep=2pt, text=ink!80},
+  chip/.style={rounded corners=2.5pt, draw=#1, fill=#1!7, line width=0.7pt, align=left, inner sep=3pt},
+  ar/.style={->, draw=ink!80, line width=0.55pt},
+  bar/.style={draw=ink!80, line width=0.55pt},
+}
+% snowflake (frozen) at #1, radius #2
+\newcommand{\snow}[3][ours]{\begin{scope}[shift={(#2)}]\foreach \a in {0,60,120}{\draw[#1, line width=0.45pt] (\a:#3) -- (\a+180:#3);
+  \foreach \s in {1,-1}{\draw[#1, line width=0.4pt] (\a:0.55*#3) -- ++(\a+\s*45:0.3*#3); \draw[#1, line width=0.4pt] (\a+180:0.55*#3) -- ++(\a+180+\s*45:0.3*#3);}}\end{scope}}
+\newcommand{\img}[3]{\node[thumb, inner sep=0pt] (#1) at (#2) {\includegraphics[width=#3cm]{img/#1.png}};}
+\begin{document}\hyphenpenalty=10000 \exhyphenpenalty=10000
+\begin{tikzpicture}[x=1cm, y=1cm]
+% ================================================================================================ (a) protocol
+\draw[pframe] (0.55,0) rectangle (8.75,7.5);
+\node[ptag] at (0.45,7.5) {(a)};
+\node[ptitle] at (0.75,7.2) {Measurement protocol};
+% ---- sources
+\node[capt] at (0.75,6.78) {Commercial retouching};
+\node[sub] at (0.75,6.5) {2,210 pixel-aligned pairs};
+\img{m8_orig}{1.37,5.6}{1.15} \img{m8_s90}{2.67,5.6}{1.15}
+\node[tl] at (m8_orig.south) {original};
+\node[tl] at (m8_s90.south) {Smoothing-90};
+\node[capt] at (0.75,4.55) {Celeb-DF-B};
+\node[sub] at (0.75,4.27) {232 + 232 videos};
+\img{m8_cdf}{1.37,3.37}{1.15} \img{m8_cdfb}{2.67,3.37}{1.15}
+\node[tl] at (m8_cdf.south) {deepfake};
+\node[tl] at (m8_cdfb.south) {app preset};
+\node[sub] at (0.75,2.38) {control: re-encoded only};
+\node[capt] at (0.75,2.0) {Scripted smoothing};
+\node[sub] at (0.75,1.72) {7 forms, both classes, Celeb-DF-v2};
+% bus into the detector block
+\draw[bar] (3.32,5.6) -- (3.6,5.6); \draw[bar] (3.32,3.37) -- (3.6,3.37); \draw[bar] (3.32,1.86) -- (3.6,1.86);
+\draw[bar] (3.6,5.6) -- (3.6,1.86);
+\draw[ar] (3.6,4.72) -- (3.8,4.72);
+% ---- detectors
+\node[box, minimum width=2.4cm, minimum height=2.5cm, anchor=west] (det) at (3.8,4.72) {};
+\node[font=\bodyfont\bfseries, text=ink, anchor=north, align=center, inner sep=0pt] at ([yshift=-4pt]det.north) {17 published\\detectors};
+\node[font=\smallfont, text=ink, anchor=north west, align=left, inner sep=0pt] at ([xshift=4pt, yshift=-27pt]det.north west)
+  {11 face-forgery CNNs\\4 CLIP-based\\2 generated-image};
+\draw[ink!25, line width=0.4pt] ([xshift=4pt, yshift=17pt]det.south west) -- ([xshift=-4pt, yshift=17pt]det.south east);
+\node[font=\bodyfont\bfseries, text=ours, anchor=south, inner sep=0pt] at ([yshift=5pt]det.south) {+ ours, 2 seeds};
+% ---- threshold and the two readouts
+\node[circle, draw=ink!80, fill=white, line width=0.55pt, inner sep=0.6pt, font=\bodyfont] (tau) at (6.46,4.72) {$\tau$};
+\draw[ar] (det.east) -- (tau.west);
+\node[chip=errc, text width=1.72cm, anchor=west] (A) at (6.7,5.55) {{\color{errc}\bfseries A: accusation}\\[1pt]{\smallfont smoothed genuine face called forged}};
+\node[chip=amberc, text width=1.72cm, anchor=west] (Bc) at (6.7,3.85) {{\color{amberc!85!black}\bfseries B: escape}\\[1pt]{\smallfont beautified forgery missed}};
+\draw[ar] (tau.north) |- (A.west);
+\draw[ar] (tau.south) |- (Bc.west);
+\node[box, text width=4.62cm, anchor=north west, align=left, inner sep=3pt] (rule) at (3.84,2.92)
+  {{\bfseries One rule.} $\tau$ accuses 5\% of the untreated genuine faces of the same source, for every detector};
+\draw[ink!50, line width=0.45pt, dash pattern=on 1.5pt off 1.2pt] (tau.south) ++(0,-0.02) -- (6.46,2.92);
+% ---- cause strip
+\draw[ink!20, line width=0.5pt] (0.75,1.38) -- (8.55,1.38);
+\node[capt] at (0.75,1.1) {Cause: controlled training};
+\node[sub, align=left, anchor=north west] at (0.75,0.86) {four FF++-only arms; only the class that\\receives smoothed views changes};
+\def\cw{0.7} \def\ch{0.34} \def\gx{7.08} \def\gy{0.1}
+\node[font=\smallfont, text=muted, anchor=south, inner sep=1pt] at (\gx+\cw,\gy+2*\ch+0.2) {forged smoothed};
+\node[font=\smallfont, text=muted, anchor=south, inner sep=1pt] at (\gx+0.5*\cw,\gy+2*\ch) {no};
+\node[font=\smallfont, text=muted, anchor=south, inner sep=1pt] at (\gx+1.5*\cw,\gy+2*\ch) {yes};
+\node[font=\smallfont, text=muted, anchor=east, inner sep=1.5pt] at (\gx,\gy+1.5*\ch) {no};
+\node[font=\smallfont, text=muted, anchor=east, inner sep=1pt, align=right] at (\gx-0.42,\gy+\ch) {genuine\\smoothed};
+\node[font=\smallfont, text=muted, anchor=east, inner sep=1.5pt] at (\gx,\gy+0.5*\ch) {yes};
+\draw[ink!40, fill=white, line width=0.45pt] (\gx,\gy+\ch) rectangle ++(\cw,\ch) node[midway, font=\smallfont, text=ink] {P0};
+\draw[errc, fill=errc!10, line width=0.7pt] (\gx+\cw,\gy+\ch) rectangle ++(\cw,\ch) node[midway, font=\smallfont\bfseries, text=errc] {P3: A};
+\draw[amberc, fill=amberc!10, line width=0.7pt] (\gx,\gy) rectangle ++(\cw,\ch) node[midway, font=\smallfont\bfseries, text=amberc!85!black] {P1: B};
+\draw[ink!40, fill=white, line width=0.45pt] (\gx+\cw,\gy) rectangle ++(\cw,\ch) node[midway, font=\smallfont, text=ink] {P2};
+
+% ================================================================================================ (b) detector
+\draw[pframe] (9.3,0) rectangle (18.15,7.5);
+\node[ptag] at (9.2,7.5) {(b)};
+\node[ptitle] at (9.5,7.2) {Companion three-way detector};
+% ---- input
+\img{m8_x}{9.98,5.1}{1.0}
+\node[tl] at (m8_x.south) {input face};
+\node[font=\smallfont, text=muted, anchor=north, align=center, inner sep=0pt] at ([yshift=-10.5pt]m8_x.south) {held-out\\part edit};
+% ---- encoder
+\node[font=\bodyfont\bfseries, text=ink, anchor=south west, inner sep=0pt] at (10.68,6.52) {CLIP ViT-L/14};
+\node[rounded corners=2.5pt, draw=ink!30, fill=white, line width=0.5pt, minimum width=1.7cm, minimum height=2.45cm, anchor=south west] (enc) at (10.68,3.98) {};
+\snow{12.18,6.22}{0.11}
+\foreach \y/\t in {5.75/block 1, 5.25/block 2, 4.33/block 24}{
+  \node[rounded corners=1pt, draw=ink!30, fill=slab, minimum width=1.08cm, minimum height=0.34cm, inner sep=0pt, font=\smallfont, text=ink!80] at (11.36,\y) {\t};
+  \fill[ours, rounded corners=0.8pt] (12.0,\y-0.15) rectangle (12.24,\y+0.15);}
+\foreach \d in {-0.1,0,0.1}{\fill[muted] (11.36,4.79+\d) circle (0.55pt);}
+\draw[ar] (m8_x.east) -- (10.68,5.1);
+% legend under the encoder
+\snow{10.8,3.5}{0.1}
+\node[sub] at (10.98,3.5) {frozen backbone, 306\,M};
+\fill[ours, rounded corners=0.8pt] (10.68,3.05) rectangle (10.92,3.31);
+\node[sub, text=ink] at (10.98,3.18) {LoRA, \textit{r} = 16, on q, k, v, o: 3.2\,M trained};
+% ---- tokens
+\node[draw=ours, fill=fNet, line width=0.5pt, minimum size=0.27cm, inner sep=0pt] (cls) at (12.72,5.75) {};
+\node[font=\smallfont, text=ink, anchor=south, inner sep=1.5pt] at (cls.north) {CLS};
+\foreach \k in {0,1,2}{\node[draw=ink!45, fill=white, line width=0.45pt, minimum size=0.2cm, inner sep=0pt] (p\k) at (12.72,4.57-\k*0.24) {};}
+\node[font=\smallfont, text=ink, anchor=north, inner sep=1.5pt] at (p2.south) {256 patches};
+\draw[ar] (12.38,5.75) -- (cls.west);
+\draw[ar] (12.38,4.33) -- (12.62,4.33);
+% ---- heads
+\node[oursbox, minimum width=1.55cm, minimum height=0.6cm, anchor=west] (h1) at (13.2,6.1) {\bfseries forged {\mdseries\textit{z}\textsubscript{f}}\\[-1pt]\bfseries beautified {\mdseries\textit{z}\textsubscript{b}}};
+\node[auxbox, minimum width=1.55cm, minimum height=0.6cm, anchor=west] (h2) at (13.2,5.25) {operations\\[-1pt]{\smallfont 4 + 4 scores}};
+\node[auxbox, minimum width=1.55cm, minimum height=0.6cm, anchor=west] (h3) at (13.2,4.33) {evidence\\[-1pt]{\smallfont per-patch linear}};
+\draw[bar] (cls.east) -- (13.0,5.75);
+\draw[bar] (13.0,5.25) -- (13.0,6.1);
+\draw[ar] (13.0,6.1) -- (h1.west); \draw[ar] (13.0,5.25) -- (h2.west);
+\draw[ar] (12.82,4.33) -- (h3.west);
+% ---- outputs
+\node[anchor=west, inner sep=0pt, font=\smallfont, align=left] (out) at (15.3,6.1) {%
+  \setlength{\tabcolsep}{1.5pt}\renewcommand{\arraystretch}{1.0}%
+  \begin{tabular}{@{}l l@{}}
+  \bfseries fake & \textit{f}\\ \bfseries beautified & (1 − \textit{f})\,\textit{b}\\ \bfseries real & (1 − \textit{f})(1 − \textit{b})
+  \end{tabular}};
+\node[font=\bodyfont, text=ink, anchor=north west, inner sep=0pt, align=left] at (15.3,5.62) {\textit{f} = σ(\textit{z}\textsubscript{f}), \textit{b} = σ(\textit{z}\textsubscript{b});\\the decision reads \textit{f} only};
+\draw[ar] (h1.east) -- (out.west);
+\node[font=\smallfont, text=ink!80, anchor=west, inner sep=0pt] (ops) at (15.3,4.88) {operation scores};
+\draw[ar, draw=ink!50] (h2.east) -- ++(0.15,0) |- (ops.west);
+\img{m8_ev}{15.75,4.05}{0.85}
+\draw[ar] (h3.east) -- (m8_ev.west |- h3.east);
+\node[font=\smallfont, text=ink!80, anchor=west, inner sep=0pt, align=left] at (16.27,4.05) {16\,×\,16 evidence\\map, trained on\\exact footprints};
+
+% ---- training pool
+\draw[ink!20, line width=0.5pt] (9.5,2.82) -- (17.95,2.82);
+\node[capt] at (9.5,2.58) {Training pool};
+\node[sub] at (11.25,2.58) {each step draws one item per class from one genuine frame};
+\newcommand{\grp}[6]{% x, img, header, list of label/count, header colour, width
+  \img{#2}{#1+0.31,1.9}{0.62}
+  \node[capt, text=#5] at (#1+0.74,2.02) {#3};
+  \foreach \l/\c [count=\i] in {#4}{
+    \node[font=\smallfont, text=ink, anchor=west, inner sep=0pt] at (#1, 1.6-\i*0.29) {\l};
+    \node[font=\smallfont, text=ink, anchor=east, inner sep=0pt] at (#1+#6, 1.6-\i*0.29) {\c};}}
+\grp{9.5}{m8_gen}{Genuine}{FF++ c23 frames/41{,}512, FFHQ photos/7{,}015}{ink}{2.72}
+\grp{12.3}{m8_fake}{Forged}{FF++ forgeries/41{,}526, part-level edits/61{,}510, self-blends/online}{ink}{2.45}
+\grp{15.3}{m8_beau}{Beautified}{vendor renders/18{,}734, single operations/50{,}112, scripted{,} FF++/41{,}512, colour grading/online}{ink}{2.62}
+% recipe: beautification also on the forged class
+\node[font=\smallfont\bfseries, text=ours, anchor=west, inner sep=0pt] (rec) at (12.3,0.44) {half beautified on top};
+\draw[->, draw=ours, line width=0.7pt] (15.3,1.9) -- (15.0,1.9) |- (rec.east);
+\end{tikzpicture}
+\end{document}

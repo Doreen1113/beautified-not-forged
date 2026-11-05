@@ -1,0 +1,27 @@
+{
+ "tag": "clipe5fbEi_s20260929",
+ "criterion": "ffpp_auc",
+ "selected_epoch": 1,
+ "epochs": [
+  {
+   "epoch": 1,
+   "ffpp_val_macro_f1": 0.4599,
+   "vendor_filter_to_filter": 32.76,
+   "vendor_orig_not_filter": 62.38,
+   "vendor_orig_real": 59.68,
+   "vendor_balanced": 47.57,
+   "ffpp_val_auc": 0.9004,
+   "C2": 0.4678
+  },
+  {
+   "epoch": 2,
+   "ffpp_val_macro_f1": 0.4565,
+   "vendor_filter_to_filter": 32.85,
+   "vendor_orig_not_filter": 62.38,
+   "vendor_orig_real": 59.93,
+   "vendor_balanced": 47.61,
+   "ffpp_val_auc": 0.8991,
+   "C2": 0.4663
+  }
+ ]
+}

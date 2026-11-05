@@ -1,0 +1,45 @@
+% Draft of the 2026-10 rewrite: the measurement and mechanism subsections of Results. Numbers from fair_cdfb.json,
+% cdf_filtered.json, dfd_filtered.json, subspace_probe.json (tables tab_twosided, tab_mechanism, tab_erasure).
+
+\section{Results}
+\label{sec:results}
+\subsection{Beautification hurts every detector, in both directions}
+\label{sec:measure}
+Table~\ref{tab:twosided} scores the thirteen detectors and our models by the rule of Sec.~\ref{sec:protocol} on the three
+sources. Every published detector loses AUC under beautification on every source. The loss is largest for the detectors
+that detect best: on Celeb-DF-B the AUC of SBI falls from 0.875 to 0.752, of Effort from 0.909 to 0.807 and of Forensics
+Adapter from 0.909 to 0.828, and after the re-encoding of the same videos is subtracted the app presets alone raise their
+miss rates by 21.8, 11.0 and 15.2 points. The same two CLIP detectors fall from 0.88--0.89 to 0.79 under the eleven
+Celeb-DF-v2 filters, where their miss rates rise by 16.8 and 12.1 points, and from 0.94 to 0.90--0.91 under the sixteen DFD
+filters, built after our method was fixed, where Effort's miss rate rises by 12.3 points [8.3, 15.7]. The false-alarm side
+is smaller for these two on the colour filters (Effort $-$0.5 to $+$1.2, Forensics Adapter $+$2.9 to $+$5.2 points) and
+large for UnivFD (+8.9 and +17.1) and NPR (+69 on Celeb-DF-v2, whose scores collapse under any filter). On commercial
+retouching the false alarms dominate: at a threshold that accuses 5\% of the untouched originals, the eleven FF++-trained
+detectors accuse 36--63\% of the most strongly smoothed genuine faces (Sec.~\ref{sec:ali}).
+
+Two findings about the published numbers matter for reading the table. First, Celeb-DF-B's untreated AUCs (0.81--0.91) are
+below the Celeb-DF-v2 numbers the detectors' papers report, because our frames are cropped by one pipeline for every
+detector (supplement, Table~S1 lists each detector's published number and ours); the beautification effect is measured
+within each detector on the same crops and does not depend on this. Second, a fixed threshold sees what AUC cannot. Our
+RU5 model keeps its AUC under the DFD filters (0.942 to 0.927) while its miss rate rises by 12.0 points, because the filters
+shift its scores down for genuine and forged frames alike; a deployed detector would let those forgeries through. We report
+both numbers for every model.
+
+\subsection{Where the damage comes from}
+\label{sec:mechanism}
+We take the FF++-only CLIP model, whose forgery decision is a linear head $w$ on the pooled feature, and measure how each
+of the eleven held-out Celeb-DF-v2 filters moves the feature of a validation frame (Table~\ref{tab:mechanism}). The two
+filters with a radial luminance overlay, \emph{earlybird} and \emph{mayfair}, move the forgery logit of a genuine frame by
+$+7.8$ and $+5.6$; the nine pure colour looks move it by $+0.1$ to $+2.4$. The mean shifts of the two overlay filters have
+cosines of 0.20 and 0.33 with $w$, those of the colour looks 0.00 to 0.09, and the shift of \emph{earlybird} is as long as
+the feature itself. Forged frames move much less ($-0.7$ to $+1.8$). A luminance ramp around the face reads as forgery
+evidence, and it does so for a genuine face far more than for a forged one, which already carries that evidence.
+
+The shifts are not new directions. For every held-out filter, 63--90\% of the shift energy lies in the 16-dimensional
+subspace spanned by the shifts that training-time beautifications (random draws of the operator and random grading) produce
+on training frames. What the model had not seen is the magnitude and the combination. This suggests a linear fix: project
+the subspace out of the feature and refit the head. It fails (Table~\ref{tab:erasure}). Removing two directions costs the
+clean AUC at once (0.987 to 0.933; clean miss rate 6\% to 26\%) and the false-alarm rate under the held-out filters does not
+fall (17.5--27.5\% against 21.5\% for the trained head), because the directions that beautification moves along are the
+directions that carry the forgery evidence. The two have to be separated during training, which is what Sec.~\ref{sec:robust}
+does.

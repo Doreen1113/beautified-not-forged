@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sentences composed and checked</title>
+<style>
+  /* One held-out record (fixture_t2.json, ffhq_demo_edit:17042_nose): every value in the sentences is traced back to the
+     record by a line. Printed at the two-column report's text width (18.13 cm; was 14.66 cm before r10). */
+  @page { margin: 0; }
+  :root { --ink: #1f2937; --muted: #6b7280; --line: #d6dbe3; --nn: #0f4d92; --code: #1b7f4c; --chk: #6a3d9a; --chk-bg: #efe9f8;
+          --bad: #c0392b; --bad-bg: #fdf1ee; --fake: #d55e00; --real: #009e73; --part: #1b7f4c; --ev: #0f4d92; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body { width: 18.13cm; font-family: Arial, "Liberation Sans", Helvetica, sans-serif; color: var(--ink); font-size: 8.5pt; line-height: 1.3; position: relative; padding: 0.22cm 0 0 0; }
+  .row { display: flex; gap: 0.3cm; margin-bottom: 0.34cm; align-items: stretch; }
+  .panel { position: relative; border-radius: 0.22cm; background: #f7f8fb; border: 0.4pt solid var(--line); padding: 0.48cm 0.22cm 0.22cm; }
+  .panel > .chip { position: absolute; top: -0.19cm; left: 0.22cm; font-size: 8.5pt; font-weight: 700; color: #fff; padding: 0.045cm 0.22cm; border-radius: 0.3cm; white-space: nowrap; }
+  .nn > .chip { background: var(--nn); } .code > .chip { background: var(--code); } .chk > .chip { background: var(--chk); } .bad > .chip { background: var(--bad); }
+  .kv { display: grid; grid-template-columns: 1.45cm 1fr; row-gap: 0.1cm; column-gap: 0.12cm; align-items: baseline; }
+  .kv .k { color: var(--muted); text-align: right; font-size: 8pt; }
+  .v { font-variant-numeric: tabular-nums; }
+  .tag { display: inline-block; padding: 0 0.1cm; border-radius: 0.09cm; font-weight: 700; border: 0.5pt solid transparent; }
+  .t-fake { color: var(--fake); background: #fbe8dc; border-color: #f0c5a8; }
+  .t-score { color: var(--ink); background: #e6ebf3; border-color: #c9d3e3; }
+  .t-part { color: var(--part); background: #e3f2e8; border-color: #b5dcc3; }
+  .t-ev { color: var(--ev); background: #e6eef9; border-color: #b9cde8; }
+  .sent { margin: 0 0 0.14cm 0; }
+  .sent .n { display: inline-block; width: 0.55cm; color: var(--muted); font-weight: 700; }
+  .sent.off { color: var(--muted); font-style: italic; }
+  .checks { list-style: none; margin: 0; padding: 0; }
+  .checks li { display: grid; grid-template-columns: 0.4cm 0.75cm 1fr; column-gap: 0.06cm; margin-bottom: 0.08cm; align-items: baseline; }
+  .checks .ok { color: var(--real); font-weight: 700; } .checks .id { font-weight: 700; color: var(--chk); }
+  .rej { display: flex; align-items: flex-start; gap: 0.35cm; }
+  .rej .q { font-size: 9pt; flex: 1; }
+  .rej u { text-decoration: none; border-bottom: 1.6pt solid var(--bad); color: var(--bad); font-weight: 700; }
+  .pills { display: flex; flex-direction: column; gap: 0.08cm; align-items: flex-start; flex: none; }
+  .pill { font-size: 8pt; font-weight: 700; color: var(--bad); background: var(--bad-bg); border: 0.4pt solid var(--bad); border-radius: 0.3cm; padding: 0.02cm 0.16cm; white-space: nowrap; }
+  .note { font-size: 8pt; color: var(--muted); margin-top: 0.12cm; }
+  svg.ov { position: absolute; left: 0; top: 0; pointer-events: none; overflow: visible; }
+</style>
+</head>
+<body>
+
+<div class="row">
+  <div class="panel nn" style="width:5.75cm" id="rec">
+    <div class="chip">Record: the model's output</div>
+    <div class="kv">
+      <span class="k">decision</span><span><span class="tag t-fake" id="r-dec">fake</span></span>
+      <span class="k">class scores</span><span class="v">real 0.00 &middot; fake <span class="tag t-score" id="r-score">1.00</span> &middot; beautified 0.00</span>
+      <span class="k">operations</span><span class="v">eyes 0.05 &middot; slim 0.01<br>white 0.03 &middot; smooth 0.20<br><span style="color:var(--muted)">threshold 0.50</span></span>
+      <span class="k">evidence</span><span class="v">eyes 0.16 &middot; <span class="tag t-ev" id="r-ev">nose 0.99</span><br>mouth 0.55 &middot; skin 0.31<br>contour 0.00</span>
+      <span class="k">named part</span><span><span class="tag t-part" id="r-part">nose</span></span>
+    </div>
+  </div>
+  <div class="panel code" style="width:6.7cm" id="sen">
+    <div class="chip">Sentences from templates</div>
+    <p class="sent"><span class="n">T1</span>The model's decision is <span class="tag t-fake" id="s-dec">fake</span> (score <span class="tag t-score" id="s-score">1.00</span>).</p>
+    <p class="sent"><span class="n">T2</span>The evidence is concentrated on the <span class="tag t-part" id="s-part">nose</span> (mean evidence <span class="tag t-ev" id="s-ev">0.99</span>).</p>
+    <p class="sent off"><span class="n">T3</span>no operation reaches 0.50, so no sentence</p>
+    <p class="sent"><span class="n">T4</span>The score is the model's raw output, not a calibrated probability.</p>
+  </div>
+  <div class="panel chk" style="width:5.08cm">
+    <div class="chip">Checks before display</div>
+    <ul class="checks">
+      <li><span class="ok">&#10003;</span><span class="id">H1</span><span>decision word = record</span></li>
+      <li><span class="ok">&#10003;</span><span class="id">H2</span><span>part &isin; named parts</span></li>
+      <li><span class="ok">&#10003;</span><span class="id">H3</span><span>operations = those &ge; 0.50</span></li>
+      <li><span class="ok">&#10003;</span><span class="id">H4</span><span>every number is in the record</span></li>
+      <li><span class="ok">&#10003;</span><span class="id">H5</span><span>no forbidden phrase</span></li>
+      <li><span class="ok">&#10003;</span><span class="id">H6</span><span>three to five sentences</span></li>
+      <li><span class="ok">&#10003;</span><span class="id">G7</span><span>score not compared with the threshold</span></li>
+      <li><span class="ok">&#10003;</span><span class="id">G8</span><span>no certainty word</span></li>
+      <li><span class="ok">&#10003;</span><span class="id">G9</span><span>score not attached to a part</span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom:0.1cm">
+  <div class="panel bad" style="width:18.13cm">
+    <div class="chip">Rejected by the checker</div>
+    <div class="rej">
+      <div class="q">&ldquo;The nose is <u>certainly</u> forged <u>with a score of 1.00</u>, and <u>the skin was smoothed</u>.&rdquo;
+        <div class="note">A rejected text is never shown; the page shows the template sentences instead.</div></div>
+      <div class="pills"><span class="pill">&#10007; G8 &nbsp;certainty word</span><span class="pill">&#10007; G9 &nbsp;decision score attached to a part</span><span class="pill">&#10007; H3 &nbsp;smoothing 0.20 is below the 0.50 threshold</span></div>
+    </div>
+  </div>
+</div>
+
+<svg class="ov" id="ov"></svg>
+<script>
+  // lines from each value in the record to the same value in the sentence
+  function R(id) { const r = document.getElementById(id).getBoundingClientRect(); return { l: r.left + scrollX, r: r.right + scrollX, y: r.top + r.height / 2 + scrollY }; }
+  function link() {
+    const s = document.getElementById('ov'); s.setAttribute('width', document.body.scrollWidth); s.setAttribute('height', document.body.scrollHeight);
+    const pairs = [['r-dec', 's-dec', '#d55e00'], ['r-score', 's-score', '#4b5563'], ['r-part', 's-part', '#1b7f4c'], ['r-ev', 's-ev', '#0f4d92']];
+    // the lines run only in the gap between the two panels: from the record chip to the sentence panel's edge at the
+    // height of the matching chip, which carries the same colour
+    const edgeR = document.getElementById('rec').getBoundingClientRect().right + scrollX, edgeS = document.getElementById('sen').getBoundingClientRect().left + scrollX;
+    let d = '';
+    for (const [a, b, c] of pairs) {
+      const A = R(a), B = R(b), dx = (edgeS - edgeR) * 0.5;
+      d += `<path d="M${A.r + 1} ${A.y} L${edgeR} ${A.y} C ${edgeR + dx} ${A.y}, ${edgeS - dx} ${B.y}, ${edgeS - 1} ${B.y}" fill="none" stroke="${c}" stroke-width="1.1" opacity="0.9"/>` +
+           `<circle cx="${A.r + 1}" cy="${A.y}" r="1.8" fill="${c}"/><circle cx="${edgeS - 1}" cy="${B.y}" r="1.8" fill="${c}"/>`;
+    }
+    s.innerHTML = d;
+  }
+  window.addEventListener('load', link);
+</script>
+</body>
+</html>

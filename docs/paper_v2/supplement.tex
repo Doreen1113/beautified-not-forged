@@ -1,230 +1,179 @@
-% Supplementary material for "Beautified Is Not Forged" (moved from main.tex on 2026-09-29).
-\documentclass[onecolumn]{IEEEtran}
+% Supplement to "Beautified Is Not Forged" (v3, rewritten 2026-10-11). Every table is generated from result files by
+% make_tables_v3.py / make_tables_cgd.py / make_tables_ali.py. Previous version: supplement_pre_robust_20261011.tex.
+\documentclass[10pt]{article}
+\usepackage[margin=0.9in]{geometry}
 \usepackage{fontspec}
 \setmainfont{texgyretermes}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]
-\usepackage{amsmath,amssymb}
-\usepackage{graphicx}
-\usepackage{booktabs}
-\usepackage{adjustbox}
-\usepackage{xcolor}
+\usepackage{amsmath,amssymb,graphicx,booktabs,array,adjustbox,xcolor,url,cite}
 \usepackage[hidelinks]{hyperref}
 \graphicspath{{figs/}}
 \newcommand{\ours}{\textsc{Ours}}
-\renewcommand{\thesection}{S\arabic{section}}
 \renewcommand{\thetable}{S\arabic{table}}
 \renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thesection}{S\arabic{section}}
+\title{Supplementary Material\\Beautified Is Not Forged: Measuring and Separating Beautification from Face Forgery}
+\author{}\date{}
 \begin{document}
-\title{Beautified Is Not Forged: Supplementary Material}
 \maketitle
 
-\section{Figures and details moved from the main paper}
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.9\linewidth]{fig_decomp}
-\caption{Splitting a four-operation Tencent render into single-operation components in the original's geometry. Bottom:
-absolute difference to the original, $\times$4. Eye and contour components are the render's optical flow restricted to
-the eye regions and to the rest of the face; tone and texture components are the low- and high-pass parts of the
-photometric residual. The four parts recompose the render.}
-\end{figure}
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.5\linewidth]{fig_escape}
-\caption{Celeb-DF-B: change in the share of deepfake frames called real when the same videos are beautified, with 95\%
-video-cluster intervals. Binary detectors at 5\% FPR on untreated genuine frames; three-way models at their native rule.}
-\end{figure}
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.9\linewidth]{fig_alibars}
-\caption{Where the unseen service's retouched faces go (levels pooled): share routed to real, fake and filter for the best
-FF++-only three-way model, the FF++-only evidence-head model, \ours{}-lite and \ours{}.}
-\end{figure}
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.6\linewidth]{fig_accuse}
-\caption{Retouched genuine faces from the unseen service called \emph{fake}, each detector at the threshold that calls 5\%
-of the untouched originals fake (chosen on the test originals, which favours the binary detectors). Dark: strongest
-smoothing; light: all operations and levels. Red: SBI and the two CLIP-based detectors.}
-\label{fig:accuse}
-\end{figure}
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.5\linewidth]{fig_tradeoff}
-\caption{Untreated Celeb-DF-B AUC against balanced accuracy on the unseen service, for every three-way variant. Binary
-detectors have no filter class and appear as vertical lines.}
-\end{figure}
+\section{Pre-registration and what was read when}
+Every bar quoted in the paper was written into a dated file before the corresponding model was trained or the
+corresponding test source was read. Celeb-DF-B and the DFD filter set were read once per model, after the checkpoint had
+been chosen on validation data. The Celeb-DF-v2 filter set was used to diagnose which filters cause the damage
+(Sec.~4.2 of the paper), so it is a development source for every design choice made after that point; the DFD filter set
+was built afterwards from a second filter library. No per-filter result of the DFD set was inspected. The checkpoint of
+every model is chosen on validation data only: FF++ validation macro-F1 (three-way, FF++ only), FF++ validation AUC
+(binary), or the mean of FF++ validation macro-F1 and balanced accuracy on held-out originals and renders of the two
+training services (three-way, full data). An earlier selection rule (F1 of the filter class on an imbalanced validation
+set) picked the epoch with the lowest specificity on untouched originals; it was replaced before the models of this paper
+were trained, and the earlier model appears only in Table~\ref{tab:cgd_all}.
+
+\section{Each baseline under its own preprocessing}
 \begin{table}[h]
 \centering
-\caption{Explanations on held-out part-level forgeries, all variants (columns as in the main paper).}
+\caption{Reported and reproduced. Published numbers are from DeepfakeBench (frame level, eight CNNs) and from the Effort
+and Forensics Adapter papers. ``DFB crop'': our run of the released weights on DeepfakeBench crops (dlib frontal
+detector, 81 landmarks, five-point similarity alignment, scale 1.3, 256\,px, 32 frames per video by linear spacing), built
+with the benchmark's own alignment function. ``Our crop'': landmark box with a 35\% margin, aspect kept. Videos common to
+both frame sets (516 for Celeb-DF-v2, 332 for DFD). Our DFD set is a 332-video subset, so no published DFD number is
+comparable and none is listed as a target.}
+\label{tab:reproduce}
 \footnotesize
-\begin{adjustbox}{max width=\linewidth}\input{tables/tab_cgd_explain_all.tex}\end{adjustbox}
+\begin{adjustbox}{max width=\linewidth}\input{tables/tab_reproduce.tex}\end{adjustbox}
+\end{table}
+Forensics Adapter reproduces its published Celeb-DF-v2 numbers on its own crop. Effort does not; an independent re-run
+of its released weights reports 0.932 at video level and a retraining 0.871, against 0.956 in the paper, and our 0.927 is
+in line with the re-run. The training code released with both detectors keeps the checkpoint with the best test-set AUC;
+the papers do not state a selection rule. All comparisons in the paper pair our models on our crop with each baseline on
+its own crop.
+
+\section{Where the filter is applied}
+\begin{table}[h]
+\centering
+\caption{The same videos, frames and per-video filter assignment with the filter applied to the face crop or to the full
+frame before the crop. A filter with a vignette is centred on the face in the first case. The paper reports the
+full-frame version.}
+\label{tab:fullframe}
+\footnotesize
+\begin{adjustbox}{max width=\linewidth}\input{tables/tab_fullframe.tex}\end{adjustbox}
 \end{table}
 
-\textbf{Measurement pitfalls.} (1) An earlier Celeb-DF-v2 set of ours (389 frames from 307 videos, filtered by
-face-detector confidence) placed every published detector 3--10 AUC points above its published frame-level number; on the
-standard list our scores are close to the published ones (Xception 0.718 vs.\ 0.737, EfficientNet-B4 0.750 vs.\ 0.749,
-UCF 0.744 vs.\ 0.753). (2) Test crops must match the training extractor (landmark hull, 35\% margin, aspect kept); a
-square $1.3\times$ crop cost our model 1.8 points. (3) Celeb-DF-B's treated videos are re-framed to portrait with
-filter-tinted bars, and the landmark detector then misses 57\% of treated frames against 3\% of untreated ones; trimming
-the bars restores 97\% coverage.
-
-\textbf{SBI checkpoint.} Our reproduction of the SBI recipe reached 0.735 on Celeb-DF-v2 against 0.817 for the released weights, so every SBI comparison uses the released checkpoint.
-
-\textbf{Paired controls.} Without its unedited control a filter rate is a base rate: a model trained on mixed corpora
-called 96.8\% of RetouchingFFHQ retouched faces \emph{filter}, and 93.9\% of their untouched originals.
-
-\textbf{Edge model.} A RepViT-M0.9 version trained with the vendor renders keeps the commercial-retouching behaviour
-(balanced 65.1\%, retouched$\to$fake 1.1\%) at 4.7\,M parameters, exports to TFLite (18\,MB, fp32) with 200/200
-decisions identical to PyTorch, and runs at 9.7\,ms per image on one CPU thread. Trained with the single-operation
-components it calls 55.7\% of untouched originals \emph{filter}.
-
-\textbf{Edit-magnitude head.} A head regressing the measured quantities $q$ ranks the measured edit at Spearman
-$\rho\le0.47$ for every operation on the unseen service and barely better on the training services; it is not used.
-
-\section{Training curves and accuracy per partition}
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.95\linewidth]{fig_training}
-\caption{Training loss and the two validation scores per epoch for \ours{} and \ours{}-lite. Star: the selected
-checkpoint, the epoch with the highest mean of FF++ validation macro-F1 and the filter F1 on held-out Tencent and Megvii
-bases. The commercial validation F1 here counts every validation component, including those under the noise floor that
-training drops, so it differs from the cleaned rows of the partition table in the main paper.}
-\label{fig:training}
-\end{figure}
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.72\linewidth]{fig_confusion}
-\caption{FF++ three-way confusion matrices, rows normalised to the true class (\%): a random sample of the training frames
-(2,000 per class, fakes 500 per method), the validation split and the test split.}
-\label{fig:confusion}
-\end{figure}
-Both checkpoints are chosen on the validation data; no test result enters the choice. \ours{} reaches its best validation
-score at epoch 4 of 8 and \ours{}-lite at its last epoch, 12. On FF++ the genuine class carries most of the gap between
-training and test: \ours{} recalls 94.2\% of genuine training frames and 78.0\% of genuine test frames, and the confusion
-matrices show these frames moving to both other classes.
-
-\section{Ablation over the training signal}
+\section{Exposure arms on every source}
 \begin{table}[h]
 \centering
-\caption{Ablation over the training signal. FF++ in-domain recall per class (\%), FA/MISS on the FF++ beautification
-sets, and B1: number of binary detectors (/11 published, /12--13 with our SBI reproductions) that dominate the model.}
-
+\caption{Which class receives beautified training views (P0 none, P1 genuine only, P2 both), FF++ only, forged head
+only; values per seed. Effort scheme: the SVD-residual tuning of the released Effort code in place of LoRA. Filters on
+the full frame; $\Delta$MISS at the 5\%-FPR threshold of untreated genuine frames.}
+\label{tab:exposure_ext}
 \footnotesize
-\begin{adjustbox}{max width=\linewidth}\input{tables/tab_ablation.tex}\end{adjustbox}
+\begin{adjustbox}{max width=\linewidth}\input{tables/tab_exposure_ext.tex}\end{adjustbox}
+\end{table}
+Paired video-cluster intervals for P2 minus P0 on the two filter sources: the miss rise falls by 5.0 to 9.9 points in nine
+of ten seed-by-source cells (intervals below zero; the tenth is $-1.4$ $[-3.3, 0.6]$), the false-alarm rise grows by 2.0
+to 4.6 points in the same nine, and the AUC under the filters changes by $-0.008$ to $+0.006$ (intervals contain zero
+except for the Effort scheme on DFD, $+0.006$). For P1 minus P0 on Celeb-DF-v2 the miss rise grows by 13.3 and 8.0 points
+and the AUC under the filters falls by 0.038 and 0.017.
+
+\section{Linear erasure of the beautification subspace}
+\begin{table}[h]
+\centering
+\caption{FF++-only CLIP model, FF++ validation frames under the eleven held-out filters. The feature shifts caused by
+training-time beautifications are decomposed by SVD on training frames, the first $k$ directions are projected out, and a
+logistic forged head is refitted on training features. FA and MISS at the 5\%-FPR threshold of clean genuine frames.}
+\label{tab:erasure}
+\footnotesize
+\input{tables/tab_erasure.tex}
+\end{table}
+The two leading directions hold 79\% of the shift energy of training-time beautifications. Removing them costs 0.05
+clean AUC and does not lower the false alarms under the held-out filters, so the directions that beautification moves
+along carry forgery evidence.
+
+\section{Methods that did not meet their bars}
+\begin{table}[h]
+\centering
+\caption{Every method arm tried under a pre-registered bar. FF++ only unless noted; each block starts with its
+reference. Bars for the FF++-only arms: AUC$_b$ on Celeb-DF-B $\ge 0.890$ and $\Delta$MISS$_\text{beauty}\le 7.5$,
+untreated Celeb-DF-v2 AUC within 0.01 of the reference. None is met.}
+\label{tab:negative}
+\footnotesize
+\begin{adjustbox}{max width=\linewidth}\input{tables/tab_negative.tex}\end{adjustbox}
+\end{table}
+\textbf{The operator.} A differentiable edit $B(x;u)$ on a face crop in $[0,1]$ with every component bounded by a
+sigmoid: per-channel gamma, gain and lift; a $3\times3$ colour matrix close to the identity; saturation from monochrome
+to 1.7; contrast about the mean; a $4\times4$ luminance field and a per-channel tint field, upsampled bilinearly; a blend
+toward a Gaussian-smoothed copy; additive grain. Its parameters were fitted by gradient descent to 1,000 pairs each of
+four measured families (Table~\ref{tab:operator}); the search of the ``measured edits'' arms starts from a fitted edit and
+is projected onto the 0.5th--99.5th percentile range of the fitted parameters.
+\begin{table}[h]
+\centering
+\caption{The operator fitted to measured edits (training split only). The residual of the commercial renders is
+geometry, which a photometric operator cannot express.}
+\label{tab:operator}
+\footnotesize
+\input{tables/tab_operator.tex}
 \end{table}
 
-\textbf{Why single-operation components.} A model trained on the renders alone sends single operations other than smoothing to \emph{filter} only 10--46\% of the time. On held-out Tencent and Megvii bases a whitening component with a lightness change near 20 is then called real
-90\% of the time, because in a four-operation render the texture change alone identifies the class.
+\textbf{The search works; the training does not transfer.} On 400 FF++ validation frames the reference model keeps
+96.0\% of genuine faces genuine without an edit, 71.0\% under a random draw of the operator, 41.0\% under the worst of
+four draws, 8.5\% under a one-step signed-gradient search and 0.0\% under ten steps; forged faces stay forged in 93.5,
+89.5, 83.0, 74.0 and 20.0\% of cases. After training on the one-step worst case the genuine accuracy under that search
+is 71.5\% (25.0\% under ten steps), and after the three-step variant 76.5\% (41.5\%). The gain does not carry over to the
+app presets or to filters from a library the operator was not fitted to, and the forged accuracy under random edits falls
+from 89.5 to 79.5\%: with a label loss, edited views of genuine faces dominate the signal and the model learns that a
+heavily edited face is less likely forged.
 
-\section{Every vendor-trained variant on the unseen vendor}
+\textbf{A learned inverse.} The exact algebraic inverse of the invertible part of the operator restores an edited frame
+to 53--58\,dB when the true parameters are given. A ResNet-18 estimator trained to predict them from the edited frame
+alone reaches 26.7\,dB on random edits (25.9 before) and 22.7\,dB on the held-out filters (21.0 before), and moves
+untouched frames to 34.4\,dB. In front of the detector it changes the false alarms under the held-out filters from 21.5
+to 23.6\%. A single image does not determine its colour transform.
+
+\textbf{Edit sensitivity as evidence.} The response of the forged logit to six fixed probe edits is larger for genuine
+than for forged frames on average, but inside the deciles of the clean logit where both classes occur the two respond
+alike (1.15 vs 0.96; 0.48 vs 0.10), so the asymmetry is a ceiling effect; adding the responses to the logit leaves the
+false alarms under filters at 16--22\%.
+
+\textbf{A decision pooled from the evidence map.} With a zero map target on every beautified item and the forged logit
+taken as the mean of the top 5\% map cells, the map stays dark on filtered genuine faces (mean logit $-10.2$ against
+$+1.9$ for the edit map) and the false alarms under filters fall from 21.5 to 14.7\%, but the beautification-specific
+miss rise on Celeb-DF-B grows from 7.5 to 14.9 points.
+
+\textbf{Fine-tuning a released checkpoint.} The released Effort weights were loaded into our pipeline (the mapped
+model reproduces the released scorer: Celeb-DF-B AUC 0.909, AUC$_b$ 0.808) and fine-tuned for two epochs. With both-class
+exposure the miss rise falls from 11.2 to 2.7 points, the false alarms on beautified genuine faces rise from 4.7 to
+10.3\%, AUC$_b$ stays at 0.803 and the untreated AUC falls by 0.014; without beautified views the same fine-tuning gives
+5.8 points and 9.4\%. The operating point moves; separability does not.
+
+\section{Commercial retouching: all variants}
 \begin{table}[h]
 \centering
-\caption{Alibaba pairs, all vendor-trained variants (single reads). Columns as in the main paper.}
+\caption{All trained variants on the unseen service (2,210 originals, 26,519 renders). Columns as in Table~V of the
+paper.}
 \label{tab:alipair_all}
 \footnotesize
 \begin{adjustbox}{max width=\linewidth}\input{tables/tab_alipair_all.tex}\end{adjustbox}
 \end{table}
 
-\section{Escape per beautification preset}
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.95\linewidth]{fig_qual}
-\caption{Celeb-DF-B examples (zero-shot): SBI's decision at its 5\%-FPR threshold on untreated genuine frames
-($t=0.888$, chosen on this set) and our three-way decision. Columns 1--3: beautified genuine faces that SBI accuses and
-we route to \emph{filter}; 4--6: beautified deepfakes that escape SBI and we call \emph{fake}; 7: a failure case, a
-deepfake beautified with the \emph{california\_dreamin} preset that escapes us too.}
-
-\end{figure}
-
+\section{Explanations: all variants}
 \begin{table}[h]
 \centering
-\caption{Celeb-DF-B: change in deepfake escape rate (pp) per beautification preset, under compression alone (same
-re-encoding, no filter), overall, and overall minus the compression effect.}
+\caption{Restoration test on held-out part-level forgeries for every variant. Columns as in Table~VI of the paper.}
+\label{tab:cgd_all}
 \footnotesize
-\begin{adjustbox}{max width=0.8\linewidth}\input{tables/tab_preset.tex}\end{adjustbox}
+\begin{adjustbox}{max width=\linewidth}\input{tables/tab_cgd_explain_all.tex}\end{adjustbox}
 \end{table}
-The grain filter (\emph{hawaii\_grain}) is the most damaging for binary detectors (+9 to +56\,pp) and lowers our escape
-rate; the warm colour grading (\emph{california\_dreamin}) is our failure case (HYB +10.1 / +11.9\,pp for two seeds, RU1
-+8.5\,pp), comparable to SRM and CORE.
+The donor-transplant test set uses donors from test videos only. An earlier version of that set drew donors from
+training videos (1,023 donor-frame and part pairs occurred in training); it was rebuilt, and the numbers of the main
+model moved by less than 0.2 points.
 
-\section{Feature space}
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.75\linewidth]{fig_tsne}
-\caption{t-SNE of penultimate features on the same FF++ test images (300 per group). (a) The official SBI checkpoint
-separates forgeries, but beautified genuine faces are mixed with real faces, as a binary label space requires. (b) HYB forms
-a filter region, and beautified forgeries stay in the fake region. Of the ten nearest labelled neighbours of a beautified
-forgery, 11.7\% are genuine for SBI and 4.2\% for HYB.}
-\end{figure}
+\section{Sources that were examined and excluded}
+\textbf{AR beauty filters.} On paired Instagram AR-filter images, a model trained with such pairs called 94.8\% of the
+filtered images \emph{filter} with the face hull greyed out: the capture pipeline, not the face, carries the label. No
+claim is made on AR filters.
+\textbf{WildDeepfake.} The 800 test frames available to us come from six sequences, which gives intervals of
+0.3--0.5 AUC; not reported.
+\textbf{DFDC, DFDCP, DF40.} Not available to us in a form with genuine and forged frames from the same pipeline.
 
-\section{What the detector looks at: region restoration}
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.55\linewidth]{fig_restore}
-\caption{Region restoration on correctly classified FF++ test images: drop in $P(\text{true class})$ when one facial region
-is restored to its unedited pixels. [random]: area-matched patch at a random location; [full]: whole image restored.
-*Forgeries use the real frame of the same video, resized to the fake crop (approximate alignment).}
-\end{figure}
-Grad-CAM peaks at the face centre for every class, and occlusion with a constant fill injects a blending-like seam that
-itself pushes the model toward \emph{fake}. Restoring a region to its pixel-aligned original is a cleaner test. Eye
-enlargement is carried by the eyes (0.47 vs 0.18 for a random patch of equal area); face slimming by the pixels the warp
-displaces around the jaw. Skin smoothing is carried mostly by the \emph{background} (0.74) rather than the skin (0.08):
-our scripted smoothing acts on the whole frame, and the detector uses the smoothed background. For forgeries no single
-region carries the decision (every region $\le$0.12), while restoring the whole frame removes it (0.70--0.82).
-
-\section{Unseen photometric filters}
-On 11 photometric filters never seen in training, applied to FF++ test frames, HYB routes 51.8\% of frames to \emph{filter}
-against 7.4\% for the unedited frames (paired excess 44.7--45.5\,pp) and calls 9.5\% of them \emph{fake}; the RepViT model's
-excess is ${\approx}$52\,pp with 4.6\% fake calls. RU2 keeps a paired excess of 31--34\,pp.
-
-\section{Evidence head: detection, per-source recall, robustness, cost, output}
-\begin{table}[h]
-\centering
-\caption{Detection with and without the evidence head, same backbone and recipe; 61.5k part edits in the fake pool (the
-first consistency-loss variant saw 43.4k). Celeb-DF-B: untreated AUC and \% of untreated genuine frames called fake.}
-\footnotesize
-\begin{adjustbox}{max width=\linewidth}\input{tables/tab_cgd_detect.tex}\end{adjustbox}
-\end{table}
-\begin{table}[h]
-\centering
-\caption{FF++ test routing of the evidence-head model by source (\% of frames sent to each class; bold: correct class).}
-\footnotesize
-\begin{adjustbox}{max width=0.6\linewidth}\input{tables/tab_persource.tex}\end{adjustbox}
-\end{table}
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.8\linewidth]{fig_robust_MASK}
-\caption{Recall of genuine (left) and forged (right) FF++ test frames under JPEG re-compression, Gaussian blur and
-downscaling (300 frames each). Models trained without symmetric degradation call almost every blurred genuine frame fake.}
-\end{figure}
-\begin{table}[h]
-\centering
-\caption{Single-image cost (batch 1, PyTorch fp32; CPU: desktop, GPU: RTX 6000 Ada), mean of 50 runs.}
-\footnotesize
-\begin{adjustbox}{max width=0.7\linewidth}\input{tables/tab_latency.tex}\end{adjustbox}
-\end{table}
-NeuralTextures, whose edits are confined to the mouth, is the weakest forgery method (73.9\%); eye enlargement at our
-scripted strengths is recognised at 37\%. Under blur or downscaling the models without symmetric degradation collapse on
-genuine frames (2\% at $\sigma=1.5$) while HYB-D keeps 66--83\%. The head adds 0.01\,M parameters and 7\,ms on CPU.
-
-\section{System output of \ours{}}
-\begin{figure}[h]
-\centering
-\includegraphics[width=\linewidth]{fig_system_output}
-\caption{Output of \ours{} on examples fixed in advance: one FF++ genuine frame, the four Alibaba renders of one FFHQ face
-at level 90, a held-out part-level forgery and an FF++ Deepfakes frame. Per image: the three-way decision and its
-probability, the presence score of each operation, the evidence map, and a template sentence. The sentence names the
-operations with presence $\ge 0.5$ (filter) or the facial part with the highest mean evidence (fake; ``whole face'' when
-eyes, nose and mouth all exceed 0.5). No language model is involved. Three of the seven are wrong: lifting and whitening
-are missed and the genuine frame is sent to \emph{filter}.}
-\end{figure}
-The facial part is named by the mean evidence inside each landmark region. On held-out part-level forgeries (every fourth
-item, detected ones) this names the edited part in 99.0\%, 98.5\% and 97.7\% of cases for the donor, SD and SDXL editors.
-Naming it by the share of the top-12\% evidence region that falls on each part, as in an earlier version, names it in only
-8--12\%, because the skin region is large; the map itself is unchanged. Operation names are reliable on the training
-services' held-out faces for whitening and smoothing (presence recall 0.79--0.99) and weaker for eye enlargement and face
-reshaping (0.50--0.80); on the unseen service they drop to 0.21 (eyes), 0.35 (reshaping), 0.57 (whitening) and 0.96
-(smoothing). On 379 fixed test images the template produces 14 distinct sentences: one for \emph{real}, four for
-\emph{fake} and nine for \emph{filter}. The edit-magnitude estimates are not shown because they did not pass validation
-(Sec.~S1).
-
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
 \end{document}

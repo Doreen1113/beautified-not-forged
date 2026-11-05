@@ -1,0 +1,26 @@
+\subsection{Smoothing-invariant consistency}
+\label{sec:sic}
+Section~\ref{sec:exposure} shows that the sign of the error follows the class that receives smoothed views, and
+Fig.~\ref{fig:bandenergy} shows that the cue is the skin-smoothing signature itself. The training rule follows from both.
+For every training item $x$, genuine, beautified or forged, a smoothed copy $x_s$ is drawn by one operator with one
+distribution of strengths, so that no class can learn the form of the smoothing as a label (the class-symmetric view of
+Sec.~\ref{sec:chain}). The copy passes through the same network and the forged logit is asked not to move:
+\begin{equation}
+\mathcal{L}=\mathcal{L}_\text{BCE}\big(z_f(x),y\big)+\mathcal{L}_\text{map}+\lambda\,\big(\operatorname{sg}[z_f(x)]-z_f(x_s)\big)^2,
+\label{eq:sic}
+\end{equation}
+where $\operatorname{sg}$ stops the gradient. The clean logit is the target and only the smoothed view is pulled toward it;
+the clean path is trained by the classification loss alone, as in the model without the rule. The map target of $x_s$ is the
+footprint $M$ of $x$. With the gradient through both sides the clean forgery score of a forgery whose cue is texture is pulled
+down toward its smoothed copy, and detection on untreated data falls (Table~\ref{tab:sic}, $\lambda=1$ without
+$\operatorname{sg}$); the stop-gradient removes that pull. [[One sentence on what SIC-sg reaches: FA at the face-local forms,
+miss change, untreated CDFv2 and DFD against the model without the rule, DF40 reenactment.]] The operator is face-local
+bilateral smoothing inside the landmark hull at a random strength, or whole-crop bilateral smoothing where no landmarks are
+carried; the median filter, the Gaussian blend, the commercial renders and the AR renders are never used in training.
+Generic consistency does not reach this: CORE~\cite{core} ties representations across flips, rotations, Gaussian blur and JPEG
+re-encoding and still scores a smoothed genuine face above its original in 97\% of pairs (Fig.~\ref{fig:teaser}), and
+Gaussian blur or JPEG as the view does not remove the accusation (Sec.~\ref{sec:chain}). The bars for the rule were written
+before training (supplement, Sec.~\ref{S-sec:prereg}): false alarms at most 15\% on face-local and whole-crop smoothing and on
+the commercial renders; a miss rise on smoothed forgeries at most 5 points above the arm without views; untreated video AUC on
+Celeb-DF-v2 and DFD, Celeb-DF-B AUC and DF40 reenactment AUC within stated bands of the model without the rule; a $\lambda=0$
+control; two seeds.

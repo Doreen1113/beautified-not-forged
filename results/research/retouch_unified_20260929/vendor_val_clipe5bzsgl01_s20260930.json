@@ -1,0 +1,109 @@
+{
+ "tag": "clipe5bzsgl01_s20260930",
+ "ffhq_orig": {
+  "n": 816,
+  "real": 93.63,
+  "fake": 0.25,
+  "filter": 6.13
+ },
+ "tencent": {
+  "n": 807,
+  "real": 11.77,
+  "fake": 0.12,
+  "filter": 88.1
+ },
+ "megvii": {
+  "n": 1329,
+  "real": 56.51,
+  "fake": 0.08,
+  "filter": 43.42
+ },
+ "vendor_single": {
+  "n": 8443,
+  "real": 75.66,
+  "fake": 0.54,
+  "filter": 23.79
+ },
+ "components": {
+  "tencent_eye": {
+   "n": 795,
+   "to_filter": 4.15,
+   "to_real": 95.6,
+   "TP": 0.535,
+   "TN_same_image": 0.004,
+   "spearman": 0.064,
+   "pred_mean": -0.4415,
+   "meas_mean": 0.0185
+  },
+  "megvii_eye": {
+   "n": 1317,
+   "to_filter": 5.32,
+   "to_real": 94.38,
+   "TP": 0.503,
+   "TN_same_image": 0.011,
+   "spearman": 0.028,
+   "pred_mean": -0.4514,
+   "meas_mean": 0.008
+  },
+  "tencent_jaw": {
+   "n": 795,
+   "to_filter": 3.14,
+   "to_real": 96.86,
+   "TP": 0.469,
+   "TN_same_image": 0.03,
+   "spearman": 0.103,
+   "pred_mean": 0.0419,
+   "meas_mean": 0.0093
+  },
+  "megvii_jaw": {
+   "n": 1316,
+   "to_filter": 2.89,
+   "to_real": 97.11,
+   "TP": 0.466,
+   "TN_same_image": 0.031,
+   "spearman": 0.14,
+   "pred_mean": 0.0901,
+   "meas_mean": 0.0104
+  },
+  "tencent_white": {
+   "n": 796,
+   "to_filter": 42.71,
+   "to_real": 55.9,
+   "TP": 0.735,
+   "TN_same_image": 0.048,
+   "spearman": -0.268,
+   "pred_mean": 0.9419,
+   "meas_mean": 1.0015
+  },
+  "megvii_white": {
+   "n": 1315,
+   "to_filter": 16.43,
+   "to_real": 83.12,
+   "TP": 0.809,
+   "TN_same_image": 0.078,
+   "spearman": -0.122,
+   "pred_mean": 1.1225,
+   "meas_mean": 0.1137
+  },
+  "tencent_smooth": {
+   "n": 792,
+   "to_filter": 89.52,
+   "to_real": 9.34,
+   "TP": 0.024,
+   "TN_same_image": 0.054,
+   "spearman": -0.008,
+   "pred_mean": 0.1097,
+   "meas_mean": 0.0455
+  },
+  "megvii_smooth": {
+   "n": 1317,
+   "to_filter": 43.89,
+   "to_real": 55.05,
+   "TP": 0.077,
+   "TN_same_image": 0.036,
+   "spearman": 0.107,
+   "pred_mean": 0.1953,
+   "meas_mean": 0.0266
+  }
+ }
+}

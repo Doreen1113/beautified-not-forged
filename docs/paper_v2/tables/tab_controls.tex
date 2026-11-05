@@ -1,0 +1,19 @@
+\begin{tabular}{@{}l ccc cc cc cc@{}}
+\toprule
+ & \multicolumn{3}{c}{Celeb-DF-B} & \multicolumn{2}{c}{Celeb-DF-v2 + filters} & \multicolumn{2}{c}{DFD + fresh filters} & \multicolumn{2}{c}{probe: genuine acc.} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}\cmidrule(lr){9-10}
+Training (FF++ only) & AUC & AUC$_b$ & $\Delta$MISS$_\text{beauty}$ & AUC & AUC$_f$ & AUC & AUC$_f$ & 1 step & 10 steps \\
+\midrule
+FF++ only, random grading & 0.938 & 0.872 & +7.5 & 0.898 & 0.851 & 0.943 & 0.932 & 8.5 & 0.0 \\
+FF++ only, no grading & 0.929 & 0.849 & +14.1 & 0.880 & 0.828 & 0.938 & 0.917 & 7.0 & 0.0 \\
+FF++ only, random operator & 0.932 & 0.876 & +7.9 & 0.873 & 0.849 & 0.952 & 0.932 & 39.5 & 1.0 \\
+FF++ only, worst of 4 draws & 0.928 & 0.867 & +12.9 & 0.860 & 0.838 & 0.950 & 0.935 & 59.5 & 4.0 \\
+FF++ only, worst case (1 step) & 0.930 & 0.864 & +8.2 & 0.876 & 0.852 & 0.946 & 0.935 & 71.5 & 26.0 \\
+FF++ only, plausible worst case & 0.928 & 0.869 & +15.1 & 0.874 & 0.857 & 0.946 & 0.934 & 75.5 & 22.5 \\
+FF++ only, plausible worst case, consistency & 0.924 & 0.856 & +13.0 & \textit{pend.} & \textit{pend.} & 0.924 & 0.922 & 88.5 & 29.0 \\
+FF++ only, plausible worst case, 3 steps & 0.922 & 0.859 & +8.9 & \textit{pend.} & \textit{pend.} & 0.947 & 0.937 & 76.5 & 41.5 \\
+\midrule
+Effort~\cite{effort} & 0.909 & 0.807 & +11.0 & 0.881 & 0.813 & 0.939 & 0.905 & -- & -- \\
+Forensics Adapter~\cite{forensicsadapter} & 0.909 & 0.828 & +15.2 & 0.887 & 0.814 & 0.940 & 0.924 & -- & -- \\
+\bottomrule
+\end{tabular}

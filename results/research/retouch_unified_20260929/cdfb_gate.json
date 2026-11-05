@@ -1,0 +1,360 @@
+{
+ "w_summary": {
+  "real": 0.499,
+  "real_beautified": 0.812,
+  "real_compressed": 0.544,
+  "synthesis": 0.428,
+  "synthesis_beautified": 0.839,
+  "synthesis_compressed": 0.49
+ },
+ "rows": {
+  "identity": {
+   "fa_real": 5.011,
+   "fa_real_beautified": 13.394,
+   "fa_real_compressed": 4.895,
+   "miss_synthesis": 0.262,
+   "miss_synthesis_beautified": 0.069,
+   "miss_synthesis_compressed": 0.373,
+   "d_fa_beauty_only": 8.498,
+   "d_miss_beauty_only": -0.304,
+   "ci_d_fa_beauty_only": [
+    6.444991707427565,
+    10.638006678022217
+   ],
+   "ci_d_miss_beauty_only": [
+    -0.649352629982124,
+    -0.051686633482668144
+   ],
+   "ci_miss_untreated": [
+    0.06925879706069983,
+    0.5133319212493485
+   ],
+   "vauc_untreated": 1.0,
+   "vauc_beautified": 0.999,
+   "vauc_compressed": 1.0,
+   "miss_beautified_at_matched_5fa": 0.61
+  },
+  "effort": {
+   "fa_real": 5.01,
+   "fa_real_beautified": 5.382,
+   "fa_real_compressed": 3.3,
+   "miss_synthesis": 27.749,
+   "miss_synthesis_beautified": 51.434,
+   "miss_synthesis_compressed": 40.437,
+   "d_fa_beauty_only": 2.083,
+   "d_miss_beauty_only": 10.997,
+   "ci_d_fa_beauty_only": [
+    0.6875508277481516,
+    3.59734591195899
+   ],
+   "ci_d_miss_beauty_only": [
+    7.457827905101187,
+    14.304368600616016
+   ],
+   "ci_miss_untreated": [
+    23.91191895637772,
+    31.80027307477182
+   ],
+   "vauc_untreated": 0.952,
+   "vauc_beautified": 0.852,
+   "vauc_compressed": 0.933,
+   "miss_beautified_at_matched_5fa": 51.877
+  },
+  "fusion_effort+identity": {
+   "fa_real": 5.01,
+   "fa_real_beautified": 10.376,
+   "fa_real_compressed": 4.173,
+   "miss_synthesis": 10.048,
+   "miss_synthesis_beautified": 24.103,
+   "miss_synthesis_compressed": 15.613,
+   "d_fa_beauty_only": 6.203,
+   "d_miss_beauty_only": 8.49,
+   "ci_d_fa_beauty_only": [
+    4.18407731013829,
+    8.190792263812275
+   ],
+   "ci_d_miss_beauty_only": [
+    5.382162079592153,
+    11.536301548307803
+   ],
+   "ci_miss_untreated": [
+    7.677652618554935,
+    12.619500766863565
+   ],
+   "vauc_untreated": 0.991,
+   "vauc_beautified": 0.948,
+   "vauc_compressed": 0.989,
+   "miss_beautified_at_matched_5fa": 31.542
+  },
+  "gate_effort+identity": {
+   "fa_real": 5.01,
+   "fa_real_beautified": 21.502,
+   "fa_real_compressed": 4.436,
+   "miss_synthesis": 12.471,
+   "miss_synthesis_beautified": 6.372,
+   "miss_synthesis_compressed": 16.803,
+   "d_fa_beauty_only": 17.066,
+   "d_miss_beauty_only": -10.431,
+   "ci_d_fa_beauty_only": [
+    13.533755471704112,
+    20.756489186482582
+   ],
+   "ci_d_miss_beauty_only": [
+    -13.172946586708417,
+    -7.970487693014788
+   ],
+   "ci_miss_untreated": [
+    9.758016079405495,
+    15.454828826839355
+   ],
+   "vauc_untreated": 0.983,
+   "vauc_beautified": 0.968,
+   "vauc_compressed": 0.975,
+   "miss_beautified_at_matched_5fa": 15.293,
+   "spearman_vs_texture_untreated_forged": 0.932
+  },
+  "fadapter": {
+   "fa_real": 5.01,
+   "fa_real_beautified": 7.886,
+   "fa_real_compressed": 7.764,
+   "miss_synthesis": 31.067,
+   "miss_synthesis_beautified": 46.544,
+   "miss_synthesis_compressed": 31.296,
+   "d_fa_beauty_only": 0.122,
+   "d_miss_beauty_only": 15.248,
+   "ci_d_fa_beauty_only": [
+    -1.9171607459768913,
+    2.1343102067964463
+   ],
+   "ci_d_miss_beauty_only": [
+    11.819251052284802,
+    18.460123017992128
+   ],
+   "ci_miss_untreated": [
+    27.197203255482577,
+    35.02154328340243
+   ],
+   "vauc_untreated": 0.961,
+   "vauc_beautified": 0.888,
+   "vauc_compressed": 0.949,
+   "miss_beautified_at_matched_5fa": 54.412
+  },
+  "fusion_fadapter+identity": {
+   "fa_real": 5.01,
+   "fa_real_beautified": 11.168,
+   "fa_real_compressed": 5.823,
+   "miss_synthesis": 11.149,
+   "miss_synthesis_beautified": 21.111,
+   "miss_synthesis_compressed": 10.317,
+   "d_fa_beauty_only": 5.345,
+   "d_miss_beauty_only": 10.794,
+   "ci_d_fa_beauty_only": [
+    3.264859495346243,
+    7.397703131138343
+   ],
+   "ci_d_miss_beauty_only": [
+    8.171946168410946,
+    13.420466647334452
+   ],
+   "ci_miss_untreated": [
+    8.901194412421358,
+    13.504938373398879
+   ],
+   "vauc_untreated": 0.993,
+   "vauc_beautified": 0.963,
+   "vauc_compressed": 0.992,
+   "miss_beautified_at_matched_5fa": 28.924
+  },
+  "gate_fadapter+identity": {
+   "fa_real": 5.01,
+   "fa_real_beautified": 21.154,
+   "fa_real_compressed": 6.835,
+   "miss_synthesis": 13.407,
+   "miss_synthesis_beautified": 5.873,
+   "miss_synthesis_compressed": 11.312,
+   "d_fa_beauty_only": 14.319,
+   "d_miss_beauty_only": -5.439,
+   "ci_d_fa_beauty_only": [
+    11.175995913051159,
+    17.63914560223779
+   ],
+   "ci_d_miss_beauty_only": [
+    -7.702898630573753,
+    -3.4160569681147788
+   ],
+   "ci_miss_untreated": [
+    10.754828733640561,
+    16.163376644008963
+   ],
+   "vauc_untreated": 0.987,
+   "vauc_beautified": 0.972,
+   "vauc_compressed": 0.986,
+   "miss_beautified_at_matched_5fa": 14.434,
+   "spearman_vs_texture_untreated_forged": 0.921
+  },
+  "gend": {
+   "fa_real": 5.01,
+   "fa_real_beautified": 9.889,
+   "fa_real_compressed": 6.28,
+   "miss_synthesis": 29.787,
+   "miss_synthesis_beautified": 48.095,
+   "miss_synthesis_compressed": 36.108,
+   "d_fa_beauty_only": 3.608,
+   "d_miss_beauty_only": 11.987,
+   "ci_d_fa_beauty_only": [
+    1.2743763083144488,
+    5.908134351564187
+   ],
+   "ci_d_miss_beauty_only": [
+    8.320522929119981,
+    15.47590645454956
+   ],
+   "ci_miss_untreated": [
+    26.129396092417544,
+    33.54228153095522
+   ],
+   "vauc_untreated": 0.971,
+   "vauc_beautified": 0.854,
+   "vauc_compressed": 0.953,
+   "miss_beautified_at_matched_5fa": 61.906
+  },
+  "fusion_gend+identity": {
+   "fa_real": 5.01,
+   "fa_real_beautified": 12.364,
+   "fa_real_compressed": 5.781,
+   "miss_synthesis": 8.713,
+   "miss_synthesis_beautified": 17.842,
+   "miss_synthesis_compressed": 10.69,
+   "d_fa_beauty_only": 6.583,
+   "d_miss_beauty_only": 7.152,
+   "ci_d_fa_beauty_only": [
+    4.7207312929129035,
+    8.447068103618266
+   ],
+   "ci_d_miss_beauty_only": [
+    4.654569505768073,
+    9.614513846515898
+   ],
+   "ci_miss_untreated": [
+    6.866002051646894,
+    10.672260620932116
+   ],
+   "vauc_untreated": 0.994,
+   "vauc_beautified": 0.95,
+   "vauc_compressed": 0.991,
+   "miss_beautified_at_matched_5fa": 29.852
+  },
+  "gate_gend+identity": {
+   "fa_real": 5.01,
+   "fa_real_beautified": 20.139,
+   "fa_real_compressed": 6.322,
+   "miss_synthesis": 11.411,
+   "miss_synthesis_beautified": 5.389,
+   "miss_synthesis_compressed": 12.322,
+   "d_fa_beauty_only": 13.817,
+   "d_miss_beauty_only": -6.933,
+   "ci_d_fa_beauty_only": [
+    10.694440068449293,
+    17.015948397926692
+   ],
+   "ci_d_miss_beauty_only": [
+    -9.1504228607336,
+    -4.988260853394044
+   ],
+   "ci_miss_untreated": [
+    9.187099426938163,
+    13.894455454572139
+   ],
+   "vauc_untreated": 0.99,
+   "vauc_beautified": 0.974,
+   "vauc_compressed": 0.985,
+   "miss_beautified_at_matched_5fa": 13.769,
+   "spearman_vs_texture_untreated_forged": 0.9
+  },
+  "ours": {
+   "fa_real": 4.997,
+   "fa_real_beautified": 9.499,
+   "fa_real_compressed": 4.575,
+   "miss_synthesis": 24.914,
+   "miss_synthesis_beautified": 40.684,
+   "miss_synthesis_compressed": 34.02,
+   "d_fa_beauty_only": 4.924,
+   "d_miss_beauty_only": 6.664,
+   "ci_d_fa_beauty_only": [
+    2.8321258616731253,
+    7.236995953159327
+   ],
+   "ci_d_miss_beauty_only": [
+    3.895830685864121,
+    9.434390027675489
+   ],
+   "ci_miss_untreated": [
+    21.494957506785873,
+    28.71024504290181
+   ],
+   "vauc_untreated": 0.979,
+   "vauc_beautified": 0.92,
+   "vauc_compressed": 0.966,
+   "miss_beautified_at_matched_5fa": 51.101
+  },
+  "fusion_ours+identity": {
+   "fa_real": 5.01,
+   "fa_real_beautified": 12.782,
+   "fa_real_compressed": 5.06,
+   "miss_synthesis": 6.579,
+   "miss_synthesis_beautified": 12.619,
+   "miss_synthesis_compressed": 9.681,
+   "d_fa_beauty_only": 7.721,
+   "d_miss_beauty_only": 2.939,
+   "ci_d_fa_beauty_only": [
+    5.949003941912566,
+    9.520006865543284
+   ],
+   "ci_d_miss_beauty_only": [
+    1.193441744877001,
+    4.678536563643216
+   ],
+   "ci_miss_untreated": [
+    4.843837703374718,
+    8.558173286149474
+   ],
+   "vauc_untreated": 0.998,
+   "vauc_beautified": 0.98,
+   "vauc_compressed": 0.996,
+   "miss_beautified_at_matched_5fa": 22.69
+  },
+  "gate_ours+identity": {
+   "fa_real": 5.01,
+   "fa_real_beautified": 16.398,
+   "fa_real_compressed": 4.922,
+   "miss_synthesis": 8.19,
+   "miss_synthesis_beautified": 4.045,
+   "miss_synthesis_compressed": 9.598,
+   "d_fa_beauty_only": 11.476,
+   "d_miss_beauty_only": -5.553,
+   "ci_d_fa_beauty_only": [
+    8.374112364325669,
+    14.722068138391961
+   ],
+   "ci_d_miss_beauty_only": [
+    -7.625862036521234,
+    -3.702310787600496
+   ],
+   "ci_miss_untreated": [
+    6.2651273380713945,
+    10.337748838456777
+   ],
+   "vauc_untreated": 0.998,
+   "vauc_beautified": 0.987,
+   "vauc_compressed": 0.997,
+   "miss_beautified_at_matched_5fa": 10.084,
+   "spearman_vs_texture_untreated_forged": 0.914
+  }
+ },
+ "predictions": {
+  "1_all_pairs_fa_le10_miss_le5": false,
+  "2_vauc_ge_texture_and_beaut_ge_0.98": false,
+  "3_matched_miss_le15": false,
+  "4_not_identity_alone": true
+ }
+}

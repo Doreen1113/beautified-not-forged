@@ -3,173 +3,693 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Retouch or Forgery</title>
+<meta name="color-scheme" content="light dark">
+<title>Face Retouch Check</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
 <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.19.2/dist/ort.min.js"></script>
+<script src="explain_t2.js"></script>
+<script src="evidence_overlay.js"></script>
+<script src="face_masks.js"></script>
+<script src="demo_core.js"></script>
+<script src="nl_client.js"></script>
 <style>
 :root {
-  --bg: #f6f5f2; --panel: #ffffff; --ink: #1d1f24; --muted: #62666f; --line: #dcdad4;
-  --real: #2f7d4f; --fake: #b3342b; --filter: #9a6a00; --accent: #2b5d8a; --bar: #e9e7e1;
+  --bg: #f4f3ef; --panel: #ffffff; --sunk: #ecebe6; --ink: #1b1d21; --muted: #5d616a; --line: #d9d7d0;
+  --accent: #0d6b6a; --accent-ink: #ffffff; --accent-soft: #dcefee;
+  --bad: #b42318; --bad-soft: #fbe5e2; --ok: #2c6e49; --ok-soft: #e1f0e6; --warn: #8a5a00; --warn-soft: #f7ecd4;
+  --radius: 12px; --font: "Noto Sans TC", system-ui, -apple-system, "PingFang TC", "Microsoft JhengHei", "Heiti TC", sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #16181c; --panel: #1f2227; --ink: #e8e6e1; --muted: #9ca0a8; --line: #33373e;
-    --real: #6cc08c; --fake: #ef7a6f; --filter: #e2b24a; --accent: #7fb0dc; --bar: #2c3036;
+    --bg: #141619; --panel: #1d2024; --sunk: #262a2f; --ink: #e9e7e2; --muted: #a2a6ae; --line: #343941;
+    --accent: #5cc4bf; --accent-ink: #0b1f1e; --accent-soft: #19393a;
+    --bad: #f3877c; --bad-soft: #3b2120; --ok: #7cc89a; --ok-soft: #1c3226; --warn: #e3b55c; --warn-soft: #3a2f17;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #16181c; --panel: #1f2227; --ink: #e8e6e1; --muted: #9ca0a8; --line: #33373e;
-  --real: #6cc08c; --fake: #ef7a6f; --filter: #e2b24a; --accent: #7fb0dc; --bar: #2c3036;
+  --bg: #141619; --panel: #1d2024; --sunk: #262a2f; --ink: #e9e7e2; --muted: #a2a6ae; --line: #343941;
+  --accent: #5cc4bf; --accent-ink: #0b1f1e; --accent-soft: #19393a;
+  --bad: #f3877c; --bad-soft: #3b2120; --ok: #7cc89a; --ok-soft: #1c3226; --warn: #e3b55c; --warn-soft: #3a2f17;
 }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 "IBM Plex Sans", system-ui, sans-serif;
-       padding-inline: 16px; padding-block: 28px 48px; }
-main { max-width: 880px; margin: 0 auto; display: grid; gap: 20px; }
-h1 { font-size: 26px; font-weight: 600; margin: 0; text-wrap: balance; }
-.sub { color: var(--muted); margin: 4px 0 0; max-width: 65ch; }
-.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
-.row { display: grid; grid-template-columns: 240px 1fr; gap: 20px; align-items: start; }
-@media (max-width: 640px) { .row { grid-template-columns: 1fr; } }
-canvas { width: 100%; max-width: 240px; aspect-ratio: 1; background: var(--bar); border-radius: 6px; display: block; }
-button, label.btn { font: inherit; font-weight: 500; border: 1px solid var(--accent); color: var(--accent); background: transparent;
-                    padding: 8px 14px; border-radius: 6px; cursor: pointer; }
-button:focus-visible, label.btn:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
-button:disabled { opacity: .45; cursor: default; }
-input[type=file] { position: absolute; width: 1px; height: 1px; opacity: 0; }
-.label { font-size: 30px; font-weight: 600; letter-spacing: .01em; text-transform: uppercase; margin: 0 0 6px; }
-.label.real { color: var(--real); } .label.fake { color: var(--fake); } .label.filter { color: var(--filter); }
-.sentence { margin: 0 0 14px; max-width: 60ch; }
-.bars { display: grid; gap: 7px; }
-.bar { display: grid; grid-template-columns: 110px 1fr 52px; gap: 10px; align-items: center; font-size: 13.5px; }
-.track { height: 9px; background: var(--bar); border-radius: 5px; overflow: hidden; }
-.fill { height: 100%; border-radius: 5px; background: var(--accent); }
-.fill.real { background: var(--real); } .fill.fake { background: var(--fake); } .fill.filter { background: var(--filter); }
-.num { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; text-align: right; color: var(--muted); }
-h2 { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 16px 0 8px; }
-.status { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--muted); }
-.notes { color: var(--muted); font-size: 13.5px; max-width: 70ch; }
-.notes li { margin-bottom: 4px; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.65 var(--font); overflow-wrap: anywhere; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 20px 16px 48px; display: grid; gap: 16px; min-width: 0; }
+h1, h2, h3, p { margin: 0; }
+.top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+h1 { font-size: clamp(22px, 5.6vw, 30px); font-weight: 700; line-height: 1.3; letter-spacing: .01em; }
+.lede { color: var(--muted); margin-top: 6px; max-width: 46ch; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 16px; min-width: 0; }
+.ghost { font: inherit; font-size: 15px; color: var(--accent); background: none; border: 1px solid var(--line); border-radius: 10px;
+         min-height: 44px; padding: 0 14px; cursor: pointer; white-space: nowrap; flex: none; }
+
+/* ---- picking a photo ---- */
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px;
+       padding: 0 22px; border-radius: 12px; font: inherit; font-weight: 700; font-size: 17px; cursor: pointer; border: 1px solid transparent; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); flex: 1 1 200px; max-width: 420px; }
+.btn.secondary { background: transparent; color: var(--accent); border-color: var(--accent); flex: 1 1 120px; display: none; }
+@media (pointer: coarse), (max-width: 600px) { .btn.secondary { display: inline-flex; } }
+.btn input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; font-size: 0; }
+.btn:focus-within, .ghost:focus-visible, .ex:focus-visible, .chip:focus-visible, summary:focus-visible,
+.seg label:has(input:focus-visible), .switch:has(input:focus-visible), input[type=url]:focus-visible {
+  outline: 3px solid var(--accent); outline-offset: 2px; }
+.load { margin-top: 14px; font-size: 14px; color: var(--muted); }
+.load .track { margin-top: 6px; }
+.load.ready .track { display: none; }
+.load.error { color: var(--bad); }
+.examples { margin-top: 18px; }
+.examples h2 { font-size: 15px; font-weight: 500; color: var(--muted); margin-bottom: 8px; }
+.exgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; max-width: 560px; }
+.ex { font: inherit; color: var(--ink); background: var(--sunk); border: 2px solid transparent; border-radius: 10px; padding: 0; cursor: pointer;
+      overflow: hidden; text-align: left; display: flex; flex-direction: column; min-width: 0; }
+.ex img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; display: block; }
+.ex .exl { padding: 6px 8px 7px; font-size: 14px; font-weight: 500; line-height: 1.35; }
+.ex .ext { display: block; font-size: 12px; font-weight: 400; color: var(--muted); }
+.ex[aria-pressed="true"] { border-color: var(--accent); }
+
+/* ---- result ---- */
+.placeholder { border-style: dashed; color: var(--muted); text-align: center; padding: 28px 16px; font-size: 15px; }
+.result { display: grid; gap: 20px; }
+@media (min-width: 860px) { .result { grid-template-columns: minmax(260px, 340px) minmax(0, 1fr); gap: 28px; padding: 24px; } }
+.fig { min-width: 0; }
+.cropwrap { position: relative; width: 100%; max-width: 340px; margin: 0 auto; aspect-ratio: 1; border-radius: 10px; overflow: hidden; background: var(--sunk); }
+.cropwrap canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.figcap { margin-top: 10px; font-size: 14px; color: var(--muted); max-width: 340px; margin-inline: auto; }
+.figcap b { color: var(--ink); font-weight: 700; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 4px; }
+.sw { display: inline-block; width: 16px; height: 4px; border-radius: 2px; vertical-align: middle; margin-right: 6px; box-shadow: 0 0 0 1px #0006; }
+.body { min-width: 0; display: grid; gap: 16px; align-content: start; }
+.truth { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: 10px 12px; border-radius: 0 8px 8px 0; font-size: 15px; }
+.verdict { display: grid; gap: 12px; }
+.line { display: grid; grid-template-columns: 5.2em minmax(0, 1fr); gap: 4px 12px; align-items: baseline; }
+.line .k { color: var(--muted); font-size: 15px; }
+.state { display: inline-block; font-weight: 700; border-radius: 999px; padding: 2px 14px; }
+.line.main .state { font-size: 24px; line-height: 1.45; }
+.line.sub .state { font-size: 17px; }
+.state.bad { color: var(--bad); background: var(--bad-soft); }
+.state.ok { color: var(--ok); background: var(--ok-soft); }
+.state.warn { color: var(--warn); background: var(--warn-soft); }
+.state.none { color: var(--muted); background: var(--sunk); }
+.score { grid-column: 2; font-size: 14px; color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; }
+.decrow { font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; }
+.decrow b { color: var(--ink); font-weight: 500; }
+h3 { font-size: 15px; font-weight: 700; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.badge { font-size: 12.5px; font-weight: 500; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 1px 10px; }
+.badge.llm { color: var(--accent); border-color: var(--accent); }
+.explain { margin-top: 6px; max-width: 60ch; }
+.explain span { display: block; }
+.note { font-size: 14px; color: var(--muted); }
+.bars { display: grid; gap: 8px; margin-top: 8px; }
+.bar { display: grid; grid-template-columns: 3em minmax(0, 1fr) 2.6em; gap: 10px; align-items: center; font-size: 15px; }
+.track { position: relative; height: 10px; background: var(--sunk); border-radius: 5px; overflow: hidden; }
+.fill { height: 100%; background: var(--accent); border-radius: 5px; }
+.fill.on { background: var(--warn); }
+.thr { position: absolute; top: -2px; bottom: -2px; left: 50%; width: 2px; background: var(--muted); opacity: .6; }
+.bar .num { text-align: right; color: var(--muted); font-size: 14px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.chip { font: inherit; font-size: 14.5px; min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel);
+        color: var(--ink); cursor: pointer; }
+.chip:disabled { color: var(--muted); opacity: .55; cursor: not-allowed; }
+.chip[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.answer { margin-top: 10px; border-left: 4px solid var(--accent); padding: 8px 12px; background: var(--sunk); border-radius: 0 8px 8px 0; }
+.answer .q { font-weight: 700; }
+.answer .badge { display: inline-block; margin-top: 6px; }
+details.more summary { cursor: pointer; font-size: 14px; color: var(--accent); min-height: 44px; display: flex; align-items: center; }
+details.more .inner { font-size: 14px; color: var(--muted); display: grid; gap: 6px; padding-bottom: 4px; }
+.err { color: var(--bad); font-weight: 500; }
+.busy { color: var(--muted); }
+
+/* ---- settings / about ---- */
+details.card { padding: 0 16px; }
+details.card > summary { list-style: none; cursor: pointer; min-height: 56px; display: flex; align-items: center; justify-content: space-between;
+                         font-weight: 700; font-size: 16px; }
+details.card > summary::-webkit-details-marker { display: none; }
+details.card > summary::after { content: "＋"; color: var(--muted); font-weight: 400; }
+details.card[open] > summary::after { content: "－"; }
+.drawer { display: grid; gap: 18px; padding: 4px 0 18px; }
+.field > .lab { font-weight: 500; margin-bottom: 6px; }
+.seg { display: flex; flex-wrap: wrap; gap: 8px; }
+.seg label { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 6px 14px; border: 1px solid var(--line); border-radius: 10px;
+             cursor: pointer; flex: 1 1 200px; font-size: 15px; line-height: 1.4; }
+.seg label:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.seg input { accent-color: var(--accent); width: 18px; height: 18px; flex: none; margin: 0; }
+.seg small { display: block; color: var(--muted); font-size: 13px; }
+.switch { display: flex; align-items: center; gap: 10px; min-height: 44px; cursor: pointer; }
+.switch input { accent-color: var(--accent); width: 22px; height: 22px; margin: 0; }
+input[type=url] { font: 15px/1.4 ui-monospace, Consolas, monospace; color: var(--ink); background: var(--bg); border: 1px solid var(--line);
+                  border-radius: 10px; padding: 0 12px; min-height: 44px; width: 100%; max-width: 26rem; }
+.about { display: grid; gap: 12px; padding: 4px 0 18px; max-width: 70ch; }
+.about ol, .about ul { margin: 0; padding-left: 1.4em; display: grid; gap: 6px; }
+.about h3 { margin-top: 4px; }
+.path { font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; word-break: break-all; }
+footer { color: var(--muted); font-size: 13px; text-align: center; }
+@media (prefers-reduced-motion: no-preference) {
+  .fill { transition: width .35s ease; }
+  .ex, .chip, .btn { transition: border-color .15s, background-color .15s; }
+}
+/* ---- language (2026-10-15: English default, 中文 toggle) ---- */
+.topbtns { display: flex; gap: 8px; flex: none; }
+@media (max-width: 600px) { .topbtns { flex-direction: column; align-items: stretch; } }
+html[lang="en"] .bar { grid-template-columns: 5.8em minmax(0, 1fr) 2.6em; }
+html[lang="en"] .line { grid-template-columns: 5.6em minmax(0, 1fr); }
+.btn > span { white-space: nowrap; }
+.ex .exn { white-space: nowrap; }
+@media (max-width: 440px) { .btn { padding: 0 14px; } .ex .exl { padding: 6px 6px 7px; font-size: 13px; }
+  html[lang="en"] .line.main .state { font-size: 19px; } }
 </style>
 </head>
 <body>
-<main>
-  <header>
-    <h1>Retouch or forgery?</h1>
-    <p class="sub">Three-way face analysis in the browser: <b>real</b>, <b>fake</b> (identity or content changed) or
-      <b>filter</b> (beautified, identity kept), with the retouching operations the model sees. Nothing is uploaded; the
-      4.7&nbsp;M-parameter model runs on this device.</p>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1 data-i18n="h1">Has this face been altered?</h1>
+      <p class="lede" data-i18n="lede">Tells whether a face photo is real, forged, or only beauty-retouched, and explains why. The photo is analysed on your device and never uploaded.</p>
+    </div>
+    <div class="topbtns">
+      <button type="button" class="ghost" id="langBtn" lang="zh-Hant-TW" aria-label="切換為中文">中文</button>
+      <button type="button" class="ghost" id="openSettings" aria-controls="settings" data-i18n="settings">Settings</button>
+    </div>
   </header>
 
-  <section class="panel">
-    <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center">
-      <label class="btn" for="file">Choose a face photo<input id="file" type="file" accept="image/*"></label>
-      <span id="status" class="status">loading models...</span>
+  <section class="card" aria-labelledby="pickh">
+    <h2 id="pickh" class="visually-hidden" hidden data-i18n="pickh">Choose a photo</h2>
+    <div class="actions">
+      <label class="btn primary"><span data-i18n="choose">Choose a photo</span><input id="file" type="file" accept="image/*"></label>
+      <label class="btn secondary"><span data-i18n="camera">Take a photo</span><input id="cam" type="file" accept="image/*" capture="user"></label>
+    </div>
+    <div class="load" id="load" role="status" aria-live="polite">
+      <span id="loadText">Preparing…</span>
+      <div class="track" aria-hidden="true"><div class="fill" id="loadFill" style="width:0%"></div></div>
+    </div>
+    <div class="examples">
+      <h2 data-i18n="exh">No photo? Try an example</h2>
+      <div class="exgrid" id="exgrid"></div>
     </div>
   </section>
 
-  <section class="panel row" id="result" hidden>
-    <div>
-      <canvas id="crop" width="224" height="224"></canvas>
-      <p class="status" id="cropinfo" style="margin-top:8px"></p>
+  <p class="card placeholder" id="placeholder" data-i18n="placeholder">Choose a photo or an example; the result will appear here.</p>
+
+  <section class="card result" id="result" hidden aria-live="polite">
+    <div class="fig">
+      <div class="cropwrap">
+        <canvas id="crop" width="224" height="224" role="img" aria-label="Cropped face" data-i18n-aria="cropAria"></canvas>
+        <canvas id="overlay" width="224" height="224" aria-hidden="true"></canvas>
+      </div>
+      <div class="figcap" id="figcap"></div>
     </div>
-    <div>
-      <p class="label" id="label"></p>
-      <p class="sentence" id="sentence"></p>
-      <div class="bars" id="classbars"></div>
-      <h2 id="opsh">Retouching operations</h2>
-      <div class="bars" id="opbars"></div>
-      <p class="status" id="timing" style="margin-top:12px"></p>
-    </div>
+    <div class="body" id="body"></div>
   </section>
 
-  <section class="panel notes">
-    <h2 style="margin-top:0">What the numbers mean</h2>
-    <ul>
-      <li>The face is cropped exactly as in training: 478 MediaPipe landmarks, their bounding box plus 35&nbsp;% on each side.</li>
-      <li>On a commercial retouching service never seen in training, this model family calls 0.3&nbsp;% of retouched faces
-        <i>fake</i> and separates retouched from untouched photos with 71&ndash;73&nbsp;% balanced accuracy. Smoothing is recognised
-        reliably; single eye enlargement, face slimming or whitening often are not, and some untouched photos are called
-        <i>filter</i>.</li>
-      <li>Operation probabilities are shown only when the label is <i>filter</i>. The model's estimates of <i>how much</i> was
-        changed did not pass our validation and are not shown.</li>
-      <li>Probabilities are raw model outputs, not calibrated confidence.</li>
-    </ul>
-  </section>
-</main>
+  <details class="card" id="settings">
+    <summary data-i18n="settings">Settings</summary>
+    <div class="drawer">
+      <div class="field">
+        <div class="lab" data-i18n="modelLab">Analysis model</div>
+        <div class="seg" role="radiogroup" aria-label="Analysis model" data-i18n-aria="modelLab">
+          <label><input type="radio" name="model" value="effb4" checked><span data-i18n-html="mEffb4"></span></label>
+          <label><input type="radio" name="model" value="repvit_ev"><span data-i18n-html="mRepvitEv"></span></label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="lab" data-i18n="langLab">Language</div>
+        <div class="seg" role="radiogroup" aria-label="Language" data-i18n-aria="langLab">
+          <label><input type="radio" name="lang" value="en" checked><span lang="en">English</span></label>
+          <label><input type="radio" name="lang" value="zh"><span lang="zh-Hant-TW">中文（繁體）</span></label>
+        </div>
+        <p class="note" style="margin-top:6px" data-i18n="langNote"></p>
+      </div>
+    </div>
+  </details>
+
+  <details class="card" id="about">
+    <summary data-i18n="about">About this system</summary>
+    <div class="about" id="aboutBody"></div>
+  </details>
+
+  <footer data-i18n="footer"></footer>
+</div>
 
 <script type="module">
 import { FilesetResolver, FaceLandmarker } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/vision_bundle.mjs";
 
-const MODEL = "models/ru_repvit.onnx";
-const CLS = ["real", "fake", "filter"];
-const OPS = [["eye", "eye enlargement"], ["jaw", "face slimming"], ["white", "skin brightening"], ["smooth", "skin smoothing"]];
 const $ = (id) => document.getElementById(id);
-let session = null, landmarker = null;
+const setState = (s) => { document.documentElement.dataset.state = s; };   // loading | ready | busy | done | error (also read by test/take_screens.py)
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const f2 = (x) => Number(x).toFixed(2);
+
+// ---------------------------------------------------------------- wording (presentation only): English default, 中文 second locale
+// 美顏 / retouch wording from P(filter). "Possibly retouched" = the model's own argmax boundary (filter is the highest of the three
+// classes, i.e. the decision is filter); "Clearly retouched" = filter is the decision and P(filter) >= 0.80, i.e. at least 4 times
+// the other two classes together. A presentation threshold, not a validated operating point; the decision label is always shown.
+const FILTER_CLEAR = 0.80;
+const REPORT = "results/research/explain_vlm_20261012/report/REPORT_DRAFT.md";
+const I18N = {
+  en: {
+    htmlLang: "en", title: "Face Retouch Check", switchTo: "中文", switchAria: "切換為中文", switchLang: "zh-Hant-TW",
+    h1: "Has this face been altered?",
+    lede: "Tells whether a face photo is real, forged, or only beauty-retouched, and explains why. The photo is analysed on your device and never uploaded.",
+    settings: "Settings", pickh: "Choose a photo", choose: "Choose a photo", camera: "Take a photo", exh: "No photo? Try an example",
+    placeholder: "Choose a photo or an example; the result will appear here.", cropAria: "Cropped face",
+    modelLab: "Analysis model",
+    mEffb4: "EfficientNet-B4 evidence model<small>Default. Marks the suspicious face part; about 67 MB to download the first time</small>",
+    mRepvitEv: "RepViT evidence model (small, about 19 MB)<small>For older phones: smaller download and faster analysis, still marks the face part; slightly less accurate than the default</small>",
+    langLab: "Language",
+    langNote: "Interface and explanations in English. Scores are rounded to two decimals; they are raw model outputs, not calibrated probabilities.",
+    about: "About this system",
+    aboutHtml: `<h3>What this page is</h3>
+      <p>Choose or take a face photo. The page answers real, fake or filter (beauty retouching), outlines where its evidence is and names the face part, shows sentences composed and checked by code, and, for a filter verdict, the scores of four retouching operations. Everything runs in your browser; the photo is not uploaded. The examples page holds cases with known answers.</p>
+      <h3>How it works</h3>
+      <ol>
+        <li>MediaPipe finds 478 landmarks on the face, and the face is cropped the same way as in training.</li>
+        <li>The analysis model outputs three class scores (real, fake, and filter, which means beauty retouching) and scores for four retouching operations (eye enlargement, face slimming, skin whitening, skin smoothing). The evidence models also output an evidence map that shows where the model found the strongest evidence.</li>
+        <li>The code maps the evidence map onto five face parts (eyes, nose, mouth, skin, face contour), names the part where the evidence is most concentrated, and draws its outline.</li>
+        <li>The explanation is composed by code with fixed rules and states only what the model actually output; no language model writes or rewords it. Before it is shown, a rule checker matches every sentence to the model's output (decision, region, operations, numbers) and rejects any wording about certainty.</li>
+        <li>Four questions that the model's output cannot answer get fixed code sentences: "Where does it differ from the original photo?", "Who is this?", "Is this certain?" and "What does this score mean?".</li>
+      </ol>
+      <h3>Validation (EfficientNet-B4 evidence model)</h3>
+      <ul>
+        <li>On a commercial retouching service not seen in training (26,519 retouched photos and their originals), only 0.5% of retouched photos are called fake; the balanced accuracy for retouched vs untouched is 72.4%.</li>
+        <li>Skin smoothing is almost always caught (called filter 94–99% of the time); eye enlargement, face slimming or whitening on their own are often missed (called filter about 36–65% of the time), and on a smoothed photo their scores often rise too, so the explanation names skin smoothing only; 16.7% of untouched originals are wrongly called filter. Ordinary photographs (FairFace): 95.7% called real.</li>
+        <li>The browser version and the Python version were compared photo by photo on 20 test images: decision, named face part and explanation text all agree.</li>
+        <li>This page uses the smaller EfficientNet-B4 model, not the main model of the paper, so the two can give different results.</li>
+        <li>The small RepViT evidence model is weaker on the same tests: balanced accuracy 66.2%, and 49.1% of untouched originals are called filter (default model 16.7%); retouched photos called fake 0.3% (default 0.5%).</li>
+      </ul>
+      <p class="note">Full report: <span class="path">${REPORT}</span></p>`,
+    footer: "Research demo. Results are for reference only and must not be the only basis for judging whether a photo is authentic.",
+    cls: { real: "Real", fake: "Fake", filter: "Beauty retouch" },
+    part: { eyes: "eyes", nose: "nose", mouth: "mouth", skin: "skin", contour: "face contour", "whole face": "whole face" },
+    partJoin: ", ",
+    ops: { eye_enlargement: "Big eyes", face_slimming: "Slim face", skin_brightening: "Whitening", skin_smoothing: "Smoothing" },
+    modelName: { effb4: "EfficientNet-B4 evidence", repvit_ev: "RepViT small evidence", repvit: "RepViT fast" },
+    examples: ["Real photo (video frame, unmodified)", "Partial forgery: the mouth was replaced with another person's",
+               "Commercial beauty retouching: skin smoothing (a service not seen in training)", "Whole-face swap (Deepfakes)"],
+    example: (n) => `Example ${n}`,
+    loadFace: "Loading face detection…",
+    loadDl: (k, a, b) => `Downloading the analysis model (${I18N.en.modelName[k]}): ${a} / ${b} MB`,
+    loadStart: (k) => `Starting the analysis model (${I18N.en.modelName[k]})…`,
+    ready: (k) => `Ready: ${I18N.en.modelName[k]} model`, readyFast: "Ready: fast model (does not mark face parts)",
+    loadFail: "The model failed to load. Check the network connection and reload the page.",
+    loadFailSwitch: "The model failed to load. Check the network connection and try again.",
+    exFail: "Could not load the example image. Reload the page and try again.",
+    pending: "The model is still downloading; this photo will be analysed automatically when it finishes.",
+    busy: "Analysing…", badImage: "Cannot read this image. Please use a JPG or PNG photo.",
+    noFace: "No face found in the photo. Please use a clear, frontal photo of one person.",
+    analyseFail: "Something went wrong during the analysis. Try another photo or reload the page.",
+    capNoEv: "The fast model has no evidence module, so face parts are not marked.",
+    capReal: "Judged real, so no suspicious part is marked.",
+    capPart: (p) => `Part with the most concentrated evidence: <b>${p}</b>`,
+    legTop: "Strongest evidence", legHalf: "Evidence at half strength",
+    truth: (n, t, ok) => `<b>Answer for example ${n}:</b> ${t}. ${ok ? "The model agrees." : "The model does not agree."}`,
+    opsH: "Possible retouching operations",
+    opsNote: "A score at or above the middle line (0.5) counts as the operation being present. Eye enlargement, face slimming and whitening on their own are often missed, and on commercial smoothing the other three bars often rise as well: across retouching services only the smoothing bar is reliable.",
+    kFake: "Forgery", stFake: "Fake", stNoFake: "No forgery detected",
+    fakeScore: (v) => `Fake score <span class="num">${v}</span> (raw model output, not a calibrated probability)`,
+    kBeauty: "Retouch", beautyNone: "Not detected", beautyClear: "Clearly retouched", beautyMaybe: "Possibly retouched",
+    beautyScore: (v) => `Retouch score <span class="num">${v}</span>`,
+    decrow: (c, r, f, b) => `Model's three-way decision: <b>${c}</b> (real <span class="num">${r}</span> · fake <span class="num">${f}</span> · retouch <span class="num">${b}</span>)`,
+    whyH: "Why this decision", moreH: "Want to know more?", moreRules: "Numbers and rules",
+    rule1: (t) => `"Retouch" wording: "Possibly retouched" when the retouch score is the highest of the three classes, and "Clearly retouched" when it is also ${t} or more. This is a display grading, not a separately validated threshold.`,
+    rule2: (name, s, w, h) => `Model: ${name} · input ${s}×${s} px · crop ${w}×${h} px`,
+    rule3: (a, b, c) => `Time on this device: face detection ${a} ms · model ${b} ms` + (c == null ? "" : ` · face-part matching ${c} ms`),
+    badge: { template: "Composed by code, checked", fixed: "Fixed answer", failed: "Not shown: failed the check" },
+    checkFail: "The composed text did not match the model's output, so it is not shown.",
+  },
+  zh: {
+    htmlLang: "zh-Hant-TW", title: "人臉修圖偵測", switchTo: "English", switchAria: "Switch to English", switchLang: "en",
+    h1: "這張臉被改過嗎？",
+    lede: "分辨人臉照片是真實、偽造，還是只是美顏修圖，並說明理由。照片只在你的裝置上分析，不會上傳。",
+    settings: "設定", pickh: "選擇照片", choose: "選擇照片", camera: "拍照", exh: "沒有照片？試試範例",
+    placeholder: "選一張照片或範例，結果會顯示在這裡。", cropAria: "裁切後的臉部",
+    modelLab: "分析模型",
+    mEffb4: "EfficientNet-B4 證據版<small>預設。會標出可疑部位；第一次需下載約 67 MB</small>",
+    mRepvitEv: "RepViT 證據版（小，約 19 MB）<small>給較舊的手機：下載小、分析快，也會標出可疑部位；準確度略低於預設</small>",
+    langLab: "語言",
+    langNote: "介面與解釋皆為繁體中文。分數保留到小數第二位，是模型的原始輸出，不是校準過的機率。",
+    about: "關於這個系統",
+    aboutHtml: `<h3>這個網頁是什麼</h3>
+      <p>選一張臉部照片或直接拍照。網頁會回答真實、偽造或美顏修圖，在臉上框出證據所在並點名部位，顯示由程式組成並查核過的說明句；若判定為美顏修圖，再給四種修圖操作的分數。全部在你的瀏覽器裡完成，照片不會上傳。範例頁有附標準答案的案例。</p>
+      <h3>怎麼運作</h3>
+      <ol>
+        <li>先在照片中找出臉部的 478 個特徵點，依訓練時的方式把臉裁下來。</li>
+        <li>分析模型同時給出三類分數（真實、偽造、美顏修圖）與四種修圖操作的分數（大眼、瘦臉、美白、磨皮）。證據版還會輸出一張「哪裡最可疑」的證據圖。</li>
+        <li>程式把證據圖對到眼睛、鼻子、嘴巴、皮膚、臉部輪廓五個部位，挑出證據最集中的部位，並畫出輪廓線。</li>
+        <li>解釋文字由程式依固定規則組成，只寫模型真的輸出的內容，不經過任何語言模型。顯示前，規則查核器會把每一句和模型輸出（判定、部位、操作、數字）逐項比對，並擋下任何關於「確定」的說法。</li>
+        <li>模型輸出回答不了的四個問題由程式固定回答：「和原圖比差在哪？」「是誰？」「可以確定嗎？」「這個分數代表什麼？」。</li>
+      </ol>
+      <h3>驗證結果（EfficientNet-B4 證據版）</h3>
+      <ul>
+        <li>在訓練時沒看過的商用修圖服務上（26,519 張修過的照片及其原圖）：修過的照片被誤判為偽造的只有 0.5%；分辨「修過」與「沒修過」的平衡準確率為 72.4%。</li>
+        <li>磨皮幾乎都抓得到（判為美顏 94–99%）；單獨的大眼、瘦臉、美白常抓不到（判為美顏約 36–65%），而且照片只磨皮時這三項分數也常跟著升高，所以解釋只點名磨皮；沒修過的原圖有 16.7% 被誤判為美顏。一般照片（FairFace）有 95.7% 判為真實。</li>
+        <li>瀏覽器版與 Python 版在 20 張測試照片上逐張比對，判定、標示部位與解釋文字都一致。</li>
+        <li>這個網頁用的是較小的 EfficientNet-B4 模型，不是論文裡的主模型，兩者的結果不一定相同。</li>
+        <li>RepViT 證據版（小）在同一套測試上較弱：平衡準確率 66.2%，沒修過的原圖有 49.1% 被誤判為美顏（預設模型 16.7%）；修過的照片被誤判為偽造 0.3%（預設 0.5%）。</li>
+      </ul>
+      <p class="note">完整報告：<span class="path">${REPORT}</span></p>`,
+    footer: "研究展示用途，結果僅供參考，不能作為判定真偽的唯一依據。",
+    cls: { real: "真實", fake: "偽造", filter: "美顏修圖" },
+    part: ExplainT2.PART_ZH, partJoin: "、",
+    ops: { eye_enlargement: "大眼", face_slimming: "瘦臉", skin_brightening: "美白", skin_smoothing: "磨皮" },
+    modelName: { effb4: "EfficientNet-B4 證據版", repvit_ev: "RepViT 證據版（小）", repvit: "RepViT 快速版" },
+    examples: ["真實照片（影片截圖，未經修改）", "局部偽造：嘴巴換成了另一個人的", "商用美顏：磨皮（訓練時沒看過的修圖服務）", "整臉換臉（Deepfakes）"],
+    example: (n) => `範例 ${n}`,
+    loadFace: "正在載入人臉偵測…",
+    loadDl: (k, a, b) => `正在下載分析模型（${DemoCore.MODELS[k].name}）：${a} / ${b} MB`,
+    loadStart: (k) => `正在啟動分析模型（${DemoCore.MODELS[k].name}）…`,
+    ready: (k) => `準備完成：${DemoCore.MODELS[k].name}模型`, readyFast: "準備完成：快速版模型（不標示部位）",
+    loadFail: "模型載入失敗。請確認網路連線後重新整理頁面。",
+    loadFailSwitch: "模型載入失敗。請確認網路連線後再試一次。",
+    exFail: "範例圖片讀取失敗。請重新整理頁面再試一次。",
+    pending: "模型還在下載，下載完成後會自動分析這張照片。",
+    busy: "分析中…", badImage: "無法讀取這張圖片。請改用 JPG 或 PNG 格式的照片。",
+    noFace: "照片裡找不到臉。請換一張臉部清楚、正面、只有一個人的照片。",
+    analyseFail: "分析時發生錯誤。請換一張照片，或重新整理頁面再試一次。",
+    capNoEv: "快速版模型沒有證據模組，不標示部位。",
+    capReal: "判定為真實，不標示可疑部位。",
+    capPart: (p) => `證據最集中的部位：<b>${p}</b>`,
+    legTop: "證據最強的範圍", legHalf: "證據達一半強度的範圍",
+    truth: (n, t, ok) => `<b>範例 ${n} 的答案：</b>${t}。${ok ? "模型判斷相符。" : "模型判斷不相符。"}`,
+    opsH: "可能的修圖操作",
+    opsNote: "分數達到中線（0.5）視為有這項操作。單獨的大眼、瘦臉、美白常常抓不到；商用磨皮時另外三條分數也常一起升高。跨修圖服務只有磨皮這一項可靠。",
+    kFake: "是否偽造", stFake: "偽造", stNoFake: "未偵測到偽造",
+    fakeScore: (v) => `偽造分數 <span class="num">${v}</span>（模型原始輸出，不是校準過的機率）`,
+    kBeauty: "美顏", beautyNone: "未偵測到", beautyClear: "明顯修圖", beautyMaybe: "可能有修圖",
+    beautyScore: (v) => `美顏分數 <span class="num">${v}</span>`,
+    decrow: (c, r, f, b) => `模型的三類判定：<b>${c}</b>（真實 <span class="num">${r}</span>・偽造 <span class="num">${f}</span>・美顏 <span class="num">${b}</span>）`,
+    whyH: "為什麼這樣判斷", moreH: "想知道更多", moreRules: "數值與規則",
+    rule1: (t) => `「美顏」用語：三類中美顏分數最高時寫「可能有修圖」，且美顏分數達 ${t} 以上時寫「明顯修圖」；這是顯示用的分級，不是另外驗證過的門檻。`,
+    rule2: (name, s, w, h) => `模型：${name}・輸入 ${s}×${s} 像素・裁切範圍 ${w}×${h} 像素`,
+    rule3: (a, b, c) => `在這台裝置上的耗時：找臉 ${a} 毫秒・模型 ${b} 毫秒` + (c == null ? "" : `・部位比對 ${c} 毫秒`),
+    badge: { template: "程式組成，已查核", fixed: "固定回答", failed: "未通過查核，不顯示" },
+    checkFail: "組成的文字和模型輸出對不上，所以不顯示。",
+  },
+};
+const EXAMPLES = [
+  { file: "examples/ex1.png", thumb: "examples/ex1_thumb.jpg", truth: "real" },
+  { file: "examples/ex2.png", thumb: "examples/ex2_thumb.jpg", truth: "fake" },
+  { file: "examples/ex3.png", thumb: "examples/ex3_thumb.jpg", truth: "filter" },
+  { file: "examples/ex4.png", thumb: "examples/ex4_thumb.jpg", truth: "fake" },
+];
+const OPS = ["eye_enlargement", "face_slimming", "skin_brightening", "skin_smoothing"];
+
+// ---------------------------------------------------------------- language
+function initialLang() {
+  const q = new URLSearchParams(location.search).get("lang");
+  if (q === "en" || q === "zh") return q;
+  try { const s = localStorage.getItem("demo_ru_lang"); if (s === "en" || s === "zh") return s; } catch (e) {}
+  return "en";
+}
+let lang = initialLang();
+const T = () => I18N[lang];
+const MSG = { load: null, body: null };   // last status messages as [key, ...args], re-rendered on a language switch
+const tr = (m) => { const v = T()[m[0]]; return typeof v === "function" ? v(...m.slice(1)) : v; };
+
+/** T2 sentences come from explain_t2.js unchanged (English or Chinese); in Chinese only the class names and the English
+ *  term "evidence 平均" are shown in Chinese, as before. */
+function showT2(s) {
+  if (lang === "en") return s.replace(/The model's decision is (real|fake|filter)/, (_, c) => "The model's decision is " + I18N.en.cls[c].toLowerCase());
+  return s.replace(/模型判定為 (real|fake|filter)/, (_, c) => "模型判定為" + I18N.zh.cls[c])
+          .replace(/evidence 平均/g, "證據平均")
+          .replace(ExplainT2.NO_EVIDENCE_ZH, "快速版模型沒有證據模組，無法指出部位。");
+}
+
+function applyStatic() {
+  const t = T();
+  document.documentElement.lang = t.htmlLang; document.title = t.title;
+  document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t[el.dataset.i18n]; });
+  document.querySelectorAll("[data-i18n-html]").forEach((el) => { el.innerHTML = t[el.dataset.i18nHtml]; });
+  document.querySelectorAll("[data-i18n-aria]").forEach((el) => { el.setAttribute("aria-label", t[el.dataset.i18nAria]); });
+  $("aboutBody").innerHTML = t.aboutHtml;
+  const b = $("langBtn"); b.textContent = t.switchTo; b.setAttribute("aria-label", t.switchAria); b.lang = t.switchLang;
+  document.querySelectorAll("input[name=lang]").forEach((r) => { r.checked = r.value === lang; });
+  document.querySelectorAll(".ex").forEach((el, i) => {
+    el.querySelector(".exn").textContent = t.example(i + 1);
+    const x = el.querySelector(".ext"); if (!x.hidden) x.textContent = t.cls[EXAMPLES[i].truth];
+  });
+}
+
+function setLang(l) {
+  if (l !== "en" && l !== "zh") return;
+  lang = l;
+  try { localStorage.setItem("demo_ru_lang", l); } catch (e) {}
+  applyStatic();
+  if (MSG.load) loadMsg(MSG.load.msg, null, MSG.load.cls);
+  if (last) render();
+  else if (MSG.body) (MSG.body.err ? showError : showBusy)(MSG.body.msg);
+}
+
+// ---------------------------------------------------------------- state
+const models = {}, loading = {};
+let landmarker = null, current = null, lastSrc = null, last = null, pending = null;
+const modelKey = () => document.querySelector("input[name=model]:checked").value;
+const MB = (n) => (n / 1048576).toFixed(0);
+
+/** msg = [i18n key, ...args]; kept so that a language switch re-renders it. */
+function loadMsg(msg, frac, cls) {
+  MSG.load = { msg, cls };
+  $("loadText").textContent = tr(msg);
+  $("load").className = "load" + (cls ? " " + cls : "");
+  if (frac != null) $("loadFill").style.width = (100 * frac).toFixed(1) + "%";
+}
+
+async function fetchBytes(url, onProgress) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error("HTTP " + r.status);
+  const total = Number(r.headers.get("content-length")) || 0;
+  if (!r.body || !total) { const b = new Uint8Array(await r.arrayBuffer()); onProgress(b.length, b.length); return b; }
+  const reader = r.body.getReader(), out = new Uint8Array(total); let got = 0;
+  for (;;) {
+    const { done, value } = await reader.read(); if (done) break;
+    if (got + value.length > out.length) throw new Error("size mismatch");
+    out.set(value, got); got += value.length; onProgress(got, total);
+  }
+  return got === total ? out : out.slice(0, got);
+}
+
+async function ensureModel(key) {
+  if (models[key]) { current = models[key]; return current; }
+  if (!loading[key]) {
+    loading[key] = (async () => {
+      const bytes = await fetchBytes(DemoCore.MODELS[key].file, (got, total) =>
+        loadMsg(["loadDl", key, MB(got), MB(total)], got / total));
+      loadMsg(["loadStart", key], 1);
+      models[key] = await DemoCore.loadModel(key, "", bytes);
+      return models[key];
+    })().finally(() => { delete loading[key]; });
+  }
+  current = await loading[key];
+  return current;
+}
+
+function readyMsg() {
+  loadMsg(current.hasEvidence ? ["ready", current.key] : ["readyFast"], 1, "ready");
+}
 
 async function init() {
+  setState("loading");
   try {
     ort.env.wasm.numThreads = 1;
-    session = await ort.InferenceSession.create(MODEL, { executionProviders: ["wasm"] });
+    loadMsg(["loadFace"], 0);
     const fileset = await FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm");
     landmarker = await FaceLandmarker.createFromOptions(fileset, {
       baseOptions: { modelAssetPath: "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task" },
       runningMode: "IMAGE", numFaces: 1 });
-    $("status").textContent = "ready";
-  } catch (e) { $("status").textContent = "could not load models: " + e.message; }
-}
-
-function cropBox(lm, w, h) {
-  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
-  for (const p of lm) { const x = p.x * w, y = p.y * h; x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y); }
-  const bw = x1 - x0, bh = y1 - y0, m = 0.35;
-  return [Math.max(0, Math.floor(x0 - bw * m)), Math.max(0, Math.floor(y0 - bh * m)),
-          Math.min(w, Math.floor(x1 + bw * m)), Math.min(h, Math.floor(y1 + bh * m))];
-}
-
-function toTensor(canvas) {
-  const d = canvas.getContext("2d").getImageData(0, 0, 224, 224).data, n = 224 * 224, t = new Float32Array(3 * n);
-  for (let i = 0; i < n; i++) for (let c = 0; c < 3; c++) t[c * n + i] = (d[i * 4 + c] / 255 - 0.5) / 0.5;
-  return new ort.Tensor("float32", t, [1, 3, 224, 224]);
-}
-
-const softmax = (v) => { const m = Math.max(...v), e = v.map((x) => Math.exp(x - m)), s = e.reduce((a, b) => a + b); return e.map((x) => x / s); };
-const sigmoid = (x) => 1 / (1 + Math.exp(-x));
-
-function bars(el, rows) {
-  el.innerHTML = rows.map(([name, p, cls]) =>
-    `<div class="bar"><span>${name}</span><div class="track"><div class="fill ${cls || ""}" style="width:${(100 * p).toFixed(1)}%"></div></div><span class="num">${p.toFixed(2)}</span></div>`).join("");
-}
-
-async function analyse(file) {
-  const img = await createImageBitmap(file);
-  const res = landmarker.detect(img);
-  $("result").hidden = false;
-  if (!res.faceLandmarks || !res.faceLandmarks.length) {
-    $("label").className = "label"; $("label").textContent = "no face";
-    $("sentence").textContent = "No face was found. The model only analyses face crops."; $("classbars").innerHTML = ""; $("opbars").innerHTML = ""; $("opsh").hidden = true; return;
+    await ensureModel(modelKey());
+    readyMsg(); setState("ready");
+    if (pending) { const p = pending; pending = null; run(p); }
+  } catch (e) {
+    loadMsg(["loadFail"], null, "error"); setState("error");
+    console.error(e);
   }
-  const [x0, y0, x1, y1] = cropBox(res.faceLandmarks[0], img.width, img.height);
-  const cv = $("crop"), ctx = cv.getContext("2d"); ctx.imageSmoothingQuality = "high";
-  ctx.drawImage(img, x0, y0, x1 - x0, y1 - y0, 0, 0, 224, 224);
-  $("cropinfo").textContent = `crop ${x1 - x0}×${y1 - y0} px → 224×224`;
-  const t0 = performance.now();
-  const out = await session.run({ input: toTensor(cv) });
-  const ms = performance.now() - t0;
-  const v = Array.from(out[session.outputNames[0]].data);
-  const p = softmax(v.slice(0, 3)), ops = v.slice(3, 7).map(sigmoid), k = p.indexOf(Math.max(...p)), label = CLS[k];
-  $("label").className = "label " + label; $("label").textContent = label;
-  const present = OPS.filter((_, j) => ops[j] >= 0.5).map(([, n]) => n);
-  $("sentence").textContent = label === "real" ? "No manipulation detected."
-    : label === "fake" ? "Forgery detected: identity or content appears to have been changed."
-    : "Beautification detected, identity preserved" + (present.length ? ": " + present.join(", ") + "." : "; the operation is unclear.");
-  bars($("classbars"), CLS.map((c, j) => [c, p[j], c]));
-  $("opsh").hidden = label !== "filter"; $("opbars").innerHTML = "";
-  if (label === "filter") bars($("opbars"), OPS.map(([, n], j) => [n, ops[j], "filter"]));
-  $("timing").textContent = `model inference ${ms.toFixed(1)} ms (WebAssembly, 1 thread)`;
 }
 
-$("file").addEventListener("change", (e) => { const f = e.target.files[0]; if (f && session && landmarker) analyse(f).catch((err) => { $("status").textContent = err.message; }); });
+// ---------------------------------------------------------------- examples
+EXAMPLES.forEach((ex, i) => {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "ex"; b.dataset.ex = String(i + 1); b.setAttribute("aria-pressed", "false");
+  b.innerHTML = `<img src="${ex.thumb}" alt="" width="192" height="192" loading="lazy"><span class="exl"><span class="exn"></span><span class="ext" hidden></span></span>`;
+  b.addEventListener("click", async () => {
+    try {
+      const blob = await (await fetch(ex.file)).blob();
+      submit({ blob, ex: i });
+    } catch (e) { showError(["exFail"]); }
+  });
+  $("exgrid").appendChild(b);
+});
+
+function markExamples(active) {
+  document.querySelectorAll(".ex").forEach((b, i) => b.setAttribute("aria-pressed", String(i === active)));
+}
+
+// ---------------------------------------------------------------- analysis
+function submit(src) {
+  lastSrc = src; markExamples(src.ex);
+  if (!landmarker || !current) {
+    pending = src; showBusy(["pending"]); return;
+  }
+  run(src);
+}
+
+function showBusy(msg) {
+  MSG.body = { msg, err: false };
+  $("placeholder").hidden = true; $("result").hidden = false;
+  $("overlay").getContext("2d").clearRect(0, 0, 224, 224);
+  $("figcap").textContent = "";
+  $("body").innerHTML = `<p class="busy">${esc(tr(msg))}</p>`;
+}
+
+function showError(msg) {
+  setState("error-photo"); MSG.body = { msg, err: true };
+  $("placeholder").hidden = true; $("result").hidden = false;
+  $("crop").getContext("2d").clearRect(0, 0, 224, 224); $("overlay").getContext("2d").clearRect(0, 0, 224, 224);
+  $("figcap").textContent = ""; last = null;
+  $("body").innerHTML = `<p class="err">${esc(tr(msg))}</p>`;
+}
+
+async function run(src) {
+  setState("busy"); last = null; showBusy(["busy"]);
+  let img;
+  try { img = await createImageBitmap(src.blob); }
+  catch (e) { showError(["badImage"]); return; }
+  try {
+    const t0 = performance.now();
+    const det = landmarker.detect(img);
+    const lmMs = performance.now() - t0;
+    if (!det.faceLandmarks || !det.faceLandmarks.length) {
+      showError(["noFace"]); return;
+    }
+    const model = await ensureModel(modelKey());
+    const r = await DemoCore.analyse(img, det.faceLandmarks[0], model, { display: $("crop") });
+    if (src !== lastSrc) return;                                   // a newer photo was chosen meanwhile
+    last = { r, src, model, lmMs, wall: performance.now() - t0 }; MSG.body = null;
+    render(); setState("done");
+  } catch (e) {
+    console.error(e); showError(["analyseFail"]);
+  }
+}
+
+// ---------------------------------------------------------------- rendering
+function render() {
+  const t = T(), { r, src, model } = last, rec = r.record, label = r.label;
+  const fakeScore = rec.probabilities.fake, filterScore = rec.probabilities.filter;
+  const isFake = label === "fake";
+  const beauty = label !== "filter" ? [t.beautyNone, "none"] : (r.p[2] >= FILTER_CLEAR ? [t.beautyClear, "warn"] : [t.beautyMaybe, "warn"]);
+  const ex = src.ex != null ? EXAMPLES[src.ex] : null;
+
+  // figure + overlay
+  const ctx = $("overlay").getContext("2d"); ctx.clearRect(0, 0, 224, 224);
+  let cap;
+  if (!r.evidence) cap = esc(t.capNoEv);
+  else if (label === "real") cap = esc(t.capReal);
+  else {
+    EvidenceOverlay.drawContours(ctx, r.evidence.evidence_map16, 224, 224);
+    const part = rec.named_parts && rec.named_parts.length ? rec.named_parts.map((p) => t.part[p] || p).join(t.partJoin) : t.part["whole face"];
+    cap = `${t.capPart(esc(part))}
+      <span class="legend"><span><span class="sw" style="background:#ffdc00"></span>${esc(t.legTop)}</span><span><span class="sw" style="background:#00e6ff"></span>${esc(t.legHalf)}</span></span>`;
+  }
+  $("figcap").innerHTML = cap;
+
+  // body
+  const truthHtml = ex ? `<p class="truth">${t.truth(src.ex + 1, esc(t.examples[src.ex]), ex.truth === label)}</p>` : "";
+  const ops = label === "filter" ? `
+    <div>
+      <h3>${esc(t.opsH)}</h3>
+      <div class="bars">${OPS.map((k) => { const v = rec.operations[k]; return `
+        <div class="bar"><span>${esc(t.ops[k])}</span><div class="track"><div class="fill${v >= rec.operation_threshold ? " on" : ""}" style="width:${(100 * v).toFixed(0)}%"></div><div class="thr"></div></div><span class="num">${f2(v)}</span></div>`; }).join("")}
+      </div>
+      <p class="note" style="margin-top:6px">${esc(t.opsNote)}</p>
+    </div>` : "";
+  $("body").innerHTML = `
+    ${truthHtml}
+    <div class="verdict">
+      <div class="line main"><span class="k">${esc(t.kFake)}</span><span><span class="state ${isFake ? "bad" : "ok"}">${esc(isFake ? t.stFake : t.stNoFake)}</span></span>
+        <span class="score">${t.fakeScore(f2(fakeScore))}</span></div>
+      <div class="line sub"><span class="k">${esc(t.kBeauty)}</span><span><span class="state ${beauty[1]}">${esc(beauty[0])}</span></span>
+        <span class="score">${t.beautyScore(f2(filterScore))}</span></div>
+      <p class="decrow">${t.decrow(esc(t.cls[label]), f2(rec.probabilities.real), f2(fakeScore), f2(filterScore))}</p>
+    </div>
+    <div>
+      <h3>${esc(t.whyH)} <span class="badge" id="srcBadge">${esc(t.badge.template)}</span></h3>
+      <p class="explain" id="explain"></p>
+    </div>
+    ${ops}
+    <div>
+      <h3>${esc(t.moreH)}</h3>
+      <div class="chips" id="chips"></div>
+      <p class="note" id="chipNote" style="margin-top:6px"></p>
+      <div class="answer" id="answer" hidden></div>
+    </div>
+    <details class="more">
+      <summary>${esc(t.moreRules)}</summary>
+      <div class="inner">
+        <p>${esc(t.rule1(f2(FILTER_CLEAR)))}</p>
+        <p>${esc(t.rule2(t.modelName[model.key], model.size, r.box[2] - r.box[0], r.box[3] - r.box[1]))}</p>
+        <p>${esc(t.rule3(last.lmMs.toFixed(0), r.timing.inference.toFixed(0), model.hasEvidence ? r.timing.evidence.toFixed(0) : null))}</p>
+      </div>
+    </details>`;
+  // reveal the answer on the thumbnail too
+  if (ex) { const x = document.querySelector(`.ex[data-ex="${src.ex + 1}"] .ext`); x.textContent = t.cls[ex.truth]; x.hidden = false; }
+  buildChips(); renderExplanation();
+}
+
+function setBadge(source) {
+  const b = $("srcBadge"); if (!b) return;
+  const bd = T().badge, s = bd[source] ? source : "template";
+  b.textContent = bd[s]; b.className = "badge" + (s === "llm" || s === "llmCode" ? " llm" : "");
+}
+
+function renderExplanation() {
+  if (!last) return;
+  const el = $("explain"), rec = last.r.record, lg = lang, opts = { namedOps: ["skin_smoothing"] };
+  const sents = ExplainT2.t2Sentences(rec, lg, opts), chk = ExplainT2.checkT2(rec, sents, lg, opts);
+  el.dataset.check = chk.ok ? "pass" : chk.fails.join(",");
+  if (chk.ok) { el.innerHTML = sents.filter(Boolean).map((s) => `<span>${esc(showT2(s))}</span>`).join(""); setBadge("template"); }
+  else { el.textContent = T().checkFail; setBadge("failed"); }
+}
+
+function buildChips() {
+  const box = $("chips"); if (!box || !last) return;
+  box.innerHTML = "";
+  NLClient.questions(lang).forEach((q, i) => {
+    if (!NLClient.isFixed(i)) return;   // only the questions answered by fixed code sentences
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.textContent = q; b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", () => ask(i, b));
+    box.appendChild(b);
+  });
+  $("chipNote").textContent = "";
+  $("answer").hidden = true;
+}
+
+function showAnswer(q, text, source) {
+  const a = $("answer"), bd = T().badge; a.hidden = false;
+  a.innerHTML = `<p class="q">${esc(q)}</p><p>${esc(text)}</p>` + (source ? `<span class="badge${source === "llm" || source === "llmCode" ? " llm" : ""}">${esc(bd[source] || source)}</span>` : "");
+}
+
+function ask(i, btn) {
+  document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", String(c === btn)));
+  const q = NLClient.questions(lang)[i];
+  if (NLClient.isFixed(i)) { const r = NLClient.fixedAnswer(i, lang); showAnswer(q, r.text, "fixed"); }
+}
+
+// ---------------------------------------------------------------- wiring
+applyStatic();
+$("langBtn").addEventListener("click", () => setLang(lang === "en" ? "zh" : "en"));
+document.querySelectorAll("input[name=lang]").forEach((r) => r.addEventListener("change", () => setLang(r.value)));
+$("openSettings").addEventListener("click", () => { const d = $("settings"); d.open = true; d.scrollIntoView({ block: "start" }); d.querySelector("summary").focus(); });
+for (const id of ["file", "cam"]) {
+  $(id).addEventListener("change", (e) => { const f = e.target.files[0]; if (f) submit({ blob: f, ex: null }); e.target.value = ""; });
+}
+document.querySelectorAll("input[name=model]").forEach((r) => r.addEventListener("change", async () => {
+  try {
+    await ensureModel(modelKey()); readyMsg();
+    if (lastSrc && landmarker) run(lastSrc);
+  } catch (e) { loadMsg(["loadFailSwitch"], null, "error"); }
+}));
 init();
 </script>
 </body>

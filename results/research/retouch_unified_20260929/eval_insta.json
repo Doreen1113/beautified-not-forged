@@ -1,0 +1,83 @@
+{
+ "clipe4r_s20260929": {
+  "B-LFW (filtered genuine)": {
+   "n": 3000,
+   "real": 0.0,
+   "fake": 99.4,
+   "filter": 0.6,
+   "mean_p_fake": 0.984,
+   "fake_over_real": 99.9
+  },
+  "LFW control (unfiltered genuine)": {
+   "n": 2000,
+   "real": 3.5,
+   "fake": 6.2,
+   "filter": 90.2,
+   "mean_p_fake": 0.1,
+   "fake_over_real": 31.6
+  },
+  "FairBeauty (filtered genuine)": {
+   "n": 3269,
+   "real": 1.0,
+   "fake": 92.7,
+   "filter": 6.3,
+   "mean_p_fake": 0.902,
+   "fake_over_real": 95.9
+  },
+  "AUC of P(filter), B-LFW vs LFW control": 0.003
+ },
+ "clipe5_s20260929": {
+  "B-LFW (filtered genuine)": {
+   "n": 3000,
+   "real": 0.0,
+   "fake": 98.3,
+   "filter": 1.7,
+   "mean_p_fake": 0.972,
+   "fake_over_real": 99.9
+  },
+  "LFW control (unfiltered genuine)": {
+   "n": 2000,
+   "real": 3.8,
+   "fake": 3.0,
+   "filter": 93.2,
+   "mean_p_fake": 0.071,
+   "fake_over_real": 30.4
+  },
+  "FairBeauty (filtered genuine)": {
+   "n": 3269,
+   "real": 0.1,
+   "fake": 89.7,
+   "filter": 10.2,
+   "mean_p_fake": 0.886,
+   "fake_over_real": 98.5
+  },
+  "AUC of P(filter), B-LFW vs LFW control": 0.006
+ },
+ "clipe7_s20260929": {
+  "B-LFW (filtered genuine)": {
+   "n": 3000,
+   "real": 0.0,
+   "fake": 0.0,
+   "filter": 100.0,
+   "mean_p_fake": 0.0,
+   "fake_over_real": 90.6
+  },
+  "LFW control (unfiltered genuine)": {
+   "n": 2000,
+   "real": 89.5,
+   "fake": 0.4,
+   "filter": 10.1,
+   "mean_p_fake": 0.021,
+   "fake_over_real": 0.4
+  },
+  "FairBeauty (filtered genuine)": {
+   "n": 3269,
+   "real": 0.0,
+   "fake": 0.0,
+   "filter": 100.0,
+   "mean_p_fake": 0.0,
+   "fake_over_real": 80.7
+  },
+  "AUC of P(filter), B-LFW vs LFW control": 1.0
+ }
+}

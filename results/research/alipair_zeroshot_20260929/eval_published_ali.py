@@ -14,7 +14,7 @@ from sklearn.metrics import roc_auc_score
 
 B = Path(r"C:\My_Project\AIGC"); HERE = Path(__file__).resolve().parent
 CROPS = B / "alipair_crops"; OPS = ["EyeEnlarging", "FaceLifting", "Whitening", "Smoothing"]; LV = (30, 60, 90)
-DET = ["xception", "effnb4", "f3net", "spsl", "ucf", "recce", "core", "srm", "sbi", "effort", "fadapter", "univfd", "npr"]
+DET = ["xception", "effnb4", "f3net", "spsl", "ucf", "recce", "core", "srm", "sbi", "effort", "fadapter", "univfd", "npr", "gend", "dfdhr", "caddm", "laanetr"]
 
 
 def items():
@@ -51,7 +51,11 @@ def score():
         f = HERE / f"published_scores_{d}.npz"
         if f.is_file():
             print(d, "cached", flush=True); continue
-        m = zoo.ZOO[d](); s = np.asarray(m.score(paths), np.float32)
+        if d in ("gend", "dfdhr", "caddm", "laanetr"):   # adapters added 2026-10-11
+            sys.path.insert(0, str(B / "external_baselines")); import importlib; m = importlib.import_module(f"{d}_score").Detector()
+        else:
+            m = zoo.ZOO[d]()
+        s = np.asarray(m.score(paths), np.float32)
         np.savez(f, s=s, group=g, stem=st); print(d, "done", int(np.isnan(s).sum()), "nan", flush=True)
         del m; torch.cuda.empty_cache()
 
@@ -80,7 +84,7 @@ def analyse():
         out[f"ours {n}"]["ret_fake_native_argmax"] = round(float((am[r] == 1).mean() * 100), 2)
     RU = B / "results/research/retouch_unified_20260929"
     for tag, lab in (("effb4_s20260929", "ours RU1"), ("ru2_effb4_s20260929", "ours RU2 s1"), ("ru2_effb4_s20260930", "ours RU2 s2"),
-                     ("clipe4_s20260929", "ours main"), ("ru4e_effb4_s20260929", "ours lite")):
+                     ("clipe4_s20260929", "ours RU4 (superseded)"), ("clipe5_s20260929", "ours main"), ("clipe5y_s20260929", "ours main, symmetric smoothing"), ("clipe5_s20260930", "ours main s2"), ("clipe5b_s20260929", "ours binary control"), ("ru4e_effb4_s20260929", "ours lite")):
         z = np.load(RU / f"ali_scores_{tag}.npz"); P, g, st = z["P"], z["group"], z["stem"]
         out[lab] = block(P[:, 1], g, st); r = g != "orig_0"
         out[lab]["ret_fake_native_argmax"] = round(float((P[r].argmax(1) == 1).mean() * 100), 2)

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>System overview</title>
+<style>
+  /* Printed at exactly the report's text width (14.66 cm); the page height follows the content (render_html_fig.py). */
+  @page { margin: 0; }
+  :root {
+    --ink: #1f2937; --muted: #6b7280; --line: #d6dbe3;
+    --nn: #0f4d92; --code: #1b7f4c; --chk: #6a3d9a; --chk-bg: #efe9f8;
+    --fake: #d55e00; --real: #009e73; --beau: #c98a00;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body { width: 14.66cm; font-family: Arial, "Liberation Sans", Helvetica, sans-serif; color: var(--ink);
+         font-size: 8.5pt; line-height: 1.2; position: relative; padding: 0.22cm 0 0 0.12cm; }
+  .row { display: flex; gap: 0.3cm; margin-bottom: 0.34cm; align-items: stretch; }
+  .panel { position: relative; border-radius: 0.22cm; background: #f7f8fb; border: 0.4pt solid var(--line); padding: 0.5cm 0.25cm 0.22cm; }
+  .panel > .chip { position: absolute; top: -0.19cm; left: 0.25cm; font-size: 8.5pt; font-weight: 700; color: #fff; padding: 0.045cm 0.22cm; border-radius: 0.3cm; white-space: nowrap; }
+  .panel.code > .chip { background: var(--code); } .panel.nn > .chip { background: var(--nn); } .panel.chk > .chip { background: var(--chk); }
+  .flow { display: flex; align-items: flex-start; gap: 0.16cm; }
+  .step { display: flex; flex-direction: column; align-items: center; width: 2.2cm; flex: none; }
+  .tile { width: 2.2cm; height: 2.2cm; object-fit: cover; border-radius: 0.14cm; box-shadow: 0 1px 2.5px rgba(0,0,0,.28); display: block; }
+  .cap { margin-top: 0.1cm; text-align: center; font-size: 8.5pt; line-height: 1.2; }
+  .arrow { flex: none; width: 0.42cm; height: 2.3cm; display: flex; align-items: center; justify-content: center; }
+  .arrow svg { width: 0.42cm; height: 0.3cm; }
+  .bb { width: 1.55cm; height: 2.3cm; flex: none; }
+  .bb svg { width: 1.55cm; height: 2.3cm; display: block; }
+  .heads { width: 3.25cm; height: 2.3cm; flex: none; background: #fff; border: 0.5pt solid var(--nn); border-radius: 0.14cm; padding: 0.17cm 0.15cm 0.1cm; }
+  .bar { display: grid; grid-template-columns: 1.3cm 0.95cm 0.55cm; align-items: center; column-gap: 0.08cm; height: 0.44cm; font-size: 8.5pt; }
+  .bar .n { text-align: right; } .bar .t { height: 0.2cm; background: #e8eaef; border-radius: 0.1cm; overflow: hidden; display: block; }
+  .bar .f { height: 100%; border-radius: 0.1cm; display: block; } .bar .v { font-variant-numeric: tabular-nums; }
+  .ops { margin-top: 0.14cm; font-size: 8pt; color: var(--muted); line-height: 1.15; text-align: center; }
+  .map { width: 1.45cm; }
+  .map img { width: 1.45cm; height: 1.45cm; image-rendering: pixelated; border: 0.5pt solid var(--nn); border-radius: 0.08cm; display: block; margin-top: 0.42cm; }
+  .tilewrap { position: relative; width: 2.2cm; height: 2.2cm; }
+  .callout { position: absolute; left: 0.1cm; bottom: 0.1cm; background: rgba(31,41,55,.85); color: #ffd166; font-size: 8pt; font-weight: 700; padding: 0.03cm 0.12cm; border-radius: 0.1cm; }
+  .card { width: 100%; background: #fff; border: 0.5pt solid var(--code); border-left: 3pt solid var(--code); border-radius: 0.14cm; padding: 0.15cm 0.18cm; font-size: 8.5pt; line-height: 1.3; }
+  .card b.k { color: var(--fake); } .card b.p { color: var(--code); }
+  .checks { margin-top: 0.12cm; display: flex; gap: 0.1cm; flex-wrap: wrap; }
+  .pill { font-size: 8pt; font-weight: 700; color: var(--chk); background: var(--chk-bg); border: 0.4pt solid var(--chk); border-radius: 0.3cm; padding: 0.02cm 0.16cm; white-space: nowrap; }
+  .pill span { color: var(--real); }
+  .note { margin-top: 0.12cm; font-size: 8pt; color: var(--muted); }
+  .train { display: flex; align-items: center; gap: 0.3cm; }
+  .pair { display: flex; align-items: center; gap: 0.1cm; flex: none; }
+  .pair img { width: 1.5cm; height: 1.5cm; object-fit: cover; border-radius: 0.1cm; box-shadow: 0 1px 2px rgba(0,0,0,.25); display: block; }
+  .pair .one { display: flex; flex-direction: column; align-items: center; width: 1.5cm; }
+  .pair .lbl { font-size: 8pt; margin-top: 0.06cm; color: var(--muted); white-space: nowrap; }
+  .pair .cls { font-size: 9pt; font-weight: 700; width: 1.35cm; text-align: right; padding-right: 0.08cm; }
+  .plus { font-size: 11pt; color: var(--muted); font-weight: 700; padding: 0 0.04cm; }
+  .ttext { font-size: 8.5pt; line-height: 1.3; }
+  .ttext b { color: var(--nn); }
+  .legend { font-size: 8pt; color: var(--muted); margin-top: -0.12cm; padding-left: 0.1cm; }
+  .legend i { display: inline-block; width: 0.28cm; height: 0.18cm; border-radius: 0.05cm; vertical-align: -0.03cm; margin: 0 0.08cm 0 0.3cm; }
+  .legend i:first-child { margin-left: 0; }
+  svg.ov { position: absolute; left: 0; top: 0; pointer-events: none; overflow: visible; }
+</style>
+</head>
+<body>
+
+<div class="row">
+  <div class="panel code" style="width:5.7cm">
+    <div class="chip">1 Capture, on the device</div>
+    <div class="flow">
+      <div class="step"><img class="tile" src="arch_photo.png" alt=""><div class="cap">photo with its<br>478 landmarks</div></div>
+      <div class="arrow"><svg viewBox="0 0 16 10"><path d="M0 5h11M9 1l5 4-5 4" fill="none" stroke="#1f2937" stroke-width="1.6"/></svg></div>
+      <div class="step"><img class="tile" src="arch_crop.png" alt=""><div class="cap">aligned crop,<br>as in training</div></div>
+    </div>
+  </div>
+  <div class="panel nn" style="width:8.66cm">
+    <div class="chip">2 Detect</div>
+    <div class="flow">
+      <div class="step" style="width:1.55cm"><div class="bb">
+        <svg viewBox="0 0 62 92">
+          <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#d4e3f6"/><stop offset="1" stop-color="#9dbde5"/></linearGradient></defs>
+          <path d="M2 2 L60 24 L60 68 L2 90 Z" fill="url(#g)" stroke="#0f4d92" stroke-width="1.6"/>
+          <text x="31" y="42" text-anchor="middle" font-size="11" font-family="Arial" fill="#0f4d92" font-weight="700">CLIP</text>
+          <text x="31" y="55" text-anchor="middle" font-size="9.5" font-family="Arial" fill="#0f4d92">ViT-L/14</text>
+          <text x="31" y="67" text-anchor="middle" font-size="9.5" font-family="Arial" fill="#0f4d92">+ LoRA</text>
+        </svg></div><div class="cap">backbone</div></div>
+      <div class="arrow"><svg viewBox="0 0 16 10"><path d="M0 5h11M9 1l5 4-5 4" fill="none" stroke="#1f2937" stroke-width="1.6"/></svg></div>
+      <div class="step" style="width:3.25cm"><div class="heads">
+        <div class="bar"><span class="n">real</span><span class="t"><span class="f" style="width:2%;background:var(--real)"></span></span><span class="v">0.00</span></div>
+        <div class="bar"><span class="n">fake</span><span class="t"><span class="f" style="width:100%;background:var(--fake)"></span></span><span class="v">1.00</span></div>
+        <div class="bar"><span class="n">beautified</span><span class="t"><span class="f" style="width:2%;background:var(--beau)"></span></span><span class="v">0.00</span></div>
+        <div class="ops">operation scores all below 0.5</div>
+      </div><div class="cap">heads: class scores,<br>operation scores</div></div>
+      <div class="arrow"><svg viewBox="0 0 16 10"><path d="M0 5h11M9 1l5 4-5 4" fill="none" stroke="#1f2937" stroke-width="1.6"/></svg></div>
+      <div class="step map" id="map"><img src="arch_map16.png" alt=""><div class="cap">evidence map<br>16&thinsp;&times;&thinsp;16</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="panel code" style="width:8.6cm">
+    <div class="chip">3 Locate, by code</div>
+    <div class="flow">
+      <div class="step" id="ev"><img class="tile" src="arch_evidence.png" alt=""><div class="cap">map on the face,<br>contour at 0.5</div></div>
+      <div class="arrow"><svg viewBox="0 0 16 10"><path d="M0 5h11M9 1l5 4-5 4" fill="none" stroke="#1f2937" stroke-width="1.6"/></svg></div>
+      <div class="step"><img class="tile" src="arch_parts.png" alt=""><div class="cap">five part masks<br>from landmarks</div></div>
+      <div class="arrow"><svg viewBox="0 0 16 10"><path d="M0 5h11M9 1l5 4-5 4" fill="none" stroke="#1f2937" stroke-width="1.6"/></svg></div>
+      <div class="step"><div class="tilewrap"><img class="tile" src="arch_named.png" alt=""><div class="callout">mouth 0.99</div></div><div class="cap">named part:<br>most evidence</div></div>
+    </div>
+  </div>
+  <div class="panel chk" style="width:5.76cm">
+    <div class="chip">4 Explain and check, by code</div>
+    <div class="card">
+      The model's decision is <b class="k">fake</b> (score <b>1.00</b>). The evidence is concentrated on the <b class="p">mouth</b> (mean evidence <b>0.99</b>). The score is the model's raw output, not a calibrated probability.
+      <div class="checks"><span class="pill"><span>&#10003;</span> H1&ndash;H6 match the record</span><span class="pill"><span>&#10003;</span> G7&ndash;G9 no score misuse</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom:0.22cm">
+  <div class="panel nn" style="width:14.66cm">
+    <div class="chip">Training, once, offline</div>
+    <div class="train" style="justify-content:center; gap:0.9cm">
+      <div class="pair">
+        <div class="cls" style="color:var(--real)">genuine</div>
+        <div class="one"><img src="train_genuine.png" alt=""><div class="lbl">as recorded</div></div>
+        <div class="plus">+</div>
+        <div class="one"><img src="train_genuine_smooth.png" alt=""><div class="lbl">smoothed view</div></div>
+      </div>
+      <div class="pair">
+        <div class="cls" style="color:var(--fake)">forged</div>
+        <div class="one"><img src="train_forged.png" alt=""><div class="lbl">as recorded</div></div>
+        <div class="plus">+</div>
+        <div class="one"><img src="train_forged_smooth.png" alt=""><div class="lbl">smoothed view</div></div>
+      </div>
+    </div>
+    <div class="ttext" style="margin-top:0.18cm"><b>Skin smoothing is shown to both classes</b>, so it cannot become the forgery cue. Genuine: FF++ frames and FFHQ originals. Forged: FF++ forgeries and 61,510 part-level edits with exact footprints (the evidence head's targets). Beautified: renders of two retouching services.</div>
+  </div>
+</div>
+<div class="legend"><i style="background:var(--nn)"></i>neural network<i style="background:var(--code)"></i>code with fixed rules<i style="background:var(--chk)"></i>checks &nbsp;&middot;&nbsp; steps 1&ndash;4 run in the browser</div>
+
+<svg class="ov" id="ov"><defs><marker id="ah" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#1f2937"/></marker></defs><path id="link" fill="none" stroke="#1f2937" stroke-width="1.3" stroke-dasharray="3 2.5" marker-end="url(#ah)"/></svg>
+<script>
+  // dashed connector from the evidence map (end of row 1) to the face (start of row 2), drawn from the laid-out positions
+  function link() {
+    const a = document.querySelector('#map').getBoundingClientRect(), b = document.querySelector('#ev img').getBoundingClientRect();
+    // down from the map, left along the bottom padding of row 1, down the left margin, then into the face tile from the left
+    const p1 = document.querySelector('.row').getBoundingClientRect();
+    const sx = window.scrollX, sy = window.scrollY, x1 = a.left + a.width / 2 + sx, y1 = a.bottom + sy + 2;
+    const ym = p1.bottom + sy - 7, xl = 3, y2 = b.top + b.height / 2 + sy, x2 = b.left + sx - 3;
+    document.getElementById('link').setAttribute('d', `M${x1} ${y1} L${x1} ${ym} L${xl} ${ym} L${xl} ${y2} L${x2} ${y2}`);
+    const s = document.getElementById('ov'); s.setAttribute('width', document.body.scrollWidth); s.setAttribute('height', document.body.scrollHeight);
+  }
+  window.addEventListener('load', link);
+</script>
+</body>
+</html>

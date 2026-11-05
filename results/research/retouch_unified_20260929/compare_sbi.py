@@ -1,6 +1,7 @@
 """RU vs official SBI (and MASK / MASK-D) on the SAME CDFv2 / DFD std32 frames: frame AUC, video AUC, paired video-cluster
 bootstrap of the AUC difference (1,000 resamples). python compare_sbi.py <tag...>  -> compare_sbi.json"""
 import json
+import os
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -68,7 +69,7 @@ def main():
             res[nm]["minus_SBI_frame_CI"] = [round(float(np.percentile(d_f, 2.5)), 4), round(float(np.percentile(d_f, 97.5)), 4)]
             res[nm]["minus_SBI_video_CI"] = [round(float(np.percentile(d_v, 2.5)), 4), round(float(np.percentile(d_v, 97.5)), 4)]
         out[sname] = res; print(sname, json.dumps(res), flush=True)
-    json.dump(out, open(HERE / "compare_sbi.json", "w"), indent=1)
+    json.dump(out, open(HERE / os.environ.get("COMPARE_SBI_OUT", "compare_sbi.json"), "w"), indent=1)   # set COMPARE_SBI_OUT to keep runs apart
 
 
 if __name__ == "__main__":

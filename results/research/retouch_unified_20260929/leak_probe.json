@@ -1,0 +1,8366 @@
+{
+ "clipe4_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 80.8,
+    "fake": 7.7,
+    "filter": 11.5,
+    "mean_p_fake": 0.104,
+    "fake_over_real": 9.1
+   },
+   "fake": {
+    "n": 529,
+    "real": 7.4,
+    "fake": 90.7,
+    "filter": 1.9,
+    "mean_p_fake": 0.881,
+    "fake_over_real": 91.9
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 31.1,
+    "fake": 21.1,
+    "filter": 47.7,
+    "mean_p_fake": 0.232,
+    "fake_over_real": 43.6
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 1.9,
+    "fake": 93.6,
+    "filter": 4.5,
+    "mean_p_fake": 0.904,
+    "fake_over_real": 97.4
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 56.5,
+    "fake": 0.2,
+    "filter": 43.3,
+    "mean_p_fake": 0.008,
+    "fake_over_real": 0.4
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 0.1,
+    "filter": 99.8,
+    "mean_p_fake": 0.002,
+    "fake_over_real": 15.4
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 3.0,
+    "fake": 92.8,
+    "filter": 4.1,
+    "mean_p_fake": 0.916,
+    "fake_over_real": 94.5
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.0,
+    "fake": 78.5,
+    "filter": 21.5,
+    "mean_p_fake": 0.784,
+    "fake_over_real": 93.6
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 55.5,
+    "fake": 0.2,
+    "filter": 44.4,
+    "mean_p_fake": 0.008,
+    "fake_over_real": 0.3
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 4.9,
+    "fake": 0.2,
+    "filter": 94.9,
+    "mean_p_fake": 0.004,
+    "fake_over_real": 5.6
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 2.7,
+    "fake": 93.5,
+    "filter": 3.8,
+    "mean_p_fake": 0.921,
+    "fake_over_real": 94.5
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.4,
+    "fake": 88.3,
+    "filter": 11.3,
+    "mean_p_fake": 0.873,
+    "fake_over_real": 94.9
+   }
+  }
+ },
+ "clipe4r_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 78.1,
+    "fake": 13.4,
+    "filter": 8.5,
+    "mean_p_fake": 0.155,
+    "fake_over_real": 14.5
+   },
+   "fake": {
+    "n": 529,
+    "real": 4.5,
+    "fake": 94.7,
+    "filter": 0.8,
+    "mean_p_fake": 0.933,
+    "fake_over_real": 94.9
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 26.0,
+    "fake": 33.6,
+    "filter": 40.4,
+    "mean_p_fake": 0.33,
+    "fake_over_real": 56.8
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.6,
+    "fake": 97.0,
+    "filter": 2.5,
+    "mean_p_fake": 0.953,
+    "fake_over_real": 98.7
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 89.3,
+    "fake": 0.4,
+    "filter": 10.3,
+    "mean_p_fake": 0.01,
+    "fake_over_real": 0.4
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 0.0,
+    "filter": 99.7,
+    "mean_p_fake": 0.001,
+    "fake_over_real": 31.0
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 3.5,
+    "fake": 94.5,
+    "filter": 2.0,
+    "mean_p_fake": 0.936,
+    "fake_over_real": 95.5
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 80.4,
+    "filter": 19.6,
+    "mean_p_fake": 0.802,
+    "fake_over_real": 95.1
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 88.2,
+    "fake": 0.3,
+    "filter": 11.5,
+    "mean_p_fake": 0.01,
+    "fake_over_real": 0.3
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 24.7,
+    "fake": 0.3,
+    "filter": 75.0,
+    "mean_p_fake": 0.007,
+    "fake_over_real": 7.0
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 3.4,
+    "fake": 95.3,
+    "filter": 1.3,
+    "mean_p_fake": 0.942,
+    "fake_over_real": 95.6
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 1.6,
+    "fake": 92.9,
+    "filter": 5.5,
+    "mean_p_fake": 0.923,
+    "fake_over_real": 96.1
+   }
+  }
+ },
+ "ru4e_effb4_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 78.5,
+    "fake": 10.8,
+    "filter": 10.8,
+    "mean_p_fake": 0.139,
+    "fake_over_real": 11.9
+   },
+   "fake": {
+    "n": 529,
+    "real": 6.2,
+    "fake": 92.6,
+    "filter": 1.1,
+    "mean_p_fake": 0.897,
+    "fake_over_real": 93.0
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 40.0,
+    "fake": 19.1,
+    "filter": 40.9,
+    "mean_p_fake": 0.227,
+    "fake_over_real": 40.2
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 2.8,
+    "fake": 91.9,
+    "filter": 5.3,
+    "mean_p_fake": 0.898,
+    "fake_over_real": 96.2
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 81.5,
+    "fake": 0.4,
+    "filter": 18.1,
+    "mean_p_fake": 0.017,
+    "fake_over_real": 1.2
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.7,
+    "fake": 0.1,
+    "filter": 99.2,
+    "mean_p_fake": 0.005,
+    "fake_over_real": 10.5
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 4.5,
+    "fake": 91.5,
+    "filter": 4.1,
+    "mean_p_fake": 0.904,
+    "fake_over_real": 93.3
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.5,
+    "fake": 81.4,
+    "filter": 18.1,
+    "mean_p_fake": 0.806,
+    "fake_over_real": 94.6
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 81.3,
+    "fake": 0.6,
+    "filter": 18.0,
+    "mean_p_fake": 0.018,
+    "fake_over_real": 1.4
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 27.1,
+    "fake": 0.5,
+    "filter": 72.4,
+    "mean_p_fake": 0.012,
+    "fake_over_real": 7.4
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 5.1,
+    "fake": 91.4,
+    "filter": 3.5,
+    "mean_p_fake": 0.903,
+    "fake_over_real": 92.5
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 2.1,
+    "fake": 86.5,
+    "filter": 11.3,
+    "mean_p_fake": 0.852,
+    "fake_over_real": 93.5
+   }
+  }
+ },
+ "clipe4r_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 80.6,
+    "fake": 10.6,
+    "filter": 8.9,
+    "mean_p_fake": 0.122,
+    "fake_over_real": 11.7
+   },
+   "fake": {
+    "n": 529,
+    "real": 6.2,
+    "fake": 92.2,
+    "filter": 1.5,
+    "mean_p_fake": 0.909,
+    "fake_over_real": 92.8
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 26.6,
+    "fake": 28.9,
+    "filter": 44.5,
+    "mean_p_fake": 0.287,
+    "fake_over_real": 50.8
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 2.6,
+    "fake": 93.4,
+    "filter": 4.0,
+    "mean_p_fake": 0.922,
+    "fake_over_real": 96.2
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 83.1,
+    "fake": 0.3,
+    "filter": 16.7,
+    "mean_p_fake": 0.005,
+    "fake_over_real": 0.6
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 0.0,
+    "filter": 99.7,
+    "mean_p_fake": 0.001,
+    "fake_over_real": 31.1
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 3.9,
+    "fake": 93.5,
+    "filter": 2.6,
+    "mean_p_fake": 0.925,
+    "fake_over_real": 94.4
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.0,
+    "fake": 83.1,
+    "filter": 16.9,
+    "mean_p_fake": 0.829,
+    "fake_over_real": 97.3
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 82.0,
+    "fake": 0.3,
+    "filter": 17.8,
+    "mean_p_fake": 0.005,
+    "fake_over_real": 0.6
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 17.1,
+    "fake": 0.2,
+    "filter": 82.7,
+    "mean_p_fake": 0.004,
+    "fake_over_real": 19.3
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 3.6,
+    "fake": 94.6,
+    "filter": 1.8,
+    "mean_p_fake": 0.933,
+    "fake_over_real": 95.3
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 1.1,
+    "fake": 89.3,
+    "filter": 9.6,
+    "mean_p_fake": 0.886,
+    "fake_over_real": 96.3
+   }
+  }
+ },
+ "clipe5_s20260929_e06": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 82.8,
+    "fake": 9.1,
+    "filter": 8.1,
+    "mean_p_fake": 0.102,
+    "fake_over_real": 9.4
+   },
+   "fake": {
+    "n": 529,
+    "real": 8.7,
+    "fake": 90.0,
+    "filter": 1.3,
+    "mean_p_fake": 0.895,
+    "fake_over_real": 90.9
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 7.7,
+    "fake": 15.1,
+    "filter": 77.2,
+    "mean_p_fake": 0.189,
+    "fake_over_real": 77.7
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.6,
+    "fake": 90.0,
+    "filter": 9.5,
+    "mean_p_fake": 0.891,
+    "fake_over_real": 98.9
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 78.7,
+    "fake": 0.4,
+    "filter": 20.9,
+    "mean_p_fake": 0.009,
+    "fake_over_real": 1.0
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 0.8,
+    "filter": 99.0,
+    "mean_p_fake": 0.022,
+    "fake_over_real": 73.3
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 2.2,
+    "fake": 96.5,
+    "filter": 1.3,
+    "mean_p_fake": 0.956,
+    "fake_over_real": 96.8
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 94.9,
+    "filter": 5.0,
+    "mean_p_fake": 0.948,
+    "fake_over_real": 99.5
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 78.2,
+    "fake": 0.3,
+    "filter": 21.5,
+    "mean_p_fake": 0.009,
+    "fake_over_real": 0.8
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 10.9,
+    "fake": 0.4,
+    "filter": 88.6,
+    "mean_p_fake": 0.016,
+    "fake_over_real": 44.1
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 2.2,
+    "fake": 96.5,
+    "filter": 1.3,
+    "mean_p_fake": 0.96,
+    "fake_over_real": 97.0
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.4,
+    "fake": 96.8,
+    "filter": 2.8,
+    "mean_p_fake": 0.965,
+    "fake_over_real": 98.8
+   }
+  }
+ },
+ "clipe5_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 82.8,
+    "fake": 9.1,
+    "filter": 8.1,
+    "mean_p_fake": 0.102,
+    "fake_over_real": 9.4
+   },
+   "fake": {
+    "n": 529,
+    "real": 8.7,
+    "fake": 90.0,
+    "filter": 1.3,
+    "mean_p_fake": 0.895,
+    "fake_over_real": 90.9
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 7.7,
+    "fake": 15.1,
+    "filter": 77.2,
+    "mean_p_fake": 0.189,
+    "fake_over_real": 77.7
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.6,
+    "fake": 90.0,
+    "filter": 9.5,
+    "mean_p_fake": 0.891,
+    "fake_over_real": 98.9
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 78.7,
+    "fake": 0.4,
+    "filter": 20.9,
+    "mean_p_fake": 0.009,
+    "fake_over_real": 1.0
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 0.8,
+    "filter": 99.0,
+    "mean_p_fake": 0.022,
+    "fake_over_real": 73.3
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 2.2,
+    "fake": 96.5,
+    "filter": 1.3,
+    "mean_p_fake": 0.956,
+    "fake_over_real": 96.8
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 94.9,
+    "filter": 5.0,
+    "mean_p_fake": 0.948,
+    "fake_over_real": 99.5
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 78.2,
+    "fake": 0.3,
+    "filter": 21.5,
+    "mean_p_fake": 0.009,
+    "fake_over_real": 0.8
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 10.9,
+    "fake": 0.4,
+    "filter": 88.6,
+    "mean_p_fake": 0.016,
+    "fake_over_real": 44.1
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 2.2,
+    "fake": 96.5,
+    "filter": 1.3,
+    "mean_p_fake": 0.96,
+    "fake_over_real": 97.0
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.4,
+    "fake": 96.8,
+    "filter": 2.8,
+    "mean_p_fake": 0.965,
+    "fake_over_real": 98.8
+   }
+  }
+ },
+ "clipe5x_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 81.5,
+    "fake": 7.7,
+    "filter": 10.8,
+    "mean_p_fake": 0.107,
+    "fake_over_real": 9.4
+   },
+   "fake": {
+    "n": 529,
+    "real": 6.2,
+    "fake": 91.3,
+    "filter": 2.5,
+    "mean_p_fake": 0.898,
+    "fake_over_real": 92.4
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 7.2,
+    "fake": 24.3,
+    "filter": 68.5,
+    "mean_p_fake": 0.276,
+    "fake_over_real": 77.4
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.2,
+    "fake": 94.5,
+    "filter": 5.3,
+    "mean_p_fake": 0.929,
+    "fake_over_real": 99.2
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 82.9,
+    "fake": 0.6,
+    "filter": 16.5,
+    "mean_p_fake": 0.009,
+    "fake_over_real": 1.2
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 1.0,
+    "filter": 98.7,
+    "mean_p_fake": 0.027,
+    "fake_over_real": 75.4
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 2.4,
+    "fake": 96.0,
+    "filter": 1.6,
+    "mean_p_fake": 0.955,
+    "fake_over_real": 96.8
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.0,
+    "fake": 95.7,
+    "filter": 4.3,
+    "mean_p_fake": 0.957,
+    "fake_over_real": 99.7
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 81.6,
+    "fake": 0.7,
+    "filter": 17.7,
+    "mean_p_fake": 0.009,
+    "fake_over_real": 1.3
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 12.8,
+    "fake": 0.9,
+    "filter": 86.2,
+    "mean_p_fake": 0.021,
+    "fake_over_real": 37.3
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 2.5,
+    "fake": 96.5,
+    "filter": 1.0,
+    "mean_p_fake": 0.961,
+    "fake_over_real": 96.9
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.6,
+    "fake": 97.3,
+    "filter": 2.1,
+    "mean_p_fake": 0.97,
+    "fake_over_real": 98.5
+   }
+  }
+ },
+ "clipe6_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 81.1,
+    "fake": 12.5,
+    "filter": 6.4,
+    "mean_p_fake": 0.237,
+    "fake_over_real": 15.3
+   },
+   "fake": {
+    "n": 529,
+    "real": 12.9,
+    "fake": 85.8,
+    "filter": 1.3,
+    "mean_p_fake": 0.781,
+    "fake_over_real": 87.1
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 4.2,
+    "fake": 24.7,
+    "filter": 71.1,
+    "mean_p_fake": 0.323,
+    "fake_over_real": 91.1
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.2,
+    "fake": 87.9,
+    "filter": 11.9,
+    "mean_p_fake": 0.804,
+    "fake_over_real": 99.6
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 79.4,
+    "fake": 0.6,
+    "filter": 20.0,
+    "mean_p_fake": 0.06,
+    "fake_over_real": 2.5
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 2.3,
+    "filter": 97.5,
+    "mean_p_fake": 0.07,
+    "fake_over_real": 96.3
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 2.9,
+    "fake": 95.3,
+    "filter": 1.8,
+    "mean_p_fake": 0.907,
+    "fake_over_real": 96.1
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 95.9,
+    "filter": 4.1,
+    "mean_p_fake": 0.915,
+    "fake_over_real": 99.8
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 78.2,
+    "fake": 0.7,
+    "filter": 21.1,
+    "mean_p_fake": 0.061,
+    "fake_over_real": 2.5
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 15.3,
+    "fake": 2.1,
+    "filter": 82.6,
+    "mean_p_fake": 0.075,
+    "fake_over_real": 55.5
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 2.7,
+    "fake": 96.0,
+    "filter": 1.3,
+    "mean_p_fake": 0.911,
+    "fake_over_real": 96.4
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.5,
+    "fake": 97.3,
+    "filter": 2.2,
+    "mean_p_fake": 0.925,
+    "fake_over_real": 98.7
+   }
+  }
+ },
+ "clipe5_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 80.0,
+    "fake": 10.2,
+    "filter": 9.8,
+    "mean_p_fake": 0.119,
+    "fake_over_real": 10.8
+   },
+   "fake": {
+    "n": 529,
+    "real": 7.4,
+    "fake": 91.3,
+    "filter": 1.3,
+    "mean_p_fake": 0.911,
+    "fake_over_real": 91.3
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 4.5,
+    "fake": 19.4,
+    "filter": 76.0,
+    "mean_p_fake": 0.233,
+    "fake_over_real": 77.9
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.4,
+    "fake": 92.6,
+    "filter": 7.0,
+    "mean_p_fake": 0.919,
+    "fake_over_real": 98.9
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 77.8,
+    "fake": 0.4,
+    "filter": 21.8,
+    "mean_p_fake": 0.008,
+    "fake_over_real": 1.0
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 0.8,
+    "filter": 98.8,
+    "mean_p_fake": 0.022,
+    "fake_over_real": 82.7
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 2.3,
+    "fake": 96.1,
+    "filter": 1.5,
+    "mean_p_fake": 0.953,
+    "fake_over_real": 96.6
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.0,
+    "fake": 95.9,
+    "filter": 4.1,
+    "mean_p_fake": 0.957,
+    "fake_over_real": 99.6
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 76.9,
+    "fake": 0.3,
+    "filter": 22.8,
+    "mean_p_fake": 0.008,
+    "fake_over_real": 0.9
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 11.1,
+    "fake": 0.7,
+    "filter": 88.2,
+    "mean_p_fake": 0.019,
+    "fake_over_real": 41.7
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 2.3,
+    "fake": 96.6,
+    "filter": 1.1,
+    "mean_p_fake": 0.96,
+    "fake_over_real": 96.9
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.4,
+    "fake": 97.3,
+    "filter": 2.3,
+    "mean_p_fake": 0.968,
+    "fake_over_real": 98.7
+   }
+  }
+ },
+ "clipe5g0_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 80.0,
+    "fake": 8.9,
+    "filter": 11.1,
+    "mean_p_fake": 0.101,
+    "fake_over_real": 8.9
+   },
+   "fake": {
+    "n": 529,
+    "real": 5.9,
+    "fake": 92.8,
+    "filter": 1.3,
+    "mean_p_fake": 0.92,
+    "fake_over_real": 93.0
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 28.3,
+    "fake": 23.2,
+    "filter": 48.5,
+    "mean_p_fake": 0.242,
+    "fake_over_real": 50.4
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 1.3,
+    "fake": 93.6,
+    "filter": 5.1,
+    "mean_p_fake": 0.916,
+    "fake_over_real": 97.5
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 83.3,
+    "fake": 0.3,
+    "filter": 16.4,
+    "mean_p_fake": 0.008,
+    "fake_over_real": 0.8
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 0.6,
+    "filter": 99.3,
+    "mean_p_fake": 0.016,
+    "fake_over_real": 80.8
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 2.6,
+    "fake": 95.6,
+    "filter": 1.8,
+    "mean_p_fake": 0.949,
+    "fake_over_real": 96.2
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 95.0,
+    "filter": 5.0,
+    "mean_p_fake": 0.948,
+    "fake_over_real": 99.5
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 82.2,
+    "fake": 0.3,
+    "filter": 17.5,
+    "mean_p_fake": 0.008,
+    "fake_over_real": 0.9
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 16.0,
+    "fake": 0.6,
+    "filter": 83.4,
+    "mean_p_fake": 0.015,
+    "fake_over_real": 35.6
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 2.8,
+    "fake": 95.6,
+    "filter": 1.6,
+    "mean_p_fake": 0.954,
+    "fake_over_real": 96.5
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.6,
+    "fake": 96.5,
+    "filter": 2.8,
+    "mean_p_fake": 0.962,
+    "fake_over_real": 98.4
+   }
+  }
+ },
+ "clipe5v0_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 84.5,
+    "fake": 7.9,
+    "filter": 7.5,
+    "mean_p_fake": 0.096,
+    "fake_over_real": 7.9
+   },
+   "fake": {
+    "n": 529,
+    "real": 8.9,
+    "fake": 89.4,
+    "filter": 1.7,
+    "mean_p_fake": 0.885,
+    "fake_over_real": 89.8
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 12.3,
+    "fake": 18.3,
+    "filter": 69.4,
+    "mean_p_fake": 0.226,
+    "fake_over_real": 70.6
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.8,
+    "fake": 92.2,
+    "filter": 7.0,
+    "mean_p_fake": 0.902,
+    "fake_over_real": 98.1
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 83.2,
+    "fake": 0.3,
+    "filter": 16.5,
+    "mean_p_fake": 0.007,
+    "fake_over_real": 0.4
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.4,
+    "fake": 0.0,
+    "filter": 99.6,
+    "mean_p_fake": 0.001,
+    "fake_over_real": 8.5
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 4.1,
+    "fake": 94.1,
+    "filter": 1.9,
+    "mean_p_fake": 0.934,
+    "fake_over_real": 94.4
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 79.3,
+    "filter": 20.6,
+    "mean_p_fake": 0.788,
+    "fake_over_real": 92.1
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 81.8,
+    "fake": 0.4,
+    "filter": 17.8,
+    "mean_p_fake": 0.007,
+    "fake_over_real": 0.6
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 18.7,
+    "fake": 0.2,
+    "filter": 81.2,
+    "mean_p_fake": 0.004,
+    "fake_over_real": 13.2
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 3.6,
+    "fake": 95.0,
+    "filter": 1.3,
+    "mean_p_fake": 0.942,
+    "fake_over_real": 95.3
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 1.6,
+    "fake": 92.7,
+    "filter": 5.7,
+    "mean_p_fake": 0.921,
+    "fake_over_real": 95.6
+   }
+  }
+ },
+ "clipe5b_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 2.1,
+    "fake": 14.2,
+    "filter": 83.8,
+    "mean_p_fake": 0.147,
+    "fake_over_real": 16.6
+   },
+   "fake": {
+    "n": 529,
+    "real": 0.0,
+    "fake": 96.0,
+    "filter": 4.0,
+    "mean_p_fake": 0.951,
+    "fake_over_real": 96.6
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 5.1,
+    "fake": 27.0,
+    "filter": 67.9,
+    "mean_p_fake": 0.258,
+    "fake_over_real": 28.9
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.0,
+    "fake": 96.2,
+    "filter": 3.8,
+    "mean_p_fake": 0.951,
+    "fake_over_real": 97.2
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 2.6,
+    "fake": 0.6,
+    "filter": 96.8,
+    "mean_p_fake": 0.007,
+    "fake_over_real": 0.8
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 3.1,
+    "fake": 1.4,
+    "filter": 95.5,
+    "mean_p_fake": 0.017,
+    "fake_over_real": 1.9
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.0,
+    "fake": 96.0,
+    "filter": 4.0,
+    "mean_p_fake": 0.957,
+    "fake_over_real": 96.6
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 95.9,
+    "filter": 4.0,
+    "mean_p_fake": 0.956,
+    "fake_over_real": 96.5
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 2.8,
+    "fake": 0.6,
+    "filter": 96.6,
+    "mean_p_fake": 0.007,
+    "fake_over_real": 0.9
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 3.6,
+    "fake": 0.9,
+    "filter": 95.5,
+    "mean_p_fake": 0.012,
+    "fake_over_real": 1.4
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 96.3,
+    "filter": 3.7,
+    "mean_p_fake": 0.959,
+    "fake_over_real": 96.7
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 97.0,
+    "filter": 3.0,
+    "mean_p_fake": 0.967,
+    "fake_over_real": 97.2
+   }
+  }
+ },
+ "clipe5f_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 82.3,
+    "fake": 4.2,
+    "filter": 13.6,
+    "mean_p_fake": 0.049,
+    "fake_over_real": 4.5
+   },
+   "fake": {
+    "n": 529,
+    "real": 5.3,
+    "fake": 93.4,
+    "filter": 1.3,
+    "mean_p_fake": 0.919,
+    "fake_over_real": 93.8
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 6.8,
+    "fake": 18.1,
+    "filter": 75.1,
+    "mean_p_fake": 0.2,
+    "fake_over_real": 78.3
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.8,
+    "fake": 93.0,
+    "filter": 6.2,
+    "mean_p_fake": 0.919,
+    "fake_over_real": 98.9
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 3.2,
+    "fake": 16.4,
+    "filter": 80.4,
+    "mean_p_fake": 0.165,
+    "fake_over_real": 41.5
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 3.0,
+    "fake": 35.4,
+    "filter": 61.6,
+    "mean_p_fake": 0.362,
+    "fake_over_real": 72.0
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 97.0,
+    "filter": 2.9,
+    "mean_p_fake": 0.962,
+    "fake_over_real": 98.6
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.2,
+    "fake": 97.9,
+    "filter": 1.9,
+    "mean_p_fake": 0.97,
+    "fake_over_real": 99.0
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 3.0,
+    "fake": 16.5,
+    "filter": 80.5,
+    "mean_p_fake": 0.173,
+    "fake_over_real": 42.3
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 3.0,
+    "fake": 16.8,
+    "filter": 80.3,
+    "mean_p_fake": 0.18,
+    "fake_over_real": 46.2
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.1,
+    "fake": 97.2,
+    "filter": 2.7,
+    "mean_p_fake": 0.966,
+    "fake_over_real": 98.9
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.1,
+    "fake": 97.5,
+    "filter": 2.5,
+    "mean_p_fake": 0.967,
+    "fake_over_real": 99.1
+   }
+  }
+ },
+ "clipe7_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 86.4,
+    "fake": 7.0,
+    "filter": 6.6,
+    "mean_p_fake": 0.092,
+    "fake_over_real": 7.2
+   },
+   "fake": {
+    "n": 529,
+    "real": 7.4,
+    "fake": 92.1,
+    "filter": 0.6,
+    "mean_p_fake": 0.911,
+    "fake_over_real": 92.4
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 11.1,
+    "fake": 21.9,
+    "filter": 67.0,
+    "mean_p_fake": 0.261,
+    "fake_over_real": 77.7
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 1.3,
+    "fake": 94.3,
+    "filter": 4.3,
+    "mean_p_fake": 0.928,
+    "fake_over_real": 98.3
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 87.1,
+    "fake": 0.5,
+    "filter": 12.4,
+    "mean_p_fake": 0.008,
+    "fake_over_real": 0.8
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.6,
+    "fake": 1.0,
+    "filter": 98.5,
+    "mean_p_fake": 0.024,
+    "fake_over_real": 82.4
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 3.0,
+    "fake": 96.0,
+    "filter": 1.0,
+    "mean_p_fake": 0.956,
+    "fake_over_real": 96.4
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 96.3,
+    "filter": 3.6,
+    "mean_p_fake": 0.962,
+    "fake_over_real": 99.7
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 85.4,
+    "fake": 0.5,
+    "filter": 14.1,
+    "mean_p_fake": 0.008,
+    "fake_over_real": 0.8
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 18.5,
+    "fake": 1.1,
+    "filter": 80.3,
+    "mean_p_fake": 0.024,
+    "fake_over_real": 38.8
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 2.7,
+    "fake": 96.6,
+    "filter": 0.7,
+    "mean_p_fake": 0.962,
+    "fake_over_real": 96.9
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.6,
+    "fake": 97.6,
+    "filter": 1.8,
+    "mean_p_fake": 0.973,
+    "fake_over_real": 98.8
+   }
+  }
+ },
+ "clipe5f_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 85.5,
+    "fake": 4.0,
+    "filter": 10.6,
+    "mean_p_fake": 0.052,
+    "fake_over_real": 4.2
+   },
+   "fake": {
+    "n": 529,
+    "real": 6.8,
+    "fake": 92.4,
+    "filter": 0.8,
+    "mean_p_fake": 0.917,
+    "fake_over_real": 92.4
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 6.0,
+    "fake": 15.1,
+    "filter": 78.9,
+    "mean_p_fake": 0.166,
+    "fake_over_real": 75.5
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.2,
+    "fake": 92.2,
+    "filter": 7.6,
+    "mean_p_fake": 0.914,
+    "fake_over_real": 99.2
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 1.9,
+    "fake": 14.1,
+    "filter": 84.0,
+    "mean_p_fake": 0.159,
+    "fake_over_real": 44.4
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 4.5,
+    "fake": 41.1,
+    "filter": 54.4,
+    "mean_p_fake": 0.407,
+    "fake_over_real": 70.4
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.0,
+    "fake": 96.6,
+    "filter": 3.4,
+    "mean_p_fake": 0.962,
+    "fake_over_real": 98.6
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 97.9,
+    "filter": 1.9,
+    "mean_p_fake": 0.973,
+    "fake_over_real": 99.3
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 2.2,
+    "fake": 15.1,
+    "filter": 82.6,
+    "mean_p_fake": 0.169,
+    "fake_over_real": 44.8
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 2.0,
+    "fake": 16.0,
+    "filter": 82.0,
+    "mean_p_fake": 0.178,
+    "fake_over_real": 48.4
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 96.7,
+    "filter": 3.3,
+    "mean_p_fake": 0.963,
+    "fake_over_real": 98.8
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 96.5,
+    "filter": 3.5,
+    "mean_p_fake": 0.962,
+    "fake_over_real": 99.0
+   }
+  }
+ },
+ "clipe5fg0_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 76.0,
+    "fake": 6.2,
+    "filter": 17.7,
+    "mean_p_fake": 0.072,
+    "fake_over_real": 7.2
+   },
+   "fake": {
+    "n": 529,
+    "real": 4.0,
+    "fake": 94.3,
+    "filter": 1.7,
+    "mean_p_fake": 0.936,
+    "fake_over_real": 94.5
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 22.1,
+    "fake": 26.6,
+    "filter": 51.3,
+    "mean_p_fake": 0.259,
+    "fake_over_real": 50.4
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 1.1,
+    "fake": 95.8,
+    "filter": 3.0,
+    "mean_p_fake": 0.95,
+    "fake_over_real": 97.9
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 36.5,
+    "fake": 30.2,
+    "filter": 33.3,
+    "mean_p_fake": 0.302,
+    "fake_over_real": 38.3
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 10.2,
+    "fake": 51.2,
+    "filter": 38.6,
+    "mean_p_fake": 0.496,
+    "fake_over_real": 74.4
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.5,
+    "fake": 98.5,
+    "filter": 1.0,
+    "mean_p_fake": 0.981,
+    "fake_over_real": 98.9
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 98.9,
+    "filter": 0.8,
+    "mean_p_fake": 0.984,
+    "fake_over_real": 99.4
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 34.9,
+    "fake": 30.4,
+    "filter": 34.7,
+    "mean_p_fake": 0.309,
+    "fake_over_real": 39.1
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 29.2,
+    "fake": 32.1,
+    "filter": 38.8,
+    "mean_p_fake": 0.318,
+    "fake_over_real": 43.5
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.7,
+    "fake": 98.5,
+    "filter": 0.8,
+    "mean_p_fake": 0.981,
+    "fake_over_real": 99.0
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.7,
+    "fake": 98.5,
+    "filter": 0.8,
+    "mean_p_fake": 0.981,
+    "fake_over_real": 98.9
+   }
+  }
+ },
+ "clipe5af_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 75.3,
+    "fake": 5.3,
+    "filter": 19.4,
+    "mean_p_fake": 0.061,
+    "fake_over_real": 7.2
+   },
+   "fake": {
+    "n": 529,
+    "real": 4.3,
+    "fake": 94.7,
+    "filter": 0.9,
+    "mean_p_fake": 0.935,
+    "fake_over_real": 94.7
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 0.9,
+    "fake": 15.1,
+    "filter": 84.0,
+    "mean_p_fake": 0.189,
+    "fake_over_real": 85.8
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.0,
+    "fake": 94.3,
+    "filter": 5.7,
+    "mean_p_fake": 0.933,
+    "fake_over_real": 99.4
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 1.9,
+    "fake": 11.6,
+    "filter": 86.5,
+    "mean_p_fake": 0.132,
+    "fake_over_real": 60.2
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 2.3,
+    "fake": 32.2,
+    "filter": 65.4,
+    "mean_p_fake": 0.333,
+    "fake_over_real": 77.0
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 96.0,
+    "filter": 3.9,
+    "mean_p_fake": 0.954,
+    "fake_over_real": 98.9
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.2,
+    "fake": 97.5,
+    "filter": 2.3,
+    "mean_p_fake": 0.967,
+    "fake_over_real": 99.3
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 1.8,
+    "fake": 12.1,
+    "filter": 86.1,
+    "mean_p_fake": 0.14,
+    "fake_over_real": 60.2
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 1.7,
+    "fake": 11.8,
+    "filter": 86.5,
+    "mean_p_fake": 0.142,
+    "fake_over_real": 59.6
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.1,
+    "fake": 96.1,
+    "filter": 3.9,
+    "mean_p_fake": 0.953,
+    "fake_over_real": 98.9
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 96.1,
+    "filter": 3.9,
+    "mean_p_fake": 0.954,
+    "fake_over_real": 99.3
+   }
+  }
+ },
+ "clipe5rf_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 85.7,
+    "fake": 4.3,
+    "filter": 10.0,
+    "mean_p_fake": 0.058,
+    "fake_over_real": 4.3
+   },
+   "fake": {
+    "n": 529,
+    "real": 4.9,
+    "fake": 93.6,
+    "filter": 1.5,
+    "mean_p_fake": 0.926,
+    "fake_over_real": 94.1
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 10.2,
+    "fake": 14.5,
+    "filter": 75.3,
+    "mean_p_fake": 0.181,
+    "fake_over_real": 73.2
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.6,
+    "fake": 94.1,
+    "filter": 5.3,
+    "mean_p_fake": 0.934,
+    "fake_over_real": 98.9
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 4.3,
+    "fake": 13.0,
+    "filter": 82.6,
+    "mean_p_fake": 0.145,
+    "fake_over_real": 36.8
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 1.9,
+    "fake": 32.7,
+    "filter": 65.4,
+    "mean_p_fake": 0.344,
+    "fake_over_real": 71.3
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 96.5,
+    "filter": 3.4,
+    "mean_p_fake": 0.956,
+    "fake_over_real": 98.6
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 97.0,
+    "filter": 2.8,
+    "mean_p_fake": 0.964,
+    "fake_over_real": 98.9
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 4.0,
+    "fake": 13.9,
+    "filter": 82.1,
+    "mean_p_fake": 0.155,
+    "fake_over_real": 38.6
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 3.4,
+    "fake": 14.2,
+    "filter": 82.4,
+    "mean_p_fake": 0.159,
+    "fake_over_real": 40.8
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 96.8,
+    "filter": 3.2,
+    "mean_p_fake": 0.959,
+    "fake_over_real": 98.8
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 96.8,
+    "filter": 3.2,
+    "mean_p_fake": 0.959,
+    "fake_over_real": 98.7
+   }
+  }
+ },
+ "clipe5kf_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 80.0,
+    "fake": 4.0,
+    "filter": 16.0,
+    "mean_p_fake": 0.048,
+    "fake_over_real": 4.3
+   },
+   "fake": {
+    "n": 529,
+    "real": 5.1,
+    "fake": 93.4,
+    "filter": 1.5,
+    "mean_p_fake": 0.927,
+    "fake_over_real": 93.4
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 5.1,
+    "fake": 15.5,
+    "filter": 79.4,
+    "mean_p_fake": 0.188,
+    "fake_over_real": 74.2
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.2,
+    "fake": 96.4,
+    "filter": 3.4,
+    "mean_p_fake": 0.945,
+    "fake_over_real": 99.2
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 2.3,
+    "fake": 12.4,
+    "filter": 85.3,
+    "mean_p_fake": 0.137,
+    "fake_over_real": 39.4
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 1.4,
+    "fake": 28.3,
+    "filter": 70.2,
+    "mean_p_fake": 0.301,
+    "fake_over_real": 66.3
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.0,
+    "fake": 96.3,
+    "filter": 3.7,
+    "mean_p_fake": 0.959,
+    "fake_over_real": 98.3
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 96.9,
+    "filter": 3.0,
+    "mean_p_fake": 0.965,
+    "fake_over_real": 98.6
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 2.2,
+    "fake": 13.4,
+    "filter": 84.5,
+    "mean_p_fake": 0.145,
+    "fake_over_real": 40.1
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 2.5,
+    "fake": 13.7,
+    "filter": 83.8,
+    "mean_p_fake": 0.15,
+    "fake_over_real": 43.0
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.1,
+    "fake": 96.3,
+    "filter": 3.6,
+    "mean_p_fake": 0.96,
+    "fake_over_real": 98.5
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 96.3,
+    "filter": 3.7,
+    "mean_p_fake": 0.959,
+    "fake_over_real": 98.9
+   }
+  }
+ },
+ "clipe5awpf_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 79.8,
+    "fake": 5.8,
+    "filter": 14.3,
+    "mean_p_fake": 0.07,
+    "fake_over_real": 6.4
+   },
+   "fake": {
+    "n": 529,
+    "real": 3.4,
+    "fake": 95.8,
+    "filter": 0.8,
+    "mean_p_fake": 0.952,
+    "fake_over_real": 96.2
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 6.2,
+    "fake": 16.8,
+    "filter": 77.0,
+    "mean_p_fake": 0.195,
+    "fake_over_real": 81.9
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.6,
+    "fake": 95.8,
+    "filter": 3.6,
+    "mean_p_fake": 0.951,
+    "fake_over_real": 99.4
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 3.0,
+    "fake": 14.3,
+    "filter": 82.6,
+    "mean_p_fake": 0.167,
+    "fake_over_real": 57.3
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 1.0,
+    "fake": 35.3,
+    "filter": 63.6,
+    "mean_p_fake": 0.376,
+    "fake_over_real": 82.0
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.0,
+    "fake": 96.5,
+    "filter": 3.5,
+    "mean_p_fake": 0.959,
+    "fake_over_real": 98.9
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 97.7,
+    "filter": 2.2,
+    "mean_p_fake": 0.972,
+    "fake_over_real": 99.6
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 2.9,
+    "fake": 14.4,
+    "filter": 82.7,
+    "mean_p_fake": 0.17,
+    "fake_over_real": 57.9
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 2.6,
+    "fake": 14.7,
+    "filter": 82.6,
+    "mean_p_fake": 0.168,
+    "fake_over_real": 57.7
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 96.6,
+    "filter": 3.4,
+    "mean_p_fake": 0.959,
+    "fake_over_real": 99.1
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.1,
+    "fake": 96.5,
+    "filter": 3.5,
+    "mean_p_fake": 0.957,
+    "fake_over_real": 99.1
+   }
+  }
+ },
+ "clipe5awpb_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 0.0,
+    "fake": 19.4,
+    "filter": 80.6,
+    "mean_p_fake": 0.217,
+    "fake_over_real": 71.1
+   },
+   "fake": {
+    "n": 529,
+    "real": 0.0,
+    "fake": 96.6,
+    "filter": 3.4,
+    "mean_p_fake": 0.966,
+    "fake_over_real": 100.0
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 0.0,
+    "fake": 30.0,
+    "filter": 70.0,
+    "mean_p_fake": 0.313,
+    "fake_over_real": 88.9
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.0,
+    "fake": 95.8,
+    "filter": 4.2,
+    "mean_p_fake": 0.959,
+    "fake_over_real": 99.8
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 0.8,
+    "filter": 99.1,
+    "mean_p_fake": 0.011,
+    "fake_over_real": 16.2
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 1.6,
+    "filter": 98.3,
+    "mean_p_fake": 0.023,
+    "fake_over_real": 25.6
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.0,
+    "fake": 96.8,
+    "filter": 3.2,
+    "mean_p_fake": 0.967,
+    "fake_over_real": 99.5
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.0,
+    "fake": 97.0,
+    "filter": 3.0,
+    "mean_p_fake": 0.969,
+    "fake_over_real": 99.7
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 0.2,
+    "fake": 0.9,
+    "filter": 98.9,
+    "mean_p_fake": 0.012,
+    "fake_over_real": 17.7
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 0.1,
+    "fake": 1.0,
+    "filter": 98.9,
+    "mean_p_fake": 0.014,
+    "fake_over_real": 22.6
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 97.1,
+    "filter": 2.9,
+    "mean_p_fake": 0.969,
+    "fake_over_real": 99.6
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 97.3,
+    "filter": 2.7,
+    "mean_p_fake": 0.972,
+    "fake_over_real": 99.6
+   }
+  }
+ },
+ "clipe5awptf_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 84.2,
+    "fake": 3.2,
+    "filter": 12.6,
+    "mean_p_fake": 0.13,
+    "fake_over_real": 5.5
+   },
+   "fake": {
+    "n": 529,
+    "real": 12.1,
+    "fake": 86.2,
+    "filter": 1.7,
+    "mean_p_fake": 0.737,
+    "fake_over_real": 87.0
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 7.4,
+    "fake": 8.7,
+    "filter": 84.0,
+    "mean_p_fake": 0.154,
+    "fake_over_real": 84.2
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 1.3,
+    "fake": 85.4,
+    "filter": 13.2,
+    "mean_p_fake": 0.748,
+    "fake_over_real": 98.7
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 7.2,
+    "fake": 8.2,
+    "filter": 84.6,
+    "mean_p_fake": 0.128,
+    "fake_over_real": 61.4
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 3.2,
+    "fake": 13.3,
+    "filter": 83.5,
+    "mean_p_fake": 0.228,
+    "fake_over_real": 83.4
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.6,
+    "fake": 92.2,
+    "filter": 7.2,
+    "mean_p_fake": 0.735,
+    "fake_over_real": 98.4
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 92.5,
+    "filter": 7.2,
+    "mean_p_fake": 0.746,
+    "fake_over_real": 99.4
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 7.1,
+    "fake": 8.4,
+    "filter": 84.5,
+    "mean_p_fake": 0.131,
+    "fake_over_real": 61.6
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 7.2,
+    "fake": 9.2,
+    "filter": 83.6,
+    "mean_p_fake": 0.138,
+    "fake_over_real": 61.1
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.4,
+    "fake": 92.3,
+    "filter": 7.3,
+    "mean_p_fake": 0.732,
+    "fake_over_real": 98.8
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.4,
+    "fake": 92.2,
+    "filter": 7.3,
+    "mean_p_fake": 0.732,
+    "fake_over_real": 98.9
+   }
+  }
+ },
+ "clipe5feb_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 70.6,
+    "fake": 17.5,
+    "filter": 11.9,
+    "mean_p_fake": 0.174,
+    "fake_over_real": 18.7
+   },
+   "fake": {
+    "n": 529,
+    "real": 2.3,
+    "fake": 97.0,
+    "filter": 0.8,
+    "mean_p_fake": 0.964,
+    "fake_over_real": 97.0
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 63.2,
+    "fake": 27.2,
+    "filter": 9.6,
+    "mean_p_fake": 0.263,
+    "fake_over_real": 27.9
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 2.5,
+    "fake": 96.2,
+    "filter": 1.3,
+    "mean_p_fake": 0.958,
+    "fake_over_real": 97.0
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 54.7,
+    "fake": 30.2,
+    "filter": 15.2,
+    "mean_p_fake": 0.287,
+    "fake_over_real": 30.9
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 36.6,
+    "fake": 50.0,
+    "filter": 13.4,
+    "mean_p_fake": 0.471,
+    "fake_over_real": 50.9
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 1.5,
+    "fake": 97.9,
+    "filter": 0.6,
+    "mean_p_fake": 0.974,
+    "fake_over_real": 97.9
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 1.0,
+    "fake": 98.5,
+    "filter": 0.6,
+    "mean_p_fake": 0.979,
+    "fake_over_real": 98.6
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 52.8,
+    "fake": 32.8,
+    "filter": 14.4,
+    "mean_p_fake": 0.313,
+    "fake_over_real": 33.6
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 55.0,
+    "fake": 31.6,
+    "filter": 13.4,
+    "mean_p_fake": 0.307,
+    "fake_over_real": 32.6
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 1.6,
+    "fake": 97.9,
+    "filter": 0.5,
+    "mean_p_fake": 0.975,
+    "fake_over_real": 98.0
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 1.5,
+    "fake": 98.0,
+    "filter": 0.5,
+    "mean_p_fake": 0.974,
+    "fake_over_real": 98.0
+   }
+  }
+ },
+ "clipe5fbp0_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 2.3,
+    "fake": 7.4,
+    "filter": 90.4,
+    "mean_p_fake": 0.08,
+    "fake_over_real": 9.6
+   },
+   "fake": {
+    "n": 529,
+    "real": 0.0,
+    "fake": 96.0,
+    "filter": 4.0,
+    "mean_p_fake": 0.956,
+    "fake_over_real": 96.8
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 3.4,
+    "fake": 24.7,
+    "filter": 71.9,
+    "mean_p_fake": 0.244,
+    "fake_over_real": 26.8
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.0,
+    "fake": 95.7,
+    "filter": 4.3,
+    "mean_p_fake": 0.942,
+    "fake_over_real": 96.0
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 4.8,
+    "fake": 17.7,
+    "filter": 77.5,
+    "mean_p_fake": 0.195,
+    "fake_over_real": 23.7
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 3.2,
+    "fake": 60.7,
+    "filter": 36.1,
+    "mean_p_fake": 0.568,
+    "fake_over_real": 66.0
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 97.1,
+    "filter": 2.8,
+    "mean_p_fake": 0.963,
+    "fake_over_real": 97.9
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.0,
+    "fake": 98.6,
+    "filter": 1.4,
+    "mean_p_fake": 0.979,
+    "fake_over_real": 99.1
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 5.0,
+    "fake": 18.9,
+    "filter": 76.1,
+    "mean_p_fake": 0.205,
+    "fake_over_real": 24.7
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 4.7,
+    "fake": 20.0,
+    "filter": 75.3,
+    "mean_p_fake": 0.206,
+    "fake_over_real": 25.4
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 97.4,
+    "filter": 2.6,
+    "mean_p_fake": 0.967,
+    "fake_over_real": 97.7
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 97.3,
+    "filter": 2.7,
+    "mean_p_fake": 0.965,
+    "fake_over_real": 97.9
+   }
+  }
+ },
+ "clipe5fb_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 78.3,
+    "fake": 10.4,
+    "filter": 11.3,
+    "mean_p_fake": 0.101,
+    "fake_over_real": 10.8
+   },
+   "fake": {
+    "n": 529,
+    "real": 2.3,
+    "fake": 97.0,
+    "filter": 0.8,
+    "mean_p_fake": 0.963,
+    "fake_over_real": 97.2
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 66.2,
+    "fake": 24.2,
+    "filter": 9.6,
+    "mean_p_fake": 0.236,
+    "fake_over_real": 24.3
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 2.3,
+    "fake": 96.8,
+    "filter": 0.9,
+    "mean_p_fake": 0.962,
+    "fake_over_real": 97.0
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 74.2,
+    "fake": 16.9,
+    "filter": 8.9,
+    "mean_p_fake": 0.155,
+    "fake_over_real": 17.1
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 53.1,
+    "fake": 35.2,
+    "filter": 11.7,
+    "mean_p_fake": 0.332,
+    "fake_over_real": 36.2
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 1.9,
+    "fake": 97.7,
+    "filter": 0.5,
+    "mean_p_fake": 0.973,
+    "fake_over_real": 97.7
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 1.4,
+    "fake": 98.1,
+    "filter": 0.4,
+    "mean_p_fake": 0.979,
+    "fake_over_real": 98.1
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 73.4,
+    "fake": 17.7,
+    "filter": 8.9,
+    "mean_p_fake": 0.165,
+    "fake_over_real": 18.0
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 74.6,
+    "fake": 16.8,
+    "filter": 8.5,
+    "mean_p_fake": 0.163,
+    "fake_over_real": 17.3
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 1.8,
+    "fake": 97.9,
+    "filter": 0.3,
+    "mean_p_fake": 0.974,
+    "fake_over_real": 97.9
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 1.7,
+    "fake": 97.9,
+    "filter": 0.4,
+    "mean_p_fake": 0.973,
+    "fake_over_real": 98.0
+   }
+  }
+ },
+ "clipe5fbp1_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 7.5,
+    "fake": 11.5,
+    "filter": 80.9,
+    "mean_p_fake": 0.115,
+    "fake_over_real": 13.4
+   },
+   "fake": {
+    "n": 529,
+    "real": 0.2,
+    "fake": 97.5,
+    "filter": 2.3,
+    "mean_p_fake": 0.97,
+    "fake_over_real": 97.5
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 11.1,
+    "fake": 9.2,
+    "filter": 79.6,
+    "mean_p_fake": 0.093,
+    "fake_over_real": 10.6
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.9,
+    "fake": 89.6,
+    "filter": 9.5,
+    "mean_p_fake": 0.888,
+    "fake_over_real": 90.0
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 8.1,
+    "fake": 12.3,
+    "filter": 79.7,
+    "mean_p_fake": 0.128,
+    "fake_over_real": 15.3
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 10.5,
+    "fake": 25.4,
+    "filter": 64.1,
+    "mean_p_fake": 0.246,
+    "fake_over_real": 28.7
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 96.8,
+    "filter": 3.1,
+    "mean_p_fake": 0.964,
+    "fake_over_real": 96.9
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 97.6,
+    "filter": 2.1,
+    "mean_p_fake": 0.973,
+    "fake_over_real": 97.9
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 8.3,
+    "fake": 12.6,
+    "filter": 79.1,
+    "mean_p_fake": 0.133,
+    "fake_over_real": 15.9
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 9.4,
+    "fake": 12.3,
+    "filter": 78.3,
+    "mean_p_fake": 0.124,
+    "fake_over_real": 13.8
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.1,
+    "fake": 96.6,
+    "filter": 3.3,
+    "mean_p_fake": 0.964,
+    "fake_over_real": 97.0
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.1,
+    "fake": 96.5,
+    "filter": 3.4,
+    "mean_p_fake": 0.962,
+    "fake_over_real": 96.9
+   }
+  }
+ },
+ "clipe5awps3f_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 82.8,
+    "fake": 4.3,
+    "filter": 12.8,
+    "mean_p_fake": 0.053,
+    "fake_over_real": 4.7
+   },
+   "fake": {
+    "n": 529,
+    "real": 4.3,
+    "fake": 94.3,
+    "filter": 1.3,
+    "mean_p_fake": 0.928,
+    "fake_over_real": 94.7
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 7.4,
+    "fake": 14.7,
+    "filter": 77.9,
+    "mean_p_fake": 0.196,
+    "fake_over_real": 82.3
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.4,
+    "fake": 94.0,
+    "filter": 5.7,
+    "mean_p_fake": 0.918,
+    "fake_over_real": 99.4
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 6.2,
+    "fake": 13.8,
+    "filter": 80.0,
+    "mean_p_fake": 0.18,
+    "fake_over_real": 54.1
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 2.9,
+    "fake": 38.8,
+    "filter": 58.3,
+    "mean_p_fake": 0.405,
+    "fake_over_real": 81.3
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 95.8,
+    "filter": 4.1,
+    "mean_p_fake": 0.948,
+    "fake_over_real": 98.8
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 97.5,
+    "filter": 2.4,
+    "mean_p_fake": 0.961,
+    "fake_over_real": 99.5
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 6.4,
+    "fake": 14.5,
+    "filter": 79.1,
+    "mean_p_fake": 0.186,
+    "fake_over_real": 55.5
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 7.0,
+    "fake": 14.0,
+    "filter": 78.9,
+    "mean_p_fake": 0.185,
+    "fake_over_real": 55.6
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 96.0,
+    "filter": 4.0,
+    "mean_p_fake": 0.947,
+    "fake_over_real": 98.9
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.1,
+    "fake": 95.9,
+    "filter": 4.0,
+    "mean_p_fake": 0.946,
+    "fake_over_real": 99.0
+   }
+  }
+ },
+ "clipe5fbp0_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 47.2,
+    "fake": 8.1,
+    "filter": 44.7,
+    "mean_p_fake": 0.084,
+    "fake_over_real": 8.7
+   },
+   "fake": {
+    "n": 529,
+    "real": 2.3,
+    "fake": 96.2,
+    "filter": 1.5,
+    "mean_p_fake": 0.955,
+    "fake_over_real": 96.4
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 30.8,
+    "fake": 23.6,
+    "filter": 45.7,
+    "mean_p_fake": 0.242,
+    "fake_over_real": 24.9
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 2.3,
+    "fake": 95.8,
+    "filter": 1.9,
+    "mean_p_fake": 0.948,
+    "fake_over_real": 96.4
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 59.6,
+    "fake": 13.2,
+    "filter": 27.2,
+    "mean_p_fake": 0.135,
+    "fake_over_real": 13.4
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 37.1,
+    "fake": 47.8,
+    "filter": 15.2,
+    "mean_p_fake": 0.468,
+    "fake_over_real": 48.3
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 1.7,
+    "fake": 96.6,
+    "filter": 1.7,
+    "mean_p_fake": 0.962,
+    "fake_over_real": 96.8
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 1.0,
+    "fake": 98.4,
+    "filter": 0.6,
+    "mean_p_fake": 0.98,
+    "fake_over_real": 98.4
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 58.7,
+    "fake": 14.2,
+    "filter": 27.0,
+    "mean_p_fake": 0.147,
+    "fake_over_real": 14.6
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 58.2,
+    "fake": 14.0,
+    "filter": 27.8,
+    "mean_p_fake": 0.148,
+    "fake_over_real": 14.6
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 1.8,
+    "fake": 96.8,
+    "filter": 1.4,
+    "mean_p_fake": 0.966,
+    "fake_over_real": 96.9
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 2.0,
+    "fake": 96.9,
+    "filter": 1.2,
+    "mean_p_fake": 0.965,
+    "fake_over_real": 96.9
+   }
+  }
+ },
+ "clipe5fb_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 46.8,
+    "fake": 10.4,
+    "filter": 42.8,
+    "mean_p_fake": 0.098,
+    "fake_over_real": 10.8
+   },
+   "fake": {
+    "n": 529,
+    "real": 2.3,
+    "fake": 97.4,
+    "filter": 0.4,
+    "mean_p_fake": 0.968,
+    "fake_over_real": 97.4
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 32.8,
+    "fake": 23.0,
+    "filter": 44.2,
+    "mean_p_fake": 0.219,
+    "fake_over_real": 23.2
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 2.3,
+    "fake": 96.6,
+    "filter": 1.1,
+    "mean_p_fake": 0.961,
+    "fake_over_real": 96.6
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 50.4,
+    "fake": 24.5,
+    "filter": 25.1,
+    "mean_p_fake": 0.247,
+    "fake_over_real": 25.5
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 39.0,
+    "fake": 44.6,
+    "filter": 16.5,
+    "mean_p_fake": 0.433,
+    "fake_over_real": 45.1
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.8,
+    "fake": 98.6,
+    "filter": 0.6,
+    "mean_p_fake": 0.985,
+    "fake_over_real": 98.8
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.5,
+    "fake": 99.2,
+    "filter": 0.3,
+    "mean_p_fake": 0.987,
+    "fake_over_real": 99.2
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 49.1,
+    "fake": 25.7,
+    "filter": 25.2,
+    "mean_p_fake": 0.26,
+    "fake_over_real": 26.9
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 48.3,
+    "fake": 26.1,
+    "filter": 25.6,
+    "mean_p_fake": 0.259,
+    "fake_over_real": 26.9
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.8,
+    "fake": 98.6,
+    "filter": 0.6,
+    "mean_p_fake": 0.984,
+    "fake_over_real": 98.6
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.8,
+    "fake": 98.7,
+    "filter": 0.6,
+    "mean_p_fake": 0.983,
+    "fake_over_real": 98.7
+   }
+  }
+ },
+ "clipe5fbp0E_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 29.2,
+    "fake": 5.3,
+    "filter": 65.5,
+    "mean_p_fake": 0.061,
+    "fake_over_real": 5.7
+   },
+   "fake": {
+    "n": 529,
+    "real": 4.2,
+    "fake": 88.5,
+    "filter": 7.4,
+    "mean_p_fake": 0.868,
+    "fake_over_real": 89.8
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 25.5,
+    "fake": 18.9,
+    "filter": 55.7,
+    "mean_p_fake": 0.198,
+    "fake_over_real": 20.2
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 2.3,
+    "fake": 90.5,
+    "filter": 7.2,
+    "mean_p_fake": 0.878,
+    "fake_over_real": 91.9
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 63.6,
+    "fake": 12.5,
+    "filter": 23.8,
+    "mean_p_fake": 0.128,
+    "fake_over_real": 13.2
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 34.8,
+    "fake": 56.5,
+    "filter": 8.7,
+    "mean_p_fake": 0.538,
+    "fake_over_real": 57.9
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 4.3,
+    "fake": 94.3,
+    "filter": 1.4,
+    "mean_p_fake": 0.924,
+    "fake_over_real": 94.3
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 1.9,
+    "fake": 97.4,
+    "filter": 0.7,
+    "mean_p_fake": 0.963,
+    "fake_over_real": 97.7
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 61.3,
+    "fake": 14.4,
+    "filter": 24.4,
+    "mean_p_fake": 0.144,
+    "fake_over_real": 15.5
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 59.4,
+    "fake": 15.4,
+    "filter": 25.3,
+    "mean_p_fake": 0.155,
+    "fake_over_real": 16.1
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 3.5,
+    "fake": 94.0,
+    "filter": 2.5,
+    "mean_p_fake": 0.925,
+    "fake_over_real": 94.5
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 3.2,
+    "fake": 94.4,
+    "filter": 2.3,
+    "mean_p_fake": 0.928,
+    "fake_over_real": 94.6
+   }
+  }
+ },
+ "clipe5fbp1_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 35.1,
+    "fake": 11.5,
+    "filter": 53.4,
+    "mean_p_fake": 0.121,
+    "fake_over_real": 12.8
+   },
+   "fake": {
+    "n": 529,
+    "real": 1.3,
+    "fake": 97.0,
+    "filter": 1.7,
+    "mean_p_fake": 0.966,
+    "fake_over_real": 97.0
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 21.5,
+    "fake": 12.3,
+    "filter": 66.2,
+    "mean_p_fake": 0.116,
+    "fake_over_real": 13.0
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 3.0,
+    "fake": 90.5,
+    "filter": 6.4,
+    "mean_p_fake": 0.896,
+    "fake_over_real": 90.7
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 51.7,
+    "fake": 12.3,
+    "filter": 36.0,
+    "mean_p_fake": 0.121,
+    "fake_over_real": 12.9
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 45.6,
+    "fake": 26.5,
+    "filter": 27.9,
+    "mean_p_fake": 0.258,
+    "fake_over_real": 27.4
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 1.4,
+    "fake": 96.9,
+    "filter": 1.7,
+    "mean_p_fake": 0.965,
+    "fake_over_real": 97.0
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 1.4,
+    "fake": 98.0,
+    "filter": 0.6,
+    "mean_p_fake": 0.976,
+    "fake_over_real": 98.1
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 50.6,
+    "fake": 12.6,
+    "filter": 36.9,
+    "mean_p_fake": 0.123,
+    "fake_over_real": 13.4
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 49.4,
+    "fake": 13.5,
+    "filter": 37.1,
+    "mean_p_fake": 0.127,
+    "fake_over_real": 14.1
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 1.6,
+    "fake": 96.6,
+    "filter": 1.7,
+    "mean_p_fake": 0.963,
+    "fake_over_real": 96.7
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 1.7,
+    "fake": 96.4,
+    "filter": 2.0,
+    "mean_p_fake": 0.96,
+    "fake_over_real": 96.6
+   }
+  }
+ },
+ "clipe5fbE_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 38.1,
+    "fake": 3.4,
+    "filter": 58.5,
+    "mean_p_fake": 0.048,
+    "fake_over_real": 4.0
+   },
+   "fake": {
+    "n": 529,
+    "real": 5.1,
+    "fake": 85.1,
+    "filter": 9.8,
+    "mean_p_fake": 0.822,
+    "fake_over_real": 85.8
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 32.6,
+    "fake": 14.9,
+    "filter": 52.5,
+    "mean_p_fake": 0.161,
+    "fake_over_real": 17.5
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 4.0,
+    "fake": 89.0,
+    "filter": 7.0,
+    "mean_p_fake": 0.863,
+    "fake_over_real": 90.2
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 66.5,
+    "fake": 11.6,
+    "filter": 21.9,
+    "mean_p_fake": 0.132,
+    "fake_over_real": 12.2
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 44.8,
+    "fake": 43.9,
+    "filter": 11.3,
+    "mean_p_fake": 0.403,
+    "fake_over_real": 45.5
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 4.2,
+    "fake": 94.1,
+    "filter": 1.7,
+    "mean_p_fake": 0.913,
+    "fake_over_real": 94.4
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 2.5,
+    "fake": 96.6,
+    "filter": 0.9,
+    "mean_p_fake": 0.942,
+    "fake_over_real": 96.7
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 64.1,
+    "fake": 13.0,
+    "filter": 22.8,
+    "mean_p_fake": 0.144,
+    "fake_over_real": 13.8
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 62.7,
+    "fake": 13.4,
+    "filter": 23.9,
+    "mean_p_fake": 0.148,
+    "fake_over_real": 14.4
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 3.9,
+    "fake": 93.8,
+    "filter": 2.3,
+    "mean_p_fake": 0.912,
+    "fake_over_real": 94.2
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 3.7,
+    "fake": 93.5,
+    "filter": 2.8,
+    "mean_p_fake": 0.913,
+    "fake_over_real": 93.7
+   }
+  }
+ },
+ "clipe5mf_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 80.8,
+    "fake": 6.6,
+    "filter": 12.6,
+    "mean_p_fake": 0.061,
+    "fake_over_real": 6.8
+   },
+   "fake": {
+    "n": 529,
+    "real": 3.2,
+    "fake": 95.7,
+    "filter": 1.1,
+    "mean_p_fake": 0.946,
+    "fake_over_real": 95.7
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 7.5,
+    "fake": 17.4,
+    "filter": 75.1,
+    "mean_p_fake": 0.166,
+    "fake_over_real": 53.4
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.0,
+    "fake": 95.3,
+    "filter": 4.7,
+    "mean_p_fake": 0.943,
+    "fake_over_real": 98.7
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 2.1,
+    "fake": 18.2,
+    "filter": 79.8,
+    "mean_p_fake": 0.168,
+    "fake_over_real": 31.6
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 3.8,
+    "fake": 32.5,
+    "filter": 63.7,
+    "mean_p_fake": 0.311,
+    "fake_over_real": 52.3
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 97.8,
+    "filter": 2.1,
+    "mean_p_fake": 0.975,
+    "fake_over_real": 98.6
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 98.2,
+    "filter": 1.4,
+    "mean_p_fake": 0.979,
+    "fake_over_real": 98.8
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 2.0,
+    "fake": 18.6,
+    "filter": 79.4,
+    "mean_p_fake": 0.175,
+    "fake_over_real": 33.4
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 1.5,
+    "fake": 17.9,
+    "filter": 80.7,
+    "mean_p_fake": 0.171,
+    "fake_over_real": 34.0
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.1,
+    "fake": 98.2,
+    "filter": 1.8,
+    "mean_p_fake": 0.978,
+    "fake_over_real": 98.9
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.1,
+    "fake": 98.2,
+    "filter": 1.7,
+    "mean_p_fake": 0.978,
+    "fake_over_real": 98.9
+   }
+  }
+ },
+ "clipe5mfp0_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 96.6,
+    "fake": 3.4,
+    "filter": 0.0,
+    "mean_p_fake": 0.036,
+    "fake_over_real": 3.4
+   },
+   "fake": {
+    "n": 529,
+    "real": 7.8,
+    "fake": 92.2,
+    "filter": 0.0,
+    "mean_p_fake": 0.906,
+    "fake_over_real": 92.2
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 81.7,
+    "fake": 18.3,
+    "filter": 0.0,
+    "mean_p_fake": 0.185,
+    "fake_over_real": 18.3
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 9.1,
+    "fake": 90.9,
+    "filter": 0.0,
+    "mean_p_fake": 0.891,
+    "fake_over_real": 90.9
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 88.2,
+    "fake": 11.8,
+    "filter": 0.0,
+    "mean_p_fake": 0.117,
+    "fake_over_real": 11.8
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 58.1,
+    "fake": 41.9,
+    "filter": 0.0,
+    "mean_p_fake": 0.406,
+    "fake_over_real": 41.9
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 3.5,
+    "fake": 96.5,
+    "filter": 0.0,
+    "mean_p_fake": 0.957,
+    "fake_over_real": 96.5
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 2.3,
+    "fake": 97.7,
+    "filter": 0.0,
+    "mean_p_fake": 0.971,
+    "fake_over_real": 97.7
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 87.2,
+    "fake": 12.8,
+    "filter": 0.0,
+    "mean_p_fake": 0.129,
+    "fake_over_real": 12.8
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 88.3,
+    "fake": 11.7,
+    "filter": 0.0,
+    "mean_p_fake": 0.121,
+    "fake_over_real": 11.7
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 3.0,
+    "fake": 97.0,
+    "filter": 0.0,
+    "mean_p_fake": 0.962,
+    "fake_over_real": 97.0
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 3.3,
+    "fake": 96.7,
+    "filter": 0.0,
+    "mean_p_fake": 0.96,
+    "fake_over_real": 96.7
+   }
+  }
+ },
+ "clipe5fbp0E_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 78.7,
+    "fake": 4.5,
+    "filter": 16.8,
+    "mean_p_fake": 0.063,
+    "fake_over_real": 4.5
+   },
+   "fake": {
+    "n": 529,
+    "real": 10.2,
+    "fake": 88.5,
+    "filter": 1.3,
+    "mean_p_fake": 0.867,
+    "fake_over_real": 88.7
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 70.4,
+    "fake": 19.6,
+    "filter": 10.0,
+    "mean_p_fake": 0.206,
+    "fake_over_real": 19.6
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 8.9,
+    "fake": 90.0,
+    "filter": 1.1,
+    "mean_p_fake": 0.879,
+    "fake_over_real": 90.2
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 69.7,
+    "fake": 11.6,
+    "filter": 18.7,
+    "mean_p_fake": 0.136,
+    "fake_over_real": 11.7
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 38.9,
+    "fake": 57.0,
+    "filter": 4.1,
+    "mean_p_fake": 0.54,
+    "fake_over_real": 57.0
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 5.9,
+    "fake": 93.3,
+    "filter": 0.8,
+    "mean_p_fake": 0.921,
+    "fake_over_real": 93.4
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 2.6,
+    "fake": 97.0,
+    "filter": 0.3,
+    "mean_p_fake": 0.962,
+    "fake_over_real": 97.1
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 68.0,
+    "fake": 13.8,
+    "filter": 18.2,
+    "mean_p_fake": 0.153,
+    "fake_over_real": 14.1
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 69.2,
+    "fake": 15.3,
+    "filter": 15.6,
+    "mean_p_fake": 0.162,
+    "fake_over_real": 15.3
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 5.8,
+    "fake": 93.7,
+    "filter": 0.5,
+    "mean_p_fake": 0.923,
+    "fake_over_real": 93.7
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 5.6,
+    "fake": 94.1,
+    "filter": 0.3,
+    "mean_p_fake": 0.926,
+    "fake_over_real": 94.1
+   }
+  }
+ },
+ "clipe5fbE_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 80.4,
+    "fake": 4.5,
+    "filter": 15.1,
+    "mean_p_fake": 0.051,
+    "fake_over_real": 4.5
+   },
+   "fake": {
+    "n": 529,
+    "real": 14.2,
+    "fake": 84.9,
+    "filter": 0.9,
+    "mean_p_fake": 0.821,
+    "fake_over_real": 85.1
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 75.1,
+    "fake": 15.3,
+    "filter": 9.6,
+    "mean_p_fake": 0.164,
+    "fake_over_real": 15.3
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 10.6,
+    "fake": 88.8,
+    "filter": 0.6,
+    "mean_p_fake": 0.86,
+    "fake_over_real": 88.8
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 70.7,
+    "fake": 10.5,
+    "filter": 18.8,
+    "mean_p_fake": 0.129,
+    "fake_over_real": 10.5
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 49.9,
+    "fake": 45.3,
+    "filter": 4.8,
+    "mean_p_fake": 0.428,
+    "fake_over_real": 45.5
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 6.3,
+    "fake": 93.0,
+    "filter": 0.8,
+    "mean_p_fake": 0.908,
+    "fake_over_real": 93.1
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 3.7,
+    "fake": 95.9,
+    "filter": 0.4,
+    "mean_p_fake": 0.942,
+    "fake_over_real": 95.9
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 69.9,
+    "fake": 12.1,
+    "filter": 18.0,
+    "mean_p_fake": 0.141,
+    "fake_over_real": 12.2
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 71.6,
+    "fake": 12.1,
+    "filter": 16.3,
+    "mean_p_fake": 0.142,
+    "fake_over_real": 12.3
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 6.6,
+    "fake": 93.0,
+    "filter": 0.4,
+    "mean_p_fake": 0.907,
+    "fake_over_real": 93.1
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 7.0,
+    "fake": 92.6,
+    "filter": 0.4,
+    "mean_p_fake": 0.908,
+    "fake_over_real": 92.6
+   }
+  }
+ },
+ "clipe5fbp0_s20261001": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 66.6,
+    "fake": 9.8,
+    "filter": 23.6,
+    "mean_p_fake": 0.108,
+    "fake_over_real": 10.0
+   },
+   "fake": {
+    "n": 529,
+    "real": 2.3,
+    "fake": 97.4,
+    "filter": 0.4,
+    "mean_p_fake": 0.963,
+    "fake_over_real": 97.4
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 52.6,
+    "fake": 29.6,
+    "filter": 17.7,
+    "mean_p_fake": 0.282,
+    "fake_over_real": 30.4
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 1.9,
+    "fake": 96.6,
+    "filter": 1.5,
+    "mean_p_fake": 0.953,
+    "fake_over_real": 96.8
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 56.2,
+    "fake": 21.6,
+    "filter": 22.2,
+    "mean_p_fake": 0.214,
+    "fake_over_real": 22.0
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 31.3,
+    "fake": 55.0,
+    "filter": 13.6,
+    "mean_p_fake": 0.511,
+    "fake_over_real": 55.7
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 2.2,
+    "fake": 97.5,
+    "filter": 0.3,
+    "mean_p_fake": 0.967,
+    "fake_over_real": 97.7
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 1.0,
+    "fake": 98.6,
+    "filter": 0.4,
+    "mean_p_fake": 0.98,
+    "fake_over_real": 98.8
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 55.0,
+    "fake": 23.2,
+    "filter": 21.8,
+    "mean_p_fake": 0.229,
+    "fake_over_real": 23.5
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 57.0,
+    "fake": 22.2,
+    "filter": 20.8,
+    "mean_p_fake": 0.222,
+    "fake_over_real": 22.8
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 1.8,
+    "fake": 97.8,
+    "filter": 0.4,
+    "mean_p_fake": 0.971,
+    "fake_over_real": 97.9
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 2.0,
+    "fake": 97.5,
+    "filter": 0.4,
+    "mean_p_fake": 0.969,
+    "fake_over_real": 97.6
+   }
+  }
+ },
+ "clipe5fb_s20261001": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 87.5,
+    "fake": 7.9,
+    "filter": 4.5,
+    "mean_p_fake": 0.078,
+    "fake_over_real": 8.1
+   },
+   "fake": {
+    "n": 529,
+    "real": 2.8,
+    "fake": 96.6,
+    "filter": 0.6,
+    "mean_p_fake": 0.957,
+    "fake_over_real": 96.6
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 70.2,
+    "fake": 22.5,
+    "filter": 7.4,
+    "mean_p_fake": 0.22,
+    "fake_over_real": 22.6
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 2.3,
+    "fake": 97.0,
+    "filter": 0.8,
+    "mean_p_fake": 0.962,
+    "fake_over_real": 97.0
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 71.0,
+    "fake": 11.6,
+    "filter": 17.4,
+    "mean_p_fake": 0.111,
+    "fake_over_real": 11.8
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 56.8,
+    "fake": 23.2,
+    "filter": 20.0,
+    "mean_p_fake": 0.219,
+    "fake_over_real": 23.6
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 2.8,
+    "fake": 96.9,
+    "filter": 0.3,
+    "mean_p_fake": 0.962,
+    "fake_over_real": 96.9
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 2.9,
+    "fake": 96.6,
+    "filter": 0.6,
+    "mean_p_fake": 0.961,
+    "fake_over_real": 96.6
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 70.8,
+    "fake": 12.8,
+    "filter": 16.4,
+    "mean_p_fake": 0.124,
+    "fake_over_real": 13.0
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 72.5,
+    "fake": 12.0,
+    "filter": 15.5,
+    "mean_p_fake": 0.123,
+    "fake_over_real": 12.1
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 2.2,
+    "fake": 97.2,
+    "filter": 0.6,
+    "mean_p_fake": 0.963,
+    "fake_over_real": 97.2
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 2.6,
+    "fake": 97.0,
+    "filter": 0.4,
+    "mean_p_fake": 0.961,
+    "fake_over_real": 97.1
+   }
+  }
+ },
+ "clipe5fbp1_s20261001": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 84.7,
+    "fake": 8.1,
+    "filter": 7.2,
+    "mean_p_fake": 0.082,
+    "fake_over_real": 8.3
+   },
+   "fake": {
+    "n": 529,
+    "real": 3.4,
+    "fake": 96.0,
+    "filter": 0.6,
+    "mean_p_fake": 0.951,
+    "fake_over_real": 96.0
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 83.8,
+    "fake": 7.9,
+    "filter": 8.3,
+    "mean_p_fake": 0.084,
+    "fake_over_real": 8.1
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 10.0,
+    "fake": 88.5,
+    "filter": 1.5,
+    "mean_p_fake": 0.878,
+    "fake_over_real": 88.7
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 77.9,
+    "fake": 8.3,
+    "filter": 13.8,
+    "mean_p_fake": 0.091,
+    "fake_over_real": 8.3
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 67.0,
+    "fake": 18.5,
+    "filter": 14.5,
+    "mean_p_fake": 0.184,
+    "fake_over_real": 18.7
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 3.3,
+    "fake": 96.5,
+    "filter": 0.2,
+    "mean_p_fake": 0.958,
+    "fake_over_real": 96.5
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 3.0,
+    "fake": 96.6,
+    "filter": 0.4,
+    "mean_p_fake": 0.96,
+    "fake_over_real": 96.6
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 77.5,
+    "fake": 8.9,
+    "filter": 13.6,
+    "mean_p_fake": 0.099,
+    "fake_over_real": 9.0
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 78.5,
+    "fake": 9.4,
+    "filter": 12.1,
+    "mean_p_fake": 0.1,
+    "fake_over_real": 9.4
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 3.4,
+    "fake": 96.2,
+    "filter": 0.4,
+    "mean_p_fake": 0.956,
+    "fake_over_real": 96.2
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 3.7,
+    "fake": 96.0,
+    "filter": 0.3,
+    "mean_p_fake": 0.954,
+    "fake_over_real": 96.0
+   }
+  }
+ },
+ "clipe5fbn_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 1.1,
+    "fake": 6.0,
+    "filter": 92.8,
+    "mean_p_fake": 0.064,
+    "fake_over_real": 7.4
+   },
+   "fake": {
+    "n": 529,
+    "real": 0.4,
+    "fake": 95.8,
+    "filter": 3.8,
+    "mean_p_fake": 0.954,
+    "fake_over_real": 96.6
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 3.6,
+    "fake": 18.9,
+    "filter": 77.5,
+    "mean_p_fake": 0.196,
+    "fake_over_real": 21.5
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.4,
+    "fake": 95.5,
+    "filter": 4.2,
+    "mean_p_fake": 0.951,
+    "fake_over_real": 95.8
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 6.1,
+    "fake": 16.2,
+    "filter": 77.8,
+    "mean_p_fake": 0.158,
+    "fake_over_real": 18.0
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 5.1,
+    "fake": 52.6,
+    "filter": 42.3,
+    "mean_p_fake": 0.5,
+    "fake_over_real": 56.3
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 97.2,
+    "filter": 2.8,
+    "mean_p_fake": 0.967,
+    "fake_over_real": 97.5
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 98.8,
+    "filter": 1.1,
+    "mean_p_fake": 0.983,
+    "fake_over_real": 99.2
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 6.8,
+    "fake": 17.0,
+    "filter": 76.2,
+    "mean_p_fake": 0.168,
+    "fake_over_real": 19.3
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 7.4,
+    "fake": 15.1,
+    "filter": 77.5,
+    "mean_p_fake": 0.156,
+    "fake_over_real": 17.9
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 97.4,
+    "filter": 2.6,
+    "mean_p_fake": 0.967,
+    "fake_over_real": 97.7
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.1,
+    "fake": 97.2,
+    "filter": 2.7,
+    "mean_p_fake": 0.966,
+    "fake_over_real": 97.8
+   }
+  }
+ },
+ "clipe5fbn_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 28.1,
+    "fake": 6.0,
+    "filter": 65.8,
+    "mean_p_fake": 0.067,
+    "fake_over_real": 6.6
+   },
+   "fake": {
+    "n": 529,
+    "real": 2.1,
+    "fake": 96.8,
+    "filter": 1.1,
+    "mean_p_fake": 0.955,
+    "fake_over_real": 96.8
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 17.2,
+    "fake": 22.6,
+    "filter": 60.2,
+    "mean_p_fake": 0.225,
+    "fake_over_real": 23.8
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 1.5,
+    "fake": 97.2,
+    "filter": 1.3,
+    "mean_p_fake": 0.961,
+    "fake_over_real": 97.4
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 59.6,
+    "fake": 11.8,
+    "filter": 28.6,
+    "mean_p_fake": 0.129,
+    "fake_over_real": 12.3
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 34.6,
+    "fake": 53.7,
+    "filter": 11.7,
+    "mean_p_fake": 0.506,
+    "fake_over_real": 54.2
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 2.1,
+    "fake": 96.6,
+    "filter": 1.4,
+    "mean_p_fake": 0.959,
+    "fake_over_real": 96.8
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 1.3,
+    "fake": 98.6,
+    "filter": 0.1,
+    "mean_p_fake": 0.98,
+    "fake_over_real": 98.6
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 58.2,
+    "fake": 14.0,
+    "filter": 27.8,
+    "mean_p_fake": 0.148,
+    "fake_over_real": 14.7
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 57.7,
+    "fake": 13.9,
+    "filter": 28.4,
+    "mean_p_fake": 0.139,
+    "fake_over_real": 14.2
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 1.4,
+    "fake": 97.2,
+    "filter": 1.4,
+    "mean_p_fake": 0.965,
+    "fake_over_real": 97.3
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 1.6,
+    "fake": 96.9,
+    "filter": 1.5,
+    "mean_p_fake": 0.963,
+    "fake_over_real": 97.0
+   }
+  }
+ },
+ "clipe5fbp1n_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 10.0,
+    "fake": 10.8,
+    "filter": 79.2,
+    "mean_p_fake": 0.108,
+    "fake_over_real": 12.5
+   },
+   "fake": {
+    "n": 529,
+    "real": 0.0,
+    "fake": 97.7,
+    "filter": 2.3,
+    "mean_p_fake": 0.967,
+    "fake_over_real": 98.3
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 15.5,
+    "fake": 9.8,
+    "filter": 74.7,
+    "mean_p_fake": 0.099,
+    "fake_over_real": 11.5
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.8,
+    "fake": 90.9,
+    "filter": 8.3,
+    "mean_p_fake": 0.902,
+    "fake_over_real": 92.2
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 7.5,
+    "fake": 11.3,
+    "filter": 81.2,
+    "mean_p_fake": 0.118,
+    "fake_over_real": 13.3
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 4.5,
+    "fake": 49.9,
+    "filter": 45.6,
+    "mean_p_fake": 0.479,
+    "fake_over_real": 54.9
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 96.3,
+    "filter": 3.6,
+    "mean_p_fake": 0.96,
+    "fake_over_real": 96.8
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.0,
+    "fake": 98.5,
+    "filter": 1.5,
+    "mean_p_fake": 0.981,
+    "fake_over_real": 98.9
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 7.9,
+    "fake": 12.3,
+    "filter": 79.8,
+    "mean_p_fake": 0.127,
+    "fake_over_real": 14.6
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 8.2,
+    "fake": 11.1,
+    "filter": 80.7,
+    "mean_p_fake": 0.116,
+    "fake_over_real": 14.1
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 96.1,
+    "filter": 3.9,
+    "mean_p_fake": 0.96,
+    "fake_over_real": 97.3
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.1,
+    "fake": 96.1,
+    "filter": 3.9,
+    "mean_p_fake": 0.958,
+    "fake_over_real": 96.9
+   }
+  }
+ },
+ "clipe5fbg0o_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 25.7,
+    "fake": 12.6,
+    "filter": 61.7,
+    "mean_p_fake": 0.124,
+    "fake_over_real": 14.5
+   },
+   "fake": {
+    "n": 529,
+    "real": 0.8,
+    "fake": 97.2,
+    "filter": 2.1,
+    "mean_p_fake": 0.966,
+    "fake_over_real": 97.7
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 23.4,
+    "fake": 26.0,
+    "filter": 50.6,
+    "mean_p_fake": 0.26,
+    "fake_over_real": 27.4
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.6,
+    "fake": 96.0,
+    "filter": 3.4,
+    "mean_p_fake": 0.953,
+    "fake_over_real": 96.2
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 18.3,
+    "fake": 30.2,
+    "filter": 51.5,
+    "mean_p_fake": 0.288,
+    "fake_over_real": 33.5
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 19.7,
+    "fake": 25.0,
+    "filter": 55.3,
+    "mean_p_fake": 0.25,
+    "fake_over_real": 27.1
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 98.6,
+    "filter": 1.2,
+    "mean_p_fake": 0.983,
+    "fake_over_real": 98.8
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 97.9,
+    "filter": 1.7,
+    "mean_p_fake": 0.976,
+    "fake_over_real": 98.3
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 19.3,
+    "fake": 30.5,
+    "filter": 50.2,
+    "mean_p_fake": 0.295,
+    "fake_over_real": 33.7
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 20.4,
+    "fake": 29.6,
+    "filter": 50.0,
+    "mean_p_fake": 0.287,
+    "fake_over_real": 32.2
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.2,
+    "fake": 98.4,
+    "filter": 1.3,
+    "mean_p_fake": 0.983,
+    "fake_over_real": 98.6
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.3,
+    "fake": 98.6,
+    "filter": 1.1,
+    "mean_p_fake": 0.983,
+    "fake_over_real": 98.7
+   }
+  }
+ },
+ "clipe5fbg0o_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 46.6,
+    "fake": 5.7,
+    "filter": 47.7,
+    "mean_p_fake": 0.065,
+    "fake_over_real": 6.0
+   },
+   "fake": {
+    "n": 529,
+    "real": 1.7,
+    "fake": 95.5,
+    "filter": 2.8,
+    "mean_p_fake": 0.94,
+    "fake_over_real": 95.7
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 34.7,
+    "fake": 21.7,
+    "filter": 43.6,
+    "mean_p_fake": 0.216,
+    "fake_over_real": 22.6
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 2.5,
+    "fake": 93.2,
+    "filter": 4.3,
+    "mean_p_fake": 0.924,
+    "fake_over_real": 93.6
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 64.0,
+    "fake": 13.4,
+    "filter": 22.7,
+    "mean_p_fake": 0.137,
+    "fake_over_real": 14.0
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 59.4,
+    "fake": 17.6,
+    "filter": 22.9,
+    "mean_p_fake": 0.175,
+    "fake_over_real": 18.4
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 2.5,
+    "fake": 95.6,
+    "filter": 1.9,
+    "mean_p_fake": 0.948,
+    "fake_over_real": 95.8
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 2.9,
+    "fake": 95.7,
+    "filter": 1.4,
+    "mean_p_fake": 0.946,
+    "fake_over_real": 95.7
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 62.6,
+    "fake": 13.8,
+    "filter": 23.6,
+    "mean_p_fake": 0.141,
+    "fake_over_real": 14.5
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 61.8,
+    "fake": 13.9,
+    "filter": 24.2,
+    "mean_p_fake": 0.145,
+    "fake_over_real": 14.6
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 2.6,
+    "fake": 96.0,
+    "filter": 1.4,
+    "mean_p_fake": 0.951,
+    "fake_over_real": 96.2
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 2.6,
+    "fake": 96.3,
+    "filter": 1.2,
+    "mean_p_fake": 0.954,
+    "fake_over_real": 96.4
+   }
+  }
+ },
+ "clipe5fbg0p1o_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 2.5,
+    "fake": 11.9,
+    "filter": 85.7,
+    "mean_p_fake": 0.123,
+    "fake_over_real": 14.0
+   },
+   "fake": {
+    "n": 529,
+    "real": 0.0,
+    "fake": 97.5,
+    "filter": 2.5,
+    "mean_p_fake": 0.974,
+    "fake_over_real": 97.7
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 4.0,
+    "fake": 29.1,
+    "filter": 67.0,
+    "mean_p_fake": 0.288,
+    "fake_over_real": 30.8
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.0,
+    "fake": 97.0,
+    "filter": 3.0,
+    "mean_p_fake": 0.962,
+    "fake_over_real": 97.2
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 2.1,
+    "fake": 33.1,
+    "filter": 64.8,
+    "mean_p_fake": 0.331,
+    "fake_over_real": 38.0
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 6.3,
+    "fake": 25.8,
+    "filter": 67.9,
+    "mean_p_fake": 0.254,
+    "fake_over_real": 28.4
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 98.8,
+    "filter": 1.2,
+    "mean_p_fake": 0.984,
+    "fake_over_real": 98.9
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 97.9,
+    "filter": 2.0,
+    "mean_p_fake": 0.976,
+    "fake_over_real": 98.2
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 2.2,
+    "fake": 33.4,
+    "filter": 64.4,
+    "mean_p_fake": 0.334,
+    "fake_over_real": 38.8
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 3.2,
+    "fake": 36.2,
+    "filter": 60.6,
+    "mean_p_fake": 0.353,
+    "fake_over_real": 39.8
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 98.5,
+    "filter": 1.5,
+    "mean_p_fake": 0.984,
+    "fake_over_real": 98.7
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 98.8,
+    "filter": 1.2,
+    "mean_p_fake": 0.985,
+    "fake_over_real": 98.9
+   }
+  }
+ },
+ "clipe5fbg0p1o_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 60.6,
+    "fake": 10.4,
+    "filter": 29.1,
+    "mean_p_fake": 0.099,
+    "fake_over_real": 10.9
+   },
+   "fake": {
+    "n": 529,
+    "real": 2.5,
+    "fake": 97.0,
+    "filter": 0.6,
+    "mean_p_fake": 0.961,
+    "fake_over_real": 97.0
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 37.2,
+    "fake": 27.9,
+    "filter": 34.9,
+    "mean_p_fake": 0.284,
+    "fake_over_real": 28.9
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 2.5,
+    "fake": 96.0,
+    "filter": 1.5,
+    "mean_p_fake": 0.949,
+    "fake_over_real": 96.4
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 61.5,
+    "fake": 22.0,
+    "filter": 16.5,
+    "mean_p_fake": 0.222,
+    "fake_over_real": 22.7
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 61.3,
+    "fake": 23.8,
+    "filter": 14.9,
+    "mean_p_fake": 0.232,
+    "fake_over_real": 24.6
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 1.3,
+    "fake": 97.8,
+    "filter": 0.9,
+    "mean_p_fake": 0.971,
+    "fake_over_real": 98.0
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 1.8,
+    "fake": 97.5,
+    "filter": 0.8,
+    "mean_p_fake": 0.968,
+    "fake_over_real": 97.5
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 59.2,
+    "fake": 22.5,
+    "filter": 18.3,
+    "mean_p_fake": 0.23,
+    "fake_over_real": 23.2
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 55.3,
+    "fake": 26.1,
+    "filter": 18.5,
+    "mean_p_fake": 0.257,
+    "fake_over_real": 26.9
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 1.5,
+    "fake": 97.7,
+    "filter": 0.8,
+    "mean_p_fake": 0.972,
+    "fake_over_real": 97.7
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 1.5,
+    "fake": 97.7,
+    "filter": 0.8,
+    "mean_p_fake": 0.973,
+    "fake_over_real": 97.8
+   }
+  }
+ },
+ "clipe5fbg0p1o_s20261001": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 66.6,
+    "fake": 8.7,
+    "filter": 24.7,
+    "mean_p_fake": 0.09,
+    "fake_over_real": 8.9
+   },
+   "fake": {
+    "n": 529,
+    "real": 2.1,
+    "fake": 96.8,
+    "filter": 1.1,
+    "mean_p_fake": 0.958,
+    "fake_over_real": 96.8
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 52.8,
+    "fake": 24.5,
+    "filter": 22.6,
+    "mean_p_fake": 0.25,
+    "fake_over_real": 25.8
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 1.9,
+    "fake": 96.8,
+    "filter": 1.3,
+    "mean_p_fake": 0.95,
+    "fake_over_real": 96.8
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 50.2,
+    "fake": 19.7,
+    "filter": 30.1,
+    "mean_p_fake": 0.187,
+    "fake_over_real": 19.9
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 55.4,
+    "fake": 18.7,
+    "filter": 26.0,
+    "mean_p_fake": 0.182,
+    "fake_over_real": 19.1
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 2.7,
+    "fake": 97.0,
+    "filter": 0.3,
+    "mean_p_fake": 0.963,
+    "fake_over_real": 97.0
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 2.5,
+    "fake": 96.6,
+    "filter": 0.9,
+    "mean_p_fake": 0.957,
+    "fake_over_real": 96.6
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 51.8,
+    "fake": 18.9,
+    "filter": 29.3,
+    "mean_p_fake": 0.186,
+    "fake_over_real": 19.4
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 52.1,
+    "fake": 20.3,
+    "filter": 27.7,
+    "mean_p_fake": 0.204,
+    "fake_over_real": 20.9
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 1.9,
+    "fake": 97.3,
+    "filter": 0.8,
+    "mean_p_fake": 0.964,
+    "fake_over_real": 97.3
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 1.8,
+    "fake": 97.4,
+    "filter": 0.8,
+    "mean_p_fake": 0.965,
+    "fake_over_real": 97.4
+   }
+  }
+ },
+ "clipe5fbg0oy_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 16.0,
+    "fake": 4.3,
+    "filter": 79.6,
+    "mean_p_fake": 0.049,
+    "fake_over_real": 4.9
+   },
+   "fake": {
+    "n": 529,
+    "real": 1.3,
+    "fake": 93.2,
+    "filter": 5.5,
+    "mean_p_fake": 0.913,
+    "fake_over_real": 93.8
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 20.9,
+    "fake": 17.5,
+    "filter": 61.5,
+    "mean_p_fake": 0.18,
+    "fake_over_real": 19.1
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 2.5,
+    "fake": 91.9,
+    "filter": 5.7,
+    "mean_p_fake": 0.905,
+    "fake_over_real": 92.4
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 15.9,
+    "fake": 8.5,
+    "filter": 75.6,
+    "mean_p_fake": 0.097,
+    "fake_over_real": 11.0
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 20.7,
+    "fake": 13.4,
+    "filter": 65.9,
+    "mean_p_fake": 0.145,
+    "fake_over_real": 16.6
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.7,
+    "fake": 93.6,
+    "filter": 5.7,
+    "mean_p_fake": 0.928,
+    "fake_over_real": 94.6
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 1.0,
+    "fake": 94.1,
+    "filter": 4.9,
+    "mean_p_fake": 0.929,
+    "fake_over_real": 94.9
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 17.9,
+    "fake": 9.1,
+    "filter": 73.0,
+    "mean_p_fake": 0.104,
+    "fake_over_real": 11.5
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 19.9,
+    "fake": 10.2,
+    "filter": 69.8,
+    "mean_p_fake": 0.108,
+    "fake_over_real": 12.0
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.6,
+    "fake": 94.3,
+    "filter": 5.1,
+    "mean_p_fake": 0.932,
+    "fake_over_real": 95.1
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.7,
+    "fake": 94.3,
+    "filter": 5.0,
+    "mean_p_fake": 0.934,
+    "fake_over_real": 95.0
+   }
+  }
+ },
+ "clipe5fbg0oy_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 47.4,
+    "fake": 8.1,
+    "filter": 44.5,
+    "mean_p_fake": 0.074,
+    "fake_over_real": 8.3
+   },
+   "fake": {
+    "n": 529,
+    "real": 2.3,
+    "fake": 96.4,
+    "filter": 1.3,
+    "mean_p_fake": 0.95,
+    "fake_over_real": 96.4
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 32.3,
+    "fake": 25.1,
+    "filter": 42.6,
+    "mean_p_fake": 0.246,
+    "fake_over_real": 26.0
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 3.2,
+    "fake": 94.9,
+    "filter": 1.9,
+    "mean_p_fake": 0.939,
+    "fake_over_real": 95.1
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 56.7,
+    "fake": 11.4,
+    "filter": 32.0,
+    "mean_p_fake": 0.118,
+    "fake_over_real": 11.6
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 53.3,
+    "fake": 18.1,
+    "filter": 28.6,
+    "mean_p_fake": 0.175,
+    "fake_over_real": 18.7
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 1.9,
+    "fake": 96.0,
+    "filter": 2.1,
+    "mean_p_fake": 0.955,
+    "fake_over_real": 96.0
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 1.9,
+    "fake": 96.3,
+    "filter": 1.7,
+    "mean_p_fake": 0.959,
+    "fake_over_real": 96.5
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 56.6,
+    "fake": 11.8,
+    "filter": 31.6,
+    "mean_p_fake": 0.122,
+    "fake_over_real": 12.2
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 56.6,
+    "fake": 11.7,
+    "filter": 31.7,
+    "mean_p_fake": 0.123,
+    "fake_over_real": 12.2
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 1.6,
+    "fake": 96.6,
+    "filter": 1.8,
+    "mean_p_fake": 0.961,
+    "fake_over_real": 96.6
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 1.4,
+    "fake": 96.9,
+    "filter": 1.7,
+    "mean_p_fake": 0.964,
+    "fake_over_real": 97.0
+   }
+  }
+ },
+ "clipe5fbg0oyE_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 39.4,
+    "fake": 4.3,
+    "filter": 56.2,
+    "mean_p_fake": 0.064,
+    "fake_over_real": 5.5
+   },
+   "fake": {
+    "n": 529,
+    "real": 8.9,
+    "fake": 83.2,
+    "filter": 7.9,
+    "mean_p_fake": 0.801,
+    "fake_over_real": 83.2
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 34.3,
+    "fake": 20.0,
+    "filter": 45.7,
+    "mean_p_fake": 0.213,
+    "fake_over_real": 21.1
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 5.1,
+    "fake": 87.7,
+    "filter": 7.2,
+    "mean_p_fake": 0.842,
+    "fake_over_real": 87.9
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 68.1,
+    "fake": 9.6,
+    "filter": 22.3,
+    "mean_p_fake": 0.112,
+    "fake_over_real": 10.2
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 59.8,
+    "fake": 23.3,
+    "filter": 16.9,
+    "mean_p_fake": 0.238,
+    "fake_over_real": 24.2
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 5.5,
+    "fake": 92.4,
+    "filter": 2.1,
+    "mean_p_fake": 0.903,
+    "fake_over_real": 92.6
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 4.1,
+    "fake": 94.6,
+    "filter": 1.4,
+    "mean_p_fake": 0.925,
+    "fake_over_real": 94.7
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 65.8,
+    "fake": 10.4,
+    "filter": 23.9,
+    "mean_p_fake": 0.12,
+    "fake_over_real": 11.2
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 63.0,
+    "fake": 12.2,
+    "filter": 24.8,
+    "mean_p_fake": 0.136,
+    "fake_over_real": 13.0
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 4.7,
+    "fake": 92.2,
+    "filter": 3.1,
+    "mean_p_fake": 0.904,
+    "fake_over_real": 92.3
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 4.1,
+    "fake": 92.9,
+    "filter": 3.0,
+    "mean_p_fake": 0.91,
+    "fake_over_real": 93.3
+   }
+  }
+ },
+ "clipe5fbg0oyEi_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 8.1,
+    "fake": 3.0,
+    "filter": 88.9,
+    "mean_p_fake": 0.102,
+    "fake_over_real": 6.0
+   },
+   "fake": {
+    "n": 529,
+    "real": 4.2,
+    "fake": 67.1,
+    "filter": 28.7,
+    "mean_p_fake": 0.641,
+    "fake_over_real": 70.1
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 11.7,
+    "fake": 7.9,
+    "filter": 80.4,
+    "mean_p_fake": 0.146,
+    "fake_over_real": 13.0
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 3.4,
+    "fake": 71.1,
+    "filter": 25.5,
+    "mean_p_fake": 0.661,
+    "fake_over_real": 74.7
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 62.8,
+    "fake": 1.8,
+    "filter": 35.4,
+    "mean_p_fake": 0.099,
+    "fake_over_real": 2.1
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 60.3,
+    "fake": 11.0,
+    "filter": 28.7,
+    "mean_p_fake": 0.174,
+    "fake_over_real": 11.7
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 20.2,
+    "fake": 68.0,
+    "filter": 11.8,
+    "mean_p_fake": 0.637,
+    "fake_over_real": 69.1
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 14.2,
+    "fake": 77.8,
+    "filter": 8.1,
+    "mean_p_fake": 0.715,
+    "fake_over_real": 78.7
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 60.9,
+    "fake": 1.8,
+    "filter": 37.3,
+    "mean_p_fake": 0.1,
+    "fake_over_real": 2.1
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 59.0,
+    "fake": 2.2,
+    "filter": 38.8,
+    "mean_p_fake": 0.103,
+    "fake_over_real": 2.7
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 18.0,
+    "fake": 66.5,
+    "filter": 15.4,
+    "mean_p_fake": 0.625,
+    "fake_over_real": 68.7
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 16.3,
+    "fake": 69.2,
+    "filter": 14.6,
+    "mean_p_fake": 0.649,
+    "fake_over_real": 70.3
+   }
+  }
+ },
+ "clipe5y_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 84.9,
+    "fake": 8.7,
+    "filter": 6.4,
+    "mean_p_fake": 0.108,
+    "fake_over_real": 8.9
+   },
+   "fake": {
+    "n": 529,
+    "real": 8.5,
+    "fake": 90.7,
+    "filter": 0.8,
+    "mean_p_fake": 0.901,
+    "fake_over_real": 91.1
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 6.4,
+    "fake": 12.5,
+    "filter": 81.1,
+    "mean_p_fake": 0.176,
+    "fake_over_real": 80.6
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.2,
+    "fake": 90.9,
+    "filter": 8.9,
+    "mean_p_fake": 0.897,
+    "fake_over_real": 99.2
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 85.1,
+    "fake": 0.6,
+    "filter": 14.4,
+    "mean_p_fake": 0.01,
+    "fake_over_real": 1.1
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.7,
+    "fake": 0.8,
+    "filter": 98.6,
+    "mean_p_fake": 0.021,
+    "fake_over_real": 80.4
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 3.0,
+    "fake": 95.5,
+    "filter": 1.6,
+    "mean_p_fake": 0.947,
+    "fake_over_real": 95.9
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 94.8,
+    "filter": 5.2,
+    "mean_p_fake": 0.946,
+    "fake_over_real": 99.7
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 84.9,
+    "fake": 0.4,
+    "filter": 14.7,
+    "mean_p_fake": 0.009,
+    "fake_over_real": 0.9
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 14.9,
+    "fake": 0.7,
+    "filter": 84.4,
+    "mean_p_fake": 0.016,
+    "fake_over_real": 37.5
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 2.6,
+    "fake": 96.3,
+    "filter": 1.2,
+    "mean_p_fake": 0.953,
+    "fake_over_real": 96.5
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.4,
+    "fake": 96.4,
+    "filter": 3.1,
+    "mean_p_fake": 0.96,
+    "fake_over_real": 98.5
+   }
+  }
+ },
+ "clipe5fbp3_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 12.5,
+    "fake": 8.5,
+    "filter": 79.1,
+    "mean_p_fake": 0.089,
+    "fake_over_real": 10.6
+   },
+   "fake": {
+    "n": 529,
+    "real": 0.6,
+    "fake": 96.6,
+    "filter": 2.8,
+    "mean_p_fake": 0.954,
+    "fake_over_real": 97.0
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 10.0,
+    "fake": 53.0,
+    "filter": 37.0,
+    "mean_p_fake": 0.504,
+    "fake_over_real": 54.9
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.0,
+    "fake": 99.4,
+    "filter": 0.6,
+    "mean_p_fake": 0.99,
+    "fake_over_real": 99.4
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 13.5,
+    "fake": 28.9,
+    "filter": 57.6,
+    "mean_p_fake": 0.293,
+    "fake_over_real": 32.4
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 6.3,
+    "fake": 75.8,
+    "filter": 17.9,
+    "mean_p_fake": 0.72,
+    "fake_over_real": 78.2
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 98.3,
+    "filter": 1.5,
+    "mean_p_fake": 0.98,
+    "fake_over_real": 98.8
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 99.2,
+    "filter": 0.7,
+    "mean_p_fake": 0.99,
+    "fake_over_real": 99.4
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 14.5,
+    "fake": 30.7,
+    "filter": 54.7,
+    "mean_p_fake": 0.312,
+    "fake_over_real": 34.2
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 14.9,
+    "fake": 32.2,
+    "filter": 52.9,
+    "mean_p_fake": 0.321,
+    "fake_over_real": 36.4
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.2,
+    "fake": 98.7,
+    "filter": 1.1,
+    "mean_p_fake": 0.984,
+    "fake_over_real": 98.9
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.2,
+    "fake": 98.7,
+    "filter": 1.2,
+    "mean_p_fake": 0.984,
+    "fake_over_real": 98.8
+   }
+  }
+ },
+ "clipe5y_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 85.8,
+    "fake": 8.1,
+    "filter": 6.0,
+    "mean_p_fake": 0.101,
+    "fake_over_real": 8.7
+   },
+   "fake": {
+    "n": 529,
+    "real": 9.8,
+    "fake": 89.6,
+    "filter": 0.6,
+    "mean_p_fake": 0.884,
+    "fake_over_real": 90.0
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 7.7,
+    "fake": 23.2,
+    "filter": 69.1,
+    "mean_p_fake": 0.26,
+    "fake_over_real": 76.6
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.8,
+    "fake": 93.0,
+    "filter": 6.2,
+    "mean_p_fake": 0.919,
+    "fake_over_real": 98.7
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 89.3,
+    "fake": 0.5,
+    "filter": 10.3,
+    "mean_p_fake": 0.006,
+    "fake_over_real": 0.8
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.8,
+    "fake": 0.6,
+    "filter": 98.6,
+    "mean_p_fake": 0.023,
+    "fake_over_real": 80.6
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 4.4,
+    "fake": 93.9,
+    "filter": 1.7,
+    "mean_p_fake": 0.934,
+    "fake_over_real": 94.0
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 94.6,
+    "filter": 5.2,
+    "mean_p_fake": 0.945,
+    "fake_over_real": 99.3
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 87.8,
+    "fake": 0.5,
+    "filter": 11.7,
+    "mean_p_fake": 0.006,
+    "fake_over_real": 0.8
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 25.7,
+    "fake": 0.4,
+    "filter": 73.9,
+    "mean_p_fake": 0.015,
+    "fake_over_real": 24.6
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 4.1,
+    "fake": 95.2,
+    "filter": 0.7,
+    "mean_p_fake": 0.944,
+    "fake_over_real": 95.3
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 1.0,
+    "fake": 95.9,
+    "filter": 3.1,
+    "mean_p_fake": 0.956,
+    "fake_over_real": 98.0
+   }
+  }
+ },
+ "clipe5b_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 49.2,
+    "fake": 12.8,
+    "filter": 37.9,
+    "mean_p_fake": 0.133,
+    "fake_over_real": 14.3
+   },
+   "fake": {
+    "n": 529,
+    "real": 2.1,
+    "fake": 97.0,
+    "filter": 0.9,
+    "mean_p_fake": 0.959,
+    "fake_over_real": 97.0
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 37.4,
+    "fake": 24.2,
+    "filter": 38.5,
+    "mean_p_fake": 0.243,
+    "fake_over_real": 27.4
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 1.7,
+    "fake": 97.5,
+    "filter": 0.8,
+    "mean_p_fake": 0.96,
+    "fake_over_real": 97.5
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 91.9,
+    "fake": 0.0,
+    "filter": 8.1,
+    "mean_p_fake": 0.004,
+    "fake_over_real": 0.0
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 92.2,
+    "fake": 0.6,
+    "filter": 7.2,
+    "mean_p_fake": 0.01,
+    "fake_over_real": 0.7
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 3.7,
+    "fake": 94.8,
+    "filter": 1.5,
+    "mean_p_fake": 0.941,
+    "fake_over_real": 94.8
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 4.3,
+    "fake": 94.3,
+    "filter": 1.4,
+    "mean_p_fake": 0.939,
+    "fake_over_real": 94.3
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 90.9,
+    "fake": 0.0,
+    "filter": 9.1,
+    "mean_p_fake": 0.004,
+    "fake_over_real": 0.0
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 90.6,
+    "fake": 0.5,
+    "filter": 8.9,
+    "mean_p_fake": 0.007,
+    "fake_over_real": 0.6
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 3.1,
+    "fake": 95.3,
+    "filter": 1.6,
+    "mean_p_fake": 0.947,
+    "fake_over_real": 95.4
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 2.5,
+    "fake": 96.2,
+    "filter": 1.3,
+    "mean_p_fake": 0.957,
+    "fake_over_real": 96.2
+   }
+  }
+ },
+ "clipe5z_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 85.8,
+    "fake": 5.8,
+    "filter": 8.3,
+    "mean_p_fake": 0.159,
+    "fake_over_real": 8.3
+   },
+   "fake": {
+    "n": 529,
+    "real": 25.7,
+    "fake": 71.8,
+    "filter": 2.5,
+    "mean_p_fake": 0.688,
+    "fake_over_real": 73.7
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 5.5,
+    "fake": 13.4,
+    "filter": 81.1,
+    "mean_p_fake": 0.255,
+    "fake_over_real": 85.3
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 1.5,
+    "fake": 73.9,
+    "filter": 24.6,
+    "mean_p_fake": 0.698,
+    "fake_over_real": 97.2
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 81.6,
+    "fake": 0.2,
+    "filter": 18.2,
+    "mean_p_fake": 0.052,
+    "fake_over_real": 2.3
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.7,
+    "fake": 0.3,
+    "filter": 99.0,
+    "mean_p_fake": 0.06,
+    "fake_over_real": 97.2
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 8.4,
+    "fake": 87.7,
+    "filter": 3.9,
+    "mean_p_fake": 0.827,
+    "fake_over_real": 89.6
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 87.1,
+    "filter": 12.8,
+    "mean_p_fake": 0.829,
+    "fake_over_real": 99.4
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 80.9,
+    "fake": 0.2,
+    "filter": 18.9,
+    "mean_p_fake": 0.052,
+    "fake_over_real": 2.3
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 13.6,
+    "fake": 0.5,
+    "filter": 85.9,
+    "mean_p_fake": 0.057,
+    "fake_over_real": 58.6
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 7.0,
+    "fake": 89.0,
+    "filter": 4.0,
+    "mean_p_fake": 0.832,
+    "fake_over_real": 90.7
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.8,
+    "fake": 88.8,
+    "filter": 10.4,
+    "mean_p_fake": 0.841,
+    "fake_over_real": 97.2
+   }
+  }
+ },
+ "clipe5bz_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 1.7,
+    "fake": 15.3,
+    "filter": 83.0,
+    "mean_p_fake": 0.186,
+    "fake_over_real": 18.3
+   },
+   "fake": {
+    "n": 529,
+    "real": 0.8,
+    "fake": 85.4,
+    "filter": 13.8,
+    "mean_p_fake": 0.765,
+    "fake_over_real": 86.2
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 1.3,
+    "fake": 27.4,
+    "filter": 71.3,
+    "mean_p_fake": 0.292,
+    "fake_over_real": 32.1
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.8,
+    "fake": 86.4,
+    "filter": 12.9,
+    "mean_p_fake": 0.781,
+    "fake_over_real": 88.8
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 10.6,
+    "fake": 0.6,
+    "filter": 88.8,
+    "mean_p_fake": 0.039,
+    "fake_over_real": 0.8
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 71.0,
+    "fake": 0.8,
+    "filter": 28.2,
+    "mean_p_fake": 0.044,
+    "fake_over_real": 1.2
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 89.3,
+    "filter": 10.5,
+    "mean_p_fake": 0.857,
+    "fake_over_real": 90.3
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 2.8,
+    "fake": 89.8,
+    "filter": 7.4,
+    "mean_p_fake": 0.86,
+    "fake_over_real": 91.0
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 9.8,
+    "fake": 0.7,
+    "filter": 89.6,
+    "mean_p_fake": 0.039,
+    "fake_over_real": 1.0
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 31.0,
+    "fake": 0.6,
+    "filter": 68.4,
+    "mean_p_fake": 0.043,
+    "fake_over_real": 1.2
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.4,
+    "fake": 89.6,
+    "filter": 9.9,
+    "mean_p_fake": 0.862,
+    "fake_over_real": 90.8
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.8,
+    "fake": 91.0,
+    "filter": 8.2,
+    "mean_p_fake": 0.873,
+    "fake_over_real": 92.4
+   }
+  }
+ },
+ "clipe5bzl0_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 5.3,
+    "fake": 16.4,
+    "filter": 78.3,
+    "mean_p_fake": 0.167,
+    "fake_over_real": 17.5
+   },
+   "fake": {
+    "n": 529,
+    "real": 0.2,
+    "fake": 97.0,
+    "filter": 2.8,
+    "mean_p_fake": 0.961,
+    "fake_over_real": 97.5
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 7.9,
+    "fake": 25.3,
+    "filter": 66.8,
+    "mean_p_fake": 0.247,
+    "fake_over_real": 27.4
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.2,
+    "fake": 96.2,
+    "filter": 3.6,
+    "mean_p_fake": 0.957,
+    "fake_over_real": 97.0
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 6.6,
+    "fake": 1.0,
+    "filter": 92.4,
+    "mean_p_fake": 0.01,
+    "fake_over_real": 1.0
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 7.1,
+    "fake": 1.8,
+    "filter": 91.1,
+    "mean_p_fake": 0.02,
+    "fake_over_real": 2.0
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 97.1,
+    "filter": 2.8,
+    "mean_p_fake": 0.966,
+    "fake_over_real": 97.3
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 97.1,
+    "filter": 2.6,
+    "mean_p_fake": 0.966,
+    "fake_over_real": 97.6
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 7.3,
+    "fake": 0.8,
+    "filter": 91.9,
+    "mean_p_fake": 0.009,
+    "fake_over_real": 0.9
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 6.6,
+    "fake": 1.0,
+    "filter": 92.4,
+    "mean_p_fake": 0.012,
+    "fake_over_real": 1.2
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 97.0,
+    "filter": 3.0,
+    "mean_p_fake": 0.968,
+    "fake_over_real": 97.2
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.0,
+    "fake": 97.4,
+    "filter": 2.6,
+    "mean_p_fake": 0.973,
+    "fake_over_real": 97.7
+   }
+  }
+ },
+ "clipe5bzsg_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 83.4,
+    "fake": 12.6,
+    "filter": 4.0,
+    "mean_p_fake": 0.142,
+    "fake_over_real": 13.0
+   },
+   "fake": {
+    "n": 529,
+    "real": 14.4,
+    "fake": 84.7,
+    "filter": 0.9,
+    "mean_p_fake": 0.798,
+    "fake_over_real": 85.1
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 63.0,
+    "fake": 31.5,
+    "filter": 5.5,
+    "mean_p_fake": 0.268,
+    "fake_over_real": 32.5
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 9.8,
+    "fake": 88.3,
+    "filter": 1.9,
+    "mean_p_fake": 0.83,
+    "fake_over_real": 88.3
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 99.4,
+    "fake": 0.0,
+    "filter": 0.6,
+    "mean_p_fake": 0.009,
+    "fake_over_real": 0.0
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 95.3,
+    "fake": 0.5,
+    "filter": 4.2,
+    "mean_p_fake": 0.011,
+    "fake_over_real": 0.5
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 9.4,
+    "fake": 90.6,
+    "filter": 0.0,
+    "mean_p_fake": 0.867,
+    "fake_over_real": 90.6
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 7.2,
+    "fake": 92.3,
+    "filter": 0.6,
+    "mean_p_fake": 0.884,
+    "fake_over_real": 92.3
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 99.3,
+    "fake": 0.0,
+    "filter": 0.7,
+    "mean_p_fake": 0.009,
+    "fake_over_real": 0.0
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 98.4,
+    "fake": 0.1,
+    "filter": 1.5,
+    "mean_p_fake": 0.013,
+    "fake_over_real": 0.1
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 8.2,
+    "fake": 91.4,
+    "filter": 0.4,
+    "mean_p_fake": 0.876,
+    "fake_over_real": 91.5
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 6.3,
+    "fake": 93.4,
+    "filter": 0.3,
+    "mean_p_fake": 0.893,
+    "fake_over_real": 93.4
+   }
+  }
+ },
+ "clipe5bzl03_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 3.4,
+    "fake": 16.4,
+    "filter": 80.2,
+    "mean_p_fake": 0.171,
+    "fake_over_real": 17.7
+   },
+   "fake": {
+    "n": 529,
+    "real": 1.5,
+    "fake": 91.1,
+    "filter": 7.4,
+    "mean_p_fake": 0.844,
+    "fake_over_real": 91.7
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 10.2,
+    "fake": 30.6,
+    "filter": 59.2,
+    "mean_p_fake": 0.296,
+    "fake_over_real": 32.5
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 1.5,
+    "fake": 93.8,
+    "filter": 4.7,
+    "mean_p_fake": 0.857,
+    "fake_over_real": 93.8
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 18.1,
+    "fake": 0.5,
+    "filter": 81.4,
+    "mean_p_fake": 0.027,
+    "fake_over_real": 0.6
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 60.1,
+    "fake": 0.9,
+    "filter": 39.0,
+    "mean_p_fake": 0.035,
+    "fake_over_real": 0.9
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.8,
+    "fake": 92.1,
+    "filter": 7.1,
+    "mean_p_fake": 0.893,
+    "fake_over_real": 92.4
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 2.8,
+    "fake": 92.9,
+    "filter": 4.3,
+    "mean_p_fake": 0.9,
+    "fake_over_real": 93.0
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 18.5,
+    "fake": 0.4,
+    "filter": 81.1,
+    "mean_p_fake": 0.027,
+    "fake_over_real": 0.6
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 14.6,
+    "fake": 0.6,
+    "filter": 84.7,
+    "mean_p_fake": 0.032,
+    "fake_over_real": 0.7
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.9,
+    "fake": 93.3,
+    "filter": 5.8,
+    "mean_p_fake": 0.902,
+    "fake_over_real": 93.6
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.6,
+    "fake": 94.9,
+    "filter": 4.5,
+    "mean_p_fake": 0.914,
+    "fake_over_real": 95.1
+   }
+  }
+ },
+ "clipe5bzsg_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 77.0,
+    "fake": 8.9,
+    "filter": 14.2,
+    "mean_p_fake": 0.119,
+    "fake_over_real": 9.6
+   },
+   "fake": {
+    "n": 529,
+    "real": 14.4,
+    "fake": 82.4,
+    "filter": 3.2,
+    "mean_p_fake": 0.802,
+    "fake_over_real": 82.8
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 38.7,
+    "fake": 26.0,
+    "filter": 35.3,
+    "mean_p_fake": 0.269,
+    "fake_over_real": 29.4
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 6.0,
+    "fake": 87.9,
+    "filter": 6.0,
+    "mean_p_fake": 0.849,
+    "fake_over_real": 89.8
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 94.8,
+    "fake": 0.0,
+    "filter": 5.2,
+    "mean_p_fake": 0.009,
+    "fake_over_real": 0.0
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 81.2,
+    "fake": 1.2,
+    "filter": 17.6,
+    "mean_p_fake": 0.025,
+    "fake_over_real": 1.2
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 7.4,
+    "fake": 91.3,
+    "filter": 1.2,
+    "mean_p_fake": 0.9,
+    "fake_over_real": 91.4
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 4.3,
+    "fake": 94.3,
+    "filter": 1.4,
+    "mean_p_fake": 0.926,
+    "fake_over_real": 94.4
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 93.7,
+    "fake": 0.1,
+    "filter": 6.2,
+    "mean_p_fake": 0.01,
+    "fake_over_real": 0.1
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 89.2,
+    "fake": 0.4,
+    "filter": 10.4,
+    "mean_p_fake": 0.017,
+    "fake_over_real": 0.5
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 6.4,
+    "fake": 92.8,
+    "filter": 0.8,
+    "mean_p_fake": 0.913,
+    "fake_over_real": 92.8
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 5.0,
+    "fake": 94.0,
+    "filter": 1.0,
+    "mean_p_fake": 0.924,
+    "fake_over_real": 94.0
+   }
+  }
+ },
+ "clipe5fbzsg_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 37.7,
+    "fake": 5.5,
+    "filter": 56.8,
+    "mean_p_fake": 0.074,
+    "fake_over_real": 7.2
+   },
+   "fake": {
+    "n": 529,
+    "real": 3.6,
+    "fake": 88.5,
+    "filter": 7.9,
+    "mean_p_fake": 0.831,
+    "fake_over_real": 89.2
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 22.8,
+    "fake": 22.5,
+    "filter": 54.7,
+    "mean_p_fake": 0.224,
+    "fake_over_real": 27.9
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 2.5,
+    "fake": 89.2,
+    "filter": 8.3,
+    "mean_p_fake": 0.862,
+    "fake_over_real": 90.9
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 28.6,
+    "fake": 9.4,
+    "filter": 62.0,
+    "mean_p_fake": 0.115,
+    "fake_over_real": 11.2
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 25.8,
+    "fake": 19.8,
+    "filter": 54.3,
+    "mean_p_fake": 0.213,
+    "fake_over_real": 23.1
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 1.9,
+    "fake": 92.1,
+    "filter": 6.0,
+    "mean_p_fake": 0.877,
+    "fake_over_real": 93.0
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 1.4,
+    "fake": 93.9,
+    "filter": 4.6,
+    "mean_p_fake": 0.902,
+    "fake_over_real": 94.6
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 28.9,
+    "fake": 10.6,
+    "filter": 60.5,
+    "mean_p_fake": 0.125,
+    "fake_over_real": 12.5
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 30.6,
+    "fake": 11.6,
+    "filter": 57.8,
+    "mean_p_fake": 0.131,
+    "fake_over_real": 13.1
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 2.1,
+    "fake": 93.6,
+    "filter": 4.3,
+    "mean_p_fake": 0.89,
+    "fake_over_real": 93.9
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 2.1,
+    "fake": 93.9,
+    "filter": 4.0,
+    "mean_p_fake": 0.891,
+    "fake_over_real": 94.2
+   }
+  }
+ },
+ "clipe5bzl01_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 26.8,
+    "fake": 12.8,
+    "filter": 60.4,
+    "mean_p_fake": 0.145,
+    "fake_over_real": 14.3
+   },
+   "fake": {
+    "n": 529,
+    "real": 1.7,
+    "fake": 93.8,
+    "filter": 4.5,
+    "mean_p_fake": 0.879,
+    "fake_over_real": 94.0
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 18.1,
+    "fake": 23.2,
+    "filter": 58.7,
+    "mean_p_fake": 0.241,
+    "fake_over_real": 28.1
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 1.7,
+    "fake": 92.4,
+    "filter": 5.9,
+    "mean_p_fake": 0.875,
+    "fake_over_real": 94.1
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 62.9,
+    "fake": 0.5,
+    "filter": 36.6,
+    "mean_p_fake": 0.022,
+    "fake_over_real": 0.5
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 61.2,
+    "fake": 1.1,
+    "filter": 37.7,
+    "mean_p_fake": 0.032,
+    "fake_over_real": 1.4
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 2.5,
+    "fake": 94.6,
+    "filter": 2.9,
+    "mean_p_fake": 0.92,
+    "fake_over_real": 94.8
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 2.8,
+    "fake": 95.2,
+    "filter": 1.9,
+    "mean_p_fake": 0.927,
+    "fake_over_real": 95.5
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 65.2,
+    "fake": 0.6,
+    "filter": 34.2,
+    "mean_p_fake": 0.023,
+    "fake_over_real": 0.6
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 57.7,
+    "fake": 0.6,
+    "filter": 41.8,
+    "mean_p_fake": 0.027,
+    "fake_over_real": 0.7
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 2.1,
+    "fake": 95.1,
+    "filter": 2.7,
+    "mean_p_fake": 0.928,
+    "fake_over_real": 95.4
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 1.7,
+    "fake": 96.3,
+    "filter": 2.0,
+    "mean_p_fake": 0.936,
+    "fake_over_real": 96.6
+   }
+  }
+ },
+ "clipe5bzsgl01_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 2.1,
+    "fake": 12.3,
+    "filter": 85.7,
+    "mean_p_fake": 0.132,
+    "fake_over_real": 15.1
+   },
+   "fake": {
+    "n": 529,
+    "real": 0.4,
+    "fake": 94.9,
+    "filter": 4.7,
+    "mean_p_fake": 0.931,
+    "fake_over_real": 95.1
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 5.7,
+    "fake": 21.9,
+    "filter": 72.5,
+    "mean_p_fake": 0.215,
+    "fake_over_real": 24.9
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.2,
+    "fake": 94.7,
+    "filter": 5.1,
+    "mean_p_fake": 0.925,
+    "fake_over_real": 95.1
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 34.8,
+    "fake": 0.5,
+    "filter": 64.7,
+    "mean_p_fake": 0.007,
+    "fake_over_real": 0.5
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 38.2,
+    "fake": 1.4,
+    "filter": 60.4,
+    "mean_p_fake": 0.019,
+    "fake_over_real": 1.7
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 95.7,
+    "filter": 3.9,
+    "mean_p_fake": 0.95,
+    "fake_over_real": 95.9
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.8,
+    "fake": 96.3,
+    "filter": 2.9,
+    "mean_p_fake": 0.959,
+    "fake_over_real": 96.5
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 34.0,
+    "fake": 0.5,
+    "filter": 65.5,
+    "mean_p_fake": 0.008,
+    "fake_over_real": 0.5
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 39.7,
+    "fake": 0.7,
+    "filter": 59.7,
+    "mean_p_fake": 0.011,
+    "fake_over_real": 0.8
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.3,
+    "fake": 96.1,
+    "filter": 3.6,
+    "mean_p_fake": 0.957,
+    "fake_over_real": 96.4
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.3,
+    "fake": 97.4,
+    "filter": 2.3,
+    "mean_p_fake": 0.968,
+    "fake_over_real": 97.5
+   }
+  }
+ },
+ "clipe5bzsgG_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 31.1,
+    "fake": 12.5,
+    "filter": 56.4,
+    "mean_p_fake": 0.143,
+    "fake_over_real": 15.1
+   },
+   "fake": {
+    "n": 529,
+    "real": 7.6,
+    "fake": 81.9,
+    "filter": 10.6,
+    "mean_p_fake": 0.801,
+    "fake_over_real": 83.6
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 37.5,
+    "fake": 23.8,
+    "filter": 38.7,
+    "mean_p_fake": 0.258,
+    "fake_over_real": 26.6
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 6.2,
+    "fake": 86.2,
+    "filter": 7.6,
+    "mean_p_fake": 0.827,
+    "fake_over_real": 87.0
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 3.4,
+    "fake": 0.2,
+    "filter": 96.3,
+    "mean_p_fake": 0.019,
+    "fake_over_real": 0.3
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 15.6,
+    "fake": 0.6,
+    "filter": 83.8,
+    "mean_p_fake": 0.02,
+    "fake_over_real": 0.8
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 90.6,
+    "filter": 9.1,
+    "mean_p_fake": 0.894,
+    "fake_over_real": 91.6
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 92.6,
+    "filter": 7.2,
+    "mean_p_fake": 0.91,
+    "fake_over_real": 93.0
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 3.9,
+    "fake": 0.2,
+    "filter": 95.9,
+    "mean_p_fake": 0.02,
+    "fake_over_real": 0.4
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 7.4,
+    "fake": 0.3,
+    "filter": 92.3,
+    "mean_p_fake": 0.022,
+    "fake_over_real": 0.6
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.2,
+    "fake": 92.0,
+    "filter": 7.8,
+    "mean_p_fake": 0.906,
+    "fake_over_real": 92.7
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.3,
+    "fake": 93.2,
+    "filter": 6.5,
+    "mean_p_fake": 0.918,
+    "fake_over_real": 94.3
+   }
+  }
+ },
+ "clipe5bz_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 67.0,
+    "fake": 16.8,
+    "filter": 16.2,
+    "mean_p_fake": 0.193,
+    "fake_over_real": 18.5
+   },
+   "fake": {
+    "n": 529,
+    "real": 8.9,
+    "fake": 85.8,
+    "filter": 5.3,
+    "mean_p_fake": 0.764,
+    "fake_over_real": 87.0
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 44.7,
+    "fake": 27.5,
+    "filter": 27.7,
+    "mean_p_fake": 0.291,
+    "fake_over_real": 31.7
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 4.9,
+    "fake": 89.2,
+    "filter": 5.9,
+    "mean_p_fake": 0.776,
+    "fake_over_real": 90.5
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 99.3,
+    "fake": 0.6,
+    "filter": 0.1,
+    "mean_p_fake": 0.039,
+    "fake_over_real": 0.6
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 99.0,
+    "fake": 0.5,
+    "filter": 0.5,
+    "mean_p_fake": 0.042,
+    "fake_over_real": 0.6
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 9.7,
+    "fake": 89.2,
+    "filter": 1.1,
+    "mean_p_fake": 0.848,
+    "fake_over_real": 89.3
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 9.6,
+    "fake": 88.8,
+    "filter": 1.7,
+    "mean_p_fake": 0.849,
+    "fake_over_real": 89.1
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 99.4,
+    "fake": 0.6,
+    "filter": 0.1,
+    "mean_p_fake": 0.039,
+    "fake_over_real": 0.6
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 98.8,
+    "fake": 0.6,
+    "filter": 0.7,
+    "mean_p_fake": 0.042,
+    "fake_over_real": 0.7
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 8.5,
+    "fake": 89.7,
+    "filter": 1.8,
+    "mean_p_fake": 0.854,
+    "fake_over_real": 90.0
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 7.7,
+    "fake": 90.7,
+    "filter": 1.6,
+    "mean_p_fake": 0.864,
+    "fake_over_real": 91.0
+   }
+  }
+ },
+ "clipe5bzsgl03_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 85.1,
+    "fake": 13.2,
+    "filter": 1.7,
+    "mean_p_fake": 0.134,
+    "fake_over_real": 13.4
+   },
+   "fake": {
+    "n": 529,
+    "real": 7.6,
+    "fake": 91.7,
+    "filter": 0.8,
+    "mean_p_fake": 0.896,
+    "fake_over_real": 91.9
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 71.5,
+    "fake": 23.0,
+    "filter": 5.5,
+    "mean_p_fake": 0.224,
+    "fake_over_real": 23.6
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 6.4,
+    "fake": 92.6,
+    "filter": 0.9,
+    "mean_p_fake": 0.896,
+    "fake_over_real": 92.8
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 99.1,
+    "fake": 0.6,
+    "filter": 0.3,
+    "mean_p_fake": 0.009,
+    "fake_over_real": 0.6
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 92.7,
+    "fake": 1.9,
+    "filter": 5.4,
+    "mean_p_fake": 0.028,
+    "fake_over_real": 2.0
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 5.5,
+    "fake": 94.4,
+    "filter": 0.1,
+    "mean_p_fake": 0.934,
+    "fake_over_real": 94.4
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 3.3,
+    "fake": 96.0,
+    "filter": 0.7,
+    "mean_p_fake": 0.952,
+    "fake_over_real": 96.1
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 99.0,
+    "fake": 0.7,
+    "filter": 0.3,
+    "mean_p_fake": 0.01,
+    "fake_over_real": 0.7
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 96.7,
+    "fake": 0.8,
+    "filter": 2.5,
+    "mean_p_fake": 0.015,
+    "fake_over_real": 0.8
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 4.3,
+    "fake": 95.5,
+    "filter": 0.2,
+    "mean_p_fake": 0.947,
+    "fake_over_real": 95.5
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 3.0,
+    "fake": 96.7,
+    "filter": 0.3,
+    "mean_p_fake": 0.959,
+    "fake_over_real": 96.7
+   }
+  }
+ },
+ "clipe5bzsgh_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 68.3,
+    "fake": 16.0,
+    "filter": 15.7,
+    "mean_p_fake": 0.15,
+    "fake_over_real": 16.4
+   },
+   "fake": {
+    "n": 529,
+    "real": 4.7,
+    "fake": 94.5,
+    "filter": 0.8,
+    "mean_p_fake": 0.939,
+    "fake_over_real": 94.7
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 20.9,
+    "fake": 22.1,
+    "filter": 57.0,
+    "mean_p_fake": 0.217,
+    "fake_over_real": 25.1
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 1.7,
+    "fake": 95.3,
+    "filter": 3.0,
+    "mean_p_fake": 0.932,
+    "fake_over_real": 95.3
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 66.5,
+    "fake": 0.6,
+    "filter": 32.9,
+    "mean_p_fake": 0.008,
+    "fake_over_real": 0.6
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 71.6,
+    "fake": 1.9,
+    "filter": 26.4,
+    "mean_p_fake": 0.022,
+    "fake_over_real": 2.1
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 1.0,
+    "fake": 96.8,
+    "filter": 2.3,
+    "mean_p_fake": 0.96,
+    "fake_over_real": 97.2
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.9,
+    "fake": 97.3,
+    "filter": 1.8,
+    "mean_p_fake": 0.967,
+    "fake_over_real": 97.4
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 64.8,
+    "fake": 0.8,
+    "filter": 34.4,
+    "mean_p_fake": 0.009,
+    "fake_over_real": 0.8
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 54.7,
+    "fake": 1.1,
+    "filter": 44.2,
+    "mean_p_fake": 0.016,
+    "fake_over_real": 1.6
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.9,
+    "fake": 97.3,
+    "filter": 1.8,
+    "mean_p_fake": 0.966,
+    "fake_over_real": 97.5
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.7,
+    "fake": 97.8,
+    "filter": 1.5,
+    "mean_p_fake": 0.974,
+    "fake_over_real": 98.0
+   }
+  }
+ },
+ "clipe5bzsgl003_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 66.8,
+    "fake": 16.4,
+    "filter": 16.8,
+    "mean_p_fake": 0.153,
+    "fake_over_real": 17.7
+   },
+   "fake": {
+    "n": 529,
+    "real": 3.4,
+    "fake": 94.7,
+    "filter": 1.9,
+    "mean_p_fake": 0.937,
+    "fake_over_real": 94.9
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 11.7,
+    "fake": 21.5,
+    "filter": 66.8,
+    "mean_p_fake": 0.217,
+    "fake_over_real": 24.9
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.6,
+    "fake": 94.3,
+    "filter": 5.1,
+    "mean_p_fake": 0.929,
+    "fake_over_real": 95.1
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 66.1,
+    "fake": 0.3,
+    "filter": 33.6,
+    "mean_p_fake": 0.006,
+    "fake_over_real": 0.3
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 23.8,
+    "fake": 1.8,
+    "filter": 74.4,
+    "mean_p_fake": 0.02,
+    "fake_over_real": 1.9
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 1.4,
+    "fake": 96.4,
+    "filter": 2.1,
+    "mean_p_fake": 0.96,
+    "fake_over_real": 96.5
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 96.8,
+    "filter": 3.0,
+    "mean_p_fake": 0.964,
+    "fake_over_real": 97.0
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 64.6,
+    "fake": 0.3,
+    "filter": 35.1,
+    "mean_p_fake": 0.007,
+    "fake_over_real": 0.3
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 29.6,
+    "fake": 0.7,
+    "filter": 69.7,
+    "mean_p_fake": 0.011,
+    "fake_over_real": 0.9
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 1.2,
+    "fake": 97.0,
+    "filter": 1.8,
+    "mean_p_fake": 0.966,
+    "fake_over_real": 97.2
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.4,
+    "fake": 97.7,
+    "filter": 1.8,
+    "mean_p_fake": 0.973,
+    "fake_over_real": 97.8
+   }
+  }
+ },
+ "clipe5bzsgl003_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 35.5,
+    "fake": 15.1,
+    "filter": 49.4,
+    "mean_p_fake": 0.144,
+    "fake_over_real": 15.3
+   },
+   "fake": {
+    "n": 529,
+    "real": 1.9,
+    "fake": 95.5,
+    "filter": 2.6,
+    "mean_p_fake": 0.945,
+    "fake_over_real": 95.5
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 62.1,
+    "fake": 27.2,
+    "filter": 10.8,
+    "mean_p_fake": 0.262,
+    "fake_over_real": 27.4
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 4.0,
+    "fake": 95.7,
+    "filter": 0.4,
+    "mean_p_fake": 0.944,
+    "fake_over_real": 95.7
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 91.8,
+    "fake": 0.0,
+    "filter": 8.2,
+    "mean_p_fake": 0.004,
+    "fake_over_real": 0.0
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 98.3,
+    "fake": 1.5,
+    "filter": 0.2,
+    "mean_p_fake": 0.02,
+    "fake_over_real": 1.5
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 3.9,
+    "fake": 95.9,
+    "filter": 0.3,
+    "mean_p_fake": 0.957,
+    "fake_over_real": 95.9
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 3.4,
+    "fake": 96.6,
+    "filter": 0.0,
+    "mean_p_fake": 0.963,
+    "fake_over_real": 96.6
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 91.3,
+    "fake": 0.1,
+    "filter": 8.6,
+    "mean_p_fake": 0.004,
+    "fake_over_real": 0.1
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 98.2,
+    "fake": 0.9,
+    "filter": 0.9,
+    "mean_p_fake": 0.014,
+    "fake_over_real": 0.9
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 2.9,
+    "fake": 96.8,
+    "filter": 0.3,
+    "mean_p_fake": 0.966,
+    "fake_over_real": 96.8
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 2.4,
+    "fake": 97.6,
+    "filter": 0.0,
+    "mean_p_fake": 0.973,
+    "fake_over_real": 97.6
+   }
+  }
+ },
+ "clipe5bzsgh_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 74.5,
+    "fake": 13.2,
+    "filter": 12.3,
+    "mean_p_fake": 0.126,
+    "fake_over_real": 13.2
+   },
+   "fake": {
+    "n": 529,
+    "real": 4.5,
+    "fake": 94.3,
+    "filter": 1.1,
+    "mean_p_fake": 0.931,
+    "fake_over_real": 94.5
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 58.3,
+    "fake": 21.9,
+    "filter": 19.8,
+    "mean_p_fake": 0.211,
+    "fake_over_real": 22.1
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 3.4,
+    "fake": 94.9,
+    "filter": 1.7,
+    "mean_p_fake": 0.927,
+    "fake_over_real": 94.9
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 95.7,
+    "fake": 0.6,
+    "filter": 3.7,
+    "mean_p_fake": 0.005,
+    "fake_over_real": 0.6
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 97.1,
+    "fake": 1.6,
+    "filter": 1.3,
+    "mean_p_fake": 0.019,
+    "fake_over_real": 1.6
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 3.9,
+    "fake": 95.4,
+    "filter": 0.7,
+    "mean_p_fake": 0.948,
+    "fake_over_real": 95.4
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 3.3,
+    "fake": 96.4,
+    "filter": 0.3,
+    "mean_p_fake": 0.959,
+    "fake_over_real": 96.4
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 95.5,
+    "fake": 0.7,
+    "filter": 3.8,
+    "mean_p_fake": 0.007,
+    "fake_over_real": 0.7
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 96.7,
+    "fake": 1.3,
+    "filter": 2.0,
+    "mean_p_fake": 0.016,
+    "fake_over_real": 1.3
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 3.9,
+    "fake": 95.8,
+    "filter": 0.3,
+    "mean_p_fake": 0.955,
+    "fake_over_real": 95.8
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 2.3,
+    "fake": 97.4,
+    "filter": 0.3,
+    "mean_p_fake": 0.969,
+    "fake_over_real": 97.4
+   }
+  }
+ },
+ "clipe5bzsgG_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 59.8,
+    "fake": 9.6,
+    "filter": 30.6,
+    "mean_p_fake": 0.131,
+    "fake_over_real": 10.4
+   },
+   "fake": {
+    "n": 529,
+    "real": 12.9,
+    "fake": 79.8,
+    "filter": 7.4,
+    "mean_p_fake": 0.778,
+    "fake_over_real": 80.5
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 54.0,
+    "fake": 15.3,
+    "filter": 30.8,
+    "mean_p_fake": 0.194,
+    "fake_over_real": 16.4
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 12.3,
+    "fake": 81.7,
+    "filter": 6.0,
+    "mean_p_fake": 0.774,
+    "fake_over_real": 82.0
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 95.0,
+    "fake": 0.6,
+    "filter": 4.5,
+    "mean_p_fake": 0.014,
+    "fake_over_real": 0.6
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 93.0,
+    "fake": 1.6,
+    "filter": 5.4,
+    "mean_p_fake": 0.03,
+    "fake_over_real": 1.7
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 8.9,
+    "fake": 90.4,
+    "filter": 0.7,
+    "mean_p_fake": 0.884,
+    "fake_over_real": 90.5
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 6.5,
+    "fake": 93.2,
+    "filter": 0.3,
+    "mean_p_fake": 0.911,
+    "fake_over_real": 93.2
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 95.1,
+    "fake": 0.7,
+    "filter": 4.2,
+    "mean_p_fake": 0.017,
+    "fake_over_real": 0.7
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 94.4,
+    "fake": 1.1,
+    "filter": 4.5,
+    "mean_p_fake": 0.022,
+    "fake_over_real": 1.1
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 7.7,
+    "fake": 91.7,
+    "filter": 0.6,
+    "mean_p_fake": 0.897,
+    "fake_over_real": 91.8
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 7.1,
+    "fake": 92.6,
+    "filter": 0.3,
+    "mean_p_fake": 0.904,
+    "fake_over_real": 92.6
+   }
+  }
+ },
+ "clipe5bzxs_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 12.3,
+    "fake": 2.6,
+    "filter": 85.1,
+    "mean_p_fake": 0.031,
+    "fake_over_real": 2.8
+   },
+   "fake": {
+    "n": 529,
+    "real": 8.3,
+    "fake": 58.4,
+    "filter": 33.3,
+    "mean_p_fake": 0.567,
+    "fake_over_real": 58.8
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 37.4,
+    "fake": 20.4,
+    "filter": 42.3,
+    "mean_p_fake": 0.197,
+    "fake_over_real": 21.1
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 12.5,
+    "fake": 69.9,
+    "filter": 17.6,
+    "mean_p_fake": 0.675,
+    "fake_over_real": 70.9
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 13.8,
+    "fake": 0.0,
+    "filter": 86.2,
+    "mean_p_fake": 0.004,
+    "fake_over_real": 0.0
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 27.1,
+    "fake": 1.7,
+    "filter": 71.2,
+    "mean_p_fake": 0.021,
+    "fake_over_real": 1.7
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 4.1,
+    "fake": 91.7,
+    "filter": 4.2,
+    "mean_p_fake": 0.915,
+    "fake_over_real": 91.8
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 2.3,
+    "fake": 95.0,
+    "filter": 2.7,
+    "mean_p_fake": 0.943,
+    "fake_over_real": 95.0
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 15.3,
+    "fake": 0.1,
+    "filter": 84.7,
+    "mean_p_fake": 0.005,
+    "fake_over_real": 0.1
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 17.2,
+    "fake": 0.4,
+    "filter": 82.5,
+    "mean_p_fake": 0.008,
+    "fake_over_real": 0.4
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 3.1,
+    "fake": 93.2,
+    "filter": 3.6,
+    "mean_p_fake": 0.926,
+    "fake_over_real": 93.2
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 2.6,
+    "fake": 94.0,
+    "filter": 3.4,
+    "mean_p_fake": 0.936,
+    "fake_over_real": 94.0
+   }
+  }
+ },
+ "clipe5M_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 81.9,
+    "fake": 7.0,
+    "filter": 11.1,
+    "mean_p_fake": 0.088,
+    "fake_over_real": 7.9
+   },
+   "fake": {
+    "n": 529,
+    "real": 7.9,
+    "fake": 90.5,
+    "filter": 1.5,
+    "mean_p_fake": 0.903,
+    "fake_over_real": 91.5
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 7.7,
+    "fake": 16.6,
+    "filter": 75.7,
+    "mean_p_fake": 0.209,
+    "fake_over_real": 79.2
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.0,
+    "fake": 92.8,
+    "filter": 7.2,
+    "mean_p_fake": 0.907,
+    "fake_over_real": 99.2
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 82.6,
+    "fake": 0.3,
+    "filter": 17.1,
+    "mean_p_fake": 0.01,
+    "fake_over_real": 1.2
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.2,
+    "fake": 0.9,
+    "filter": 98.9,
+    "mean_p_fake": 0.022,
+    "fake_over_real": 84.5
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 2.4,
+    "fake": 96.3,
+    "filter": 1.2,
+    "mean_p_fake": 0.956,
+    "fake_over_real": 96.8
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.0,
+    "fake": 95.5,
+    "filter": 4.5,
+    "mean_p_fake": 0.955,
+    "fake_over_real": 99.7
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 81.5,
+    "fake": 0.5,
+    "filter": 18.0,
+    "mean_p_fake": 0.01,
+    "fake_over_real": 1.3
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 13.6,
+    "fake": 0.7,
+    "filter": 85.7,
+    "mean_p_fake": 0.021,
+    "fake_over_real": 42.6
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 2.8,
+    "fake": 96.2,
+    "filter": 0.9,
+    "mean_p_fake": 0.958,
+    "fake_over_real": 96.4
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.4,
+    "fake": 96.7,
+    "filter": 2.8,
+    "mean_p_fake": 0.965,
+    "fake_over_real": 98.9
+   }
+  }
+ },
+ "clipe5fbp0F2_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 11.9,
+    "fake": 10.0,
+    "filter": 78.1,
+    "mean_p_fake": 0.101,
+    "fake_over_real": 12.1
+   },
+   "fake": {
+    "n": 529,
+    "real": 2.1,
+    "fake": 80.5,
+    "filter": 17.4,
+    "mean_p_fake": 0.801,
+    "fake_over_real": 81.3
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 14.7,
+    "fake": 24.7,
+    "filter": 60.6,
+    "mean_p_fake": 0.249,
+    "fake_over_real": 26.2
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 2.6,
+    "fake": 83.2,
+    "filter": 14.2,
+    "mean_p_fake": 0.823,
+    "fake_over_real": 83.9
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 17.9,
+    "fake": 15.2,
+    "filter": 66.9,
+    "mean_p_fake": 0.158,
+    "fake_over_real": 17.9
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 11.4,
+    "fake": 43.4,
+    "filter": 45.2,
+    "mean_p_fake": 0.425,
+    "fake_over_real": 48.3
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 96.8,
+    "filter": 2.8,
+    "mean_p_fake": 0.966,
+    "fake_over_real": 97.5
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.1,
+    "fake": 98.1,
+    "filter": 1.7,
+    "mean_p_fake": 0.976,
+    "fake_over_real": 98.4
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 18.3,
+    "fake": 16.6,
+    "filter": 65.1,
+    "mean_p_fake": 0.17,
+    "fake_over_real": 19.4
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 18.3,
+    "fake": 17.4,
+    "filter": 64.3,
+    "mean_p_fake": 0.176,
+    "fake_over_real": 20.2
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 0.1,
+    "fake": 97.7,
+    "filter": 2.2,
+    "mean_p_fake": 0.972,
+    "fake_over_real": 97.9
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.1,
+    "fake": 97.6,
+    "filter": 2.3,
+    "mean_p_fake": 0.972,
+    "fake_over_real": 97.9
+   }
+  }
+ },
+ "clipe5fbEM_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 40.8,
+    "fake": 4.7,
+    "filter": 54.5,
+    "mean_p_fake": 0.055,
+    "fake_over_real": 5.1
+   },
+   "fake": {
+    "n": 529,
+    "real": 6.8,
+    "fake": 84.7,
+    "filter": 8.5,
+    "mean_p_fake": 0.812,
+    "fake_over_real": 85.6
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 37.0,
+    "fake": 17.0,
+    "filter": 46.0,
+    "mean_p_fake": 0.173,
+    "fake_over_real": 18.9
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 4.0,
+    "fake": 89.8,
+    "filter": 6.2,
+    "mean_p_fake": 0.859,
+    "fake_over_real": 90.4
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 69.1,
+    "fake": 13.1,
+    "filter": 17.8,
+    "mean_p_fake": 0.144,
+    "fake_over_real": 13.8
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 46.3,
+    "fake": 44.4,
+    "filter": 9.3,
+    "mean_p_fake": 0.408,
+    "fake_over_real": 45.5
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 4.6,
+    "fake": 94.0,
+    "filter": 1.4,
+    "mean_p_fake": 0.915,
+    "fake_over_real": 94.1
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 2.7,
+    "fake": 96.5,
+    "filter": 0.8,
+    "mean_p_fake": 0.942,
+    "fake_over_real": 96.7
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 67.2,
+    "fake": 14.5,
+    "filter": 18.4,
+    "mean_p_fake": 0.154,
+    "fake_over_real": 15.1
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 66.3,
+    "fake": 14.4,
+    "filter": 19.3,
+    "mean_p_fake": 0.15,
+    "fake_over_real": 15.3
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 4.9,
+    "fake": 93.5,
+    "filter": 1.7,
+    "mean_p_fake": 0.914,
+    "fake_over_real": 93.7
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 4.9,
+    "fake": 93.4,
+    "filter": 1.7,
+    "mean_p_fake": 0.911,
+    "fake_over_real": 93.5
+   }
+  }
+ },
+ "clipe5M_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 76.2,
+    "fake": 10.4,
+    "filter": 13.4,
+    "mean_p_fake": 0.123,
+    "fake_over_real": 11.5
+   },
+   "fake": {
+    "n": 529,
+    "real": 6.2,
+    "fake": 91.5,
+    "filter": 2.3,
+    "mean_p_fake": 0.904,
+    "fake_over_real": 91.9
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 4.7,
+    "fake": 21.3,
+    "filter": 74.0,
+    "mean_p_fake": 0.239,
+    "fake_over_real": 80.8
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.0,
+    "fake": 93.0,
+    "filter": 7.0,
+    "mean_p_fake": 0.917,
+    "fake_over_real": 99.2
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 79.5,
+    "fake": 0.3,
+    "filter": 20.2,
+    "mean_p_fake": 0.007,
+    "fake_over_real": 0.8
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 1.1,
+    "filter": 98.6,
+    "mean_p_fake": 0.025,
+    "fake_over_real": 82.2
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 3.0,
+    "fake": 95.5,
+    "filter": 1.6,
+    "mean_p_fake": 0.951,
+    "fake_over_real": 96.1
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.0,
+    "fake": 95.1,
+    "filter": 4.9,
+    "mean_p_fake": 0.953,
+    "fake_over_real": 99.6
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 77.7,
+    "fake": 0.3,
+    "filter": 22.0,
+    "mean_p_fake": 0.008,
+    "fake_over_real": 0.8
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 13.1,
+    "fake": 0.9,
+    "filter": 86.0,
+    "mean_p_fake": 0.022,
+    "fake_over_real": 36.9
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 2.7,
+    "fake": 96.2,
+    "filter": 1.1,
+    "mean_p_fake": 0.957,
+    "fake_over_real": 96.6
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.6,
+    "fake": 96.9,
+    "filter": 2.5,
+    "mean_p_fake": 0.966,
+    "fake_over_real": 98.7
+   }
+  }
+ },
+ "clipe5bzxs_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 60.0,
+    "fake": 0.8,
+    "filter": 39.2,
+    "mean_p_fake": 0.014,
+    "fake_over_real": 1.5
+   },
+   "fake": {
+    "n": 529,
+    "real": 21.2,
+    "fake": 48.2,
+    "filter": 30.6,
+    "mean_p_fake": 0.475,
+    "fake_over_real": 51.0
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 30.9,
+    "fake": 11.9,
+    "filter": 57.2,
+    "mean_p_fake": 0.133,
+    "fake_over_real": 15.3
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 10.8,
+    "fake": 61.4,
+    "filter": 27.8,
+    "mean_p_fake": 0.591,
+    "fake_over_real": 64.1
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 94.6,
+    "fake": 0.0,
+    "filter": 5.4,
+    "mean_p_fake": 0.002,
+    "fake_over_real": 0.0
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 82.6,
+    "fake": 0.3,
+    "filter": 17.1,
+    "mean_p_fake": 0.006,
+    "fake_over_real": 0.4
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 4.8,
+    "fake": 87.4,
+    "filter": 7.8,
+    "mean_p_fake": 0.868,
+    "fake_over_real": 88.0
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 2.8,
+    "fake": 90.2,
+    "filter": 7.0,
+    "mean_p_fake": 0.892,
+    "fake_over_real": 91.0
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 93.7,
+    "fake": 0.0,
+    "filter": 6.3,
+    "mean_p_fake": 0.002,
+    "fake_over_real": 0.0
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 91.5,
+    "fake": 0.1,
+    "filter": 8.5,
+    "mean_p_fake": 0.003,
+    "fake_over_real": 0.1
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 3.6,
+    "fake": 88.7,
+    "filter": 7.7,
+    "mean_p_fake": 0.881,
+    "fake_over_real": 89.3
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 3.4,
+    "fake": 89.2,
+    "filter": 7.4,
+    "mean_p_fake": 0.888,
+    "fake_over_real": 90.1
+   }
+  }
+ },
+ "clipe7W_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 84.9,
+    "fake": 7.0,
+    "filter": 8.1,
+    "mean_p_fake": 0.094,
+    "fake_over_real": 7.4
+   },
+   "fake": {
+    "n": 529,
+    "real": 6.4,
+    "fake": 93.2,
+    "filter": 0.4,
+    "mean_p_fake": 0.927,
+    "fake_over_real": 93.4
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 10.2,
+    "fake": 24.2,
+    "filter": 65.7,
+    "mean_p_fake": 0.277,
+    "fake_over_real": 77.2
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 1.5,
+    "fake": 95.1,
+    "filter": 3.4,
+    "mean_p_fake": 0.935,
+    "fake_over_real": 98.1
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 82.0,
+    "fake": 0.3,
+    "filter": 17.7,
+    "mean_p_fake": 0.007,
+    "fake_over_real": 1.0
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 0.9,
+    "filter": 98.8,
+    "mean_p_fake": 0.02,
+    "fake_over_real": 84.8
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 2.8,
+    "fake": 95.7,
+    "filter": 1.6,
+    "mean_p_fake": 0.952,
+    "fake_over_real": 96.1
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.0,
+    "fake": 95.3,
+    "filter": 4.7,
+    "mean_p_fake": 0.957,
+    "fake_over_real": 99.7
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 81.2,
+    "fake": 0.3,
+    "filter": 18.4,
+    "mean_p_fake": 0.007,
+    "fake_over_real": 0.9
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 16.4,
+    "fake": 0.6,
+    "filter": 83.0,
+    "mean_p_fake": 0.016,
+    "fake_over_real": 36.5
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 2.6,
+    "fake": 96.6,
+    "filter": 0.8,
+    "mean_p_fake": 0.96,
+    "fake_over_real": 96.9
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.6,
+    "fake": 97.4,
+    "filter": 2.0,
+    "mean_p_fake": 0.972,
+    "fake_over_real": 98.8
+   }
+  }
+ },
+ "clipe7W_s20260930": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 78.9,
+    "fake": 6.4,
+    "filter": 14.7,
+    "mean_p_fake": 0.083,
+    "fake_over_real": 6.8
+   },
+   "fake": {
+    "n": 529,
+    "real": 6.6,
+    "fake": 91.9,
+    "filter": 1.5,
+    "mean_p_fake": 0.905,
+    "fake_over_real": 92.1
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 8.3,
+    "fake": 24.2,
+    "filter": 67.5,
+    "mean_p_fake": 0.274,
+    "fake_over_real": 78.1
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.9,
+    "fake": 93.0,
+    "filter": 6.0,
+    "mean_p_fake": 0.919,
+    "fake_over_real": 98.5
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 79.4,
+    "fake": 0.8,
+    "filter": 19.8,
+    "mean_p_fake": 0.008,
+    "fake_over_real": 1.2
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 0.8,
+    "filter": 98.9,
+    "mean_p_fake": 0.021,
+    "fake_over_real": 86.9
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 3.0,
+    "fake": 95.5,
+    "filter": 1.4,
+    "mean_p_fake": 0.951,
+    "fake_over_real": 96.0
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.0,
+    "fake": 95.6,
+    "filter": 4.4,
+    "mean_p_fake": 0.954,
+    "fake_over_real": 99.7
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 78.1,
+    "fake": 0.6,
+    "filter": 21.3,
+    "mean_p_fake": 0.008,
+    "fake_over_real": 1.1
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 12.1,
+    "fake": 0.7,
+    "filter": 87.2,
+    "mean_p_fake": 0.015,
+    "fake_over_real": 44.5
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 3.1,
+    "fake": 96.2,
+    "filter": 0.7,
+    "mean_p_fake": 0.957,
+    "fake_over_real": 96.5
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.5,
+    "fake": 96.8,
+    "filter": 2.7,
+    "mean_p_fake": 0.966,
+    "fake_over_real": 98.9
+   }
+  }
+ },
+ "clipe5bR25_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 79.6,
+    "fake": 17.7,
+    "filter": 2.6,
+    "mean_p_fake": 0.183,
+    "fake_over_real": 18.1
+   },
+   "fake": {
+    "n": 529,
+    "real": 4.0,
+    "fake": 95.8,
+    "filter": 0.2,
+    "mean_p_fake": 0.947,
+    "fake_over_real": 95.8
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 64.7,
+    "fake": 34.3,
+    "filter": 0.9,
+    "mean_p_fake": 0.342,
+    "fake_over_real": 34.5
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 4.0,
+    "fake": 96.0,
+    "filter": 0.0,
+    "mean_p_fake": 0.949,
+    "fake_over_real": 96.0
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 98.7,
+    "fake": 0.8,
+    "filter": 0.6,
+    "mean_p_fake": 0.009,
+    "fake_over_real": 0.8
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 98.1,
+    "fake": 0.9,
+    "filter": 1.0,
+    "mean_p_fake": 0.013,
+    "fake_over_real": 1.0
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 3.7,
+    "fake": 95.9,
+    "filter": 0.3,
+    "mean_p_fake": 0.953,
+    "fake_over_real": 95.9
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 3.5,
+    "fake": 96.1,
+    "filter": 0.3,
+    "mean_p_fake": 0.956,
+    "fake_over_real": 96.1
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 98.7,
+    "fake": 0.7,
+    "filter": 0.6,
+    "mean_p_fake": 0.008,
+    "fake_over_real": 0.7
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 98.4,
+    "fake": 0.8,
+    "filter": 0.8,
+    "mean_p_fake": 0.011,
+    "fake_over_real": 0.8
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 3.4,
+    "fake": 96.2,
+    "filter": 0.4,
+    "mean_p_fake": 0.957,
+    "fake_over_real": 96.3
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 3.0,
+    "fake": 96.8,
+    "filter": 0.2,
+    "mean_p_fake": 0.964,
+    "fake_over_real": 96.8
+   }
+  }
+ },
+ "clipe5R25_s20260929": {
+  "A_unseen_colour_filters": {
+   "real": {
+    "n": 530,
+    "real": 87.7,
+    "fake": 8.1,
+    "filter": 4.2,
+    "mean_p_fake": 0.123,
+    "fake_over_real": 8.5
+   },
+   "fake": {
+    "n": 529,
+    "real": 12.3,
+    "fake": 86.6,
+    "filter": 1.1,
+    "mean_p_fake": 0.857,
+    "fake_over_real": 87.0
+   },
+   "real + unseen filter": {
+    "n": 530,
+    "real": 6.6,
+    "fake": 25.8,
+    "filter": 67.5,
+    "mean_p_fake": 0.318,
+    "fake_over_real": 84.0
+   },
+   "fake + unseen filter": {
+    "n": 529,
+    "real": 0.6,
+    "fake": 89.8,
+    "filter": 9.6,
+    "mean_p_fake": 0.883,
+    "fake_over_real": 98.7
+   }
+  },
+  "B_commercial_edit_on_forgery": {
+   "texture: original": {
+    "n": 1452,
+    "real": 86.5,
+    "fake": 0.8,
+    "filter": 12.7,
+    "mean_p_fake": 0.016,
+    "fake_over_real": 1.2
+   },
+   "texture: texture component (filter)": {
+    "n": 1452,
+    "real": 0.3,
+    "fake": 0.2,
+    "filter": 99.4,
+    "mean_p_fake": 0.015,
+    "fake_over_real": 83.1
+   },
+   "texture: self-blend forgery": {
+    "n": 1452,
+    "real": 4.3,
+    "fake": 94.3,
+    "filter": 1.4,
+    "mean_p_fake": 0.933,
+    "fake_over_real": 94.6
+   },
+   "texture: forgery + texture edit": {
+    "n": 1452,
+    "real": 0.0,
+    "fake": 94.0,
+    "filter": 6.0,
+    "mean_p_fake": 0.939,
+    "fake_over_real": 99.7
+   },
+   "tone: original": {
+    "n": 1790,
+    "real": 85.3,
+    "fake": 0.9,
+    "filter": 13.9,
+    "mean_p_fake": 0.018,
+    "fake_over_real": 1.3
+   },
+   "tone: tone component (filter)": {
+    "n": 1790,
+    "real": 16.9,
+    "fake": 1.3,
+    "filter": 81.8,
+    "mean_p_fake": 0.021,
+    "fake_over_real": 28.7
+   },
+   "tone: self-blend forgery": {
+    "n": 1790,
+    "real": 4.5,
+    "fake": 94.6,
+    "filter": 0.9,
+    "mean_p_fake": 0.94,
+    "fake_over_real": 94.8
+   },
+   "tone: forgery + tone edit": {
+    "n": 1790,
+    "real": 0.8,
+    "fake": 96.0,
+    "filter": 3.2,
+    "mean_p_fake": 0.954,
+    "fake_over_real": 98.0
+   }
+  }
+ }
+}

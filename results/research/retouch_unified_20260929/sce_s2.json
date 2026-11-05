@@ -1,0 +1,133 @@
+{
+ "t_A": 0.9844,
+ "t_B": 0.9932,
+ "forms": {
+  "untreated": {
+   "fa_sce": 5.0,
+   "fa_ci": [
+    3.7,
+    6.2
+   ],
+   "miss_sce": 35.4,
+   "miss_rise_sce": 0.0,
+   "fa_A": 5.0,
+   "miss_A": 35.4,
+   "miss_rise_A": 0.0,
+   "routed_to_B_pct": 0.0,
+   "auc_B_both_smoothed": 0.8129,
+   "auc_A_both_smoothed": 0.917
+  },
+  "bil9": {
+   "fa_sce": 6.8,
+   "fa_ci": [
+    4.6,
+    8.3
+   ],
+   "miss_sce": 56.7,
+   "miss_rise_sce": 21.3,
+   "fa_A": 2.2,
+   "miss_A": 57.8,
+   "miss_rise_A": 22.4,
+   "routed_to_B_pct": 99.9,
+   "auc_B_both_smoothed": 0.8014,
+   "auc_A_both_smoothed": 0.8785
+  },
+  "bil15": {
+   "fa_sce": 7.8,
+   "fa_ci": [
+    5.8,
+    9.6
+   ],
+   "miss_sce": 65.3,
+   "miss_rise_sce": 29.8,
+   "fa_A": 9.3,
+   "miss_A": 41.7,
+   "miss_rise_A": 6.3,
+   "routed_to_B_pct": 100.0,
+   "auc_B_both_smoothed": 0.7518,
+   "auc_A_both_smoothed": 0.843
+  },
+  "bil21": {
+   "fa_sce": 6.2,
+   "fa_ci": [
+    4.5,
+    7.7
+   ],
+   "miss_sce": 69.2,
+   "miss_rise_sce": 33.7,
+   "fa_A": 17.2,
+   "miss_A": 37.6,
+   "miss_rise_A": 2.2,
+   "routed_to_B_pct": 100.0,
+   "auc_B_both_smoothed": 0.7443,
+   "auc_A_both_smoothed": 0.81
+  },
+  "median5": {
+   "fa_sce": 5.5,
+   "fa_ci": [
+    3.9,
+    7.0
+   ],
+   "miss_sce": 56.8,
+   "miss_rise_sce": 21.4,
+   "fa_A": 3.4,
+   "miss_A": 49.0,
+   "miss_rise_A": 13.6,
+   "routed_to_B_pct": 74.4,
+   "auc_B_both_smoothed": 0.7511,
+   "auc_A_both_smoothed": 0.8825
+  },
+  "gblend": {
+   "fa_sce": 3.4,
+   "fa_ci": [
+    2.3,
+    4.5
+   ],
+   "miss_sce": 46.0,
+   "miss_rise_sce": 10.6,
+   "fa_A": 3.6,
+   "miss_A": 43.7,
+   "miss_rise_A": 8.4,
+   "routed_to_B_pct": 3.6,
+   "auc_B_both_smoothed": 0.8009,
+   "auc_A_both_smoothed": 0.8996
+  },
+  "fl06": {
+   "fa_sce": 2.1,
+   "fa_ci": [
+    0.8,
+    3.0
+   ],
+   "miss_sce": 76.0,
+   "miss_rise_sce": 40.6,
+   "fa_A": 51.2,
+   "miss_A": 4.6,
+   "miss_rise_A": -30.8,
+   "routed_to_B_pct": 99.8,
+   "auc_B_both_smoothed": 0.816,
+   "auc_A_both_smoothed": 0.879
+  },
+  "fl12": {
+   "fa_sce": 1.3,
+   "fa_ci": [
+    0.5,
+    2.0
+   ],
+   "miss_sce": 81.4,
+   "miss_rise_sce": 46.0,
+   "fa_A": 79.9,
+   "miss_A": 3.2,
+   "miss_rise_A": -32.2,
+   "routed_to_B_pct": 100.0,
+   "auc_B_both_smoothed": 0.7697,
+   "auc_A_both_smoothed": 0.7484
+  }
+ },
+ "commercial": {
+  "s90_accused_sce": 0.2,
+  "s90_accused_A": 6.5,
+  "orig_fa_sce": 4.8,
+  "routed_s90_pct": 99.4,
+  "routed_orig_pct": 0.9
+ }
+}

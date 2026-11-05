@@ -27,6 +27,7 @@ from torch.utils.data import DataLoader, Dataset
 HERE = Path(__file__).resolve().parent; sys.path.insert(0, str(HERE))
 from train_ru import BASE, UNI, CKPT, read_manifest, remap, cap, crop  # noqa: E402
 from train_ru3 import RUNet3, FLOOR, to_t2  # noqa: E402
+from main_model import MAIN_TAG, SUFFIX  # noqa: E402
 from eval_ru import run  # noqa: E402
 
 OPS = ["eye", "jaw", "white", "smooth"]; CLS = ["real", "fake", "filter"]; PE = BASE / "results/research/partedit_20260927"
@@ -116,7 +117,7 @@ def main():
     for k, v in S.items():
         print(k, len(v), {c: sum(1 for x in v if x[2] == i) for i, c in enumerate(CLS)}, flush=True)
     res = {"sizes": {k: len(v) for k, v in S.items()}}
-    for name, tag in (("Ours", "clipe4_s20260929"), ("Ours-lite", "ru4e_effb4_s20260929")):
+    for name, tag in (("Ours", MAIN_TAG), ("Ours-lite", "ru4e_effb4_s20260929")):
         if name == "Ours":
             from train_ru_clip import load_clip
             model = load_clip(tag, head=True); model.norm = "clip"; size = 224
@@ -142,7 +143,7 @@ def main():
         print(name, "side check", R["side_check_vendor_val_originals"], flush=True)
         res[name] = R; np.savez(HERE / f"split_eval_{tag}.npz", **dump)
         del model; torch.cuda.empty_cache()
-    (HERE / "split_eval.json").write_text(json.dumps(res, indent=1)); print("DONE")
+    (HERE / f"split_eval{SUFFIX}.json").write_text(json.dumps(res, indent=1)); print("DONE")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,156 @@
+{
+ "A": {
+  "tag": "clipe5R25_s20260929",
+  "comparator": "clipe5_s20260929",
+  "df40_reenactment": {
+   "ff": {
+    "arm": 0.6565,
+    "ref": 0.7179,
+    "diff": -0.0614,
+    "ci": [
+     -0.0733,
+     -0.0497
+    ]
+   },
+   "cdf": {
+    "arm": 0.471,
+    "ref": 0.502,
+    "diff": -0.031,
+    "ci": [
+     -0.0403,
+     -0.0214
+    ]
+   }
+  },
+  "df40_faceswap": {
+   "ff": {
+    "arm": 0.9291,
+    "ref": 0.9515,
+    "diff": -0.0224
+   },
+   "cdf": {
+    "arm": 0.8836,
+    "ref": 0.9053,
+    "diff": -0.0217
+   }
+  },
+  "smoothing90": {
+   "arm": {
+    "smoothing90_accused": 3.2,
+    "ci": [
+     1.991,
+     4.1629
+    ],
+    "smoothing90_above_own": 32.2,
+    "auroc_s90_vs_orig": 0.3221
+   },
+   "ref": {
+    "smoothing90_accused": 8.6,
+    "ci": [
+     6.6957,
+     10.4072
+    ],
+    "smoothing90_above_own": 32.5,
+    "auroc_s90_vs_orig": 0.3214
+   }
+  },
+  "cdfb_auc_beautified": {
+   "arm": 0.8593,
+   "ref": 0.866,
+   "arm_d_miss_beauty_only": 8.41,
+   "ref_d_miss_beauty_only": 6.66
+  },
+  "cdfv2_video": {
+   "arm": 0.9364,
+   "ref": 0.9468,
+   "diff": -0.0104,
+   "ci": [
+    -0.0211,
+    -0.0003
+   ]
+  },
+  "dfd_video": null,
+  "R1": false,
+  "kill_part": true,
+  "R2": "incomplete inputs: 'NoneType' object is not subscriptable"
+ },
+ "B": {
+  "tag": "clipe5bR25_s20260929",
+  "comparator": "clipe5b_s20260929",
+  "df40_reenactment": {
+   "ff": {
+    "arm": 0.6867,
+    "ref": 0.8419,
+    "diff": -0.1553,
+    "ci": [
+     -0.1681,
+     -0.142
+    ]
+   },
+   "cdf": {
+    "arm": 0.6279,
+    "ref": 0.6466,
+    "diff": -0.0187,
+    "ci": [
+     -0.0293,
+     -0.0084
+    ]
+   }
+  },
+  "df40_faceswap": {
+   "ff": {
+    "arm": 0.9255,
+    "ref": 0.9686,
+    "diff": -0.0431
+   },
+   "cdf": {
+    "arm": 0.9253,
+    "ref": 0.9264,
+    "diff": -0.0011
+   }
+  },
+  "smoothing90": {
+   "arm": {
+    "smoothing90_accused": 3.8,
+    "ci": [
+     2.8959,
+     5.2489
+    ],
+    "smoothing90_above_own": 42.2,
+    "auroc_s90_vs_orig": 0.4699
+   },
+   "ref": {
+    "smoothing90_accused": 9.1,
+    "ci": [
+     6.6968,
+     10.8597
+    ],
+    "smoothing90_above_own": 70.5,
+    "auroc_s90_vs_orig": 0.6317
+   }
+  },
+  "cdfb_auc_beautified": {
+   "arm": 0.8794,
+   "ref": 0.8958,
+   "arm_d_miss_beauty_only": 11.16,
+   "ref_d_miss_beauty_only": 6.99
+  },
+  "cdfv2_video": {
+   "arm": 0.9496,
+   "ref": 0.956,
+   "diff": -0.0064,
+   "ci": [
+    -0.0181,
+    0.0055
+   ]
+  },
+  "dfd_video": null,
+  "R1": false,
+  "kill_part": true,
+  "R2": "incomplete inputs: 'NoneType' object is not subscriptable"
+ },
+ "verdict": {
+  "R1_any": false,
+  "KILL": true
+ }
+}

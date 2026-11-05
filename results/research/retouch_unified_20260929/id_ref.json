@@ -1,0 +1,392 @@
+{
+ "n": 3504,
+ "n_genuine": 836,
+ "n_forged": 2668,
+ "detect_fail_pct": {
+  "untreated": 0.0,
+  "bil15": 0.0,
+  "bil21": 0.0,
+  "fl06": 0.0,
+  "fl12": 0.0
+ },
+ "auc": {
+  "identity": {
+   "untreated": {
+    "auc": 0.9962,
+    "drop_vs_untreated_ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "bil15": {
+    "auc": 0.9839,
+    "drop_vs_untreated_ci": [
+     -0.0219,
+     -0.0053
+    ]
+   },
+   "bil21": {
+    "auc": 0.9629,
+    "drop_vs_untreated_ci": [
+     -0.0545,
+     -0.0166
+    ]
+   },
+   "fl06": {
+    "auc": 0.9946,
+    "drop_vs_untreated_ci": [
+     -0.0034,
+     -0.0003
+    ]
+   },
+   "fl12": {
+    "auc": 0.9815,
+    "drop_vs_untreated_ci": [
+     -0.0264,
+     -0.0053
+    ]
+   }
+  },
+  "clipe5b": {
+   "untreated": {
+    "auc": 0.9244,
+    "drop_vs_untreated_ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "bil15": {
+    "auc": 0.8229,
+    "drop_vs_untreated_ci": [
+     -0.1238,
+     -0.0812
+    ]
+   },
+   "bil21": {
+    "auc": 0.7776,
+    "drop_vs_untreated_ci": [
+     -0.1755,
+     -0.1199
+    ]
+   },
+   "fl06": {
+    "auc": 0.8869,
+    "drop_vs_untreated_ci": [
+     -0.0686,
+     -0.0105
+    ]
+   },
+   "fl12": {
+    "auc": 0.7507,
+    "drop_vs_untreated_ci": [
+     -0.2135,
+     -0.135
+    ]
+   }
+  },
+  "effort": {
+   "untreated": {
+    "auc": 0.8966,
+    "drop_vs_untreated_ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "bil15": {
+    "auc": 0.8124,
+    "drop_vs_untreated_ci": [
+     -0.1085,
+     -0.0588
+    ]
+   },
+   "bil21": {
+    "auc": 0.7795,
+    "drop_vs_untreated_ci": [
+     -0.1476,
+     -0.0862
+    ]
+   },
+   "fl06": {
+    "auc": 0.7626,
+    "drop_vs_untreated_ci": [
+     -0.1824,
+     -0.0968
+    ]
+   },
+   "fl12": {
+    "auc": 0.663,
+    "drop_vs_untreated_ci": [
+     -0.2843,
+     -0.1912
+    ]
+   }
+  },
+  "gend": {
+   "untreated": {
+    "auc": 0.904,
+    "drop_vs_untreated_ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "bil15": {
+    "auc": 0.8042,
+    "drop_vs_untreated_ci": [
+     -0.1348,
+     -0.0646
+    ]
+   },
+   "bil21": {
+    "auc": 0.7343,
+    "drop_vs_untreated_ci": [
+     -0.2101,
+     -0.1273
+    ]
+   },
+   "fl06": {
+    "auc": 0.6645,
+    "drop_vs_untreated_ci": [
+     -0.2918,
+     -0.1872
+    ]
+   },
+   "fl12": {
+    "auc": 0.6055,
+    "drop_vs_untreated_ci": [
+     -0.3478,
+     -0.2477
+    ]
+   }
+  },
+  "sbi": {
+   "untreated": {
+    "auc": 0.8323,
+    "drop_vs_untreated_ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "bil15": {
+    "auc": 0.6997,
+    "drop_vs_untreated_ci": [
+     -0.1831,
+     -0.0918
+    ]
+   },
+   "bil21": {
+    "auc": 0.5764,
+    "drop_vs_untreated_ci": [
+     -0.3161,
+     -0.2004
+    ]
+   },
+   "fl06": {
+    "auc": 0.6376,
+    "drop_vs_untreated_ci": [
+     -0.2623,
+     -0.1345
+    ]
+   },
+   "fl12": {
+    "auc": 0.5726,
+    "drop_vs_untreated_ci": [
+     -0.3371,
+     -0.1948
+    ]
+   }
+  },
+  "fusion clipe5b+identity": {
+   "untreated": {
+    "auc": 0.9895,
+    "drop_vs_untreated_ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "bil15": {
+    "auc": 0.9572,
+    "drop_vs_untreated_ci": [
+     -0.0454,
+     -0.0206
+    ]
+   },
+   "bil21": {
+    "auc": 0.9343,
+    "drop_vs_untreated_ci": [
+     -0.0751,
+     -0.0379
+    ]
+   },
+   "fl06": {
+    "auc": 0.9828,
+    "drop_vs_untreated_ci": [
+     -0.0149,
+     0.0005
+    ]
+   },
+   "fl12": {
+    "auc": 0.943,
+    "drop_vs_untreated_ci": [
+     -0.0637,
+     -0.0322
+    ]
+   }
+  }
+ },
+ "op5": {
+  "identity": {
+   "untreated": {
+    "fa": 5.0,
+    "miss": 0.1
+   },
+   "bil15": {
+    "fa": 19.4,
+    "miss": 0.1
+   },
+   "bil21": {
+    "fa": 40.0,
+    "miss": 0.0
+   },
+   "fl06": {
+    "fa": 6.3,
+    "miss": 0.2
+   },
+   "fl12": {
+    "fa": 21.3,
+    "miss": 0.3
+   }
+  },
+  "clipe5b": {
+   "untreated": {
+    "fa": 5.0,
+    "miss": 33.8
+   },
+   "bil15": {
+    "fa": 43.2,
+    "miss": 14.4
+   },
+   "bil21": {
+    "fa": 53.5,
+    "miss": 14.9
+   },
+   "fl06": {
+    "fa": 56.6,
+    "miss": 3.8
+   },
+   "fl12": {
+    "fa": 88.0,
+    "miss": 1.8
+   }
+  },
+  "effort": {
+   "untreated": {
+    "fa": 5.0,
+    "miss": 33.4
+   },
+   "bil15": {
+    "fa": 41.5,
+    "miss": 16.8
+   },
+   "bil21": {
+    "fa": 66.5,
+    "miss": 5.3
+   },
+   "fl06": {
+    "fa": 94.9,
+    "miss": 0.1
+   },
+   "fl12": {
+    "fa": 100.0,
+    "miss": 0.0
+   }
+  },
+  "gend": {
+   "untreated": {
+    "fa": 5.0,
+    "miss": 30.6
+   },
+   "bil15": {
+    "fa": 88.0,
+    "miss": 0.6
+   },
+   "bil21": {
+    "fa": 96.8,
+    "miss": 0.1
+   },
+   "fl06": {
+    "fa": 98.8,
+    "miss": 0.0
+   },
+   "fl12": {
+    "fa": 100.0,
+    "miss": 0.0
+   }
+  },
+  "sbi": {
+   "untreated": {
+    "fa": 5.0,
+    "miss": 55.0
+   },
+   "bil15": {
+    "fa": 74.2,
+    "miss": 5.7
+   },
+   "bil21": {
+    "fa": 92.6,
+    "miss": 1.2
+   },
+   "fl06": {
+    "fa": 98.2,
+    "miss": 0.1
+   },
+   "fl12": {
+    "fa": 100.0,
+    "miss": 0.0
+   }
+  },
+  "fusion clipe5b+identity": {
+   "untreated": {
+    "fa": 5.0,
+    "miss": 5.7
+   },
+   "bil15": {
+    "fa": 14.8,
+    "miss": 9.4
+   },
+   "bil21": {
+    "fa": 20.6,
+    "miss": 10.9
+   },
+   "fl06": {
+    "fa": 7.8,
+    "miss": 6.0
+   },
+   "fl12": {
+    "fa": 22.6,
+    "miss": 8.7
+   }
+  }
+ },
+ "median_dist": {
+  "untreated": {
+   "genuine": 0.2461,
+   "forged": 0.6451
+  },
+  "bil15": {
+   "genuine": 0.3182,
+   "forged": 0.6426
+  },
+  "bil21": {
+   "genuine": 0.3831,
+   "forged": 0.6647
+  },
+  "fl06": {
+   "genuine": 0.2571,
+   "forged": 0.6421
+  },
+  "fl12": {
+   "genuine": 0.3177,
+   "forged": 0.6344
+  }
+ }
+}

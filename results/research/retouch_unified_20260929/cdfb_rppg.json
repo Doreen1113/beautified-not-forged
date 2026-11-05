@@ -1,0 +1,55 @@
+{
+ "n_videos": {
+  "real": 232,
+  "real_beautified": 232,
+  "real_compressed": 232,
+  "synthesis": 232,
+  "synthesis_beautified": 232,
+  "synthesis_compressed": 232
+ },
+ "dropped_landmark_fail": {
+  "real": 19,
+  "real_beautified": 111,
+  "real_compressed": 113,
+  "synthesis": 20,
+  "synthesis_beautified": 116,
+  "synthesis_compressed": 112
+ },
+ "median_snr_db": {
+  "real": -4.06,
+  "real_beautified": -3.8,
+  "real_compressed": -4.11,
+  "synthesis": -3.97,
+  "synthesis_beautified": -3.96,
+  "synthesis_compressed": -4.06
+ },
+ "auc_untreated": 0.5141509433962265,
+ "auc_beautified": 0.5409660872043317,
+ "auc_compressed": 0.5121148459383753,
+ "d_auc_beauty_only": 0.028851241265956395,
+ "fa_real": 5.16,
+ "fa_real_beautified": 0.83,
+ "fa_real_compressed": 3.36,
+ "miss_synthesis": 97.17,
+ "miss_synthesis_beautified": 93.1,
+ "miss_synthesis_compressed": 94.17,
+ "d_fa_beauty_only": -2.53,
+ "ci_d_fa": [
+  -6.422758212488903,
+  0.8405141717704022
+ ],
+ "d_miss_beauty_only": -1.07,
+ "ci_d_miss": [
+  -7.254165323979212,
+  5.317259223509228
+ ],
+ "spearman_vs_effort_untreated_forged": -0.018,
+ "predictions": {
+  "1_auc_untreated_ge_0.70": false,
+  "1_kill_lt_0.60": true,
+  "2_d_auc_beauty_only_ge_-0.05": true,
+  "2_kill_lt_-0.10": false,
+  "3_miss_rise_le5_fa_rise_le5": true,
+  "4_spearman_vs_effort_lt_0.3": true
+ }
+}

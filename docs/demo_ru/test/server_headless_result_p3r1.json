@@ -1,0 +1,3014 @@
+{
+ "lang": "zh",
+ "browser": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+ "server_load_s": 19.7,
+ "browser_process_s": 49.7,
+ "records": 10,
+ "texts": 100,
+ "texts_failing_recheck": 0,
+ "client_fixed_equals_server": true,
+ "fixed_routing_as_declared": true,
+ "fixed_questions": [
+  "和原圖比差在哪？",
+  "是誰？",
+  "可以確定嗎？",
+  "這個分數代表什麼？"
+ ],
+ "server_lang_matches": true,
+ "sources": {
+  "llm": 59,
+  "template": 1,
+  "fixed": 40
+ },
+ "prompts": [
+  "None",
+  "p3r1"
+ ],
+ "llm_texts_rechecked_p3": 59,
+ "regenerated": 1,
+ "latency_client": {
+  "explain_general": {
+   "n": 10,
+   "median_ms": 876.5,
+   "p90_ms": 1005.0,
+   "max_ms": 1221.8
+  },
+  "explain_pro": {
+   "n": 10,
+   "median_ms": 1097.0,
+   "p90_ms": 1188.8,
+   "max_ms": 1232.5
+  },
+  "qa_llm": {
+   "n": 40,
+   "median_ms": 513.1,
+   "p90_ms": 1036.5,
+   "max_ms": 1276.2
+  },
+  "qa_fixed": {
+   "n": 40,
+   "median_ms": 2.1,
+   "p90_ms": 3.0,
+   "max_ms": 4.6
+  }
+ },
+ "note": "client_ms = browser fetch round trip incl. greedy generation and, when the gate fails, one sampled regeneration; batch 1, bf16, RTX 6000 Ada; the page path (landmarks + ONNX) is not included",
+ "rows": [
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "判定是偽造，也就是身分被替換或合成。證據集中在眼睛。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "判定是偽造，也就是身分被替換或合成。證據集中在眼睛。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 0.58"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 897.3,
+   "client_ms": 903.1,
+   "text": "判定是偽造，也就是身分被替換或合成（判定分數 0.58）。證據集中在眼睛。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，也就是「偽造（身分被替換或合成）」這一類。證據集中在眼睛。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，也就是「偽造（身分被替換或合成）」這一類。證據集中在眼睛。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 0.58",
+     "眼睛 evidence 平均 0.15"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 913.5,
+   "client_ms": 916.4,
+   "text": "模型的判定是 fake，也就是「偽造（身分被替換或合成）」這一類（判定分數 0.58）。證據集中在眼睛（眼睛 evidence 平均 0.15）。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼判定為假？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據集中在眼睛。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據集中在眼睛。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 431.2,
+   "client_ms": 436.3,
+   "text": "模型的判定是 fake，證據集中在眼睛。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "哪裡被改了？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據集中在眼睛。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據集中在眼睛。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 422.1,
+   "client_ms": 425.3,
+   "text": "模型的判定是 fake，證據集中在眼睛。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "有沒有美顏？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據集中在眼睛。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據集中在眼睛。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 430.3,
+   "client_ms": 433.6,
+   "text": "模型的判定是 fake，證據集中在眼睛。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "這個分數代表什麼？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.5,
+   "client_ms": 3.2,
+   "text": "分數是模型對它所選判定的原始輸出，數值越高表示模型越偏向這個判定。它不是校準過的機率，分數高也不代表判定正確，模型也可能判錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "可以確定嗎？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.3,
+   "client_ms": 2.2,
+   "text": "無法確定。分數是模型的原始輸出，不是校準過的機率，判定也可能出錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "和原圖比差在哪？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 2.2,
+   "text": "系統使用時拿不到原圖，所以說不出這張照片和原本的照片差在哪裡。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "是誰？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 2,
+   "text": "系統不辨識身分，無法回答照片裡是誰。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼不是真的？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據集中在眼睛。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據集中在眼睛。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 415.2,
+   "client_ms": 417.4,
+   "text": "模型的判定是 fake，證據集中在眼睛。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是真實（未偵測到操弄）。整張臉未偵測到任何操弄，所以沒有特別指出的區域。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是真實（未偵測到操弄）。整張臉未偵測到任何操弄，所以沒有特別指出的區域。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 0.67"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 968.5,
+   "client_ms": 972,
+   "text": "模型的判定是真實（未偵測到操弄）（判定分數 0.67）。整張臉未偵測到任何操弄，所以沒有特別指出的區域。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 real，也就是「真實（未偵測到操弄）」。整臉未偵測到操弄，所以沒有要指出的證據區域。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 real，也就是「真實（未偵測到操弄）」。整臉未偵測到操弄，所以沒有要指出的證據區域。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 0.67"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1179.7,
+   "client_ms": 1184,
+   "text": "模型的判定是 real，也就是「真實（未偵測到操弄）」（判定分數 0.67）。整臉未偵測到操弄，所以沒有要指出的證據區域。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼判定為假？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 real，也就是「真實（未偵測到操弄）」。此判定未指出任何特定區域的操弄，且未列有修圖操作。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 real，也就是「真實（未偵測到操弄）」。此判定未指出任何特定區域的操弄，且未列有修圖操作。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1187.9,
+   "client_ms": 1191.1,
+   "text": "模型的判定是 real，也就是「真實（未偵測到操弄）」。此判定未指出任何特定區域的操弄，且未列有修圖操作。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "哪裡被改了？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 real，沒有偵測到任何操弄。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 real，沒有偵測到任何操弄。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 506.1,
+   "client_ms": 511.5,
+   "text": "模型的判定是 real，沒有偵測到任何操弄。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "有沒有美顏？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 real，沒有偵測到任何操弄。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 real，沒有偵測到任何操弄。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 511.2,
+   "client_ms": 514.8,
+   "text": "模型的判定是 real，沒有偵測到任何操弄。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "這個分數代表什麼？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.3,
+   "client_ms": 3,
+   "text": "分數是模型對它所選判定的原始輸出，數值越高表示模型越偏向這個判定。它不是校準過的機率，分數高也不代表判定正確，模型也可能判錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "可以確定嗎？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.3,
+   "client_ms": 2.2,
+   "text": "無法確定。分數是模型的原始輸出，不是校準過的機率，判定也可能出錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "和原圖比差在哪？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 2,
+   "text": "系統使用時拿不到原圖，所以說不出這張照片和原本的照片差在哪裡。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "是誰？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 2.1,
+   "text": "系統不辨識身分，無法回答照片裡是誰。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼不是真的？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 real，也就是「真實（未偵測到操弄）」。此判定並未指出任何特定區域有操弄現象。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 real，也就是「真實（未偵測到操弄）」。此判定並未指出任何特定區域有操弄現象。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1034.3,
+   "client_ms": 1036.4,
+   "text": "模型的判定是 real，也就是「真實（未偵測到操弄）」。此判定並未指出任何特定區域有操弄現象。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "判定是偽造，也就是身分被替換或合成。證據遍布整臉，沒有集中在單一部位。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "判定是偽造，也就是身分被替換或合成。證據遍布整臉，沒有集中在單一部位。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 1.00"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 885.8,
+   "client_ms": 902.6,
+   "text": "判定是偽造，也就是身分被替換或合成（判定分數 1.00）。證據遍布整臉，沒有集中在單一部位。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，也就是「偽造（身分被替換或合成）」這一類。證據遍布整臉，沒有集中在單一部位。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，也就是「偽造（身分被替換或合成）」這一類。證據遍布整臉，沒有集中在單一部位。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 1.00"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1092.9,
+   "client_ms": 1096.1,
+   "text": "模型的判定是 fake，也就是「偽造（身分被替換或合成）」這一類（判定分數 1.00）。證據遍布整臉，沒有集中在單一部位。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼判定為假？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，也就是偽造，證據遍布整臉。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，也就是偽造，證據遍布整臉。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 595.5,
+   "client_ms": 598.8,
+   "text": "模型的判定是 fake，也就是偽造，證據遍布整臉。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "哪裡被改了？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據遍布整臉。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據遍布整臉。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 447,
+   "client_ms": 451.6,
+   "text": "模型的判定是 fake，證據遍布整臉。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "有沒有美顏？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據遍布整臉。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據遍布整臉。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 457.3,
+   "client_ms": 460.3,
+   "text": "模型的判定是 fake，證據遍布整臉。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "這個分數代表什麼？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.4,
+   "client_ms": 2.6,
+   "text": "分數是模型對它所選判定的原始輸出，數值越高表示模型越偏向這個判定。它不是校準過的機率，分數高也不代表判定正確，模型也可能判錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "可以確定嗎？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.3,
+   "client_ms": 2.1,
+   "text": "無法確定。分數是模型的原始輸出，不是校準過的機率，判定也可能出錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "和原圖比差在哪？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 2.2,
+   "text": "系統使用時拿不到原圖，所以說不出這張照片和原本的照片差在哪裡。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "是誰？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 2.3,
+   "text": "系統不辨識身分，無法回答照片裡是誰。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼不是真的？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，也就是偽造。證據遍布整臉。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，也就是偽造。證據遍布整臉。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 591.8,
+   "client_ms": 594.3,
+   "text": "模型的判定是 fake，也就是偽造。證據遍布整臉。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "判定是偽造，也就是身分被替換或合成。證據遍布整臉，沒有集中在單一部位。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "判定是偽造，也就是身分被替換或合成。證據遍布整臉，沒有集中在單一部位。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 0.98"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 846.7,
+   "client_ms": 850.4,
+   "text": "判定是偽造，也就是身分被替換或合成（判定分數 0.98）。證據遍布整臉，沒有集中在單一部位。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，也就是「偽造（身分被替換或合成）」這一類。證據遍布整臉，沒有集中在單一部位。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，也就是「偽造（身分被替換或合成）」這一類。證據遍布整臉，沒有集中在單一部位。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 0.98"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1093.4,
+   "client_ms": 1097.9,
+   "text": "模型的判定是 fake，也就是「偽造（身分被替換或合成）」這一類（判定分數 0.98）。證據遍布整臉，沒有集中在單一部位。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼判定為假？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，也就是偽造，證據遍布整臉。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，也就是偽造，證據遍布整臉。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 602.2,
+   "client_ms": 605.3,
+   "text": "模型的判定是 fake，也就是偽造，證據遍布整臉。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "哪裡被改了？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據遍布整臉。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據遍布整臉。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 456.5,
+   "client_ms": 459.4,
+   "text": "模型的判定是 fake，證據遍布整臉。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "有沒有美顏？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據遍布整臉。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據遍布整臉。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 450.4,
+   "client_ms": 454.8,
+   "text": "模型的判定是 fake，證據遍布整臉。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "這個分數代表什麼？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.3,
+   "client_ms": 2.9,
+   "text": "分數是模型對它所選判定的原始輸出，數值越高表示模型越偏向這個判定。它不是校準過的機率，分數高也不代表判定正確，模型也可能判錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "可以確定嗎？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.3,
+   "client_ms": 2.1,
+   "text": "無法確定。分數是模型的原始輸出，不是校準過的機率，判定也可能出錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "和原圖比差在哪？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 1.9,
+   "text": "系統使用時拿不到原圖，所以說不出這張照片和原本的照片差在哪裡。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "是誰？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 2.1,
+   "text": "系統不辨識身分，無法回答照片裡是誰。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼不是真的？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，也就是偽造。證據遍布整臉。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，也就是偽造。證據遍布整臉。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 608.1,
+   "client_ms": 610.6,
+   "text": "模型的判定是 fake，也就是偽造。證據遍布整臉。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是美顏修圖，也就是「美顏修圖（保留身分的美化）」這一類。證據集中在眼睛，達到門檻的操作是眼睛放大。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是美顏修圖，也就是「美顏修圖（保留身分的美化）」這一類。證據集中在眼睛，達到門檻的操作是眼睛放大。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 0.97"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1218.2,
+   "client_ms": 1221.8,
+   "text": "模型的判定是美顏修圖，也就是「美顏修圖（保留身分的美化）」這一類（判定分數 0.97）。證據集中在眼睛，達到門檻的操作是眼睛放大。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是美顏修圖（保留身分的美化），證據集中在眼睛。眼睛放大達到門檻，瘦臉、美白、磨皮未達門檻。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是美顏修圖（保留身分的美化），證據集中在眼睛。眼睛放大達到門檻，瘦臉、美白、磨皮未達門檻。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 0.97",
+     "眼睛 evidence 平均 0.95",
+     "達到門檻 0.5：眼睛放大 0.86"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1227.7,
+   "client_ms": 1232.5,
+   "text": "模型的判定是美顏修圖（保留身分的美化），證據集中在眼睛（判定分數 0.97；眼睛 evidence 平均 0.95）。眼睛放大達到門檻，瘦臉、美白、磨皮未達門檻（達到門檻 0.5：眼睛放大 0.86）。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼判定為假？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是美顏修圖，證據集中在眼睛放大。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是美顏修圖，證據集中在眼睛放大。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 541.7,
+   "client_ms": 544.6,
+   "text": "模型的判定是美顏修圖，證據集中在眼睛放大。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "哪裡被改了？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是美顏修圖，證據集中在眼睛放大。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是美顏修圖，證據集中在眼睛放大。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 541.3,
+   "client_ms": 544.4,
+   "text": "模型的判定是美顏修圖，證據集中在眼睛放大。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "有沒有美顏？",
+   "source": "template",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": false,
+     "why": [
+      "facts:missing(llm part)",
+      "facts:missing"
+     ],
+     "llm_text": "模型的判定是美顏修圖（保留身分的美化），證據集中在眼睛。"
+    },
+    {
+     "stage": "regen",
+     "passed": false,
+     "why": [
+      "facts:missing(llm part)",
+      "facts:missing"
+     ],
+     "llm_text": "模型的判定是美顏修圖，證據集中在眼睛。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 1271.1,
+   "client_ms": 1276.2,
+   "text": "模型判定為 filter（分數 0.97）。達到門檻 0.5 的操作：眼睛放大（0.86）。分數是模型原始輸出，不是校準過的機率。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "這個分數代表什麼？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.4,
+   "client_ms": 3,
+   "text": "分數是模型對它所選判定的原始輸出，數值越高表示模型越偏向這個判定。它不是校準過的機率，分數高也不代表判定正確，模型也可能判錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "可以確定嗎？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.3,
+   "client_ms": 2.5,
+   "text": "無法確定。分數是模型的原始輸出，不是校準過的機率，判定也可能出錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "和原圖比差在哪？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.3,
+   "client_ms": 2.2,
+   "text": "系統使用時拿不到原圖，所以說不出這張照片和原本的照片差在哪裡。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "是誰？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 1.9,
+   "text": "系統不辨識身分，無法回答照片裡是誰。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼不是真的？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是美顏修圖，證據集中在眼睛放大。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是美顏修圖，證據集中在眼睛放大。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 546.6,
+   "client_ms": 548.5,
+   "text": "模型的判定是美顏修圖，證據集中在眼睛放大。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是美顏修圖。證據集中在眼睛，但沒有任何修圖操作達到門檻。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是美顏修圖。證據集中在眼睛，但沒有任何修圖操作達到門檻。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 0.76"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 821.3,
+   "client_ms": 824.6,
+   "text": "模型的判定是美顏修圖（判定分數 0.76）。證據集中在眼睛，但沒有任何修圖操作達到門檻。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是美顏修圖（保留身分的美化），證據集中在眼睛。未達門檻的修圖操作包括磨皮、美白。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是美顏修圖（保留身分的美化），證據集中在眼睛。未達門檻的修圖操作包括磨皮、美白。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 0.76",
+     "眼睛 evidence 平均 0.66"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1108.9,
+   "client_ms": 1113.5,
+   "text": "模型的判定是美顏修圖（保留身分的美化），證據集中在眼睛（判定分數 0.76；眼睛 evidence 平均 0.66）。未達門檻的修圖操作包括磨皮、美白。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼判定為假？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是美顏修圖，證據集中在眼睛。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是美顏修圖，證據集中在眼睛。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 516.5,
+   "client_ms": 519.1,
+   "text": "模型的判定是美顏修圖，證據集中在眼睛。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "哪裡被改了？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是美顏修圖，證據集中在眼睛。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是美顏修圖，證據集中在眼睛。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 521.2,
+   "client_ms": 526.2,
+   "text": "模型的判定是美顏修圖，證據集中在眼睛。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "有沒有美顏？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是美顏修圖（保留身分的美化），證據集中在眼睛。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是美顏修圖（保留身分的美化），證據集中在眼睛。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 759,
+   "client_ms": 763.8,
+   "text": "模型的判定是美顏修圖（保留身分的美化），證據集中在眼睛。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "這個分數代表什麼？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.4,
+   "client_ms": 3,
+   "text": "分數是模型對它所選判定的原始輸出，數值越高表示模型越偏向這個判定。它不是校準過的機率，分數高也不代表判定正確，模型也可能判錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "可以確定嗎？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.3,
+   "client_ms": 2,
+   "text": "無法確定。分數是模型的原始輸出，不是校準過的機率，判定也可能出錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "和原圖比差在哪？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 1.8,
+   "text": "系統使用時拿不到原圖，所以說不出這張照片和原本的照片差在哪裡。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "是誰？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 2.1,
+   "text": "系統不辨識身分，無法回答照片裡是誰。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼不是真的？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是美顏修圖，證據集中在眼睛部位。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是美顏修圖，證據集中在眼睛部位。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 683.8,
+   "client_ms": 686.2,
+   "text": "模型的判定是美顏修圖，證據集中在眼睛部位。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "判定是偽造，也就是身分被替換或合成。證據集中在眼睛。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "判定是偽造，也就是身分被替換或合成。證據集中在眼睛。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 1.00"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 685.6,
+   "client_ms": 689.9,
+   "text": "判定是偽造，也就是身分被替換或合成（判定分數 1.00）。證據集中在眼睛。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，也就是「偽造（身分被替換或合成）」這一類。證據集中在眼睛。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，也就是「偽造（身分被替換或合成）」這一類。證據集中在眼睛。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 1.00",
+     "眼睛 evidence 平均 0.97"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 893.5,
+   "client_ms": 896.4,
+   "text": "模型的判定是 fake，也就是「偽造（身分被替換或合成）」這一類（判定分數 1.00）。證據集中在眼睛（眼睛 evidence 平均 0.97）。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼判定為假？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據集中在眼睛。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據集中在眼睛。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 421.3,
+   "client_ms": 424.2,
+   "text": "模型的判定是 fake，證據集中在眼睛。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "哪裡被改了？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據集中在眼睛。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據集中在眼睛。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 425.8,
+   "client_ms": 428.8,
+   "text": "模型的判定是 fake，證據集中在眼睛。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "有沒有美顏？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據集中在眼睛。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據集中在眼睛。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 461.7,
+   "client_ms": 464.6,
+   "text": "模型的判定是 fake，證據集中在眼睛。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "這個分數代表什麼？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.4,
+   "client_ms": 3.1,
+   "text": "分數是模型對它所選判定的原始輸出，數值越高表示模型越偏向這個判定。它不是校準過的機率，分數高也不代表判定正確，模型也可能判錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "可以確定嗎？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.3,
+   "client_ms": 2.3,
+   "text": "無法確定。分數是模型的原始輸出，不是校準過的機率，判定也可能出錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "和原圖比差在哪？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 2,
+   "text": "系統使用時拿不到原圖，所以說不出這張照片和原本的照片差在哪裡。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "是誰？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 2.1,
+   "text": "系統不辨識身分，無法回答照片裡是誰。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼不是真的？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據集中在眼睛。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據集中在眼睛。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 458.7,
+   "client_ms": 460.9,
+   "text": "模型的判定是 fake，證據集中在眼睛。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "判定是偽造。證據集中在嘴巴。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "判定是偽造。證據集中在嘴巴。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 1.00"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 487.1,
+   "client_ms": 492.1,
+   "text": "判定是偽造（判定分數 1.00）。證據集中在嘴巴。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake。證據集中在嘴巴。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake。證據集中在嘴巴。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 1.00",
+     "嘴巴 evidence 平均 0.98"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 398.6,
+   "client_ms": 401.6,
+   "text": "模型的判定是 fake（判定分數 1.00）。證據集中在嘴巴（嘴巴 evidence 平均 0.98）。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼判定為假？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據集中在嘴巴。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據集中在嘴巴。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 489.8,
+   "client_ms": 495.3,
+   "text": "模型的判定是 fake，證據集中在嘴巴。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "哪裡被改了？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據集中在嘴巴。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據集中在嘴巴。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 415.8,
+   "client_ms": 419.3,
+   "text": "模型的判定是 fake，證據集中在嘴巴。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "有沒有美顏？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據集中在嘴巴。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據集中在嘴巴。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 421.9,
+   "client_ms": 424.6,
+   "text": "模型的判定是 fake，證據集中在嘴巴。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "這個分數代表什麼？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.4,
+   "client_ms": 2.7,
+   "text": "分數是模型對它所選判定的原始輸出，數值越高表示模型越偏向這個判定。它不是校準過的機率，分數高也不代表判定正確，模型也可能判錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "可以確定嗎？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.3,
+   "client_ms": 2.1,
+   "text": "無法確定。分數是模型的原始輸出，不是校準過的機率，判定也可能出錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "和原圖比差在哪？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 2.1,
+   "text": "系統使用時拿不到原圖，所以說不出這張照片和原本的照片差在哪裡。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "是誰？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 2,
+   "text": "系統不辨識身分，無法回答照片裡是誰。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼不是真的？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據集中在嘴巴部位。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據集中在嘴巴部位。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 471.4,
+   "client_ms": 473.8,
+   "text": "模型的判定是 fake，證據集中在嘴巴部位。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "判定是偽造。證據集中在鼻子。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "判定是偽造。證據集中在鼻子。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 0.99"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 449.3,
+   "client_ms": 453,
+   "text": "判定是偽造（判定分數 0.99）。證據集中在鼻子。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，也就是「偽造（身分被替換或合成）」這一類。證據集中在鼻子。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，也就是「偽造（身分被替換或合成）」這一類。證據集中在鼻子。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 0.99",
+     "鼻子 evidence 平均 0.99"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 976.2,
+   "client_ms": 979.1,
+   "text": "模型的判定是 fake，也就是「偽造（身分被替換或合成）」這一類（判定分數 0.99）。證據集中在鼻子（鼻子 evidence 平均 0.99）。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼判定為假？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據集中在鼻子。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據集中在鼻子。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 527.7,
+   "client_ms": 532,
+   "text": "模型的判定是 fake，證據集中在鼻子。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "哪裡被改了？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據集中在鼻子。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據集中在鼻子。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 416.3,
+   "client_ms": 419.3,
+   "text": "模型的判定是 fake，證據集中在鼻子。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "有沒有美顏？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據集中在鼻子。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據集中在鼻子。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 421.3,
+   "client_ms": 424,
+   "text": "模型的判定是 fake，證據集中在鼻子。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "這個分數代表什麼？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.4,
+   "client_ms": 4.5,
+   "text": "分數是模型對它所選判定的原始輸出，數值越高表示模型越偏向這個判定。它不是校準過的機率，分數高也不代表判定正確，模型也可能判錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "可以確定嗎？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 1.8,
+   "text": "無法確定。分數是模型的原始輸出，不是校準過的機率，判定也可能出錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "和原圖比差在哪？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 2,
+   "text": "系統使用時拿不到原圖，所以說不出這張照片和原本的照片差在哪裡。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "是誰？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 2.6,
+   "text": "系統不辨識身分，無法回答照片裡是誰。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼不是真的？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 fake，證據集中在鼻子。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 fake，證據集中在鼻子。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 432.5,
+   "client_ms": 438,
+   "text": "模型的判定是 fake，證據集中在鼻子。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是真實（未偵測到操弄）。整張臉未偵測到任何操弄，所以沒有特別指出的區域。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是真實（未偵測到操弄）。整張臉未偵測到任何操弄，所以沒有特別指出的區域。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 0.63"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 975.5,
+   "client_ms": 980.9,
+   "text": "模型的判定是真實（未偵測到操弄）（判定分數 0.63）。整張臉未偵測到任何操弄，所以沒有特別指出的區域。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 real，也就是「真實（未偵測到操弄）」。整臉未偵測到操弄，所以沒有要指出的證據區域。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 real，也就是「真實（未偵測到操弄）」。整臉未偵測到操弄，所以沒有要指出的證據區域。",
+   "code_added": {
+    "parentheticals": [
+     "判定分數 0.63"
+    ],
+    "calibration": "分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1135.3,
+   "client_ms": 1139,
+   "text": "模型的判定是 real，也就是「真實（未偵測到操弄）」（判定分數 0.63）。整臉未偵測到操弄，所以沒有要指出的證據區域。分數是模型的原始輸出，不是校準過的機率，分數高也不代表判定正確。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼判定為假？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 real，也就是「真實（未偵測到操弄）」。此判定未指出任何特定區域的操弄，且未列有修圖操作。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 real，也就是「真實（未偵測到操弄）」。此判定未指出任何特定區域的操弄，且未列有修圖操作。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1174.4,
+   "client_ms": 1178.1,
+   "text": "模型的判定是 real，也就是「真實（未偵測到操弄）」。此判定未指出任何特定區域的操弄，且未列有修圖操作。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "哪裡被改了？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 real，沒有偵測到任何操弄。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 real，沒有偵測到任何操弄。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 513.3,
+   "client_ms": 516.5,
+   "text": "模型的判定是 real，沒有偵測到任何操弄。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "有沒有美顏？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 real，沒有偵測到任何操弄。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 real，沒有偵測到任何操弄。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 513.1,
+   "client_ms": 516.2,
+   "text": "模型的判定是 real，沒有偵測到任何操弄。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "這個分數代表什麼？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.4,
+   "client_ms": 4.6,
+   "text": "分數是模型對它所選判定的原始輸出，數值越高表示模型越偏向這個判定。它不是校準過的機率，分數高也不代表判定正確，模型也可能判錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "可以確定嗎？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.3,
+   "client_ms": 2.1,
+   "text": "無法確定。分數是模型的原始輸出，不是校準過的機率，判定也可能出錯。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "和原圖比差在哪？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 2.1,
+   "text": "系統使用時拿不到原圖，所以說不出這張照片和原本的照片差在哪裡。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "是誰？",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.2,
+   "client_ms": 1.9,
+   "text": "系統不辨識身分，無法回答照片裡是誰。"
+  },
+  {
+   "lang": "zh",
+   "server_lang": "zh",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "為什麼不是真的？",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "模型的判定是 real，也就是「真實（未偵測到操弄）」。此判定並未指出任何特定區域有操弄現象。"
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3r1",
+   "llm_text": "模型的判定是 real，也就是「真實（未偵測到操弄）」。此判定並未指出任何特定區域有操弄現象。",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1034.7,
+   "client_ms": 1036.9,
+   "text": "模型的判定是 real，也就是「真實（未偵測到操弄）」。此判定並未指出任何特定區域有操弄現象。"
+  }
+ ]
+}

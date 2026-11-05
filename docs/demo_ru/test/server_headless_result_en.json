@@ -1,0 +1,3014 @@
+{
+ "lang": "en",
+ "browser": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+ "server_load_s": 19.7,
+ "browser_process_s": 60.1,
+ "records": 10,
+ "texts": 100,
+ "texts_failing_recheck": 0,
+ "client_fixed_equals_server": true,
+ "fixed_routing_as_declared": true,
+ "fixed_questions": [
+  "Where does it differ from the original photo?",
+  "Who is this?",
+  "Is this certain?",
+  "What does this score mean?"
+ ],
+ "server_lang_matches": true,
+ "sources": {
+  "llm": 59,
+  "template": 1,
+  "fixed": 40
+ },
+ "prompts": [
+  "None",
+  "p3en1"
+ ],
+ "llm_texts_rechecked_p3": 59,
+ "regenerated": 1,
+ "latency_client": {
+  "explain_general": {
+   "n": 10,
+   "median_ms": 1167.8,
+   "p90_ms": 1693.1,
+   "max_ms": 1695.2
+  },
+  "explain_pro": {
+   "n": 10,
+   "median_ms": 1083.3,
+   "p90_ms": 1775.1,
+   "max_ms": 1886.4
+  },
+  "qa_llm": {
+   "n": 40,
+   "median_ms": 640.0,
+   "p90_ms": 812.8,
+   "max_ms": 1237.4
+  },
+  "qa_fixed": {
+   "n": 40,
+   "median_ms": 2.9,
+   "p90_ms": 4.4,
+   "max_ms": 5.7
+  }
+ },
+ "note": "client_ms = browser fetch round trip incl. greedy generation and, when the gate fails, one sampled regeneration; batch 1, bf16, RTX 6000 Ada; the page path (landmarks + ONNX) is not included",
+ "rows": [
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is concentrated on the eyes.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 0.58"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1689.3,
+   "client_ms": 1695.2,
+   "text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class (decision score 0.58). The evidence is concentrated on the eyes. The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is concentrated on the eyes.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 0.58",
+     "the eyes: mean evidence 0.15"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 942.3,
+   "client_ms": 945.6,
+   "text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class (decision score 0.58). The evidence is concentrated on the eyes (the eyes: mean evidence 0.15). The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it judged fake?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the eyes.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 668.2,
+   "client_ms": 672.6,
+   "text": "The model's decision is that the photo is fake, with the evidence concentrated on the eyes."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where was it changed?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the eyes.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 644.1,
+   "client_ms": 647,
+   "text": "The model's decision is that the photo is fake, with the evidence concentrated on the eyes."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Was it retouched?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, with the evidence concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, with the evidence concentrated on the eyes.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 517.3,
+   "client_ms": 520.3,
+   "text": "The model's decision is fake, with the evidence concentrated on the eyes."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "What does this score mean?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.9,
+   "client_ms": 3.4,
+   "text": "The score is the model's raw output for the decision it chose; a higher value means the model leans more toward that decision. It is not a calibrated probability, a high score does not mean the decision is correct, and the model can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Is this certain?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.5,
+   "client_ms": 2.8,
+   "text": "No. The score is the model's raw output, not a calibrated probability, and the decision can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where does it differ from the original photo?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 1.3,
+   "client_ms": 4.6,
+   "text": "The system has no access to the original photo, so it cannot say how this photo differs from it."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Who is this?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.3,
+   "client_ms": 1.9,
+   "text": "The system does not recognize identities, so it cannot say who is in the photo."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:000__f0039",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it not real?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the eyes.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 630.8,
+   "client_ms": 632.9,
+   "text": "The model's decision is that the photo is fake, with the evidence concentrated on the eyes."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is real, that is, no manipulation was detected. No manipulation was detected on the face, so there is no specific region to point out."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is real, that is, no manipulation was detected. No manipulation was detected on the face, so there is no specific region to point out.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 0.67"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1097.3,
+   "client_ms": 1102.8,
+   "text": "The model's decision is real, that is, no manipulation was detected (decision score 0.67). No manipulation was detected on the face, so there is no specific region to point out. The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is real, that is, no manipulation was detected. No manipulation was detected on the face, so there is no specific region to point out."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is real, that is, no manipulation was detected. No manipulation was detected on the face, so there is no specific region to point out.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 0.67"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1008.3,
+   "client_ms": 1011.4,
+   "text": "The model's decision is real, that is, no manipulation was detected (decision score 0.67). No manipulation was detected on the face, so there is no specific region to point out. The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it judged fake?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is real, with no manipulation detected on the face."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is real, with no manipulation detected on the face.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 545.7,
+   "client_ms": 551.4,
+   "text": "The model's decision is real, with no manipulation detected on the face."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where was it changed?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is real, with no manipulation detected on the face."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is real, with no manipulation detected on the face.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 537.2,
+   "client_ms": 542,
+   "text": "The model's decision is real, with no manipulation detected on the face."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Was it retouched?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is real, with no manipulation detected on the face."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is real, with no manipulation detected on the face.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 539.7,
+   "client_ms": 542.5,
+   "text": "The model's decision is real, with no manipulation detected on the face."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "What does this score mean?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.8,
+   "client_ms": 3,
+   "text": "The score is the model's raw output for the decision it chose; a higher value means the model leans more toward that decision. It is not a calibrated probability, a high score does not mean the decision is correct, and the model can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Is this certain?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.4,
+   "client_ms": 3,
+   "text": "No. The score is the model's raw output, not a calibrated probability, and the decision can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where does it differ from the original photo?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.4,
+   "client_ms": 3,
+   "text": "The system has no access to the original photo, so it cannot say how this photo differs from it."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Who is this?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.3,
+   "client_ms": 2.2,
+   "text": "The system does not recognize identities, so it cannot say who is in the photo."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_real:142__f0778",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it not real?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is real, with no manipulation detected on the face."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is real, with no manipulation detected on the face.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 586.9,
+   "client_ms": 589.1,
+   "text": "The model's decision is real, with no manipulation detected on the face."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is spread over the whole face, not concentrated on a single part."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is spread over the whole face, not concentrated on a single part.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 1.00"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1330.6,
+   "client_ms": 1336.4,
+   "text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class (decision score 1.00). The evidence is spread over the whole face, not concentrated on a single part. The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is spread over the whole face, not concentrated on a single part."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is spread over the whole face, not concentrated on a single part.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 1.00"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1439.4,
+   "client_ms": 1443.3,
+   "text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class (decision score 1.00). The evidence is spread over the whole face, not concentrated on a single part. The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it judged fake?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, and the evidence is spread over the whole face."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, and the evidence is spread over the whole face.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 649.6,
+   "client_ms": 655.1,
+   "text": "The model's decision is fake, and the evidence is spread over the whole face."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where was it changed?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is that the image is fake, with evidence spread over the whole face."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is that the image is fake, with evidence spread over the whole face.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 702.3,
+   "client_ms": 705.9,
+   "text": "The model's decision is that the image is fake, with evidence spread over the whole face."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Was it retouched?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, and the evidence is spread over the whole face."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, and the evidence is spread over the whole face.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 637.5,
+   "client_ms": 641.3,
+   "text": "The model's decision is fake, and the evidence is spread over the whole face."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "What does this score mean?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 1.1,
+   "client_ms": 4.2,
+   "text": "The score is the model's raw output for the decision it chose; a higher value means the model leans more toward that decision. It is not a calibrated probability, a high score does not mean the decision is correct, and the model can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Is this certain?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.5,
+   "client_ms": 2.7,
+   "text": "No. The score is the model's raw output, not a calibrated probability, and the decision can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where does it differ from the original photo?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.5,
+   "client_ms": 2.7,
+   "text": "The system has no access to the original photo, so it cannot say how this photo differs from it."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Who is this?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.3,
+   "client_ms": 2.3,
+   "text": "The system does not recognize identities, so it cannot say who is in the photo."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:154_386__f0164",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it not real?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is that the photo is fake, with the evidence spread over the whole face."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is that the photo is fake, with the evidence spread over the whole face.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 708.6,
+   "client_ms": 711.3,
+   "text": "The model's decision is that the photo is fake, with the evidence spread over the whole face."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is spread over the whole face, not concentrated on a single part."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is spread over the whole face, not concentrated on a single part.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 0.98"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1176.4,
+   "client_ms": 1183.3,
+   "text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class (decision score 0.98). The evidence is spread over the whole face, not concentrated on a single part. The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is spread over the whole face, not concentrated on a single part."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is spread over the whole face, not concentrated on a single part.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 0.98"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1210.5,
+   "client_ms": 1214.5,
+   "text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class (decision score 0.98). The evidence is spread over the whole face, not concentrated on a single part. The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it judged fake?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, and the evidence is spread over the whole face."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, and the evidence is spread over the whole face.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 612.9,
+   "client_ms": 618.6,
+   "text": "The model's decision is fake, and the evidence is spread over the whole face."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where was it changed?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is that the image is fake, with evidence spread over the whole face."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is that the image is fake, with evidence spread over the whole face.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 654.9,
+   "client_ms": 658.4,
+   "text": "The model's decision is that the image is fake, with evidence spread over the whole face."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Was it retouched?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, and the evidence is spread over the whole face."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, and the evidence is spread over the whole face.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 616.3,
+   "client_ms": 619.9,
+   "text": "The model's decision is fake, and the evidence is spread over the whole face."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "What does this score mean?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.9,
+   "client_ms": 3.9,
+   "text": "The score is the model's raw output for the decision it chose; a higher value means the model leans more toward that decision. It is not a calibrated probability, a high score does not mean the decision is correct, and the model can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Is this certain?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.4,
+   "client_ms": 2.8,
+   "text": "No. The score is the model's raw output, not a calibrated probability, and the decision can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where does it differ from the original photo?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.4,
+   "client_ms": 2.3,
+   "text": "The system has no access to the original photo, so it cannot say how this photo differs from it."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Who is this?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.3,
+   "client_ms": 2.3,
+   "text": "The system does not recognize identities, so it cannot say who is in the photo."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffpp_fake:Deepfakes:732_691__f0155",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it not real?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is that the photo is fake, with the evidence spread over the whole face."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is that the photo is fake, with the evidence spread over the whole face.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 711.4,
+   "client_ms": 714.5,
+   "text": "The model's decision is that the photo is fake, with the evidence spread over the whole face."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is filter, which means retouched (identity-preserving beautification). The evidence is concentrated on the eyes, and the operation that reaches the threshold is eye enlargement."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is filter, which means retouched (identity-preserving beautification). The evidence is concentrated on the eyes, and the operation that reaches the threshold is eye enlargement.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 0.97"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1199.7,
+   "client_ms": 1206.6,
+   "text": "The model's decision is filter, which means retouched (identity-preserving beautification) (decision score 0.97). The evidence is concentrated on the eyes, and the operation that reaches the threshold is eye enlargement. The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is filter, indicating retouched (identity-preserving beautification) with evidence concentrated on the eyes. Eye enlargement is the only retouching operation at or above the threshold, while face slimming, skin whitening, and skin smoothing are all below the threshold."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is filter, indicating retouched (identity-preserving beautification) with evidence concentrated on the eyes. Eye enlargement is the only retouching operation at or above the threshold, while face slimming, skin whitening, and skin smoothing are all below the threshold.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 0.97",
+     "the eyes: mean evidence 0.95",
+     "at or above the threshold 0.5: eye enlargement 0.86"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1758.1,
+   "client_ms": 1762.7,
+   "text": "The model's decision is filter, indicating retouched (identity-preserving beautification) with evidence concentrated on the eyes (decision score 0.97; the eyes: mean evidence 0.95). Eye enlargement is the only retouching operation at or above the threshold, while face slimming, skin whitening, and skin smoothing are all below the threshold (at or above the threshold 0.5: eye enlargement 0.86). The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it judged fake?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is filter, which means the photo has been retouched for identity-preserving beautification, with the evidence concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is filter, which means the photo has been retouched for identity-preserving beautification, with the evidence concentrated on the eyes.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 997.5,
+   "client_ms": 1004.2,
+   "text": "The model's decision is filter, which means the photo has been retouched for identity-preserving beautification, with the evidence concentrated on the eyes."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where was it changed?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is filter, with the evidence concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is filter, with the evidence concentrated on the eyes.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 558.5,
+   "client_ms": 562.7,
+   "text": "The model's decision is filter, with the evidence concentrated on the eyes."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Was it retouched?",
+   "source": "template",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": false,
+     "why": [
+      "facts:missing(llm part)",
+      "facts:missing"
+     ],
+     "llm_text": "The model's decision is filter, with evidence concentrated on the eyes."
+    },
+    {
+     "stage": "regen",
+     "passed": false,
+     "why": [
+      "facts:missing(llm part)",
+      "facts:missing"
+     ],
+     "llm_text": "The model's decision is filter, with the evidence concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 1233.5,
+   "client_ms": 1237.4,
+   "text": "The model's decision is filter (score 0.97). Operations at or above the threshold of 0.5: eye enlargement (0.86). The score is the model's raw output, not a calibrated probability."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "What does this score mean?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 1.1,
+   "client_ms": 4.5,
+   "text": "The score is the model's raw output for the decision it chose; a higher value means the model leans more toward that decision. It is not a calibrated probability, a high score does not mean the decision is correct, and the model can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Is this certain?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.7,
+   "client_ms": 3.5,
+   "text": "No. The score is the model's raw output, not a calibrated probability, and the decision can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where does it differ from the original photo?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.6,
+   "client_ms": 2.8,
+   "text": "The system has no access to the original photo, so it cannot say how this photo differs from it."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Who is this?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.4,
+   "client_ms": 2.4,
+   "text": "The system does not recognize identities, so it cannot say who is in the photo."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17001",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it not real?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is filter, with evidence concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is filter, with evidence concentrated on the eyes.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 537.3,
+   "client_ms": 540.4,
+   "text": "The model's decision is filter, with evidence concentrated on the eyes."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is filter, which means the photo is considered retouched to preserve the identity but enhance the appearance. The evidence is concentrated on the eyes, and none of the retouching operations such as skin smoothing or skin whitening reach the threshold."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is filter, which means the photo is considered retouched to preserve the identity but enhance the appearance. The evidence is concentrated on the eyes, and none of the retouching operations such as skin smoothing or skin whitening reach the threshold.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 0.76"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1685.9,
+   "client_ms": 1692.9,
+   "text": "The model's decision is filter, which means the photo is considered retouched to preserve the identity but enhance the appearance (decision score 0.76). The evidence is concentrated on the eyes, and none of the retouching operations such as skin smoothing or skin whitening reach the threshold. The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is filter, indicating retouched (identity-preserving beautification) focused on the eyes. None of the retouching operations reach the threshold, so no specific retouching techniques can be identified, and all operations remain below the threshold."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is filter, indicating retouched (identity-preserving beautification) focused on the eyes. None of the retouching operations reach the threshold, so no specific retouching techniques can be identified, and all operations remain below the threshold.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 0.76",
+     "the eyes: mean evidence 0.66"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1882.5,
+   "client_ms": 1886.4,
+   "text": "The model's decision is filter, indicating retouched (identity-preserving beautification) focused on the eyes (decision score 0.76; the eyes: mean evidence 0.66). None of the retouching operations reach the threshold, so no specific retouching techniques can be identified, and all operations remain below the threshold. The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it judged fake?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is filter, which means the photo is considered retouched (identity-preserving beautification), with evidence concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is filter, which means the photo is considered retouched (identity-preserving beautification), with evidence concentrated on the eyes.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 962.4,
+   "client_ms": 968,
+   "text": "The model's decision is filter, which means the photo is considered retouched (identity-preserving beautification), with evidence concentrated on the eyes."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where was it changed?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is filter, with evidence concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is filter, with evidence concentrated on the eyes.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 521,
+   "client_ms": 525,
+   "text": "The model's decision is filter, with evidence concentrated on the eyes."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Was it retouched?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is filter, with evidence concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is filter, with evidence concentrated on the eyes.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 525.8,
+   "client_ms": 529.9,
+   "text": "The model's decision is filter, with evidence concentrated on the eyes."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "What does this score mean?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 1.1,
+   "client_ms": 5.7,
+   "text": "The score is the model's raw output for the decision it chose; a higher value means the model leans more toward that decision. It is not a calibrated probability, a high score does not mean the decision is correct, and the model can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Is this certain?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.6,
+   "client_ms": 4.1,
+   "text": "No. The score is the model's raw output, not a calibrated probability, and the decision can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where does it differ from the original photo?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.5,
+   "client_ms": 4.5,
+   "text": "The system has no access to the original photo, so it cannot say how this photo differs from it."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Who is this?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.4,
+   "client_ms": 3,
+   "text": "The system does not recognize identities, so it cannot say who is in the photo."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "alibaba:EyeEnlarging_90:17836",
+   "decision": "filter",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it not real?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is filter, which means the photo is considered retouched (identity-preserving beautification), with evidence concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is filter, which means the photo is considered retouched (identity-preserving beautification), with evidence concentrated on the eyes.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1036.8,
+   "client_ms": 1039.7,
+   "text": "The model's decision is filter, which means the photo is considered retouched (identity-preserving beautification), with evidence concentrated on the eyes."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is concentrated on the eyes.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 1.00"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 937.3,
+   "client_ms": 942.5,
+   "text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class (decision score 1.00). The evidence is concentrated on the eyes. The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is concentrated on the eyes.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 1.00",
+     "the eyes: mean evidence 0.97"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 921.9,
+   "client_ms": 927.2,
+   "text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class (decision score 1.00). The evidence is concentrated on the eyes (the eyes: mean evidence 0.97). The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it judged fake?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the eyes.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 667.8,
+   "client_ms": 672.7,
+   "text": "The model's decision is that the photo is fake, with the evidence concentrated on the eyes."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where was it changed?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the eyes.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 728.6,
+   "client_ms": 731.6,
+   "text": "The model's decision is that the photo is fake, with the evidence concentrated on the eyes."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Was it retouched?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, with the evidence concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, with the evidence concentrated on the eyes.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 543.2,
+   "client_ms": 546.1,
+   "text": "The model's decision is fake, with the evidence concentrated on the eyes."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "What does this score mean?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.9,
+   "client_ms": 3.4,
+   "text": "The score is the model's raw output for the decision it chose; a higher value means the model leans more toward that decision. It is not a calibrated probability, a high score does not mean the decision is correct, and the model can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Is this certain?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.4,
+   "client_ms": 2.3,
+   "text": "No. The score is the model's raw output, not a calibrated probability, and the decision can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where does it differ from the original photo?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.4,
+   "client_ms": 1.9,
+   "text": "The system has no access to the original photo, so it cannot say how this photo differs from it."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Who is this?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.3,
+   "client_ms": 2.1,
+   "text": "The system does not recognize identities, so it cannot say who is in the photo."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:000__f0039__eyes",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it not real?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the eyes."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the eyes.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 640.4,
+   "client_ms": 642.9,
+   "text": "The model's decision is that the photo is fake, with the evidence concentrated on the eyes."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is concentrated on the mouth."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is concentrated on the mouth.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 1.00"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 914.8,
+   "client_ms": 920.6,
+   "text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class (decision score 1.00). The evidence is concentrated on the mouth. The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is concentrated on the mouth."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is concentrated on the mouth.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 1.00",
+     "the mouth: mean evidence 0.98"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1066.4,
+   "client_ms": 1070.2,
+   "text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class (decision score 1.00). The evidence is concentrated on the mouth (the mouth: mean evidence 0.98). The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it judged fake?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the mouth."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the mouth.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 689.5,
+   "client_ms": 694.8,
+   "text": "The model's decision is that the photo is fake, with the evidence concentrated on the mouth."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where was it changed?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is that the photo is fake, and the evidence is concentrated on the mouth."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is that the photo is fake, and the evidence is concentrated on the mouth.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 787.8,
+   "client_ms": 790.7,
+   "text": "The model's decision is that the photo is fake, and the evidence is concentrated on the mouth."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Was it retouched?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, with the evidence concentrated on the mouth."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, with the evidence concentrated on the mouth.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 550.7,
+   "client_ms": 553.9,
+   "text": "The model's decision is fake, with the evidence concentrated on the mouth."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "What does this score mean?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.9,
+   "client_ms": 4.4,
+   "text": "The score is the model's raw output for the decision it chose; a higher value means the model leans more toward that decision. It is not a calibrated probability, a high score does not mean the decision is correct, and the model can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Is this certain?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.5,
+   "client_ms": 3.1,
+   "text": "No. The score is the model's raw output, not a calibrated probability, and the decision can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where does it differ from the original photo?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.4,
+   "client_ms": 2.3,
+   "text": "The system has no access to the original photo, so it cannot say how this photo differs from it."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Who is this?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.5,
+   "client_ms": 3.1,
+   "text": "The system does not recognize identities, so it cannot say who is in the photo."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "part_forgery:donor:454__f0140__mouth",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it not real?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the mouth."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the mouth.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 792.3,
+   "client_ms": 795.5,
+   "text": "The model's decision is that the photo is fake, with the evidence concentrated on the mouth."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is concentrated on the nose."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is concentrated on the nose.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 0.99"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 971.5,
+   "client_ms": 978.6,
+   "text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class (decision score 0.99). The evidence is concentrated on the nose. The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is concentrated on the nose."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class. The evidence is concentrated on the nose.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 0.99",
+     "the nose: mean evidence 0.99"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1093.4,
+   "client_ms": 1096.4,
+   "text": "The model's decision is fake, that is, the \"fake (identity replaced or synthesized)\" class (decision score 0.99). The evidence is concentrated on the nose (the nose: mean evidence 0.99). The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it judged fake?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the nose."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the nose.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 706.1,
+   "client_ms": 711.1,
+   "text": "The model's decision is that the photo is fake, with the evidence concentrated on the nose."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where was it changed?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is that the photo is fake, and the evidence is concentrated on the nose."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is that the photo is fake, and the evidence is concentrated on the nose.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 786.7,
+   "client_ms": 790.6,
+   "text": "The model's decision is that the photo is fake, and the evidence is concentrated on the nose."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Was it retouched?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is fake, and the evidence is concentrated on the nose."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is fake, and the evidence is concentrated on the nose.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 607.3,
+   "client_ms": 610.9,
+   "text": "The model's decision is fake, and the evidence is concentrated on the nose."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "What does this score mean?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.9,
+   "client_ms": 3.6,
+   "text": "The score is the model's raw output for the decision it chose; a higher value means the model leans more toward that decision. It is not a calibrated probability, a high score does not mean the decision is correct, and the model can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Is this certain?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.6,
+   "client_ms": 2.9,
+   "text": "No. The score is the model's raw output, not a calibrated probability, and the decision can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where does it differ from the original photo?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.4,
+   "client_ms": 2.6,
+   "text": "The system has no access to the original photo, so it cannot say how this photo differs from it."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Who is this?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.5,
+   "client_ms": 2.7,
+   "text": "The system does not recognize identities, so it cannot say who is in the photo."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17018_nose",
+   "decision": "fake",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it not real?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the nose."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is that the photo is fake, with the evidence concentrated on the nose.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 635.5,
+   "client_ms": 638.6,
+   "text": "The model's decision is that the photo is fake, with the evidence concentrated on the nose."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "explain",
+   "mode": "general",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is real, that is, no manipulation was detected. No manipulation was detected on the face, so there is no specific region to point out."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is real, that is, no manipulation was detected. No manipulation was detected on the face, so there is no specific region to point out.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 0.63"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1145.4,
+   "client_ms": 1152.2,
+   "text": "The model's decision is real, that is, no manipulation was detected (decision score 0.63). No manipulation was detected on the face, so there is no specific region to point out. The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "explain",
+   "mode": "pro",
+   "question": null,
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is real, that is, no manipulation was detected. No manipulation was detected on the face, so there is no specific region to point out."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is real, that is, no manipulation was detected. No manipulation was detected on the face, so there is no specific region to point out.",
+   "code_added": {
+    "parentheticals": [
+     "decision score 0.63"
+    ],
+    "calibration": "The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 1015.4,
+   "client_ms": 1019,
+   "text": "The model's decision is real, that is, no manipulation was detected (decision score 0.63). No manipulation was detected on the face, so there is no specific region to point out. The score is the model's raw output, not a calibrated probability, and a high score does not mean the decision is correct."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it judged fake?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is real, with no manipulation detected on the face."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is real, with no manipulation detected on the face.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 581.2,
+   "client_ms": 586.5,
+   "text": "The model's decision is real, with no manipulation detected on the face."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where was it changed?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is real, with no manipulation detected on the face."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is real, with no manipulation detected on the face.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 590.8,
+   "client_ms": 596,
+   "text": "The model's decision is real, with no manipulation detected on the face."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Was it retouched?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is real, with no manipulation detected on the face."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is real, with no manipulation detected on the face.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 529,
+   "client_ms": 531.8,
+   "text": "The model's decision is real, with no manipulation detected on the face."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "What does this score mean?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.8,
+   "client_ms": 3.2,
+   "text": "The score is the model's raw output for the decision it chose; a higher value means the model leans more toward that decision. It is not a calibrated probability, a high score does not mean the decision is correct, and the model can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Is this certain?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.6,
+   "client_ms": 2.9,
+   "text": "No. The score is the model's raw output, not a calibrated probability, and the decision can be wrong."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Where does it differ from the original photo?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.4,
+   "client_ms": 2.2,
+   "text": "The system has no access to the original photo, so it cannot say how this photo differs from it."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Who is this?",
+   "source": "fixed",
+   "server_gate_passed": true,
+   "attempts": null,
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": null,
+   "llm_text": null,
+   "code_added": null,
+   "p3_llm_part_and_composition_pass": null,
+   "why": [],
+   "server_ms": 0.3,
+   "client_ms": 2,
+   "text": "The system does not recognize identities, so it cannot say who is in the photo."
+  },
+  {
+   "lang": "en",
+   "server_lang": "en",
+   "id": "ffhq_demo_edit:17012_real",
+   "decision": "real",
+   "kind": "qa",
+   "mode": "qa",
+   "question": "Why is it not real?",
+   "source": "llm",
+   "server_gate_passed": true,
+   "attempts": [
+    {
+     "stage": "greedy",
+     "passed": true,
+     "why": [],
+     "llm_text": "The model's decision is real, with no manipulation detected on the face."
+    }
+   ],
+   "validate_text_H1toH6_pass": true,
+   "gate_v2_pass": true,
+   "gate_v3_pass": true,
+   "prompt": "p3en1",
+   "llm_text": "The model's decision is real, with no manipulation detected on the face.",
+   "code_added": {
+    "parentheticals": [],
+    "calibration": null
+   },
+   "p3_llm_part_and_composition_pass": true,
+   "why": [],
+   "server_ms": 522.6,
+   "client_ms": 525.3,
+   "text": "The model's decision is real, with no manipulation detected on the face."
+  }
+ ]
+}
