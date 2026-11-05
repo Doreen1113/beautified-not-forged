@@ -53,8 +53,8 @@ const pill = (cls, text) => `<span class="pill ${cls}">${text}</span>`;
   el(sc, "div", "sq", "left:1480px;top:110px"); el(sc, "div", "sq", "left:80px;top:1000px");
   fade(abs(sc, 140, 300, 1120, null, "Beautified Is Not Forged", "serif b", "font-size:92px;line-height:1.05;white-space:nowrap"), t + 0.3, 0.8, 30);
   fade(abs(sc, 140, 440, 1000, null, "A face detector that tells beautification from forgery, with checkable evidence", "serif muted", "font-size:40px;line-height:1.25"), t + 1.0, 0.7);
-  fade(abs(sc, 140, 640, 1000, null, "NTHU CS Capstone Project &middot; 2026", null, "font-size:31px"), t + 1.6, 0.6);
-  fade(abs(sc, 140, 690, 1000, null, "林沁瑩　陳柏融　游宸山", null, "font-size:31px;font-family:var(--cjk)"), t + 1.9, 0.6);
+  fade(abs(sc, 140, 640, 1000, null, "NTHU Capstone Project &middot; 2026", null, "font-size:31px"), t + 1.6, 0.6);
+  fade(abs(sc, 140, 690, 1000, null, "林沁瑩　陳柏蓉　余晨杉", null, "font-size:31px;font-family:var(--cjk)"), t + 1.9, 0.6);
   [["teaser_orig", "p-real", "genuine", 1250, 250], ["teaser_smooth", "p-beau", "beautified", 1560, 250],
    ["teaser_swap", "p-fake", "forged", 1250, 570], ["teaser_swap_beauty", "p-fake", "forged + beautified", 1560, 570]].forEach(([f, cls, lab, x, y], i) => {
     pop(img(sc, F + f + ".png", x, y, 270, 270), t + 2.2 + i * 0.35);
@@ -322,8 +322,8 @@ const pill = (cls, text) => `<span class="pill ${cls}">${text}</span>`;
   fade(abs(sc, -320, 110, 1420, 860, null, null, "border-radius:430px;background:#e8eef7"), t, 0.6, 0);
   fade(abs(sc, 140, 330, 1300, null, "Beautified Is Not Forged", "serif b", "font-size:96px;line-height:1.05"), t + 0.2, 0.7);
   fade(abs(sc, 140, 470, 1200, null, "Thank you", "serif muted", "font-size:44px"), t + 0.6, 0.6);
-  fade(abs(sc, 140, 640, 1000, null, "NTHU CS Capstone Project &middot; 2026", null, "font-size:31px"), t + 0.9, 0.6);
-  fade(abs(sc, 140, 690, 1000, null, "林沁瑩　陳柏融　游宸山", null, "font-size:31px;font-family:var(--cjk)"), t + 1.1, 0.6);
+  fade(abs(sc, 140, 640, 1000, null, "NTHU Capstone Project &middot; 2026", null, "font-size:31px"), t + 0.9, 0.6);
+  fade(abs(sc, 140, 690, 1000, null, "林沁瑩　陳柏蓉　余晨杉", null, "font-size:31px;font-family:var(--cjk)"), t + 1.1, 0.6);
 }
 
 // ============================================================================ seek

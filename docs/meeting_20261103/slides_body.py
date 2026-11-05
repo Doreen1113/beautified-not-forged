@@ -78,7 +78,7 @@ pill(s, -1.2, 0.9, 10.2, 4.8); square(s, 8.75, 0.75); square(s, 0.55, 5.95)
 text(s, 0.9, 1.6, 8.0, 1.0, "Beautified Is Not Forged", size=40, font=SERIF, bold=True)
 text(s, 0.9, 2.55, 7.7, 1.0, "分得出美顏與偽造、證據可查核的人臉檢測系統", size=19, font=SERIF, color=MUTED)
 text(s, 0.9, 3.85, 7.6, 0.4, "專題成果報告  ·  2026 年 11 月 3 日", size=15)
-text(s, 0.9, 4.35, 7.6, 0.4, "林沁瑩  陳柏融  游宸山", size=15)
+text(s, 0.9, 4.35, 7.6, 0.4, "林沁瑩  陳柏蓉  余晨杉", size=15)
 text(s, 9.3, 6.2, 3.6, 0.6, "指導教授：賴尚宏", size=12, color=MUTED, italic=True, align=PP_ALIGN.RIGHT)
 number(s)
 NOTES.append("老師好，這是我們專題的成果報告。主題是：美顏過的照片不是偽造。我們依序講問題、成因、方法，"

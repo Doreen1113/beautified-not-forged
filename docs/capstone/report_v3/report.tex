@@ -34,8 +34,8 @@
 
 \begin{document}
 \title{Beautified Is Not Forged: A Face Checker That Separates Beautification from Forgery and Shows Checkable Evidence}
-\author{\IEEEauthorblockN{\member{team members}}
-\IEEEauthorblockA{Department of Computer Science, National Tsing Hua University, Hsinchu, Taiwan}}
+\author{\IEEEauthorblockN{Qin-Ying Lin, Bo-Rong Chen, Chen-Shan Yu}
+\IEEEauthorblockA{National Tsing Hua University, Hsinchu, Taiwan}}
 \maketitle
 \pagestyle{plain}
 
@@ -673,6 +673,17 @@ deepfakes into ``beautified'' beyond re-encoding, so the page shows the forgery 
 \emph{Only smoothing can be named}: within one service, a classifier trained on one operation separates renders from
 originals at AUROC 0.93 (eye enlarging) to 0.9995 (smoothing), but trained on the two other services and tested on Alibaba
 the first three operations fall to 0.69--0.72 while smoothing stays at 0.999, so the sentences name smoothing only.
+
+% ------------------------------------------------------------------ 6b
+\section{Team Collaboration}
+
+The three members shared one repository and one experiment log. Every experiment was registered before it ran, with its
+data, its pass or fail threshold and the result file it would write, and the readout was entered the same day, whether it
+passed or not, so the lines that failed are on record next to the one that succeeded.
+Each line of work lives in its own folder with a timestamped log, and every number in this report is read from a result file
+by a script, so a change in one place changes the table, the figure and the text together. Code written by one member was
+run by another before its numbers were trusted. The report, the poster, the video and the browser page were split by
+member and reviewed by the other two, and the weekly meeting with the laboratory decided which lines to continue.
 
 % ------------------------------------------------------------------ 7
 \section{Important Contributions}

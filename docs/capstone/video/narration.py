@@ -29,32 +29,32 @@ LEAD = 0.6                        # the voice of a beat starts this long after t
 # stay in English in the voice as well (real / fake / beautified, evidence head, footprint, LoRA ...): that is how the
 # team says them. Numbers: docs/capstone/report_v3/report.tex.
 BEATS = [
-    ("t1", 7.0, "美顏過的照片，不是假的。這是我們的專題：一個分得出美顏和偽造、而且證據可以查核的人臉偵測系統。"),
-    ("b1", 9.0, "現在的 deepfake 偵測器，被用在內容審核、身分驗證和事實查核。可是大家上傳照片之前，常常會先開美顏。"),
-    ("b2", 10.0, "問題就出在這裡。左邊這張是真人照片，經過修圖服務最強的磨皮之後，四個 2025 年的偵測器，全部把它從真判成假。"),
-    ("b3", 9.0, "右邊是一支換臉影片，套上手機 app 的美顏模式之後，同樣四個偵測器，有三個讓它過關。"),
-    ("b4", 13.0, "我們把十七個已發表的偵測器全部重跑一次，十六個會把磨皮過的真人判得比原圖更假。"
-                 "原因很簡單：二分類偵測器只有 real 和 fake 兩個答案，沒有「美顏」這個選項。"),
-    ("b5", 8.0, "所以我們把 beautified 做成第三類，而且模型指出來的證據，要能夠驗證。"),
-    ("m1", 15.0, "先找原因。同一個模型、同一份資料，只改訓練時哪一類看過磨皮。"
-                 "只給 fake 看，誤判升到六成四；只給 real 看，誤判降到百分之四，但磨皮過的換臉會多漏掉五十幾個百分點；"
-                 "兩類都看，誤判降到一成左右。關鍵在訓練 recipe。"),
-    ("m2", 16.0, "再來是資料。商用 app 一次套好幾種美顏，又不會說改了哪裡。我們用 optical flow 把形狀的變化拆成眼睛和輪廓，"
-                 "剩下的 residual 再拆成色調和紋理，每個分量都有精確的 footprint。一萬八千多張修圖，變成五萬筆單一操作的訓練資料。"),
-    ("m3", 14.0, "模型是凍結的 CLIP ViT-L/14，只訓練 LoRA 和四個 head，三百一十六萬個參數。"
-                 "classification head 判三類，operation head 判四種美顏，evidence head 輸出 16 乘 16 的 evidence map，直接用 footprint 監督。"),
-    ("m4", 9.0, "說明文字不用語言模型。程式照模型的輸出組句，每一句顯示前都經過規則檢查，不符合的不會出現。"),
-    ("r1", 11.0, "成果。FF++ 測試集上，real、fake、beautified 三類的 recall 是 82.7、90.9、86.7%，美顏被判成 fake 的只有 4.3%。"),
-    ("r2", 13.0, "換到訓練沒看過的阿里修圖服務：磨皮 98.8% 判成 beautified，任何操作、任何強度，被判成 fake 都不到 1%。"
-                 "十四種 Instagram 濾鏡也有八成六以上判成 beautified。"),
-    ("r3", 12.0, "跟已發表的偵測器公平比較，只用一樣的 FF++ 訓練影片。Celeb-DF-B 美顏後的 AUC 0.872，高於所有已發表的方法；"
-                 "DFD 加十六種新濾鏡也是最高。"),
-    ("r4", 16.0, "evidence head 標的地方是不是真正的理由？把那個區域換回原圖，94% 的 fake 判定會消失，heat map 只有一半。"
-                 "另外 VLM 寫的描述，盲配對只有五成，跟丟銅板一樣，所以我們讓程式來寫句子，361 張全部通過檢查。"),
-    ("r5", 15.0, "整套系統在瀏覽器裡跑：MediaPipe 找臉，ONNX Runtime 跑 EfficientNet-B4，程式畫出 evidence 輪廓、點名部位、組句、檢查。"
+    ("t1", 7.0, "Beautified is not forged。這是我們的專題：一個分得出 beautification 和 forgery、而且 evidence 可以查核的 face checker。"),
+    ("b1", 9.0, "現在的 deepfake detector 被用在 content moderation、identity verification 和 fact-checking。可是大家上傳照片之前，常常先開美顏。"),
+    ("b2", 10.0, "問題就出在這裡。左邊是一張 real 的照片，經過 retouching service 最強的 smoothing 之後，四個 2025 年的 detector 全部把它從 real 判成 fake。"),
+    ("b3", 9.0, "右邊是一支 face swap 影片，套上手機 app 的 beauty preset 之後，同樣四個 detector 有三個讓它過關。"),
+    ("b4", 13.0, "我們把十七個已發表的 detector 用 official weights 全部重跑一次：十六個把 smoothing 過的 real 判得比原圖更 fake。"
+                 "原因很簡單，binary detector 只有 real 和 fake 兩個答案，沒有 beautified 這個選項。"),
+    ("b5", 8.0, "所以我們把 beautified 做成第三類，而且 model 指出的 evidence 要能驗證。"),
+    ("m1", 15.0, "先找原因。同一個 model、同一份 data，只改 training 時哪一類看過 smoothing。"
+                 "只給 fake 看，false alarm 升到 64%；只給 real 看，false alarm 降到 4%，但 smoothing 過的 face swap 會多漏掉五十幾個百分點；"
+                 "兩類都看，false alarm 降到 12%。關鍵在 training recipe。"),
+    ("m2", 16.0, "再來是 data。Commercial app 一次套好幾種美顏，又不會說改了哪裡。我們用 optical flow 把 shape 的變化拆成 eye 和 contour，"
+                 "剩下的 residual 用 low-pass 拆成 tone 和 texture，每個 component 都有精確的 footprint。一萬八千多張 render，變成五萬筆 single-operation 的訓練資料。"),
+    ("m3", 14.0, "Model 是凍結的 CLIP ViT-L/14，只訓練 LoRA 和四個 head，三百一十六萬個參數。"
+                 "Classification head 判三類，operation head 判四種操作，evidence head 輸出 16 乘 16 的 evidence map，直接用 footprint 監督。"),
+    ("m4", 9.0, "說明文字不用 language model。程式照 model output 組句，每一句顯示前都經過 rule checker，不符合的不會出現。"),
+    ("r1", 11.0, "成果。FF++ test set 上，real、forged、beautified 的 recall 是 82.7、90.9、86.7%，beautified 被判成 forged 的只有 4.3%。"),
+    ("r2", 13.0, "換到 training 完全沒看過的 Alibaba retouching service：smoothing 有 98.8% 判成 beautified，任何 operation、任何 strength 被判成 forged 都不到 1%。"
+                 "十四種 Instagram filter 也有 86% 以上判成 beautified。"),
+    ("r3", 12.0, "跟已發表的 detector 公平比較，只用一樣的 FF++ training videos。Celeb-DF-B beautification 之後的 AUC 0.872，高於所有已發表的方法；"
+                 "DFD 加十六種新 filter 也是最高。"),
+    ("r4", 16.0, "Evidence head 標的區域是不是真正的理由？把那個區域 restore 回原圖，94% 的 forged 判定會消失，heat map 只有一半。"
+                 "另外 VLM 寫的描述，blind matching 只有五成，跟丟銅板一樣，所以我們讓程式寫句子，361 張全部通過 checker。"),
+    ("r5", 15.0, "整套系統在 browser 裡跑：MediaPipe 找臉，ONNX Runtime 跑 EfficientNet-B4，程式畫出 evidence 輪廓、點名部位、組句、檢查。"
                  "照片不會上傳，iPhone 上一張 0.59 秒。"),
-    ("f1", 10.0, "接下來：涵蓋 reenactment、降低原圖被判成美顏的比例、補強黑白濾鏡，讓更多操作可以跨服務點名。"),
-    ("e1", 5.0, "美顏過的照片，不是假的。謝謝。"),
+    ("f1", 10.0, "接下來：涵蓋 reenactment、降低原圖被判成 beautified 的比例、補強 monochrome filter，讓更多 operation 可以跨 service 點名。"),
+    ("e1", 5.0, "Beautified is not forged。謝謝。"),
 ]
 
 
