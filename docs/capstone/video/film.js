@@ -52,7 +52,7 @@ const pill = (cls, text) => `<span class="pill ${cls}">${text}</span>`;
   fade(abs(sc, -320, 110, 1420, 860, null, null, "border-radius:430px;background:#e8eef7"), t, 0.9, 0, -40);
   el(sc, "div", "sq", "left:1480px;top:110px"); el(sc, "div", "sq", "left:80px;top:1000px");
   fade(abs(sc, 140, 300, 1120, null, "Beautified Is Not Forged", "serif b", "font-size:92px;line-height:1.05;white-space:nowrap"), t + 0.3, 0.8, 30);
-  fade(abs(sc, 140, 440, 1000, null, "A face detector that tells beautification from forgery, with checkable evidence", "serif muted", "font-size:40px;line-height:1.25"), t + 1.0, 0.7);
+  fade(abs(sc, 140, 440, 1000, null, "A Face Checker That Separates Beautification from Forgery and Shows Checkable Evidence", "serif muted", "font-size:40px;line-height:1.25"), t + 1.0, 0.7);
   fade(abs(sc, 140, 640, 1000, null, "NTHU Capstone Project &middot; 2026", null, "font-size:31px"), t + 1.6, 0.6);
   fade(abs(sc, 140, 690, 1000, null, "林沁瑩　陳柏蓉　余晨杉", null, "font-size:31px;font-family:var(--cjk)"), t + 1.9, 0.6);
   [["teaser_orig", "p-real", "genuine", 1250, 250], ["teaser_smooth", "p-beau", "beautified", 1560, 250],

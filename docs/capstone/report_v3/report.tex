@@ -6,7 +6,7 @@
 \documentclass[conference,a4paper]{IEEEtran}
 \usepackage{fontspec}
 \usepackage{xeCJK}
-\setmainfont{Liberation Serif}
+\setmainfont[Path=./fonts/, BoldFont=timesbd.ttf, ItalicFont=timesi.ttf, BoldItalicFont=timesbi.ttf]{times.ttf}   % Times New Roman (official format); build.sh copies the files
 \setCJKmainfont{Noto Serif TC}
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -26,6 +26,13 @@
 \setcounter{topnumber}{3}
 \setcounter{dbltopnumber}{2}
 \setcounter{totalnumber}{4}
+% tighter float and bibliography spacing so the references do not spill onto a page of their own
+\setlength{\textfloatsep}{9pt plus 2pt minus 3pt}
+\setlength{\dbltextfloatsep}{9pt plus 2pt minus 3pt}
+\setlength{\floatsep}{7pt plus 2pt minus 2pt}
+\setlength{\dblfloatsep}{7pt plus 2pt minus 2pt}
+\setlength{\intextsep}{7pt plus 2pt minus 2pt}
+\def\IEEEbibitemsep{0pt plus .3pt}
 \usepackage[hidelinks]{hyperref}
 \setlist{nosep,leftmargin=1.2em}
 \newcommand{\pending}[1]{\textcolor{red}{[#1]}}
@@ -337,7 +344,7 @@ Browser, small & RepViT, same heads; 4.7 M, 19 MB & option for older phones; bal
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.86\textwidth]{figs/fig_output_a_crop.png}
+\includegraphics[width=0.72\textwidth]{figs/fig_output_a_crop.png}
 \caption{The page's result card on a bundled example: a held-out part-level forgery, an FF++ test frame whose mouth was
 replaced with that of another test-video subject (shipped browser model, 1366 px viewport). Left: the photo with the evidence
 outlines (yellow: the 12\% of the map with the strongest evidence; cyan: evidence score at least 0.5) and the named part,
@@ -511,7 +518,8 @@ recipe fixed, the answer to ``what decides the accusation'' is which class saw s
 \caption{FF++-only arms of one model, one value per seed. Arm: which class saw beautified views in training; P1 smooth.: only
 smoothing, on genuine faces; P2 w/o smooth.: both classes, smoothing removed; P2 same forms: both classes, the same smoothing
 forms. Accused: commercial Smoothing-90 renders above the 5\% FPR threshold of their originals (\%). Miss rise: strongly
-smoothed Celeb-DF-v2 forgeries (points; negative means smoothed faces of both classes are accused). AUC: Celeb-DF-v2 video.}
+smoothed Celeb-DF-v2 forgeries (points; negative means smoothed faces of both classes are accused). AUC: Celeb-DF-v2 video.
+Bold: the recipe of the main model.}
 \label{tab:exposure}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
@@ -524,7 +532,7 @@ P0 none & 54.2/56.1/43.5 & $-$16.0/$-$11.8/+4.3 & .938/.938/.940 \\
 P3 forged only & 63.8 & $-$38.5 & -- \\
 P1 genuine only & 3.7/7.1/4.6 & +51.2 & .900/.910/.923 \\
 P1 smooth. & 0.7/1.0/0.9 & +56.4/+60.0/+62.9 & .922/.929/.939 \\
-P2 both & 11.7/7.1/6.9 & $-$26.5/$-$13.3 & .917/.920/.935 \\
+\textbf{P2 both} & \textbf{11.7/7.1/6.9} & \textbf{$-$26.5/$-$13.3} & \textbf{.917/.920/.935} \\
 P2 w/o smooth. & 55.3/67.1 & $-$28.9/$-$33.1 & .913/.924 \\
 P2 same forms & 5.9/6.1 & +14.6/+17.5 & .919/.934 \\
 \bottomrule
@@ -632,7 +640,7 @@ model and the CLIP model.
 \caption{Browser models against the gate written before training. Miss rise: beautified Celeb-DF-B deepfakes, points
 (previous +23.9 [20.2, 27.7], shipped +19.1 [16.2, 22.1]); FairFace: ordinary photographs called real; S-90: commercial
 Smoothing-90 renders; restoration: detections removed by restoring the named region on held-out part-level forgeries; all
-other rows in \%.}
+other rows in \%. Bold: best of the three models; (fail): below the gate.}
 \label{tab:browser}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
@@ -640,14 +648,14 @@ other rows in \%.}
 \toprule
  & gate & previous & shipped & CLIP (s1) \\
 \midrule
-Celeb-DF-B miss rise & $\le 11.0$ & +23.9 & \textbf{+19.1} (fail) & +6.7 \\
-FairFace called real & $\ge 70$ & 29.2 & 95.7 & 23.2 \\
-S-90 called fake & $\le 2$ & 0.4 & 1.0 & 0.8 \\
-S-90 accused at 5\% FPR & $\le 15$ & 6.3 & 7.3 & 8.6 \\
-Celeb-DF-v2 frame AUC & $\ge 0.8275$ & 0.848 & 0.849 & 0.891 \\
-DFD frame AUC & $\ge 0.8952$ & 0.915 & 0.917 & 0.956 \\
-FF++ beautified$\to$forged & $\le 13.7$ & 11.7 & 7.1 & 4.3 \\
-Restoration & $\ge 80$ & 87.4 & 91.5 & 94.0 \\
+Celeb-DF-B miss rise & $\le 11.0$ & +23.9 & +19.1 (fail) & \textbf{+6.7} \\
+FairFace called real & $\ge 70$ & 29.2 & \textbf{95.7} & 23.2 \\
+S-90 called fake & $\le 2$ & \textbf{0.4} & 1.0 & 0.8 \\
+S-90 accused at 5\% FPR & $\le 15$ & \textbf{6.3} & 7.3 & 8.6 \\
+Celeb-DF-v2 frame AUC & $\ge 0.8275$ & 0.848 & 0.849 & \textbf{0.891} \\
+DFD frame AUC & $\ge 0.8952$ & 0.915 & 0.917 & \textbf{0.956} \\
+FF++ beautified$\to$forged & $\le 13.7$ & 11.7 & 7.1 & \textbf{4.3} \\
+Restoration & $\ge 80$ & 87.4 & 91.5 & \textbf{94.0} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -719,6 +727,7 @@ its decision rests on, and shows only sentences that code has checked, in a brow
 stated beside the answer: beautified deepfakes can hide in the third class, some untouched photographs are called beautified,
 and only smoothing can be named.
 
+\IEEEtriggeratref{9}   % balance the two columns of the last page
 \bibliographystyle{IEEEtran}
 \bibliography{refs}
 

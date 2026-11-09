@@ -3,320 +3,273 @@
 <head>
 <meta charset="utf-8">
 <title>Beautified Is Not Forged</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
 <style>
-/* 90 x 120 cm portrait poster on the department template (banner at the top). Lengths in inches, type in points.
-   Every number: docs/capstone/report_v3/report.tex (line numbers in comments). Built by build_poster.py. */
+/* 90 x 120 cm portrait poster on the department template. Two columns, standard sections, one figure per section.
+   Type: Times New Roman for all poster text (as the department's best 114 posters), Arial inside figures, Noto Sans TC for the names.
+   Figures: make_figs.py (printed size, transparent) and make_method_svg.py (inline SVG). Numbers: docs/capstone/report_v3/report.tex. */
+@font-face { font-family: "Noto Sans TC"; src: url("fonts/NotoSansTC-VF.ttf"); font-weight: 100 900; }
 @page { size: 35.43056in 47.20833in; margin: 0; }
-:root {
-  --ink: #15233a; --muted: #5d6675; --line: #d6dce5; --panel: #f4f6f9; --page: #ffffff;
-  --green: #009e73; --amber: #c98a00; --red: #d55e00; --blue: #0f4d92; --grey: #9aa3ae;
-  --green-bg: #e3f4ee; --amber-bg: #fbf1d6; --red-bg: #fbe6d8; --blue-bg: #e6edf7;
-  --sans: "Source Sans 3", "Segoe UI", Arial, sans-serif; --disp: "Sora", "Segoe UI", Arial, sans-serif;
-}
-* { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; background: var(--page); }
+:root { --ink: #111; --muted: #555b66; --tint: #f1f3f9; --bullet: #7b93d6; --edge: #c9d1e3;
+        --green: #0a8f68; --amber: #b8860b; --red: #c8521a; --blue: #1d4f91; }
+* { box-sizing: border-box; min-width: 0; }
+html, body { margin: 0; padding: 0; background: #fff; }
 body { width: 35.43056in; height: 47.20833in; overflow: hidden; position: relative; color: var(--ink);
-       font-family: var(--sans); font-size: 34pt; line-height: 1.25; font-variant-numeric: tabular-nums; }
-p { margin: 0; } b { font-weight: 700; } .muted { color: var(--muted); } .disp { font-family: var(--disp); }
+       font-family: "Times New Roman", Times, serif; font-size: 31pt; line-height: 1.3; }
+p { margin: 0; } b { font-weight: 700; }
+.g { color: var(--green); } .a { color: var(--amber); } .r { color: var(--red); } .bl { color: var(--blue); }
 .banner { position: absolute; left: 0; top: -0.19444in; width: 35.43056in; height: 8.05556in; }
 .banner img { position: absolute; left: 0; top: 0; width: 35.43056in; height: 8.05556in; }
 
-main { position: absolute; left: 0.9in; top: 8.2in; width: 33.63in; height: 38.5in; display: flex; flex-direction: column; gap: 0.14in; }
-section { flex: none; display: flex; flex-direction: column; min-height: 0; }
-.sh { flex: none; height: 1.02in; display: flex; align-items: baseline; gap: 0.32in; border-bottom: 0.045in solid var(--ink); margin-bottom: 0.2in; }
-.sh .n { font-family: var(--disp); font-weight: 800; font-size: 60pt; color: var(--blue); line-height: 1; }
-.sh h2 { margin: 0; font-family: var(--disp); font-weight: 700; font-size: 58pt; line-height: 1; letter-spacing: -0.01em; }
-.sh .lead { margin-left: auto; font-size: 30pt; color: var(--muted); white-space: nowrap; }
-.body { flex: 1 1 auto; min-height: 0; }
+.titleblock { position: absolute; left: 0.8in; top: 8.25in; width: 33.83in; text-align: center; }
+h1 { margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 104pt; font-weight: 700; line-height: 1.04; letter-spacing: -0.005em; color: var(--ink); }
+.subtitle { margin-top: 0.16in; font-family: Arial, Helvetica, sans-serif; font-size: 44pt; font-weight: 400; line-height: 1.15; color: #222; }
+.team { margin-top: 0.2in; font-size: 40pt; font-weight: 700; font-family: "Noto Sans TC", sans-serif; letter-spacing: 0.02em; }
+.team .adv { display: none; font-weight: 500; margin-left: 0.8in; }
+body.advisor .team .adv { display: inline; }
 
-/* header */
-header { height: 4.0in; display: grid; grid-template-columns: 1fr 11.6in; column-gap: 0.6in; align-items: start; }
-h1 { margin: 0; font-family: var(--disp); font-weight: 800; font-size: 150pt; line-height: 1; letter-spacing: -0.02em; white-space: nowrap; }
-.claim { margin-top: 0.2in; font-size: 44pt; line-height: 1.15; font-weight: 400; }
-.claim b { font-weight: 700; }
-.authors { margin-top: 0.2in; font-size: 33pt; color: var(--muted); }
-.authors b { color: var(--ink); font-weight: 600; }
-.keynum { background: var(--blue-bg); border-radius: 0.3in; padding: 0.3in 0.45in; height: 3.4in; display: grid; grid-template-columns: auto 1fr; column-gap: 0.4in; align-items: center; }
-.keynum .big { font-family: var(--disp); font-weight: 800; font-size: 150pt; line-height: 0.95; color: var(--blue); letter-spacing: -0.03em; white-space: nowrap; }
-.keynum .lab { font-size: 30pt; line-height: 1.22; color: var(--ink); }
-
-/* 1 hero */
-.hero { display: grid; grid-template-rows: 3.7in 3.7in; row-gap: 0.2in; min-height: 0; flex: none; }
-.hrow { display: grid; grid-template-columns: 3.1in 1.5in 3.1in 0.55in 11.6in 0.3in 1fr; align-items: center; }
-.face { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 0.2in; }
-.hrow .face { width: 3.1in; height: 3.1in; }
-.face.g { box-shadow: 0 0 0 0.09in var(--green); } .face.b { box-shadow: 0 0 0 0.09in var(--amber); } .face.f { box-shadow: 0 0 0 0.09in var(--red); }
-.fc { display: flex; flex-direction: column; gap: 0.14in; align-items: center; }
-.fc .lbl { font-size: 30pt; font-weight: 700; line-height: 1; white-space: nowrap; }
-.pill { display: inline-block; padding: 0.02in 0.3in; border-radius: 1in; font-weight: 700; line-height: 1.3; white-space: nowrap; }
-.p-real { background: var(--green-bg); color: var(--green); } .p-beau { background: var(--amber-bg); color: var(--amber); }
-.p-fake { background: var(--red-bg); color: var(--red); } .p-blue { background: var(--blue-bg); color: var(--blue); }
-.arrow { text-align: center; color: var(--muted); font-size: 26pt; line-height: 1.12; }
-.arrow .ar { position: relative; height: 0.09in; background: var(--ink); width: 1.05in; margin: 0.1in auto 0.14in; border-radius: 0.05in; }
-.arrow .ar:after { content: ""; position: absolute; right: -0.06in; top: -0.15in; border: 0.19in solid transparent; border-left: 0.3in solid var(--ink); border-right: 0; }
-.verdict { height: 100%; border-radius: 0.28in; padding: 0.22in 0.4in; display: grid; grid-template-rows: auto 1fr auto; row-gap: 0.06in; overflow: hidden; }
-.verdict.prior { background: #fff; border: 0.05in solid var(--line); }
-.verdict.ours { background: var(--blue-bg); border: 0.05in solid #c3d3ea; }
-.verdict .t { font-size: 32pt; font-weight: 700; line-height: 1.1; }
-.verdict .t small { font-weight: 400; color: var(--muted); font-size: 27pt; }
-.word { font-family: var(--disp); font-weight: 800; font-size: 84pt; line-height: 1; letter-spacing: -0.02em; align-self: center; white-space: nowrap; }
-.word.red { color: var(--red); } .word.amber { color: var(--amber); } .word.green { color: var(--green); }
-.word small { font-size: 46pt; font-weight: 700; vertical-align: middle; margin-left: 0.2in; color: var(--muted); font-family: var(--sans); letter-spacing: 0; }
-.scores { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.1in; }
-.scores div { text-align: center; font-size: 26pt; color: var(--muted); line-height: 1.15; white-space: nowrap; }
-.scores div b { display: block; font-size: 32pt; line-height: 1.05; }
-.scores .r b { color: var(--red); } .scores .g b { color: var(--green); }
-.three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.16in; }
-.three div { text-align: center; font-size: 30pt; font-weight: 700; padding: 0.05in 0; border-radius: 0.16in; background: #fff; color: var(--grey); border: 0.04in solid var(--line); }
-.three .on.b { color: var(--amber); border-color: var(--amber); background: var(--amber-bg); }
-.three .on.f { color: var(--red); border-color: var(--red); background: var(--red-bg); }
-.takeaway { margin-top: 0.18in; height: 0.95in; background: var(--ink); color: #fff; border-radius: 0.22in; padding: 0 0.5in; font-size: 34pt; line-height: 1.2; display: flex; align-items: center; gap: 0.5in; white-space: nowrap; }
-.takeaway .big { font-family: var(--disp); font-weight: 800; font-size: 64pt; line-height: 1; white-space: nowrap; color: #ffb38a; }
-
-/* 2 ops strip */
-.ops { display: grid; grid-template-columns: 1fr repeat(5, 2.9in); column-gap: 0.32in; align-items: center; }
-.ops .face { width: 2.9in; height: 2.9in; }
-.ops .txt { font-size: 32pt; line-height: 1.3; align-self: center; padding-right: 0.5in; }
-.ops .op { display: flex; flex-direction: column; align-items: center; gap: 0.12in; }
-.ops .op .name { font-size: 32pt; font-weight: 700; line-height: 1; white-space: nowrap; }
-.ops .op .rate { font-size: 28pt; line-height: 1.1; color: var(--muted); white-space: nowrap; }
-.ops .op .rate b { color: var(--amber); font-size: 34pt; }
-.ops .op .rate b.g { color: var(--green); }
-
-/* 3 why + how */
-.wh { display: grid; grid-template-columns: 11.4in 1fr; column-gap: 0.5in; }
-.panel { background: var(--panel); border-radius: 0.3in; padding: 0.3in 0.38in; display: flex; flex-direction: column; gap: 0.12in; min-height: 0; }
-.panel h3 { margin: 0; font-family: var(--disp); font-size: 36pt; font-weight: 700; line-height: 1.1; }
-.panel .sub { font-size: 27pt; color: var(--muted); line-height: 1.2; }
-.panel .fill { flex: 1 1 auto; min-height: 0; }
-.panel .note { font-size: 26pt; line-height: 1.25; }
-svg text { font-family: var(--sans); }
-
-/* 4 results */
-.res { display: grid; grid-template-columns: 17.6in 1fr; column-gap: 0.5in; }
-.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.2in 0.4in; }
-.stat .big { font-family: var(--disp); font-weight: 800; font-size: 60pt; line-height: 1; letter-spacing: -0.02em; white-space: nowrap; }
-.stat .lab { font-size: 24pt; line-height: 1.2; color: var(--muted); margin-top: 0.06in; }
-
-/* 5 evidence + 6 system */
-.bottom { display: grid; grid-template-columns: 1fr 12.2in; column-gap: 0.5in; }
-.ev { display: grid; grid-template-columns: repeat(3, 2.5in) 1fr; column-gap: 0.28in; align-items: start; }
-.ev .face { width: 2.5in; height: 2.5in; }
-.ev .fc .lbl { font-size: 22pt; white-space: nowrap; text-align: center; line-height: 1.25; }
-.sys { display: grid; grid-template-columns: 1fr 3.2in; column-gap: 0.3in; align-items: start; }
-.sys img.shot { max-height: 2.95in; max-width: 100%; border-radius: 0.16in; border: 0.03in solid var(--line); display: block; margin: 0 auto; }
-.sys .qr { text-align: center; font-size: 22pt; line-height: 1.2; color: var(--muted); }
-.sys .qr img { width: 2.2in; height: 2.2in; display: block; margin: 0 auto 0.08in; }
-footer { flex: none; display: flex; justify-content: space-between; align-items: baseline; gap: 0.6in; font-size: 26pt; color: var(--muted); line-height: 1.2; border-top: 0.03in solid var(--line); padding-top: 0.14in; }
-footer b { color: var(--ink); }
+.cols { position: absolute; left: 0.8in; top: 12.4in; width: 33.83in; height: 34.3in; display: grid; grid-template-columns: 16.64in 16.64in; column-gap: 0.55in; }
+.col { display: flex; flex-direction: column; gap: 0.34in; min-height: 0; }
+.box { background: var(--tint); border-radius: 0.32in; padding: 0.26in 0.4in 0.3in; flex: none; overflow: hidden; display: flex; flex-direction: column; }
+.box.grow { flex: 1 1 auto; min-height: 0; }
+.hd { display: inline-block; align-self: flex-start; margin: 0 0 0.2in; padding: 0.05in 0.55in 0.08in; font-family: Arial, Helvetica, sans-serif; font-size: 38pt; font-weight: 700;
+      line-height: 1.2; color: #fff; background: var(--blue); border-radius: 0.6in; flex: none; }
+.fig { display: block; width: 100%; }
+.cap { font-size: 25pt; line-height: 1.3; color: #222; margin-top: 0.12in; }
+ul { margin: 0 0 0.12in; padding-left: 0.5in; }
+li { margin-bottom: 0.1in; }
+li::marker { color: var(--blue); }
+.key { font-size: 33pt; line-height: 1.3; margin: 0.14in 0 0; padding: 0.14in 0.32in; background: #fff; border-left: 0.14in solid var(--blue); border-radius: 0 0.1in 0.1in 0; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; column-gap: 0.4in; }
+.stats { display: grid; grid-template-columns: 1.45fr 1fr 1fr; column-gap: 0.35in; margin-top: 0.22in; border-top: 0.03in solid var(--edge); padding-top: 0.18in; }
+.stat .big { font-size: 56pt; font-weight: 700; line-height: 1; white-space: nowrap; }
+.stat .lab { font-size: 24pt; line-height: 1.25; color: #222; margin-top: 0.08in; }
+.sys { display: grid; grid-template-columns: 9.4in 1fr; column-gap: 0.45in; align-items: center; }
+.sys img.shot { width: 100%; border: 0.03in solid var(--edge); border-radius: 0.1in; display: block; background: #fff; }
+.sys .big { font-size: 66pt; font-weight: 700; line-height: 1; color: var(--blue); }
+.sys .lab { font-size: 27pt; line-height: 1.3; color: #222; margin-top: 0.12in; }
+.refs { font-size: 20pt; line-height: 1.25; color: #333; margin-top: auto; padding-top: 0.12in; border-top: 0.03in solid var(--edge); }
 </style>
 </head>
 <body>
 <div class="banner"><img src="assets/banner_115.png" alt=""></div>
-<main>
 
-<header>
-  <div>
-    <h1>Beautified Is Not Forged</h1>
-    <p class="claim">A face checker that answers <b style="color:var(--green)">real</b>, <b style="color:var(--amber)">beautified</b> or <b style="color:var(--red)">forged</b>, and marks the evidence so you can check it.</p>
-    <p class="authors"><b>Qin-Ying Lin &middot; Bo-Rong Chen &middot; Chen-Shan Yu</b> &nbsp; NTHU Capstone Project 2026</p>
-  </div>
-  <!-- report.tex L410-418, abstract -->
-  <div class="keynum"><div class="big">16/17</div><div class="lab">published deepfake detectors call a smoothed genuine face <b>forged</b>. Ours does not.</div></div>
-</header>
+<div class="titleblock">
+  <h1>Beautified Is Not Forged</h1>
+  <p class="subtitle">A Face Checker That Separates Beautification from Forgery and Shows Checkable Evidence</p>
+  <p class="team">林沁瑩　陳柏蓉　余晨杉<span class="adv">指導教授：賴尚宏</span></p>
+</div>
 
-<!-- ===================================================== 1 the problem -->
-<section style="height:10.1in">
-  <div class="sh"><span class="n">1</span><h2>One beauty edit, two detector errors</h2><span class="lead">scores at each detector's own threshold (5% false alarms on untouched faces)</span></div>
-  <div class="body hero">
-    <!-- row A: genuine photo, FFHQ 17003, Alibaba Smoothing-90; scores L54-67 -->
-    <div class="hrow">
-      <div class="fc"><img class="face g" src="assets/hero_orig.png" alt=""><span class="lbl pill p-real">genuine photo</span></div>
-      <div class="arrow"><span>beauty app<br>skin smoothing</span><div class="ar"></div></div>
-      <div class="fc"><img class="face g" src="assets/hero_smooth.png" alt=""><span class="lbl muted">still the same person</span></div>
-      <div></div>
-      <div class="verdict prior"><div class="t">Prior detectors <small>&middot; real / fake only</small></div>
-        <div class="word red">FAKE <small>false alarm</small></div>
-        <div class="scores"><div class="r">Effort<b>0.72</b></div><div class="r">Forensics Ad.<b>0.95</b></div><div class="r">GenD<b>0.97</b></div><div class="r">DFD-HR<b>0.94</b></div></div></div>
-      <div></div>
-      <div class="verdict ours"><div class="t">Ours <small>&middot; real / beautified / forged</small></div>
-        <div class="word amber">BEAUTIFIED</div>
-        <div class="three"><div>real</div><div class="on b">beautified</div><div>forged</div></div></div>
+<div class="cols">
+<!-- ===================================================================== left -->
+<div class="col">
+
+  <section class="box">
+    <div class="hd">Motivation</div>
+    <!-- report.tex abstract, L410-418 -->
+    <p style="margin-bottom:0.2in">Photos are beautified before anyone checks them, but forgery detectors only answer <b class="g">real</b> or <b class="r">fake</b>. When we re-run <b>17 published detectors</b>, <b class="r">16 of 17</b> score a smoothed genuine face as more forged than its own original.</p>
+    <img class="fig" src="assets/figs2/fig1_teaser.png" alt="">
+    <p class="cap"><b>One edit, two errors.</b> Open circle: a detector's score before the edit; filled: after. Right: our model's own output on the same two photos.</p>
+  </section>
+
+  <section class="box">
+    <div class="hd">Key Finding: The Error Is Set in Training</div>
+    <img class="fig" src="assets/figs2/fig2_exposure.png" alt="">
+    <p class="key">Smoothing shown to <b>both classes</b>: false alarms <b>54% &rarr; 12%</b>, no extra misses.</p>
+  </section>
+
+  <section class="box grow">
+    <div class="hd">Method</div>
+    <!--METHOD_SVG-->
+<svg class="fig" viewBox="0 0 1594 1240" width="15.94in" height="12.40in" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,Helvetica,sans-serif;display:block"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/></marker><marker id="ahs" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M10,0 L0,5 L10,10 z" fill="#1a1a1a"/></marker></defs>
+<text x="0" y="30" text-anchor="start" style="font-size:33.3px;font-weight:700;fill:#1d4f91">Training data: every edit comes with its pixel-exact footprint M</text>
+<image href="assets/tiles/method_ffpp_real.png" x="0" y="54" width="158" height="190" preserveAspectRatio="none"/>
+<rect x="2.5" y="56.5" width="153.0" height="185.0" fill="none" stroke="#0a8f68" stroke-width="5"/>
+<text x="79" y="272" text-anchor="middle" style="font-size:27.8px;font-weight:700;fill:#0a8f68">real</text>
+<image href="assets/tiles/method_ffpp_filter.png" x="206" y="54" width="158" height="190" preserveAspectRatio="none"/>
+<rect x="208.5" y="56.5" width="153.0" height="185.0" fill="none" stroke="#b8860b" stroke-width="5"/>
+<text x="285" y="272" text-anchor="middle" style="font-size:27.8px;font-weight:700;fill:#b8860b">beautified</text>
+<image href="assets/tiles/method_ffpp_fake.png" x="452" y="54" width="158" height="190" preserveAspectRatio="none"/>
+<rect x="454.5" y="56.5" width="153.0" height="185.0" fill="none" stroke="#c8521a" stroke-width="5"/>
+<text x="531" y="272" text-anchor="middle" style="font-size:27.8px;font-weight:700;fill:#c8521a">forged</text>
+<image href="assets/tiles/method_ffpp_fake_filter.png" x="658" y="54" width="158" height="190" preserveAspectRatio="none"/>
+<rect x="660.5" y="56.5" width="153.0" height="185.0" fill="none" stroke="#c8521a" stroke-width="5"/>
+<text x="737" y="272" text-anchor="middle" style="font-size:27.8px;font-weight:700;fill:#c8521a">forged</text>
+<line x1="166" y1="149" x2="196" y2="149" stroke="#1a1a1a" stroke-width="3.2" marker-end="url(#ah)"/>
+<line x1="618" y1="149" x2="648" y2="149" stroke="#1a1a1a" stroke-width="3.2" marker-end="url(#ah)"/>
+<text x="880" y="128" text-anchor="start" style="font-size:30.6px;font-weight:700;fill:#1a1a1a">Both classes see skin smoothing,</text>
+<text x="880" y="168" text-anchor="start" style="font-size:30.6px;font-weight:700;fill:#1a1a1a">so smoothing is not a forgery cue.</text>
+<text x="880" y="212" text-anchor="start" style="font-size:26.4px;font-weight:400;fill:#5a6270">41,512 genuine and 41,526 forged FF++ frames</text>
+<image href="assets/tiles/method_vendor_O.png" x="0" y="300" width="158" height="190" preserveAspectRatio="none"/>
+<rect x="2.5" y="302.5" width="153.0" height="185.0" fill="none" stroke="#0a8f68" stroke-width="5"/>
+<text x="79" y="518" text-anchor="middle" style="font-size:26.4px;font-weight:400;fill:#1a1a1a">original</text>
+<line x1="166" y1="395" x2="196" y2="395" stroke="#1a1a1a" stroke-width="3.2" marker-end="url(#ah)"/>
+<image href="assets/tiles/method_vendor_R.png" x="206" y="300" width="158" height="190" preserveAspectRatio="none"/>
+<rect x="208.5" y="302.5" width="153.0" height="185.0" fill="none" stroke="#b8860b" stroke-width="5"/>
+<text x="285" y="518" text-anchor="middle" style="font-size:26.4px;font-weight:400;fill:#1a1a1a">app render</text>
+<line x1="372" y1="395" x2="402" y2="395" stroke="#1a1a1a" stroke-width="3.2" marker-end="url(#ah)"/>
+<image href="assets/tiles/method_comp_eye.png" x="412" y="300" width="158" height="190" preserveAspectRatio="none"/>
+<text x="491" y="518" text-anchor="middle" style="font-size:26.4px;font-weight:400;fill:#1a1a1a">eye</text>
+<image href="assets/tiles/method_comp_contour.png" x="590" y="300" width="158" height="190" preserveAspectRatio="none"/>
+<text x="669" y="518" text-anchor="middle" style="font-size:26.4px;font-weight:400;fill:#1a1a1a">contour</text>
+<image href="assets/tiles/method_comp_tone.png" x="768" y="300" width="158" height="190" preserveAspectRatio="none"/>
+<text x="847" y="518" text-anchor="middle" style="font-size:26.4px;font-weight:400;fill:#1a1a1a">tone</text>
+<image href="assets/tiles/method_comp_texture.png" x="946" y="300" width="158" height="190" preserveAspectRatio="none"/>
+<text x="1025" y="518" text-anchor="middle" style="font-size:26.4px;font-weight:400;fill:#1a1a1a">texture</text>
+<text x="1150" y="336" text-anchor="start" style="font-size:29.2px;font-weight:400;fill:#1a1a1a">Optical flow and the photometric</text>
+<text x="1150" y="373" text-anchor="start" style="font-size:29.2px;font-weight:400;fill:#1a1a1a">residual split one app render</text>
+<text x="1150" y="410" text-anchor="start" style="font-size:29.2px;font-weight:400;fill:#1a1a1a">into single operations, each</text>
+<text x="1150" y="447" text-anchor="start" style="font-size:29.2px;font-weight:400;fill:#1a1a1a">with its own</text>
+<text x="1278" y="447" text-anchor="start" style="font-size:29.2px;font-weight:700;fill:#1b8fc2">footprint M (cyan).</text>
+<text x="1150" y="490" text-anchor="start" style="font-size:25.0px;font-weight:400;fill:#5a6270">18,734 renders → 50,112 items</text>
+<image href="assets/tiles/method_part_x0.png" x="0" y="546" width="190" height="190" preserveAspectRatio="none"/>
+<rect x="2.5" y="548.5" width="185.0" height="185.0" fill="none" stroke="#0a8f68" stroke-width="5"/>
+<text x="95" y="764" text-anchor="middle" style="font-size:26.4px;font-weight:400;fill:#1a1a1a">original</text>
+<image href="assets/tiles/method_part_x.png" x="240" y="546" width="190" height="190" preserveAspectRatio="none"/>
+<rect x="242.5" y="548.5" width="185.0" height="185.0" fill="none" stroke="#c8521a" stroke-width="5"/>
+<text x="335" y="764" text-anchor="middle" style="font-size:26.4px;font-weight:400;fill:#1a1a1a">nose from a donor</text>
+<image href="assets/tiles/method_part_M.png" x="480" y="546" width="190" height="190" preserveAspectRatio="none"/>
+<text x="575" y="764" text-anchor="middle" style="font-size:26.4px;font-weight:700;fill:#1b8fc2">footprint M</text>
+<line x1="198" y1="641" x2="230" y2="641" stroke="#1a1a1a" stroke-width="3.2" marker-end="url(#ah)"/>
+<line x1="438" y1="641" x2="470" y2="641" stroke="#1a1a1a" stroke-width="3.2" marker-end="url(#ah)"/>
+<text x="740" y="620" text-anchor="start" style="font-size:29.2px;font-weight:400;fill:#1a1a1a">Part-level forgeries: one face part replaced,</text>
+<text x="740" y="660" text-anchor="start" style="font-size:29.2px;font-weight:400;fill:#1a1a1a">nothing outside M touched.</text>
+<text x="740" y="702" text-anchor="start" style="font-size:26.4px;font-weight:400;fill:#5a6270">61,510 edits; the model is tested on held-out ones</text>
+<line x1="0" y1="798" x2="1594" y2="798" stroke="#d5dae2" stroke-width="2"/>
+<text x="0" y="836" text-anchor="start" style="font-size:33.3px;font-weight:700;fill:#1d4f91">Model: one frozen backbone, 3.16 M trained parameters, task heads</text>
+<image href="assets/tiles/model_in.png" x="0" y="922" width="220" height="220" preserveAspectRatio="none"/>
+<rect x="2.5" y="924.5" width="215.0" height="215.0" fill="none" stroke="#c8521a" stroke-width="5"/>
+<text x="110" y="1170" text-anchor="middle" style="font-size:25.0px;font-weight:700;fill:#1a1a1a">input</text>
+<text x="110" y="1193" text-anchor="middle" style="font-size:20.8px;font-weight:400;fill:#5a6270">the forgery above</text>
+<line x1="226" y1="1032" x2="282" y2="1032" stroke="#1a1a1a" stroke-width="3.2" marker-end="url(#ah)"/>
+<rect x="286" y="866" width="330" height="362" rx="14" fill="white" stroke="#b9c4d4" stroke-width="2.5"/>
+<text x="304" y="906" text-anchor="start" style="font-size:30.6px;font-weight:700;fill:#1a1a1a">CLIP ViT-L/14</text>
+<text x="304" y="936" text-anchor="start" style="font-size:23.6px;font-weight:400;fill:#5a6270">image encoder, frozen</text>
+<rect x="302" y="960" width="178" height="24" rx="4" fill="#dfe5ee" stroke="#b9c4d4" stroke-width="1.5"/>
+<rect x="486" y="960" width="38" height="24" rx="4" fill="#1d4f91"/>
+<rect x="302" y="991" width="178" height="24" rx="4" fill="#dfe5ee" stroke="#b9c4d4" stroke-width="1.5"/>
+<rect x="486" y="991" width="38" height="24" rx="4" fill="#1d4f91"/>
+<rect x="302" y="1022" width="178" height="24" rx="4" fill="#dfe5ee" stroke="#b9c4d4" stroke-width="1.5"/>
+<rect x="486" y="1022" width="38" height="24" rx="4" fill="#1d4f91"/>
+<rect x="302" y="1053" width="178" height="24" rx="4" fill="#dfe5ee" stroke="#b9c4d4" stroke-width="1.5"/>
+<rect x="486" y="1053" width="38" height="24" rx="4" fill="#1d4f91"/>
+<rect x="302" y="1084" width="178" height="24" rx="4" fill="#dfe5ee" stroke="#b9c4d4" stroke-width="1.5"/>
+<rect x="486" y="1084" width="38" height="24" rx="4" fill="#1d4f91"/>
+<rect x="302" y="1115" width="178" height="24" rx="4" fill="#dfe5ee" stroke="#b9c4d4" stroke-width="1.5"/>
+<rect x="486" y="1115" width="38" height="24" rx="4" fill="#1d4f91"/>
+<rect x="302" y="1146" width="178" height="24" rx="4" fill="#dfe5ee" stroke="#b9c4d4" stroke-width="1.5"/>
+<rect x="486" y="1146" width="38" height="24" rx="4" fill="#1d4f91"/>
+<text x="566" y="1078" text-anchor="middle" style="font-size:30.6px;font-weight:700;fill:#1a1a1a">×24</text>
+<rect x="302" y="1182" width="22" height="16" rx="3" fill="#dfe5ee" stroke="#b9c4d4" stroke-width="1.5"/>
+<text x="332" y="1196" text-anchor="start" style="font-size:20.8px;font-weight:400;fill:#5a6270">frozen, 303 M parameters</text>
+<rect x="302" y="1204" width="22" height="16" rx="3" fill="#1d4f91"/>
+<text x="332" y="1218" text-anchor="start" style="font-size:20.8px;font-weight:700;fill:#1d4f91">LoRA, r = 16, 3.16 M trained</text>
+<line x1="616" y1="990" x2="662" y2="990" stroke="#1a1a1a" stroke-width="3.2"/>
+<line x1="662" y1="934" x2="662" y2="1036" stroke="#1a1a1a" stroke-width="3.2"/>
+<line x1="662" y1="934" x2="700" y2="934" stroke="#1a1a1a" stroke-width="3.2" marker-end="url(#ah)"/>
+<line x1="662" y1="1036" x2="700" y2="1036" stroke="#1a1a1a" stroke-width="3.2" marker-end="url(#ah)"/>
+<text x="639" y="978" text-anchor="middle" style="font-size:20.8px;font-weight:400;fill:#5a6270">CLS</text>
+<line x1="616" y1="1156" x2="700" y2="1156" stroke="#1a1a1a" stroke-width="3.2" marker-end="url(#ah)"/>
+<text x="656" y="1144" text-anchor="middle" style="font-size:20.8px;font-weight:400;fill:#5a6270">patches</text>
+<rect x="700" y="892" width="370" height="84" rx="10" fill="white" stroke="#b9c4d4" stroke-width="2.5"/>
+<text x="716" y="922" text-anchor="start" style="font-size:26.4px;font-weight:700;fill:#1d4f91">class head</text>
+<text x="716" y="946" text-anchor="start" style="font-size:22.2px;font-weight:400;fill:#1a1a1a">forged logit f, beautified logit b</text>
+<text x="716" y="968" text-anchor="start" style="font-size:20.8px;font-weight:400;fill:#5a6270">P(forged) = σ(f), never reads b</text>
+<rect x="700" y="994" width="370" height="84" rx="10" fill="white" stroke="#b9c4d4" stroke-width="2.5"/>
+<text x="716" y="1024" text-anchor="start" style="font-size:26.4px;font-weight:700;fill:#1d4f91">operation head</text>
+<text x="716" y="1048" text-anchor="start" style="font-size:22.2px;font-weight:400;fill:#1a1a1a">eye · contour · tone · texture</text>
+<text x="716" y="1070" text-anchor="start" style="font-size:20.8px;font-weight:400;fill:#5a6270">on the pooled CLS token</text>
+<rect x="700" y="1104" width="370" height="104" rx="10" fill="#e3ebf7" stroke="#1d4f91" stroke-width="3.5"/>
+<text x="716" y="1134" text-anchor="start" style="font-size:26.4px;font-weight:700;fill:#1d4f91">evidence head</text>
+<text x="716" y="1158" text-anchor="start" style="font-size:22.2px;font-weight:400;fill:#1a1a1a">one linear map per patch token</text>
+<text x="716" y="1180" text-anchor="start" style="font-size:20.8px;font-weight:400;fill:#5a6270">16×16 map m, trained against M</text>
+<text x="1170" y="915" text-anchor="end" style="font-size:20.8px;font-weight:400;fill:#1a1a1a">real</text>
+<rect x="1180" y="902" width="80" height="15" rx="3" fill="#e6eaf0"/>
+<text x="1269" y="915" text-anchor="start" style="font-size:20.8px;font-weight:400;fill:#1a1a1a">0.00</text>
+<text x="1170" y="941" text-anchor="end" style="font-size:20.8px;font-weight:700;fill:#1a1a1a">forged</text>
+<rect x="1180" y="928" width="80" height="15" rx="3" fill="#e6eaf0"/>
+<rect x="1180" y="928" width="80.0" height="15" rx="3" fill="#c8521a"/>
+<text x="1269" y="941" text-anchor="start" style="font-size:20.8px;font-weight:700;fill:#c8521a">1.00</text>
+<text x="1170" y="967" text-anchor="end" style="font-size:20.8px;font-weight:400;fill:#1a1a1a">beautified</text>
+<rect x="1180" y="954" width="80" height="15" rx="3" fill="#e6eaf0"/>
+<text x="1269" y="967" text-anchor="start" style="font-size:20.8px;font-weight:400;fill:#1a1a1a">0.00</text>
+<text x="1170" y="1015" text-anchor="end" style="font-size:19.4px;font-weight:400;fill:#1a1a1a">eye</text>
+<rect x="1180" y="1004" width="80" height="13" rx="3" fill="#e6eaf0"/>
+<rect x="1180" y="1004" width="18.4" height="13" rx="3" fill="#b8860b"/>
+<text x="1269" y="1015" text-anchor="start" style="font-size:19.4px;font-weight:400;fill:#1a1a1a">0.23</text>
+<text x="1170" y="1034" text-anchor="end" style="font-size:19.4px;font-weight:400;fill:#1a1a1a">contour</text>
+<rect x="1180" y="1023" width="80" height="13" rx="3" fill="#e6eaf0"/>
+<rect x="1180" y="1023" width="3.4" height="13" rx="3" fill="#b8860b"/>
+<text x="1269" y="1034" text-anchor="start" style="font-size:19.4px;font-weight:400;fill:#1a1a1a">0.04</text>
+<text x="1170" y="1053" text-anchor="end" style="font-size:19.4px;font-weight:400;fill:#1a1a1a">tone</text>
+<rect x="1180" y="1042" width="80" height="13" rx="3" fill="#e6eaf0"/>
+<rect x="1180" y="1042" width="6.6" height="13" rx="3" fill="#b8860b"/>
+<text x="1269" y="1053" text-anchor="start" style="font-size:19.4px;font-weight:400;fill:#1a1a1a">0.08</text>
+<text x="1170" y="1072" text-anchor="end" style="font-size:19.4px;font-weight:400;fill:#1a1a1a">texture</text>
+<rect x="1180" y="1061" width="80" height="13" rx="3" fill="#e6eaf0"/>
+<rect x="1180" y="1061" width="17.1" height="13" rx="3" fill="#b8860b"/>
+<text x="1269" y="1072" text-anchor="start" style="font-size:19.4px;font-weight:400;fill:#1a1a1a">0.21</text>
+<image href="assets/tiles/model_ev16.png" x="1080" y="1110" width="92" height="92" preserveAspectRatio="none"/>
+<image href="assets/tiles/model_M16.png" x="1200" y="1110" width="92" height="92" preserveAspectRatio="none"/>
+<line x1="1177" y1="1156" x2="1195" y2="1156" stroke="#1a1a1a" stroke-width="2.5" marker-start="url(#ahs)" marker-end="url(#ah)"/>
+<text x="1126" y="1224" text-anchor="middle" style="font-size:20.8px;font-weight:400;fill:#1a1a1a">map m</text>
+<text x="1246" y="1224" text-anchor="middle" style="font-size:20.8px;font-weight:700;fill:#1b8fc2">footprint M</text>
+<line x1="1300" y1="1156" x2="1344" y2="1156" stroke="#1a1a1a" stroke-width="3.2" marker-end="url(#ah)"/>
+<rect x="1350" y="866" width="244" height="362" rx="14" fill="#e4f2ea" stroke="#0a8f68" stroke-width="2.5"/>
+<image href="assets/tiles/model_named.png" x="1380" y="878" width="184" height="184" preserveAspectRatio="none"/>
+<text x="1364" y="1090" text-anchor="start" style="font-size:25.0px;font-weight:700;fill:#1a1a1a">named part:</text>
+<text x="1514" y="1090" text-anchor="start" style="font-size:25.0px;font-weight:700;fill:#c8521a">nose</text>
+<text x="1364" y="1116" text-anchor="start" style="font-size:20.8px;font-weight:400;fill:#1a1a1a;font-style:italic">The evidence is</text>
+<text x="1364" y="1137" text-anchor="start" style="font-size:20.8px;font-weight:400;fill:#1a1a1a;font-style:italic">concentrated on the</text>
+<text x="1364" y="1158" text-anchor="start" style="font-size:20.8px;font-weight:400;fill:#1a1a1a;font-style:italic">nose (mean 0.99).</text>
+<text x="1364" y="1190" text-anchor="start" style="font-size:19.4px;font-weight:400;fill:#5a6270">sentence by code,</text>
+<text x="1364" y="1211" text-anchor="start" style="font-size:19.4px;font-weight:400;fill:#5a6270">checked by rules</text>
+</svg>
+<!--/METHOD_SVG-->
+    <p class="cap"><b>Top:</b> three sources of training pairs, each with an exact footprint M. <b>Bottom:</b> the main model on a held-out forgery (grey frozen, blue trained); the classifier never reads the map, so the map can be tested.</p>
+  </section>
+</div>
+
+<!-- ===================================================================== right -->
+<div class="col">
+
+  <section class="box">
+    <div class="hd">Results: Against 17 Published Detectors</div>
+    <div class="pair">
+      <img class="fig" src="assets/figs2/fig4_auc.png" alt="">
+      <img class="fig" src="assets/figs2/fig5_scatter.png" alt="">
     </div>
-    <!-- row B: Celeb-DF-B face swap id17_id35_0000 f05 before / after an app preset; scores L54-67 -->
-    <div class="hrow">
-      <div class="fc"><img class="face f" src="assets/hero_swap.png" alt=""><span class="lbl pill p-fake">face swap</span></div>
-      <div class="arrow"><span>beauty app<br>preset</span><div class="ar"></div></div>
-      <div class="fc"><img class="face f" src="assets/hero_swap_beauty.png" alt=""><span class="lbl muted">still a deepfake</span></div>
-      <div></div>
-      <div class="verdict prior"><div class="t">Prior detectors <small>&middot; real / fake only</small></div>
-        <div class="word green">GENUINE <small>missed</small></div>
-        <div class="scores"><div class="g">Effort<b>0.44</b></div><div class="g">Forensics Ad.<b>0.67</b></div><div class="g">GenD<b>0.70</b></div><div class="r">DFD-HR<b>0.74</b></div></div></div>
-      <div></div>
-      <div class="verdict ours"><div class="t">Ours <small>&middot; the forgery score never reads the beauty score</small></div>
-        <div class="word red">FORGED</div>
-        <div class="three"><div>real</div><div>beautified</div><div class="on f">forged</div></div></div>
-    </div>
-  </div>
-  <!-- L410-418 -->
-  <div class="takeaway"><span class="big">13 / 17</span><span>detectors call <b>36&ndash;69%</b> of smoothed genuine faces forged: a real / fake detector has no third answer.</span></div>
-</section>
+    <p class="cap"><b>Left:</b> ours is highest after beautification (paired 95% CI vs Effort, Forensics Adapter and SBI exclude 0). <b>Right:</b> no published detector is lower than ours on both errors.</p>
+  </section>
 
-<!-- ===================================================== 2 what a beauty filter does -->
-<section style="height:4.9in">
-  <div class="sh"><span class="n">2</span><h2>What a beauty filter does</h2><span class="lead">one FFHQ face, four operations of a retouching service our model never saw in training (Alibaba, strength 90)</span></div>
-  <div class="body ops">
-    <!-- rates: report.tex L476 (called beautified), L375-378 (originals called real) -->
-    <div class="txt">Commercial apps apply several of these at once and never say where. We split their renders into single operations with an exact footprint, and train on the pieces. Below each face: how often our model calls that operation <b style="color:var(--amber)">beautified</b>.</div>
-    <div class="op"><img class="face g" src="assets/op_orig_full.png" alt=""><span class="name">original</span><span class="rate"><b class="g">78.4%</b> called real</span></div>
-    <div class="op"><img class="face b" src="assets/op_eye_full.png" alt=""><span class="name">eye enlarging</span><span class="rate"><b>69.7%</b> beautified</span></div>
-    <div class="op"><img class="face b" src="assets/op_slim_full.png" alt=""><span class="name">face slimming</span><span class="rate"><b>61.3%</b> beautified</span></div>
-    <div class="op"><img class="face b" src="assets/op_smooth_full.png" alt=""><span class="name">skin smoothing</span><span class="rate"><b>98.8%</b> beautified</span></div>
-    <div class="op"><img class="face b" src="assets/op_white_full.png" alt=""><span class="name">whitening</span><span class="rate"><b>72.3%</b> beautified</span></div>
-  </div>
-</section>
+  <section class="box">
+    <div class="hd">Generalization to an Unseen Service</div>
+    <img class="fig" src="assets/figs2/fig6_unseen.png" alt="">
+    <p class="cap"><b>Alibaba retouching, never used in training</b> (strength 90, 2,210 faces): share of faces our model calls <b class="a">beautified</b>; the originals it calls <b class="g">real</b>.</p>
+  </section>
 
-<!-- ===================================================== 3 why and how -->
-<section style="height:6.2in">
-  <div class="sh"><span class="n">3</span><h2>Why it happens, and what we built</h2><span class="lead">same model, same data, same recipe: only which class saw smoothing in training changes</span></div>
-  <div class="body wh">
-    <div class="panel">
-      <h3>The error is set in training</h3>
-      <div class="sub">smoothed genuine faces called forged (%) at 5% false alarms &middot; report Table: exposure</div>
-      <div class="fill" id="exposure"></div>
-    </div>
-    <div class="panel">
-      <h3>One backbone, three supervision sources, four heads</h3>
-      <div class="fill" id="pipeline"></div>
-    </div>
-  </div>
-</section>
+  <section class="box">
+    <div class="hd">Explainability: Evidence You Can Check</div>
+    <img class="fig" src="assets/figs2/fig7_evidence.png" alt="">
+    <p class="cap"><b>Restoring only the part our evidence head marks removes 94% of the forgery decisions</b>, as much as restoring the true edit; heat maps on the same model remove about half.</p>
+  </section>
 
-<!-- ===================================================== 4 results -->
-<section style="height:7.2in">
-  <div class="sh"><span class="n">4</span><h2>Against 17 published detectors</h2><span class="lead">official weights, same frames, same crops &middot; FF++ test recall real 82.7 &middot; forged 90.9 &middot; beautified 86.7%</span></div>
-  <div class="body res">
-    <div class="panel"><h3>Both errors at once <span class="muted" style="font-weight:400;font-size:27pt">&middot; lower left is better</span></h3><div class="sub"><span style="color:#9aa3ae">&#9679;</span> CNN / generated-image detector &nbsp;&nbsp; <span style="color:#0f4d92">&#9632;</span> CLIP-based detector, 2025&ndash;26 &nbsp;&nbsp; <span style="color:#d55e00">&#9733;</span> ours, three-way, two seeds</div><div class="fill" id="scatter"></div></div>
-    <div class="panel"><h3>Same training videos, after beautification</h3><div class="sub">Celeb-DF-B video AUC; every model trained on the same FF++ videos</div><div class="fill" id="bars"></div>
-      <div class="note"><b>No published detector is below ours in both directions.</b> Paired intervals vs Effort, Forensics Adapter and SBI exclude zero; on untreated swaps we are on par with the 2025 CLIP detectors.</div></div>
-  </div>
-</section>
-
-<!-- ===================================================== 5 evidence, 6 system -->
-<section style="height:4.6in">
-  <div class="body bottom">
-    <div>
-      <div class="sh"><span class="n">5</span><h2>Evidence you can check</h2><span class="lead">restore the marked region, the decision goes away</span></div>
-      <div class="ev">
-        <div class="fc"><img class="face f" src="../report_v3/figs/ev0_input.png" alt=""><span class="lbl">nose replaced<br><span class="pill p-fake">forged 1.00</span></span></div>
-        <div class="fc"><img class="face" src="../report_v3/figs/ev0_ours.png" alt=""><span class="lbl">evidence head<br>marks the nose</span></div>
-        <div class="fc"><img class="face g" src="../report_v3/figs/ev0_restored.png" alt=""><span class="lbl">nose restored<br><span class="pill p-real">real 0.95</span></span></div>
-        <div class="stats">
-          <div class="stat"><div class="big" style="color:var(--green)">94%</div><div class="lab">of forgery decisions removed by restoring the marked region (ceiling 94.1%); Grad-CAM 51%</div></div>
-          <div class="stat"><div class="big" style="color:var(--red)">51&ndash;53%</div><div class="lab">VLM descriptions matched to their own photo blind: chance level, so code writes every sentence (361/361 pass)</div></div>
-        </div>
+  <section class="box grow">
+    <div class="hd">System and Conclusion</div>
+    <div class="sys">
+      <img class="shot" src="../img/screen_desktop_example3_en_crop.png" alt="">
+      <div>
+        <div class="big">0.59 s</div>
+        <p class="lab">per photo on an iPhone. Everything runs in the browser and the photo never leaves the device. The browser model is an EfficientNet-B4 with the same heads (17.6 M parameters, 67 MB), within 5 points of the CLIP model on every FF++ class.</p>
       </div>
     </div>
-    <div>
-      <div class="sh"><span class="n">6</span><h2>In the browser</h2><span class="lead">nothing uploaded</span></div>
-      <div class="sys">
-        <img class="shot" src="../img/screen_desktop_example3_en_crop.png" alt="">
-        <div class="qr"><img src="assets/qr_demo.png" alt="">try it on your phone<br><b style="color:var(--blue);font-size:36pt">0.59 s</b> per photo</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <span><b>Limits.</b> Reenactment is not covered (AUC 0.50 / 0.56) &middot; 20.8% of untouched originals are called beautified &middot; monochrome filters are the weakest &middot; across services only smoothing is named reliably.</span>
-  <span><b>github.com/Doreen1113/beautified-not-forged</b> &middot; code, scores of 17 detectors, benchmark manifest, demo</span>
-</footer>
-</main>
-
-<script>
-// All drawings are SVG built here from the numbers in report.tex; 1 in = 96 px.
-const IN = 96, PT = 96 / 72;
-const C = { ink: "#15233a", muted: "#5d6675", green: "#009e73", amber: "#c98a00", red: "#d55e00", blue: "#0f4d92", grey: "#9aa3ae", line: "#d6dce5" };
-const T = (x, y, s, o = {}) => `<text x="${x}" y="${y}" font-size="${(o.fs || 26) * PT}" fill="${o.fill || C.ink}" text-anchor="${o.a || "start"}" font-weight="${o.w || 400}" font-family="${o.ff || "Source Sans 3"}">${s}</text>`;
-function fit(id, draw) { const el = document.getElementById(id); const W = el.clientWidth, H = el.clientHeight; el.innerHTML = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${draw(W, H)}</svg>`; }
-
-// ---- exposure (report.tex L178-194, L500-529): which class saw smoothing -> smoothed genuine faces accused at 5% FPR
-fit("exposure", (W, H) => {
-  const A = [["P0", "neither class", 54.2, C.grey], ["P3", "forged only", 63.8, C.red], ["P1", "genuine only", 3.7, C.amber], ["P2", "both classes", 11.7, C.green]];
-  const base = H - 1.05 * IN, top = 0.7 * IN, k = (base - top) / 70, bw = 1.55 * IN, gap = (W - 4 * bw) / 4; let g = `<line x1="0" x2="${W}" y1="${base}" y2="${base}" stroke="${C.ink}" stroke-width="3"/>`;
-  A.forEach(([k2, who, v, col], i) => { const x = gap / 2 + i * (bw + gap), h = v * k;
-    g += `<rect x="${x}" y="${base - h}" width="${bw}" height="${h}" rx="10" fill="${col}"/>` + T(x + bw / 2, base - h - 0.14 * IN, v.toFixed(1) + "%", { a: "middle", fs: 34, w: 700, fill: col })
-       + T(x + bw / 2, base + 0.5 * IN, k2, { a: "middle", fs: 34, w: 800, fill: col, ff: "Sora" }) + T(x + bw / 2, base + 0.95 * IN, who, { a: "middle", fs: 26, fill: C.muted }); });
-  g += T(W, top - 0.25 * IN, "which class saw smoothing", { a: "end", fs: 25, fill: C.muted });
-  return g;
-});
-
-// ---- pipeline (report.tex L230-247, L330): three supervision sources -> CLIP ViT-L/14 + LoRA -> four heads
-fit("pipeline", (W, H) => {
-  const F = "../report_v3/figs/"; let g = "";
-  const box = (x, y, w, h, title, col) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="18" fill="#fff" stroke="${C.line}" stroke-width="3"/><rect x="${x}" y="${y}" width="${w}" height="${0.62 * IN}" rx="18" fill="${col}"/><rect x="${x}" y="${y + 0.4 * IN}" width="${w}" height="${0.22 * IN}" fill="${col}"/>` + T(x + 0.22 * IN, y + 0.43 * IN, title, { fs: 29, w: 700, fill: "#fff" });
-  const im = (src, x, y, w, h) => `<image href="${src}" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="xMidYMid slice"/>`;
-  const arrow = (x, y, len) => `<line x1="${x}" x2="${x + len - 0.22 * IN}" y1="${y}" y2="${y}" stroke="${C.ink}" stroke-width="8" stroke-linecap="round"/><polygon points="${x + len - 0.3 * IN},${y - 0.17 * IN} ${x + len},${y} ${x + len - 0.3 * IN},${y + 0.17 * IN}" fill="${C.ink}"/>`;
-  const h = H - 0.1 * IN, y0 = 0.05 * IN; const w1 = 7.9 * IN, w2 = 4.6 * IN, w3 = W - w1 - w2 - 1.4 * IN;
-  // box 1: supervision with exact footprints
-  g += box(0, y0, w1, h, "Paired edits with an exact footprint M", C.blue);
-  const t = 1.05 * IN, ty = y0 + 0.85 * IN;
-  g += im(F + "method_vendor_O.png", 0.2 * IN, ty, t, t) + im(F + "method_vendor_R.png", 1.35 * IN, ty, t, t) + T(0.2 * IN, ty + t + 0.3 * IN, "one render → eye · contour · tone · texture", { fs: 21, fill: C.muted });
-  ["method_comp_eye", "method_comp_contour", "method_comp_tone", "method_comp_texture"].forEach((f, i) => { g += im(F + f + ".png", 2.75 * IN + i * 1.15 * IN, ty, t, t); });
-  const ty2 = ty + t + 0.5 * IN;
-  g += im(F + "ev0_input.png", 0.2 * IN, ty2, t, t) + im(F + "ev0_truth.png", 1.35 * IN, ty2, t, t) + T(2.6 * IN, ty2 + 0.3 * IN, "18,734 renders → 50,112 single operations", { fs: 21, fill: C.muted })
-     + T(2.6 * IN, ty2 + 0.65 * IN, "61,510 part-level forgeries", { fs: 21, fill: C.muted }) + T(2.6 * IN, ty2 + 1.0 * IN, "41,512 FF++ frames, both classes smoothed", { fs: 21, fill: C.muted });
-  g += arrow(w1 + 0.1 * IN, y0 + h / 2, 0.5 * IN);
-  // box 2: backbone
-  const x2 = w1 + 0.7 * IN; g += box(x2, y0, w2, h, "CLIP ViT-L/14 + LoRA", C.blue);
-  for (let i = 0; i < 9; i++) { const yy = y0 + 0.85 * IN + i * 0.16 * IN; g += `<rect x="${x2 + 0.35 * IN}" y="${yy}" width="${w2 - 0.7 * IN}" height="${0.13 * IN}" rx="5" fill="#e1e6ee"/><rect x="${x2 + w2 - 1.45 * IN}" y="${yy}" width="${1.1 * IN}" height="${0.13 * IN}" rx="5" fill="${C.blue}"/>`; }
-  g += T(x2 + 0.35 * IN, y0 + 2.6 * IN, "24 blocks frozen (303 M)", { fs: 23, fill: C.muted }) + T(x2 + 0.35 * IN, y0 + 2.97 * IN, "LoRA r = 16 on q, k, v, o", { fs: 23, fill: C.blue, w: 700 })
-     + T(x2 + 0.35 * IN, y0 + 3.34 * IN, "3.16 M parameters trained", { fs: 23, fill: C.blue, w: 700 });
-  g += arrow(x2 + w2 + 0.1 * IN, y0 + h / 2, 0.5 * IN);
-  // box 3: outputs
-  const x3 = x2 + w2 + 0.7 * IN; g += box(x3, y0, w3, h, "Four heads, one checked explanation", C.blue);
-  const rows = [["classification", "real / forged / beautified"], ["operation", "eye, contour, tone, texture"], ["quantity", "auxiliary amounts"], ["evidence", "16×16 map, trained on M"]];
-  rows.forEach(([k, d], i) => { const yy = y0 + 1.0 * IN + i * 0.4 * IN; g += T(x3 + 0.25 * IN, yy, k, { fs: 22, w: 700, fill: C.blue }) + T(x3 + 2.3 * IN, yy, d, { fs: 19, fill: C.muted }); });
-  const ex = x3 + w3 - 1.45 * IN; g += im(F + "model_ev16.png", ex, y0 + 0.8 * IN, 1.2 * IN, 1.2 * IN) + T(ex + 0.6 * IN, y0 + 2.3 * IN, "evidence map", { a: "middle", fs: 20, fill: C.muted });
-  g += `<rect x="${x3 + 0.2 * IN}" y="${y0 + 2.72 * IN}" width="${w3 - 0.4 * IN}" height="${0.78 * IN}" rx="12" fill="#f4f6f9"/>`
-     + T(x3 + 0.35 * IN, y0 + 3.02 * IN, "“The evidence is concentrated on the nose (0.99).”", { fs: 20 })
-     + T(x3 + 0.35 * IN, y0 + 3.34 * IN, "code composes it, rules check it, no language model", { fs: 19, fill: C.muted });
-  return g;
-});
-
-// ---- scatter (report.tex L430-458): x accused %, y miss rise (points)
-fit("scatter", (W, H) => {
-  const P = [["Xception", 51.6, 10.9, "c", 14, 34], ["EfficientNet-B4", 36.3, 3.4, "c", 14, 30], ["F3Net", 50.6, 10.9, "c", -14, 34], ["SPSL", 51.2, 12.4, "c", 14, -16],
-    ["UCF", 41.4, 11.3, "c", 14, 34], ["RECCE", 36.8, 13.8, "c", -14, -12], ["CORE", 54.8, 13.5, "c", 14, 6], ["SRM", 62.8, 15.3, "c", 14, -14], ["SBI", 37.3, 21.8, "c", 14, -14],
-    ["CADDM", 6.3, -2.9, "c", 14, 30], ["LAA-Net", 17.2, 14.7, "c", 14, -14], ["UnivFD", 16.6, -7.2, "c", 14, 30], ["NPR", 0.0, -0.7, "c", 14, 30],
-    ["Effort", 43.2, 11.0, "k", -14, 34], ["Forensics Ad.", 39.7, 15.2, "k", 14, -16], ["GenD", 68.7, 12.0, "k", 14, -16], ["DFD-HR", 64.9, 3.6, "k", 14, 30],
-    ["Ours (seed 1)", 8.6, 6.7, "o", -22, -24], ["Ours (seed 2)", 12.5, 8.3, "o", 20, 36]];
-  const L = 1.35 * IN, R = 0.3 * IN, Tp = 0.35 * IN, B = 1.0 * IN, X = x => L + (x + 3) / 76 * (W - L - R), Y = y => Tp + (26 - y) / 37 * (H - Tp - B);
-  let g = `<rect x="${X(-3)}" y="${Y(10.5)}" width="${X(14.5) - X(-3)}" height="${Y(-11) - Y(10.5)}" fill="#e3f4ee"/>` + T(X(-2.5), Y(-9.3), "both errors low", { fs: 24, fill: C.green, w: 700 });
-  for (let t = 0; t <= 70; t += 10) g += `<line x1="${X(t)}" x2="${X(t)}" y1="${Tp}" y2="${Y(-11)}" stroke="#e3e7ee"/>` + T(X(t), Y(-11) + 0.42 * IN, t, { a: "middle", fs: 24, fill: C.muted });
-  for (let t = -10; t <= 20; t += 10) g += `<line x1="${L}" x2="${W - R}" y1="${Y(t)}" y2="${Y(t)}" stroke="#e3e7ee"/>` + T(L - 0.15 * IN, Y(t) + 10, t, { a: "end", fs: 24, fill: C.muted });
-  g += `<line x1="${X(5)}" x2="${X(5)}" y1="${Tp}" y2="${Y(-11)}" stroke="${C.muted}" stroke-dasharray="10 8" stroke-width="2.5"/><line x1="${L}" x2="${W - R}" y1="${Y(0)}" y2="${Y(0)}" stroke="${C.muted}" stroke-dasharray="10 8" stroke-width="2.5"/>`;
-  g += T(X(5) + 10, Tp + 0.3 * IN, "5% floor", { fs: 22, fill: C.muted }) + T(X(31), Y(0) + 34, "no extra misses", { fs: 22, fill: C.muted, a: "end" });
-  g += T((L + W - R) / 2, H - 0.12 * IN, "smoothed genuine faces called forged (%)", { a: "middle", fs: 26 }) + `<text transform="rotate(-90 ${0.42 * IN} ${(Tp + Y(-11)) / 2})" x="${0.42 * IN}" y="${(Tp + Y(-11)) / 2}" font-size="${27 * PT}" text-anchor="middle" fill="${C.ink}" font-family="Source Sans 3">extra misses (points)</text>`;
-  P.forEach(([n, x, y, f, dx, dy]) => { const cx = X(x), cy = Y(y), col = f === "o" ? C.red : f === "k" ? C.blue : C.grey;
-    g += f === "o" ? `<polygon points="${[0, 1, 2, 3, 4].map(k => { const a = -Math.PI / 2 + k * 2 * Math.PI / 5, b = a + Math.PI / 5; return `${cx + 24 * Math.cos(a)},${cy + 24 * Math.sin(a)} ${cx + 10 * Math.cos(b)},${cy + 10 * Math.sin(b)}`; }).join(" ")}" fill="${col}" stroke="#fff" stroke-width="2"/>`
-       : f === "k" ? `<rect x="${cx - 13}" y="${cy - 13}" width="26" height="26" fill="${col}" stroke="#fff" stroke-width="2.5"/>` : `<circle cx="${cx}" cy="${cy}" r="13" fill="${col}" stroke="#fff" stroke-width="2.5"/>`;
-    g += T(cx + dx, cy + dy + 8, n, { fs: f === "c" ? 22 : 25, w: f === "c" ? 400 : 700, fill: f === "c" ? "#4b5563" : col, a: dx > 0 ? "start" : "end" }); });
-  return g;
-});
-
-// ---- bars (report.tex L440-468): Celeb-DF-B AUC after beautification, all trained on the same FF++ videos
-fit("bars", (W, H) => {
-  const D = [["Ours", 0.872, C.blue], ["DFD-HR", 0.838, C.grey], ["Forensics Ad.", 0.828, C.grey], ["Effort", 0.807, C.grey], ["GenD", 0.807, C.grey], ["SBI", 0.752, C.grey]];
-  const base = H - 0.75 * IN, top = 0.55 * IN, lo = 0.70, hi = 0.90, k = (base - top) / (hi - lo), n = D.length, bw = 1.35 * IN, gap = (W - n * bw) / n; let g = `<line x1="0" x2="${W}" y1="${base}" y2="${base}" stroke="${C.ink}" stroke-width="3"/>`;
-  D.forEach(([nm, v, col], i) => { const x = gap / 2 + i * (bw + gap), h = (v - lo) * k;
-    g += `<rect x="${x}" y="${base - h}" width="${bw}" height="${h}" rx="10" fill="${col}"/>` + T(x + bw / 2, base - h - 0.12 * IN, v.toFixed(3), { a: "middle", fs: 30, w: 700, fill: col === C.grey ? C.muted : col })
-       + T(x + bw / 2, base + 0.45 * IN, nm, { a: "middle", fs: nm.length > 8 ? 22 : 26, w: i === 0 ? 700 : 400, fill: i === 0 ? C.blue : C.ink }); });
-  g += T(0, top - 0.2 * IN, "axis from 0.70 · our second seed 0.870", { fs: 22, fill: C.muted });
-  return g;
-});
-</script>
+    <ul style="margin:0.3in 0 0.1in;font-size:32pt">
+      <li>Beautification breaks detectors both ways; the training recipe decides the error.</li>
+      <li>A third class with exact footprints keeps detecting forgeries after beautification.</li>
+      <li>The evidence head marks the part the decision rests on, and it is tested.</li>
+    </ul>
+    <p class="refs">Libourel et al., IWBF 2024 &middot; Saeed et al., 2025 &middot; RetouchingFFHQ, ACM MM 2023 &middot; Effort, ICML 2025 &middot; Forensics Adapter, CVPR 2025 &middot; SBI, CVPR 2022 &middot; CLIP, ICML 2021 &middot; LoRA, ICLR 2022</p>
+  </section>
+</div>
+</div>
 </body>
 </html>

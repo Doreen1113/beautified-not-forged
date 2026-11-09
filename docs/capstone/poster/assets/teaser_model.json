@@ -1,0 +1,64 @@
+{
+ "model": "clipe5_s20260929",
+ "classes": [
+  "real",
+  "forged",
+  "beautified"
+ ],
+ "genuine": {
+  "p": [
+   0.909,
+   0.002,
+   0.089
+  ],
+  "label": "real",
+  "ops_eye_contour_tone_texture": [
+   0.014,
+   0.02,
+   0.016,
+   0.017
+  ]
+ },
+ "genuine_smoothed": {
+  "p": [
+   0.061,
+   0.006,
+   0.933
+  ],
+  "label": "beautified",
+  "ops_eye_contour_tone_texture": [
+   0.009,
+   0.018,
+   0.017,
+   0.948
+  ]
+ },
+ "swap": {
+  "p": [
+   0.001,
+   0.999,
+   0.0
+  ],
+  "label": "forged",
+  "ops_eye_contour_tone_texture": [
+   0.076,
+   0.013,
+   0.285,
+   0.012
+  ]
+ },
+ "swap_beautified": {
+  "p": [
+   0.0,
+   0.979,
+   0.021
+  ],
+  "label": "forged",
+  "ops_eye_contour_tone_texture": [
+   0.002,
+   0.0,
+   0.022,
+   0.0
+  ]
+ }
+}

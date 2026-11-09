@@ -2,30 +2,30 @@
  "voice": "zh-TW-HsiaoYuNeural",
  "rate": "+3%",
  "pitch": "+0Hz",
- "total": 253.305,
+ "total": 260.764,
  "cues": [
   {
    "id": "t1",
    "start": 0.0,
    "voice": 0.6,
-   "audio": 8.732,
-   "end": 10.082,
+   "audio": 10.16,
+   "end": 11.51,
    "min": 7.0,
    "text": "Beautified is not forged。這是我們的專題：一個分得出 beautification 和 forgery、而且 evidence 可以查核的 face checker。",
    "subs": [
     {
      "t0": 0.6,
-     "t1": 2.898,
+     "t1": 3.274,
      "text": "Beautified is not forged。"
     },
     {
-     "t0": 2.898,
-     "t1": 3.633,
+     "t0": 3.274,
+     "t1": 4.129,
      "text": "這是我們的專題："
     },
     {
-     "t0": 3.633,
-     "t1": 9.332,
+     "t0": 4.129,
+     "t1": 10.76,
      "text": "一個分得出 beautification 和 forgery、而且 evidence 可以查核的 face checker。"
     }
    ],
@@ -33,21 +33,21 @@
   },
   {
    "id": "b1",
-   "start": 10.082,
-   "voice": 10.682,
-   "audio": 10.161,
-   "end": 21.593,
+   "start": 11.51,
+   "voice": 12.11,
+   "audio": 9.84,
+   "end": 22.7,
    "min": 9.0,
    "text": "現在的 deepfake detector 被用在 content moderation、identity verification 和 fact-checking。可是大家上傳照片之前，常常先開美顏。",
    "subs": [
     {
      "t0": 0.6,
-     "t1": 8.95,
+     "t1": 8.686,
      "text": "現在的 deepfake detector 被用在 content moderation、identity verification 和 fact-checking。"
     },
     {
-     "t0": 8.95,
-     "t1": 10.761,
+     "t0": 8.686,
+     "t1": 10.44,
      "text": "可是大家上傳照片之前，常常先開美顏。"
     }
    ],
@@ -55,31 +55,31 @@
   },
   {
    "id": "b2",
-   "start": 21.593,
-   "voice": 22.193,
-   "audio": 11.478,
-   "end": 34.421,
+   "start": 22.7,
+   "voice": 23.3,
+   "audio": 11.44,
+   "end": 35.49,
    "min": 10.0,
    "text": "問題就出在這裡。左邊是一張 real 的照片，經過 retouching service 最強的 smoothing 之後，四個 2025 年的 detector 全部把它從 real 判成 fake。",
    "subs": [
     {
      "t0": 0.6,
-     "t1": 1.509,
+     "t1": 1.506,
      "text": "問題就出在這裡。"
     },
     {
-     "t0": 1.509,
-     "t1": 3.214,
+     "t0": 1.506,
+     "t1": 3.205,
      "text": "左邊是一張 real 的照片，"
     },
     {
-     "t0": 3.214,
-     "t1": 7.646,
+     "t0": 3.205,
+     "t1": 7.623,
      "text": "經過 retouching service 最強的 smoothing 之後，"
     },
     {
-     "t0": 7.646,
-     "t1": 12.078,
+     "t0": 7.623,
+     "t1": 12.04,
      "text": "四個 2025 年的 detector 全部把它從 real 判成 fake。"
     }
    ],
@@ -87,26 +87,26 @@
   },
   {
    "id": "b3",
-   "start": 34.421,
-   "voice": 35.021,
-   "audio": 7.779,
-   "end": 43.551,
+   "start": 35.49,
+   "voice": 36.09,
+   "audio": 8.96,
+   "end": 45.8,
    "min": 9.0,
    "text": "右邊是一支 face swap 影片，套上手機 app 的 beauty preset 之後，同樣四個 detector 有三個讓它過關。",
    "subs": [
     {
      "t0": 0.6,
-     "t1": 2.742,
+     "t1": 3.067,
      "text": "右邊是一支 face swap 影片，"
     },
     {
-     "t0": 2.742,
-     "t1": 5.899,
+     "t0": 3.067,
+     "t1": 6.703,
      "text": "套上手機 app 的 beauty preset 之後，"
     },
     {
-     "t0": 5.899,
-     "t1": 8.379,
+     "t0": 6.703,
+     "t1": 9.56,
      "text": "同樣四個 detector 有三個讓它過關。"
     }
    ],
@@ -114,36 +114,36 @@
   },
   {
    "id": "b4",
-   "start": 43.551,
-   "voice": 44.151,
-   "audio": 15.299,
-   "end": 60.2,
+   "start": 45.8,
+   "voice": 46.4,
+   "audio": 16.4,
+   "end": 63.55,
    "min": 13.0,
    "text": "我們把十七個已發表的 detector 用 official weights 全部重跑一次：十六個把 smoothing 過的 real 判得比原圖更 fake。原因很簡單，binary detector 只有 real 和 fake 兩個答案，沒有 beautified 這個選項。",
    "subs": [
     {
      "t0": 0.6,
-     "t1": 5.556,
+     "t1": 5.913,
      "text": "我們把十七個已發表的 detector 用 official weights 全部重跑一次："
     },
     {
-     "t0": 5.556,
-     "t1": 9.327,
+     "t0": 5.913,
+     "t1": 9.955,
      "text": "十六個把 smoothing 過的 real 判得比原圖更 fake。"
     },
     {
-     "t0": 9.327,
-     "t1": 9.974,
+     "t0": 9.955,
+     "t1": 10.648,
      "text": "原因很簡單，"
     },
     {
-     "t0": 9.974,
-     "t1": 13.852,
+     "t0": 10.648,
+     "t1": 14.806,
      "text": "binary detector 只有 real 和 fake 兩個答案，"
     },
     {
-     "t0": 13.852,
-     "t1": 15.899,
+     "t0": 14.806,
+     "t1": 17.0,
      "text": "沒有 beautified 這個選項。"
     }
    ],
@@ -151,21 +151,21 @@
   },
   {
    "id": "b5",
-   "start": 60.2,
-   "voice": 60.8,
-   "audio": 5.718,
-   "end": 68.2,
+   "start": 63.55,
+   "voice": 64.15,
+   "audio": 6.334,
+   "end": 71.55,
    "min": 8.0,
    "text": "所以我們把 beautified 做成第三類，而且 model 指出的 evidence 要能驗證。",
    "subs": [
     {
      "t0": 0.6,
-     "t1": 3.23,
+     "t1": 3.513,
      "text": "所以我們把 beautified 做成第三類，"
     },
     {
-     "t0": 3.23,
-     "t1": 6.318,
+     "t0": 3.513,
+     "t1": 6.934,
      "text": "而且 model 指出的 evidence 要能驗證。"
     }
    ],
@@ -173,61 +173,61 @@
   },
   {
    "id": "m1",
-   "start": 68.2,
-   "voice": 68.8,
-   "audio": 25.989,
-   "end": 95.539,
+   "start": 71.55,
+   "voice": 72.15,
+   "audio": 22.48,
+   "end": 95.38,
    "min": 15.0,
    "text": "先找原因。同一個 model、同一份 data，只改 training 時哪一類看過 smoothing。只給 fake 看，false alarm 升到 64%；只給 real 看，false alarm 降到 4%，但 smoothing 過的 face swap 會多漏掉五十幾個百分點；兩類都看，false alarm 降到 12%。關鍵在 training recipe。",
    "subs": [
     {
      "t0": 0.6,
-     "t1": 1.28,
+     "t1": 1.188,
      "text": "先找原因。"
     },
     {
-     "t0": 1.28,
-     "t1": 3.866,
+     "t0": 1.188,
+     "t1": 3.425,
      "text": "同一個 model、同一份 data，"
     },
     {
-     "t0": 3.866,
-     "t1": 7.811,
+     "t0": 3.425,
+     "t1": 6.838,
      "text": "只改 training 時哪一類看過 smoothing。"
     },
     {
-     "t0": 7.811,
-     "t1": 9.172,
+     "t0": 6.838,
+     "t1": 8.015,
      "text": "只給 fake 看，"
     },
     {
-     "t0": 9.172,
-     "t1": 11.757,
+     "t0": 8.015,
+     "t1": 10.251,
      "text": "false alarm 升到 64%；"
     },
     {
-     "t0": 11.757,
-     "t1": 13.118,
+     "t0": 10.251,
+     "t1": 11.428,
      "text": "只給 real 看，"
     },
     {
-     "t0": 13.118,
-     "t1": 15.567,
+     "t0": 11.428,
+     "t1": 13.547,
      "text": "false alarm 降到 4%，"
     },
     {
-     "t0": 15.567,
-     "t1": 20.602,
+     "t0": 13.547,
+     "t1": 17.901,
      "text": "但 smoothing 過的 face swap 會多漏掉五十幾個百分點；"
     },
     {
-     "t0": 20.602,
-     "t1": 23.867,
+     "t0": 17.901,
+     "t1": 20.726,
      "text": "兩類都看，false alarm 降到 12%。"
     },
     {
-     "t0": 23.867,
-     "t1": 26.589,
+     "t0": 20.726,
+     "t1": 23.08,
      "text": "關鍵在 training recipe。"
     }
    ],
@@ -235,51 +235,51 @@
   },
   {
    "id": "m2",
-   "start": 95.539,
-   "voice": 96.139,
-   "audio": 21.563,
-   "end": 118.452,
+   "start": 95.38,
+   "voice": 95.98,
+   "audio": 23.44,
+   "end": 120.17,
    "min": 16.0,
    "text": "再來是 data。Commercial app 一次套好幾種美顏，又不會說改了哪裡。我們用 optical flow 把 shape 的變化拆成 eye 和 contour，剩下的 residual 用 low-pass 拆成 tone 和 texture，每個 component 都有精確的 footprint。一萬八千多張 render，變成五萬筆 single-operation 的訓練資料。",
    "subs": [
     {
      "t0": 0.6,
-     "t1": 1.566,
+     "t1": 1.65,
      "text": "再來是 data。"
     },
     {
-     "t0": 1.566,
-     "t1": 4.14,
+     "t0": 1.65,
+     "t1": 4.448,
      "text": "Commercial app 一次套好幾種美顏，"
     },
     {
-     "t0": 4.14,
-     "t1": 5.106,
+     "t0": 4.448,
+     "t1": 5.498,
      "text": "又不會說改了哪裡。"
     },
     {
-     "t0": 5.106,
-     "t1": 9.933,
+     "t0": 5.498,
+     "t1": 10.746,
      "text": "我們用 optical flow 把 shape 的變化拆成 eye 和 contour，"
     },
     {
-     "t0": 9.933,
-     "t1": 14.439,
+     "t0": 10.746,
+     "t1": 15.644,
      "text": "剩下的 residual 用 low-pass 拆成 tone 和 texture，"
     },
     {
-     "t0": 14.439,
-     "t1": 17.55,
+     "t0": 15.644,
+     "t1": 19.025,
      "text": "每個 component 都有精確的 footprint。"
     },
     {
-     "t0": 17.55,
-     "t1": 19.052,
+     "t0": 19.025,
+     "t1": 20.658,
      "text": "一萬八千多張 render，"
     },
     {
-     "t0": 19.052,
-     "t1": 22.163,
+     "t0": 20.658,
+     "t1": 24.04,
      "text": "變成五萬筆 single-operation 的訓練資料。"
     }
    ],
@@ -287,46 +287,46 @@
   },
   {
    "id": "m3",
-   "start": 118.452,
-   "voice": 119.052,
-   "audio": 18.879,
-   "end": 138.681,
+   "start": 120.17,
+   "voice": 120.77,
+   "audio": 19.28,
+   "end": 140.8,
    "min": 14.0,
    "text": "Model 是凍結的 CLIP ViT-L/14，只訓練 LoRA 和四個 head，三百一十六萬個參數。Classification head 判三類，operation head 判四種操作，evidence head 輸出 16 乘 16 的 evidence map，直接用 footprint 監督。",
    "subs": [
     {
      "t0": 0.6,
-     "t1": 3.645,
+     "t1": 3.71,
      "text": "Model 是凍結的 CLIP ViT-L/14，"
     },
     {
-     "t0": 3.645,
-     "t1": 5.837,
+     "t0": 3.71,
+     "t1": 5.949,
      "text": "只訓練 LoRA 和四個 head，"
     },
     {
-     "t0": 5.837,
-     "t1": 7.055,
+     "t0": 5.949,
+     "t1": 7.193,
      "text": "三百一十六萬個參數。"
     },
     {
-     "t0": 7.055,
-     "t1": 9.979,
+     "t0": 7.193,
+     "t1": 10.178,
      "text": "Classification head 判三類，"
     },
     {
-     "t0": 9.979,
-     "t1": 12.536,
+     "t0": 10.178,
+     "t1": 12.79,
      "text": "operation head 判四種操作，"
     },
     {
-     "t0": 12.536,
-     "t1": 17.408,
+     "t0": 12.79,
+     "t1": 17.765,
      "text": "evidence head 輸出 16 乘 16 的 evidence map，"
     },
     {
-     "t0": 17.408,
-     "t1": 19.479,
+     "t0": 17.765,
+     "t1": 19.88,
      "text": "直接用 footprint 監督。"
     }
    ],
@@ -334,31 +334,31 @@
   },
   {
    "id": "m4",
-   "start": 138.681,
-   "voice": 139.281,
-   "audio": 8.674,
-   "end": 148.705,
+   "start": 140.8,
+   "voice": 141.4,
+   "audio": 8.8,
+   "end": 150.95,
    "min": 9.0,
    "text": "說明文字不用 language model。程式照 model output 組句，每一句顯示前都經過 rule checker，不符合的不會出現。",
    "subs": [
     {
      "t0": 0.6,
-     "t1": 3.179,
+     "t1": 3.216,
      "text": "說明文字不用 language model。"
     },
     {
-     "t0": 3.179,
-     "t1": 5.523,
+     "t0": 3.216,
+     "t1": 5.595,
      "text": "程式照 model output 組句，"
     },
     {
-     "t0": 5.523,
-     "t1": 8.219,
+     "t0": 5.595,
+     "t1": 8.33,
      "text": "每一句顯示前都經過 rule checker，"
     },
     {
-     "t0": 8.219,
-     "t1": 9.274,
+     "t0": 8.33,
+     "t1": 9.4,
      "text": "不符合的不會出現。"
     }
    ],
@@ -366,31 +366,31 @@
   },
   {
    "id": "r1",
-   "start": 148.705,
-   "voice": 149.305,
-   "audio": 12.797,
-   "end": 162.852,
+   "start": 150.95,
+   "voice": 151.55,
+   "audio": 13.28,
+   "end": 165.58,
    "min": 11.0,
    "text": "成果。FF++ test set 上，real、forged、beautified 的 recall 是 82.7、90.9、86.7%，beautified 被判成 forged 的只有 4.3%。",
    "subs": [
     {
      "t0": 0.6,
-     "t1": 0.984,
+     "t1": 0.998,
      "text": "成果。"
     },
     {
-     "t0": 0.984,
-     "t1": 3.031,
+     "t0": 0.998,
+     "t1": 3.123,
      "text": "FF++ test set 上，"
     },
     {
-     "t0": 3.031,
-     "t1": 9.43,
+     "t0": 3.123,
+     "t1": 9.763,
      "text": "real、forged、beautified 的 recall 是 82.7、90.9、86.7%，"
     },
     {
-     "t0": 9.43,
-     "t1": 13.397,
+     "t0": 9.763,
+     "t1": 13.88,
      "text": "beautified 被判成 forged 的只有 4.3%。"
     }
    ],
@@ -398,31 +398,31 @@
   },
   {
    "id": "r2",
-   "start": 162.852,
-   "voice": 163.452,
-   "audio": 17.36,
-   "end": 181.562,
+   "start": 165.58,
+   "voice": 166.18,
+   "audio": 19.84,
+   "end": 186.77,
    "min": 13.0,
    "text": "換到 training 完全沒看過的 Alibaba retouching service：smoothing 有 98.8% 判成 beautified，任何 operation、任何 strength 被判成 forged 都不到 1%。十四種 Instagram filter 也有 86% 以上判成 beautified。",
    "subs": [
     {
      "t0": 0.6,
-     "t1": 5.44,
+     "t1": 6.131,
      "text": "換到 training 完全沒看過的 Alibaba retouching service："
     },
     {
-     "t0": 5.44,
-     "t1": 8.807,
+     "t0": 6.131,
+     "t1": 9.979,
      "text": "smoothing 有 98.8% 判成 beautified，"
     },
     {
-     "t0": 8.807,
-     "t1": 13.331,
+     "t0": 9.979,
+     "t1": 15.149,
      "text": "任何 operation、任何 strength 被判成 forged 都不到 1%。"
     },
     {
-     "t0": 13.331,
-     "t1": 17.96,
+     "t0": 15.149,
+     "t1": 20.44,
      "text": "十四種 Instagram filter 也有 86% 以上判成 beautified。"
     }
    ],
@@ -430,36 +430,36 @@
   },
   {
    "id": "r3",
-   "start": 181.562,
-   "voice": 182.162,
-   "audio": 15.752,
-   "end": 198.664,
+   "start": 186.77,
+   "voice": 187.37,
+   "audio": 15.84,
+   "end": 203.96,
    "min": 12.0,
    "text": "跟已發表的 detector 公平比較，只用一樣的 FF++ training videos。Celeb-DF-B beautification 之後的 AUC 0.872，高於所有已發表的方法；DFD 加十六種新 filter 也是最高。",
    "subs": [
     {
      "t0": 0.6,
-     "t1": 3.225,
+     "t1": 3.24,
      "text": "跟已發表的 detector 公平比較，"
     },
     {
-     "t0": 3.225,
-     "t1": 6.77,
+     "t0": 3.24,
+     "t1": 6.804,
      "text": "只用一樣的 FF++ training videos。"
     },
     {
-     "t0": 6.77,
-     "t1": 12.021,
+     "t0": 6.804,
+     "t1": 12.084,
      "text": "Celeb-DF-B beautification 之後的 AUC 0.872，"
     },
     {
-     "t0": 12.021,
-     "t1": 13.464,
+     "t0": 12.084,
+     "t1": 13.536,
      "text": "高於所有已發表的方法；"
     },
     {
-     "t0": 13.464,
-     "t1": 16.352,
+     "t0": 13.536,
+     "t1": 16.44,
      "text": "DFD 加十六種新 filter 也是最高。"
     }
    ],
@@ -467,46 +467,46 @@
   },
   {
    "id": "r4",
-   "start": 198.664,
-   "voice": 199.264,
-   "audio": 20.144,
-   "end": 220.158,
+   "start": 203.96,
+   "voice": 204.56,
+   "audio": 19.2,
+   "end": 224.51,
    "min": 16.0,
    "text": "Evidence head 標的區域是不是真正的理由？把那個區域 restore 回原圖，94% 的 forged 判定會消失，heat map 只有一半。另外 VLM 寫的描述，blind matching 只有五成，跟丟銅板一樣，所以我們讓程式寫句子，361 張全部通過 checker。",
    "subs": [
     {
      "t0": 0.6,
-     "t1": 6.809,
+     "t1": 6.518,
      "text": "Evidence head 標的區域是不是真正的理由？把那個區域 restore 回原圖，"
     },
     {
-     "t0": 6.809,
-     "t1": 9.43,
+     "t0": 6.518,
+     "t1": 9.016,
      "text": "94% 的 forged 判定會消失，"
     },
     {
-     "t0": 9.43,
-     "t1": 11.362,
+     "t0": 9.016,
+     "t1": 10.858,
      "text": "heat map 只有一半。"
     },
     {
-     "t0": 11.362,
-     "t1": 13.018,
+     "t0": 10.858,
+     "t1": 12.436,
      "text": "另外 VLM 寫的描述，"
     },
     {
-     "t0": 13.018,
-     "t1": 15.777,
+     "t0": 12.436,
+     "t1": 15.066,
      "text": "blind matching 只有五成，"
     },
     {
-     "t0": 15.777,
-     "t1": 18.26,
+     "t0": 15.066,
+     "t1": 17.433,
      "text": "跟丟銅板一樣，所以我們讓程式寫句子，"
     },
     {
-     "t0": 18.26,
-     "t1": 20.744,
+     "t0": 17.433,
+     "t1": 19.8,
      "text": "361 張全部通過 checker。"
     }
    ],
@@ -514,36 +514,36 @@
   },
   {
    "id": "r5",
-   "start": 220.158,
-   "voice": 220.758,
-   "audio": 15.273,
-   "end": 236.781,
+   "start": 224.51,
+   "voice": 225.11,
+   "audio": 16.4,
+   "end": 242.26,
    "min": 15.0,
    "text": "整套系統在 browser 裡跑：MediaPipe 找臉，ONNX Runtime 跑 EfficientNet-B4，程式畫出 evidence 輪廓、點名部位、組句、檢查。照片不會上傳，iPhone 上一張 0.59 秒。",
    "subs": [
     {
      "t0": 0.6,
-     "t1": 2.878,
+     "t1": 3.046,
      "text": "整套系統在 browser 裡跑："
     },
     {
-     "t0": 2.878,
-     "t1": 4.619,
+     "t0": 3.046,
+     "t1": 4.916,
      "text": "MediaPipe 找臉，"
     },
     {
-     "t0": 4.619,
-     "t1": 8.772,
+     "t0": 4.916,
+     "t1": 9.375,
      "text": "ONNX Runtime 跑 EfficientNet-B4，"
     },
     {
-     "t0": 8.772,
-     "t1": 12.523,
+     "t0": 9.375,
+     "t1": 13.404,
      "text": "程式畫出 evidence 輪廓、點名部位、組句、檢查。"
     },
     {
-     "t0": 12.523,
-     "t1": 15.873,
+     "t0": 13.404,
+     "t1": 17.0,
      "text": "照片不會上傳，iPhone 上一張 0.59 秒。"
     }
    ],
@@ -551,26 +551,26 @@
   },
   {
    "id": "f1",
-   "start": 236.781,
-   "voice": 237.381,
-   "audio": 10.174,
-   "end": 248.305,
+   "start": 242.26,
+   "voice": 242.86,
+   "audio": 12.154,
+   "end": 255.764,
    "min": 10.0,
    "text": "接下來：涵蓋 reenactment、降低原圖被判成 beautified 的比例、補強 monochrome filter，讓更多 operation 可以跨 service 點名。",
    "subs": [
     {
      "t0": 0.6,
-     "t1": 1.042,
+     "t1": 1.128,
      "text": "接下來："
     },
     {
-     "t0": 1.042,
-     "t1": 7.567,
+     "t0": 1.128,
+     "t1": 8.923,
      "text": "涵蓋 reenactment、降低原圖被判成 beautified 的比例、補強 monochrome filter，"
     },
     {
-     "t0": 7.567,
-     "t1": 10.774,
+     "t0": 8.923,
+     "t1": 12.754,
      "text": "讓更多 operation 可以跨 service 點名。"
     }
    ],
@@ -578,21 +578,21 @@
   },
   {
    "id": "e1",
-   "start": 248.305,
-   "voice": 248.905,
-   "audio": 3.28,
-   "end": 253.305,
+   "start": 255.764,
+   "voice": 256.364,
+   "audio": 3.36,
+   "end": 260.764,
    "min": 5.0,
    "text": "Beautified is not forged。謝謝。",
    "subs": [
     {
      "t0": 0.6,
-     "t1": 3.529,
+     "t1": 3.6,
      "text": "Beautified is not forged。"
     },
     {
-     "t0": 3.529,
-     "t1": 3.88,
+     "t0": 3.6,
+     "t1": 3.96,
      "text": "謝謝。"
     }
    ],

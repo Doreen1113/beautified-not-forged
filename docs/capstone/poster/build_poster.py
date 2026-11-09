@@ -70,6 +70,9 @@ async def print_pdf(port, base, out):
             raise TimeoutError("fonts/images never became ready")
         n += 1; fonts = (await call(ws, n, "Runtime.evaluate", expression="[...document.fonts].filter(f => f.status === 'loaded').map(f => f.family).filter((v, i, a) => a.indexOf(v) === i).join(', ')", returnByValue=True))["result"]["value"]
         print("fonts loaded:", fonts)
+        if "--advisor" in sys.argv:      # second variant with the advisor line (poster.html hides it by default: the rules deduct points for it)
+            n += 1; await call(ws, n, "Runtime.evaluate", expression="document.body.classList.add('advisor'); document.fonts.ready.then(() => 1)", awaitPromise=True)
+            await asyncio.sleep(0.5)
         n += 1; r = await call(ws, n, "Page.printToPDF", paperWidth=PAGE_W, paperHeight=PAGE_H, printBackground=True, preferCSSPageSize=True,
                                marginTop=0, marginBottom=0, marginLeft=0, marginRight=0, scale=1)
         out.write_bytes(base64.b64decode(r["data"]))
@@ -83,8 +86,8 @@ def rasterise(pdf):
     z = 1800 / r.height; p.get_pixmap(matrix=fitz.Matrix(z, z), alpha=False).save(pv / "poster.png")
     # zooms at 100 dpi: the banner's "115", the title block, the smallest text of the results row, the footer
     for name, (x0, y0, x1, y1) in {"zoom_banner": (0, 0, 14, 4), "zoom_title": (0, 7.5, 24, 12.5), "zoom_problem": (0.5, 12, 18, 23),
-                                   "zoom_results": (0.5, 32.5, 18, 42), "zoom_results_r": (18, 32.5, 35.4, 42), "zoom_footer": (0.5, 42, 35.4, 47.2),
-                                   "zoom_method": (0.5, 22, 35.4, 33)}.items():
+                                   "zoom_results": (18, 12, 35.4, 23), "zoom_results_r": (18, 23, 35.4, 36), "zoom_footer": (18, 36, 35.4, 47.2),
+                                   "zoom_method": (0.5, 30, 18, 47.2), "zoom_model": (0.5, 40, 18, 46)}.items():
         clip = fitz.Rect(x0 * 72, y0 * 72, x1 * 72, y1 * 72)
         p.get_pixmap(matrix=fitz.Matrix(100 / 72, 100 / 72), clip=clip, alpha=False).save(pv / f"{name}.png")
     print("previews in", pv)
@@ -97,7 +100,8 @@ def main():
     cp = free_port(); prof = tempfile.mkdtemp(prefix="poster_cdp_")
     proc = subprocess.Popen([b, "--headless=new", "--disable-gpu", "--no-sandbox", "--disable-extensions", f"--remote-debugging-port={cp}",
                              f"--user-data-dir={prof}", "--hide-scrollbars", "about:blank"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    out = H / "poster.pdf"
+    names = [a for a in sys.argv[1:] if not a.startswith("--")]
+    out = H / (names[0] if names else "poster.pdf")     # another name when poster.pdf is open in a viewer; --advisor adds the advisor line
     try:
         asyncio.run(print_pdf(cp, base, out))
     finally:
