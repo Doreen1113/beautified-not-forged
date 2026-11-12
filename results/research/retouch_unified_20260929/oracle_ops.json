@@ -1,0 +1,106 @@
+{
+ "EyeEnlarging_90": {
+  "lossless": {
+   "auroc": 0.9332,
+   "auroc_ci": [
+    0.9217,
+    0.9429
+   ],
+   "paired_rank": 100.0
+  },
+  "jpeg90_resize256": {
+   "auroc": 0.8331,
+   "auroc_ci": [
+    0.817,
+    0.8511
+   ],
+   "paired_rank": 99.4
+  },
+  "n_train_faces": 1547,
+  "n_test_faces": 663,
+  "cross": {
+   "EyeEnlarging_90": 0.9332,
+   "FaceLifting_90": 0.7459,
+   "Whitening_90": 0.6938,
+   "Smoothing_90": 0.6368
+  }
+ },
+ "FaceLifting_90": {
+  "lossless": {
+   "auroc": 0.9482,
+   "auroc_ci": [
+    0.9385,
+    0.957
+   ],
+   "paired_rank": 100.0
+  },
+  "jpeg90_resize256": {
+   "auroc": 0.8797,
+   "auroc_ci": [
+    0.8653,
+    0.8936
+   ],
+   "paired_rank": 98.9
+  },
+  "n_train_faces": 1547,
+  "n_test_faces": 663,
+  "cross": {
+   "EyeEnlarging_90": 0.7175,
+   "FaceLifting_90": 0.9482,
+   "Whitening_90": 0.6758,
+   "Smoothing_90": 0.7972
+  }
+ },
+ "Whitening_90": {
+  "lossless": {
+   "auroc": 0.9801,
+   "auroc_ci": [
+    0.9734,
+    0.9856
+   ],
+   "paired_rank": 100.0
+  },
+  "jpeg90_resize256": {
+   "auroc": 0.9487,
+   "auroc_ci": [
+    0.9387,
+    0.9581
+   ],
+   "paired_rank": 99.8
+  },
+  "n_train_faces": 1547,
+  "n_test_faces": 663,
+  "cross": {
+   "EyeEnlarging_90": 0.537,
+   "FaceLifting_90": 0.5626,
+   "Whitening_90": 0.9801,
+   "Smoothing_90": 0.631
+  }
+ },
+ "Smoothing_90": {
+  "lossless": {
+   "auroc": 0.9995,
+   "auroc_ci": [
+    0.9989,
+    1.0
+   ],
+   "paired_rank": 100.0
+  },
+  "jpeg90_resize256": {
+   "auroc": 0.9966,
+   "auroc_ci": [
+    0.9927,
+    0.9994
+   ],
+   "paired_rank": 100.0
+  },
+  "n_train_faces": 1547,
+  "n_test_faces": 663,
+  "cross": {
+   "EyeEnlarging_90": 0.4925,
+   "FaceLifting_90": 0.5245,
+   "Whitening_90": 0.4981,
+   "Smoothing_90": 0.9995
+  }
+ }
+}

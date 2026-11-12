@@ -1,0 +1,21 @@
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.34\linewidth} c c c@{}}
+\toprule
+Criterion & seed 1 & seed 2 & replicated \\
+\midrule
+\multicolumn{4}{@{}l}{(A) symmetric-view variant against \oursF{}, same seed} \\
+(i) whole-crop smoothed genuine FA $\le$15\% (bil.\ light/mid/strong) & 1.0/1.6/1.7 (three-way 34.9/79.8/90.1) & 3.8/5.9/8.4 (three-way 22.0/84.1/96.1) & yes \\
+(ii) Smoothing-90 accused $\le$15, above own in [25, 75] & 8.1, 30.0 (three-way 8.6, 32.5) & 17.8, 46.2 (three-way 12.5, 41.3) & no \\
+(iii) video AUC Celeb-DF-v2 / DFD not lower by $>$0.010 & +0.007 [+0.000, +0.015] / +0.006 [-0.000, +0.012] & +0.007 [-0.002, +0.016] / +0.006 [+0.002, +0.012] & yes \\
+(iv) explanation flip not lower by $>$1.0 (donor/SD/SDXL) & 92.6/92.2/91.9 vs 94.0/93.6/93.5 & 93.6/93.0/92.6 vs 90.9/90.4/90.2 & no \\
+(v) Celeb-DF-B AUC$_b$ not lower by $>$0.010 & 0.868 vs 0.866 & 0.888 vs 0.883 & yes \\
+\midrule
+\multicolumn{4}{@{}l}{(B) \oursB{} minus \oursF{}, same seed} \\
+Celeb-DF-v2 frame AUC & +0.023 [+0.011, +0.034] & +0.036 [+0.023, +0.048] & yes \\
+Celeb-DF-v2 video AUC & +0.009 [-0.004, +0.024] & +0.017 [+0.003, +0.031] & no \\
+DFD frame AUC & +0.020 [+0.013, +0.028] & +0.006 [-0.000, +0.012] & no \\
+DFD video AUC & +0.009 [+0.003, +0.017] & -0.003 [-0.011, +0.005] & no \\
+Celeb-DF-B AUC$_b$ & +0.030 [+0.014, +0.045] & +0.021 [+0.009, +0.034] & yes \\
+DF40 FR, FF++ domain & +0.124 [+0.113, +0.135] & +0.076 [+0.066, +0.086] & yes \\
+DF40 FR, Celeb-DF domain & +0.145 [+0.133, +0.157] & +0.139 [+0.128, +0.149] & yes \\
+\bottomrule
+\end{tabular}

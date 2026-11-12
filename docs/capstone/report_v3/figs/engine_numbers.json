@@ -1,0 +1,16 @@
+{
+ "stem": "60002",
+ "render": "C:\\My_Project\\AIGC\\FFHQ_four_process\\Whitening_Smoothing_FaceLifting_EyeEnlarging\\60000\\60002.png",
+ "recon_psnr_db": 108.1,
+ "components_identical_to_decompose": {
+  "eye": true,
+  "jaw": true,
+  "white": true,
+  "smooth": true
+ },
+ "flow_px_at_512_median_in_crop": 0.23,
+ "flow_px_at_512_p99_in_crop": 4.743,
+ "residual_scale_99p5_abs": 30.0,
+ "arrow_scale": 6,
+ "arrow_grid_px": 16
+}

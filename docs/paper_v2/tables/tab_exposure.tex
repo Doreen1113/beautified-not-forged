@@ -1,0 +1,14 @@
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Arm & Beautified training views & AUC$_b$ (3 seeds) & $\Delta$MISS$_\text{beauty}$ (3 seeds) & FA$_b$ \\
+\midrule
+P0 & no beautified views & 0.860 / 0.883 / 0.883 & +17.0 / +14.2 / +10.8 & 5.1 / 5.6 / 6.8 \\
+P1 & beautified genuine faces only & 0.844 / 0.851 / 0.864 & +21.5 / +21.8 / +20.4 & 4.5 / 3.9 / 3.7 \\
+P2 & beautified genuine and forged faces & 0.879 / 0.893 / 0.877 & +9.8 / +10.3 / +12.8 & 5.6 / 5.3 / 5.4 \\
+\midrule
+\multicolumn{5}{@{}l}{Paired differences, 95\% video-cluster intervals (seeds 1 / 2 / 3)} \\
+P1 $-$ P0 & $\Delta$MISS$_\text{beauty}$ & \multicolumn{3}{l}{+4.5 [1.5, 7.6] / +7.5 [4.4, 10.8] / +9.5 [6.7, 12.3]} \\
+P2 $-$ P0 & $\Delta$MISS$_\text{beauty}$ & \multicolumn{3}{l}{-7.2 [-9.4, -5.0] / -4.0 [-6.1, -2.0] / +2.0 [0.1, 4.0]} \\
+P2 $-$ P1 & $\Delta$MISS$_\text{beauty}$ & \multicolumn{3}{l}{-11.7 [-14.5, -8.8] / -11.5 [-14.5, -8.9] / -7.5 [-10.0, -5.0]} \\
+\bottomrule
+\end{tabular}

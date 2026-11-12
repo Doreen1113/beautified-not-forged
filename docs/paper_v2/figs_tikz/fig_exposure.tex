@@ -1,0 +1,38 @@
+% fig_exposure (column width, 3.5 in): which class receives beautified training views (FF++-only arms P0-P3, first seed).
+% Numbers: docs/paper_v2/tables/tab_v6b_tradeoff_main.tex (seed 1; = results/research/retouch_unified_20260929/FINDINGS.md,
+% Addendum 40 table): commercial Smoothing-90 accused at the 5%-FPR rule, and the miss-rate change on strongly (whole-crop
+% bilateral 21) smoothed Celeb-DF-v2 forgeries; P1-smooth 96-100% missed, P3 99.5-100% and P2-sym from main_v6b.tex.
+\documentclass[tikz,border=1.5pt]{standalone}
+\input{style}
+\newcommand{\cell}[8]{% x, y, arm, views, accused, colour, miss change, extra line
+  \node[plain, anchor=north west, minimum width=3.8cm, minimum height=1.42cm, draw=ink!35] (c#3) at (#1,#2) {};
+  \node[anchor=north west, font=\smallfont, inner sep=0pt] at ([xshift=3pt,yshift=-3pt]c#3.north west) {\textbf{#3}\; \textcolor{muted}{#4}};
+  \node[anchor=north west, font=\fontsize{11}{12}\selectfont\bfseries, text=#6, inner sep=0pt] at ([xshift=3pt,yshift=-0.36cm]c#3.north west) {#5\,\%};
+  \fill[gridc] ([xshift=1.68cm,yshift=-0.47cm]c#3.north west) rectangle ++(1.95,-0.11);
+  \fill[#6] ([xshift=1.68cm,yshift=-0.47cm]c#3.north west) rectangle ++(1.95*#5/100,-0.11);
+  \node[anchor=north west, font=\fontsize{5.6}{6.6}\selectfont, text=muted, inner sep=0pt] at ([xshift=1.68cm,yshift=-0.62cm]c#3.north west) {accused};
+  \node[anchor=north west, font=\fontsize{5.9}{7}\selectfont, align=left, inner sep=0pt] at ([xshift=3pt,yshift=-0.86cm]c#3.north west) {smoothed forgeries: miss #7\\#8};}
+\begin{document}
+\hyphenpenalty=10000\exhyphenpenalty=10000
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[font=\smallfont\bfseries, anchor=south] at (4.44,0.42) {forged faces receive beautified views};
+\node[font=\smallfont, anchor=base] at (2.5,0.12) {no};
+\node[font=\smallfont, anchor=base] at (6.38,0.12) {yes};
+\node[font=\smallfont\bfseries, rotate=90, anchor=south] at (0.12,-1.5) {genuine faces receive views};
+\node[font=\smallfont, anchor=east] at (0.62,-0.71) {no};
+\node[font=\smallfont, anchor=east] at (0.62,-2.29) {yes};
+
+\cell{0.6}{0}{P0}{none}{54.2}{errc}{$-$16.0 pts}{\textcolor{muted}{(accuses every smoothed face)}}
+\cell{4.48}{0}{P3}{forged only}{63.8}{errc}{$-$38.5 pts}{\textcolor{muted}{smoothed genuine: 99.5--100\,\% FA}}
+\cell{0.6}{-1.58}{P1}{genuine only}{3.7}{okc}{\textbf{\textcolor{amber!85!black}{+51.2 pts}}}{\textcolor{muted}{smoothing-only views: 96--100\,\% miss}}
+\cell{4.48}{-1.58}{P2}{both}{11.7}{amber}{$-$26.5 pts}{\textcolor{muted}{in between on both errors}}
+
+\node[code, anchor=north west, minimum width=7.68cm, text width=7.42cm, align=left, font=\fontsize{5.9}{7}\selectfont, inner sep=2.6pt] (sym) at (0.6,-3.22)
+  {\textbf{same smoothing form for both classes} (P2-sym, 2 seeds): accused 5.9 / 6.1\,\%;
+   miss on smoothed forgeries +14.6 / +17.5 pts, smaller than P1's +51.2; it does not remove the accusation under Effort's tuning
+   scheme or for skin-only smoothing};
+\node[anchor=north west, note, align=left, text width=7.68cm] at ([yshift=-2pt]sym.south west)
+  {FF++-only training, first seed. Accused: commercial Smoothing-90 renders at the 5\,\%-FPR threshold of their originals. Miss:
+   change on Celeb-DF-v2 forgeries under strong whole-crop smoothing, same rule.};
+\end{tikzpicture}
+\end{document}

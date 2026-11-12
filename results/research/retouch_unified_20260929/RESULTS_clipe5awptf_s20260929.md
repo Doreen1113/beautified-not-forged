@@ -1,0 +1,26 @@
+# RU clipe5awptf_s20260929
+
+## Alibaba (blind)
+orig real/fake/filter {'real': 8.64, 'fake': 5.7, 'filter': 85.66} | pooled {'n': 26519, 'to_real': 6.29, 'to_fake': 6.52, 'to_filter': 87.19, 'balanced_acc': 50.77, 'paired_rank': 56.4}
+Eq.4 {'TP': {'eye': 0.0, 'jaw': 0.043, 'white': 0.001, 'smooth': 0.625}, 'TN_same_image': {'eye': 0.918, 'jaw': 0.99, 'white': 0.96, 'smooth': 0.991}, 'AC': {'eye': 0.0, 'jaw': 0.043, 'white': 0.001, 'smooth': 0.625}, 'table7_TP': {'eye': 0.519, 'jaw': 0.548, 'smooth': 0.861, 'white': 0.501}}
+orig TN per op {'eye': 1.0, 'jaw': 0.969, 'white': 0.997, 'smooth': 0.991}
+quantities {"eye": {"n": 6629, "spearman": -0.021, "mae": 0.1192, "pred_mean": -0.0889, "meas_mean": 0.0257, "crosstalk_abs_mean": 0.0777, "orig_pred_mean": -0.0968}, "jaw": {"n": 6630, "spearman": 0.038, "mae": 0.0576, "pred_mean": 0.0464, "meas_mean": 0.0199, "crosstalk_abs_mean": 0.0887, "orig_pred_mean": 0.045}, "white": {"n": 6630, "spearman": 0.016, "mae": 0.4743, "pred_mean": 0.0926, "meas_mean": 0.5237, "crosstalk_abs_mean": 0.0783, "orig_pred_mean": 0.0994}, "smooth": {"n": 6630, "spearman": 0.373, "mae": 0.134, "pred_mean": 0.1039, "meas_mean": 0.1768, "crosstalk_abs_mean": 0.1122, "orig_pred_mean": -0.0295}}
+bars {"R1_balanced>=75": false, "R2_TP>=table7_on_3of4_and_origTN>=0.8": false, "R3_to_fake<=5_pooled_and<=10_each": false, "R4_spearman>=0.6_all": false}
+
+| group | n | ->real | ->fake | ->filter | balanced | rank | TP |
+|---|---|---|---|---|---|---|---|
+| EyeEnlarging_30 | 2210 | 8.24 | 6.15 | 85.61 | 49.98 | 64.21 | 0.0 |
+| EyeEnlarging_60 | 2209 | 6.84 | 6.56 | 86.6 | 50.47 | 67.59 | 0.0 |
+| EyeEnlarging_90 | 2210 | 5.93 | 7.19 | 86.88 | 50.61 | 65.93 | 0.0 |
+| FaceLifting_30 | 2210 | 10.05 | 5.79 | 84.16 | 49.25 | 55.43 | 0.038 |
+| FaceLifting_60 | 2210 | 9.19 | 5.93 | 84.89 | 49.61 | 56.29 | 0.044 |
+| FaceLifting_90 | 2210 | 8.64 | 6.88 | 84.48 | 49.41 | 54.62 | 0.048 |
+| Whitening_30 | 2210 | 10.0 | 5.84 | 84.16 | 49.25 | 52.74 | 0.002 |
+| Whitening_60 | 2210 | 7.38 | 5.93 | 86.7 | 50.52 | 55.2 | 0.001 |
+| Whitening_90 | 2210 | 5.29 | 5.93 | 88.78 | 51.56 | 58.96 | 0.0 |
+| Smoothing_30 | 2210 | 3.62 | 8.73 | 87.65 | 50.99 | 44.1 | 0.23 |
+| Smoothing_60 | 2210 | 0.18 | 5.88 | 93.94 | 54.14 | 53.39 | 0.772 |
+| Smoothing_90 | 2210 | 0.09 | 7.47 | 92.44 | 53.39 | 48.37 | 0.872 |
+
+## FF++ / cross-dataset
+{"indomain": {"real": 74.85, "fake": 85.29, "filter": 82.9}, "FA": 7.75, "real_to_filter": 21.43, "MISS": 1.94, "heldout13": {"filter": 82.9, "fake": 9.88, "paired_excess_pp": 61.47}, "cdf": {"auc": 0.8492, "real_called_fake": 7.4}, "dfd": {"auc": 0.9381, "real_called_fake": 2.7}, "bars": {"D1_cdf>=0.78": true, "D1_dfd>=0.88": true, "D2_indomain>=80_each": false, "D2_heldout_excess>=30": true}}

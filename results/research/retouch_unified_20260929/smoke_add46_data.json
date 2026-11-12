@@ -1,0 +1,38 @@
+{
+ "n_items": 150,
+ "main_stream_identical": "150/150",
+ "x_s_forms": {
+  "real": {
+   "face-local": 150
+  },
+  "filt": {
+   "bil15": 33,
+   "bil9": 27,
+   "face-local": 64,
+   "bil21": 26
+  },
+  "fake": {
+   "bil21": 26,
+   "face-local": 60,
+   "bil9": 33,
+   "bil15": 31
+  }
+ },
+ "mean_abs_pixel_diff": {
+  "real": [
+   0.81,
+   0.11,
+   2.77
+  ],
+  "filt": [
+   2.39,
+   0.14,
+   7.48
+  ],
+  "fake": [
+   2.38,
+   0.15,
+   6.56
+  ]
+ }
+}

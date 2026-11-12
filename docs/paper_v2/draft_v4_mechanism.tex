@@ -1,0 +1,122 @@
+% ============================================================================
+%  draft_v4_mechanism.tex -- new section on the smoothing mechanism, written 2026-10-13 as a chain of pre-registered
+%  experiments. Intended to follow sec:mechanism (feature-space probe) and replace the retouching part of sec:exposure
+%  in main.tex (v3). Not yet \input by main.tex. Labels: see the header of draft_v4_measurement.tex
+%  (tab:v4retouch, tab:v4tradeoff, tab:v4evasion). This section defines sec:mechanism2.
+%  Sources: results/research/retouch_unified_20260929/FINDINGS.md (2026-10-12, 2026-10-13); PRE_DECLARED.md Addenda 31-36;
+%  results/research/alipair_zeroshot_20260929/review_20261012/REVIEW.md (the sentence allowed and its caveats are binding);
+%  smoothing90_thresholdfree.json; retouch_unified_20260929/smooth_evasion2.json; celebdfb_v2_20260927/fair_cdfb.json.
+%  Column order of the smoothing forms in tab:v4evasion: whole-crop bilateral light / mid / strong, 5x5 median,
+%  50% Gaussian blend; the last two forms were never shown to any arm.
+% ============================================================================
+
+\subsection{Skin smoothing: what an FF++-trained detector learns, and what exposure does to it}
+\label{sec:mechanism2}
+The retouching result of Sec.~\ref{sec:measure} concerns one operation, skin smoothing, and we trace it through a chain
+of experiments on FF++-only models, each with its bars written before training (supplement). All arms share the
+architecture, data, steps and checkpoint rule of Sec.~\ref{sec:exposure}; they differ only in which class receives
+beautified training views and in what those views contain. No image of any retouching service is used in any arm. The
+scripted smoothing in the views is a bilateral filter blended inside a feathered face hull, the same kind of edit as the
+service's (face-local, edge-preserving: high-frequency energy on flat skin 0.68 at the top of the training range
+against 0.60 for the service's level 90, background 1.00 against 0.96), and its strength range was set to cover the
+levels measured on two other services whose renders are in RetouchingFFHQ; the test service's measurements existed
+when that range was set. What is tested is therefore robustness across implementations and image domains of one
+operation at matched strength, not generalisation to an edit the views never contained. Rows are in
+Tables~\ref{tab:v4retouch}, \ref{tab:v4tradeoff} and \ref{tab:v4evasion}.
+
+\textbf{(i) The no-exposure arm reproduces the published detectors.} P0, trained on FF++ with no beautified view,
+accuses 54.2, 56.1 and 43.5\% (three seeds) of the Smoothing-90 renders at the 5\%-FPR threshold of the service's
+originals, scores the render above its own original in 97.0--99.0\% of pairs, and moves the median $P(\text{fake})$ from
+0.05 to 0.97 (seed 1). Thirteen of the seventeen published detectors lie at 36.3--68.7\% and fifteen at 89--99\% under
+the same two readings, so the false accusation of commercially smoothed faces is what FF++ training gives by default,
+in our pipeline as in theirs. P0 is at the 5\% floor on the other nine operation-by-level cells of the service
+(whitening 4.5--7.5\%, face slimming 4.5--6.1\%, eye enlarging 4.8--5.9\%) and dose-dependent on smoothing
+(12.6--17.0, 29.6--40.8 and 43.5--56.1\% at levels 30, 60 and 90). P0 trains with label-symmetric Gaussian blur,
+down-up scaling and JPEG on half of its triplets, so plain blur or re-compression in training does not prevent the
+accusation. With beautified views on genuine faces only (P1) the Smoothing-90 rate falls to 3.7, 7.1 and 4.6\%; with
+views on both classes (P2) to 11.7, 7.1 and 6.9\% (paired differences against P0 of $-37$ to $-51$ points, every
+interval below zero). The rate holds under every threshold rule tried (1\% and 10\% FPR, a fixed 0.5, thresholds set on
+Celeb-DF-v2 or DFD genuine frames). P2 still scores the render above its original in 72--84\% of pairs (AUROC
+0.63--0.70), so for P2 the accusation is lowered, not removed. Both arms pay for it on untreated Celeb-DF-v2: frame AUC
+$-0.012$ to $-0.021$ for P2 and $-0.025$ to $-0.030$ for P1 against P0 on every seed, intervals below zero, and 5--8 points
+of miss rate at 5\% FPR. The remedy is tied to the tuning scheme: inside Effort's SVD-residual scheme the same views
+leave 30.0 and 38.9\% (P0 under that scheme 56.9 and 63.2\%), and two epochs of fine-tuning the released Effort
+checkpoint with the views leave 52.7\% against 55.3\% without them.
+
+\textbf{(ii) Necessary: views without smoothing do nothing.} The first pre-registered arm removes smoothing from every
+beautified view of P2 and keeps colour grades, the fourteen colour filters, whitening, eye and jaw edits, and the shared
+degradation. Smoothing-90 is then accused at 55.3\% [51.9, 58.6] and 67.1\% (two seeds), against P0 of the same seed
+$+1.2$ [$-2.2$, 4.0] and $+11.1$ [7.0, 14.8], and the render is scored above its original in 98.6 and 99.4\% of pairs. The
+genuine-only version without smoothing gives 55.9\% ($+1.8$ [$-1.8$, 5.2] against P0). The pre-declared reading for
+``at least 30\% on both seeds'' holds: the effect is exposure to smoothing itself, and no other beautified view
+substitutes for it. These arms still lose untreated Celeb-DF-v2 video AUC against P0 (0.913 and 0.924 against 0.938 and
+0.938), so that cost is not caused by smoothing either.
+
+\textbf{(iii) Sufficient, but not free.} The second arm makes smoothing the only beautified view, on both classes.
+Smoothing-90 falls to 2.3\% [1.7, 2.9] and 5.3\% [4.4, 7.0], $-51.9$ [$-56.1$, $-48.3$] and $-50.7$ [$-55.3$, $-46.5$]
+against P0, meeting bar (a) on both seeds. Bar (b) is not met: untreated Celeb-DF-v2 video AUC is 0.904 and 0.926 against
+0.938 and 0.938, untreated DFD 0.967 and 0.966 against 0.981 and 0.979. Bar (c), Celeb-DF-B AUC under the presets, is
+0.865 and 0.870 against 0.860 and 0.883; the second seed is 0.013 lower and the bar of 0.010 is not met. The
+pre-declared reading is ``sufficient but not free'': every kind of beautified view we tried, with or without smoothing,
+costs 0.01--0.03 of untreated Celeb-DF-v2 video AUC.
+
+\textbf{(iv) The genuine-only recipe is an evasion route.} Smoothing shown to genuine faces only lowers the accusation
+to 0.7, 1.0 and 0.9\% (three seeds), scores the render \emph{below} its original in 97\% of pairs (AUROC 0.095, seed 1),
+and looks like the best operating point of every arm on Celeb-DF-B (AUC under presets 0.887, 0.896 and 0.893 against P0
+0.860, 0.883 and 0.883). A check written before any smoothed forgery was scored asks what such a model does to a
+forgery that a forger smooths. We smooth Celeb-DF-v2 test frames with the whole-crop bilateral filter at three
+strengths and with two forms no arm has seen, a $5\times5$ median filter and a 50\% blend with a Gaussian blur, at the
+threshold that accuses 5\% of untreated genuine frames (Table~\ref{tab:v4evasion}). The genuine-only arm misses every
+smoothed forgery: miss rises of $+56$ to $+63$ points on the bilateral forms, $+38$ to $+40$ on the median filter and
+$+11$ to $+14$ on the Gaussian blend, with lower interval bounds of $+49.9$ or more on the bilateral forms, the forged score falling in
+100\% of frames and false alarms on smoothed genuine frames at 0.0\%. P0 of the same seed rises by $+24.0$, $+14.3$,
+$+4.3$, $+12.6$ and $+5.6$ (seed 3). The arm with all beautified views on genuine faces only behaves the same ($+46$ to
+$+51$ on the bilateral forms). The shortcut ``smoothed means genuine'' is what removed the accusation, and it carries
+over to smoothing forms the views did not contain. We therefore do not recommend the genuine-only recipe, and the
+low false-accusation numbers of Table~\ref{tab:v4retouch} for the P1 arms are to be read as this shortcut. This also
+explains the direction of the P1 effect in Sec.~\ref{sec:exposure}.
+
+\textbf{(v) The both-class arms carry a shortcut of the opposite sign.} The same test shows a flaw in our own both-class
+recipe and in the full-data main model: a whole-crop bilateral filter on a \emph{genuine} frame is called forged by the
+smoothing-only both-class arm in 47.8, 82.3 and 88.3\% of frames at the three strengths, by the main model in 34.9, 79.8
+and 90.1\%, by P2 in 3.0, 31.8 and 49.1\%, against P0 at 0.8, 16.8 and 39.6\% and the binary control at 9.9, 35.5 and
+45.6\%. The cause is in the training code: genuine items receive the face-local scripted smoothing and pre-rendered
+smoothing frames, while forged items without landmarks receive only the whole-crop bilateral filter, so the form of the
+smoothing predicts the class and the model learned ``whole-crop bilateral means forged''. This is a class-asymmetric
+augmentation, and it affects every both-class arm and the main model. The arm of the next paragraph makes the view
+class-symmetric; the main model retrained with the symmetric view is pending (Addendum 36, below).
+
+With a class-symmetric smoothing view (face-local or whole-crop drawn the same way wherever landmarks exist, both forms
+on both classes, no pre-rendered smoothing frames), the pre-declared bars were: (a) Smoothing-90 at most 15\% at the
+5\%-FPR rule and the render scored above its original in between 25 and 75\% of pairs; (b) false alarms on smoothed
+genuine Celeb-DF-v2 frames at most 15\% for every form; (c) a miss rise on smoothed forgeries not more than 5 points
+above P0's for every form; two seeds. Bars (a) and (b) are met on both seeds: Smoothing-90 5.9 and 6.1\%, the render
+above its original in 53.7 and 51.8\% of pairs, false alarms on smoothed genuine frames 2.4, 5.0, 6.1, 4.5 and 3.6\% (seed
+1) and 2.2, 4.2, 5.7, 4.5 and 3.0\% (seed 2) across the five forms. Bar (c) is not met as written: the miss rises are
+$+14.8$, $+14.5$, $+14.6$, $+7.6$ and $+9.1$ (seed 1) and $+19.0$, $+20.6$, $+17.5$, $+9.0$ and $+12.7$ (seed 2), against
+P0's $+27.0$, $+5.1$, $-16.0$, $+19.2$ and $+3.0$ and $+26.7$, $+6.1$, $-11.8$, $+18.0$ and $+8.1$, so the arm exceeds the
+reference by more than 5 points at the mid and strong bilateral strengths and under the Gaussian blend. The reference
+itself is the reason: P0's miss rate \emph{falls} under strong smoothing because P0 accuses everything smoothed, with
+false alarms of 39.6 and 42.9\% on smoothed genuine frames at that strength, and the bar did not anticipate a reference
+that passes forgeries by accusing all smoothed faces. We keep the bar as written and report it as not met. Read without
+a threshold, with both classes smoothed, the AUC of the symmetric arm is 0.835, 0.796, 0.767, 0.829 and 0.850 (seed 1)
+and 0.849, 0.809, 0.796, 0.853 and 0.865 (seed 2) against P0's 0.848, 0.776, 0.747, 0.852 and 0.868 and 0.852, 0.781,
+0.736, 0.855 and 0.871: above P0 at the two heavier bilateral strengths, within 0.02 elsewhere. The symmetric arm is the
+only arm that neither accuses smoothed genuine faces nor is fooled by smoothed forgeries, for the scripted forms,
+the two unseen forms and the commercial renders. Its cost is a uniform miss rise of 8--21 points under heavy smoothing
+at the fixed threshold, and on untreated data a Celeb-DF-v2 video AUC of 0.919 and 0.934 against P0's 0.938 and 0.938
+and a DFD video AUC of 0.972 and 0.968 against 0.981 and 0.979 (Table~\ref{tab:v4tradeoff}). On Celeb-DF-B its AUC under
+the presets is 0.866 and 0.888 against P0's 0.860 and 0.883, its beautification-specific miss rise $+14.2$ and $+10.4$
+against $+17.0$ and $+14.2$, and its false-alarm rate on beautified genuine frames 5.5\% (seed 1). Its DF40 rows are
+[PENDING: DF40 video AUC for clipe5fbg0oy, both seeds; not yet scored].
+
+\textbf{(vi) Beyond one tuning scheme and into the main model.} Whether the symmetric view holds under Effort's tuning
+scheme from CLIP and as a two-epoch fine-tune of the released Effort checkpoint is pre-registered with the same bars
+against each scheme's own reference: [PENDING: Addendum 35, arms clipe5fbg0oyE and clipe5fbg0oyEi, seed 20260929; bars
+(a)--(c) and costs (d)]. The main model retrained with the symmetric view replaces the current main model only if
+whole-crop-smoothed genuine false alarms stay at or under 15\% at every strength, Smoothing-90 stays at or under 15\%
+with the render above its original in 25--75\% of pairs, untreated Celeb-DF-v2 and DFD video AUC fall by at most 0.010,
+the explanation flip rate on the three part-forgery mechanisms falls by at most 1.0 point, and Celeb-DF-B AUC under the
+presets falls by at most 0.010: [PENDING: Addendum 36, arm clipe5y, seed 20260929; outcome of the replacement rule and
+the five quantities]. Until then the main model's numbers in this paper are those of the asymmetric recipe, and its
+35, 80 and 90\% false alarms on whole-crop-smoothed genuine frames stand as a limitation.

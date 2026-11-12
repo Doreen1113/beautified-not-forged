@@ -1,0 +1,52 @@
+% ============================================================================
+%  draft_v4_limitations.tex -- replaces \section{Limitations} of main.tex (v3). Written 2026-10-13. Not yet \input.
+%  Sources: results/research/df40_eval_20261012/PRE_DECLARED.md; results/research/alipair_zeroshot_20260929/review_20261012/REVIEW.md
+%  (caveats 2, 5, 7, 8); external_baselines/README_setup.md (LAA-Net c0 training, FF++ c23 not reproduced; CADDM re-alignment);
+%  results/research/retouch_unified_20260929/FINDINGS.md 2026-10-13; PRE_DECLARED.md Addenda 32-36; main.tex v3 Limitations
+%  (sentences kept where still true).
+% ============================================================================
+
+\section{Limitations}
+The measurement covers four app presets, 27 colour filters and one retouching service; AR filters that re-render the
+face were excluded because their capture pipeline leaks the label (a model recognised them with the face greyed out).
+Celeb-DF-v2 under filters was used to diagnose the mechanism and is reported as a development source; Celeb-DF-B and
+the DFD filters were read once per model. On the retouching service the published detectors were scored on one shared
+crop, not each under its own preprocessing as on the video sources, and the fixed threshold is set on the service's
+own originals; eight of the sixteen usable detectors have a 5\%-FPR threshold above 0.96 on these stills and at 0.5
+they call 1--51\% of the untouched originals fake, which is why the threshold-free pair statistics are reported first. The retouching result
+is a skin-smoothing result: the other three operations of the service are not accused above the floor by any arm, and
+the scripted smoothing in our views is the same kind of edit at a strength range set to cover two other services
+whose measurements, like the test service's, existed when the range was set; we claim robustness across
+implementations and image domains of that operation, not to an edit the views never contained. The per-epoch curve of
+the both-class arm (27\% at epoch 2, 9--12\% from epoch 5, with checkpoints chosen on FF++ validation AUC by margins of
+0.0003--0.002) is a disclosure of the exposure analysis, which was post hoc; the chain of Sec.~\ref{sec:mechanism2}
+that followed it was pre-registered.
+
+The main model carries a class-asymmetric smoothing view: genuine training items receive face-local smoothing and
+forged items without landmarks receive only a whole-crop bilateral filter, and the model calls 35, 80 and 90\% of
+whole-crop-smoothed genuine Celeb-DF-v2 frames forged at the three strengths. The class-symmetric view removes this in
+the FF++-only arms at a uniform cost in misses under heavy smoothing; whether it does so in the full-data model, and
+whether that model replaces the one reported here, is [PENDING: Addendum 36, arm clipe5y]. Whether the symmetric view
+holds under Effort's tuning scheme is [PENDING: Addendum 35]. The genuine-only recipe is reported as an evasion route
+and not recommended. The exposure effect of Sec.~\ref{sec:exposure} is reliable in sign and on the miss rate; the gain
+of both-class over no exposure under app presets is within seed noise, and our models' margin over the CLIP baselines
+under presets is mostly the base recipe. Every beautified view we tried costs 0.01--0.03 of untreated Celeb-DF-v2 video
+AUC against the no-exposure arm.
+
+The main model is on par with Effort and Forensics Adapter on Celeb-DF-v2, DFD and DF40 face swap and behind every CLIP
+detector on DF40 reenactment, at chance in the Celeb-DF domain; it is not a reference detector for forgeries of every
+kind. The DF40 real videos are the FF++ and Celeb-DF-v2 test reals already used in this paper, Celeb-DF has no
+identity-disjoint split, our models were trained on a different crop from the released DF40 crops, and the scoring of
+the exposure arms on DF40 is a post hoc extension marked as such. The DF40 rows of the symmetric arm, CADDM and LAA-Net
+are not yet scored. Separating lightly retouched faces from their originals stays at 73--75\% balanced accuracy on the
+unseen service. The evidence head localises part-level forgeries, not whole-face swaps.
+
+LAA-Net's released checkpoint was trained on uncompressed FF++ frames and its published in-domain number could not be
+tested here (no FF++ videos; c23 project crops only), so its FF++ c23 figures carry that caveat; on the other sources
+it is run on a crop rebuilt inside our face box with a different face detector from the authors' and is one point short
+of its published Celeb-DF-v2 number. CADDM re-aligns our crop with its own landmark model, one resampling more than the
+authors' pipeline; on Celeb-DF-v2 the two agree. The published numbers of Effort and DFD-HR were not reproduced by us
+(Effort's were not reproduced by others either); the gap has the size seen for the other DeepfakeBench-pipeline
+checkpoints on our crops, and the crop was not proven to be its cause. DFDC and DFDCP are not evaluated, and our DFD set is 332 of its
+videos, so no DFD number of ours is comparable to a published one; only detectors run by us on the same videos are
+compared. Inference latency of the detectors is [PENDING: latency measurement on one idle machine].

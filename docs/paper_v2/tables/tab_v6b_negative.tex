@@ -1,0 +1,25 @@
+\begin{tabular}{@{}l cccc c c@{}}
+\toprule
+ & \multicolumn{4}{c}{Celeb-DF-B} & Celeb-DF-v2 & DFD filters \\
+\cmidrule(lr){2-5}
+Arm & AUC & AUC$_b$ & $\Delta$MISS$_\text{beauty}$ & FA$_b$ & AUC untreated & AUC$_f$ \\
+\midrule
+random colour grading (reference) & 0.938 & 0.872 & +7.5 & 7.8 & 0.898 & 0.932 \\
+no grading & 0.929 & 0.849 & +14.1 & 7.2 & 0.880 & 0.917 \\
+operator, random edits & 0.932 & 0.876 & +7.9 & 7.7 & 0.873 & 0.932 \\
+operator, worst of 4 draws & 0.928 & 0.867 & +12.9 & 5.6 & 0.860 & 0.935 \\
+operator, 1-step search & 0.930 & 0.864 & +8.2 & 8.3 & 0.876 & 0.935 \\
+operator, search within measured edits & 0.928 & 0.869 & +15.1 & 5.2 & 0.874 & 0.934 \\
+operator, consistency objective & 0.924 & 0.856 & +13.0 & 5.7 & 0.849 & 0.922 \\
+operator, 3-step search & 0.922 & 0.859 & +8.9 & 7.6 & 0.849 & 0.937 \\
+decision pooled from the evidence map & 0.937 & 0.877 & +14.9 & 5.0 & 0.889 & 0.924 \\
+same, no beautified views & 0.942 & 0.891 & +14.7 & 4.4 & 0.899 & 0.932 \\
+\midrule
+\oursB{} (reference) & 0.949 & 0.896 & +7.0 & 7.4 & 0.914 & 0.952 \\
+\oursB{}, operator search & 0.942 & 0.892 & +9.7 & 6.0 & 0.911 & 0.945 \\
+\midrule
+released Effort, mapped (reference) & 0.909 & 0.808 & +11.2 & 4.7 & 0.886 & 0.904 \\
+released Effort + 2 epochs, no beautified views & 0.903 & 0.805 & +5.8 & 9.4 & 0.866 & 0.918 \\
+released Effort + 2 epochs, both classes & 0.895 & 0.803 & +2.7 & 10.3 & 0.861 & 0.916 \\
+\bottomrule
+\end{tabular}

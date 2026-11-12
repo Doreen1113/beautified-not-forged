@@ -30,6 +30,7 @@ for p in (HERE, B / "docs/paper_v2", B):
 from train_ru3 import to_t2  # noqa: E402
 from train_ru import crop  # noqa: E402
 from train_ru_clip import load_clip  # noqa: E402
+from main_model import MAIN_TAG, SUFFIX  # noqa: E402
 from occlusion_regions import region_masks  # noqa: E402
 from filters_v2.scale_normalized_filters import get_landmarks  # noqa: E402
 
@@ -84,12 +85,12 @@ def explain(net, path, box):
 
 
 def main():
-    net = load_clip("clipe4_s20260929", head=True).cuda().eval()
+    net = load_clip(MAIN_TAG, head=True).cuda().eval()
     res, vis = [], []
     for name, path, box, truth in EXAMPLES:
         o, arr, up = explain(net, path, box); o["example"] = name; o["truth"] = truth; res.append(o); vis.append((arr, up))
         print(f"{name:30s} -> {o['label']:6s} {o['explanation']}", flush=True)
-    (HERE / "explain_ours.json").write_text(json.dumps(res, indent=1), encoding="utf-8")
+    (HERE / f"explain_ours{SUFFIX}.json").write_text(json.dumps(res, indent=1), encoding="utf-8")
     fig_system(res, vis)
 
 

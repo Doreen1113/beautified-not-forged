@@ -1,0 +1,109 @@
+{
+ "tag": "clipe5fbg0oyEi_s20260929",
+ "ffhq_orig": {
+  "n": 816,
+  "real": 60.66,
+  "fake": 1.72,
+  "filter": 37.62
+ },
+ "tencent": {
+  "n": 807,
+  "real": 62.33,
+  "fake": 6.57,
+  "filter": 31.1
+ },
+ "megvii": {
+  "n": 1329,
+  "real": 55.61,
+  "fake": 13.39,
+  "filter": 31.0
+ },
+ "vendor_single": {
+  "n": 8443,
+  "real": 59.56,
+  "fake": 4.15,
+  "filter": 36.29
+ },
+ "components": {
+  "tencent_eye": {
+   "n": 795,
+   "to_filter": 37.23,
+   "to_real": 60.13,
+   "TP": 0.952,
+   "TN_same_image": 0.545,
+   "spearman": 0.07,
+   "pred_mean": 0.4648,
+   "meas_mean": 0.0185
+  },
+  "megvii_eye": {
+   "n": 1317,
+   "to_filter": 39.18,
+   "to_real": 58.16,
+   "TP": 0.952,
+   "TN_same_image": 0.553,
+   "spearman": -0.019,
+   "pred_mean": 0.4343,
+   "meas_mean": 0.008
+  },
+  "tencent_jaw": {
+   "n": 795,
+   "to_filter": 35.72,
+   "to_real": 62.64,
+   "TP": 0.036,
+   "TN_same_image": 0.029,
+   "spearman": -0.052,
+   "pred_mean": -0.698,
+   "meas_mean": 0.0093
+  },
+  "megvii_jaw": {
+   "n": 1316,
+   "to_filter": 37.08,
+   "to_real": 61.17,
+   "TP": 0.042,
+   "TN_same_image": 0.037,
+   "spearman": -0.008,
+   "pred_mean": -0.6715,
+   "meas_mean": 0.0104
+  },
+  "tencent_white": {
+   "n": 796,
+   "to_filter": 39.32,
+   "to_real": 58.29,
+   "TP": 0.422,
+   "TN_same_image": 0.041,
+   "spearman": -0.032,
+   "pred_mean": 0.1435,
+   "meas_mean": 1.0015
+  },
+  "megvii_white": {
+   "n": 1315,
+   "to_filter": 39.24,
+   "to_real": 59.01,
+   "TP": 0.411,
+   "TN_same_image": 0.047,
+   "spearman": -0.015,
+   "pred_mean": 0.1514,
+   "meas_mean": 0.1137
+  },
+  "tencent_smooth": {
+   "n": 792,
+   "to_filter": 30.56,
+   "to_real": 64.14,
+   "TP": 0.024,
+   "TN_same_image": 0.019,
+   "spearman": -0.015,
+   "pred_mean": -0.115,
+   "meas_mean": 0.0455
+  },
+  "megvii_smooth": {
+   "n": 1317,
+   "to_filter": 31.06,
+   "to_real": 55.73,
+   "TP": 0.041,
+   "TN_same_image": 0.017,
+   "spearman": -0.017,
+   "pred_mean": -0.088,
+   "meas_mean": 0.0266
+  }
+ }
+}

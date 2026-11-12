@@ -29,7 +29,7 @@ for k in ORDER:
 ru = sorted((BASE / "results/research/retouch_unified_20260929").glob("eval_ru_*.json"))
 RUJ = {f.stem.replace("eval_ru_", ""): json.loads(f.read_text()).get("ali") for f in ru}
 # main text: the two reported models; supplement: every vendor-trained variant
-MAIN = [("clipe4_s20260929", r"\textbf{\ours{}} (CLIP ViT-L/14 + LoRA)"), ("ru4e_effb4_s20260929", r"\ours{}-lite (EfficientNet-B4)")]
+MAIN = [("clipe5_s20260929", r"\textbf{\ours{}} (CLIP ViT-L/14 + LoRA)"), ("ru4e_effb4_s20260929", r"\ours{}-lite (EfficientNet-B4)")]
 L_main = [l for l in L if not any(l.startswith(LAB[k]) for k in ("RepViT", "HYB", "HYB-F", "HYB-D"))]   # main text: best and evidence-head FF++-only rows
 L_main += [r"\midrule", r"\multicolumn{8}{l}{\textit{Trained with two vendors' renders and their single-operation components; Alibaba never seen (ours)}} \\"]
 for tag, lab in MAIN:
@@ -38,11 +38,12 @@ for tag, lab in MAIN:
 L_main += [r"\bottomrule", r"\end{tabular}"]
 (OUT / "tab_alipair.tex").write_text("\n".join(L_main) + "\n", encoding="utf-8"); print("tab_alipair ->", OUT)
 ARM = {"effb4": "RU1 renders only", "repvit": "RU1 renders only", "ru2": "RU2 + components", "ru3": "RU3 cleaned components", "ru3e": "RU3 + evidence head",
-       "ru4e": "RU4 + part edits (lite)", "clip": "RU3, CLIP", "clipe": "RU3 + evidence head, CLIP", "clipe4": "RU4 + part edits, CLIP (main)"}
+       "ru4e": "RU4 + part edits (lite)", "clip": "RU3, CLIP", "clipe": "RU3 + evidence head, CLIP", "clipe4": "RU4 + part edits, CLIP (filter-F1 selection)", "clipe4r": "RU4 + part edits, CLIP", "clipe5g0": "RU5 without colour grading", "clipe5v0": "RU5 without vendor edit on forgeries",
+       "clipe5x": "RU5 data, three-way softmax", "clipe5": "RU5, CLIP (main)"}
 L_all = L + [r"\midrule", r"\multicolumn{8}{l}{\textit{Vendor-trained variants (all single Alibaba reads)}} \\"]
 for tag in sorted(RUJ, key=lambda t: (list(ARM).index(t.split("_")[0]) if t.split("_")[0] in ARM else 99, t)):
     R = RUJ[tag]
-    if not R:
+    if not R or tag.split("_")[0] not in ARM:   # arms without a three-way output or outside the paper are not listed
         continue
     arm = ARM.get(tag.split("_")[0], tag); bb = "CLIP-L/14" if tag.startswith("clip") else ("EffNet-B4" if "effb4" in tag else "RepViT")
     sd = "" if bb == "RepViT" else (", s2" if tag.endswith("20260930") else ", s1")

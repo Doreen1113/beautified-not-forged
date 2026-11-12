@@ -1,0 +1,165 @@
+diff --git a/train_ru5_pre_add46.py.bak b/train_ru5.py
+index 21d48f1..751638c 100644
+--- a/train_ru5_pre_add46.py.bak
++++ b/train_ru5.py
+@@ -19,6 +19,7 @@ python train_ru5.py [--seed S] [--epochs 8] [--workers 12] [--max-steps N] [--no
+   -> checkpoints/.../ru_clipe5[variant]_s<seed>_eNN.pth (every epoch), train_ru_<tag>.csv, meta_ru_<tag>.json
+ """
+ import argparse
++import copy
+ import csv
+ import json
+ import math
+@@ -39,7 +40,7 @@ HERE = Path(__file__).resolve().parent; sys.path.insert(0, str(HERE))
+ from train_ru import BASE, UNI, CKPT, BATCH, SEED, remap, cap, crop, read_manifest, beautify, self_blend, sym_degrade  # noqa: E402
+ from train_ru3 import RUData3, to_t2, mask_loss, footprint, post_m, res_rand2, ORIG, OPS  # noqa: E402
+ from train_ru_clip import RUCLIP, ValClip  # noqa: E402
+-from ops import random_op_v2  # noqa: E402
++from ops import random_op_v2, op_smooth  # noqa: E402
+ 
+ 
+ # ---------------------------------------------------------------------------------------------- random colour grading
+@@ -75,8 +76,9 @@ def random_grade(rgb, rng):
+ class RUData5(RUData3):
+     """RU4 mixture with (2) and (3) above. Returns the RU3 tuple plus zb, the forged / beautified targets per item."""
+ 
+-    def __init__(self, rows, size, seed, head_res=16, norm="clip", grade=True, vendor_fake=True, ffpp_only=False, ffpp_parts=False, beauty="both", mil=False, no_smooth=False, only_smooth=False, sym_smooth=False):
++    def __init__(self, rows, size, seed, head_res=16, norm="clip", grade=True, vendor_fake=True, ffpp_only=False, ffpp_parts=False, beauty="both", mil=False, no_smooth=False, only_smooth=False, sym_smooth=False, cons=False):
+         super().__init__(rows, size, seed, arm="ru4", head_res=head_res, norm=norm)
++        self.cons = cons   # Addendum 46: also return x_s, a skin-smoothed copy of every item (pixel-aligned, same flip)
+         self.mil = mil   # Addendum 28: the beautified item's map target is zero (forgery-evidence map, not edit map)
+         self.no_smooth = no_smooth   # Addendum 31: no skin smoothing in any beautified view
+         self.only_smooth = only_smooth   # Addendum 32: skin smoothing is the only beautified view (use with grade=False)
+@@ -213,6 +215,7 @@ class RUData5(RUData3):
+             shared_i.append(filt); shared_m.append(fm)
+         if not fsep:
+             shared_i.append(fake); shared_m.append(km)
++        st_post = copy.deepcopy(rng.bit_generator.state) if self.cons else None
+         outs, ms = post_m(shared_i, shared_m, rng); real, rm = outs[0], ms[0]; k = 1
+         if not sep:
+             filt, fm = outs[k], ms[k]; k += 1
+@@ -222,10 +225,12 @@ class RUData5(RUData3):
+             fake, km = outs[k], ms[k]
+         else:
+             (fake,), (km,) = post_m([fake], [km], rng)
++        sh0 = [real.shape[:2], filt.shape[:2], fake.shape[:2]]
+         real, rm = res_rand2(real, rm, rng); filt, fm = res_rand2(filt, fm, rng); fake, km = res_rand2(fake, km, rng)
+         real, filt, fake = sym_degrade([real, filt, fake], rng)
+         flip = bool(rng.random() < 0.5)
+         x = torch.stack([to_t2(real, self.size, flip, self.norm), to_t2(fake, self.size, flip, self.norm), to_t2(filt, self.size, flip, self.norm)])
++        xs = self._smoothed_views(i, rgb, lm, st_post, sh0, [real, filt, fake], [False, sep, fsep], flip) if self.cons else None
+ 
+         def mk(m):
+             if m is None:
+@@ -239,8 +244,32 @@ class RUData5(RUData3):
+         pres = torch.tensor(np.stack([z4, z4, filt_pres])); mpres = torch.tensor([1.0, 0.0, mp])
+         q = torch.tensor(np.stack([z4, z4, filt_q])); mq_t = torch.tensor([1.0, 0.0, mq])
+         zb = torch.tensor([[0.0, 0.0], [1.0, fb], [0.0, 0.0 if self.beauty in ("none", "fake") else 1.0]])
++        if self.cons:
++            return x, y, pres, mpres, q, mq_t, torch.stack([m0, m1, m2]), torch.tensor([v0_, v1, v2]), zb, xs
+         return x, y, pres, mpres, q, mq_t, torch.stack([m0, m1, m2]), torch.tensor([v0_, v1, v2]), zb
+ 
++    def _smoothed_views(self, i, rgb, lm, st_post, sh0, items, separate, flip, return_np=False):
++        """Addendum 46: x_s for each final item (real, filt, fake), pixel-aligned with it. Items that share the base geometry
++        (not separate) carry the base landmarks through the shared crop of post_m (offsets re-drawn from a copy of the rng
++        state, so the main stream is untouched) and the resize of res_rand2: face-local ops.op_smooth, frac U[0.03, 0.14],
++        mix U[0.3, 1.0]. Items without landmarks (vendor renders, observed FF++ frames, part edits): whole-crop bilateral at one
++        of the three scripted strengths. Own rng stream; the operator is applied with probability 1.0 to every item."""
++        rs = np.random.default_rng((self.seed * 9000011 + self.epoch * 900007 + i) % (2 ** 63))
++        r2 = np.random.default_rng(); r2.bit_generator.state = st_post; r2.integers(0, 2 ** 31 - 1)   # same draws as post_m
++        h0, w0 = rgb.shape[:2]; t_, b_, l_, r_ = (r2.uniform(0, 0.06, 4) * np.array([h0, h0, w0, w0])).astype(int)
++        out, forms = [], []
++        for im, sep_, (hb, wb) in zip(items, separate, sh0):
++            if sep_ or lm is None:
++                d = [(9, 50, 50), (15, 80, 80), (21, 100, 100)][int(rs.integers(0, 3))]; s_ = cv2.bilateralFilter(im, *d); forms.append(f"bil{d[0]}")
++            else:
++                l2 = np.array(lm, np.float32).copy(); l2[:, 0] = (l2[:, 0] - l_) * im.shape[1] / wb; l2[:, 1] = (l2[:, 1] - t_) * im.shape[0] / hb
++                s_ = op_smooth(im, l2, rs, frac=float(rs.uniform(0.03, 0.14)), mix=float(rs.uniform(0.3, 1.0)))[0]; forms.append("face-local")
++            out.append(s_)
++        if return_np:
++            return out, forms
++        real_s, filt_s, fake_s = out
++        return torch.stack([to_t2(real_s, self.size, flip, self.norm), to_t2(fake_s, self.size, flip, self.norm), to_t2(filt_s, self.size, flip, self.norm)])
++
+ 
+ class RUData7(RUData5):
+     """RU7 (PRE_DECLARED Addendum 8): RU5 plus Instagram AR beauty filters. FairFace TRAIN originals (in-the-wild stills)
+@@ -364,11 +393,16 @@ def main():
+     ap.add_argument("--ffpp-parts", action="store_true", help="Addendum 21: with --ffpp-only, add the part-level forgeries synthesised on FF++ train frames")
+     ap.add_argument("--ar", action="store_true", help="RU7: add FairFace train originals and FairBeauty AR-filter images (Addendum 8)")
+     ap.add_argument("--binary", action="store_true", help="control: same data, forged head only (no beautified / presence / evidence supervision)")
++    ap.add_argument("--smooth-consistency", type=float, default=0.0, help="Addendum 46 (SIC): class-symmetric smoothing view (--sym-smooth) plus "
++                    "LAMBDA * mean (z_f(x) - z_f(x_s))^2 over every item, x_s = skin-smoothed copy; factorised (clipe5z) or with --binary (clipe5bz, evidence head supervised); variant letter z")
+     a = ap.parse_args()
++    if a.smooth_consistency:
++        assert a.adv == "none" and not a.softmax and not a.only_smooth and not a.ar and not a.mil and not a.detach_heads and not a.ffpp_only, "Addendum 46 is defined on the full-data RU5 recipe"
++        a.sym_smooth = True
+     if a.only_smooth:
+         a.no_grade = True
+     torch.manual_seed(a.seed); np.random.seed(a.seed); CKPT.mkdir(parents=True, exist_ok=True)
+-    variant = {"none": "", "worst": "a", "random": "r", "worstk": "k"}[a.adv] + ("w" if a.adv_wide else "") + ("p" if a.adv_prior else "") + (f"s{a.adv_steps}" if a.adv_steps > 1 else "") + ("t" if a.adv_obj == "kl" else "") + ("m" if a.mil > 0 else "") + ("d" if a.detach_heads else "") + ("c" if a.canon else "") + ("f" if a.ffpp_only else "") + ("e" if a.ffpp_parts else "") + ("x" if a.softmax else "") + ("b" if a.binary else "") + ("g0" if a.no_grade else "") + ("v0" if a.no_vendor_fake else "") + {"both": "", "real": "p1", "none": "p0", "fake": "p3"}[a.beauty] + ("n" if a.no_smooth else "") + ("o" if a.only_smooth else "") + ("y" if a.sym_smooth else "") + ("E" if a.tune == "effort" else "") + ("i" if a.init == "effort" else "")
++    variant = {"none": "", "worst": "a", "random": "r", "worstk": "k"}[a.adv] + ("w" if a.adv_wide else "") + ("p" if a.adv_prior else "") + (f"s{a.adv_steps}" if a.adv_steps > 1 else "") + ("t" if a.adv_obj == "kl" else "") + ("m" if a.mil > 0 else "") + ("d" if a.detach_heads else "") + ("c" if a.canon else "") + ("f" if a.ffpp_only else "") + ("e" if a.ffpp_parts else "") + ("x" if a.softmax else "") + ("b" if a.binary else "") + ("g0" if a.no_grade else "") + ("v0" if a.no_vendor_fake else "") + {"both": "", "real": "p1", "none": "p0", "fake": "p3"}[a.beauty] + ("n" if a.no_smooth else "") + ("o" if a.only_smooth else "") + ("y" if a.sym_smooth and not a.smooth_consistency else "") + ("z" if a.smooth_consistency else "") + ("E" if a.tune == "effort" else "") + ("i" if a.init == "effort" else "")
+     tag = f"clipe{(8 if a.ar_fake > 0 else 7) if a.ar else 5}{variant}_s{a.seed}"
+     model = (RUCLIP(head=True) if a.softmax else RUCLIP5(head=True, detach=a.detach_heads, canon=a.canon or None, tune=a.tune, mil=a.mil)).cuda()
+     if a.init == "effort":
+@@ -379,7 +413,7 @@ def main():
+         if a.adv_prior:
+             AB.load_prior(HERE / ("fit_operator_prior_wide.npz" if a.adv_wide else "fit_operator_prior.npz"), "cuda")
+     rows = read_manifest(HERE / "manifest_train.tsv"); vrows = read_manifest(HERE / "manifest_val.tsv")
+-    ds = (RUData7 if a.ar else RUData5)(rows, 224, a.seed, head_res=model.grid, norm="clip", grade=not a.no_grade, vendor_fake=not a.no_vendor_fake, **({"ffpp_only": True} if a.ffpp_only else {}), **({"ffpp_parts": True} if a.ffpp_parts else {}), **({"beauty": a.beauty} if a.beauty != "both" else {}), **({"mil": True} if a.mil > 0 else {}), **({"no_smooth": True} if a.no_smooth else {}), **({"only_smooth": True} if a.only_smooth else {}), **({"sym_smooth": True} if a.sym_smooth else {}), **({"p_arfake": a.ar_fake} if a.ar else {}))
++    ds = (RUData7 if a.ar else RUData5)(rows, 224, a.seed, head_res=model.grid, norm="clip", grade=not a.no_grade, vendor_fake=not a.no_vendor_fake, **({"ffpp_only": True} if a.ffpp_only else {}), **({"ffpp_parts": True} if a.ffpp_parts else {}), **({"beauty": a.beauty} if a.beauty != "both" else {}), **({"mil": True} if a.mil > 0 else {}), **({"no_smooth": True} if a.no_smooth else {}), **({"only_smooth": True} if a.only_smooth else {}), **({"sym_smooth": True} if a.sym_smooth else {}), **({"cons": True} if a.smooth_consistency else {}), **({"p_arfake": a.ar_fake} if a.ar else {}))
+     vf = [l.split("\t") for l in (UNI / "ffpp3_val.txt").read_text(encoding="utf-8").splitlines()[1:] if l.strip()]
+     dl_vf = DataLoader(ValClip([dict(path=remap(r[0]), box=None, cls=int(r[1])) for r in vf]), batch_size=64, num_workers=4)
+     dl_vv = DataLoader(ValClip(vrows), batch_size=64, num_workers=4)
+@@ -394,6 +428,17 @@ def main():
+ 
+     def loss_fn(out, y, pres, mpres, q, mq, m, mm, zb):
+         lo, pr, qq = out[:3]
++        if a.smooth_consistency:   # Addendum 46: out covers [x; x_s]; forged BCE on x, evidence map on both (x_s target = x footprint), consistency of z_f
++            n = y.shape[0]; zf = out[4][:, 0].float(); lk = ((zf[:n] - zf[n:]) ** 2).mean()
++            lm = mask_loss(out[3], torch.cat([m, m]), torch.cat([mm, mm]))
++            if a.binary:   # clipe5bz: forged BCE only (plus evidence map and consistency)
++                lc = F.binary_cross_entropy_with_logits(zf[:n], zb[:, 0])
++                return lc + a.wm * lm + a.smooth_consistency * lk, (float(lc.detach()), float(lk.detach()), 0.0, float(lm.detach()))
++            # clipe5z: every clipe5 term on x (forged + beautified BCE, presence, quantities), evidence on [x; x_s], consistency on the forged logit only
++            l = F.binary_cross_entropy_with_logits(out[4][:n], zb, reduction="none").sum(1).mean()
++            lp = (F.binary_cross_entropy_with_logits(pr[:n].float(), pres, reduction="none").mean(1) * mpres).sum() / mpres.sum().clamp(min=1)
++            lq = ((qq[:n].float() - q).abs().mean(1) * mq).sum() / mq.sum().clamp(min=1)
++            return l + lp + a.wq * lq + a.wm * lm + a.smooth_consistency * lk, (float(l.detach()), float(lk.detach()), float(lq.detach()), float(lm.detach()))
+         if a.binary:   # control: one forged / not-forged logit, nothing else is supervised
+             return F.binary_cross_entropy_with_logits(out[4][:, 0], zb[:, 0]), (0.0, 0.0, 0.0, 0.0)
+         l = F.cross_entropy(lo.float(), y) if a.softmax else F.binary_cross_entropy_with_logits(out[4], zb, reduction="none").sum(1).mean()
+@@ -418,7 +463,9 @@ def main():
+         for batch in dl:
+             for g in opt.param_groups:
+                 g["lr"] = lr_at(step)
+-            x = batch[0].flatten(0, 1).cuda(non_blocking=True); y, pres, mpres, q, mq, m, mm, zb = [t.flatten(0, 1).cuda() for t in batch[1:]]
++            x = batch[0].flatten(0, 1).cuda(non_blocking=True); y, pres, mpres, q, mq, m, mm, zb = [t.flatten(0, 1).cuda() for t in batch[1:9]]
++            if a.smooth_consistency:
++                x = torch.cat([x, batch[9].flatten(0, 1).cuda(non_blocking=True)])
+             with torch.autocast("cuda", dtype=torch.bfloat16):
+                 out = model(x); loss, parts = loss_fn(out, y, pres, mpres, q, mq, m, mm, zb)
+             if a.adv != "none":   # beautified views of the genuine and forged items: forged label unchanged, beautified = 1
+@@ -441,17 +488,19 @@ def main():
+             opt.zero_grad(set_to_none=True); loss.backward(); torch.nn.utils.clip_grad_norm_(model.trainable(), 1.0); opt.step()
+             acc += np.array([float(loss.detach())] + list(parts)); n += 1; step += 1
+             if step % 200 == 0:
+-                print(f"  step {step}/{total} loss {acc[0] / n:.4f} (cls {acc[1] / n:.3f} pres {acc[2] / n:.3f} q {acc[3] / n:.3f} mask {acc[4] / n:.3f}) {(time.time() - t0) / n:.3f}s/it", flush=True)
++                print(f"  step {step}/{total} loss {acc[0] / n:.4f} (cls {acc[1] / n:.3f} {'cons' if a.smooth_consistency else 'pres'} {acc[2] / n:.3f} q {acc[3] / n:.3f} mask {acc[4] / n:.3f}) {(time.time() - t0) / n:.3f}s/it", flush=True)
++            if a.max_steps and a.smooth_consistency:   # smoke test: per-step terms
++                print(f"  smoke step {step} loss {float(loss.detach()):.4f} cls {parts[0]:.4f} cons {parts[1]:.5f} mask {parts[3]:.4f} max_mem {torch.cuda.max_memory_allocated() / 2 ** 30:.1f} GiB", flush=True)
+             if a.max_steps and step >= a.max_steps:
+                 print(f"smoke test ok: {step} steps, {(time.time() - t0) / n:.3f}s/it", flush=True); return
+         P, S, T = evaluate(dl_vf); mk = np.isin(T, [0, 1]); f1 = f1_score(T, P, average="macro"); auc = roc_auc_score((T[mk] == 1).astype(int), S[mk])
+         Pv, _, Tv = evaluate(dl_vv); orig_real = float((Pv[Tv == 0] == 0).mean() * 100); filt_rec = float((Pv[Tv == 2] == 2).mean() * 100)
+-        log.append(dict(epoch=ep, loss=acc[0] / n, ffpp_val_f1=f1, ffpp_val_auc=auc, vendor_val_orig_real=orig_real, vendor_val_filter_recall=filt_rec, minutes=(time.time() - t0) / 60))
++        log.append(dict(epoch=ep, loss=acc[0] / n, **({"l_cons": acc[2] / n} if a.smooth_consistency else {}), ffpp_val_f1=f1, ffpp_val_auc=auc, vendor_val_orig_real=orig_real, vendor_val_filter_recall=filt_rec, minutes=(time.time() - t0) / 60))
+         print(f"[{tag}][{ep:02d}/{a.epochs}] loss {acc[0] / n:.4f} ffppF1 {f1:.4f} AUC {auc:.4f} orig->real {orig_real:.1f}% vendor filter recall {filt_rec:.1f}% ({(time.time() - t0) / 60:.1f} min)", flush=True)
+         torch.save(model.state_dict_trainable(), CKPT / f"ru_{tag}_e{ep:02d}.pth")
+         with open(HERE / f"train_ru_{tag}.csv", "w", newline="", encoding="utf-8") as f:
+             w = csv.DictWriter(f, fieldnames=list(log[0])); w.writeheader(); w.writerows(log)
+-    (HERE / f"meta_ru_{tag}.json").write_text(json.dumps({"arm": "ru7" if a.ar else "ru5", "factorised": not a.softmax, "binary": a.binary, "mil": a.mil, "beauty": a.beauty, "no_smooth": a.no_smooth, "only_smooth": a.only_smooth, "sym_smooth": a.sym_smooth, "tune": a.tune, "grade": not a.no_grade, "vendor_fake": not a.no_vendor_fake,
++    (HERE / f"meta_ru_{tag}.json").write_text(json.dumps({"arm": "ru7" if a.ar else "ru5", "factorised": not a.softmax, "binary": a.binary, "mil": a.mil, "beauty": a.beauty, "no_smooth": a.no_smooth, "only_smooth": a.only_smooth, "sym_smooth": a.sym_smooth, "smooth_consistency": a.smooth_consistency, "tune": a.tune, "grade": not a.no_grade, "vendor_fake": not a.no_vendor_fake,
+                                                          "epochs": a.epochs, "seed": a.seed, "trainable_M": ntr / 1e6}, indent=1))
+     print(f"[{tag}] DONE", flush=True)
+ 

@@ -1,0 +1,30 @@
+\begin{tabular}{@{}l l c c c l@{}}
+\toprule
+Source & quantity & estimate & video CI & identity CI & change \\
+\midrule
+Celeb-DF-B & caddm: d\_miss\_beauty\_only & -2.87 & [-5.770, -0.023] & [-5.924, +0.005] & below $\rightarrow$ contains \\
+Celeb-DF-B & AUC\_b gend - fadapter & -0.0208 & [-0.045, +0.001] & [-0.041, -0.001] & contains $\rightarrow$ below \\
+Celeb-DF-v2 + filters (crop) & srm: d\_miss & +1.51 & [+0.064, +3.269] & [-0.523, +3.848] & above $\rightarrow$ contains \\
+Celeb-DF-v2 + filters (crop) & FF++-only three-way: d\_miss & +3.24 & [+0.403, +6.177] & [-0.193, +6.264] & above $\rightarrow$ contains \\
+Celeb-DF-v2 + filters (crop) & AUC\_f \ours{} - gend & +0.0316 & [+0.003, +0.060] & [-0.001, +0.063] & above $\rightarrow$ contains \\
+Celeb-DF-v2 + filters (full frame) & effnb4: d\_miss & +2.47 & [+0.118, +4.921] & [-0.120, +5.433] & above $\rightarrow$ contains \\
+Celeb-DF-v2 + filters (full frame) & AUC\_f binary - gend & +0.0273 & [+0.003, +0.051] & [-0.002, +0.054] & above $\rightarrow$ contains \\
+Celeb-DF-v2 + filters (full frame) & AUC\_f variant - gend & +0.0249 & [+0.003, +0.046] & [-0.001, +0.049] & above $\rightarrow$ contains \\
+Celeb-DF-v2 + filters (full frame) & AUC\_f FF++-only three-way - dfdhr & +0.0274 & [+0.004, +0.052] & [-0.002, +0.057] & above $\rightarrow$ contains \\
+DFD + filters (crop) & AUC\_f \ours{} - fadapter & +0.0197 & [+0.000, +0.042] & [-0.004, +0.041] & above $\rightarrow$ contains \\
+DFD + filters (crop) & AUC\_f FF++-only three-way - fadapter & +0.0177 & [+0.000, +0.037] & [-0.002, +0.036] & above $\rightarrow$ contains \\
+DFD + filters (full frame) & xception: d\_miss & +1.96 & [-0.688, +5.277] & [+0.190, +4.295] & contains $\rightarrow$ above \\
+DFD + filters (full frame) & AUC\_f variant s2 - gend & +0.0145 & [-0.001, +0.030] & [+0.000, +0.028] & contains $\rightarrow$ above \\
+DF40 & \ours{} - gend: ff/FS & -0.0149 & [-0.023, -0.007] & [-0.030, +0.001] & below $\rightarrow$ contains \\
+DF40 & \ours{} s2 - effort: ff/FS & +0.0154 & [+0.006, +0.025] & [-0.006, +0.036] & above $\rightarrow$ contains \\
+DF40 & \ours{} s2 - effort: ff/FR & -0.0280 & [-0.045, -0.010] & [-0.070, +0.011] & below $\rightarrow$ contains \\
+DF40 & \ours{} s2 - fadapter: ff/FS & +0.0117 & [+0.003, +0.021] & [-0.005, +0.029] & above $\rightarrow$ contains \\
+DF40 & binary - effort: ff/FR & +0.0343 & [+0.017, +0.051] & [-0.005, +0.076] & above $\rightarrow$ contains \\
+DF40 & variant s2 - effort: ff/FS & +0.0137 & [+0.004, +0.024] & [-0.007, +0.035] & above $\rightarrow$ contains \\
+DF40 & variant s2 - fadapter: ff/FS & +0.0099 & [+0.002, +0.019] & [-0.005, +0.027] & above $\rightarrow$ contains \\
+DF40 & variant s2 - gend: ff/FS & -0.0086 & [-0.016, -0.001] & [-0.023, +0.005] & below $\rightarrow$ contains \\
+DF40 & binary s2 - effort: ff/FS & +0.0172 & [+0.009, +0.027] & [-0.001, +0.035] & above $\rightarrow$ contains \\
+DF40 & binary s2 - fadapter: ff/FS & +0.0135 & [+0.005, +0.022] & [-0.001, +0.029] & above $\rightarrow$ contains \\
+DF40 & binary s2 - fadapter: ff/FR & +0.0281 & [+0.014, +0.041] & [-0.006, +0.064] & above $\rightarrow$ contains \\
+\bottomrule
+\end{tabular}

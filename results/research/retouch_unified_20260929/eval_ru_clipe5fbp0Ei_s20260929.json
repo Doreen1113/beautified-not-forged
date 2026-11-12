@@ -1,0 +1,234 @@
+{
+ "ali": {
+  "n_orig": 2210,
+  "orig": {
+   "real": 58.55,
+   "fake": 2.67,
+   "filter": 38.78
+  },
+  "orig_presence_TN_per_op": {
+   "eye": 0.048,
+   "jaw": 0.958,
+   "white": 0.592,
+   "smooth": 0.963
+  },
+  "orig_all_absent": 0.017,
+  "by_group": {
+   "EyeEnlarging_30": {
+    "n": 2210,
+    "to_real": 59.77,
+    "to_fake": 2.62,
+    "to_filter": 37.6,
+    "balanced_acc": 49.41,
+    "paired_rank": 43.19,
+    "TP": 0.952
+   },
+   "EyeEnlarging_60": {
+    "n": 2209,
+    "to_real": 57.81,
+    "to_fake": 3.3,
+    "to_filter": 38.89,
+    "balanced_acc": 50.05,
+    "paired_rank": 46.88,
+    "TP": 0.95
+   },
+   "EyeEnlarging_90": {
+    "n": 2210,
+    "to_real": 53.62,
+    "to_fake": 7.51,
+    "to_filter": 38.87,
+    "balanced_acc": 50.04,
+    "paired_rank": 46.06,
+    "TP": 0.953
+   },
+   "FaceLifting_30": {
+    "n": 2210,
+    "to_real": 61.22,
+    "to_fake": 2.62,
+    "to_filter": 36.15,
+    "balanced_acc": 48.69,
+    "paired_rank": 33.82,
+    "TP": 0.043
+   },
+   "FaceLifting_60": {
+    "n": 2210,
+    "to_real": 61.09,
+    "to_fake": 2.71,
+    "to_filter": 36.2,
+    "balanced_acc": 48.71,
+    "paired_rank": 33.96,
+    "TP": 0.043
+   },
+   "FaceLifting_90": {
+    "n": 2210,
+    "to_real": 60.9,
+    "to_fake": 3.48,
+    "to_filter": 35.61,
+    "balanced_acc": 48.42,
+    "paired_rank": 33.94,
+    "TP": 0.045
+   },
+   "Whitening_30": {
+    "n": 2210,
+    "to_real": 60.81,
+    "to_fake": 2.67,
+    "to_filter": 36.52,
+    "balanced_acc": 48.87,
+    "paired_rank": 37.92,
+    "TP": 0.385
+   },
+   "Whitening_60": {
+    "n": 2210,
+    "to_real": 60.36,
+    "to_fake": 3.12,
+    "to_filter": 36.52,
+    "balanced_acc": 48.87,
+    "paired_rank": 39.8,
+    "TP": 0.401
+   },
+   "Whitening_90": {
+    "n": 2210,
+    "to_real": 59.1,
+    "to_fake": 4.43,
+    "to_filter": 36.47,
+    "balanced_acc": 48.85,
+    "paired_rank": 43.3,
+    "TP": 0.407
+   },
+   "Smoothing_30": {
+    "n": 2210,
+    "to_real": 57.87,
+    "to_fake": 10.32,
+    "to_filter": 31.81,
+    "balanced_acc": 46.51,
+    "paired_rank": 17.22,
+    "TP": 0.044
+   },
+   "Smoothing_60": {
+    "n": 2210,
+    "to_real": 47.96,
+    "to_fake": 29.64,
+    "to_filter": 22.4,
+    "balanced_acc": 41.81,
+    "paired_rank": 9.95,
+    "TP": 0.073
+   },
+   "Smoothing_90": {
+    "n": 2210,
+    "to_real": 37.38,
+    "to_fake": 45.52,
+    "to_filter": 17.1,
+    "balanced_acc": 39.16,
+    "paired_rank": 7.06,
+    "TP": 0.102
+   }
+  },
+  "quantities": {
+   "eye": {
+    "n": 6629,
+    "spearman": 0.094,
+    "mae": 0.4949,
+    "pred_mean": 0.451,
+    "meas_mean": 0.0257,
+    "crosstalk_abs_mean": 0.4794,
+    "orig_pred_mean": 0.4427
+   },
+   "jaw": {
+    "n": 6630,
+    "spearman": -0.022,
+    "mae": 0.7132,
+    "pred_mean": -0.6651,
+    "meas_mean": 0.0199,
+    "crosstalk_abs_mean": 0.417,
+    "orig_pred_mean": -0.6699
+   },
+   "white": {
+    "n": 6630,
+    "spearman": -0.05,
+    "mae": 0.5821,
+    "pred_mean": 0.1518,
+    "meas_mean": 0.5237,
+    "crosstalk_abs_mean": 0.5431,
+    "orig_pred_mean": 0.1917
+   },
+   "smooth": {
+    "n": 6630,
+    "spearman": -0.004,
+    "mae": 0.4545,
+    "pred_mean": -0.0563,
+    "meas_mean": 0.1768,
+    "crosstalk_abs_mean": 0.5422,
+    "orig_pred_mean": -0.1588
+   }
+  },
+  "pooled": {
+   "n": 26519,
+   "to_real": 56.49,
+   "to_fake": 9.83,
+   "to_filter": 33.68,
+   "balanced_acc": 47.45,
+   "paired_rank": 32.76
+  },
+  "eq4": {
+   "TP": {
+    "eye": 0.952,
+    "jaw": 0.044,
+    "white": 0.398,
+    "smooth": 0.073
+   },
+   "TN_same_image": {
+    "eye": 0.583,
+    "jaw": 0.022,
+    "white": 0.041,
+    "smooth": 0.011
+   },
+   "AC": {
+    "eye": 0.562,
+    "jaw": 0.002,
+    "white": 0.023,
+    "smooth": 0.0
+   },
+   "table7_TP": {
+    "eye": 0.519,
+    "jaw": 0.548,
+    "smooth": 0.861,
+    "white": 0.501
+   }
+  },
+  "bars": {
+   "R1_balanced>=75": false,
+   "R2_TP>=table7_on_3of4_and_origTN>=0.8": false,
+   "R3_to_fake<=5_pooled_and<=10_each": false,
+   "R4_spearman>=0.6_all": false
+  }
+ },
+ "ffpp": {
+  "indomain": {
+   "real": 16.26,
+   "fake": 70.66,
+   "filter": 71.2
+  },
+  "FA": 13.75,
+  "real_to_filter": 79.18,
+  "MISS": 3.03,
+  "heldout13": {
+   "filter": 69.0,
+   "fake": 13.98,
+   "paired_excess_pp": -10.18
+  },
+  "cdf": {
+   "auc": 0.8661,
+   "real_called_fake": 9.62
+  },
+  "dfd": {
+   "auc": 0.9386,
+   "real_called_fake": 5.51
+  },
+  "bars": {
+   "D1_cdf>=0.78": true,
+   "D1_dfd>=0.88": true,
+   "D2_indomain>=80_each": false,
+   "D2_heldout_excess>=30": false
+  }
+ }
+}

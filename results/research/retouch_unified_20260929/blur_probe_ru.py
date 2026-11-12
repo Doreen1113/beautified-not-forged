@@ -17,6 +17,7 @@ from PIL import Image
 HERE = Path(__file__).resolve().parent; sys.path.insert(0, str(HERE))
 from train_ru3 import RUNet3, to_t2  # noqa: E402
 from train_ru_clip import load_clip  # noqa: E402
+from main_model import MAIN_TAG, SUFFIX  # noqa: E402
 
 B = Path(r"C:\My_Project\AIGC"); CK = B / "checkpoints/research/retouch_unified_20260929"
 rows = [l.split("\t") for l in (B / "results/research/ffpp_unified_20260925/ffpp3_test.txt").read_text(encoding="utf-8").splitlines()[1:]]
@@ -33,7 +34,7 @@ conds = {"orig": ff, "down2": [down(a, 2) for a in ff], "blur1.5": [cv2.Gaussian
 
 
 def models():
-    m = load_clip("clipe4_s20260929", head=True); yield "Ours (clipe4)", m, 224, "clip"
+    m = load_clip(MAIN_TAG, head=True); yield "Ours (clipe4)", m, 224, "clip"
     del m; torch.cuda.empty_cache()
     m = RUNet3("effb4", head=True); m.load_state_dict(torch.load(CK / "ru_ru4e_effb4_s20260929.pth", map_location="cpu"))
     yield "Ours-lite (ru4e)", m, 380, "half"
@@ -50,4 +51,4 @@ for name, net, size, norm in models():
                 P.append(torch.softmax(net(x)[0].float(), 1).cpu())
         P = torch.cat(P).numpy(); r[k] = round(float((P.argmax(1) == 1).mean() * 100), 1)
     out[name] = r; print(name, r, flush=True)
-(HERE / "blur_probe_ru.json").write_text(json.dumps(out, indent=1))
+(HERE / f"blur_probe_ru{SUFFIX}.json").write_text(json.dumps(out, indent=1))

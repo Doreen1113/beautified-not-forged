@@ -1,0 +1,752 @@
+% ============================================================================
+%  Beautified Is Not Forged -- paper v8 (2026-10-22). Restructured as an analysis / evaluation paper
+%  (arXiv + IJCB 2027, IEEE two-column, 8 pages excluding references) following
+%  docs/RESEARCH_CRITIQUE_20261021b.md (Sec. 9-10) and the benchmark-paper template (five pillars, six-part
+%  introduction, bold Finding sentences). Headline numbers come from docs/capstone/MAIN_CLAIMS_20261022.md,
+%  which is generated from results/research/alipair_zeroshot_20260929/main_claim_A.py and
+%  results/research/celebdfb_v2_20260927/fair_cdfb.py. Every number in the text carries a % comment naming the
+%  result file it was read from. Changes against main_v7.tex, what moved to the supplement, and the numbers that
+%  could not be sourced (left as \todo{}) are listed in V8_CHANGES.md. main_v7.tex is untouched.
+%
+%  BIBLIOGRAPHY: refs_v8.bib (= refs_v6.bib + mirabet2025, ict2022, idreveal2021, yin2026). Supplement: supplement_v8.tex.
+%  2026-10-22 (cut to 8 body pages): Table "prior evaluations" moved to the supplement (S-tab:compare); identity subsection
+%  to one paragraph; Related Work halved; placeholder box replaced by figs/fig_twoaxis_v8 (make_fig_twoaxis_v8.py).
+%
+%  2026-10-22 (method figure): figs/fig_method_v8b (figs_tikz/fig_method_v8b.tex + make_fig_method_v8b.py) at the start of
+%  Sec. I, "System and training recipe" paragraph in Sec. IV; fig_bandenergy_v8b and fig_sic_curve_v8b moved to the supplement.
+%  TABLES reused from tables/: tab_sic.tex (Addendum 46 family, READOUT46.md). All other tables are written inline
+%  below with per-cell source comments. FIGURES (2026-10-22 redesign, FIGURES_V8B.md): figs/fig_teaser_v8b, fig_exposure_v8b,
+%  fig_bandenergy_v8b, fig_sic_curve_v8b, fig_twoaxis_v8b, each from make_fig_<name>_v8b.py reading the result files.
+% ============================================================================
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{fontspec}
+\setmainfont{texgyretermes}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{adjustbox}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{capt-of}
+\usepackage{xr-hyper}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\ours}{\textsc{Ours}}
+\newcommand{\oursB}{\textsc{Ours}, forgery head only}
+\newcommand{\oursF}{\textsc{Ours}, full model}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\newcommand{\cmark}{\checkmark}
+\newcommand{\xmark}{--}
+\externaldocument[S-]{supplement_v8}
+\graphicspath{{figs/}}
+\renewcommand{\dbltopfraction}{0.95}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\textfraction}{0.05}
+\raggedbottom
+
+\begin{document}
+
+\title{Beautified Is Not Forged: A Two-Direction Measurement of Face-Forgery Detectors under Skin Smoothing}
+
+\author{\IEEEauthorblockN{Anonymous submission}}
+
+\IEEEaftertitletext{\vspace{-0.6\baselineskip}\begin{center}
+\includegraphics[width=0.98\textwidth]{fig_teaser_v8b}
+\captionof{figure}{The two directions of the measurement. (a) Three genuine FFHQ photographs and their renders by a commercial
+retouching service (skin smoothing, strongest level). (b) Direction A, one row per detector: share of the 2,210 renders
+accused at the threshold that accuses 5\% of the untouched originals (dot, 95\% interval; dashed line: that 5\% floor); the grey
+number is the threshold-free reading, the share of pairs in which the render scores above its own original. NPR is n/a because
+its scores saturate on this source. (c) Direction B, same rows: rise of the miss rate on Celeb-DF-B deepfakes from the app
+presets alone, re-encoding subtracted (95\% video-cluster intervals). Families from top to bottom: face-forgery CNNs,
+generated-image detectors, CLIP-based detectors, ours (two seeds).}
+% figs/fig_teaser_v8b.pdf, made by make_fig_teaser_v8b.py from results/research/alipair_zeroshot_20260929/main_claim_A.json
+% (rows[*].fa_s90_at_5pct, fa_ci, paired_up) and results/research/celebdfb_v2_20260927/fair_cdfb.json ([*].d_miss_beauty_only,
+% ci.d_miss_beauty_only); image crops as fig_teaser_v7 (FIGURES_V8B.md).
+\label{fig:teaser}
+\end{center}\vspace{0.1\baselineskip}}
+\maketitle
+
+\begin{abstract}
+Published face-forgery detectors read skin smoothing as forgery evidence, and the error runs in both directions: a genuine
+face smoothed by a retouching service is accused, and a deepfake smoothed by a camera app is let through. We score seventeen
+published detectors, from Xception to the current CLIP-based detectors, on pixel-aligned retouching pairs and on
+app-beautified deepfake videos with one decision rule, and find that fifteen of them score the smoothed genuine face above
+its own original in 89--99\% of pairs
+% docs/capstone/MAIN_CLAIMS_20261022.md, Direction A table (main_claim_A.json)
+while the same detectors miss 3--22 points more of the beautified deepfakes than of the untreated ones once re-encoding is
+controlled for.
+% results/research/celebdfb_v2_20260927/FAIR_cdfb.md, "rise from beautification alone" column, detectors with CI above 0
+Controlled training arms with architecture, data and recipe fixed show that the class which receives smoothed views during
+training sets the sign of the error, that exposure to smoothing is both necessary and sufficient for it, and that the cue is
+face-local, edge-preserving skin flattening rather than blur. A threshold cannot repair it, because under smoothing the
+scores of genuine and forged faces coincide; a consistency loss that removes the accusation turns out to be a
+smoothing-conditional recalibration, and every detector, including the fixed ones, loses separability when both classes are
+smoothed. A three-way detector trained with beautified views on both classes is the only model low on both axes: it accuses
+9\% of the smoothed genuine faces
+% MAIN_CLAIMS_20261022.md Direction A, ours s1, FA at 5% FPR = 8.6
+and keeps the highest AUC on beautified deepfakes, 0.87,
+% FAIR_cdfb.md, RU-clipe5 AUC beautified 0.866
+while staying on par with the CLIP detectors on untreated forgeries. We release the sources, the scorer and the paired reader.
+\end{abstract}
+
+% ----------------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_method_v8b}
+\caption{Overview. (a) The measurement: beautified genuine and forged faces from three sources are scored by seventeen
+published detectors and ours, each thresholded at the score $\tau$ that accuses 5\% of the untreated genuine faces of the same
+source; Direction A counts smoothed genuine faces called forged, Direction B beautified forgeries missed. The cause is tested
+with four training arms that differ only in which class receives smoothed views (Sec.~\ref{sec:exposure}). (b) The companion
+detector of Sec.~\ref{sec:companion}: a frozen CLIP ViT-L/14 with rank-16 LoRA, a forged and a beautified logit on the CLS token
+(the decision reads only $f$), auxiliary operation scores and a $16\times16$ evidence map on the patch tokens (shown on a
+held-out part-level forgery). Each training step builds one genuine, one forged and one beautified item from the same genuine
+frame; half of the forged items are beautified as well, so both classes see beautification.}
+% figs/fig_method_v8b.pdf: figs_tikz/fig_method_v8b.tex, thumbnails and evidence map by make_fig_method_v8b.py (main model
+% clipe5_s20260929); counts and recipe checked against results/research/retouch_unified_20260929/manifest_train.tsv,
+% train_ru_clipe5_s20260929.log and train_ru5.py (FIGURES_V8B.md, Fig. 0).
+\label{fig:method}
+\end{figure*}
+A person takes a selfie, lets the camera app smooth the skin, and uploads it. The face is the same person with the same
+expression at the same moment; only the skin texture has changed. If that photograph reaches a forgery detector during
+content moderation, a remote identity check or fact-checking, it should be called genuine. If a deepfake of the same person
+passes through the same app, it should still be called forged. Beautification edits the pixels a detector inspects but
+changes neither who is shown nor what the person does, and skin smoothing, whitening, eye enlargement and face slimming are
+default options in camera apps and retouching services\todo{add a citable prevalence source for beautification before upload;
+none in the project files}. Fig.~\ref{fig:teaser} shows what happens today: every published detector we scored ranks the
+smoothed selfie as more forged than the untouched one.
+
+Three evaluations have looked at this. Libourel et al.~\cite{libourel2024} released Celeb-DF-B and report video-level AUC
+drops for three detectors under four app presets, without separating the two classes of error. Saeed et al.~\cite{saeed2025}
+apply six enhancement filters to deepfakes and measure how many escape six detectors; genuine faces are never enhanced, so
+the accusation direction is not measured. Concas et al.~\cite{concas2025} apply one smoothing filter to genuine and forged
+test images of two in-house CNNs and observe that the two detectors move in opposite directions, which they report but do
+not explain. Each study measures one direction, a handful of detectors, or no cause. In generated-image detection, Ricker et
+al.~\cite{ricker2026biasid} showed that training with JPEG on one class only flips the sign of the error, with two of the
+four exposure cells. The implicit assumption shared by robustness benchmarks~\cite{deeperforensics2020,moire2025,hendrycks2019}
+is that a benign edit degrades a detector symmetrically, so that AUC under the edit is the number to report. We show that for
+skin smoothing the degradation has a sign, that the sign is set in training, and that AUC hides it.
+
+We ask three questions. RQ1: across the detector families in use today, how often is a smoothed genuine face accused and
+how often does a smoothed forgery escape, under one rule? RQ2: where does the cue come from, which part of the edit carries
+it, and does it depend on what the detector was trained on? RQ3: can a decision rule or a training rule remove it without
+giving up detection of untreated forgeries?
+
+A measurement that can answer these questions needs five properties. Both directions must be read on the same detector with
+the same rule. Where the untouched original of a beautified face exists, the pair should be read without a threshold, because
+a detector near saturation hides the shift behind its operating point. Re-encoding must be controlled, since every app
+re-compresses. The cause must be established by intervention on training, with everything else fixed. Uncertainty must be
+reported at the unit that was sampled, pairs or videos rather than frames.
+
+We build such a measurement from six beautification sources, four of them never touched by a design decision, and score
+seventeen published detectors and a family of our own controlled arms with one rule. Our contributions are:
+\begin{itemize}
+\item A two-direction evaluation protocol and its results on seventeen detectors (Sec.~\ref{sec:protocol},
+Findings~1--2): on pixel-aligned commercial retouching pairs fifteen detectors score the smoothed genuine face above its
+own original in nearly every pair, and on app-beautified deepfake videos fourteen miss more forgeries once re-encoding is
+removed; smoothing the skin alone is enough.
+\item The cause by intervention (Findings~3--4): a complete $2\times2$ training-exposure design on face forgery, extending
+Ricker et al.~\cite{ricker2026biasid} with the both-classes cell, shows that the class receiving smoothed views sets the
+sign of the error and that smoothing exposure is necessary and sufficient; a band-energy analysis shows that the cue is
+face-local and edge-preserving rather than loss of texture.
+\item Two negative results that bound what a fix can do (Findings~5--6): no threshold rule separates smoothed genuine from
+smoothed forged faces for any of the detectors, and a training rule that removes the accusation is a recalibration, since
+every model, fixed or not, loses separability when both classes are smoothed.
+\item A companion three-way detector (Sec.~\ref{sec:companion}) that is low on both axes and on par with the CLIP detectors
+on untreated deepfakes, with its costs stated.
+\end{itemize}
+Identity as a reference channel is examined as a seventh, discussion-level finding because it is prior art.
+
+% ----------------------------------------------------------------------------
+\section{Measurement Protocol}
+\label{sec:protocol}
+\textbf{Classes.} A face is \emph{forged} if it shows a person, an expression, a motion or speech that was not captured:
+another identity in whole or in part, a reenactment, or a facial feature replaced by new content. It is \emph{beautified} if
+its colour, tone, skin texture or the shape of the person's own features were edited after capture while identity,
+expression and pose stay those of the capture. The label follows what changed, not the tool, and a beautified forgery is
+forged. Cases near the boundary are listed in the supplement (Table~\ref{S-tab:labels}); the boundary is stated, not
+measured.
+
+\textbf{One rule, both directions.} Every detector is scored by its own $P(\text{fake})$ with the threshold that accuses
+5\% of each source's untreated genuine faces. Under beautification we report the false-alarm rate FA on beautified genuine
+faces (Direction A, the accusation) and the miss rate MISS on beautified forgeries (Direction B, the escape); a forgery that a
+three-way model sends to its beautified class counts as a miss. Where the untouched original of each beautified face exists
+we also report the share of pairs in which the beautified face scores above its own original, which needs no threshold and
+is the quantity of Fig.~\ref{fig:teaser}. Intervals are 95\% percentile bootstraps over pairs or videos with the threshold
+re-estimated in every draw (1,000 draws), and differences between models use identical draws; a second bootstrap with
+identities as the unit changes none of the headline intervals (Table~\ref{S-tab:identity}).
+
+\textbf{Sources.} \emph{Commercial retouching}: 2,210 FFHQ photographs~\cite{ffhq} and their renders by one retouching
+service from RetouchingFFHQ~\cite{retouchingffhq}, pixel-aligned, four operations at three levels; the strongest skin
+smoothing (Smoothing-90) is the headline condition, and the other operations serve as controls that pass through the same
+service and encoder. No model was trained on this service, but it was read during the study, so it is an analysis set rather
+than a blind test. \emph{App-beautified deepfake videos}: Celeb-DF-B~\cite{libourel2024}, 232 genuine and 232 forged
+Celeb-DF-v2 videos per condition (as recorded, re-encoded, beautified by one of four Instagram presets), 32 frames each; the
+rise in misses under a preset is read minus the rise under re-encoding, so what remains is the beautification alone.
+\emph{Scripted smoothing}: 4,016 Celeb-DF-v2 test frames (1,348 genuine, 513 videos)
+% results/research/retouch_unified_20260929/FINDINGS.md, Addendum 38 header
+under seven forms applied to both classes: a whole-crop bilateral filter at three strengths, a $5\times5$ median, a 50\%
+Gaussian blend, and a bilateral filter confined to the landmark face hull at two strengths (\emph{face-local}, background
+untouched). \emph{Calibration renders}: FF++ validation genuine frames under the same forms, used only to fit the threshold
+rule of Finding~5. \emph{Untreated detection}: Celeb-DF-v2~\cite{celebdf}, DFD~\cite{dfd} and DF40~\cite{df40}. Counts,
+crops and preprocessing are in the supplement.
+
+\textbf{What is not a clean source.} Instagram AR filters rendered through OpenFilter~\cite{openfilter2022} (FairBeauty,
+B-LFW) were scored but are not used as evidence. The AR engine re-renders the face through its own capture path, and there
+is no no-filter pass through that path, so the filter cannot be separated from the pipeline: a model trained on such pairs
+calls 94.8\% of filtered images beautified with the face greyed out,
+% supplement_v7.tex Sec. S-excluded (AR beauty filters paragraph)
+and the FairFace originals themselves are called genuine by only 18.2\% of our best model.
+% FINDINGS.md 2026-10-22 16:40, Addendum 56 pipeline control (ar_pipeline_control, 599 pairs)
+Every detector, ours included, accuses 10--97\% of these renders (Table~\ref{S-tab:ar}); we report that as a limitation and
+make no claim on AR filters.
+% tables/tab_v6b_ar.tex: FairBeauty 10.7 (SPSL) .. 85.9 (DFD-HR); B-LFW 12.0 .. 96.6 (GenD); NPR B-LFW 0.0 saturated
+
+\textbf{Detectors.} Eleven face-forgery CNNs (Xception~\cite{xception}, EfficientNet-B4~\cite{efficientnet},
+F3Net~\cite{f3net}, SPSL~\cite{spsl}, UCF~\cite{ucf}, RECCE~\cite{recce}, CORE~\cite{core}, SRM~\cite{srm}, SBI~\cite{sbi},
+CADDM~\cite{caddm}, LAA-Net~\cite{laanet}), four CLIP ViT-L/14 detectors (Effort~\cite{effort}, Forensics
+Adapter~\cite{forensicsadapter}, GenD~\cite{gend2026}, DFD-HR~\cite{dfdhr2026}) and two generated-image detectors
+(UnivFD~\cite{univfd}, NPR~\cite{npr}), all with released weights, each on its own crop; released checkpoints reproduce
+their published Celeb-DF-v2 numbers within the margins listed in Table~\ref{S-tab:reproduce}. NPR saturates at 1.0 on the
+retouching source and is reported as such. Table~\ref{S-tab:compare} sets this protocol against the prior evaluations of
+Sec.~\ref{sec:intro} feature by feature.
+
+
+% ----------------------------------------------------------------------------
+\section{Findings}
+\label{sec:findings}
+
+\subsection{Direction A: the accusation}
+\label{sec:accuse}
+\begin{table}[t]
+\centering
+\caption{Direction A on 2,210 pixel-aligned retouching pairs. Above own: share of pairs in which the Smoothing-90 render
+scores above its own original (50 means no shift). FA: share of renders above the threshold that accuses 5\% of the
+originals. Right: the same FA for whitening, face slimming and eye enlarging at their strongest level. Brackets: 95\%
+bootstrap over pairs. NPR scores everything at 1.0. Ours: the three-way detector of Sec.~\ref{sec:companion}, two seeds.}
+\label{tab:dirA}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}l cc ccc@{}}
+\toprule
+ & \multicolumn{2}{c}{Smoothing-90} & \multicolumn{3}{c}{FA, other operations (level 90)} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-6}
+Detector & above own [CI] & FA [CI] & white & slim & eye \\
+\midrule
+% Columns 2-3: results/research/alipair_zeroshot_20260929/MAIN_CLAIM_A.md (main_claim_A.json).
+% Columns 4-6: docs/paper_v2/tables/tab_v6b_perop.tex (make_tables_v6b.py from published_ali.json).
+Xception & 95.2 [94.3, 96.1] & 51.6 [49.5, 53.7] & 5.7 & 3.7 & 4.6 \\
+EfficientNet-B4 & 93.7 [92.6, 94.7] & 36.3 [34.3, 38.4] & 5.1 & 4.0 & 4.7 \\
+F3Net & 97.8 [97.1, 98.3] & 50.6 [48.5, 52.6] & 5.4 & 4.2 & 4.4 \\
+SPSL & 97.3 [96.7, 98.0] & 51.2 [49.1, 53.3] & 5.2 & 4.9 & 4.9 \\
+UCF & 95.4 [94.5, 96.2] & 41.4 [39.4, 43.3] & 6.6 & 4.0 & 4.2 \\
+RECCE & 96.5 [95.7, 97.2] & 36.8 [34.8, 38.8] & 5.3 & 4.1 & 4.5 \\
+CORE & 96.6 [95.8, 97.3] & 54.8 [52.7, 56.8] & 5.7 & 4.4 & 4.8 \\
+SRM & 99.3 [98.9, 99.6] & 62.8 [60.8, 64.8] & 4.5 & 3.8 & 4.7 \\
+SBI & 96.2 [95.4, 97.0] & 37.3 [35.2, 39.2] & 5.4 & 6.2 & 5.5 \\
+CADDM & 60.9 [58.8, 62.9] & 6.3 [5.3, 7.4] & 4.7 & 6.0 & 5.9 \\
+LAA-Net & 89.2 [87.8, 90.5] & 17.2 [15.7, 18.9] & 5.2 & 4.8 & 4.8 \\
+UnivFD & 90.4 [89.1, 91.7] & 16.6 [15.0, 18.1] & 6.2 & 5.7 & 11.7 \\
+NPR & 31.8 [29.7, 33.6] & 0.0 [0.0, 0.0] & n/a & n/a & n/a \\
+Effort & 95.6 [94.8, 96.5] & 43.2 [41.1, 45.3] & 11.1 & 9.6 & 16.8 \\
+Forensics Adapter & 93.3 [92.3, 94.4] & 39.7 [37.8, 41.9] & 5.4 & 6.2 & 7.0 \\
+GenD & 98.5 [97.9, 99.0] & 68.7 [66.8, 70.7] & 8.1 & 6.4 & 7.5 \\
+DFD-HR & 99.0 [98.6, 99.5] & 64.9 [62.8, 66.8] & 7.7 & 8.0 & 9.6 \\
+\midrule
+\textbf{\ours{}}, seed 1 & \textbf{32.5} [30.5, 34.4] & \textbf{8.6} [7.4, 9.7] & 4.8 & 3.7 & 3.6 \\
+\ours{}, seed 2 & 41.3 [39.3, 43.3] & 12.5 [11.1, 13.8] & -- & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:dirA} reads each Smoothing-90 render against its own original. Fifteen of the seventeen published detectors
+score the render above the original in 89--99\% of pairs, and the median $P(\text{fake})$ moves from 0.21 to 0.99 for SBI
+and from 0.23 to 0.92 for GenD (Table~\ref{S-tab:retouch}):
+% MAIN_CLAIM_A.md above-own column; medians from tables/tab_v6b_retouch_main.tex
+a heavily smoothed genuine face is scored like a forgery whatever the threshold. The two exceptions are NPR, whose scores
+saturate, and CADDM, which reads a boundary rather than texture and shifts in 60.9\% of pairs. At the threshold that accuses
+5\% of the originals, the published detectors accuse 17--69\% of the renders (CADDM 6.3\%, NPR 0\%).
+% MAIN_CLAIMS_20261022.md Direction A, FA column (UnivFD 16.6 .. GenD 68.7)
+The operation is smoothing. Whitening, face slimming and eye enlarging at their strongest level stay within 3.7--8.1\% for
+thirteen of the sixteen detectors other than NPR
+% tables/tab_v6b_perop.tex; exceptions UnivFD (eye 11.7), Effort (9.6-16.8), DFD-HR (9.6)
+although they pass through the same service, encoder and resolution.
+
+\textbf{Skin-only smoothing.} A bilateral filter confined to the face hull, with the background untouched, is accused by all
+seventeen detectors (Table~\ref{S-tab:smooth38}): the four CLIP detectors call 88--99\% of genuine frames forged at the
+milder strength and 99.9--100\% at the stronger one, the eleven CNNs 64--100\% and 92--100\%, UnivFD 14 and 55\%.
+% FINDINGS.md Addendum 38 table (tab_v6b_smooth38.tex), face-local 0.06 / 0.12 columns
+At matched visible strength skin-only smoothing is accused more often than whole-crop smoothing. For the four CLIP detectors
+the forgery logit rises in at least 97.9\% of genuine frames at every strength, and the weakest face-local level already moves
+it by 1.0--1.9 times the detector's gap between its mean forged and mean genuine logit, the strongest by 1.9--3.0 gaps; a
+radial vignette alone moves three of the four the other way (Table~\ref{S-tab:dose}).
+% FINDINGS.md Addendum 39 (dose39.json): shares rising >= 97.9 %, face-local 0.03 1.04-1.93 gaps, 0.12 1.88-2.96 gaps
+
+\textbf{Finding 1.} \emph{Every published face-forgery detector, whatever its family or year, scores a skin-smoothed
+genuine face as more forged than the same face untouched; smoothing the skin alone is enough, and the other beautification
+operations do not produce the shift.} The effect is not a threshold artefact: it appears in the pair ranking before any
+threshold is set. It holds for detectors trained on FF++ and for UnivFD, which was not, so it is not a property of one
+training set. Future evaluations of benign processing should read the pair before the AUC.
+
+\subsection{Direction B: the escape}
+\label{sec:escape}
+\begin{table}[t]
+\centering
+\caption{Direction B on Celeb-DF-B. AUC on untreated frames and on frames beautified by the app presets (frame level), FA on
+beautified genuine frames, and the rise in the miss rate under beautification minus the rise under re-encoding alone, at the
+5\%-FPR threshold of untreated genuine frames. Brackets: 95\% bootstrap over videos. Bold: best per column among detectors
+that detect the untreated forgeries (NPR is at chance and not bolded).}
+\label{tab:dirB}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}l c c c c@{}}
+\toprule
+Detector & AUC untr. & AUC beautified [CI] & FA$_b$ & $\Delta$MISS beauty only [CI] \\
+\midrule
+% All cells: results/research/celebdfb_v2_20260927/FAIR_cdfb.md (fair_cdfb.py); ours = RU-clipe5 and RU-clipe5-s2 rows.
+Xception & 0.811 & 0.737 [0.702, 0.773] & 5.7 & +10.9 [7.4, 14.1] \\
+EfficientNet-B4 & 0.811 & 0.762 [0.729, 0.798] & 7.8 & +3.4 [0.9, 5.9] \\
+F3Net & 0.798 & 0.731 [0.697, 0.767] & 5.4 & +10.9 [7.4, 14.8] \\
+SPSL & 0.781 & 0.727 [0.690, 0.762] & 3.4 & +12.4 [9.3, 15.5] \\
+UCF & 0.841 & 0.777 [0.746, 0.808] & 5.7 & +11.3 [7.6, 15.4] \\
+RECCE & 0.785 & 0.723 [0.687, 0.758] & 4.1 & +13.8 [10.7, 17.1] \\
+CORE & 0.821 & 0.752 [0.718, 0.786] & 4.0 & +13.5 [10.2, 16.6] \\
+SRM & 0.789 & 0.733 [0.698, 0.768] & 2.8 & +15.3 [12.1, 18.7] \\
+SBI & 0.875 & 0.752 [0.718, 0.785] & 1.8 & +21.8 [17.3, 26.1] \\
+CADDM & 0.886 & 0.762 [0.730, 0.790] & 13.8 & $-$2.9 [$-$5.8, 0.1] \\
+LAA-Net & 0.889 & 0.698 [0.660, 0.737] & 6.0 & +14.7 [10.9, 18.7] \\
+UnivFD & 0.653 & 0.624 [0.579, 0.663] & 7.6 & $-$7.2 [$-$10.2, $-$4.9] \\
+NPR & 0.503 & 0.498 [0.453, 0.543] & 3.4 & $-$0.7 [$-$2.2, 0.4] \\
+Effort & 0.909 & 0.807 [0.778, 0.836] & 5.4 & +11.0 [7.7, 14.5] \\
+Forensics Adapter & 0.909 & 0.828 [0.801, 0.856] & 7.9 & +15.2 [11.9, 18.6] \\
+GenD & 0.924 & 0.807 [0.776, 0.836] & 9.9 & +12.0 [8.2, 15.6] \\
+DFD-HR & 0.938 & 0.838 [0.807, 0.864] & 14.6 & +3.6 [0.6, 6.8] \\
+\midrule
+\textbf{\ours{}}, seed 1 & 0.938 & \textbf{0.866} [0.841, 0.890] & 9.5 & +6.7 [4.0, 9.5] \\
+\ours{}, seed 2 & \textbf{0.941} & 0.883 [0.861, 0.902] & 6.7 & +8.3 [5.6, 11.0] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:dirB} reads the same detectors on deepfake videos beautified by a real app. Here the accusation is small:
+beautified genuine frames are accused at 2--15\%, close to the 5\% floor for most detectors.
+% FAIR_cdfb.md FA beautified genuine column (SBI 1.8 .. DFD-HR 14.6)
+The escape is not. Once the rise under re-encoding is subtracted, fourteen of the seventeen detectors miss 3--22 points
+more of the beautified forgeries, with the interval above zero;
+% FAIR_cdfb.md last column: 14 detectors with CI > 0 (EfficientNet-B4 +3.4 .. SBI +21.8); UnivFD, NPR, CADDM not
+the largest rises belong to SBI, SRM and Forensics Adapter, and every detector that detects the untreated forgeries loses
+0.04--0.17 of frame AUC beyond re-encoding (LAA-Net 0.870 to 0.698, SBI 0.861 to 0.752).
+% tables/tab_v6b_twosided_main.tex AUC_c - AUC_b column (0.035 SRM .. 0.172 LAA-Net for detectors other than UnivFD/NPR)
+Libourel et al.~\cite{libourel2024} reported the AUC drop for three of these detectors; the one-rule reading adds that the
+drop is almost entirely misses.
+
+\textbf{Finding 2.} \emph{The same detectors that accuse a smoothed genuine photograph let an app-beautified deepfake video
+through: beautification moves forgeries toward the genuine side by 3--22 points for fourteen detectors, and the loss is paid
+in misses rather than false alarms.} The two directions appear on different sources because the operating point differs: a
+retouching render lands above the threshold set on sharp originals, while an app preset applied to a forgery that was already
+scored near the threshold pushes it below. Both are the same shift read from two sides, which Finding~5 makes explicit.
+
+\subsection{The cause: training exposure}
+\label{sec:exposure}
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_exposure_v8b}
+\caption{The class that receives smoothed training views sets the direction of the error. Four FF++-only arms with the
+same architecture, data and recipe, first seed. FA: Smoothing-90 renders accused at the threshold that accuses 5\% of their
+originals. $\Delta$miss: change of the miss rate on Celeb-DF-v2 forgeries under strong whole-crop smoothing at the same rule;
+a negative change (red) means the arm accuses every smoothed face, a positive one (amber) that smoothed forgeries pass. P1
+opens an evasion route; P3 accuses.}
+% figs/fig_exposure_v8b.pdf (make_fig_exposure_v8b.py) reads FA = [arm].smoothing90_at_5fpr[0] and dMISS = [arm].miss_rise[2][0]
+% (bil21) from results/research/retouch_unified_20260929/p3_readout40.json (same cells as tables/tab_v6_p3.tex and
+% tab_v6b_tradeoff_main.tex; cross-checked against smooth_evasion2.json in the script).
+\label{fig:exposure}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\caption{The $2\times2$ exposure design. FF++-only CLIP ViT-L/14 LoRA arms, forgery head only, identical except for which
+class receives beautified training views (face-local skin smoothing among other edits). Smoothing-90: renders accused at the
+5\%-FPR threshold of their originals [95\% over originals]. $\Delta$MISS: change of the miss rate on strongly
+whole-crop-smoothed Celeb-DF-v2 forgeries. CDF-B: beautification-only miss rise, three seeds. CDFv2: untreated video AUC. P3
+has one seed.}
+\label{tab:exposure}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{adjustbox}{max width=\columnwidth}
+\begin{tabular}{@{}l l c c c c@{}}
+\toprule
+Arm & smoothed views to & Smoothing-90 [CI] & $\Delta$MISS & CDF-B $\Delta$MISS, 3 seeds & CDFv2 \\
+\midrule
+% Smoothing-90 and dMISS: tables/tab_v6_p3.tex and tab_v6b_tradeoff_main.tex (FINDINGS.md Addendum 40 table).
+% Celeb-DF-B three seeds: tables/tab_exposure.tex (FINDINGS.md 2026-10-11 third seed entry). CDFv2 video: tab_v6b_tradeoff_main.
+P0 & neither class & 54.2 [50.5, 58.3] & $-$16.0 & +17.0 / +14.2 / +10.8 & 0.938 \\
+P1 & genuine only & 3.7 [2.9, 4.4] & +51.2 & +21.5 / +21.8 / +20.4 & 0.900 \\
+P2 & both classes & 11.7 [9.7, 14.3] & $-$26.5 & +9.8 / +10.3 / +12.8 & 0.917 \\
+P3 & forged only & 63.8 [59.0, 67.8] & $-$38.5 & -- & 0.943 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+To find where the cue comes from we hold architecture, data and recipe fixed and vary only which class receives beautified
+views during training (Fig.~\ref{fig:exposure}, Table~\ref{tab:exposure}). The arm without beautified views, P0, already
+accuses 54\% of the Smoothing-90 renders, so an FF++-trained detector reads smoothing as forgery evidence out of the box.
+Giving the views to genuine faces only (P1) removes the accusation and opens an evasion route: on Celeb-DF-B its
+beautification-only miss rise exceeds P0's by 4.5--9.5 points in every one of three seeds (Holm-adjusted $p\le0.01$),
+% supplement_v7.tex Sec. S-exposure: P1-P0 +4.5 / +7.5 / +9.5, adjusted p = 0.009
+and on frames it has never seen it misses 96--100\% of bilaterally smoothed forgeries when smoothing is the only view
+(a miss rise of 56--63 points on three seeds).
+% FINDINGS.md 2026-10-13 Addendum 33 closed: P1 smoothing only, +56 / +59 / +59 (light), +56 / +60 / +63 (strong)
+Giving the views to forged faces only (P3) mirrors P1: it accuses 63.8\% of the renders, 98--100\% of smoothed genuine
+frames, and catches smoothed forgeries more often than untreated ones.
+% FINDINGS.md Addendum 40: P3 63.8 [59.1, 67.8]; face-local 98.1 / 100; miss change -25.1 (CDFv2 filters)
+Views on both classes (P2) sit in between, and on Celeb-DF-B the P2 minus P0 difference changes sign across seeds, so
+symmetric exposure is on average better than none but not reliably so (Table~\ref{S-tab:exposure}).
+
+Two further arms show that smoothing is the operative view. Removing smoothing from the both-class views while keeping colour
+grades, filters, whitening and geometric edits brings the accusation back to 55--67\%
+% FINDINGS.md Addendum 31: P2 without smoothing 55.3 / 67.2 %
+(exposure to smoothing is necessary), and smoothing as the only view on both classes lowers it to 2--5\%
+% FINDINGS.md Addendum 32: smoothing-only views both classes 2.3 / 5.3 %
+(it is sufficient). The arms do not make the classes more separable; P3's untreated Celeb-DF-v2 video AUC is 0.943 against
+0.938 for P0, and exposure moves errors between misses and false alarms.
+% tables/tab_v6b_tradeoff_main.tex CDFv2 video column
+
+\textbf{Finding 3.} \emph{The class that receives smoothed views during training sets the sign of the error, and exposure
+to smoothing is both necessary and sufficient to set it: genuine-only views teach ``smoothed means genuine'' and open an
+evasion route, forged-only views teach the opposite, and no other beautified view substitutes.} This is shortcut
+learning~\cite{geirhos2020} under class-dependent augmentation~\cite{balestriero2022}, which Ricker et
+al.~\cite{ricker2026biasid} observed for JPEG with two cells; here all four cells are measured on face forgery, three of
+them with replication. The practical reading is a warning: a ``filter-robust genuine class'', the recipe a defender would
+reach for first, is the P1 cell.
+
+\subsection{The cue: face-local, edge-preserving flattening}
+\label{sec:signature}
+% fig_bandenergy_v8b moved to the supplement (Fig. S-fig:bandenergy) on 2026-10-22 to make room for fig_method_v8b
+
+If the detectors reacted to lost texture, the forms that remove more high-frequency energy would be accused more. They are
+not (supplement, Fig.~\ref{S-fig:bandenergy}): across seven scripted forms and seventeen detectors the false-alarm rate does not follow the
+energy removed above 0.25 cycles per pixel (pooled Spearman $+0.06$);
+% FINDINGS.md 2026-10-18 band-energy entry (bandenergy_20261018/BANDENERGY.md): pooled Spearman +0.06
+the Gaussian blend removes the most energy and is accused least, the face-local filter removes less and is accused by
+nearly every detector. Three contrasts show what the detectors do follow. With the same kernel, confining the smoothing to
+the face raises the accusation by 28 points (16 of 17 detectors, $p=5\times10^{-4}$); at equal energy loss an
+edge-preserving filter is accused 67 points more than a uniform blur (16 of 17); and only the band 0.02--0.12 cycles per
+pixel, the skin relief that a bilateral filter flattens and a Gaussian blend leaves, correlates with the accusation
+($\rho=+0.45$).
+% BANDENERGY.md via FINDINGS.md 2026-10-18: (i) +28 points 16/17 p = 5e-4; (ii) +67 points 16/17; (iii) rho +0.45
+
+Why would a detector trained on FF++ carry this cue? Inside the face, the Deepfakes and NeuralTextures forgeries of FF++
+have less fine texture than their own source frames (high-band energy ratio $-1.09$ and $-0.65$, lower in 90--95\% of
+videos), while FaceSwap is sharper ($+0.80$) and Face2Face unchanged.
+% bandenergy_20261018/FFPP_BAND.md: Deepfakes -1.0927 (89.5 % lower), NeuralTextures -0.6501 (94.5 %), FaceSwap +0.8034, Face2Face 0.0006
+This is a correlation and a plausible origin rather than a demonstration: the low band that best predicts the accusation is not
+reduced in the training forgeries (at most $-0.03$, against $-0.06$ to $-0.18$ under our smoothing forms),
+% FFPP_BAND.md low band column: DF -0.034, NT -0.033 vs real_fl06 -0.057, real_bil15 -0.183
+and UnivFD, which never saw FF++, accuses skin-only smoothing too. An arm trained on Face2Face and FaceSwap alone, which
+would test the origin directly, is running and is not reported here.
+% RESEARCH_CRITIQUE_20261021b.md Sec. 11 item 3 (Addendum 49, F2F+FS-only arm, result pending)
+
+\textbf{Finding 4.} \emph{The shared cue is flattened skin with kept edges inside the face, which beautification produces
+and which forgery boundaries and generators leave behind; it is not blur, and texture loss as such does not predict the
+accusation.} This is why Gaussian blur or JPEG as a training view does not remove the accusation (Finding~6) and why any
+training-time fix has to use the smoothing signature itself.
+
+\subsection{A threshold cannot separate}
+\label{sec:threshold}
+\begin{table}[t]
+\centering
+\caption{A smoothing-conditional threshold. Fixed: fake iff $s>t_0$ with $t_0$ at 5\% FPR on untreated genuine frames.
+Conditional: $t_0+\Delta(b)$ with $\Delta$ learnt on FF++ validation genuine renders only, $b$ the smoothing-presence score of
+our three-way model. FA on face-local smoothed genuine frames (strength 0.12) and MISS on the same smoothing applied to
+forgeries, fixed $\to$ conditional. AUC: both classes smoothed, same form. Recal.\ MISS: miss rate when the threshold is
+re-set at 5\% FPR on the smoothed genuine frames themselves (an oracle). Celeb-DF-v2 frames with landmarks.}
+\label{tab:bct}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}l cc cc c c@{}}
+\toprule
+ & \multicolumn{2}{c}{FA (\%)} & \multicolumn{2}{c}{MISS (\%)} & AUC & Recal. \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Detector & fixed & cond. & fixed & cond. & both sm. & MISS \\
+\midrule
+% FA / MISS fixed -> BCT: results/research/retouch_unified_20260929/BCT.md (fl12 columns).
+% AUC both smoothed and recalibrated miss: RECAL_MISS.md, fl12 column.
+Xception & 99.3 & 92.4 & 0.2 & 4.2 & 0.580 & 90.7 \\
+SBI & 100.0 & 0.0 & 0.0 & 100.0 & 0.577 & 93.4 \\
+CADDM & 99.9 & 0.0 & 0.0 & 100.0 & 0.572 & 91.7 \\
+Effort & 99.9 & 0.0 & 0.0 & 100.0 & 0.658 & 84.0 \\
+Forensics Adapter & 100.0 & 0.0 & 0.0 & 100.0 & 0.649 & 87.6 \\
+GenD & 100.0 & 11.7 & 0.0 & 78.3 & 0.632 & 90.8 \\
+DFD-HR & 100.0 & 0.6 & 0.0 & 99.3 & 0.601 & 93.5 \\
+\ours{}, forgery head only & 84.5 & 0.1 & 2.5 & 100.0 & 0.755 & 73.7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A fixed threshold accuses smoothed genuine faces (Finding~1). The natural repair is to raise the threshold when smoothing is
+detected. We fit such a rule with the smoothing-presence output of our three-way model as the covariate and the shift learnt
+on FF++ validation genuine renders only, never on test data (Table~\ref{tab:bct}; every detector in Table~\ref{S-tab:bct}). It works on the genuine side: the
+accusation of strongly smoothed genuine faces falls to 0--1\% for Effort, Forensics Adapter, DFD-HR, CADDM and our forgery
+head.
+% BCT.md fl12 FA: effort 99.9 -> 0.0, fadapter 100 -> 0.0, dfdhr 100 -> 0.6, caddm 99.9 -> 0.0, clipe5b 84.5 -> 0.1
+It fails on the forged side at the same moment: 78--100\% of the smoothed forgeries now pass.
+% BCT.md fl12 miss: gend 0 -> 78.3, dfdhr 0 -> 99.3, effort / fadapter / caddm / sbi / ours 0 -> 100
+The reason is in the sixth column: with both classes smoothed, the AUC between smoothed genuine and smoothed forged faces is
+0.60--0.66 for the four CLIP detectors and 0.57--0.58 for SBI and CADDM, so the two score distributions overlap and any
+threshold that clears one clears the other.
+% RECAL_MISS.md fl12: effort 0.658, fadapter 0.649, gend 0.632, dfdhr 0.601, sbi 0.577, caddm 0.572
+Even an oracle that re-sets the threshold on the smoothed genuine frames themselves leaves every published detector
+missing 67--100\% of the smoothed forgeries at the two strong forms, and ours 52--77\% (Table~\ref{S-tab:recal}).
+% RECAL_MISS.md: published bil15 67.7-100, fl12 84.0-100; ours (ref, lam0, SIC) 52.0-76.7
+
+\textbf{Finding 5.} \emph{No threshold rule separates smoothed genuine from smoothed forged faces for any of the
+detectors: under skin smoothing the two score distributions coincide, so the accusation and the escape are one distribution
+read from two sides, and a decision rule can only move the error from one side to the other.} Calibration on untreated data,
+the remedy proposed for smartphone photographs~\cite{laionmobile2026}, does not apply here, because the problem is not where
+the threshold sits but that there is no threshold to find.
+
+\subsection{Training only trades}
+\label{sec:sic}
+\begin{table*}[t]
+\centering
+\caption{Smoothing-invariant consistency (SIC) against the same model trained without it (forgery head only, same data,
+views, seeds and checkpoint rule). FA: smoothed genuine Celeb-DF-v2 frames called fake at the 5\%-FPR rule (face-local 0.06 /
+0.12, whole-crop bilateral 15); S-90: commercial Smoothing-90 renders accused; $\Delta$miss: miss rise on face-local 0.12
+smoothed forgeries; untreated video AUC on Celeb-DF-v2 and DFD; Celeb-DF-B AUC under the presets; DF40 reenactment video AUC
+(FF++ domain); bars passed of six pre-registered bars. The view-only control ($\lambda=0$) draws the same smoothed copy for
+both classes without the penalty.}
+\label{tab:sic}
+\footnotesize
+\begin{adjustbox}{max width=\textwidth}\input{tables/tab_sic}\end{adjustbox}
+% tables/tab_sic.tex is generated by make_tab_sic.py from results/research/retouch_unified_20260929/readout46.json (READOUT46.md).
+\end{table*}
+% fig_sic_curve_v8b moved to the supplement (Fig. S-fig:siccurve) on 2026-10-22 to make room for fig_method_v8b
+
+If the cue is set in training, can training remove it? We tested the rule that Finding~3 and Finding~4 suggest: one
+skin-smoothing operator drawn identically for every training item of every class, and a penalty $\lambda$ on the change of
+the forgery logit between the clean item and its smoothed copy, with the clean logit held as a stop-gradient target. Bars
+were written before training (Table~\ref{S-tab:sicbars}). Table~\ref{tab:sic} and Fig.~\ref{S-fig:siccurve} in the supplement give the family. Every penalty
+weight from 0.03 upward removes the face-local accusation (3--7\% on smoothed genuine frames, against 52 and 85\% for the
+reference), and the symmetric view alone ($\lambda=0$) does not (54 and 92\% at the two face-local strengths), so the
+penalty does the work. The commercial renders do not separate the arms: the reference already accuses only 9.1\% of them
+and the penalty arms 2--13\%.
+% READOUT46.md: lam0 fl06 53.9 / fl12 91.8; SIC arms fl 3.3-7.4, S-90 2.1-12.8
+% 2026-10-23: reference S-90 corrected from a hand-typed 40.6 to 9.1 (readout46.ali("clipe5b_s20260929"); CONSISTENCY_AUDIT_20261023 #1)
+The cost has two faces that trade against each other along $\lambda$. At large weights the clean forgery score is pulled
+toward its smoothed copy and untreated detection falls (Celeb-DF-v2 video AUC 0.907 at $\lambda=1$ against 0.956 without
+the rule); at small weights detection is kept (0.946 at $\lambda=0.03$) but the smoothed forgery's score falls with the
+genuine one and its miss rises by 24 points. A one-sided penalty that forbids only a rise of the logit is the limit of that
+direction: untreated AUC 0.954 and 56 points more smoothed forgeries missed. A Gaussian blur of the same support in place of
+the smoothing operator fails the accusation bar at the strong face-local form (19.5\%) and opens the bilateral evasion. DF40
+reenactment is 0.06--0.09 below the reference at every weight, the one bar no member passes.
+% READOUT46.md / FINDINGS.md 2026-10-19 20:30 family table: sg l1 0.907, l0.03 0.946 (+24), hinge 0.954 (+56), Gaussian fl12 19.5, DF40 -0.06..-0.09
+
+The penalty buys the operating point and leaves separability where the view put it. The control that settles this is the $\lambda=0$ model read with
+the oracle smoothing-conditional threshold of Finding~5: with both classes smoothed it keeps an AUC of 0.832 (bilateral) and
+0.764 (face-local) against 0.790 and 0.778 for SIC at $\lambda=1$ and 0.802 and 0.778 at $\lambda=0.1$, and its
+recalibrated miss rate (57 and 77\%) is not higher than SIC's (64--73\% on two seeds).
+% RECAL_MISS.md: lam0 0.832 / 57.4 (bil15), 0.764 / 76.7 (fl12); SIC-sg s1 0.790 / 64.5, 0.778 / 64.0; s2 0.733 / 73.0, 0.720 / 72.8
+% READOUT46.md both-smoothed AUC: lam0 0.8318 / 0.7639; sg 0.7897 / 0.7782; sgl01 0.8019 / 0.7783
+SIC therefore equals a symmetric view plus a recalibration that one threshold can carry across untreated and smoothed
+inputs; it does not keep separation that the view alone would lose. Nor does a routed expert: a second model trained only on
+smoothed copies, selected by the smoothing score, clears the accusation (face-local 51 and 80\% to 2 and 1\%) and raises the
+miss on smoothed forgeries by 41--46 points, and its both-classes-smoothed AUC is below the untreated detector's on seven of
+the eight forms (one seed; the second is running; Table~\ref{S-tab:sce}).
+% results/research/retouch_unified_20260929/SCE_s2.md: fl06 51.2 -> 2.1, fl12 79.9 -> 1.3; miss rise 40.6 / 46.0; AUC A/B bil15 0.843/0.752
+The loss is general. With both classes smoothed, every one of the seventeen published detectors loses AUC, by 0.06--0.28 at
+the strong face-local form for the sixteen that are above chance, and the $\lambda=0$ model, which saw smoothed views of both
+classes in training, still loses 0.061 and 0.129.
+% RECAL_MISS.md untreated vs fl12 (published other than NPR: 0.060 F3Net .. 0.281 LAA-Net); lam0 0.893 -> 0.832 / 0.764
+Part of the forgery evidence is therefore erased by smoothing itself, beyond the shortcut; how much of the published
+detectors' loss is shortcut saturation and how much is erased evidence cannot be separated with these data, and we call the
+$\lambda=0$ loss a measured loss, not a bound.
+
+\textbf{Finding 6.} \emph{Training can move the error but not remove it: a class-symmetric smoothing view with a
+consistency penalty takes the accusation of smoothed genuine faces from 85\% to 4\% at a cost in untreated detection, but it is
+a smoothing-conditional recalibration, since the view-only model read with a conditional threshold separates smoothed
+faces at least as well; with both classes smoothed every detector, published or ours, loses separability.}
+% 85 -> 4: tab_sic.tex, reference fl12 84.5 vs SIC lambda 0.1 fl12 4.2
+A fix for the accusation therefore has to be bought with misses on smoothed forgeries or with untreated detection, and a
+paper that reports only one of the three is reporting a point on this curve, not a solution.
+
+\subsection{Identity as a reference channel}
+\label{sec:identity}
+Smoothing erases texture evidence but should not change who the person is. On the Celeb-DF-v2 probes of Finding~5, the
+ArcFace distance to the claimed person's other videos separates genuine from forged with an AUC of 0.996 untreated and 0.984,
+0.963 and 0.982 under bilateral 15, bilateral 21 and face-local 0.12, against 0.924 falling to 0.823, 0.778 and 0.751 for our
+forgery head on the same frames (Table~\ref{S-tab:idref}).
+% results/research/retouch_unified_20260929/ID_REF.md AUC table (identity, clipe5b rows)
+Only its AUC is stable: at the untreated threshold the channel accuses 19, 40 and 21\% of the smoothed genuine faces, because
+the genuine distance moves from 0.25 to 0.32--0.38 while the forged distance stays near 0.64,
+% ID_REF.md fixed-threshold FA 19.4 / 40.0 / 21.3; median distances genuine 0.2461 -> 0.3182 / 0.3831, forged 0.63-0.66
+and its relative error $1-\text{AUC}$ grows four to ten times, against two to four for the texture detectors.
+% RESEARCH_CRITIQUE_20261021b.md appendix: identity 4.2 / 9.8 / 4.9x; clipe5b 2.3 / 2.9 / 3.3x
+ICT and ICT-Ref~\cite{ict2022}, run with their released weights, lose 0.08--0.12 of AUC under the three stronger forms and fail
+the other way, letting smoothed forgeries through (Table~\ref{S-tab:ict}),
+% ICT_PROBE.md: ICT-Ref 0.863 -> 0.781 / 0.755 / 0.836 / 0.783; FA 2.9-7.2; miss 47 -> 55-70
+and fusing the identity distance with our forgery head is dominated by the distance alone at every condition, so it is not
+reported as a method.
+% RECAL_MISS.md / ID_REF.md: fusion dominated by identity alone (AUC and miss) at every condition
+\textbf{Finding 7.} \emph{A recognition embedding compared with a reference of the claimed person keeps most of its
+separation under skin smoothing, but only its AUC is stable; its operating point moves as much as a texture detector's.}
+Identity as detection evidence is prior art~\cite{idreveal2021,ict2022,yin2026}, the stable-AUC, moving-threshold pattern is
+known from face recognition under beauty filters~\cite{mirabet2025}, and the channel needs a reference and is blind to
+reenactment; we state it as a boundary for future detectors, not as a contribution.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_twoaxis_v8b}
+\caption{Both directions at once. Each point is one detector: Direction A, Smoothing-90 renders accused at the threshold that
+accuses 5\% of the originals (Table~\ref{tab:dirA}), against Direction B, the beautification-only miss rise on Celeb-DF-B
+(Table~\ref{tab:dirB}); bars are the 95\% intervals, marker area grows with untreated Celeb-DF-B AUC, NPR is saturated at
+zero. The lower-left corner holds our two seeds and CADDM, whose interval contains zero but which accuses 13.8\% of beautified
+genuine frames.}
+% figs/fig_twoaxis_v8b.pdf (make_fig_twoaxis_v8b.py) from alipair_zeroshot_20260929/main_claim_A.json (fa_s90_at_5pct, fa_ci)
+% and celebdfb_v2_20260927/fair_cdfb.json (d_miss_beauty_only, ci, auc_untreated).
+\label{fig:twoaxes}
+\end{figure}
+
+% ----------------------------------------------------------------------------
+\section{A Companion Three-Way Detector}
+\label{sec:companion}
+The findings say what a detector that handles beautification must do: see smoothing on both classes in training, read the
+forgery decision from a head that is not asked to be smoothing-invariant, and report beautification as a separate attribute
+rather than as evidence either way. Our companion model does this (Fig.~\ref{fig:method}b).
+
+\textbf{System and training recipe.} The backbone is a frozen CLIP ViT-L/14~\cite{clip} with rank-16 LoRA~\cite{lora} on the
+query, key, value and output projections of all 24 blocks (3.2\,M of 306\,M parameters trained). Two linear heads on the CLS
+token give the forged logit $z_f$ and the beautified logit $z_b$; with $f=\sigma(z_f)$ and $b=\sigma(z_b)$ the three classes
+are fake $f$, beautified $(1-f)b$ and real $(1-f)(1-b)$, and the decision reads $P(\text{fake})=f$ only. An operation head
+(presence and amount of four operations) and a linear layer on the 256 patch tokens, which gives a $16\times16$ evidence map
+trained against the exact footprint of each edit, are trained alongside and are not read by the decision (supplement).
+% results/research/retouch_unified_20260929/train_ru5.py (RUCLIP5: fz, pres, q, ev) and train_ru_clip.py (LoRALinear r=16 on
+% q_proj/k_proj/v_proj/out_proj of every encoder layer); 3.2 M = "trainable 3.16 M" in train_ru_clipe5_s20260929.log
+Each training step builds three items from one genuine frame of FF++ c23~\cite{ffpp} or FFHQ: the frame itself, a beautified
+item (a landmark or skin operation at random strength, one of 14 colour filters~\cite{pilgram}, a random colour grading, or a
+render by two retouching services that are sister services of the test service, whole or decomposed into single-operation
+components) and a forged item (a self-blend~\cite{sbi}, an observed FF++ forgery or one of 61,510 part-level forgeries), the
+forged item beautified with probability 0.5 so that both classes receive the views. FFHQ contributes 7,831 photographs
+(7,015 for training, 816 for checkpoint selection) and their renders.
+% manifest_train.tsv / manifest_val.tsv src counts (ffpp_real 41,512; ffhq_orig 7,015 + 816; ffpp_fake 41,526; tencent 6,924 +
+% megvii 11,810; ffpp_filter 41,512); train_ru_clipe5_s20260929.log "single 50,112 | parts 61,510"; recipe: train_ru5.py
+% RUData5.__getitem__ (self-blend and observed forgeries beautified on top with p = 0.5)
+The test service itself is never seen. Training: 224\,px, AdamW at $10^{-4}$, 8 epochs; checkpoints are chosen on validation
+data only, by a balanced criterion that penalises originals sent to the beautified class (supplement).
+
+\begin{table}[t]
+\centering
+\caption{Untreated detection of the companion model against the CLIP detectors, each on its own crop. Frame and video AUC;
+brackets: 95\% paired video-bootstrap intervals of \ours{} minus the detector. Every interval contains zero.}
+\label{tab:companion}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{adjustbox}{max width=\columnwidth}
+\begin{tabular}{@{}l cc c@{}}
+\toprule
+ & Celeb-DF-v2 frame & Celeb-DF-v2 video & DFD frame \\
+\midrule
+% All cells: docs/paper_v2/tables/tab_v6b_reproduce.tex (DFB crop column for the published detectors; "full model" rows).
+Effort & 0.879 & 0.927 & 0.933 \\
+Forensics Adapter & 0.899 & 0.956 & 0.940 \\
+GenD & 0.900 & 0.960 & 0.932 \\
+DFD-HR & 0.886 & 0.951 & 0.942 \\
+\ours{} & 0.891 & 0.947 & 0.942 \\
+\quad minus Effort & [$-$0.013, +0.038] & [$-$0.006, +0.044] & [$-$0.006, +0.025] \\
+\quad minus Forensics Adapter & [$-$0.030, +0.013] & [$-$0.030, +0.010] & [$-$0.013, +0.017] \\
+\quad minus GenD & [$-$0.028, +0.009] & [$-$0.031, +0.003] & [$-$0.004, +0.024] \\
+\quad minus DFD-HR & [$-$0.014, +0.026] & [$-$0.022, +0.017] & [$-$0.012, +0.011] \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\textbf{Both axes.} On the retouching pairs the model ranks the render above its original in 32.5 and 41.3\% of pairs on
+its two seeds and accuses 8.6 and 12.5\% at the 5\%-FPR rule, with the paired difference against each of sixteen published
+detectors excluding zero (Table~\ref{tab:dirA}); its native decision sends 98.8 and 99.2\% of the renders to beautified and
+0.8 and 0.6\% to forged.
+% MAIN_CLAIMS_20261022.md Direction A, ours s1 / s2 rows and paired-difference lines
+On Celeb-DF-B it keeps the highest AUC under the presets, 0.866 and 0.883, with the paired interval against Effort,
+Forensics Adapter, SBI, GenD, DFD-HR and CADDM excluding zero on both seeds, and its beautification-only miss rise of 6.7
+and 8.3 points is smaller than that of Forensics Adapter, SBI and GenD on both seeds and of Effort on one, but larger than
+that of DFD-HR and CADDM (Table~\ref{tab:dirB}).
+% MAIN_CLAIMS_20261022.md Direction B paired-difference lines (s1 and s2)
+It is therefore not the model with the smallest escape; it is the only model low on both axes, which Fig.~\ref{fig:twoaxes}
+shows.
+
+\textbf{Untreated detection.} On Celeb-DF-v2 and DFD the model is on par with all four CLIP detectors (Table~\ref{tab:companion});
+no paired interval excludes zero in either direction. On DF40 face swaps it is at Effort's level in the FF++ domain and
+0.03 below it in the Celeb-DF domain (video AUC 0.952 and 0.905 against 0.944 and 0.935; no paired interval was computed).
+% tables/tab_v6b_df40_main.tex, FS columns
+
+\textbf{Costs, stated.} Three are real. On DF40 reenactment the model is behind: 0.718 and 0.502 in the two domains against
+0.808 and 0.710 for Effort and 0.935 and 0.828 for GenD, and a forgery-head-only model on the same data is 0.08--0.15 above
+it, so the shared beautified head costs reenactment (Table~\ref{S-tab:v4df40full}).
+% tables/tab_v6b_df40_main.tex FR columns; tab_v6b_seeds.tex block (B): DF40 FR +0.124 / +0.145 (seed 1)
+It sends 20.8 and 19.6\% of the service's untouched originals to the beautified class,
+% MAIN_CLAIM_A.md native decision: orig filter 20.8 (s1) / 19.6 (s2)
+a cost the retouching source pays for the low accusation. Its four operation scores are reliable only for smoothing: on the
+service's single-operation renders at the strongest level the presence head recovers smoothing in 94\% of cases but eye
+enlarging in 20\%, face slimming in 32\% and whitening in 38\%,
+% READOUT46.md attribute_main_same_seed presence TP: smooth 0.943, eye 0.196, jaw 0.322, white 0.375
+and on real-app filters that combine operations it recognises almost none of them (recall 0.003--0.24; Table~\ref{S-tab:fbops}).
+% FB_OPS.md clipe5_s20260929, all: eye 0.003, jaw 0.032, white 0.176, smooth 0.243
+The operation names describe the training family rather than beautification in general, and we no longer claim them.
+
+% ----------------------------------------------------------------------------
+\section{Limitations and What We No Longer Claim}
+\label{sec:limits}
+The measurement covers one commercial retouching service, four app presets on one video dataset, and seven scripted
+smoothing forms. The retouching source was read during the study and is an analysis set; a smoothing source that no design
+decision has touched is needed before the headline numbers can be called a blind test. Celeb-DF-B shares its genuine videos
+and identities with Celeb-DF-v2, on which every detector in the table was evaluated by its authors, so it is not identity
+disjoint. P3 and several SIC arms have one seed, and no non-CLIP pipeline was trained with the rule. Effort and DFD-HR were
+not reproduced at their published Celeb-DF-v2 numbers (Table~\ref{S-tab:reproduce}), and we compare against their released
+weights.
+
+Three claims of earlier drafts are withdrawn and one result is moved out. Instagram AR filters: the renders cannot be separated from the OpenFilter
+capture pipeline (Sec.~\ref{sec:protocol}), our models accuse them as much as the published CLIP detectors (75--82\% against
+64--86\%; Table~\ref{S-tab:ar}),
+% tables/tab_v6b_ar.tex FairBeauty accused: oursF 75.1, oursB 79.0 / 82.1; Effort 67.8, FA 63.9, GenD 75.6, DFD-HR 85.9
+and training with multi-operation beautification on both classes does not lower the accusation (78 against 75\%), so no
+statement about AR filters is made.
+% FINDINGS.md 2026-10-22 16:40 Addendum 56: clipe5M 78.1 vs clipe5 75.1
+Operation naming: the four operation scores identify smoothing on the training family and little else
+(Sec.~\ref{sec:companion}). Language-model explanations did not differ from template sentences in any measured respect and
+were removed; localisation of part-level forgeries and its restoration test are in the supplement.
+
+% ----------------------------------------------------------------------------
+\section{Related Work}
+\label{sec:related}
+Libourel et al.~\cite{libourel2024}, Saeed et al.~\cite{saeed2025} and Concas et al.~\cite{concas2025} are discussed in
+Sec.~\ref{sec:intro}; Libourel et al.\ close by recommending a dedicated filter-detection stage, which the companion model's
+beautified head is. Tariq et al.~\cite{moire2025} benchmark fifteen detectors against moir\'e and name beautification as
+future work; von Stryk and Keuper~\cite{laionmobile2026} find that the false alarms of generated-image detectors on smartphone
+photographs follow threshold calibration, which Finding~5 shows is not available for skin smoothing. Retouching detection and
+restoration~\cite{bharati2016,jain2018,wang2019photoshop,retouchingffhq,frrffusion,mofrr,reface} have no forgery class;
+OpenFilter~\cite{openfilter2022} renders AR filters; Liu et al.~\cite{miea2026} attribute editing tools in a closed set;
+perturbation benchmarks~\cite{deeperforensics2020,hendrycks2019} treat edits as corruptions of one class. Shortcut
+learning~\cite{geirhos2020}, group shifts~\cite{sagawa2020} and class-dependent augmentation~\cite{balestriero2022} describe
+the mechanism of Finding~3; Ricker et al.~\cite{ricker2026biasid} found the sign flip for JPEG with two cells. CORE~\cite{core}
+ties representations across generic augmentations and still ranks a smoothed genuine face above its original in 97\% of
+pairs; the alpha-blending hypothesis~\cite{alphablend2026} holds that frame-based detectors read compositing artefacts, and our
+band analysis adds a second low-level cue. Identity-referenced detection~\cite{idreveal2021,ict2022,yin2026} and face
+recognition under beauty filters~\cite{mirabet2025} are the prior art for Finding~7; DeepfakeBench~\cite{deepfakebench} and
+DF40~\cite{df40} provide the checkpoints and test sets.
+
+% ----------------------------------------------------------------------------
+\section{Conclusion}
+Seventeen published face-forgery detectors read skin smoothing as forgery evidence. Read with one rule in both directions,
+that single cue accuses the smoothed genuine photograph and lets the app-beautified deepfake through. The cue is set by which
+class saw smoothing in training, it is the face-local flattening that beautification produces, a threshold cannot remove it
+because the smoothed scores of the two classes coincide, and training can only move it along a measured trade-off between
+the accusation, the escape and untreated detection. A detector that sees smoothing on both classes and reports
+beautification as an attribute is low on both axes without losing untreated detection, at the costs we state. The sources,
+the rule and the paired reader are released so that the next detector can be read the same way.
+
+\bibliographystyle{IEEEtran}
+\bibliography{refs_v8}
+\end{document}

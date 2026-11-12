@@ -1,0 +1,176 @@
+{
+ "Deepfakes": {
+  "low": {
+   "median_log_ratio": -0.0336,
+   "ci": [
+    -0.0697,
+    0.0067
+   ],
+   "share_below_genuine": 55.5,
+   "n": 200
+  },
+  "high": {
+   "median_log_ratio": -1.0927,
+   "ci": [
+    -1.25,
+    -0.9298
+   ],
+   "share_below_genuine": 89.5,
+   "n": 200
+  },
+  "lap": {
+   "median_log_ratio": -0.2601,
+   "ci": [
+    -0.2825,
+    -0.2363
+   ],
+   "share_below_genuine": 88.0,
+   "n": 200
+  }
+ },
+ "Face2Face": {
+  "low": {
+   "median_log_ratio": -0.0071,
+   "ci": [
+    -0.0213,
+    0.0104
+   ],
+   "share_below_genuine": 52.5,
+   "n": 200
+  },
+  "high": {
+   "median_log_ratio": 0.0006,
+   "ci": [
+    -0.0566,
+    0.1351
+   ],
+   "share_below_genuine": 50.0,
+   "n": 200
+  },
+  "lap": {
+   "median_log_ratio": -0.0658,
+   "ci": [
+    -0.0967,
+    -0.0335
+   ],
+   "share_below_genuine": 64.0,
+   "n": 200
+  }
+ },
+ "FaceSwap": {
+  "low": {
+   "median_log_ratio": 0.0338,
+   "ci": [
+    -0.0196,
+    0.0695
+   ],
+   "share_below_genuine": 47.5,
+   "n": 200
+  },
+  "high": {
+   "median_log_ratio": 0.8034,
+   "ci": [
+    0.5724,
+    0.9188
+   ],
+   "share_below_genuine": 20.0,
+   "n": 200
+  },
+  "lap": {
+   "median_log_ratio": 0.0554,
+   "ci": [
+    0.0252,
+    0.0969
+   ],
+   "share_below_genuine": 39.0,
+   "n": 200
+  }
+ },
+ "NeuralTextures": {
+  "low": {
+   "median_log_ratio": -0.0325,
+   "ci": [
+    -0.0475,
+    -0.0154
+   ],
+   "share_below_genuine": 61.0,
+   "n": 200
+  },
+  "high": {
+   "median_log_ratio": -0.6501,
+   "ci": [
+    -0.7191,
+    -0.5947
+   ],
+   "share_below_genuine": 94.5,
+   "n": 200
+  },
+  "lap": {
+   "median_log_ratio": -0.1715,
+   "ci": [
+    -0.1973,
+    -0.1533
+   ],
+   "share_below_genuine": 97.5,
+   "n": 200
+  }
+ },
+ "real_bil15": {
+  "low": {
+   "median_log_ratio": -0.1832,
+   "ci": [
+    -0.1971,
+    -0.1684
+   ],
+   "share_below_genuine": 99.0,
+   "n": 200
+  },
+  "high": {
+   "median_log_ratio": -0.3609,
+   "ci": [
+    -0.4281,
+    -0.2746
+   ],
+   "share_below_genuine": 82.5,
+   "n": 200
+  },
+  "lap": {
+   "median_log_ratio": -0.384,
+   "ci": [
+    -0.4064,
+    -0.3621
+   ],
+   "share_below_genuine": 100.0,
+   "n": 200
+  }
+ },
+ "real_fl06": {
+  "low": {
+   "median_log_ratio": -0.0571,
+   "ci": [
+    -0.0844,
+    -0.0462
+   ],
+   "share_below_genuine": 96.5,
+   "n": 200
+  },
+  "high": {
+   "median_log_ratio": -0.0715,
+   "ci": [
+    -0.1147,
+    -0.0475
+   ],
+   "share_below_genuine": 67.0,
+   "n": 200
+  },
+  "lap": {
+   "median_log_ratio": -0.2235,
+   "ci": [
+    -0.258,
+    -0.1901
+   ],
+   "share_below_genuine": 100.0,
+   "n": 200
+  }
+ }
+}

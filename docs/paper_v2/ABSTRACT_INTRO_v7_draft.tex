@@ -1,0 +1,55 @@
+% Draft abstract and introduction for v7 (2026-10-18). Placeholders in [[ ]] are filled from READOUT46.md.
+% Rules: at most four numbers in the abstract; no number in the introduction except "seventeen"; no em-dashes.
+
+\begin{abstract}
+A genuine face that was beautified by a camera app, an AR filter or a retouching service still shows the same person doing
+the same thing, but a forgery detector may not treat it that way. We score seventeen published detectors on six
+beautification sources with one rule and find one failure shared by all of them: a skin-smoothed genuine face is scored as
+more forged than the same face untouched, in 89--99\% of pairs for fifteen detectors, and smoothing the skin alone is enough.
+We then show where the cue comes from. With architecture, data and recipe fixed, the class that receives smoothed views
+during training sets the sign of the error: views on genuine faces only let nearly every smoothed forgery through, views on
+forged faces only accuse smoothed genuine faces, and views on both sit in between. From this we derive a training rule,
+smoothing-invariant consistency (SIC): one smoothing operator drawn identically for both classes and a penalty on the change
+of the forgery logit under it. SIC lowers the false alarm on skin-smoothed genuine faces from [[FA before]]\% to
+[[FA after]]\% while leaving untreated detection within the confidence interval of the same model trained without it
+([[AUC on Celeb-DF-v2]] on Celeb-DF-v2). We release the six sources, the scorer and the paired reader as a benchmark.
+\end{abstract}
+
+\section{Introduction}
+Forgery detectors are used for content moderation, remote identity checks and fact-checking. In each setting a genuine face
+called fake accuses a real person, and a forgery called real is let through. A large share of the genuine faces reaching
+such a detector were beautified before upload: skin smoothing, whitening, eye enlargement and face slimming are default
+options in camera apps and retouching services, and colour presets ship with every photo-sharing app. Beautification edits
+the pixels a detector inspects but changes neither who is shown nor what the person does.
+
+Prior work measured the effect of beautification on at most six detectors and in one direction at a
+time~\cite{libourel2024,saeed2025,concas2025}. We ask three questions. Does the effect hold across the detector families
+in use today? Where does it come from? Can it be removed without giving up detection?
+
+\paragraph{Finding.} We score seventeen published detectors, eleven CNN detectors, four CLIP-based detectors and two
+generated-image detectors, on six beautification sources with one rule that counts both errors (Fig.~\ref{fig:teaser}).
+The failure shared by all of them is skin smoothing: a smoothed genuine face is scored as more forged than the same face
+untouched in nearly every pair, smoothing the skin alone with the background untouched suffices, and for the CLIP detectors
+the forgery logit grows with the smoothing strength. A radial vignette alone does not produce the shift.
+
+\paragraph{Cause.} We hold architecture, data and recipe fixed and vary only which class receives smoothed views during
+training (Fig.~\ref{fig:exposure}). The class that sees smoothing sets the sign of the error. Views on genuine faces only,
+the direction taken by fine-tuning on enhanced genuine samples~\cite{saeed2025}, teach that smoothed means genuine, and a
+forger who smooths the forgery is let through. Views on forged faces only teach the opposite. Views on both classes, drawn
+from the same operator, sit in between. This is shortcut learning~\cite{geirhos2020} under class-dependent
+augmentation~\cite{balestriero2022} in a setting where the sign of the resulting error can be measured.
+
+\paragraph{Method.} The cause suggests the fix. Smoothing-invariant consistency (SIC) draws one smoothing operator
+identically for every training item and penalises the change of the forgery logit under it (Fig.~\ref{fig:arch}). The
+model keeps its three-way output and four operation scores; only the forgery logit is constrained. [[One sentence with the
+SIC headline from READOUT46: FA on skin-smoothed genuine faces, miss change, untreated AUC.]]
+
+Our contributions are:
+\begin{itemize}
+\item A two-sided measurement of seventeen detectors on six beautification sources under one rule, read pair by pair where
+originals exist, with a skin-only smoothing test and a dose-response test that isolate the shared cue.
+\item A controlled exposure study showing that the class receiving smoothed views sets the sign of the error, including an
+evasion route opened by genuine-only views.
+\item SIC, a training rule that removes the cue [[at the stated cost]], evaluated on pre-registered bars with two seeds and a
+$\lambda = 0$ control, together with the released benchmark.
+\end{itemize}

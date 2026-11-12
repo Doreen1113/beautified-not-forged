@@ -11,6 +11,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent; sys.path.insert(0, str(HERE))
 from explain_ours import explain, load_clip, BOX, ALI, B  # noqa: E402
+from main_model import MAIN_TAG, SUFFIX  # noqa: E402
 
 
 def samples():
@@ -25,7 +26,7 @@ def samples():
 
 
 def main():
-    net = load_clip("clipe4_s20260929", head=True).cuda().eval()
+    net = load_clip(MAIN_TAG, head=True).cuda().eval()
     per_group, per_label, allc = {}, {}, Counter()
     for g, p, b in samples():
         o, _, _ = explain(net, p, b)
@@ -34,7 +35,7 @@ def main():
     out = {"n_images": sum(allc.values()), "distinct_sentences": len(allc),
            "per_label": {k: {"n": sum(v.values()), "distinct": len(v), "sentences": dict(v.most_common())} for k, v in per_label.items()},
            "per_group": {k: dict(v.most_common()) for k, v in per_group.items()}}
-    (HERE / "sentence_stats.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
+    (HERE / f"sentence_stats{SUFFIX}.json").write_text(json.dumps(out, indent=1), encoding="utf-8")
     print(json.dumps({k: out[k] for k in ("n_images", "distinct_sentences")}),
           {k: (v["n"], v["distinct"]) for k, v in out["per_label"].items()})
     for k, v in out["per_label"].items():

@@ -66,7 +66,40 @@ OURS["RU-clip"] = (RU / "ru_clip_s20260929.pth", "ruclip:0", 224, 3)
 OURS["RU-clipe"] = (RU / "ru_clipe_s20260929.pth", "ruclip:1", 224, 3)
 OURS["RU-clipe-s2"] = (RU / "ru_clipe_s20260930.pth", "ruclip:1:20260930", 224, 3)
 OURS["RU-clipe4"] = (RU / "ru_clipe4_s20260929.pth", "ruclipt:clipe4_s20260929", 224, 3)
+OURS["RU-clipe4r"] = (RU / "ru_clipe4r_s20260929.pth", "ruclipt:clipe4r_s20260929", 224, 3)      # Addendum 5 re-runs, epoch chosen by C2
+OURS["RU-clipe4r-s2"] = (RU / "ru_clipe4r_s20260930.pth", "ruclipt:clipe4r_s20260930", 224, 3)
+OURS["RU-clipe5"] = (RU / "ru_clipe5_s20260929.pth", "ruclipt:clipe5_s20260929", 224, 3)
+OURS["RU-clipe5x"] = (RU / "ru_clipe5x_s20260929.pth", "ruclipt:clipe5x_s20260929", 224, 3)
+OURS["RU-clipe5-s2"] = (RU / "ru_clipe5_s20260930.pth", "ruclipt:clipe5_s20260930", 224, 3)
+OURS["RU-clipe5g0"] = (RU / "ru_clipe5g0_s20260929.pth", "ruclipt:clipe5g0_s20260929", 224, 3)
+OURS["RU-clipe5v0"] = (RU / "ru_clipe5v0_s20260929.pth", "ruclipt:clipe5v0_s20260929", 224, 3)
+OURS["RU-clipe6"] = (RU / "ru_clipe6_s20260929.pth", "ruclipt:clipe6_s20260929", 224, 3)
+OURS["RU-clipe7"] = (RU / "ru_clipe7_s20260929.pth", "ruclipt:clipe7_s20260929", 224, 3)
+OURS["RU-clipe7-s2"] = (RU / "ru_clipe7_s20260930.pth", "ruclipt:clipe7_s20260930", 224, 3)
+OURS["RU-clipe5b"] = (RU / "ru_clipe5b_s20260929.pth", "ruclipt:clipe5b_s20260929", 224, 3)
+# Addendum 58 (in-the-wild genuine bases)
+OURS["RU-clipe7W_s20260929"] = (RU / "ru_clipe7W_s20260929.pth", "ruclipt:clipe7W_s20260929", 224, 3)
+OURS["RU-clipe7W_s20260930"] = (RU / "ru_clipe7W_s20260930.pth", "ruclipt:clipe7W_s20260930", 224, 3)
+# Addendum 56 (multi-operation beautification arms)
+OURS["RU-clipe5M_s20260929"] = (RU / "ru_clipe5M_s20260929.pth", "ruclipt:clipe5M_s20260929", 224, 3)
+OURS["RU-clipe5M_s20260930"] = (RU / "ru_clipe5M_s20260930.pth", "ruclipt:clipe5M_s20260930", 224, 3)
+OURS["RU-clipe5M1_s20260929"] = (RU / "ru_clipe5M1_s20260929.pth", "ruclipt:clipe5M1_s20260929", 224, 3)
+OURS["RU-clipe5fbEM_s20260929"] = (RU / "ru_clipe5fbEM_s20260929.pth", "ruclipt:clipe5fbEM_s20260929", 224, 3)
+OURS["RU-clipe5f"] = (RU / "ru_clipe5f_s20260929.pth", "ruclipt:clipe5f_s20260929", 224, 3)
+OURS["RU-clipe5f-s2"] = (RU / "ru_clipe5f_s20260930.pth", "ruclipt:clipe5f_s20260930", 224, 3)
+OURS["RU-clipe5fg0"] = (RU / "ru_clipe5fg0_s20260929.pth", "ruclipt:clipe5fg0_s20260929", 224, 3)
+OURS["RU-clipe8"] = (RU / "ru_clipe8_s20260929.pth", "ruclipt:clipe8_s20260929", 224, 3)
+for _t in ("clipe5af_s20260929", "clipe5rf_s20260929", "clipe5af_s20260930", "clipe5a_s20260929", "clipe5ab_s20260929", "clipe5kf_s20260929",
+           "clipe5awpf_s20260929", "clipe5awpf_s20260930", "clipe5awpb_s20260929", "clipe5awpb_s20260930", "clipe5awpd_s20260929",
+           "clipe5awptf_s20260929", "clipe5awps3f_s20260929", "clipe5fb_s20260929", "clipe5feb_s20260929", "clipe5feb_s20260930",
+           "clipe5fbn_s20260929", "clipe5fbn_s20260930", "clipe5fbp1n_s20260929", "clipe5fbg0o_s20260929", "clipe5fbg0o_s20260930", "clipe5fbg0oy_s20260929", "clipe5fbg0oy_s20260930", "clipe5y_s20260929", "clipe5fbg0oyE_s20260929", "clipe5fbg0oyEi_s20260929", "clipe5fbg0p1o_s20260929", "clipe5fbg0p1o_s20260930", "clipe5fbg0p1o_s20261001", "clipe5fbp0_s20260929", "clipe5fbp1_s20260929", "clipe5fbp0_s20260930", "clipe5fbp1_s20260930", "clipe5fb_s20260930", "clipe5fbp0_s20261001", "clipe5fb_s20261001", "clipe5fbp1_s20261001", "clipe5fbp0E_s20260929", "clipe5fbE_s20260929", "clipe5fbp0E_s20260930", "clipe5fbE_s20260930", "clipe5fbEi0_s20260929", "clipe5fbEi_s20260929", "clipe5fbp0Ei_s20260929", "clipe5mf_s20260929", "clipe5mfp0_s20260929", "clipe5mf_s20260930", "clipe5fbp3_s20260929", "clipe5y_s20260930", "clipe5b_s20260930"):   # Addenda 42, 16, 18, 19, 21, 25, 26, 28, 40
+    OURS["RU-" + _t] = (RU / f"ru_{_t}.pth", "ruclipt:" + _t, 224, 3)
+for _t in ("clipe5z_s20260929", "clipe5bz_s20260929", "clipe5z_s20260930", "clipe5bz_s20260930", "clipe5bzl0_s20260929", "clipe5bzl03_s20260929", "clipe5bzl01_s20260929", "clipe5bzsg_s20260929", "clipe5bzsg_s20260930", "clipe5fbzsg_s20260929", "clipe5bzsgl03_s20260929", "clipe5bzsgl01_s20260929", "clipe5bzsgG_s20260929", "clipe5bzsgh_s20260929", "clipe5bzsgl003_s20260929", "clipe5bzsgl01_s20260930", "clipe5bzsgl003_s20260930", "clipe5bzsgh_s20260930", "clipe5bzsgG_s20260930", "clipe5bzxs_s20260929", "clipe5fbp0F2_s20260929", "clipe5bzEsg_s20260929"):   # Addendum 46 (+ am. 3, 4)
+    OURS["RU-" + _t] = (RU / f"ru_{_t}.pth", "ruclipt:" + _t, 224, 3)
+for _t in ("clipe5R25_s20260929", "clipe5bR25_s20260929"):   # Addendum 67 (re-synthesis pseudo-forgeries)
+    OURS["RU-" + _t] = (RU / f"ru_{_t}.pth", "ruclipt:" + _t, 224, 3)
 OURS["RU4e-effb4"] = (RU / "ru_ru4e_effb4_s20260929.pth", "runet3:effb4:1", 380, 3)
+OURS["RU7We-effb4"] = (RU / "ru_ru7we_effb4_s20260929.pth", "runet3:effb4:1", 380, 3)   # Addendum 70 (factorised cls, train_ru3.RUNet3 loads it)
 
 
 def ours(name, paths):
@@ -113,8 +146,11 @@ def main():
         if n in OURS:
             p = ours(n, paths)
         else:
-            import zoo
-            m = zoo.ZOO[n]()
+            if n in ("gend", "dfdhr", "caddm", "laanetr", "effort", "fadapter"):   # adapters added 2026-10-11 (effort, fadapter: 2026-10-29) (external_baselines/<name>_score.py)
+                sys.path.insert(0, str(BASE / "external_baselines")); import importlib; m = importlib.import_module(f"{n}_score").Detector()
+            else:
+                import zoo
+                m = zoo.ZOO[n]()
             s = np.asarray(m.score(paths), np.float32)
             p = np.stack([1 - s, s, np.zeros_like(s)], 1); del m
         np.savez(f, p=p, paths=np.array(paths))

@@ -753,6 +753,238 @@
    }
   }
  },
+ "gend": {
+  "t_5fpr_orig": 0.8365,
+  "orig_fake_at_0.5": 15.43,
+  "ret_fake_at_0.5": 31.39,
+  "ret_fake_at_t": 16.81,
+  "auroc_ret_vs_orig": 0.596,
+  "paired_up": 64.3,
+  "by_op": {
+   "EyeEnlarging_30": {
+    "fake_at_t": 5.57,
+    "fake_at_0.5": 15.88
+   },
+   "EyeEnlarging_60": {
+    "fake_at_t": 5.89,
+    "fake_at_0.5": 17.52
+   },
+   "EyeEnlarging_90": {
+    "fake_at_t": 7.51,
+    "fake_at_0.5": 22.67
+   },
+   "FaceLifting_30": {
+    "fake_at_t": 5.43,
+    "fake_at_0.5": 15.93
+   },
+   "FaceLifting_60": {
+    "fake_at_t": 5.66,
+    "fake_at_0.5": 17.01
+   },
+   "FaceLifting_90": {
+    "fake_at_t": 6.43,
+    "fake_at_0.5": 18.51
+   },
+   "Whitening_30": {
+    "fake_at_t": 5.84,
+    "fake_at_0.5": 16.7
+   },
+   "Whitening_60": {
+    "fake_at_t": 6.61,
+    "fake_at_0.5": 19.1
+   },
+   "Whitening_90": {
+    "fake_at_t": 8.1,
+    "fake_at_0.5": 22.62
+   },
+   "Smoothing_30": {
+    "fake_at_t": 20.72,
+    "fake_at_0.5": 44.07
+   },
+   "Smoothing_60": {
+    "fake_at_t": 55.34,
+    "fake_at_0.5": 79.1
+   },
+   "Smoothing_90": {
+    "fake_at_t": 68.69,
+    "fake_at_0.5": 87.56
+   }
+  }
+ },
+ "dfdhr": {
+  "t_5fpr_orig": 0.5354,
+  "orig_fake_at_0.5": 5.75,
+  "ret_fake_at_0.5": 17.2,
+  "ret_fake_at_t": 15.66,
+  "auroc_ret_vs_orig": 0.554,
+  "paired_up": 48.34,
+  "by_op": {
+   "EyeEnlarging_30": {
+    "fake_at_t": 5.02,
+    "fake_at_0.5": 6.15
+   },
+   "EyeEnlarging_60": {
+    "fake_at_t": 6.07,
+    "fake_at_0.5": 7.11
+   },
+   "EyeEnlarging_90": {
+    "fake_at_t": 9.59,
+    "fake_at_0.5": 11.13
+   },
+   "FaceLifting_30": {
+    "fake_at_t": 5.07,
+    "fake_at_0.5": 6.06
+   },
+   "FaceLifting_60": {
+    "fake_at_t": 5.97,
+    "fake_at_0.5": 7.38
+   },
+   "FaceLifting_90": {
+    "fake_at_t": 8.01,
+    "fake_at_0.5": 8.87
+   },
+   "Whitening_30": {
+    "fake_at_t": 5.34,
+    "fake_at_0.5": 6.56
+   },
+   "Whitening_60": {
+    "fake_at_t": 6.33,
+    "fake_at_0.5": 7.51
+   },
+   "Whitening_90": {
+    "fake_at_t": 7.69,
+    "fake_at_0.5": 8.73
+   },
+   "Smoothing_30": {
+    "fake_at_t": 17.24,
+    "fake_at_0.5": 19.05
+   },
+   "Smoothing_60": {
+    "fake_at_t": 46.74,
+    "fake_at_0.5": 50.32
+   },
+   "Smoothing_90": {
+    "fake_at_t": 64.89,
+    "fake_at_0.5": 67.47
+   }
+  }
+ },
+ "caddm": {
+  "t_5fpr_orig": 0.9997,
+  "orig_fake_at_0.5": 51.49,
+  "ret_fake_at_0.5": 54.68,
+  "ret_fake_at_t": 5.57,
+  "auroc_ret_vs_orig": 0.5227,
+  "paired_up": 56.9,
+  "by_op": {
+   "EyeEnlarging_30": {
+    "fake_at_t": 5.7,
+    "fake_at_0.5": 54.34
+   },
+   "EyeEnlarging_60": {
+    "fake_at_t": 5.57,
+    "fake_at_0.5": 53.96
+   },
+   "EyeEnlarging_90": {
+    "fake_at_t": 5.88,
+    "fake_at_0.5": 54.84
+   },
+   "FaceLifting_30": {
+    "fake_at_t": 5.57,
+    "fake_at_0.5": 55.11
+   },
+   "FaceLifting_60": {
+    "fake_at_t": 5.84,
+    "fake_at_0.5": 54.66
+   },
+   "FaceLifting_90": {
+    "fake_at_t": 5.97,
+    "fake_at_0.5": 55.88
+   },
+   "Whitening_30": {
+    "fake_at_t": 5.25,
+    "fake_at_0.5": 53.44
+   },
+   "Whitening_60": {
+    "fake_at_t": 5.07,
+    "fake_at_0.5": 52.4
+   },
+   "Whitening_90": {
+    "fake_at_t": 4.66,
+    "fake_at_0.5": 50.23
+   },
+   "Smoothing_30": {
+    "fake_at_t": 5.38,
+    "fake_at_0.5": 53.85
+   },
+   "Smoothing_60": {
+    "fake_at_t": 5.61,
+    "fake_at_0.5": 58.01
+   },
+   "Smoothing_90": {
+    "fake_at_t": 6.33,
+    "fake_at_0.5": 59.46
+   }
+  }
+ },
+ "laanetr": {
+  "t_5fpr_orig": 0.9924,
+  "orig_fake_at_0.5": 39.73,
+  "ret_fake_at_0.5": 51.88,
+  "ret_fake_at_t": 7.61,
+  "auroc_ret_vs_orig": 0.5784,
+  "paired_up": 64.94,
+  "by_op": {
+   "EyeEnlarging_30": {
+    "fake_at_t": 5.34,
+    "fake_at_0.5": 42.67
+   },
+   "EyeEnlarging_60": {
+    "fake_at_t": 5.07,
+    "fake_at_0.5": 41.92
+   },
+   "EyeEnlarging_90": {
+    "fake_at_t": 4.75,
+    "fake_at_0.5": 41.27
+   },
+   "FaceLifting_30": {
+    "fake_at_t": 5.07,
+    "fake_at_0.5": 42.49
+   },
+   "FaceLifting_60": {
+    "fake_at_t": 4.71,
+    "fake_at_0.5": 43.12
+   },
+   "FaceLifting_90": {
+    "fake_at_t": 4.75,
+    "fake_at_0.5": 44.07
+   },
+   "Whitening_30": {
+    "fake_at_t": 5.02,
+    "fake_at_0.5": 42.67
+   },
+   "Whitening_60": {
+    "fake_at_t": 5.52,
+    "fake_at_0.5": 43.3
+   },
+   "Whitening_90": {
+    "fake_at_t": 5.16,
+    "fake_at_0.5": 42.94
+   },
+   "Smoothing_30": {
+    "fake_at_t": 11.54,
+    "fake_at_0.5": 65.88
+   },
+   "Smoothing_60": {
+    "fake_at_t": 17.19,
+    "fake_at_0.5": 83.76
+   },
+   "Smoothing_90": {
+    "fake_at_t": 17.24,
+    "fake_at_0.5": 88.51
+   }
+  }
+ },
  "ours SUP-F": {
   "t_5fpr_orig": 0.5114,
   "orig_fake_at_0.5": 5.16,
@@ -1048,7 +1280,7 @@
   },
   "ret_fake_native_argmax": 0.25
  },
- "ours main": {
+ "ours RU4 (superseded)": {
   "t_5fpr_orig": 0.0183,
   "orig_fake_at_0.5": 0.18,
   "ret_fake_at_0.5": 0.1,
@@ -1106,6 +1338,242 @@
    }
   },
   "ret_fake_native_argmax": 0.12
+ },
+ "ours main": {
+  "t_5fpr_orig": 0.0331,
+  "orig_fake_at_0.5": 0.63,
+  "ret_fake_at_0.5": 0.46,
+  "ret_fake_at_t": 4.74,
+  "auroc_ret_vs_orig": 0.3712,
+  "paired_up": 30.94,
+  "by_op": {
+   "EyeEnlarging_30": {
+    "fake_at_t": 4.43,
+    "fake_at_0.5": 0.5
+   },
+   "EyeEnlarging_60": {
+    "fake_at_t": 4.3,
+    "fake_at_0.5": 0.45
+   },
+   "EyeEnlarging_90": {
+    "fake_at_t": 3.57,
+    "fake_at_0.5": 0.5
+   },
+   "FaceLifting_30": {
+    "fake_at_t": 4.16,
+    "fake_at_0.5": 0.36
+   },
+   "FaceLifting_60": {
+    "fake_at_t": 3.89,
+    "fake_at_0.5": 0.32
+   },
+   "FaceLifting_90": {
+    "fake_at_t": 3.67,
+    "fake_at_0.5": 0.23
+   },
+   "Whitening_30": {
+    "fake_at_t": 4.3,
+    "fake_at_0.5": 0.32
+   },
+   "Whitening_60": {
+    "fake_at_t": 4.07,
+    "fake_at_0.5": 0.5
+   },
+   "Whitening_90": {
+    "fake_at_t": 4.75,
+    "fake_at_0.5": 0.81
+   },
+   "Smoothing_30": {
+    "fake_at_t": 6.15,
+    "fake_at_0.5": 0.5
+   },
+   "Smoothing_60": {
+    "fake_at_t": 4.98,
+    "fake_at_0.5": 0.32
+   },
+   "Smoothing_90": {
+    "fake_at_t": 8.55,
+    "fake_at_0.5": 0.72
+   }
+  },
+  "ret_fake_native_argmax": 0.55
+ },
+ "ours main, symmetric smoothing": {
+  "t_5fpr_orig": 0.0223,
+  "orig_fake_at_0.5": 0.45,
+  "ret_fake_at_0.5": 0.33,
+  "ret_fake_at_t": 4.81,
+  "auroc_ret_vs_orig": 0.3747,
+  "paired_up": 32.67,
+  "by_op": {
+   "EyeEnlarging_30": {
+    "fake_at_t": 3.98,
+    "fake_at_0.5": 0.36
+   },
+   "EyeEnlarging_60": {
+    "fake_at_t": 3.8,
+    "fake_at_0.5": 0.32
+   },
+   "EyeEnlarging_90": {
+    "fake_at_t": 3.35,
+    "fake_at_0.5": 0.23
+   },
+   "FaceLifting_30": {
+    "fake_at_t": 3.48,
+    "fake_at_0.5": 0.32
+   },
+   "FaceLifting_60": {
+    "fake_at_t": 3.44,
+    "fake_at_0.5": 0.32
+   },
+   "FaceLifting_90": {
+    "fake_at_t": 3.03,
+    "fake_at_0.5": 0.23
+   },
+   "Whitening_30": {
+    "fake_at_t": 4.34,
+    "fake_at_0.5": 0.36
+   },
+   "Whitening_60": {
+    "fake_at_t": 5.2,
+    "fake_at_0.5": 0.5
+   },
+   "Whitening_90": {
+    "fake_at_t": 6.29,
+    "fake_at_0.5": 0.63
+   },
+   "Smoothing_30": {
+    "fake_at_t": 7.33,
+    "fake_at_0.5": 0.18
+   },
+   "Smoothing_60": {
+    "fake_at_t": 5.34,
+    "fake_at_0.5": 0.14
+   },
+   "Smoothing_90": {
+    "fake_at_t": 8.1,
+    "fake_at_0.5": 0.41
+   }
+  },
+  "ret_fake_native_argmax": 0.41
+ },
+ "ours main s2": {
+  "t_5fpr_orig": 0.0169,
+  "orig_fake_at_0.5": 0.41,
+  "ret_fake_at_0.5": 0.39,
+  "ret_fake_at_t": 5.51,
+  "auroc_ret_vs_orig": 0.42,
+  "paired_up": 38.22,
+  "by_op": {
+   "EyeEnlarging_30": {
+    "fake_at_t": 3.8,
+    "fake_at_0.5": 0.32
+   },
+   "EyeEnlarging_60": {
+    "fake_at_t": 3.53,
+    "fake_at_0.5": 0.32
+   },
+   "EyeEnlarging_90": {
+    "fake_at_t": 3.21,
+    "fake_at_0.5": 0.32
+   },
+   "FaceLifting_30": {
+    "fake_at_t": 3.57,
+    "fake_at_0.5": 0.23
+   },
+   "FaceLifting_60": {
+    "fake_at_t": 3.3,
+    "fake_at_0.5": 0.41
+   },
+   "FaceLifting_90": {
+    "fake_at_t": 3.17,
+    "fake_at_0.5": 0.41
+   },
+   "Whitening_30": {
+    "fake_at_t": 4.43,
+    "fake_at_0.5": 0.36
+   },
+   "Whitening_60": {
+    "fake_at_t": 5.07,
+    "fake_at_0.5": 0.45
+   },
+   "Whitening_90": {
+    "fake_at_t": 6.15,
+    "fake_at_0.5": 0.68
+   },
+   "Smoothing_30": {
+    "fake_at_t": 8.01,
+    "fake_at_0.5": 0.36
+   },
+   "Smoothing_60": {
+    "fake_at_t": 9.32,
+    "fake_at_0.5": 0.23
+   },
+   "Smoothing_90": {
+    "fake_at_t": 12.49,
+    "fake_at_0.5": 0.59
+   }
+  },
+  "ret_fake_native_argmax": 0.44
+ },
+ "ours binary control": {
+  "t_5fpr_orig": 0.0082,
+  "orig_fake_at_0.5": 0.68,
+  "ret_fake_at_0.5": 0.51,
+  "ret_fake_at_t": 5.15,
+  "auroc_ret_vs_orig": 0.4899,
+  "paired_up": 36.82,
+  "by_op": {
+   "EyeEnlarging_30": {
+    "fake_at_t": 4.34,
+    "fake_at_0.5": 0.45
+   },
+   "EyeEnlarging_60": {
+    "fake_at_t": 4.12,
+    "fake_at_0.5": 0.41
+   },
+   "EyeEnlarging_90": {
+    "fake_at_t": 4.34,
+    "fake_at_0.5": 0.41
+   },
+   "FaceLifting_30": {
+    "fake_at_t": 4.21,
+    "fake_at_0.5": 0.5
+   },
+   "FaceLifting_60": {
+    "fake_at_t": 4.43,
+    "fake_at_0.5": 0.59
+   },
+   "FaceLifting_90": {
+    "fake_at_t": 4.98,
+    "fake_at_0.5": 0.54
+   },
+   "Whitening_30": {
+    "fake_at_t": 4.57,
+    "fake_at_0.5": 0.41
+   },
+   "Whitening_60": {
+    "fake_at_t": 4.39,
+    "fake_at_0.5": 0.72
+   },
+   "Whitening_90": {
+    "fake_at_t": 5.43,
+    "fake_at_0.5": 0.59
+   },
+   "Smoothing_30": {
+    "fake_at_t": 5.57,
+    "fake_at_0.5": 0.45
+   },
+   "Smoothing_60": {
+    "fake_at_t": 6.33,
+    "fake_at_0.5": 0.5
+   },
+   "Smoothing_90": {
+    "fake_at_t": 9.1,
+    "fake_at_0.5": 0.5
+   }
+  },
+  "ret_fake_native_argmax": 0.57
  },
  "ours lite": {
   "t_5fpr_orig": 0.0554,

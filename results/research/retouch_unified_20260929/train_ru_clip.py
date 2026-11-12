@@ -5,6 +5,7 @@ AdamW 1e-4, 200-step warm-up then cosine, 8 epochs, batch 16 photographs (48 ima
 python train_ru_clip.py [--head] [--epochs 8] [--workers 12] [--max-steps N] [--seed S]
   -> checkpoints/research/retouch_unified_20260929/ru_clip[e]_s<seed>.pth (LoRA + heads only, base CLIP is not saved)
 """
+import re
 import argparse
 import csv
 import json
@@ -42,16 +43,20 @@ class LoRALinear(nn.Module):
 
 
 class RUCLIP(nn.Module):
-    def __init__(self, head=False, r=16):
+    def __init__(self, head=False, r=16, tune="lora"):
         super().__init__()
         from transformers import CLIPVisionModel
-        self.vit = CLIPVisionModel.from_pretrained(CLIP_ID)
+        self.vit = CLIPVisionModel.from_pretrained(CLIP_ID); self.tune = tune
         for p in self.vit.parameters():
             p.requires_grad = False
-        for layer in getattr(self.vit, "vision_model", self.vit).encoder.layers:   # transformers 5 has no vision_model wrapper
-            at = layer.self_attn
-            for nm in ("q_proj", "k_proj", "v_proj", "out_proj"):
-                setattr(at, nm, LoRALinear(getattr(at, nm), r=r))
+        if tune == "effort":   # Addendum 26: Effort's SVD-residual tuning of the self-attention projections instead of LoRA
+            from effort_tune import apply_svd_residual_to_self_attn
+            apply_svd_residual_to_self_attn(getattr(self.vit, "vision_model", self.vit))
+        else:
+            for layer in getattr(self.vit, "vision_model", self.vit).encoder.layers:   # transformers 5 has no vision_model wrapper
+                at = layer.self_attn
+                for nm in ("q_proj", "k_proj", "v_proj", "out_proj"):
+                    setattr(at, nm, LoRALinear(getattr(at, nm), r=r))
         d = self.vit.config.hidden_size
         self.cls, self.pres, self.q = nn.Linear(d, 3), nn.Linear(d, 4), nn.Linear(d, 4)
         self.head = head; self.ev = nn.Linear(d, 1) if head else None
@@ -69,14 +74,25 @@ class RUCLIP(nn.Module):
         return out
 
     def state_dict_trainable(self):
-        return {k: v for k, v in self.state_dict().items() if ("A" in k.split(".")[-1] or "B" in k.split(".")[-1] or k.split(".")[0] in ("cls", "pres", "q", "ev"))}
+        return {k: v for k, v in self.state_dict().items() if ("A" in k.split(".")[-1] or "B" in k.split(".")[-1] or "_residual" in k or k.split(".")[0] in ("cls", "pres", "q", "ev"))}
 
 
 def load_clip(tag, head=False):
-    m = RUCLIP(head=head); sd = torch.load(CKPT / f"ru_{tag}.pth", map_location="cpu")
+    sd = torch.load(CKPT / f"ru_{tag}.pth", map_location="cpu")
+    if any(k.startswith("fz.") for k in sd):   # RU5: forged / beautified heads (train_ru5.RUCLIP5)
+        from train_ru5 import RUCLIP5
+        m = RUCLIP5(head=True, canon=True if any(k.startswith("canon.") for k in sd) else None, tune="effort" if any("U_residual" in k for k in sd) else "lora",
+                    mil=0.05 if "m" in re.sub(r"(g0|v0|p0|p1)", "", tag.split("_s")[0][6:]) else 0.0)   # Addendum 28 arms carry the letter m; the map-pooled logit must be rebuilt at load   # Addendum 20: canonicaliser weights travel with the checkpoint
+    else:
+        m = RUCLIP(head=head)
+    own = set(m.state_dict())   # checkpoints written under transformers 4 carry a "vision_model." level that transformers 5 dropped (and vice versa)
+    if not all(k in own for k in sd):
+        alt = {k.replace("vit.vision_model.", "vit."): v for k, v in sd.items()} if any(k.startswith("vit.vision_model.") for k in sd)             else {k.replace("vit.", "vit.vision_model.", 1) if k.startswith("vit.") else k: v for k, v in sd.items()}
+        if all(k in own for k in alt):
+            sd = alt
     missing, unexpected = m.load_state_dict(sd, strict=False)
     assert not unexpected, unexpected[:5]
-    assert all(("A" not in k.split(".")[-1] and "B" not in k.split(".")[-1] and k.split(".")[0] not in ("cls", "pres", "q", "ev")) for k in missing), "trainable keys missing"
+    assert all(("A" not in k.split(".")[-1] and "B" not in k.split(".")[-1] and k.split(".")[0] not in ("cls", "pres", "q", "ev", "canon") and "_residual" not in k) for k in missing), "trainable keys missing"
     return m
 
 
@@ -98,9 +114,11 @@ def main():
     ap.add_argument("--max-steps", type=int, default=0); ap.add_argument("--seed", type=int, default=SEED); ap.add_argument("--wq", type=float, default=2.0)
     ap.add_argument("--wm", type=float, default=1.0); ap.add_argument("--lr", type=float, default=1e-4)
     ap.add_argument("--arm", default="ru3", choices=["ru3", "ru4"])
+    ap.add_argument("--suffix", default="", help="appended to the arm part of the tag, e.g. r -> clipe4r_s<seed>")
+    ap.add_argument("--save-all", action="store_true", help="Addendum 5: keep every epoch (ru_<tag>_eNN.pth); the checkpoint is chosen afterwards by select_epoch.py")
     a = ap.parse_args()
     torch.manual_seed(a.seed); np.random.seed(a.seed); CKPT.mkdir(parents=True, exist_ok=True)
-    tag = f"clip{'e' if a.head else ''}{'4' if a.arm == 'ru4' else ''}_s{a.seed}"
+    tag = f"clip{'e' if a.head else ''}{'4' if a.arm == 'ru4' else ''}{a.suffix}_s{a.seed}"
     model = RUCLIP(head=a.head).cuda()
     rows = read_manifest(HERE / "manifest_train.tsv"); vrows = read_manifest(HERE / "manifest_val.tsv")
     ds = RUData3(rows, 224, a.seed, arm=a.arm, head_res=model.grid, norm="clip")
@@ -153,11 +171,13 @@ def main():
         crit = 0.5 * (f1 + f1v)
         log.append(dict(epoch=ep, loss=acc[0] / n, ffpp_val_f1=f1, ffpp_val_auc=auc, vendor_val_f1=f1v, vendor_val_orig_real=orig_real, minutes=(time.time() - t0) / 60))
         print(f"[{tag}][{ep:02d}/{a.epochs}] loss {acc[0] / n:.4f} ffppF1 {f1:.4f} AUC {auc:.4f} vendorF1 {f1v:.4f} orig->real {orig_real:.1f}% crit {crit:.4f} ({(time.time() - t0) / 60:.1f} min)", flush=True)
-        if crit > best:
+        if a.save_all:
+            torch.save(model.state_dict_trainable(), CKPT / f"ru_{tag}_e{ep:02d}.pth"); best = max(best, crit)
+        elif crit > best:
             best = crit; torch.save(model.state_dict_trainable(), out); print("  -> saved best", flush=True)
         with open(HERE / f"train_ru_{tag}.csv", "w", newline="", encoding="utf-8") as f:
             w = csv.DictWriter(f, fieldnames=list(log[0])); w.writeheader(); w.writerows(log)
-    (HERE / f"meta_ru_{tag}.json").write_text(json.dumps({"arm": "clip", "head": a.head, "best": best, "epochs": a.epochs, "seed": a.seed, "trainable_M": ntr / 1e6, "total_M": ntot / 1e6}, indent=1))
+    (HERE / f"meta_ru_{tag}.json").write_text(json.dumps({"arm": "clip", "head": a.head, "best": best, "epochs": a.epochs, "seed": a.seed, "trainable_M": ntr / 1e6, "total_M": ntot / 1e6, "save_all": a.save_all}, indent=1))
     print(f"[{tag}] best {best:.4f} -> {out}\nDONE", flush=True)
 
 

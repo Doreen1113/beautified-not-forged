@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prepared cases</title>
+<style>
+  :root { --bg: #f7f6f2; --ink: #1d1d1b; --mute: #6b6a66; --line: #d9d6cf; --ok: #2d7a46; --bad: #b4322b; --warn: #a86a00; --card: #ffffff; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16171a; --ink: #ececea; --mute: #a3a29c; --line: #34363b; --card: #1f2024; --ok: #5fc27f; --bad: #e0675f; --warn: #e3a94a; } }
+  :root[data-theme="dark"] { --bg: #16171a; --ink: #ececea; --mute: #a3a29c; --line: #34363b; --card: #1f2024; --ok: #5fc27f; --bad: #e0675f; --warn: #e3a94a; }
+  body { margin: 0; padding-block: 24px; padding-inline: 16px; background: var(--bg); color: var(--ink); font: 16px/1.5 "Source Sans 3", "Noto Sans TC", system-ui, sans-serif; }
+  main { max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 1.6rem; margin: 0 0 4px; text-wrap: balance; }
+  .sub { color: var(--mute); margin: 0 0 20px; max-width: 70ch; }
+  .rule { font-size: 0.9rem; color: var(--mute); border-left: 3px solid var(--line); padding-left: 10px; margin: 0 0 20px; }
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .tabs button { border: 1px solid var(--line); background: var(--card); color: var(--ink); padding: 6px 12px; border-radius: 6px; cursor: pointer; }
+  .tabs button[aria-pressed="true"] { border-color: var(--ink); font-weight: 600; }
+  .case { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 14px; margin-bottom: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 760px) { .case { grid-template-columns: 1fr; } }
+  .imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .imgs figure { margin: 0; } .imgs img { width: 100%; height: auto; border-radius: 4px; display: block; }
+  .imgs figcaption { font-size: 0.8rem; color: var(--mute); margin-top: 4px; }
+  .truth { font-size: 0.85rem; color: var(--mute); margin: 0 0 8px; }
+  table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; font-size: 0.9rem; }
+  th, td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 600; color: var(--mute); font-size: 0.8rem; letter-spacing: 0.03em; text-transform: uppercase; }
+  .v { font-weight: 600; } .fake { color: var(--bad); } .notfake { color: var(--ok); } .beaut { color: var(--warn); }
+  .ours td { border-top: 2px solid var(--line); }
+  .note { font-size: 0.85rem; color: var(--mute); margin-top: 6px; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Prepared cases with known answers</h1>
+  <p class="sub">Each case is drawn by a fixed random seed from the held-out sources, not chosen by hand. The verdicts are the
+  detectors' real scores on these files. The aggregate numbers for each source are in the capstone report, so a single case
+  never stands alone.</p>
+  <p class="rule" id="rule"></p>
+  <div class="tabs" id="tabs"></div>
+  <div id="list"></div>
+  <p class="note">All cases come from research datasets whose images may not be redistributed (RetouchingFFHQ, Celeb-DF-B), so this page is shown only at the exhibition and is not part of any public copy; cases whose files are absent are hidden. <a href="index.html">Back to the live demo</a>.</p>
+</main>
+<script>
+(async function () {
+  const meta = await (await fetch("cases/cases.json")).json();
+  document.getElementById("rule").textContent = "Rule for every detector: " + meta.rule + ".";
+  const order = ["effort", "fadapter", "dfdhr", "sbi", "ours"];
+  const avail = await Promise.all(meta.cases.map(async (c) => {
+    const r = await fetch("cases/" + c.images.beautified, { method: "HEAD" }).catch(() => null);
+    return r && r.ok;
+  }));
+  const cases = meta.cases.filter((_, i) => avail[i]);
+  const groups = [["A", "Commercial skin smoothing, genuine faces"], ["B_deepfake", "Phone-app beautified deepfakes"], ["B_genuine", "Phone-app beautified genuine faces"]];
+  const tabs = document.getElementById("tabs"); const list = document.getElementById("list"); let cur = groups[0][0];
+  function verdict(v, isOurs) {
+    if (isOurs && v.decision) {
+      const cls = v.decision === "fake" ? "fake" : v.decision === "filter" ? "beaut" : "notfake";
+      return `<span class="v ${cls}">${v.decision === "filter" ? "beautified" : v.decision}</span> <span class="note">(fake score ${v.score.toFixed(2)})</span>`;
+    }
+    return `<span class="v ${v.called_fake ? "fake" : "notfake"}">${v.called_fake ? "fake" : "not fake"}</span> <span class="note">(${v.score.toFixed(2)})</span>`;
+  }
+  function render() {
+    for (const b of tabs.children) b.setAttribute("aria-pressed", String(b.dataset.g === cur));
+    list.innerHTML = cases.filter((c) => c.id.startsWith(cur + "_")).map((c) => `
+      <section class="case">
+        <div>
+          <p class="truth"><b>Ground truth:</b> ${c.truth}<br><b>Source:</b> ${c.source}</p>
+          <div class="imgs">
+            <figure><img src="cases/${c.images.original}" alt="before"><figcaption>before</figcaption></figure>
+            <figure><img src="cases/${c.images.beautified}" alt="after beautification"><figcaption>after beautification</figcaption></figure>
+          </div>
+        </div>
+        <div>
+          <table><thead><tr><th>detector</th><th>before</th><th>after</th></tr></thead><tbody>
+          ${order.map((d) => `<tr class="${d === "ours" ? "ours" : ""}"><td>${meta.detectors[d]}</td><td>${verdict(c.verdicts[d].original, d === "ours")}</td><td>${verdict(c.verdicts[d].beautified, d === "ours")}</td></tr>`).join("")}
+          </tbody></table>
+        </div>
+      </section>`).join("") || "<p class='note'>No cases of this kind are available on this copy.</p>";
+  }
+  for (const [g, label] of groups) {
+    const b = document.createElement("button"); b.textContent = label; b.dataset.g = g; b.onclick = () => { cur = g; render(); }; tabs.appendChild(b);
+  }
+  render();
+})();
+</script>
+</body>
+</html>

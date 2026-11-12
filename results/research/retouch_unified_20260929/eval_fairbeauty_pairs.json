@@ -1,0 +1,1164 @@
+{
+ "clipe4r_s20260929": {
+  "n_pairs": 2927,
+  "originals": {
+   "n": 2927,
+   "real": 33.3,
+   "fake": 30.9,
+   "filter": 35.8,
+   "mean_p_fake": 0.297,
+   "fake_over_real": 37.8
+  },
+  "filtered": {
+   "n": 2927,
+   "real": 1.9,
+   "fake": 95.0,
+   "filter": 3.0,
+   "mean_p_fake": 0.928,
+   "fake_over_real": 96.3
+  },
+  "filtered_called_fake_at_5pct_fpr_on_originals": 78.4,
+  "auc_p_fake_originals_vs_filtered": 0.946,
+  "auc_p_filter": 0.068,
+  "paired_rank_p_filter": 4.1
+ },
+ "clipe5_s20260929": {
+  "n_pairs": 2927,
+  "originals": {
+   "n": 2927,
+   "real": 23.2,
+   "fake": 26.1,
+   "filter": 50.6,
+   "mean_p_fake": 0.267,
+   "fake_over_real": 41.5
+  },
+  "filtered": {
+   "n": 2927,
+   "real": 0.2,
+   "fake": 93.1,
+   "filter": 6.7,
+   "mean_p_fake": 0.916,
+   "fake_over_real": 98.9
+  },
+  "filtered_called_fake_at_5pct_fpr_on_originals": 75.1,
+  "auc_p_fake_originals_vs_filtered": 0.945,
+  "auc_p_filter": 0.091,
+  "paired_rank_p_filter": 6.4
+ },
+ "clipe7_s20260929": {
+  "n_pairs": 2927,
+  "originals": {
+   "n": 2927,
+   "real": 98.3,
+   "fake": 0.3,
+   "filter": 1.4,
+   "mean_p_fake": 0.011,
+   "fake_over_real": 0.3
+  },
+  "filtered": {
+   "n": 2927,
+   "real": 0.0,
+   "fake": 0.0,
+   "filter": 100.0,
+   "mean_p_fake": 0.0,
+   "fake_over_real": 77.7
+  },
+  "filtered_called_fake_at_5pct_fpr_on_originals": 0.1,
+  "auc_p_fake_originals_vs_filtered": 0.005,
+  "auc_p_filter": 1.0,
+  "paired_rank_p_filter": 100.0,
+  "by_filter": {
+   "Baby_cute_face": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 0.3,
+    "argmax_fake": 0.0,
+    "argmax_filter": 100.0
+   },
+   "Caramel Macchiato": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 0.0,
+    "argmax_fake": 0.0,
+    "argmax_filter": 100.0
+   },
+   "Cute baby face": {
+    "n": 299,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 0.0,
+    "argmax_fake": 0.0,
+    "argmax_filter": 100.0
+   },
+   "Just Baby": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 0.0,
+    "argmax_fake": 0.0,
+    "argmax_filter": 100.0
+   },
+   "Pretty": {
+    "n": 568,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 0.2,
+    "argmax_fake": 0.0,
+    "argmax_filter": 100.0
+   },
+   "Shiny foxy": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 0.0,
+    "argmax_fake": 0.0,
+    "argmax_filter": 100.0
+   },
+   "big city life": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 0.0,
+    "argmax_fake": 0.0,
+    "argmax_filter": 100.0
+   },
+   "hary beauty": {
+    "n": 585,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 0.2,
+    "argmax_fake": 0.0,
+    "argmax_filter": 100.0
+   }
+  },
+  "held_out_filters": {
+   "n": 885,
+   "called_fake_at_5pct_fpr": 0.1,
+   "argmax_fake": 0.0,
+   "argmax_filter": 100.0
+  },
+  "training_filters": {
+   "n": 2042,
+   "called_fake_at_5pct_fpr": 0.1,
+   "argmax_fake": 0.0,
+   "argmax_filter": 100.0
+  }
+ },
+ "clipe5bzsg_s20260929": {
+  "n_pairs": 2927,
+  "originals": {
+   "n": 2927,
+   "real": 83.5,
+   "fake": 10.2,
+   "filter": 6.3,
+   "mean_p_fake": 0.116,
+   "fake_over_real": 10.5
+  },
+  "filtered": {
+   "n": 2927,
+   "real": 18.3,
+   "fake": 79.1,
+   "filter": 2.6,
+   "mean_p_fake": 0.72,
+   "fake_over_real": 79.2
+  },
+  "filtered_called_fake_at_5pct_fpr_on_originals": 67.7,
+  "auc_p_fake_originals_vs_filtered": 0.928,
+  "auc_p_filter": 0.127,
+  "paired_rank_p_filter": 12.3,
+  "by_filter": {
+   "Baby_cute_face": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 75.3,
+    "argmax_fake": 82.4,
+    "argmax_filter": 2.4
+   },
+   "Caramel Macchiato": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 67.5,
+    "argmax_fake": 79.3,
+    "argmax_filter": 3.1
+   },
+   "Cute baby face": {
+    "n": 299,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 64.2,
+    "argmax_fake": 75.3,
+    "argmax_filter": 1.3
+   },
+   "Just Baby": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 55.6,
+    "argmax_fake": 72.9,
+    "argmax_filter": 3.7
+   },
+   "Pretty": {
+    "n": 568,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 68.8,
+    "argmax_fake": 81.3,
+    "argmax_filter": 3.5
+   },
+   "Shiny foxy": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 75.6,
+    "argmax_fake": 85.1,
+    "argmax_filter": 1.7
+   },
+   "big city life": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 43.7,
+    "argmax_fake": 58.0,
+    "argmax_filter": 3.1
+   },
+   "hary beauty": {
+    "n": 585,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 78.8,
+    "argmax_fake": 87.7,
+    "argmax_filter": 1.9
+   }
+  },
+  "held_out_filters": {
+   "n": 885,
+   "called_fake_at_5pct_fpr": 58.2,
+   "argmax_fake": 71.1,
+   "argmax_filter": 3.1
+  },
+  "training_filters": {
+   "n": 2042,
+   "called_fake_at_5pct_fpr": 71.8,
+   "argmax_fake": 82.5,
+   "argmax_filter": 2.4
+  }
+ },
+ "clipe5bzl0_s20260929": {
+  "n_pairs": 2927,
+  "originals": {
+   "n": 2927,
+   "real": 4.8,
+   "fake": 26.4,
+   "filter": 68.8,
+   "mean_p_fake": 0.258,
+   "fake_over_real": 30.4
+  },
+  "filtered": {
+   "n": 2927,
+   "real": 0.1,
+   "fake": 96.7,
+   "filter": 3.2,
+   "mean_p_fake": 0.952,
+   "fake_over_real": 97.4
+  },
+  "filtered_called_fake_at_5pct_fpr_on_originals": 83.3,
+  "auc_p_fake_originals_vs_filtered": 0.965,
+  "auc_p_filter": 0.039,
+  "paired_rank_p_filter": 1.6,
+  "by_filter": {
+   "Baby_cute_face": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 89.8,
+    "argmax_fake": 98.6,
+    "argmax_filter": 1.4
+   },
+   "Caramel Macchiato": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 89.5,
+    "argmax_fake": 98.3,
+    "argmax_filter": 1.7
+   },
+   "Cute baby face": {
+    "n": 299,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 79.6,
+    "argmax_fake": 97.3,
+    "argmax_filter": 2.0
+   },
+   "Just Baby": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 82.0,
+    "argmax_fake": 95.9,
+    "argmax_filter": 3.4
+   },
+   "Pretty": {
+    "n": 568,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 86.6,
+    "argmax_fake": 97.4,
+    "argmax_filter": 2.6
+   },
+   "Shiny foxy": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 90.8,
+    "argmax_fake": 98.0,
+    "argmax_filter": 2.0
+   },
+   "big city life": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 53.9,
+    "argmax_fake": 86.8,
+    "argmax_filter": 13.2
+   },
+   "hary beauty": {
+    "n": 585,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 87.4,
+    "argmax_fake": 98.5,
+    "argmax_filter": 1.5
+   }
+  },
+  "held_out_filters": {
+   "n": 885,
+   "called_fake_at_5pct_fpr": 75.3,
+   "argmax_fake": 93.8,
+   "argmax_filter": 6.0
+  },
+  "training_filters": {
+   "n": 2042,
+   "called_fake_at_5pct_fpr": 86.8,
+   "argmax_fake": 97.9,
+   "argmax_filter": 2.0
+  }
+ },
+ "clipe5M_s20260929": {
+  "n_pairs": 2927,
+  "originals": {
+   "n": 2927,
+   "real": 20.1,
+   "fake": 24.9,
+   "filter": 55.0,
+   "mean_p_fake": 0.26,
+   "fake_over_real": 45.6
+  },
+  "filtered": {
+   "n": 2927,
+   "real": 0.1,
+   "fake": 93.4,
+   "filter": 6.5,
+   "mean_p_fake": 0.921,
+   "fake_over_real": 99.3
+  },
+  "filtered_called_fake_at_5pct_fpr_on_originals": 78.1,
+  "auc_p_fake_originals_vs_filtered": 0.952,
+  "auc_p_filter": 0.08,
+  "paired_rank_p_filter": 6.3,
+  "by_filter": {
+   "Baby_cute_face": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 83.4,
+    "argmax_fake": 96.3,
+    "argmax_filter": 3.4
+   },
+   "Caramel Macchiato": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 82.4,
+    "argmax_fake": 95.9,
+    "argmax_filter": 3.7
+   },
+   "Cute baby face": {
+    "n": 299,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 70.2,
+    "argmax_fake": 89.3,
+    "argmax_filter": 10.7
+   },
+   "Just Baby": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 79.7,
+    "argmax_fake": 93.2,
+    "argmax_filter": 6.8
+   },
+   "Pretty": {
+    "n": 568,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 82.7,
+    "argmax_fake": 95.6,
+    "argmax_filter": 4.4
+   },
+   "Shiny foxy": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 87.1,
+    "argmax_fake": 96.9,
+    "argmax_filter": 3.1
+   },
+   "big city life": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 65.8,
+    "argmax_fake": 85.1,
+    "argmax_filter": 14.9
+   },
+   "hary beauty": {
+    "n": 585,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 73.8,
+    "argmax_fake": 93.3,
+    "argmax_filter": 6.7
+   }
+  },
+  "held_out_filters": {
+   "n": 885,
+   "called_fake_at_5pct_fpr": 76.3,
+   "argmax_fake": 91.5,
+   "argmax_filter": 8.4
+  },
+  "training_filters": {
+   "n": 2042,
+   "called_fake_at_5pct_fpr": 78.9,
+   "argmax_fake": 94.3,
+   "argmax_filter": 5.7
+  }
+ },
+ "clipe5fbEM_s20260929": {
+  "n_pairs": 2927,
+  "originals": {
+   "n": 2927,
+   "real": 19.7,
+   "fake": 30.6,
+   "filter": 49.6,
+   "mean_p_fake": 0.297,
+   "fake_over_real": 37.1
+  },
+  "filtered": {
+   "n": 2927,
+   "real": 1.6,
+   "fake": 94.4,
+   "filter": 4.0,
+   "mean_p_fake": 0.899,
+   "fake_over_real": 95.4
+  },
+  "filtered_called_fake_at_5pct_fpr_on_originals": 67.6,
+  "auc_p_fake_originals_vs_filtered": 0.928,
+  "auc_p_filter": 0.077,
+  "paired_rank_p_filter": 2.5,
+  "by_filter": {
+   "Baby_cute_face": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 78.0,
+    "argmax_fake": 99.0,
+    "argmax_filter": 1.0
+   },
+   "Caramel Macchiato": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 75.6,
+    "argmax_fake": 94.2,
+    "argmax_filter": 5.1
+   },
+   "Cute baby face": {
+    "n": 299,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 61.5,
+    "argmax_fake": 93.0,
+    "argmax_filter": 4.3
+   },
+   "Just Baby": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 62.7,
+    "argmax_fake": 92.9,
+    "argmax_filter": 6.4
+   },
+   "Pretty": {
+    "n": 568,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 74.5,
+    "argmax_fake": 96.1,
+    "argmax_filter": 3.0
+   },
+   "Shiny foxy": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 78.6,
+    "argmax_fake": 97.3,
+    "argmax_filter": 1.7
+   },
+   "big city life": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 44.4,
+    "argmax_fake": 85.4,
+    "argmax_filter": 9.8
+   },
+   "hary beauty": {
+    "n": 585,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 63.2,
+    "argmax_fake": 95.0,
+    "argmax_filter": 2.6
+   }
+  },
+  "held_out_filters": {
+   "n": 885,
+   "called_fake_at_5pct_fpr": 61.7,
+   "argmax_fake": 92.4,
+   "argmax_filter": 5.8
+  },
+  "training_filters": {
+   "n": 2042,
+   "called_fake_at_5pct_fpr": 70.1,
+   "argmax_fake": 95.2,
+   "argmax_filter": 3.2
+  }
+ },
+ "clipe5M_s20260930": {
+  "n_pairs": 2927,
+  "originals": {
+   "n": 2927,
+   "real": 16.6,
+   "fake": 30.1,
+   "filter": 53.3,
+   "mean_p_fake": 0.301,
+   "fake_over_real": 50.1
+  },
+  "filtered": {
+   "n": 2927,
+   "real": 0.2,
+   "fake": 93.9,
+   "filter": 6.0,
+   "mean_p_fake": 0.92,
+   "fake_over_real": 99.2
+  },
+  "filtered_called_fake_at_5pct_fpr_on_originals": 67.6,
+  "auc_p_fake_originals_vs_filtered": 0.932,
+  "auc_p_filter": 0.096,
+  "paired_rank_p_filter": 6.4,
+  "by_filter": {
+   "Baby_cute_face": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 72.2,
+    "argmax_fake": 98.3,
+    "argmax_filter": 1.4
+   },
+   "Caramel Macchiato": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 72.9,
+    "argmax_fake": 95.3,
+    "argmax_filter": 4.1
+   },
+   "Cute baby face": {
+    "n": 299,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 61.2,
+    "argmax_fake": 90.6,
+    "argmax_filter": 9.0
+   },
+   "Just Baby": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 60.7,
+    "argmax_fake": 92.9,
+    "argmax_filter": 7.1
+   },
+   "Pretty": {
+    "n": 568,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 73.4,
+    "argmax_fake": 94.9,
+    "argmax_filter": 5.1
+   },
+   "Shiny foxy": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 79.7,
+    "argmax_fake": 97.6,
+    "argmax_filter": 2.4
+   },
+   "big city life": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 55.6,
+    "argmax_fake": 86.4,
+    "argmax_filter": 13.2
+   },
+   "hary beauty": {
+    "n": 585,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 63.9,
+    "argmax_fake": 93.8,
+    "argmax_filter": 6.2
+   }
+  },
+  "held_out_filters": {
+   "n": 885,
+   "called_fake_at_5pct_fpr": 62.8,
+   "argmax_fake": 92.5,
+   "argmax_filter": 7.2
+  },
+  "training_filters": {
+   "n": 2042,
+   "called_fake_at_5pct_fpr": 69.7,
+   "argmax_fake": 94.4,
+   "argmax_filter": 5.4
+  }
+ },
+ "clipe5fbE_s20260929": {
+  "n_pairs": 2927,
+  "originals": {
+   "n": 2927,
+   "real": 16.2,
+   "fake": 30.0,
+   "filter": 53.9,
+   "mean_p_fake": 0.293,
+   "fake_over_real": 36.7
+  },
+  "filtered": {
+   "n": 2927,
+   "real": 1.1,
+   "fake": 94.9,
+   "filter": 4.0,
+   "mean_p_fake": 0.906,
+   "fake_over_real": 96.0
+  },
+  "filtered_called_fake_at_5pct_fpr_on_originals": 69.7,
+  "auc_p_fake_originals_vs_filtered": 0.935,
+  "auc_p_filter": 0.069,
+  "paired_rank_p_filter": 2.5,
+  "by_filter": {
+   "Baby_cute_face": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 78.6,
+    "argmax_fake": 98.6,
+    "argmax_filter": 1.4
+   },
+   "Caramel Macchiato": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 77.3,
+    "argmax_fake": 95.3,
+    "argmax_filter": 4.4
+   },
+   "Cute baby face": {
+    "n": 299,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 64.5,
+    "argmax_fake": 93.6,
+    "argmax_filter": 4.7
+   },
+   "Just Baby": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 71.5,
+    "argmax_fake": 94.6,
+    "argmax_filter": 5.4
+   },
+   "Pretty": {
+    "n": 568,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 77.5,
+    "argmax_fake": 97.2,
+    "argmax_filter": 2.6
+   },
+   "Shiny foxy": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 79.7,
+    "argmax_fake": 96.9,
+    "argmax_filter": 1.7
+   },
+   "big city life": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 40.3,
+    "argmax_fake": 85.4,
+    "argmax_filter": 10.8
+   },
+   "hary beauty": {
+    "n": 585,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 65.3,
+    "argmax_fake": 95.2,
+    "argmax_filter": 3.2
+   }
+  },
+  "held_out_filters": {
+   "n": 885,
+   "called_fake_at_5pct_fpr": 63.5,
+   "argmax_fake": 92.9,
+   "argmax_filter": 5.9
+  },
+  "training_filters": {
+   "n": 2042,
+   "called_fake_at_5pct_fpr": 72.4,
+   "argmax_fake": 95.8,
+   "argmax_filter": 3.2
+  }
+ },
+ "clipe5fbE_s20260930": {
+  "n_pairs": 2927,
+  "originals": {
+   "n": 2927,
+   "real": 64.2,
+   "fake": 27.0,
+   "filter": 8.8,
+   "mean_p_fake": 0.268,
+   "fake_over_real": 27.1
+  },
+  "filtered": {
+   "n": 2927,
+   "real": 5.3,
+   "fake": 94.5,
+   "filter": 0.2,
+   "mean_p_fake": 0.905,
+   "fake_over_real": 94.5
+  },
+  "filtered_called_fake_at_5pct_fpr_on_originals": 75.0,
+  "auc_p_fake_originals_vs_filtered": 0.943,
+  "auc_p_filter": 0.059,
+  "paired_rank_p_filter": 1.8,
+  "by_filter": {
+   "Baby_cute_face": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 84.1,
+    "argmax_fake": 98.3,
+    "argmax_filter": 0.0
+   },
+   "Caramel Macchiato": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 81.0,
+    "argmax_fake": 95.3,
+    "argmax_filter": 0.3
+   },
+   "Cute baby face": {
+    "n": 299,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 67.2,
+    "argmax_fake": 92.6,
+    "argmax_filter": 0.3
+   },
+   "Just Baby": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 74.6,
+    "argmax_fake": 93.2,
+    "argmax_filter": 1.0
+   },
+   "Pretty": {
+    "n": 568,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 82.2,
+    "argmax_fake": 96.8,
+    "argmax_filter": 0.0
+   },
+   "Shiny foxy": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 88.8,
+    "argmax_fake": 96.9,
+    "argmax_filter": 0.0
+   },
+   "big city life": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 49.2,
+    "argmax_fake": 84.4,
+    "argmax_filter": 0.0
+   },
+   "hary beauty": {
+    "n": 585,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 70.6,
+    "argmax_fake": 95.2,
+    "argmax_filter": 0.3
+   }
+  },
+  "held_out_filters": {
+   "n": 885,
+   "called_fake_at_5pct_fpr": 69.3,
+   "argmax_fake": 92.0,
+   "argmax_filter": 0.3
+  },
+  "training_filters": {
+   "n": 2042,
+   "called_fake_at_5pct_fpr": 77.5,
+   "argmax_fake": 95.5,
+   "argmax_filter": 0.2
+  }
+ },
+ "clipe7W_s20260929": {
+  "n_pairs": 2927,
+  "originals": {
+   "n": 2927,
+   "real": 95.9,
+   "fake": 0.4,
+   "filter": 3.8,
+   "mean_p_fake": 0.009,
+   "fake_over_real": 0.4
+  },
+  "filtered": {
+   "n": 2927,
+   "real": 0.6,
+   "fake": 92.1,
+   "filter": 7.3,
+   "mean_p_fake": 0.901,
+   "fake_over_real": 97.7
+  },
+  "filtered_called_fake_at_5pct_fpr_on_originals": 99.3,
+  "auc_p_fake_originals_vs_filtered": 0.998,
+  "auc_p_filter": 0.152,
+  "paired_rank_p_filter": 14.7,
+  "by_filter": {
+   "Baby_cute_face": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 99.3,
+    "argmax_fake": 96.6,
+    "argmax_filter": 2.0
+   },
+   "Caramel Macchiato": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 99.3,
+    "argmax_fake": 95.9,
+    "argmax_filter": 3.1
+   },
+   "Cute baby face": {
+    "n": 299,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 98.3,
+    "argmax_fake": 88.0,
+    "argmax_filter": 11.4
+   },
+   "Just Baby": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 98.6,
+    "argmax_fake": 91.5,
+    "argmax_filter": 7.5
+   },
+   "Pretty": {
+    "n": 568,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 99.6,
+    "argmax_fake": 94.5,
+    "argmax_filter": 5.1
+   },
+   "Shiny foxy": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 99.3,
+    "argmax_fake": 95.9,
+    "argmax_filter": 4.1
+   },
+   "big city life": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 99.3,
+    "argmax_fake": 80.3,
+    "argmax_filter": 19.0
+   },
+   "hary beauty": {
+    "n": 585,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 99.8,
+    "argmax_fake": 92.0,
+    "argmax_filter": 7.9
+   }
+  },
+  "held_out_filters": {
+   "n": 885,
+   "called_fake_at_5pct_fpr": 99.1,
+   "argmax_fake": 89.5,
+   "argmax_filter": 9.5
+  },
+  "training_filters": {
+   "n": 2042,
+   "called_fake_at_5pct_fpr": 99.4,
+   "argmax_fake": 93.2,
+   "argmax_filter": 6.4
+  }
+ },
+ "clipe7W_s20260930": {
+  "n_pairs": 2927,
+  "originals": {
+   "n": 2927,
+   "real": 96.0,
+   "fake": 0.3,
+   "filter": 3.7,
+   "mean_p_fake": 0.012,
+   "fake_over_real": 0.3
+  },
+  "filtered": {
+   "n": 2927,
+   "real": 1.1,
+   "fake": 87.1,
+   "filter": 11.8,
+   "mean_p_fake": 0.845,
+   "fake_over_real": 96.0
+  },
+  "filtered_called_fake_at_5pct_fpr_on_originals": 98.6,
+  "auc_p_fake_originals_vs_filtered": 0.997,
+  "auc_p_filter": 0.234,
+  "paired_rank_p_filter": 22.9,
+  "by_filter": {
+   "Baby_cute_face": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 99.3,
+    "argmax_fake": 93.2,
+    "argmax_filter": 4.4
+   },
+   "Caramel Macchiato": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 99.7,
+    "argmax_fake": 93.2,
+    "argmax_filter": 5.1
+   },
+   "Cute baby face": {
+    "n": 299,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 97.3,
+    "argmax_fake": 79.6,
+    "argmax_filter": 18.1
+   },
+   "Just Baby": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 97.6,
+    "argmax_fake": 85.1,
+    "argmax_filter": 13.9
+   },
+   "Pretty": {
+    "n": 568,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 98.8,
+    "argmax_fake": 90.3,
+    "argmax_filter": 9.3
+   },
+   "Shiny foxy": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 99.7,
+    "argmax_fake": 94.9,
+    "argmax_filter": 4.7
+   },
+   "big city life": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 95.9,
+    "argmax_fake": 70.5,
+    "argmax_filter": 27.5
+   },
+   "hary beauty": {
+    "n": 585,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 99.5,
+    "argmax_fake": 87.0,
+    "argmax_filter": 12.6
+   }
+  },
+  "held_out_filters": {
+   "n": 885,
+   "called_fake_at_5pct_fpr": 97.6,
+   "argmax_fake": 82.9,
+   "argmax_filter": 15.3
+  },
+  "training_filters": {
+   "n": 2042,
+   "called_fake_at_5pct_fpr": 99.0,
+   "argmax_fake": 88.9,
+   "argmax_filter": 10.3
+  }
+ },
+ "ru7we_effb4_s20260929": {
+  "n_pairs": 2927,
+  "originals": {
+   "n": 2927,
+   "real": 95.7,
+   "fake": 0.8,
+   "filter": 3.5,
+   "mean_p_fake": 0.03,
+   "fake_over_real": 0.9
+  },
+  "filtered": {
+   "n": 2927,
+   "real": 5.0,
+   "fake": 65.9,
+   "filter": 29.1,
+   "mean_p_fake": 0.624,
+   "fake_over_real": 87.4
+  },
+  "filtered_called_fake_at_5pct_fpr_on_originals": 88.7,
+  "auc_p_fake_originals_vs_filtered": 0.978,
+  "auc_p_filter": 0.578,
+  "paired_rank_p_filter": 57.5,
+  "by_filter": {
+   "Baby_cute_face": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 85.4,
+    "argmax_fake": 72.9,
+    "argmax_filter": 13.9
+   },
+   "Caramel Macchiato": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 84.7,
+    "argmax_fake": 64.7,
+    "argmax_filter": 25.8
+   },
+   "Cute baby face": {
+    "n": 299,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 78.6,
+    "argmax_fake": 54.2,
+    "argmax_filter": 26.4
+   },
+   "Just Baby": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 90.5,
+    "argmax_fake": 69.5,
+    "argmax_filter": 28.1
+   },
+   "Pretty": {
+    "n": 568,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 92.3,
+    "argmax_fake": 77.6,
+    "argmax_filter": 20.2
+   },
+   "Shiny foxy": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 91.5,
+    "argmax_fake": 62.7,
+    "argmax_filter": 37.3
+   },
+   "big city life": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 83.4,
+    "argmax_fake": 46.1,
+    "argmax_filter": 53.9
+   },
+   "hary beauty": {
+    "n": 585,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 94.4,
+    "argmax_fake": 67.5,
+    "argmax_filter": 32.3
+   }
+  },
+  "held_out_filters": {
+   "n": 885,
+   "called_fake_at_5pct_fpr": 86.4,
+   "argmax_fake": 62.8,
+   "argmax_filter": 32.0
+  },
+  "training_filters": {
+   "n": 2042,
+   "called_fake_at_5pct_fpr": 89.7,
+   "argmax_fake": 67.3,
+   "argmax_filter": 27.9
+  }
+ },
+ "ru4e_effb4_s20260929": {
+  "n_pairs": 2927,
+  "originals": {
+   "n": 2927,
+   "real": 29.2,
+   "fake": 35.8,
+   "filter": 35.0,
+   "mean_p_fake": 0.346,
+   "fake_over_real": 47.6
+  },
+  "filtered": {
+   "n": 2927,
+   "real": 11.3,
+   "fake": 74.6,
+   "filter": 14.1,
+   "mean_p_fake": 0.683,
+   "fake_over_real": 81.9
+  },
+  "filtered_called_fake_at_5pct_fpr_on_originals": 32.0,
+  "auc_p_fake_originals_vs_filtered": 0.771,
+  "auc_p_filter": 0.263,
+  "paired_rank_p_filter": 23.1,
+  "by_filter": {
+   "Baby_cute_face": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 42.0,
+    "argmax_fake": 80.0,
+    "argmax_filter": 13.6
+   },
+   "Caramel Macchiato": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 35.9,
+    "argmax_fake": 75.3,
+    "argmax_filter": 11.2
+   },
+   "Cute baby face": {
+    "n": 299,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 28.1,
+    "argmax_fake": 69.9,
+    "argmax_filter": 17.7
+   },
+   "Just Baby": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 27.1,
+    "argmax_fake": 74.2,
+    "argmax_filter": 16.3
+   },
+   "Pretty": {
+    "n": 568,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 39.6,
+    "argmax_fake": 80.3,
+    "argmax_filter": 12.3
+   },
+   "Shiny foxy": {
+    "n": 295,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 34.9,
+    "argmax_fake": 74.6,
+    "argmax_filter": 13.2
+   },
+   "big city life": {
+    "n": 295,
+    "held_out": true,
+    "called_fake_at_5pct_fpr": 10.8,
+    "argmax_fake": 54.6,
+    "argmax_filter": 25.4
+   },
+   "hary beauty": {
+    "n": 585,
+    "held_out": false,
+    "called_fake_at_5pct_fpr": 31.5,
+    "argmax_fake": 78.6,
+    "argmax_filter": 9.4
+   }
+  },
+  "held_out_filters": {
+   "n": 885,
+   "called_fake_at_5pct_fpr": 26.7,
+   "argmax_fake": 69.6,
+   "argmax_filter": 18.4
+  },
+  "training_filters": {
+   "n": 2042,
+   "called_fake_at_5pct_fpr": 34.4,
+   "argmax_fake": 76.7,
+   "argmax_filter": 12.2
+  }
+ }
+}

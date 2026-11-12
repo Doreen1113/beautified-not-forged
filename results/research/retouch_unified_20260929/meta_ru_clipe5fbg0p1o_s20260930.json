@@ -1,0 +1,15 @@
+{
+ "arm": "ru5",
+ "factorised": true,
+ "binary": true,
+ "mil": 0.0,
+ "beauty": "real",
+ "no_smooth": false,
+ "only_smooth": true,
+ "tune": "lora",
+ "grade": false,
+ "vendor_fake": true,
+ "epochs": 8,
+ "seed": 20260930,
+ "trainable_M": 3.157003
+}

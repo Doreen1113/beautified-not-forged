@@ -1,0 +1,22 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Evidence maps</title><style>
+  @page { margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body { font-family: Arial, "Liberation Sans", Helvetica, sans-serif; color: #1f2937; font-size: 8.5pt; line-height: 1.25; padding: 0.22cm 0 0.02cm 0; }
+  .row { display: flex; gap: 0.3cm; align-items: stretch; }
+  .panel { position: relative; border-radius: 0.22cm; background: #f7f8fb; border: 0.4pt solid #d6dbe3; padding: 0.42cm 0.22cm 0.18cm; }
+  .panel > .chip { position: absolute; top: -0.19cm; left: 0.22cm; font-size: 8.5pt; font-weight: 700; color: #fff; padding: 0.045cm 0.22cm; border-radius: 0.3cm; white-space: nowrap; }
+  .nn > .chip { background: #0f4d92; } .code > .chip { background: #1b7f4c; } .chk > .chip { background: #6a3d9a; } .fk > .chip { background: #d55e00; } .ink > .chip { background: #374151; }
+  svg text { font-family: Arial, "Liberation Sans", Helvetica, sans-serif; }
+  .legend { font-size: 8pt; color: #6b7280; margin-top: 0.12cm; padding-left: 0.05cm; }
+  .legend i { display: inline-block; width: 0.26cm; height: 0.18cm; border-radius: 0.05cm; vertical-align: -0.03cm; margin: 0 0.08cm 0 0.3cm; }
+  .legend i:first-child { margin-left: 0; }
+body{width:18.13cm;}</style></head><body><style>
+      .grid { display: grid; grid-template-columns: 1.6cm repeat(5, 3.08cm); column-gap: 0.14cm; row-gap: 0.06cm; align-items: center; }
+      .grid img { width: 3.08cm; height: 3.08cm; object-fit: cover; border-radius: 0.14cm; box-shadow: 0 1px 2.5px rgba(0,0,0,.28); display: block; }
+      .h { font-size: 8.5pt; text-align: center; color: #1f2937; font-weight: 700; }
+      .rl { font-size: 8.5pt; color: #1f2937; text-align: right; padding-right: 0.1cm; line-height: 1.2; }
+      .s { font-size: 8.5pt; text-align: center; font-weight: 700; height: 0.4cm; }
+      .pillf { display: inline-block; color: #d55e00; background: #fbe8dc; border-radius: 0.3cm; padding: 0 0.2cm; }
+      .pillr { display: inline-block; color: #009e73; background: #e3f2e8; border-radius: 0.3cm; padding: 0 0.2cm; }
+    </style><div class="panel code" style="width:18.13cm"><div class="chip">Held-out part-level forgeries: where the evidence is, and what restoring it does</div><div class="grid"><div></div><div class="h">input</div><div class="h">true footprint</div><div class="h">evidence map (ours)</div><div class="h">Score-CAM (no head)</div><div class="h">region restored</div><div class="rl">donor<br>nose</div><img src="ev0_input.png"><img src="ev0_truth.png"><img src="ev0_ours.png"><img src="ev0_cam.png"><img src="ev0_restored.png"><div></div><div></div><div></div><div class="s"><span class="pillf">fake 1.00</span></div><div></div><div class="s"><span class="pillr">&rarr; real 0.95</span></div><div class="rl">SD-1.5<br>eyes</div><img src="ev1_input.png"><img src="ev1_truth.png"><img src="ev1_ours.png"><img src="ev1_cam.png"><img src="ev1_restored.png"><div></div><div></div><div></div><div class="s"><span class="pillf">fake 1.00</span></div><div></div><div class="s"><span class="pillr">&rarr; real 0.60</span></div></div><div class="legend">green line: true footprint &middot; yellow line: the region the map selects &middot; heat: evidence or Score-CAM, opacity = value</div></div></body></html>

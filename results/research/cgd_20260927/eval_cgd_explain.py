@@ -128,27 +128,32 @@ def iou7(a, b):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--arm", required=True, choices=["HYPBE", "HYBPE", "MASK", "MASKD", "CGD", "CGDD", "CGD-ZERO", "CGD-BLUR", "CGD-NOHOLD", "RU3E", "RU4E", "RUCLIPE", "RUCLIPE4"])
+    ap.add_argument("--arm", required=True, choices=None)
     ap.add_argument("--seed", type=int, default=20260928)
     ap.add_argument("--mech", default="donor,sd,sdxl")
     ap.add_argument("--n", type=int, default=100000)
     a = ap.parse_args()
-    if a.arm in ("RU3E", "RU3E-repvit", "RU4E"):
-        # RU3-E (retouch_unified_20260929/train_ru3.py): same input size/normalisation as CGDNet (380, 0.5); adapt to (logits, ev)
+    if a.arm in ("RU3E", "RU3E-repvit", "RU4E", "RU4E-repvit", "RU7WE"):
+        # RU3-E (retouch_unified_20260929/train_ru3.py): same input size/normalisation as CGDNet (380, 0.5); adapt to (logits, ev).
+        # RepViT arms were trained at 224 px with the same 0.5 normalisation: the harness still composites at 380 px and the
+        # wrapper resizes to 224 (bilinear, as the RUCLIPE arms do); the 7x7 evidence grid is up-sampled to 380 by region_from_map.
         sys.path.insert(0, str(BASE / "results/research/retouch_unified_20260929")); from train_ru3 import RUNet3
-        arch = "repvit" if a.arm.endswith("repvit") else "effb4"
-        inner = RUNet3(arch, head=True); inner.load_state_dict(torch.load(BASE / f"checkpoints/research/retouch_unified_20260929/ru_{a.arm.lower()}_{arch}_s{a.seed}.pth", map_location="cpu"))
+        from train_ru import ARCH as RU_ARCH
+        arch = "repvit" if a.arm.endswith("repvit") else "effb4"; native = RU_ARCH[arch][1]
+        inner = RUNet3(arch, head=True); inner.load_state_dict(torch.load(BASE / f"checkpoints/research/retouch_unified_20260929/ru_{a.arm.split('-')[0].lower()}_{arch}_s{a.seed}.pth", map_location="cpu"))
         class _W(torch.nn.Module):
             head = True
             def __init__(self, m): super().__init__(); self.m = m
             def forward(self, x):
+                if x.shape[-1] != native:
+                    x = F.interpolate(x, size=(native, native), mode="bilinear", align_corners=False)
                 o = self.m(x); return o[0], o[3]
         net = _W(inner).cuda().eval(); cam = None
-    elif a.arm in ("RUCLIPE", "RUCLIPE4"):
+    elif a.arm.startswith("RUCLIPE"):
         # RU-CLIP-E: the harness composites at 380 px with 0.5 normalisation; the wrapper converts to 224 px + CLIP normalisation
         sys.path.insert(0, str(BASE / "results/research/retouch_unified_20260929")); from train_ru_clip import load_clip
         from train_ru3 import CLIP_MEAN, CLIP_STD
-        inner = load_clip(f"clipe{'4' if a.arm.endswith('4') else ''}_s{a.seed}", head=True)
+        inner = load_clip(f"clipe{a.arm[len('RUCLIPE'):].lower()}_s{a.seed}", head=True)
         class _WC(torch.nn.Module):
             head = True
             def __init__(self, m):
@@ -228,7 +233,8 @@ def main():
             drops[m].append(p0 - p1)
     R["filter_E5"] = {"n_detected": nd, **{m: float(np.mean(v)) if v else None for m, v in drops.items()}}
     print("filter_E5", R["filter_E5"], flush=True)
-    json.dump(R, open(HERE / f"explain_{a.arm}_s{a.seed}.json", "w"), indent=1)
+    suf = "" if a.mech == "donor,sd,sdxl" else "_" + a.mech.replace(",", "+")   # keep the standard file; other mechanism sets get their own
+    json.dump(R, open(HERE / f"explain_{a.arm}_s{a.seed}{suf}.json", "w"), indent=1)
 
 
 if __name__ == "__main__":

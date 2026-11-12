@@ -134,10 +134,10 @@ def eval_ffpp(model, size):
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--arch", default="effb4"); ap.add_argument("--seed", type=int, default=20260929)
     ap.add_argument("--part", default="all"); ap.add_argument("--arm", default="ru1"); a = ap.parse_args()
-    if a.arm in ("clip", "clipe", "clipe4"):
+    if a.arm.startswith("clip"):
         from train_ru_clip import load_clip
         tag = f"{a.arm}_s{a.seed}"; size = 224; model = load_clip(tag, head=a.arm != "clip"); model.norm = "clip"
-    elif a.arm in ("ru3", "ru3e", "ru4e"):
+    elif a.arm in ("ru3", "ru3e", "ru4e", "ru7we"):
         from train_ru3 import RUNet3
         tag = f"{a.arm}_{a.arch}_s{a.seed}"; size = ARCH[a.arch][1]
         model = RUNet3(a.arch, head=a.arm.endswith("e")); model.load_state_dict(torch.load(CKPT / f"ru_{tag}.pth", map_location="cpu"))

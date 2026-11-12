@@ -1,0 +1,46 @@
+{
+ "record": {
+  "decision": "fake",
+  "probabilities": {
+   "real": 0.0,
+   "fake": 1.0,
+   "filter": 0.0
+  },
+  "named_parts": [
+   "nose"
+  ],
+  "whole_face": false,
+  "evidence_mean_per_part": {
+   "eyes": 0.25,
+   "nose": 0.99,
+   "mouth": 0.36,
+   "skin": 0.25,
+   "contour": 0.01
+  },
+  "operation_threshold": 0.5,
+  "operations": {
+   "eye_enlargement": 0.23,
+   "face_slimming": 0.04,
+   "skin_brightening": 0.08,
+   "skin_smoothing": 0.21
+  }
+ },
+ "text": "The model's decision is fake (score 1.00). The evidence is concentrated on the nose (mean evidence 0.99). The score is the model's raw output, not a calibrated probability.",
+ "gate_v3": {
+  "H1": false,
+  "H2": false,
+  "omit_region": false,
+  "H3": false,
+  "H4": false,
+  "H5": false,
+  "H6": false,
+  "any": false,
+  "any_H1toH5": false,
+  "G7": false,
+  "facts": false,
+  "any_v2": false,
+  "G8": false,
+  "G9": false,
+  "any_v3": false
+ }
+}

@@ -1,0 +1,125 @@
+% Draft of the 2026-10 rewrite: Introduction and Related Work. Numbers marked \pending{} wait for the round-1/2 arms.
+% To be merged into main.tex once the method results are in. Measurement numbers come from fair_cdfb.json,
+% cdf_filtered.json and dfd_filtered.json (one rule for every detector).
+
+\begin{abstract}
+Many of the faces a forgery detector receives have been beautified by a camera app or a retouching service. We measure
+what this does to thirteen published detectors with one rule for all of them: the score is the probability of forgery,
+the threshold is set on untreated genuine faces, and both errors are counted, genuine faces accused and forgeries let
+through. On three sources that none of the detectors was tuned on, app presets on Celeb-DF-B, eleven colour filters on
+Celeb-DF-v2 and sixteen further filters on DFD, every detector loses AUC under beautification; for the two CLIP-based
+detectors of 2025 the miss rate at a fixed threshold rises by 7 to 17 points, and a retouching service makes eleven
+detectors accuse 36--63\% of its most strongly smoothed genuine faces. A probe of the feature space shows where the damage
+comes from: a radial luminance overlay moves a genuine face along the forgery direction three to ten times further than a
+pure colour look, and the direction cannot be projected out without losing the forgery evidence itself. We therefore train
+against it. We define a bounded, differentiable operator over identity-preserving edits whose range is fitted to measured
+retouching and filters, and minimise the risk under the worst edit the operator can produce for each face, found by
+gradient ascent, on genuine and forged faces alike. With FaceForensics++ as the only training data, \pending{the worst-case
+model reaches an AUC of X under app presets and Y under unseen filters, against 0.81/0.79 for Effort and 0.83/0.79 for
+Forensics Adapter}, while matching them on untreated Celeb-DF-v2 and DFD. Random edits from the same operator and the worst
+of four random draws fall short of the gradient search, and a model that also learns from commercial retouching pairs
+extends the margin. The detector's evidence map names regions whose restoration removes \pending{Z}\% of its detections on
+held-out part-level forgeries, within a point of the true footprint.
+\end{abstract}
+
+% ----------------------------------------------------------------------------
+\section{Introduction}
+Face-forgery detectors are used for content moderation, remote identity checks and fact-checking. In these settings a
+genuine face called fake accuses a real person, and a forgery called real is let through. Many of the genuine faces such a
+detector receives have been beautified. Retouching is common on social media and photo-sharing sites and appears even on
+identification documents~\cite{bharati2016}; skin smoothing, whitening, eye enlargement and face slimming are default
+options in camera apps and are sold by retouching APIs, and colour presets ship with every photo-sharing app.
+Beautification edits the pixels of the face, which is what a forgery detector inspects, but changes neither who is shown
+nor what the person does.
+
+We measure both errors on thirteen published detectors, from Xception to the CLIP-based Effort~\cite{effort} and Forensics
+Adapter~\cite{forensicsadapter}, with one rule for every detector: the score is its probability of forgery, the threshold is
+the one that accuses 5\% of untreated genuine frames, and a forgery not called fake is a miss whatever else it was called.
+Three test sources carry beautification that none of the detectors was trained on. Two of them, Celeb-DF-B and the DFD
+filters, were never used for any design decision of ours; the Celeb-DF-v2 filters informed the design of our edit operator
+and are reported as a development source. On Celeb-DF-B~\cite{libourel2024},
+whose app presets were applied by its authors, re-encoding alone explains part of the change, so we subtract it; the miss
+rate still rises by 11.0, 15.2 and 21.8 points for Effort, Forensics Adapter and SBI~\cite{sbi}. On Celeb-DF-v2 frames under
+eleven colour filters never used in our training, the AUC of the two CLIP detectors falls from 0.88--0.89 to 0.79. On DFD
+frames under sixteen further filters, built after every design decision of this paper had been taken, it falls from 0.94 to
+0.90--0.91 and Effort's miss rate rises by 12 points. The other direction is as real: at a threshold that accuses 5\% of a
+retouching service's untouched originals, the eleven FF++-trained detectors accuse 36--63\% of its most strongly smoothed
+genuine faces.
+
+Where does the damage come from? We look at the pooled feature of a CLIP detector trained on FF++ only. Of eleven held-out
+filters, the two that add a radial luminance overlay move a genuine face's forgery logit by +5.6 and +7.8 on average, the
+nine pure colour looks by +0.1 to +2.4, and the overlay shifts have a cosine of 0.20--0.33 with the forgery weight vector
+against 0.00--0.09 for the colour looks. A luminance ramp around the face reads as a blending boundary. Most of the shift
+energy of every held-out filter lies in the subspace spanned by the shifts of beautifications seen in training, so the
+directions were seen and the combinations were not. Projecting that subspace out and refitting the head does not help:
+the clean AUC drops at once and the false accusations under the filters do not fall, because the same few directions
+carry the forgery evidence. The separation has to be learnt.
+
+We learn it by training against the worst beautification rather than a random one. The space of identity-preserving edits
+is written as a differentiable operator $B(x;u)$ with bounded tone curves, a colour matrix, saturation down to monochrome,
+contrast, a smooth luminance and tint field, skin smoothing and grain. Its range is not set by hand: the operator is fitted
+to the renders of two commercial retouching services and to the colour filters used in training, and the search is
+confined to the range of the fitted edits. The training objective is the risk under the worst edit in that range,
+\begin{equation*}
+\min_\theta\ \mathbb{E}_{(x,y)}\Big[\ell\big(f_\theta(x),y\big)+\max_{u\in U}\ell\big(f_\theta(B(x;u)),y\big)\Big],
+\end{equation*}
+with the inner maximisation approximated by signed-gradient ascent from a measured edit, applied to genuine and forged
+faces alike so that no edit is associated with either label. This is adversarial training with a perturbation set that
+has a meaning: not an $\ell_p$ ball but the edits a user can apply. Random edits from the same operator, and the worst of
+four random draws, are the controls that separate the contribution of the search from that of the operator family.
+
+Our contributions are:
+\begin{itemize}
+\item \textbf{A two-sided measurement with one rule.} Thirteen detectors on three beautification sources and a commercial
+retouching service, scored by the same rule, with video-level confidence intervals and re-encoding separated from
+beautification.
+\item \textbf{The mechanism, measured.} A feature-space probe that quantifies which edits move a CLIP detector toward
+``forged'', by how much, and why a linear fix cannot work.
+\item \textbf{Worst-case beautification training.} A bounded differentiable edit operator fitted to measured retouching and
+filters, and robust training against its worst edit on both classes, with the random and worst-of-$k$ controls that
+isolate the effect of the search. \pending{With FF++ as the only training data it reaches AUC X / Y / Z under the three
+sources against 0.81 / 0.79 / 0.90 for Effort}, at unchanged accuracy on untreated Celeb-DF-v2 and DFD.
+\item \textbf{Evidence with a faithfulness test.} An evidence head trained on exact edit footprints, checked by restoring
+the region it names and watching the decision change.
+\end{itemize}
+We also report what did not work, because it bounds the claims. A third output class for beautified faces, which we
+proposed in an earlier version of this work, does not improve detection: a detector with the same data and a single forged
+output is better on every source by about 0.02 AUC, and the class is kept only as a user-facing output. In our runs, beautification
+applied with unequal frequency to the two classes taught the detector a correlation and moved its errors from one side to
+the other rather than removing them. And the model still separates lightly retouched faces from their originals at only
+70--75\% balanced accuracy on an unseen service.
+
+% ----------------------------------------------------------------------------
+\section{Related Work}
+\textbf{Beautification and forgery detection.} Libourel et al.~\cite{libourel2024} released Celeb-DF-B and measured AUC
+drops of 0.15--0.16 for three detectors under app presets; Saeed et al.~\cite{saeed2025} show that face enhancement lets
+deepfakes evade six detectors and fine-tune on fixed enhanced samples; Concas et al.~\cite{concas2025} report both errors
+for two CNNs under a smoothing filter. None trains against the edit, and none scores detectors by a common rule. The
+retouching literature labels commercial operations~\cite{retouchingffhq} or restores the untouched face~\cite{frrffusion,mofrr,reface,wang2019photoshop}
+without a forgery class. Liu et al.~\cite{miea2026} attribute both forgery and beautification tools in a closed set.
+
+\textbf{Attacks on forgery detectors through natural appearance.} StatAttack~\cite{statattack2023} optimises exposure, blur
+and noise, and AdvShadow~\cite{advshadow2024} a shadow overlay, to make forgeries pass; both are attacks in one direction
+and are not used for training. Fatima et al.~\cite{fatima2025} train on the worst of $K$ random counter-forensic
+transforms, chosen by loss without a gradient. We search the edit space by gradient, on both classes, and measure both
+errors; the worst-of-$k$ choice is one of our controls.
+
+\textbf{Adversarial training over semantic perturbations.} Hosseini and Poovendran~\cite{hosseini2018}, ColorFool~\cite{colorfool2020},
+functional attacks~\cite{laidlaw2019} and colour-filter attacks~\cite{ace2020,advcf2023} move images along hue, saturation
+or a parametric colour curve; the vignetting attack~\cite{ava2021} does so with a radial field. Hsiung et al.~\cite{gat2023}
+train against compositions of hue, saturation, brightness, contrast and rotation. Adversarial data augmentation for domain
+generalisation~\cite{volpi2018} and group-robust optimisation~\cite{sagawa2020} share the objective. Our perturbation set is
+the space of beautification edits, its range is fitted to measured edits, and the task is forgery detection, where the
+perturbation also appears on the positive class. Single-step adversarial training can overfit to its own step~\cite{wong2020fast};
+we test for this with a ten-step attack.
+
+\textbf{Generalisable forgery detection.} Face X-ray~\cite{facexray} and SBI~\cite{sbi} synthesise blending artefacts from
+real images, UCF~\cite{ucf} separates common from method-specific forgery features, and Effort~\cite{effort} and Forensics
+Adapter~\cite{forensicsadapter} adapt CLIP ViT-L/14 with few trainable parameters. DeepfakeBench~\cite{deepfakebench}
+provides common checkpoints. The alpha-blending hypothesis~\cite{alphablend2026} holds that frame-based detectors localise
+compositing artefacts; our measurement that a luminance ramp around the face raises the forgery score is consistent with
+it, for genuine faces.
+
+\textbf{Explanations for detectors.} GAIN~\cite{gain} trains attention so that erasing the attended region removes the
+evidence, amortised maskers predict saliency in one pass~\cite{dabkowski2017,phang2020}, and DOLOS~\cite{dolos} compares
+methods for localising inpainted regions. We supervise the map with exact footprints and test it by restoring pixels.

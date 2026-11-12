@@ -23,10 +23,10 @@ def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--arch", default="effb4"); ap.add_argument("--arm", default="ru1")
     ap.add_argument("--seed", type=int, default=20260929); a = ap.parse_args()
     tag = f"{a.arch}_s{a.seed}" if a.arm == "ru1" else f"{a.arm}_{a.arch}_s{a.seed}"; size = ARCH[a.arch][1]
-    if a.arm in ("clip", "clipe", "clipe4"):
+    if a.arm.startswith("clip"):
         from train_ru_clip import load_clip
         tag = f"{a.arm}_s{a.seed}"; size = 224; m = load_clip(tag, head=a.arm != "clip"); m.norm = "clip"
-    elif a.arm in ("ru3", "ru3e", "ru4e"):   # RUNet3 shares the RUNet interface (cls, pres, q [, ev]); drop the evidence map
+    elif a.arm in ("ru3", "ru3e", "ru4e", "ru7we"):   # RUNet3 shares the RUNet interface (cls, pres, q [, ev]); drop the evidence map
         from train_ru3 import RUNet3
         inner = RUNet3(a.arch, head=a.arm.endswith("e")); inner.load_state_dict(torch.load(CKPT / f"ru_{tag}.pth", map_location="cpu"))
         class _W(torch.nn.Module):

@@ -1,0 +1,16 @@
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.27\linewidth}>{\raggedright\arraybackslash}p{0.2\linewidth}>{\raggedright\arraybackslash}p{0.2\linewidth}>{\raggedright\arraybackslash}p{0.26\linewidth}@{}}
+\toprule
+Detector & weights & training data & input \\
+\midrule
+Xception, EfficientNet-B4, F3Net, SPSL, UCF, RECCE, CORE, SRM & DeepfakeBench release~\cite{deepfakebench} & FF++ c23 & 256 px \\
+SBI & authors' release (FFc23) & FF++ c23 reals, self-blended & 380 px \\
+Effort & authors' release & FF++ c23 & 224 px \\
+Forensics Adapter & authors' release & FF++ c23 & 256 px, resized to 224 for CLIP \\
+GenD (CLIP ViT-L/14) & authors' release & FF++ c23 & 224 px \\
+DFD-HR & authors' release & FF++ c23 & 448 px \\
+CADDM (EfficientNet-B4) & authors' release & FF++ raw & own 5-point alignment, 224 px \\
+LAA-Net & authors' release (SBI-trained) & FF++ raw, self-blended & own crop rebuilt in our box, 384 px \\
+UnivFD & authors' release (linear probe on CLIP) & ProGAN images (not faces) & 224 px centre crop \\
+NPR & authors' release & ProGAN images (not faces) & 256 px \\
+\bottomrule
+\end{tabular}

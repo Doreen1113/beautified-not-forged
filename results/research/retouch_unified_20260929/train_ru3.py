@@ -190,9 +190,18 @@ class RUNet3(nn.Module):
         self.head = head; self.ev = nn.Conv2d(d, 1, 1) if head else None
 
     def forward(self, x):
-        fm = self.backbone.forward_features(x); f = fm.mean((2, 3))
-        out = (self.cls(f), self.pres(f), self.q(f))
+        fm = self.backbone.forward_features(x); f = fm.mean((2, 3)); c = self.cls(f)
+        if c.shape[1] == 2:   # Addendum 70: factorised forged / beautified logits -> log of the joint (real, fake, filter)
+            z = c.float(); nf, nb = F.logsigmoid(-z[:, 0]), F.logsigmoid(-z[:, 1])
+            c = torch.stack([nf + nb, F.logsigmoid(z[:, 0]), nf + F.logsigmoid(z[:, 1])], 1)
+        out = (c, self.pres(f), self.q(f))
         return out + (self.ev(fm),) if self.head else out
+
+    def load_state_dict(self, sd, strict=True, **k):   # Addendum 70: a checkpoint whose cls has 2 outputs is a factorised model
+        w = sd.get("cls.weight")
+        if w is not None and w.shape[0] != self.cls.out_features:
+            self.cls = nn.Linear(self.cls.in_features, w.shape[0]).to(self.cls.weight.device)
+        return super().load_state_dict(sd, strict=strict, **k)
 
 
 def mask_loss(ev, m, mm):

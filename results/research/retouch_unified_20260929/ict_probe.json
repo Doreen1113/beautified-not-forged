@@ -1,0 +1,832 @@
+{
+ "n_addendum51": 3504,
+ "n": 3504,
+ "n_genuine": 836,
+ "n_forged": 2668,
+ "ict_align_fail_pct": {
+  "untreated": {
+   "all": 0.0,
+   "genuine": 0.0,
+   "forged": 0.0
+  },
+  "bil15": {
+   "all": 0.0,
+   "genuine": 0.0,
+   "forged": 0.0
+  },
+  "bil21": {
+   "all": 0.0,
+   "genuine": 0.0,
+   "forged": 0.0
+  },
+  "fl06": {
+   "all": 0.0,
+   "genuine": 0.0,
+   "forged": 0.0
+  },
+  "fl12": {
+   "all": 0.0,
+   "genuine": 0.0,
+   "forged": 0.0
+  }
+ },
+ "ict_weak_detection_pct(score<0.5)": {
+  "untreated": 0.0,
+  "bil15": 0.0,
+  "bil21": 0.0,
+  "fl06": 0.0,
+  "fl12": 0.0
+ },
+ "aligned_black_border_pct_mean": {
+  "untreated": 5.88,
+  "bil15": 5.84,
+  "bil21": 5.46,
+  "fl06": 5.95,
+  "fl12": 5.87
+ },
+ "ref": {
+  "ours_frames": 1080,
+  "ours_ids": 54,
+  "released_frames": 2420
+ },
+ "auc": {
+  "ICT": {
+   "untreated": {
+    "auc": 0.7898,
+    "drop": 0.0,
+    "drop_vs_untreated_ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "bil15": {
+    "auc": 0.6789,
+    "drop": -0.1109,
+    "drop_vs_untreated_ci": [
+     -0.1457,
+     -0.0806
+    ]
+   },
+   "bil21": {
+    "auc": 0.6664,
+    "drop": -0.1234,
+    "drop_vs_untreated_ci": [
+     -0.1695,
+     -0.0831
+    ]
+   },
+   "fl06": {
+    "auc": 0.7518,
+    "drop": -0.038,
+    "drop_vs_untreated_ci": [
+     -0.0513,
+     -0.0259
+    ]
+   },
+   "fl12": {
+    "auc": 0.6983,
+    "drop": -0.0915,
+    "drop_vs_untreated_ci": [
+     -0.126,
+     -0.0604
+    ]
+   }
+  },
+  "ICT-Ref (ours ref)": {
+   "untreated": {
+    "auc": 0.863,
+    "drop": 0.0,
+    "drop_vs_untreated_ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "bil15": {
+    "auc": 0.7811,
+    "drop": -0.0819,
+    "drop_vs_untreated_ci": [
+     -0.1068,
+     -0.0599
+    ]
+   },
+   "bil21": {
+    "auc": 0.7546,
+    "drop": -0.1084,
+    "drop_vs_untreated_ci": [
+     -0.1462,
+     -0.0686
+    ]
+   },
+   "fl06": {
+    "auc": 0.8355,
+    "drop": -0.0276,
+    "drop_vs_untreated_ci": [
+     -0.0364,
+     -0.0197
+    ]
+   },
+   "fl12": {
+    "auc": 0.7828,
+    "drop": -0.0803,
+    "drop_vs_untreated_ci": [
+     -0.102,
+     -0.0568
+    ]
+   }
+  },
+  "ICT-Ref (released ref.pkl)": {
+   "untreated": {
+    "auc": 0.9325,
+    "drop": 0.0,
+    "drop_vs_untreated_ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "bil15": {
+    "auc": 0.8804,
+    "drop": -0.0521,
+    "drop_vs_untreated_ci": [
+     -0.0684,
+     -0.0362
+    ]
+   },
+   "bil21": {
+    "auc": 0.8402,
+    "drop": -0.0923,
+    "drop_vs_untreated_ci": [
+     -0.119,
+     -0.0649
+    ]
+   },
+   "fl06": {
+    "auc": 0.9189,
+    "drop": -0.0136,
+    "drop_vs_untreated_ci": [
+     -0.019,
+     -0.0079
+    ]
+   },
+   "fl12": {
+    "auc": 0.8881,
+    "drop": -0.0444,
+    "drop_vs_untreated_ci": [
+     -0.0604,
+     -0.0275
+    ]
+   }
+  },
+  "ICT-Ref (claimed-id ref, exploratory)": {
+   "untreated": {
+    "auc": 0.793,
+    "drop": 0.0,
+    "drop_vs_untreated_ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "bil15": {
+    "auc": 0.7111,
+    "drop": -0.0819,
+    "drop_vs_untreated_ci": [
+     -0.1118,
+     -0.0558
+    ]
+   },
+   "bil21": {
+    "auc": 0.7024,
+    "drop": -0.0906,
+    "drop_vs_untreated_ci": [
+     -0.1318,
+     -0.0501
+    ]
+   },
+   "fl06": {
+    "auc": 0.7617,
+    "drop": -0.0313,
+    "drop_vs_untreated_ci": [
+     -0.0399,
+     -0.0227
+    ]
+   },
+   "fl12": {
+    "auc": 0.7133,
+    "drop": -0.0797,
+    "drop_vs_untreated_ci": [
+     -0.1082,
+     -0.0532
+    ]
+   }
+  },
+  "identity (ArcFace, Add.51)": {
+   "untreated": {
+    "auc": 0.9962,
+    "drop": 0.0,
+    "drop_vs_untreated_ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "bil15": {
+    "auc": 0.9839,
+    "drop": -0.0123,
+    "drop_vs_untreated_ci": [
+     -0.0219,
+     -0.0053
+    ]
+   },
+   "bil21": {
+    "auc": 0.9629,
+    "drop": -0.0333,
+    "drop_vs_untreated_ci": [
+     -0.0545,
+     -0.0166
+    ]
+   },
+   "fl06": {
+    "auc": 0.9946,
+    "drop": -0.0015,
+    "drop_vs_untreated_ci": [
+     -0.0034,
+     -0.0003
+    ]
+   },
+   "fl12": {
+    "auc": 0.9815,
+    "drop": -0.0147,
+    "drop_vs_untreated_ci": [
+     -0.0264,
+     -0.0053
+    ]
+   }
+  },
+  "clipe5b": {
+   "untreated": {
+    "auc": 0.9244,
+    "drop": 0.0,
+    "drop_vs_untreated_ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "bil15": {
+    "auc": 0.8229,
+    "drop": -0.1016,
+    "drop_vs_untreated_ci": [
+     -0.1238,
+     -0.0812
+    ]
+   },
+   "bil21": {
+    "auc": 0.7776,
+    "drop": -0.1468,
+    "drop_vs_untreated_ci": [
+     -0.1755,
+     -0.1199
+    ]
+   },
+   "fl06": {
+    "auc": 0.8869,
+    "drop": -0.0376,
+    "drop_vs_untreated_ci": [
+     -0.0686,
+     -0.0105
+    ]
+   },
+   "fl12": {
+    "auc": 0.7507,
+    "drop": -0.1737,
+    "drop_vs_untreated_ci": [
+     -0.2135,
+     -0.135
+    ]
+   }
+  },
+  "effort": {
+   "untreated": {
+    "auc": 0.8966,
+    "drop": 0.0,
+    "drop_vs_untreated_ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "bil15": {
+    "auc": 0.8124,
+    "drop": -0.0841,
+    "drop_vs_untreated_ci": [
+     -0.1085,
+     -0.0588
+    ]
+   },
+   "bil21": {
+    "auc": 0.7795,
+    "drop": -0.117,
+    "drop_vs_untreated_ci": [
+     -0.1476,
+     -0.0862
+    ]
+   },
+   "fl06": {
+    "auc": 0.7626,
+    "drop": -0.1339,
+    "drop_vs_untreated_ci": [
+     -0.1824,
+     -0.0968
+    ]
+   },
+   "fl12": {
+    "auc": 0.663,
+    "drop": -0.2335,
+    "drop_vs_untreated_ci": [
+     -0.2843,
+     -0.1912
+    ]
+   }
+  },
+  "gend": {
+   "untreated": {
+    "auc": 0.904,
+    "drop": 0.0,
+    "drop_vs_untreated_ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "bil15": {
+    "auc": 0.8042,
+    "drop": -0.0997,
+    "drop_vs_untreated_ci": [
+     -0.1348,
+     -0.0646
+    ]
+   },
+   "bil21": {
+    "auc": 0.7343,
+    "drop": -0.1697,
+    "drop_vs_untreated_ci": [
+     -0.2101,
+     -0.1273
+    ]
+   },
+   "fl06": {
+    "auc": 0.6645,
+    "drop": -0.2395,
+    "drop_vs_untreated_ci": [
+     -0.2918,
+     -0.1872
+    ]
+   },
+   "fl12": {
+    "auc": 0.6055,
+    "drop": -0.2985,
+    "drop_vs_untreated_ci": [
+     -0.3478,
+     -0.2477
+    ]
+   }
+  },
+  "sbi": {
+   "untreated": {
+    "auc": 0.8323,
+    "drop": 0.0,
+    "drop_vs_untreated_ci": [
+     0.0,
+     0.0
+    ]
+   },
+   "bil15": {
+    "auc": 0.6997,
+    "drop": -0.1326,
+    "drop_vs_untreated_ci": [
+     -0.1831,
+     -0.0918
+    ]
+   },
+   "bil21": {
+    "auc": 0.5764,
+    "drop": -0.2559,
+    "drop_vs_untreated_ci": [
+     -0.3161,
+     -0.2004
+    ]
+   },
+   "fl06": {
+    "auc": 0.6376,
+    "drop": -0.1947,
+    "drop_vs_untreated_ci": [
+     -0.2623,
+     -0.1345
+    ]
+   },
+   "fl12": {
+    "auc": 0.5726,
+    "drop": -0.2597,
+    "drop_vs_untreated_ci": [
+     -0.3371,
+     -0.1948
+    ]
+   }
+  }
+ },
+ "op5": {
+  "ICT": {
+   "untreated": {
+    "fa": 5.0,
+    "miss": 65.3
+   },
+   "bil15": {
+    "fa": 2.3,
+    "miss": 87.8
+   },
+   "bil21": {
+    "fa": 2.5,
+    "miss": 85.3
+   },
+   "fl06": {
+    "fa": 3.7,
+    "miss": 73.3
+   },
+   "fl12": {
+    "fa": 4.7,
+    "miss": 75.7
+   }
+  },
+  "ICT-Ref (ours ref)": {
+   "untreated": {
+    "fa": 5.0,
+    "miss": 46.6
+   },
+   "bil15": {
+    "fa": 2.9,
+    "miss": 70.4
+   },
+   "bil21": {
+    "fa": 7.2,
+    "miss": 64.1
+   },
+   "fl06": {
+    "fa": 4.1,
+    "miss": 54.6
+   },
+   "fl12": {
+    "fa": 5.5,
+    "miss": 56.5
+   }
+  },
+  "ICT-Ref (released ref.pkl)": {
+   "untreated": {
+    "fa": 5.0,
+    "miss": 32.3
+   },
+   "bil15": {
+    "fa": 4.7,
+    "miss": 52.7
+   },
+   "bil21": {
+    "fa": 12.3,
+    "miss": 39.8
+   },
+   "fl06": {
+    "fa": 4.9,
+    "miss": 40.0
+   },
+   "fl12": {
+    "fa": 7.1,
+    "miss": 39.1
+   }
+  },
+  "ICT-Ref (claimed-id ref, exploratory)": {
+   "untreated": {
+    "fa": 5.0,
+    "miss": 62.9
+   },
+   "bil15": {
+    "fa": 3.1,
+    "miss": 80.8
+   },
+   "bil21": {
+    "fa": 5.4,
+    "miss": 72.5
+   },
+   "fl06": {
+    "fa": 4.3,
+    "miss": 69.8
+   },
+   "fl12": {
+    "fa": 5.4,
+    "miss": 69.5
+   }
+  },
+  "identity (ArcFace, Add.51)": {
+   "untreated": {
+    "fa": 5.0,
+    "miss": 0.1
+   },
+   "bil15": {
+    "fa": 19.4,
+    "miss": 0.1
+   },
+   "bil21": {
+    "fa": 40.0,
+    "miss": 0.0
+   },
+   "fl06": {
+    "fa": 6.3,
+    "miss": 0.2
+   },
+   "fl12": {
+    "fa": 21.3,
+    "miss": 0.3
+   }
+  },
+  "clipe5b": {
+   "untreated": {
+    "fa": 5.0,
+    "miss": 33.8
+   },
+   "bil15": {
+    "fa": 43.2,
+    "miss": 14.4
+   },
+   "bil21": {
+    "fa": 53.5,
+    "miss": 14.9
+   },
+   "fl06": {
+    "fa": 56.6,
+    "miss": 3.8
+   },
+   "fl12": {
+    "fa": 88.0,
+    "miss": 1.8
+   }
+  },
+  "effort": {
+   "untreated": {
+    "fa": 5.0,
+    "miss": 33.4
+   },
+   "bil15": {
+    "fa": 41.5,
+    "miss": 16.8
+   },
+   "bil21": {
+    "fa": 66.5,
+    "miss": 5.3
+   },
+   "fl06": {
+    "fa": 94.9,
+    "miss": 0.1
+   },
+   "fl12": {
+    "fa": 100.0,
+    "miss": 0.0
+   }
+  },
+  "gend": {
+   "untreated": {
+    "fa": 5.0,
+    "miss": 30.6
+   },
+   "bil15": {
+    "fa": 88.0,
+    "miss": 0.6
+   },
+   "bil21": {
+    "fa": 96.8,
+    "miss": 0.1
+   },
+   "fl06": {
+    "fa": 98.8,
+    "miss": 0.0
+   },
+   "fl12": {
+    "fa": 100.0,
+    "miss": 0.0
+   }
+  },
+  "sbi": {
+   "untreated": {
+    "fa": 5.0,
+    "miss": 55.0
+   },
+   "bil15": {
+    "fa": 74.2,
+    "miss": 5.7
+   },
+   "bil21": {
+    "fa": 92.6,
+    "miss": 1.2
+   },
+   "fl06": {
+    "fa": 98.2,
+    "miss": 0.1
+   },
+   "fl12": {
+    "fa": 100.0,
+    "miss": 0.0
+   }
+  }
+ },
+ "median": {
+  "ICT": {
+   "untreated": {
+    "genuine": 0.7631,
+    "forged": 0.9159
+   },
+   "bil15": {
+    "genuine": 0.733,
+    "forged": 0.8106
+   },
+   "bil21": {
+    "genuine": 0.7656,
+    "forged": 0.834
+   },
+   "fl06": {
+    "genuine": 0.756,
+    "forged": 0.881
+   },
+   "fl12": {
+    "genuine": 0.7969,
+    "forged": 0.8807
+   }
+  },
+  "ICT-Ref (ours ref)": {
+   "untreated": {
+    "genuine": 1.4556,
+    "forged": 1.9231
+   },
+   "bil15": {
+    "genuine": 1.4745,
+    "forged": 1.7489
+   },
+   "bil21": {
+    "genuine": 1.5774,
+    "forged": 1.8063
+   },
+   "fl06": {
+    "genuine": 1.4548,
+    "forged": 1.8547
+   },
+   "fl12": {
+    "genuine": 1.5667,
+    "forged": 1.8467
+   }
+  },
+  "ICT-Ref (released ref.pkl)": {
+   "untreated": {
+    "genuine": 1.187,
+    "forged": 1.9084
+   },
+   "bil15": {
+    "genuine": 1.275,
+    "forged": 1.751
+   },
+   "bil21": {
+    "genuine": 1.4326,
+    "forged": 1.8374
+   },
+   "fl06": {
+    "genuine": 1.1884,
+    "forged": 1.8432
+   },
+   "fl12": {
+    "genuine": 1.3634,
+    "forged": 1.8455
+   }
+  },
+  "ICT-Ref (claimed-id ref, exploratory)": {
+   "untreated": {
+    "genuine": 1.4514,
+    "forged": 1.7616
+   },
+   "bil15": {
+    "genuine": 1.4625,
+    "forged": 1.6298
+   },
+   "bil21": {
+    "genuine": 1.5534,
+    "forged": 1.72
+   },
+   "fl06": {
+    "genuine": 1.4425,
+    "forged": 1.7029
+   },
+   "fl12": {
+    "genuine": 1.5531,
+    "forged": 1.725
+   }
+  },
+  "identity (ArcFace, Add.51)": {
+   "untreated": {
+    "genuine": 0.2461,
+    "forged": 0.6451
+   },
+   "bil15": {
+    "genuine": 0.3182,
+    "forged": 0.6426
+   },
+   "bil21": {
+    "genuine": 0.3831,
+    "forged": 0.6647
+   },
+   "fl06": {
+    "genuine": 0.2571,
+    "forged": 0.6421
+   },
+   "fl12": {
+    "genuine": 0.3177,
+    "forged": 0.6344
+   }
+  },
+  "clipe5b": {
+   "untreated": {
+    "genuine": 0.0534,
+    "forged": 0.999
+   },
+   "bil15": {
+    "genuine": 0.9883,
+    "forged": 0.9984
+   },
+   "bil21": {
+    "genuine": 0.9914,
+    "forged": 0.9982
+   },
+   "fl06": {
+    "genuine": 0.9948,
+    "forged": 0.9999
+   },
+   "fl12": {
+    "genuine": 0.9994,
+    "forged": 0.9999
+   }
+  },
+  "effort": {
+   "untreated": {
+    "genuine": 0.3546,
+    "forged": 0.8951
+   },
+   "bil15": {
+    "genuine": 0.7307,
+    "forged": 0.9063
+   },
+   "bil21": {
+    "genuine": 0.8474,
+    "forged": 0.9442
+   },
+   "fl06": {
+    "genuine": 0.9538,
+    "forged": 0.978
+   },
+   "fl12": {
+    "genuine": 0.9786,
+    "forged": 0.9851
+   }
+  },
+  "gend": {
+   "untreated": {
+    "genuine": 0.2196,
+    "forged": 0.9166
+   },
+   "bil15": {
+    "genuine": 0.9464,
+    "forged": 0.9822
+   },
+   "bil21": {
+    "genuine": 0.9692,
+    "forged": 0.9845
+   },
+   "fl06": {
+    "genuine": 0.9773,
+    "forged": 0.985
+   },
+   "fl12": {
+    "genuine": 0.988,
+    "forged": 0.9904
+   }
+  },
+  "sbi": {
+   "untreated": {
+    "genuine": 0.1765,
+    "forged": 0.7971
+   },
+   "bil15": {
+    "genuine": 0.9527,
+    "forged": 0.9851
+   },
+   "bil21": {
+    "genuine": 0.9913,
+    "forged": 0.9941
+   },
+   "fl06": {
+    "genuine": 0.9996,
+    "forged": 0.9998
+   },
+   "fl12": {
+    "genuine": 0.9995,
+    "forged": 0.9996
+   }
+  }
+ }
+}

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mask Check</title>
+<script src="../evidence_overlay.js"></script>
+<script src="../face_masks.js"></script>
+<script src="fixture_masks50.js"></script>
+<style>
+:root { --bg: #f6f5f2; --panel: #fff; --ink: #1d1f24; --muted: #62666f; --line: #dcdad4; --ok: #2f7d4f; --bad: #b3342b; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181c; --panel: #1f2227; --ink: #e8e6e1; --muted: #9ca0a8; --line: #33373e; --ok: #6cc08c; --bad: #ef7a6f; } }
+:root[data-theme="dark"] { --bg: #16181c; --panel: #1f2227; --ink: #e8e6e1; --muted: #9ca0a8; --line: #33373e; --ok: #6cc08c; --bad: #ef7a6f; }
+body { margin: 0; padding: 24px 16px; background: var(--bg); color: var(--ink); font: 14px/1.5 system-ui, sans-serif; }
+main { max-width: 1000px; margin: 0 auto; }
+h1 { font-size: 20px; margin: 0 0 6px; }
+#summary { font-weight: 600; font-size: 16px; margin: 12px 0; }
+table { border-collapse: collapse; width: 100%; background: var(--panel); border: 1px solid var(--line); }
+td, th { border-top: 1px solid var(--line); padding: 6px 8px; vertical-align: top; text-align: left; font-size: 13px; }
+.PASS { color: var(--ok); font-weight: 600; } .FAIL { color: var(--bad); font-weight: 600; }
+pre { margin: 0; white-space: pre-wrap; font: 12px/1.4 ui-monospace, monospace; }
+</style>
+</head>
+<body>
+<main>
+  <h1>face_masks.js 與 occlusion_regions.region_masks（cv2）在同一組 landmark、同一張 evidence map 上的比對（50 張）</h1>
+  <p>同一 224 格點、同一組 Python 偵測的 landmark、同一張 ONNX evidence map：只量 JavaScript 遮罩光柵化與 cv2 的差別對五個部位平均值與 rule B 命名的影響。</p>
+  <p id="summary">running…</p>
+  <pre id="report" hidden></pre>
+  <table id="rows"><tr><th>#</th><th>id</th><th>JS parts</th><th>cv2 parts</th><th>named JS / cv2 / cv2-native</th><th>max |Δ|</th><th>result</th></tr></table>
+</main>
+<script>
+(function () {
+  const F = window.MASK_FIXTURE, M = window.FaceMasks, O = window.EvidenceOverlay, G = F.grid, FACE = M.FACE;
+  const rows = document.getElementById("rows"), lines = []; let same = 0, diff = 0, dmax = 0, sameNative = 0, t0 = performance.now();
+  F.records.forEach((r, i) => {
+    const ep = M.evidenceParts(r.evidence_map16, r.landmarks_grid, G, G, O.upsample);
+    const cv = r.cv2_grid224, d = Math.max(...FACE.map((k) => Math.abs(ep.parts3[k] - cv.parts3[k])));
+    const ok = JSON.stringify(ep.named_parts) === JSON.stringify(cv.named_parts); ok ? same++ : diff++; dmax = Math.max(dmax, d);
+    const okN = JSON.stringify(ep.named_parts) === JSON.stringify(r.cv2_native.named_parts); if (okN) sameNative++;
+    const areaD = Math.max(...FACE.map((k) => { let n = 0; const m = ep.masks[k]; for (let j = 0; j < m.length; j++) n += m[j]; return Math.abs(n - r.mask_area_cv2[k]) / Math.max(1, r.mask_area_cv2[k]); }));
+    lines.push([ok ? "PASS" : "FAIL", r.id, "named_js=" + JSON.stringify(ep.named_parts), "named_cv2=" + JSON.stringify(cv.named_parts), "named_cv2_native=" + JSON.stringify(r.cv2_native.named_parts),
+                "dmean=" + d.toFixed(4), "max_rel_area_diff=" + areaD.toFixed(4)].join("\t"));
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${i + 1}</td><td>${r.id}</td><td><pre>${JSON.stringify(ep.parts3)}</pre></td><td><pre>${JSON.stringify(cv.parts3)}</pre></td><td>${ep.named_parts} / ${cv.named_parts} / ${r.cv2_native.named_parts}</td><td>${d.toFixed(3)}</td><td class="${ok ? "PASS" : "FAIL"}">${ok ? "PASS" : "FAIL"}</td>`;
+    rows.appendChild(tr);
+  });
+  const ms = (performance.now() - t0) / F.records.length;
+  const summary = `masks: named part same ${same} / different ${diff} of ${F.records.length}; max |Δ part mean| ${dmax.toFixed(4)}; same as cv2 at native crop resolution ${sameNative}/${F.records.length}; ${ms.toFixed(1)} ms per image`;
+  document.getElementById("summary").textContent = summary; document.getElementById("summary").className = diff ? "FAIL" : "PASS";
+  document.getElementById("report").textContent = "MASK_RESULT\t" + same + "\t" + diff + "\t" + F.records.length + "\t" + dmax.toFixed(4) + "\t" + sameNative + "\t" + ms.toFixed(1) + "\n" + lines.join("\n") + "\nMASK_END";
+})();
+</script>
+</body>
+</html>

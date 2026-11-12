@@ -1,0 +1,87 @@
+{
+ "date": "2026-11-01T14:13:48.440Z",
+ "model": "effb4",
+ "model_file": "models/ru7we_effb4.onnx",
+ "model_download_ms": 131,
+ "model_session_create_ms": 538,
+ "images": 4,
+ "timed_runs": 40,
+ "warmup_runs": 4,
+ "wasm_threads": 1,
+ "warmup_labels": [
+  "real",
+  "fake",
+  "filter",
+  "fake"
+ ],
+ "summary": {
+  "landmarks": {
+   "median_ms": 20.1,
+   "p90_ms": 25.6
+  },
+  "preprocess": {
+   "median_ms": 8,
+   "p90_ms": 16.4
+  },
+  "inference": {
+   "median_ms": 422.3,
+   "p90_ms": 442.5
+  },
+  "evidence": {
+   "median_ms": 60.7,
+   "p90_ms": 71.3
+  },
+  "total": {
+   "median_ms": 512.1,
+   "p90_ms": 543.6
+  }
+ },
+ "device": {
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+  "hardwareConcurrency": 16,
+  "deviceMemoryGB": 32,
+  "screen": "412x1400@2"
+ },
+ "raw_total_ms": [
+  506.6,
+  511.6,
+  540.2,
+  509.9,
+  513.3,
+  506.2,
+  527.2,
+  497.7,
+  495.4,
+  535.6,
+  535.8,
+  494.7,
+  483.9,
+  511.3,
+  543.6,
+  521.3,
+  497.3,
+  529.4,
+  550.9,
+  507.2,
+  507.1,
+  513.1,
+  516,
+  500.1,
+  498.2,
+  542.6,
+  517.8,
+  486.9,
+  483.9,
+  512.1,
+  521.4,
+  500.3,
+  501.6,
+  512.2,
+  544.1,
+  518,
+  492.1,
+  668.5,
+  526.6,
+  531.6
+ ]
+}

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T2 English Equivalence</title>
+<script src="../explain_t2.js"></script>
+<script src="fixture_t2_en.js"></script>
+<style>
+:root { --bg: #f6f5f2; --panel: #fff; --ink: #1d1f24; --muted: #62666f; --line: #dcdad4; --ok: #2f7d4f; --bad: #b3342b; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181c; --panel: #1f2227; --ink: #e8e6e1; --muted: #9ca0a8; --line: #33373e; --ok: #6cc08c; --bad: #ef7a6f; } }
+:root[data-theme="dark"] { --bg: #16181c; --panel: #1f2227; --ink: #e8e6e1; --muted: #9ca0a8; --line: #33373e; --ok: #6cc08c; --bad: #ef7a6f; }
+body { margin: 0; padding: 24px 16px; background: var(--bg); color: var(--ink); font: 14px/1.5 system-ui, sans-serif; }
+main { max-width: 960px; margin: 0 auto; }
+h1 { font-size: 20px; margin: 0 0 6px; }
+#summary { font-weight: 600; font-size: 16px; margin: 12px 0; }
+table { border-collapse: collapse; width: 100%; background: var(--panel); border: 1px solid var(--line); }
+td, th { border-top: 1px solid var(--line); padding: 6px 8px; vertical-align: top; text-align: left; font-size: 13px; }
+.PASS { color: var(--ok); font-weight: 600; } .FAIL { color: var(--bad); font-weight: 600; }
+pre { margin: 0; white-space: pre-wrap; font: 12px/1.4 ui-monospace, monospace; }
+</style>
+</head>
+<body>
+<main>
+  <h1>explain_t2.js (English) vs explain_v2_en.py</h1>
+  <p>Per record: the four JS sentences of <code>t2Sentences(r, "en")</code> against the Python <code>t2_sentences_en</code>, and
+    <code>compose(r, null, "en")</code> against <code>compose_en</code>, character for character.</p>
+  <p id="summary">running…</p>
+  <pre id="report" hidden></pre>
+  <table id="rows"><tr><th>#</th><th>id</th><th>decision</th><th>result</th><th>JS text</th><th>expected</th></tr></table>
+</main>
+<script>
+(function () {
+  const F = window.T2_FIXTURE_EN, E = window.ExplainT2, rows = document.getElementById("rows"), lines = [];
+  let pass = 0, fail = 0;
+  F.records.forEach((r, i) => {
+    const got = E.t2Sentences(r, "en"), exp = r.t2_sentences_en, text = E.compose(r, null, "en");
+    const okS = got.length === 4 && got.every((s, k) => s === exp[k]), okT = text === r.t2_text_en, ok = okS && okT;
+    ok ? pass++ : fail++;
+    lines.push((ok ? "PASS" : "FAIL") + "\t" + r.id + "\t" + (okS ? "sentences=ok" : "sentences=DIFF") + "\t" + (okT ? "text=ok" : "text=DIFF"));
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${i + 1}</td><td>${r.id}</td><td>${r.decision}</td><td class="${ok ? "PASS" : "FAIL"}">${ok ? "PASS" : "FAIL"}</td><td><pre></pre></td><td><pre></pre></td>`;
+    tr.querySelectorAll("pre")[0].textContent = text; tr.querySelectorAll("pre")[1].textContent = r.t2_text_en; rows.appendChild(tr);
+  });
+  document.getElementById("summary").textContent = `T2 English equivalence: ${pass} PASS / ${fail} FAIL of ${F.records.length}`;
+  document.getElementById("summary").className = fail ? "FAIL" : "PASS";
+  document.getElementById("report").textContent = "T2_RESULT\t" + pass + "\t" + fail + "\t" + F.records.length + "\n" + lines.join("\n") + "\nT2_END";
+})();
+</script>
+</body>
+</html>

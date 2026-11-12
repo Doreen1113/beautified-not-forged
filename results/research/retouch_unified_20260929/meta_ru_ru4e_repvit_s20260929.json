@@ -1,0 +1,9 @@
+{
+ "arm": "ru4",
+ "head": true,
+ "arch": "repvit",
+ "best": 0.8298894505526792,
+ "epochs": 12,
+ "seed": 20260929,
+ "n_single": 50112
+}

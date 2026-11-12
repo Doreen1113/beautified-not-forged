@@ -1,0 +1,61 @@
+% ============================================================================
+%  draft_v4_df40.tex -- new subsection on DF40 held-out detection and the reenactment trade-off, written 2026-10-13.
+%  Intended to follow sec:detect in main.tex (v3). Not yet \input by main.tex. Label defined here: sec:df40.
+%  Table: tab:v4df40 -> tables/tab_v4_df40.tex (make_tables_v4.py; footnote text in DF40_FOOT of that script);
+%  tab:v4tradeoff -> tables/tab_v4_tradeoff.tex.
+%  Sources: results/research/df40_eval_20261012/DF40_EVAL.md and PRE_DECLARED.md (incl. the post hoc extension);
+%  results/research/retouch_unified_20260929/FINDINGS.md (2026-10-13 DF40 sections, diag3way.py figures);
+%  docs/literature/READING_GUIDE_20261007.md H9 (what may be said about DF40's face-editing set).
+%  Bib key \cite{df40} does not exist in refs.bib yet (DF40, Yan et al., NeurIPS 2024 D&B); it must be added.
+% ============================================================================
+
+\subsection{Forgery methods newer than FF++: DF40}
+\label{sec:df40}
+The untreated comparison of Sec.~\ref{sec:detect} covers face swaps on Celeb-DF-v2 and DFD. DF40~\cite{df40} adds
+nine face-swap and twelve face-reenactment methods newer than those of FF++, in an FF++ domain and a Celeb-DF domain,
+with released 256\,px crops. We fixed the evaluation before any detector was run on it: the official test lists with
+the 718 MobileSwap videos built from FF++ training identities removed, all FF++-domain videos, 140 fake videos per method
+in the Celeb-DF domain, video-level AUC against the same-domain real videos, the mean over methods per family, and
+paired differences of the main model minus each CLIP detector on identical resamples. No bar was attached, because
+no method claim rests on it, and no beautification is applied. Table~\ref{tab:v4df40} gives the result for twelve
+published detectors and our models.
+
+On face swap the main model is on par with the CLIP detectors: 0.952 in the FF++ domain against Effort 0.944,
+Forensics Adapter 0.948 and GenD 0.966 (paired differences $+0.007$ [$-0.002$, $+0.018$], $+0.004$ [$-0.006$, $+0.012$]
+and $-0.015$ [$-0.023$, $-0.007$]), and 0.905 in the Celeb-DF domain against 0.935, 0.897 and 0.947. On reenactment it is
+behind every CLIP detector: 0.718 and 0.502 against Effort 0.808 and 0.710, Forensics Adapter 0.828 and 0.665, GenD
+0.935 and 0.828 and DFD-HR 0.932 and 0.698, with paired differences of $-0.090$ to $-0.218$ in the FF++ domain and
+$-0.163$ to $-0.326$ in the Celeb-DF domain, every interval below zero. The second seed is 0.780 and 0.559. On four
+Celeb-DF-domain reenactment methods (TPSM, DaNet, MCNet, FaceVid2Vid) the main model scores 0.27--0.37, below chance.
+A three-way read-out on 1,200 frames per cell shows where the frames go: reenactment frames are called real in
+49--51\% and beautified in 21--33\%, forged in only 18--29\%, while face-swap frames are called forged in 70--74\%. The
+claim of Sec.~\ref{sec:detect} therefore holds on Celeb-DF-v2, DFD and DF40 face swap, and fails on DF40 reenactment. A
+whole-face neural rendering has no blending boundary and a smooth skin texture, which is what our additions teach the
+model to read as genuine or beautified. The main model is not a general-purpose reference detector for forgeries of
+every kind; its scope is the swap and part-level families it was trained on, under beautification.
+
+\textbf{The loss follows smoothing exposure.} After the first table was read, we scored the exposure arms of
+Sec.~\ref{sec:mechanism2} on the same fixed list; this is a post hoc extension and selected nothing. The arms order on
+reenactment the way they order on commercial smoothing, in reverse (Table~\ref{tab:v4tradeoff}): P0 0.906 and 0.692
+(second seed 0.877 and 0.720); P2 without smoothing 0.858 and 0.705; P2 0.809 and 0.644 (0.785 and 0.643); P2 smoothing
+only 0.779 and 0.593 (0.833 and 0.629); P1 0.807 and 0.569; the three-way FF++-only model 0.809 and 0.637; the binary
+full-data control 0.842 and 0.647; the main model 0.718 and 0.502. Face swap moves little across the same arms
+(0.94--0.98 and 0.88--0.94). Views without smoothing cost about 0.05 in the FF++ domain and nothing in the Celeb-DF
+domain; adding smoothing costs a further 0.05--0.08 and 0.06--0.11; the third class, the external genuine stills and the
+commercial renders of the full-data model cost the rest. The symmetric smoothing arm is
+[PENDING: DF40 video AUC for clipe5fbg0oy, both seeds].
+
+The same trade-off is visible in published detectors. GenD and DFD-HR are the two strongest on reenactment (0.935 and
+0.932 in the FF++ domain) and the two that score a commercially smoothed face above its own original most often
+(98.5 and 99.0\% of pairs, Table~\ref{tab:v4retouch}); Effort and Forensics Adapter, which accuse fewer smoothed faces at
+the fixed threshold, are 0.10--0.13 lower on reenactment in that domain. A detector that reads smooth skin as evidence detects
+neural rendering and accuses retouching; one that has learned not to loses the rendering. We do not claim that this is
+the only route to reenactment detection, only that every arm of ours and the published detectors we ran lie on it.
+
+Four caveats attach to the table. The real videos are the FF++ and Celeb-DF-v2 test reals already used elsewhere in
+this paper, and Celeb-DF has no identity-disjoint split. Every detector in the table, ours included, is trained on
+FF++. Our models were trained on a different crop from the released 256\,px DF40 crops; the size of that handicap on
+Celeb-DF-v2 and DFD is given in the supplement. SBI is absent because its pipeline needs its own crop from full
+frames, and CADDM and LAA-Net are not scored on this set. DF40's face-editing set (five GAN and diffusion attribute
+editors on CelebA) contains no beautification or retouching, so DF40 does not test the beautified class, and we do not
+use it for that.

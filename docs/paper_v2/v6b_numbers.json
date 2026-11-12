@@ -1,0 +1,996 @@
+{
+ "cdfb_rec": {
+  "RU-clipe5b": {
+   "auc_u": 0.9486,
+   "auc_c": 0.9339,
+   "auc_b": 0.8958,
+   "auc_loss_total": 0.0528,
+   "auc_loss_reenc": 0.0147,
+   "auc_loss_beauty": 0.0381,
+   "fa_c": 5.02,
+   "fa_b": 7.36,
+   "dfa_beauty": 2.34,
+   "dmiss_beauty": 6.99,
+   "video_auc_u": 0.9819,
+   "video_auc_b": 0.9481,
+   "video_auc_c": 0.9738,
+   "native_filter_rate": {
+    "real": 69.3,
+    "real_beautified": 62.9,
+    "real_compressed": 69.3,
+    "synthesis": 5.6,
+    "synthesis_beautified": 10.3,
+    "synthesis_compressed": 7.5
+   },
+   "dfa_beauty_ci": [
+    1.19,
+    3.79
+   ],
+   "dfa_beauty_ci_identity": [
+    1.25,
+    3.67
+   ]
+  },
+  "RU-clipe5b_s20260930": {
+   "auc_u": 0.9553,
+   "auc_c": 0.9393,
+   "auc_b": 0.9039,
+   "auc_loss_total": 0.0514,
+   "auc_loss_reenc": 0.016,
+   "auc_loss_beauty": 0.0354,
+   "fa_c": 5.06,
+   "fa_b": 8.26,
+   "dfa_beauty": 3.2,
+   "dmiss_beauty": 5.74,
+   "video_auc_u": 0.9858,
+   "video_auc_b": 0.9516,
+   "video_auc_c": 0.978,
+   "native_filter_rate": {
+    "real": 41.3,
+    "real_beautified": 39.2,
+    "real_compressed": 42.2,
+    "synthesis": 2.2,
+    "synthesis_beautified": 4.6,
+    "synthesis_compressed": 3.2
+   },
+   "dfa_beauty_ci": [
+    1.67,
+    4.84
+   ],
+   "dfa_beauty_ci_identity": [
+    1.68,
+    4.76
+   ]
+  },
+  "RU-clipe5": {
+   "auc_u": 0.9377,
+   "auc_c": 0.9176,
+   "auc_b": 0.866,
+   "auc_loss_total": 0.0717,
+   "auc_loss_reenc": 0.0201,
+   "auc_loss_beauty": 0.0516,
+   "fa_c": 4.58,
+   "fa_b": 9.5,
+   "dfa_beauty": 4.92,
+   "dmiss_beauty": 6.66,
+   "video_auc_u": 0.9788,
+   "video_auc_b": 0.9196,
+   "video_auc_c": 0.9661,
+   "native_filter_rate": {
+    "real": 13.2,
+    "real_beautified": 47.4,
+    "real_compressed": 16.2,
+    "synthesis": 3.6,
+    "synthesis_beautified": 16.6,
+    "synthesis_compressed": 5.6
+   },
+   "dfa_beauty_ci": [
+    2.76,
+    7.49
+   ],
+   "dfa_beauty_ci_identity": [
+    2.65,
+    7.64
+   ]
+  },
+  "RU-clipe5-s2": {
+   "auc_u": 0.9411,
+   "auc_c": 0.9261,
+   "auc_b": 0.8828,
+   "auc_loss_total": 0.0583,
+   "auc_loss_reenc": 0.015,
+   "auc_loss_beauty": 0.0433,
+   "fa_c": 3.99,
+   "fa_b": 6.68,
+   "dfa_beauty": 2.69,
+   "dmiss_beauty": 8.35,
+   "video_auc_u": 0.9835,
+   "video_auc_b": 0.9409,
+   "video_auc_c": 0.977,
+   "native_filter_rate": {
+    "real": 20.7,
+    "real_beautified": 56.9,
+    "real_compressed": 25.1,
+    "synthesis": 3.9,
+    "synthesis_beautified": 16.1,
+    "synthesis_compressed": 6.3
+   },
+   "dfa_beauty_ci": [
+    1.32,
+    4.11
+   ],
+   "dfa_beauty_ci_identity": [
+    1.22,
+    4.23
+   ]
+  },
+  "RU-clipe5y_s20260929": {
+   "auc_u": 0.9413,
+   "auc_c": 0.9249,
+   "auc_b": 0.8681,
+   "auc_loss_total": 0.0732,
+   "auc_loss_reenc": 0.0164,
+   "auc_loss_beauty": 0.0568,
+   "fa_c": 4.33,
+   "fa_b": 9.22,
+   "dfa_beauty": 4.89,
+   "dmiss_beauty": 9.99,
+   "video_auc_u": 0.9814,
+   "video_auc_b": 0.9183,
+   "video_auc_c": 0.9736,
+   "native_filter_rate": {
+    "real": 14.2,
+    "real_beautified": 48.1,
+    "real_compressed": 18.4,
+    "synthesis": 3.7,
+    "synthesis_beautified": 17.4,
+    "synthesis_compressed": 5.8
+   },
+   "dfa_beauty_ci": [
+    2.66,
+    7.33
+   ],
+   "dfa_beauty_ci_identity": [
+    2.43,
+    7.6
+   ]
+  },
+  "RU-clipe5y_s20260930": {
+   "auc_u": 0.9449,
+   "auc_c": 0.9338,
+   "auc_b": 0.8879,
+   "auc_loss_total": 0.057,
+   "auc_loss_reenc": 0.0111,
+   "auc_loss_beauty": 0.0459,
+   "fa_c": 3.77,
+   "fa_b": 8.71,
+   "dfa_beauty": 4.94,
+   "dmiss_beauty": 3.15,
+   "video_auc_u": 0.9809,
+   "video_auc_b": 0.9373,
+   "video_auc_c": 0.9765,
+   "native_filter_rate": {
+    "real": 9.6,
+    "real_beautified": 50.1,
+    "real_compressed": 12.9,
+    "synthesis": 2.1,
+    "synthesis_beautified": 13.8,
+    "synthesis_compressed": 3.9
+   },
+   "dfa_beauty_ci": [
+    3.17,
+    6.79
+   ],
+   "dfa_beauty_ci_identity": [
+    3.35,
+    6.75
+   ]
+  },
+  "RU-clipe5f": {
+   "auc_u": 0.9384,
+   "auc_c": 0.9154,
+   "auc_b": 0.8722,
+   "auc_loss_total": 0.0662,
+   "auc_loss_reenc": 0.023,
+   "auc_loss_beauty": 0.0432,
+   "fa_c": 6.0,
+   "fa_b": 7.83,
+   "dfa_beauty": 1.83,
+   "dmiss_beauty": 7.46,
+   "video_auc_u": 0.973,
+   "video_auc_b": 0.92,
+   "video_auc_c": 0.9579,
+   "native_filter_rate": {
+    "real": 30.3,
+    "real_beautified": 68.5,
+    "real_compressed": 35.0,
+    "synthesis": 7.6,
+    "synthesis_beautified": 24.8,
+    "synthesis_compressed": 10.9
+   },
+   "dfa_beauty_ci": [
+    -0.07,
+    4.17
+   ],
+   "dfa_beauty_ci_identity": [
+    -0.19,
+    4.43
+   ]
+  },
+  "RU-clipe5fbp0_s20260929": {
+   "auc_u": 0.9271,
+   "auc_c": 0.9014,
+   "auc_b": 0.86,
+   "auc_loss_total": 0.0671,
+   "auc_loss_reenc": 0.0257,
+   "auc_loss_beauty": 0.0414,
+   "fa_c": 6.68,
+   "fa_b": 5.1,
+   "dfa_beauty": -1.58,
+   "dmiss_beauty": 17.04,
+   "video_auc_u": 0.9609,
+   "video_auc_b": 0.9092,
+   "video_auc_c": 0.9399,
+   "native_filter_rate": {
+    "real": 71.1,
+    "real_beautified": 71.3,
+    "real_compressed": 68.1,
+    "synthesis": 11.2,
+    "synthesis_beautified": 23.8,
+    "synthesis_compressed": 13.2
+   },
+   "dfa_beauty_ci": [
+    -3.17,
+    0.05
+   ],
+   "dfa_beauty_ci_identity": [
+    -3.29,
+    0.37
+   ]
+  },
+  "RU-clipe5fbg0oy_s20260929": {
+   "auc_u": 0.9202,
+   "auc_c": 0.9001,
+   "auc_b": 0.8658,
+   "auc_loss_total": 0.0544,
+   "auc_loss_reenc": 0.0201,
+   "auc_loss_beauty": 0.0343,
+   "fa_c": 6.7,
+   "fa_b": 5.47,
+   "dfa_beauty": -1.23,
+   "dmiss_beauty": 14.2,
+   "video_auc_u": 0.9605,
+   "video_auc_b": 0.9157,
+   "video_auc_c": 0.9419,
+   "native_filter_rate": {
+    "real": 56.8,
+    "real_beautified": 49.2,
+    "real_compressed": 52.4,
+    "synthesis": 15.3,
+    "synthesis_beautified": 21.3,
+    "synthesis_compressed": 16.0
+   },
+   "dfa_beauty_ci": [
+    -2.74,
+    0.53
+   ],
+   "dfa_beauty_ci_identity": [
+    -2.55,
+    0.42
+   ]
+  },
+  "RU-clipe5fbg0oy_s20260930": {
+   "auc_u": 0.9334,
+   "auc_c": 0.9136,
+   "auc_b": 0.8884,
+   "auc_loss_total": 0.045,
+   "auc_loss_reenc": 0.0198,
+   "auc_loss_beauty": 0.0252,
+   "fa_c": 6.57,
+   "fa_b": 6.23,
+   "dfa_beauty": -0.34,
+   "dmiss_beauty": 10.44,
+   "video_auc_u": 0.9632,
+   "video_auc_b": 0.9282,
+   "video_auc_c": 0.9467,
+   "native_filter_rate": {
+    "real": 40.6,
+    "real_beautified": 44.5,
+    "real_compressed": 41.7,
+    "synthesis": 5.6,
+    "synthesis_beautified": 10.7,
+    "synthesis_compressed": 7.1
+   },
+   "dfa_beauty_ci": [
+    -1.82,
+    1.34
+   ],
+   "dfa_beauty_ci_identity": [
+    -1.92,
+    1.52
+   ]
+  }
+ },
+ "cdfb_paired_video": {
+  "binary s1": {
+   "effort": [
+    0.0885,
+    0.06,
+    0.1195
+   ],
+   "fadapter": [
+    0.0676,
+    0.0422,
+    0.0937
+   ],
+   "gend": [
+    0.0884,
+    0.0603,
+    0.1183
+   ],
+   "dfdhr": [
+    0.0582,
+    0.0337,
+    0.0826
+   ]
+  },
+  "binary s2": {
+   "effort": [
+    0.0966,
+    0.0704,
+    0.1252
+   ],
+   "fadapter": [
+    0.0757,
+    0.0513,
+    0.1004
+   ],
+   "gend": [
+    0.0965,
+    0.0716,
+    0.1255
+   ],
+   "dfdhr": [
+    0.0663,
+    0.0445,
+    0.0898
+   ]
+  },
+  "main s1": {
+   "effort": [
+    0.0587,
+    0.0301,
+    0.0893
+   ],
+   "fadapter": [
+    0.0378,
+    0.0127,
+    0.0638
+   ],
+   "gend": [
+    0.0586,
+    0.0324,
+    0.0863
+   ],
+   "dfdhr": [
+    0.0284,
+    0.0054,
+    0.0525
+   ]
+  },
+  "main s2": {
+   "effort": [
+    0.0755,
+    0.0497,
+    0.1028
+   ],
+   "fadapter": [
+    0.0546,
+    0.031,
+    0.079
+   ],
+   "gend": [
+    0.0754,
+    0.0505,
+    0.104
+   ],
+   "dfdhr": [
+    0.0452,
+    0.0223,
+    0.0683
+   ]
+  },
+  "variant": {
+   "effort": [
+    0.0608,
+    0.032,
+    0.0915
+   ],
+   "fadapter": [
+    0.0399,
+    0.0146,
+    0.0645
+   ],
+   "gend": [
+    0.0607,
+    0.0349,
+    0.088
+   ],
+   "dfdhr": [
+    0.0305,
+    0.0066,
+    0.054
+   ]
+  },
+  "variant s2": {
+   "effort": [
+    0.0806,
+    0.0552,
+    0.1073
+   ],
+   "fadapter": [
+    0.0597,
+    0.0365,
+    0.0844
+   ],
+   "gend": [
+    0.0805,
+    0.0555,
+    0.1079
+   ],
+   "dfdhr": [
+    0.0503,
+    0.0295,
+    0.0717
+   ]
+  },
+  "FF++ only three-way": {
+   "effort": [
+    0.0649,
+    0.0406,
+    0.0921
+   ],
+   "fadapter": [
+    0.044,
+    0.0195,
+    0.0675
+   ],
+   "gend": [
+    0.0648,
+    0.0412,
+    0.0902
+   ],
+   "dfdhr": [
+    0.0346,
+    0.0142,
+    0.0548
+   ]
+  },
+  "P0 s1": {
+   "effort": [
+    0.0527,
+    0.0256,
+    0.0812
+   ],
+   "fadapter": [
+    0.0318,
+    0.0068,
+    0.0577
+   ],
+   "gend": [
+    0.0526,
+    0.0282,
+    0.0779
+   ],
+   "dfdhr": [
+    0.0224,
+    0.0023,
+    0.0421
+   ]
+  },
+  "P2 sym s1": {
+   "effort": [
+    0.0585,
+    0.0305,
+    0.0876
+   ],
+   "fadapter": [
+    0.0376,
+    0.0113,
+    0.0637
+   ],
+   "gend": [
+    0.0584,
+    0.033,
+    0.0876
+   ],
+   "dfdhr": [
+    0.0282,
+    0.0062,
+    0.0501
+   ]
+  },
+  "P2 sym s2": {
+   "effort": [
+    0.0811,
+    0.0546,
+    0.1094
+   ],
+   "fadapter": [
+    0.0602,
+    0.0337,
+    0.0849
+   ],
+   "gend": [
+    0.081,
+    0.0559,
+    0.1109
+   ],
+   "dfdhr": [
+    0.0508,
+    0.029,
+    0.0745
+   ]
+  }
+ },
+ "cdfb_paired_identity": {
+  "binary s1": {
+   "effort": [
+    0.0647,
+    0.1137
+   ],
+   "fadapter": [
+    0.0481,
+    0.0871
+   ],
+   "gend": [
+    0.066,
+    0.1102
+   ],
+   "dfdhr": [
+    0.0394,
+    0.076
+   ]
+  },
+  "binary s2": {
+   "effort": [
+    0.0746,
+    0.1196
+   ],
+   "fadapter": [
+    0.0568,
+    0.0941
+   ],
+   "gend": [
+    0.0755,
+    0.1183
+   ],
+   "dfdhr": [
+    0.0484,
+    0.0836
+   ]
+  },
+  "main s1": {
+   "effort": [
+    0.0329,
+    0.0855
+   ],
+   "fadapter": [
+    0.0162,
+    0.0591
+   ],
+   "gend": [
+    0.0362,
+    0.0806
+   ],
+   "dfdhr": [
+    0.0082,
+    0.0476
+   ]
+  },
+  "main s2": {
+   "effort": [
+    0.0522,
+    0.1006
+   ],
+   "fadapter": [
+    0.034,
+    0.0737
+   ],
+   "gend": [
+    0.0525,
+    0.0972
+   ],
+   "dfdhr": [
+    0.0261,
+    0.0633
+   ]
+  },
+  "variant": {
+   "effort": [
+    0.0346,
+    0.0878
+   ],
+   "fadapter": [
+    0.018,
+    0.0621
+   ],
+   "gend": [
+    0.0374,
+    0.083
+   ],
+   "dfdhr": [
+    0.0111,
+    0.048
+   ]
+  },
+  "variant s2": {
+   "effort": [
+    0.0572,
+    0.1055
+   ],
+   "fadapter": [
+    0.0386,
+    0.0809
+   ],
+   "gend": [
+    0.0571,
+    0.1031
+   ],
+   "dfdhr": [
+    0.0314,
+    0.069
+   ]
+  },
+  "FF++ only three-way": {
+   "effort": [
+    0.0405,
+    0.0913
+   ],
+   "fadapter": [
+    0.0218,
+    0.0656
+   ],
+   "gend": [
+    0.047,
+    0.0844
+   ],
+   "dfdhr": [
+    0.0165,
+    0.0513
+   ]
+  },
+  "P0 s1": {
+   "effort": [
+    0.0257,
+    0.079
+   ],
+   "fadapter": [
+    0.0093,
+    0.0543
+   ],
+   "gend": [
+    0.0359,
+    0.0699
+   ],
+   "dfdhr": [
+    0.0064,
+    0.038
+   ]
+  },
+  "P2 sym s1": {
+   "effort": [
+    0.033,
+    0.0835
+   ],
+   "fadapter": [
+    0.0158,
+    0.0609
+   ],
+   "gend": [
+    0.0371,
+    0.0797
+   ],
+   "dfdhr": [
+    0.0076,
+    0.0483
+   ]
+  },
+  "P2 sym s2": {
+   "effort": [
+    0.0568,
+    0.107
+   ],
+   "fadapter": [
+    0.0379,
+    0.0812
+   ],
+   "gend": [
+    0.0568,
+    0.1037
+   ],
+   "dfdhr": [
+    0.0273,
+    0.0718
+   ]
+  }
+ },
+ "cdfb_identity_units": 58,
+ "s90_binary_s2": {
+  "thresholdfree": {
+   "auroc_s90": 0.59,
+   "paired_up": 68.2,
+   "t": 0.011,
+   "fa_s90": 6.5,
+   "med_orig": 0.001,
+   "med_s90": 0.001
+  },
+  "paired_shift": {
+   "n": 2210,
+   "median_dlogit": 0.187,
+   "ci": [
+    0.156,
+    0.188
+   ],
+   "n_up": 1508,
+   "n_down": 694,
+   "n_tie": 8,
+   "sign_p": 8.18963635007104e-69
+  }
+ },
+ "identity": {
+  "n_intervals": 563,
+  "n_changed": 24,
+  "widening": {
+   "Celeb-DF-B": {
+    "median_ratio": 0.859,
+    "max_ratio": 1.187,
+    "n": 88
+   },
+   "Celeb-DF-v2 + filters (crop)": {
+    "median_ratio": 1.055,
+    "max_ratio": 1.363,
+    "n": 93
+   },
+   "Celeb-DF-v2 + filters (full frame)": {
+    "median_ratio": 1.076,
+    "max_ratio": 1.481,
+    "n": 93
+   },
+   "DFD + filters (crop)": {
+    "median_ratio": 0.998,
+    "max_ratio": 1.559,
+    "n": 80
+   },
+   "DFD + filters (full frame)": {
+    "median_ratio": 1.001,
+    "max_ratio": 1.484,
+    "n": 93
+   },
+   "DF40": {
+    "median_ratio": 1.302,
+    "max_ratio": 2.77,
+    "n": 116
+   }
+  },
+  "units": {
+   "Celeb-DF-B": {
+    "video": 464,
+    "identity": 58
+   },
+   "Celeb-DF-v2 + filters (crop)": {
+    "video": 516,
+    "identity": 124
+   },
+   "Celeb-DF-v2 + filters (full frame)": {
+    "video": 516,
+    "identity": 124
+   },
+   "DFD + filters (crop)": {
+    "video": 332,
+    "identity": 28
+   },
+   "DFD + filters (full frame)": {
+    "video": 332,
+    "identity": 28
+   },
+   "DF40": {
+    "ff identities": 140
+   }
+  }
+ },
+ "heatmap": {
+  "columns": [
+   "Presets CDF-B",
+   "Colour DFD",
+   "Service S-90",
+   "AR FB",
+   "AR B-LFW",
+   "Face- local"
+  ],
+  "rows": [
+   "xception",
+   "effnb4",
+   "f3net",
+   "spsl",
+   "ucf",
+   "recce",
+   "core",
+   "srm",
+   "sbi",
+   "caddm",
+   "laanetr",
+   "univfd",
+   "npr",
+   "effort",
+   "fadapter",
+   "gend",
+   "dfdhr",
+   "clipe5b_s20260929",
+   "clipe5_s20260929",
+   "clipe5y_s20260929"
+  ],
+  "values": [
+   [
+    5.7,
+    7.0,
+    51.6,
+    24.3,
+    53.3,
+    89.2
+   ],
+   [
+    7.8,
+    4.6,
+    36.3,
+    22.0,
+    39.9,
+    64.3
+   ],
+   [
+    5.4,
+    8.6,
+    50.6,
+    26.1,
+    49.0,
+    86.3
+   ],
+   [
+    3.4,
+    3.2,
+    51.2,
+    10.7,
+    12.0,
+    70.3
+   ],
+   [
+    5.7,
+    5.3,
+    41.4,
+    37.3,
+    71.5,
+    89.3
+   ],
+   [
+    4.1,
+    4.8,
+    36.8,
+    41.5,
+    78.4,
+    80.7
+   ],
+   [
+    4.0,
+    6.6,
+    54.8,
+    25.2,
+    58.8,
+    85.0
+   ],
+   [
+    2.8,
+    5.2,
+    62.8,
+    26.8,
+    58.1,
+    81.0
+   ],
+   [
+    1.8,
+    5.4,
+    37.3,
+    22.8,
+    35.4,
+    96.7
+   ],
+   [
+    13.8,
+    5.8,
+    6.3,
+    15.4,
+    35.8,
+    88.5
+   ],
+   [
+    6.0,
+    5.0,
+    17.2,
+    27.6,
+    48.4,
+    100.0
+   ],
+   [
+    7.6,
+    16.6,
+    16.6,
+    63.3,
+    48.6,
+    13.9
+   ],
+   [
+    3.4,
+    14.4,
+    null,
+    70.4,
+    0.0,
+    68.0
+   ],
+   [
+    5.4,
+    2.7,
+    43.2,
+    67.8,
+    74.7,
+    87.8
+   ],
+   [
+    7.9,
+    4.4,
+    39.7,
+    63.9,
+    76.9,
+    95.8
+   ],
+   [
+    9.9,
+    6.3,
+    68.7,
+    75.6,
+    96.6,
+    96.1
+   ],
+   [
+    14.6,
+    3.0,
+    64.9,
+    85.9,
+    95.3,
+    99.3
+   ],
+   [
+    7.4,
+    5.2,
+    9.1,
+    79.0,
+    89.0,
+    51.6
+   ],
+   [
+    9.5,
+    4.0,
+    8.6,
+    75.1,
+    86.7,
+    5.8
+   ],
+   [
+    9.2,
+    4.0,
+    8.1,
+    77.4,
+    93.6,
+    37.9
+   ]
+  ]
+ }
+}

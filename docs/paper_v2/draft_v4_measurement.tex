@@ -1,0 +1,83 @@
+% ============================================================================
+%  draft_v4_measurement.tex -- replaces Sec. "Beautification hurts every detector, in both directions" (sec:measure)
+%  and the commercial-retouching part of sec:ali in main.tex (v3). Written 2026-10-13. Not yet \input by main.tex.
+%
+%  Labels used here and the table files they refer to (add the \begin{table}...\input{...} wrappers in main.tex):
+%    tab:twosided    tables/tab_twosided.tex      (existing; MUST be regenerated with the CADDM and LAA-Net rows,
+%                                                  the current file has 15 published rows; Celeb-DF-B numbers for
+%                                                  gend/dfdhr/caddm/laanetr are in results/research/celebdfb_v2_20260927/fair_cdfb.json)
+%    tab:v4retouch   tables/tab_v4_retouch.tex    (make_tables_v4.py; commercial Smoothing-90, threshold-free + 5%-FPR)
+%    tab:v4tradeoff  tables/tab_v4_tradeoff.tex   (make_tables_v4.py; per-arm trade-off, used in the mechanism and DF40 sections)
+%    tab:v4evasion   tables/tab_v4_evasion.tex    (make_tables_v4.py; smoothed-forgery evasion, used in the mechanism section)
+%    tab:v4df40      tables/tab_v4_df40.tex       (make_tables_v4.py; DF40 held-out video AUC, used in the DF40 section)
+%  Sources of every number: tables above; results/research/alipair_zeroshot_20260929/smoothing90_thresholdfree.json;
+%  results/research/alipair_zeroshot_20260929/review_20261012/REVIEW.md (binding wording); results/research/celebdfb_v2_20260927/fair_cdfb.json;
+%  results/research/retouch_unified_20260929/FINDINGS.md (2026-10-12, 2026-10-13); external_baselines/README_setup.md.
+% ============================================================================
+
+\subsection{Beautification hurts every detector, in both directions}
+\label{sec:measure}
+Table~\ref{tab:twosided} scores seventeen published detectors and ours by the rule of Sec.~\ref{sec:protocol}. Two
+detectors were added since the first version of this measurement: CADDM~\cite{caddm}, whose released EfficientNet-B4
+checkpoint reproduces its published Celeb-DF-v2 video AUC on the authors' own crop (0.937 against 0.939), and
+LAA-Net~\cite{laanet}, whose released SBI checkpoint is one point short of its published number on its own crop (0.943
+against 0.954) and needs that crop, so we rebuild it inside our face box before scoring. Both are run with the authors'
+code, released weights and test-time preprocessing; the setup record lists every deviation.
+
+\textbf{Commercial retouching.} We begin with the service, because it is where the published detectors fail most and
+where the fixed-threshold rule understates the failure. Table~\ref{tab:v4retouch} reads the 2,210 untouched FFHQ
+originals and their renders at the strongest skin smoothing (Smoothing-90) in two ways. The first needs no threshold:
+for each pair, is the render scored more forged than its own original, and what are the two medians of
+$P(\text{fake})$? Fifteen of the seventeen published detectors score the smoothed render above its original in
+89--99\% of pairs. The medians show the size of the move: Xception from 0.29 to 0.94, F3Net from 0.13 to 0.97, UCF from
+0.03 to 0.98, SBI from 0.21 to 0.99, GenD~\cite{gend2026} from 0.23 to 0.92, LAA-Net from 0.23 to 0.97. For these
+detectors a heavily smoothed genuine face is scored like a forgery, whatever threshold is chosen. The two exceptions are
+NPR, whose scores sit at 1.0 for originals and renders alike and which is excluded, and CADDM, which scores the render
+above its original in 60.9\% of pairs with medians 0.54 and 0.75. CADDM is trained to localise swap artefacts with an
+anchor head and to suppress identity, so its evidence is a boundary and identity cue rather than skin texture, and
+smoothing moves it least.
+
+The second reading is the rule of Sec.~\ref{sec:protocol}: the threshold that accuses 5\% of the service's own originals.
+Thirteen of the seventeen detectors then accuse 36.3--68.7\% of the Smoothing-90 renders (GenD 68.7\%, DFD-HR~\cite{dfdhr2026}
+64.9\%, SRM 62.8\%, SBI 37.3\%, EfficientNet-B4 36.3\%), UnivFD 16.6\%, LAA-Net 17.2\%, CADDM 6.3\%. The 5\%-FPR
+column is the smaller number for several detectors because they are near saturation on the service's stills: the
+threshold that leaves 5\% of originals above it is 0.99 or higher for SBI, UCF, EfficientNet-B4, LAA-Net and CADDM, so a
+render can move from a median of 0.23 to 0.97, as LAA-Net's does, and still fall under a threshold of 0.992. The
+threshold-free column is therefore the one to read first; the fixed threshold is kept because it is the operating rule
+of every other source in this paper. Over all 26,519 renders of the four operations at three levels, the detectors
+accuse 5.6--16.8\% at the same threshold, with the AUROC of render against original at 0.52--0.60, because the other
+three operations of the service (whitening, face slimming, eye enlarging) are not accused above the 5\% floor; the
+retouching result is a smoothing result, and the pooled number is not the headline. Published detectors are scored on
+one shared crop here, not each under its own preprocessing as on the video sources (Sec.~\ref{sec:detect}), and the
+threshold is set on the service's originals; at a fixed threshold of 0.5 the sixteen usable detectors already call
+between 1\% (UnivFD) and 51\% (CADDM) of the untouched originals fake, which is a calibration problem of FF++-trained
+detectors on FFHQ stills that the 5\%-FPR rule hides.
+
+Our full-data three-way model accuses 8.6\% of the Smoothing-90 renders and 4.7\% of all renders at the 5\%-FPR rule
+(second seed 12.5\% and 5.5\%), scores the render above its original in 32.5\% of pairs, and has medians of 0.002 and
+0.001. The binary control trained on the same data gives 9.1\%, 5.2\% and 70.5\%, so the third output class is not what
+removes the accusation. The FF++-only exposure arms in the lower block of the table are read in
+Sec.~\ref{sec:mechanism2}.
+
+\textbf{App presets and colour filters.} On Celeb-DF-B every published detector loses AUC under the app presets, and the
+loss is largest for the detectors that detect best: SBI from 0.875 to 0.752, Effort from 0.909 to 0.807, Forensics
+Adapter from 0.909 to 0.828, GenD from 0.924 to 0.807, DFD-HR from 0.938 to 0.838, CADDM from 0.886 to 0.762 and
+LAA-Net from 0.889 to 0.698, the largest drop of the seventeen. For CADDM, Libourel et al.~\cite{libourel2024} report
+0.91 to 0.76 on the same benchmark, so the two measurements agree. With re-encoding subtracted, the presets alone raise
+the miss rate by 21.8 (SBI), 11.0 (Effort), 15.2 (Forensics Adapter), 12.0 (GenD), 3.6 (DFD-HR) and 14.7 (LAA-Net)
+points; for CADDM the rise under re-encoding alone (13.9) exceeds the rise under the preset (11.0), so its
+beautification-specific rise is $-2.9$ and its loss is a re-encoding loss. The false-alarm side differs by detector:
+on beautified genuine frames DFD-HR accuses 14.6\%, CADDM 13.8\%, GenD 9.9\%, Forensics Adapter 7.9\%, LAA-Net 6.0\%,
+Effort 5.4\% and SBI 1.8\%, against 5\% on untreated frames. All four CLIP detectors of 2025--26 lose 0.08--0.12 AUC
+under the presets, and their errors fall on different sides: DFD-HR and GenD accuse beautified genuine faces, Effort and
+Forensics Adapter let beautified deepfakes through. The same two CLIP detectors fall from 0.88--0.89 to 0.81 under the
+Celeb-DF-v2 filters, where their miss rates rise by 23.3 and 11.9 points, and from 0.94 to 0.90--0.92 under the DFD
+filters, where Effort's miss rate rises by 15.1 points [11.1, 18.6]. The false-alarm side is small for these two on
+colour filters and large for UnivFD (+11.6 on DFD) and NPR, whose scores collapse under any filter.
+
+Two details matter for reading Table~\ref{tab:twosided}. Where the filter is applied matters: with the filter on the
+face crop rather than on the full frame, a vignette is centred on the face and Forensics Adapter loses 0.017 more AUC
+on DFD; we report the full-frame version and keep the crop-level one in the supplement. And a fixed threshold sees
+what AUC cannot: our full-data three-way model keeps its AUC under the DFD filters (0.942 to 0.931) while its miss rate
+rises by 8.9 points, because the filters shift its scores for genuine and forged frames alike. We report both numbers
+for every model, and on the retouching service the threshold-free pair statistics as well.

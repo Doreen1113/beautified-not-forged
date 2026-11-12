@@ -21,6 +21,7 @@ for p in (HERE, B / "docs/paper_v2", B):
     sys.path.insert(0, str(p))
 from train_ru3 import to_t2  # noqa: E402
 from train_ru_clip import load_clip  # noqa: E402
+from main_model import MAIN_TAG, SUFFIX  # noqa: E402
 from occlusion_regions import region_masks  # noqa: E402
 from filters_v2.scale_normalized_filters import get_landmarks  # noqa: E402
 
@@ -28,7 +29,7 @@ FACE = ["eyes", "nose", "mouth", "skin", "contour"]
 
 
 def main():
-    net = load_clip("clipe4_s20260929", head=True).cuda().eval()
+    net = load_clip(MAIN_TAG, head=True).cuda().eval()
     out = {}
     for mech in ("donor", "sd", "sdxl"):
         files = sorted((B / "ffpp_partedit/test" / mech).glob("*.jpg"))[::4]
@@ -59,7 +60,7 @@ def main():
                      "ruleB_confusion": dict(sorted(conf.items()))}
         print(mech, json.dumps(out[mech]), flush=True)
     out["decision"] = "rule B" if all(out[m]["ruleB_top1"] > out[m]["ruleA_top1"] for m in ("donor", "sd", "sdxl")) else "rule A"
-    (HERE / "part_naming.json").write_text(json.dumps(out, indent=1)); print("decision:", out["decision"])
+    (HERE / f"part_naming{SUFFIX}.json").write_text(json.dumps(out, indent=1)); print("decision:", out["decision"])
 
 
 if __name__ == "__main__":

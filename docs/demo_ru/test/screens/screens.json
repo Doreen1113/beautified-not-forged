@@ -1,0 +1,56 @@
+[
+ {
+  "shot": "412_empty",
+  "lang": "en",
+  "state": "ready",
+  "scrollWidth": 412,
+  "innerWidth": 412,
+  "horizontal_overflow": false,
+  "result_text": ""
+ },
+ {
+  "shot": "412_example2",
+  "lang": "en",
+  "state": "done",
+  "scrollWidth": 412,
+  "innerWidth": 412,
+  "horizontal_overflow": false,
+  "result_text": "Answer for example 2: Partial forgery: the mouth was replaced with another person's. The model agrees.\n\nForgery\nFake\nFake score 1.00 (raw model output, not a calibrated probability)\nRetouch\nNot detected\nRetouch score 0.00\n\nModel's three-way decision: Fake (real 0.00 · fake 1.00 · retouch 0.00)\n\nWhy this decision\nComposed by code, checked\n\nThe model's decision is fake (score 1.00).\nThe evidence is concentrated on the mouth (mean evidence 0.99).\nThe score is the model's raw output, not a calibrated probability.\n\nWant to know more?\nWhat does this score mean?\nIs this certain?\nWhere does it differ "
+ },
+ {
+  "shot": "1366_example3",
+  "lang": "en",
+  "state": "done",
+  "scrollWidth": 1366,
+  "innerWidth": 1366,
+  "horizontal_overflow": false,
+  "result_text": "Answer for example 3: Commercial beauty retouching: skin smoothing (a service not seen in training). The model agrees.\n\nForgery\nNo forgery detected\nFake score 0.00 (raw model output, not a calibrated probability)\nRetouch\nClearly retouched\nRetouch score 0.97\n\nModel's three-way decision: Beauty retouch (real 0.03 · fake 0.00 · retouch 0.97)\n\nWhy this decision\nComposed by code, checked\n\nThe model's decision is beauty retouch (score 0.97).\nThe evidence is spread over the whole face.\nAt or above the threshold of 0.5: skin smoothing (0.98).\nThe score is the model's raw output, not a calibrated proba"
+ },
+ {
+  "shot": "412_example3_dark",
+  "lang": "en",
+  "state": "done",
+  "scrollWidth": 412,
+  "innerWidth": 412,
+  "horizontal_overflow": false,
+  "result_text": "Answer for example 3: Commercial beauty retouching: skin smoothing (a service not seen in training). The model agrees.\n\nForgery\nNo forgery detected\nFake score 0.00 (raw model output, not a calibrated probability)\nRetouch\nClearly retouched\nRetouch score 0.97\n\nModel's three-way decision: Beauty retouch (real 0.03 · fake 0.00 · retouch 0.97)\n\nWhy this decision\nComposed by code, checked\n\nThe model's decision is beauty retouch (score 0.97).\nThe evidence is spread over the whole face.\nAt or above the threshold of 0.5: skin smoothing (0.98).\nThe score is the model's raw output, not a calibrated proba"
+ },
+ {
+  "shot": "1366_example2",
+  "lang": "en",
+  "state": "done",
+  "scrollWidth": 1366,
+  "innerWidth": 1366,
+  "horizontal_overflow": false,
+  "result_text": "Answer for example 2: Partial forgery: the mouth was replaced with another person's. The model agrees.\n\nForgery\nFake\nFake score 1.00 (raw model output, not a calibrated probability)\nRetouch\nNot detected\nRetouch score 0.00\n\nModel's three-way decision: Fake (real 0.00 · fake 1.00 · retouch 0.00)\n\nWhy this decision\nComposed by code, checked\n\nThe model's decision is fake (score 1.00).\nThe evidence is concentrated on the mouth (mean evidence 0.99).\nThe score is the model's raw output, not a calibrated probability.\n\nWant to know more?\nWhat does this score mean?\nIs this certain?\nWhere does it differ "
+ },
+ {
+  "shot": "412_example3_zh",
+  "lang": "zh-Hant-TW",
+  "state": "done",
+  "scrollWidth": 412,
+  "innerWidth": 412,
+  "horizontal_overflow": false,
+  "result_text": "範例 3 的答案：商用美顏：磨皮（訓練時沒看過的修圖服務）。模型判斷相符。\n\n是否偽造\n未偵測到偽造\n偽造分數 0.00（模型原始輸出，不是校準過的機率）\n美顏\n明顯修圖\n美顏分數 0.97\n\n模型的三類判定：美顏修圖（真實 0.03・偽造 0.00・美顏 0.97）\n\n為什麼這樣判斷\n程式組成，已查核\n\n模型判定為美顏修圖（分數 0.97）。\n證據遍布整臉。\n達到門檻 0.5：磨皮（0.98）。\n分數是模型原始輸出，不是校準過的機率。\n\n可能的修圖操作\n大眼\n0.78\n瘦臉\n0.78\n美白\n0.87\n磨皮\n0.98\n\n分數達到中線（0.5）視為有這項操作。單獨的大眼、瘦臉、美白常常抓不到；商用磨皮時另外三條分數也常一起升高。跨修圖服務只有磨皮這一項可靠。\n\n想知道更多\n這個分數代表什麼？\n可以確定嗎？\n和原圖比差在哪？\n是誰？\n\n數值與規則"
+ }
+]

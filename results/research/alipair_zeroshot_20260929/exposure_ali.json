@@ -1,0 +1,710 @@
+{
+ "P0 s20260929": {
+  "ret_fake_at_t": 13.47,
+  "ci": [
+   12.67,
+   14.4
+  ],
+  "smooth90_fake_at_t": 54.16,
+  "smooth90_ci": [
+   50.5,
+   58.33
+  ]
+ },
+ "P0 s20260930": {
+  "ret_fake_at_t": 13.71,
+  "ci": [
+   12.56,
+   15.17
+  ],
+  "smooth90_fake_at_t": 56.06,
+  "smooth90_ci": [
+   51.58,
+   60.81
+  ]
+ },
+ "P0 s20261001": {
+  "ret_fake_at_t": 10.85,
+  "ci": [
+   10.15,
+   11.66
+  ],
+  "smooth90_fake_at_t": 43.48,
+  "smooth90_ci": [
+   39.82,
+   46.88
+  ]
+ },
+ "P1 s20260929": {
+  "ret_fake_at_t": 5.3,
+  "ci": [
+   4.69,
+   5.68
+  ],
+  "smooth90_fake_at_t": 3.67,
+  "smooth90_ci": [
+   2.85,
+   4.43
+  ]
+ },
+ "P1 s20260930": {
+  "ret_fake_at_t": 5.65,
+  "ci": [
+   5.26,
+   6.39
+  ],
+  "smooth90_fake_at_t": 7.1,
+  "smooth90_ci": [
+   6.02,
+   8.69
+  ]
+ },
+ "P1 s20261001": {
+  "ret_fake_at_t": 5.38,
+  "ci": [
+   4.83,
+   5.83
+  ],
+  "smooth90_fake_at_t": 4.57,
+  "smooth90_ci": [
+   3.57,
+   5.57
+  ]
+ },
+ "P2 s20260929": {
+  "ret_fake_at_t": 5.94,
+  "ci": [
+   5.48,
+   6.66
+  ],
+  "smooth90_fake_at_t": 11.67,
+  "smooth90_ci": [
+   9.68,
+   14.34
+  ]
+ },
+ "P2 s20260930": {
+  "ret_fake_at_t": 5.32,
+  "ci": [
+   4.78,
+   5.8
+  ],
+  "smooth90_fake_at_t": 7.06,
+  "smooth90_ci": [
+   5.93,
+   8.55
+  ]
+ },
+ "P2 s20261001": {
+  "ret_fake_at_t": 5.4,
+  "ci": [
+   4.83,
+   5.78
+  ],
+  "smooth90_fake_at_t": 6.92,
+  "smooth90_ci": [
+   5.52,
+   7.96
+  ]
+ },
+ "P2 no smoothing s20260929": {
+  "ret_fake_at_t": 12.67,
+  "ci": [
+   11.83,
+   13.63
+  ],
+  "smooth90_fake_at_t": 55.34,
+  "smooth90_ci": [
+   51.9,
+   58.6
+  ]
+ },
+ "P2 no smoothing s20260930": {
+  "ret_fake_at_t": 15.68,
+  "ci": [
+   14.82,
+   16.39
+  ],
+  "smooth90_fake_at_t": 67.15,
+  "smooth90_ci": [
+   64.12,
+   70.09
+  ]
+ },
+ "P1 no smoothing s20260929": {
+  "ret_fake_at_t": 13.76,
+  "ci": [
+   12.62,
+   14.68
+  ],
+  "smooth90_fake_at_t": 55.93,
+  "smooth90_ci": [
+   52.04,
+   59.37
+  ]
+ },
+ "P2 smoothing only s20260929": {
+  "ret_fake_at_t": 3.74,
+  "ci": [
+   3.35,
+   4.14
+  ],
+  "smooth90_fake_at_t": 2.26,
+  "smooth90_ci": [
+   1.72,
+   2.9
+  ]
+ },
+ "P2 smoothing only s20260930": {
+  "ret_fake_at_t": 4.9,
+  "ci": [
+   4.36,
+   5.56
+  ],
+  "smooth90_fake_at_t": 5.34,
+  "smooth90_ci": [
+   4.39,
+   6.97
+  ]
+ },
+ "P1 smoothing only s20260929": {
+  "ret_fake_at_t": 4.94,
+  "ci": [
+   4.43,
+   5.42
+  ],
+  "smooth90_fake_at_t": 0.68,
+  "smooth90_ci": [
+   0.41,
+   1.09
+  ]
+ },
+ "P1 smoothing only s20260930": {
+  "ret_fake_at_t": 4.79,
+  "ci": [
+   4.4,
+   5.34
+  ],
+  "smooth90_fake_at_t": 1.04,
+  "smooth90_ci": [
+   0.63,
+   1.49
+  ]
+ },
+ "P1 smoothing only s20261001": {
+  "ret_fake_at_t": 4.83,
+  "ci": [
+   4.44,
+   5.24
+  ],
+  "smooth90_fake_at_t": 0.86,
+  "smooth90_ci": [
+   0.54,
+   1.27
+  ]
+ },
+ "P0 Effort scheme s20260929": {
+  "ret_fake_at_t": 13.35,
+  "ci": [
+   12.89,
+   15.46
+  ],
+  "smooth90_fake_at_t": 56.92,
+  "smooth90_ci": [
+   54.39,
+   64.07
+  ]
+ },
+ "P0 Effort scheme s20260930": {
+  "ret_fake_at_t": 14.57,
+  "ci": [
+   14.01,
+   15.77
+  ],
+  "smooth90_fake_at_t": 63.17,
+  "smooth90_ci": [
+   60.45,
+   67.1
+  ]
+ },
+ "P2 Effort scheme s20260929": {
+  "ret_fake_at_t": 8.57,
+  "ci": [
+   7.96,
+   9.44
+  ],
+  "smooth90_fake_at_t": 29.95,
+  "smooth90_ci": [
+   26.51,
+   33.76
+  ]
+ },
+ "P2 Effort scheme s20260930": {
+  "ret_fake_at_t": 10.05,
+  "ci": [
+   9.25,
+   10.9
+  ],
+  "smooth90_fake_at_t": 38.91,
+  "smooth90_ci": [
+   35.38,
+   42.99
+  ]
+ },
+ "Effort fine-tuned P0 s20260929": {
+  "ret_fake_at_t": 14.41,
+  "ci": [
+   13.12,
+   14.92
+  ],
+  "smooth90_fake_at_t": 55.34,
+  "smooth90_ci": [
+   52.26,
+   57.74
+  ]
+ },
+ "Effort fine-tuned P2 s20260929": {
+  "ret_fake_at_t": 13.33,
+  "ci": [
+   12.79,
+   14.01
+  ],
+  "smooth90_fake_at_t": 52.67,
+  "smooth90_ci": [
+   50.18,
+   55.16
+  ]
+ },
+ "P3 forged only s20260929": {
+  "ret_fake_at_t": 15.31,
+  "ci": [
+   14.25,
+   16.56
+  ],
+  "smooth90_fake_at_t": 63.76,
+  "smooth90_ci": [
+   59.05,
+   67.78
+  ]
+ },
+ "main s20260929": {
+  "ret_fake_at_t": 4.74,
+  "ci": [
+   4.03,
+   5.28
+  ],
+  "smooth90_fake_at_t": 8.55,
+  "smooth90_ci": [
+   6.7,
+   10.41
+  ]
+ },
+ "main s20260930": {
+  "ret_fake_at_t": 5.51,
+  "ci": [
+   4.7,
+   6.43
+  ],
+  "smooth90_fake_at_t": 12.49,
+  "smooth90_ci": [
+   10.23,
+   15.29
+  ]
+ },
+ "binary control s20260929": {
+  "ret_fake_at_t": 5.15,
+  "ci": [
+   4.33,
+   5.64
+  ],
+  "smooth90_fake_at_t": 9.1,
+  "smooth90_ci": [
+   6.7,
+   10.86
+  ]
+ },
+ "binary control s20260930": {
+  "ret_fake_at_t": 4.86,
+  "ci": [
+   4.46,
+   5.49
+  ],
+  "smooth90_fake_at_t": 6.52,
+  "smooth90_ci": [
+   5.43,
+   7.96
+  ]
+ },
+ "SIC factorised s20260929": {
+  "ret_fake_at_t": 5.29,
+  "ci": [
+   4.75,
+   5.76
+  ],
+  "smooth90_fake_at_t": 7.6,
+  "smooth90_ci": [
+   6.24,
+   9.1
+  ]
+ },
+ "SIC binary s20260929": {
+  "ret_fake_at_t": 4.98,
+  "ci": [
+   4.66,
+   5.52
+  ],
+  "smooth90_fake_at_t": 7.15,
+  "smooth90_ci": [
+   6.33,
+   8.42
+  ]
+ },
+ "SIC binary s20260930": {
+  "ret_fake_at_t": 5.34,
+  "ci": [
+   4.92,
+   5.85
+  ],
+  "smooth90_fake_at_t": 7.65,
+  "smooth90_ci": [
+   6.74,
+   8.96
+  ]
+ },
+ "P1 minus P0 s20260929": {
+  "d_ret": -8.17,
+  "d_ret_ci": [
+   -9.23,
+   -7.39
+  ],
+  "d_smooth90": -50.5,
+  "d_smooth90_ci": [
+   -54.57,
+   -47.01
+  ]
+ },
+ "P1 minus P0 s20260930": {
+  "d_ret": -8.06,
+  "d_ret_ci": [
+   -9.43,
+   -6.72
+  ],
+  "d_smooth90": -48.96,
+  "d_smooth90_ci": [
+   -53.44,
+   -44.25
+  ]
+ },
+ "P1 minus P0 s20261001": {
+  "d_ret": -5.47,
+  "d_ret_ci": [
+   -6.43,
+   -4.74
+  ],
+  "d_smooth90": -38.91,
+  "d_smooth90_ci": [
+   -42.22,
+   -35.38
+  ]
+ },
+ "P2 minus P0 s20260929": {
+  "d_ret": -7.54,
+  "d_ret_ci": [
+   -8.42,
+   -6.5
+  ],
+  "d_smooth90": -42.49,
+  "d_smooth90_ci": [
+   -45.97,
+   -38.82
+  ]
+ },
+ "P2 minus P0 s20260930": {
+  "d_ret": -8.4,
+  "d_ret_ci": [
+   -9.83,
+   -7.28
+  ],
+  "d_smooth90": -49.0,
+  "d_smooth90_ci": [
+   -53.57,
+   -44.57
+  ]
+ },
+ "P2 minus P0 s20261001": {
+  "d_ret": -5.45,
+  "d_ret_ci": [
+   -6.48,
+   -4.76
+  ],
+  "d_smooth90": -36.56,
+  "d_smooth90_ci": [
+   -40.05,
+   -33.3
+  ]
+ },
+ "P2 smoothing only minus P0 s20260929": {
+  "d_ret": -9.73,
+  "d_ret_ci": [
+   -10.74,
+   -8.83
+  ],
+  "d_smooth90": -51.9,
+  "d_smooth90_ci": [
+   -56.11,
+   -48.33
+  ]
+ },
+ "P2 smoothing only minus P0 s20260930": {
+  "d_ret": -8.81,
+  "d_ret_ci": [
+   -10.21,
+   -7.71
+  ],
+  "d_smooth90": -50.72,
+  "d_smooth90_ci": [
+   -55.3,
+   -46.47
+  ]
+ },
+ "P2 smoothing only minus P2 s20260929": {
+  "d_ret": -2.19,
+  "d_ret_ci": [
+   -3.08,
+   -1.64
+  ],
+  "d_smooth90": -9.41,
+  "d_smooth90_ci": [
+   -11.99,
+   -7.47
+  ]
+ },
+ "P2 smoothing only minus P2 s20260930": {
+  "d_ret": -0.41,
+  "d_ret_ci": [
+   -1.05,
+   0.31
+  ],
+  "d_smooth90": -1.72,
+  "d_smooth90_ci": [
+   -3.21,
+   -0.32
+  ]
+ },
+ "P1 smoothing only minus P0 s20260929": {
+  "d_ret": -8.53,
+  "d_ret_ci": [
+   -9.5,
+   -7.6
+  ],
+  "d_smooth90": -53.48,
+  "d_smooth90_ci": [
+   -57.56,
+   -49.95
+  ]
+ },
+ "P1 smoothing only minus P0 s20260930": {
+  "d_ret": -8.93,
+  "d_ret_ci": [
+   -10.3,
+   -7.67
+  ],
+  "d_smooth90": -55.02,
+  "d_smooth90_ci": [
+   -59.77,
+   -50.54
+  ]
+ },
+ "P1 smoothing only minus P0 s20261001": {
+  "d_ret": -6.01,
+  "d_ret_ci": [
+   -7.0,
+   -5.25
+  ],
+  "d_smooth90": -42.62,
+  "d_smooth90_ci": [
+   -46.06,
+   -38.82
+  ]
+ },
+ "P2 no smoothing minus P0 s20260929": {
+  "d_ret": -0.81,
+  "d_ret_ci": [
+   -1.63,
+   0.09
+  ],
+  "d_smooth90": 1.18,
+  "d_smooth90_ci": [
+   -2.17,
+   4.03
+  ]
+ },
+ "P2 no smoothing minus P0 s20260930": {
+  "d_ret": 1.96,
+  "d_ret_ci": [
+   0.52,
+   2.92
+  ],
+  "d_smooth90": 11.09,
+  "d_smooth90_ci": [
+   6.97,
+   14.75
+  ]
+ },
+ "P2 no smoothing minus P2 s20260929": {
+  "d_ret": 6.73,
+  "d_ret_ci": [
+   5.79,
+   7.64
+  ],
+  "d_smooth90": 43.67,
+  "d_smooth90_ci": [
+   39.86,
+   46.56
+  ]
+ },
+ "P2 no smoothing minus P2 s20260930": {
+  "d_ret": 10.36,
+  "d_ret_ci": [
+   9.47,
+   11.1
+  ],
+  "d_smooth90": 60.09,
+  "d_smooth90_ci": [
+   57.06,
+   62.94
+  ]
+ },
+ "P1 no smoothing minus P0 s20260929": {
+  "d_ret": 0.28,
+  "d_ret_ci": [
+   -0.74,
+   1.32
+  ],
+  "d_smooth90": 1.76,
+  "d_smooth90_ci": [
+   -1.81,
+   5.2
+  ]
+ },
+ "P1 no smoothing minus P1 s20260929": {
+  "d_ret": 8.45,
+  "d_ret_ci": [
+   7.41,
+   9.51
+  ],
+  "d_smooth90": 52.26,
+  "d_smooth90_ci": [
+   48.51,
+   55.43
+  ]
+ },
+ "P2 Effort scheme minus P0 Effort scheme s20260929": {
+  "d_ret": -4.77,
+  "d_ret_ci": [
+   -6.44,
+   -4.07
+  ],
+  "d_smooth90": -26.97,
+  "d_smooth90_ci": [
+   -31.72,
+   -24.34
+  ]
+ },
+ "P2 Effort scheme minus P0 Effort scheme s20260930": {
+  "d_ret": -4.52,
+  "d_ret_ci": [
+   -5.35,
+   -3.88
+  ],
+  "d_smooth90": -24.25,
+  "d_smooth90_ci": [
+   -27.06,
+   -21.49
+  ]
+ },
+ "Effort fine-tuned P2 minus Effort fine-tuned P0 s20260929": {
+  "d_ret": -1.08,
+  "d_ret_ci": [
+   -1.34,
+   0.11
+  ],
+  "d_smooth90": -2.67,
+  "d_smooth90_ci": [
+   -3.71,
+   -1.27
+  ]
+ },
+ "P3 forged only minus P0 s20260929": {
+  "d_ret": 1.84,
+  "d_ret_ci": [
+   0.86,
+   3.01
+  ],
+  "d_smooth90": 9.59,
+  "d_smooth90_ci": [
+   6.02,
+   13.35
+  ]
+ },
+ "P3 forged only minus P2 s20260929": {
+  "d_ret": 9.37,
+  "d_ret_ci": [
+   8.26,
+   10.48
+  ],
+  "d_smooth90": 52.08,
+  "d_smooth90_ci": [
+   47.51,
+   55.84
+  ]
+ },
+ "SIC factorised minus main s20260929": {
+  "d_ret": 0.55,
+  "d_ret_ci": [
+   -0.13,
+   1.29
+  ],
+  "d_smooth90": -0.95,
+  "d_smooth90_ci": [
+   -2.76,
+   0.86
+  ]
+ },
+ "SIC binary minus binary control s20260929": {
+  "d_ret": -0.17,
+  "d_ret_ci": [
+   -0.7,
+   0.87
+  ],
+  "d_smooth90": -1.95,
+  "d_smooth90_ci": [
+   -3.71,
+   0.63
+  ]
+ },
+ "SIC binary minus binary control s20260930": {
+  "d_ret": 0.48,
+  "d_ret_ci": [
+   -0.22,
+   1.1
+  ],
+  "d_smooth90": 1.13,
+  "d_smooth90_ci": [
+   -0.27,
+   2.76
+  ]
+ },
+ "SIC factorised minus binary control s20260929": {
+  "d_ret": 0.14,
+  "d_ret_ci": [
+   -0.49,
+   1.04
+  ],
+  "d_smooth90": -1.49,
+  "d_smooth90_ci": [
+   -3.53,
+   1.18
+  ]
+ }
+}

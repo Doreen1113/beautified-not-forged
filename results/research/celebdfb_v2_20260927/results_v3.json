@@ -1596,6 +1596,75 @@
   "E1": false,
   "E2": true
  },
+ "RU-clipe4r": {
+  "kind": "three-way",
+  "auc_untreated": 0.9324,
+  "to_filter": {
+   "real": 12.93,
+   "real_beautified": 33.31,
+   "real_compressed": 13.75,
+   "synthesis": 2.57,
+   "synthesis_beautified": 12.13,
+   "synthesis_compressed": 3.97
+  },
+  "FA": 25.66,
+  "FA0": 28.68,
+  "MISS": 6.79,
+  "MISS0": 4.05,
+  "FAc": 25.65,
+  "MISSc": 6.13,
+  "dFA": -3.02,
+  "dMISS": 2.74,
+  "dFA_c": -3.03,
+  "dMISS_c": 2.08,
+  "ci": {
+   "dFA": [
+    -6.6,
+    0.55
+   ],
+   "dMISS": [
+    1.35,
+    4.35
+   ],
+   "FA": [
+    22.08,
+    29.25
+   ],
+   "MISS": [
+    5.06,
+    8.76
+   ]
+  },
+  "per_preset": {
+   "brown": {
+    "FA": 35.73,
+    "MISS": 9.02,
+    "dFA": 8.5,
+    "dMISS": 4.63
+   },
+   "california_dreamin": {
+    "FA": 23.92,
+    "MISS": 10.1,
+    "dFA": -7.05,
+    "dMISS": 5.19
+   },
+   "hawaii_grain": {
+    "FA": 16.4,
+    "MISS": 0.17,
+    "dFA": -13.11,
+    "dMISS": -2.83
+   },
+   "relax_you_pretty": {
+    "FA": 26.46,
+    "MISS": 7.78,
+    "dFA": -0.52,
+    "dMISS": 3.91
+   }
+  },
+  "E1_dominated_by": [],
+  "E1": false,
+  "E2": false
+ },
  "RU-effb4": {
   "kind": "three-way",
   "auc_untreated": 0.9041,

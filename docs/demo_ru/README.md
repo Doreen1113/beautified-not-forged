@@ -86,6 +86,13 @@ examples, one warm-up pass and ten timed passes each (40 timed photos), and show
 block (device, model load time, raw times) to copy back. Desktop baseline in headless Chrome:
 `python test/run_bench_headless.py effb4` → `test/bench_desktop_effb4.json` (2026-11-01: end-to-end median 512 ms, P90
 544 ms; model 422 ms; warm-up labels real/fake/filter/fake = the examples' truths).
+iPhone (Safari, iOS 26.2.1, 390x844 screen, 4 cores reported), measured on the GitHub Pages copy of `bench.html`:
+`test/bench_iphone_effb4_20261101.json` — end-to-end median 587 ms, P90 792 ms; model 425 ms; per example median
+555 / 588 / 765 / 616 ms (ex3 is the 1024 px render); model download 51.6 s, session creation 2.2 s; warm-up labels
+equal the truths.
+Small model `repvit_ev` (`models/ru4e_repvit.onnx`): desktop headless Chrome median 152 ms (P90 173, model 65 ms,
+`test/bench_desktop_repvit_ev.json`); same iPhone median 188 ms (P90 360, model 61 ms; per example 157 / 192 / 296 / 178
+ms; download 13.8 s; `test/bench_iphone_repvit_ev_20261101.json`); warm-up labels equal the truths on both.
 
 ## Models
 `models/ru4e_effb4.onnx` (66.97 MB, opset 17, sha256 `477f69a7…`) — exported by

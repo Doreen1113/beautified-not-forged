@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Server Mode Check</title>
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.19.2/dist/ort.min.js"></script>
+<script src="../explain_t2.js"></script>
+<script src="../evidence_overlay.js"></script>
+<script src="../face_masks.js"></script>
+<script src="../demo_core.js"></script>
+<script src="../nl_client.js"></script>
+<script src="fixture_ev.js"></script>
+<style>
+:root { --bg: #f6f5f2; --panel: #fff; --ink: #1d1f24; --muted: #62666f; --line: #dcdad4; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #16181c; --panel: #1f2227; --ink: #e8e6e1; --muted: #9ca0a8; --line: #33373e; } }
+:root[data-theme="dark"] { --bg: #16181c; --panel: #1f2227; --ink: #e8e6e1; --muted: #9ca0a8; --line: #33373e; }
+body { margin: 0; padding: 24px 16px; background: var(--bg); color: var(--ink); font: 14px/1.5 system-ui, sans-serif; }
+main { max-width: 1100px; margin: 0 auto; }
+pre { white-space: pre-wrap; font: 12px/1.4 ui-monospace, monospace; background: var(--panel); border: 1px solid var(--line); padding: 8px; }
+</style>
+</head>
+<body>
+<main>
+  <h1 style="font-size:20px">伺服器模式：頁面路徑（MediaPipe → ru4e_effb4.onnx → 部位遮罩 → record）→ nl_server.py</h1>
+  <p>fixture 的第 0、2、4…18 筆（10 筆）。每筆：<code>NLClient.explain</code> 一般／專業，<code>NLClient.qa</code> 8 題；結果 POST 到 <code>/__done</code>，由 headless 跑者用 validate_text 再驗。</p>
+  <p id="summary">running…</p>
+  <pre id="log"></pre>
+</main>
+<img id="hold" src="/__hold" alt="" width="1" height="1" style="position:absolute;opacity:0">
+<script type="module">
+import { FilesetResolver, FaceLandmarker } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/vision_bundle.mjs";
+const F = window.EV_FIXTURE, SP = new URLSearchParams(location.search), SRV = SP.get("srv") || NLClient.DEFAULT_URL, LANG = SP.get("lang") === "zh" ? "zh" : "en";
+const base = location.pathname.replace(/test\/[^/]*$/, ""), results = [], log = document.getElementById("log");
+let health = null, err = null;
+async function main() {
+  health = await NLClient.health(SRV);
+  ort.env.wasm.numThreads = 1;
+  const fileset = await FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm");
+  const landmarker = await FaceLandmarker.createFromOptions(fileset, {
+    baseOptions: { modelAssetPath: "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task" },
+    runningMode: "IMAGE", numFaces: 1 });
+  const model = await DemoCore.loadModel("effb4", base);
+  for (let i = 0; i < F.records.length; i += 2) {
+    const r = F.records[i];
+    const img = await createImageBitmap(await (await fetch(r.file)).blob());
+    const det = landmarker.detect(img);
+    if (!det.faceLandmarks || !det.faceLandmarks.length) { results.push({ id: r.id, err: "no face" }); continue; }
+    const out = await DemoCore.analyse(img, det.faceLandmarks[0], model, {});
+    const calls = [];
+    for (const style of ["general", "pro"]) {
+      const t0 = performance.now(); const res = await NLClient.explain(SRV, out.record, style, LANG);
+      calls.push({ kind: "explain", style, client_ms: performance.now() - t0, ...res });
+    }
+    for (let q = 0; q < NLClient.QUESTIONS.length; q++) {
+      const t0 = performance.now(); const res = await NLClient.qa(SRV, out.record, q, LANG);
+      calls.push({ kind: "qa", question_id: q, client_ms: performance.now() - t0, ...res });
+    }
+    results.push({ id: r.id, record: out.record, usable: NLClient.usable(out.record), calls });
+    log.textContent += r.id + "  " + out.record.decision + "\n" + calls.map((c) => `  [${c.kind} ${c.style || NLClient.QUESTIONS[c.question_id]}] ${c.source} ${c.client_ms.toFixed(0)} ms: ${c.text}`).join("\n") + "\n";
+  }
+}
+main().catch((e) => { err = String((e && e.message) || e); log.textContent += "ERROR " + err + "\n"; }).then(async () => {
+  document.getElementById("summary").textContent = err ? "ERROR " + err : `done: ${results.length} records`;
+  try { await fetch("/__done", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ srv: SRV, lang: LANG, health, err, results, client_fixed: LANG === "zh" ? NLClient.FIXED_QA : NLClient.FIXED_QA_EN }) }); } catch (e) {}
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+ "arm": "ru6",
+ "wc": 1.0,
+ "factorised": true,
+ "grade": true,
+ "vendor_fake": true,
+ "epochs": 8,
+ "seed": 20260929,
+ "trainable_M": 3.157003
+}

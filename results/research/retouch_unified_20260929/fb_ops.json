@@ -1,0 +1,1414 @@
+{
+ "n_measured": 2919,
+ "measured_presence_pct": {
+  "all": {
+   "n": 2919,
+   "eye": 80.5,
+   "jaw": 8.5,
+   "white": 39.1,
+   "smooth": 96.6,
+   "strict30": {
+    "eye": 76.7,
+    "jaw": 6.8,
+    "white": 35.3,
+    "smooth": 93.5
+   }
+  },
+  "held_out_filters": {
+   "n": 881,
+   "eye": 80.0,
+   "jaw": 9.8,
+   "white": 20.3,
+   "smooth": 98.0,
+   "strict30": {
+    "eye": 76.2,
+    "jaw": 7.6,
+    "white": 16.6,
+    "smooth": 94.8
+   }
+  },
+  "training_filters": {
+   "n": 2038,
+   "eye": 80.8,
+   "jaw": 8.0,
+   "white": 47.2,
+   "smooth": 96.0,
+   "strict30": {
+    "eye": 77.0,
+    "jaw": 6.5,
+    "white": 43.4,
+    "smooth": 92.9
+   }
+  },
+  "Baby_cute_face": {
+   "n": 294,
+   "eye": 75.9,
+   "jaw": 8.8,
+   "white": 54.4,
+   "smooth": 99.3,
+   "strict30": {
+    "eye": 70.7,
+    "jaw": 6.8,
+    "white": 43.5,
+    "smooth": 98.3
+   }
+  },
+  "Caramel Macchiato": {
+   "n": 295,
+   "eye": 90.2,
+   "jaw": 10.8,
+   "white": 57.6,
+   "smooth": 100.0,
+   "strict30": {
+    "eye": 87.1,
+    "jaw": 8.5,
+    "white": 55.9,
+    "smooth": 99.0
+   }
+  },
+  "Cute baby face": {
+   "n": 298,
+   "eye": 73.5,
+   "jaw": 7.4,
+   "white": 88.6,
+   "smooth": 99.0,
+   "strict30": {
+    "eye": 68.8,
+    "jaw": 6.4,
+    "white": 85.2,
+    "smooth": 98.7
+   }
+  },
+  "Just Baby": {
+   "n": 293,
+   "eye": 82.3,
+   "jaw": 9.2,
+   "white": 3.1,
+   "smooth": 98.0,
+   "strict30": {
+    "eye": 79.2,
+    "jaw": 6.5,
+    "white": 2.7,
+    "smooth": 97.6
+   }
+  },
+  "Pretty": {
+   "n": 566,
+   "eye": 81.4,
+   "jaw": 7.4,
+   "white": 29.7,
+   "smooth": 97.0,
+   "strict30": {
+    "eye": 76.5,
+    "jaw": 6.4,
+    "white": 25.1,
+    "smooth": 93.8
+   }
+  },
+  "Shiny foxy": {
+   "n": 295,
+   "eye": 86.1,
+   "jaw": 6.1,
+   "white": 57.3,
+   "smooth": 96.9,
+   "strict30": {
+    "eye": 83.4,
+    "jaw": 4.4,
+    "white": 53.6,
+    "smooth": 95.6
+   }
+  },
+  "big city life": {
+   "n": 294,
+   "eye": 82.0,
+   "jaw": 11.2,
+   "white": 3.4,
+   "smooth": 96.6,
+   "strict30": {
+    "eye": 78.6,
+    "jaw": 9.5,
+    "white": 3.4,
+    "smooth": 88.4
+   }
+  },
+  "hary beauty": {
+   "n": 584,
+   "eye": 76.4,
+   "jaw": 8.4,
+   "white": 32.5,
+   "smooth": 91.1,
+   "strict30": {
+    "eye": 73.3,
+    "jaw": 6.7,
+    "white": 28.4,
+    "smooth": 84.6
+   }
+  }
+ },
+ "models": {
+  "clipe5_s20260929": {
+   "all": {
+    "n": 2919,
+    "eye": {
+     "head_on_render_pct": 0.4,
+     "head_on_orig_pct": 3.2,
+     "recall": 0.003,
+     "precision": 0.667
+    },
+    "jaw": {
+     "head_on_render_pct": 2.1,
+     "head_on_orig_pct": 6.8,
+     "recall": 0.032,
+     "precision": 0.131
+    },
+    "white": {
+     "head_on_render_pct": 12.7,
+     "head_on_orig_pct": 18.2,
+     "recall": 0.176,
+     "precision": 0.543
+    },
+    "smooth": {
+     "head_on_render_pct": 24.8,
+     "head_on_orig_pct": 6.9,
+     "recall": 0.243,
+     "precision": 0.946
+    },
+    "exact_four_bit_match_pct": 1.9,
+    "quantity_spearman": {
+     "eye": 0.014,
+     "jaw": 0.024,
+     "white": 0.038,
+     "smooth": -0.164
+    }
+   },
+   "held_out_filters": {
+    "n": 881,
+    "eye": {
+     "head_on_render_pct": 0.6,
+     "head_on_orig_pct": 3.1,
+     "recall": 0.004,
+     "precision": 0.6
+    },
+    "jaw": {
+     "head_on_render_pct": 2.7,
+     "head_on_orig_pct": 7.0,
+     "recall": 0.047,
+     "precision": 0.167
+    },
+    "white": {
+     "head_on_render_pct": 13.3,
+     "head_on_orig_pct": 16.0,
+     "recall": 0.156,
+     "precision": 0.239
+    },
+    "smooth": {
+     "head_on_render_pct": 21.3,
+     "head_on_orig_pct": 6.8,
+     "recall": 0.212,
+     "precision": 0.973
+    },
+    "exact_four_bit_match_pct": 2.0
+   },
+   "training_filters": {
+    "n": 2038,
+    "eye": {
+     "head_on_render_pct": 0.3,
+     "head_on_orig_pct": 3.2,
+     "recall": 0.003,
+     "precision": 0.714
+    },
+    "jaw": {
+     "head_on_render_pct": 1.8,
+     "head_on_orig_pct": 6.7,
+     "recall": 0.025,
+     "precision": 0.108
+    },
+    "white": {
+     "head_on_render_pct": 12.4,
+     "head_on_orig_pct": 19.1,
+     "recall": 0.18,
+     "precision": 0.684
+    },
+    "smooth": {
+     "head_on_render_pct": 26.3,
+     "head_on_orig_pct": 6.9,
+     "recall": 0.257,
+     "precision": 0.937
+    },
+    "exact_four_bit_match_pct": 1.8
+   },
+   "Baby_cute_face": {
+    "n": 294,
+    "eye": {
+     "head_on_render_pct": 1.4,
+     "head_on_orig_pct": 2.0,
+     "recall": 0.009,
+     "precision": 0.5
+    },
+    "jaw": {
+     "head_on_render_pct": 6.1,
+     "head_on_orig_pct": 7.8,
+     "recall": 0.154,
+     "precision": 0.222
+    },
+    "white": {
+     "head_on_render_pct": 17.7,
+     "head_on_orig_pct": 15.0,
+     "recall": 0.156,
+     "precision": 0.481
+    },
+    "smooth": {
+     "head_on_render_pct": 39.8,
+     "head_on_orig_pct": 6.1,
+     "recall": 0.397,
+     "precision": 0.991
+    },
+    "exact_four_bit_match_pct": 2.7
+   },
+   "Caramel Macchiato": {
+    "n": 295,
+    "eye": {
+     "head_on_render_pct": 0.0,
+     "head_on_orig_pct": 2.7,
+     "recall": 0.0,
+     "precision": 0.0
+    },
+    "jaw": {
+     "head_on_render_pct": 2.4,
+     "head_on_orig_pct": 6.1,
+     "recall": 0.031,
+     "precision": 0.143
+    },
+    "white": {
+     "head_on_render_pct": 30.2,
+     "head_on_orig_pct": 18.6,
+     "recall": 0.276,
+     "precision": 0.528
+    },
+    "smooth": {
+     "head_on_render_pct": 18.3,
+     "head_on_orig_pct": 7.5,
+     "recall": 0.183,
+     "precision": 1.0
+    },
+    "exact_four_bit_match_pct": 0.7
+   },
+   "Cute baby face": {
+    "n": 298,
+    "eye": {
+     "head_on_render_pct": 2.3,
+     "head_on_orig_pct": 5.0,
+     "recall": 0.023,
+     "precision": 0.714
+    },
+    "jaw": {
+     "head_on_render_pct": 7.4,
+     "head_on_orig_pct": 7.7,
+     "recall": 0.136,
+     "precision": 0.136
+    },
+    "white": {
+     "head_on_render_pct": 37.9,
+     "head_on_orig_pct": 21.8,
+     "recall": 0.371,
+     "precision": 0.867
+    },
+    "smooth": {
+     "head_on_render_pct": 30.2,
+     "head_on_orig_pct": 9.1,
+     "recall": 0.302,
+     "precision": 0.989
+    },
+    "exact_four_bit_match_pct": 1.0
+   },
+   "Just Baby": {
+    "n": 293,
+    "eye": {
+     "head_on_render_pct": 0.0,
+     "head_on_orig_pct": 2.4,
+     "recall": 0.0,
+     "precision": 0.0
+    },
+    "jaw": {
+     "head_on_render_pct": 1.0,
+     "head_on_orig_pct": 7.8,
+     "recall": 0.0,
+     "precision": 0.0
+    },
+    "white": {
+     "head_on_render_pct": 6.1,
+     "head_on_orig_pct": 16.7,
+     "recall": 0.0,
+     "precision": 0.0
+    },
+    "smooth": {
+     "head_on_render_pct": 16.7,
+     "head_on_orig_pct": 7.2,
+     "recall": 0.164,
+     "precision": 0.959
+    },
+    "exact_four_bit_match_pct": 2.4
+   },
+   "Pretty": {
+    "n": 566,
+    "eye": {
+     "head_on_render_pct": 0.0,
+     "head_on_orig_pct": 3.0,
+     "recall": 0.0,
+     "precision": 0.0
+    },
+    "jaw": {
+     "head_on_render_pct": 0.5,
+     "head_on_orig_pct": 6.7,
+     "recall": 0.0,
+     "precision": 0.0
+    },
+    "white": {
+     "head_on_render_pct": 1.6,
+     "head_on_orig_pct": 16.1,
+     "recall": 0.03,
+     "precision": 0.556
+    },
+    "smooth": {
+     "head_on_render_pct": 30.4,
+     "head_on_orig_pct": 6.4,
+     "recall": 0.293,
+     "precision": 0.936
+    },
+    "exact_four_bit_match_pct": 2.1
+   },
+   "Shiny foxy": {
+    "n": 295,
+    "eye": {
+     "head_on_render_pct": 0.0,
+     "head_on_orig_pct": 3.4,
+     "recall": 0.0,
+     "precision": 0.0
+    },
+    "jaw": {
+     "head_on_render_pct": 1.0,
+     "head_on_orig_pct": 6.4,
+     "recall": 0.0,
+     "precision": 0.0
+    },
+    "white": {
+     "head_on_render_pct": 13.2,
+     "head_on_orig_pct": 23.7,
+     "recall": 0.124,
+     "precision": 0.538
+    },
+    "smooth": {
+     "head_on_render_pct": 23.1,
+     "head_on_orig_pct": 5.8,
+     "recall": 0.227,
+     "precision": 0.956
+    },
+    "exact_four_bit_match_pct": 0.3
+   },
+   "big city life": {
+    "n": 294,
+    "eye": {
+     "head_on_render_pct": 0.3,
+     "head_on_orig_pct": 4.8,
+     "recall": 0.004,
+     "precision": 1.0
+    },
+    "jaw": {
+     "head_on_render_pct": 1.0,
+     "head_on_orig_pct": 5.4,
+     "recall": 0.0,
+     "precision": 0.0
+    },
+    "white": {
+     "head_on_render_pct": 16.0,
+     "head_on_orig_pct": 16.3,
+     "recall": 0.3,
+     "precision": 0.064
+    },
+    "smooth": {
+     "head_on_render_pct": 7.5,
+     "head_on_orig_pct": 7.1,
+     "recall": 0.07,
+     "precision": 0.909
+    },
+    "exact_four_bit_match_pct": 1.0
+   },
+   "hary beauty": {
+    "n": 584,
+    "eye": {
+     "head_on_render_pct": 0.0,
+     "head_on_orig_pct": 2.6,
+     "recall": 0.0,
+     "precision": 0.0
+    },
+    "jaw": {
+     "head_on_render_pct": 0.3,
+     "head_on_orig_pct": 6.7,
+     "recall": 0.0,
+     "precision": 0.0
+    },
+    "white": {
+     "head_on_render_pct": 0.5,
+     "head_on_orig_pct": 18.5,
+     "recall": 0.011,
+     "precision": 0.667
+    },
+    "smooth": {
+     "head_on_render_pct": 26.0,
+     "head_on_orig_pct": 6.5,
+     "recall": 0.25,
+     "precision": 0.875
+    },
+    "exact_four_bit_match_pct": 3.3
+   }
+  },
+  "clipe5M_s20260929": {
+   "all": {
+    "n": 2919,
+    "eye": {
+     "head_on_render_pct": 3.7,
+     "head_on_orig_pct": 5.9,
+     "recall": 0.036,
+     "precision": 0.778
+    },
+    "jaw": {
+     "head_on_render_pct": 10.0,
+     "head_on_orig_pct": 21.9,
+     "recall": 0.116,
+     "precision": 0.099
+    },
+    "white": {
+     "head_on_render_pct": 19.7,
+     "head_on_orig_pct": 19.2,
+     "recall": 0.265,
+     "precision": 0.525
+    },
+    "smooth": {
+     "head_on_render_pct": 52.7,
+     "head_on_orig_pct": 14.2,
+     "recall": 0.529,
+     "precision": 0.969
+    },
+    "exact_four_bit_match_pct": 2.5,
+    "quantity_spearman": {
+     "eye": 0.056,
+     "jaw": -0.004,
+     "white": -0.002,
+     "smooth": -0.061
+    }
+   },
+   "held_out_filters": {
+    "n": 881,
+    "eye": {
+     "head_on_render_pct": 6.0,
+     "head_on_orig_pct": 6.6,
+     "recall": 0.061,
+     "precision": 0.811
+    },
+    "jaw": {
+     "head_on_render_pct": 16.7,
+     "head_on_orig_pct": 23.5,
+     "recall": 0.116,
+     "precision": 0.068
+    },
+    "white": {
+     "head_on_render_pct": 25.3,
+     "head_on_orig_pct": 17.9,
+     "recall": 0.285,
+     "precision": 0.229
+    },
+    "smooth": {
+     "head_on_render_pct": 62.2,
+     "head_on_orig_pct": 14.6,
+     "recall": 0.628,
+     "precision": 0.989
+    },
+    "exact_four_bit_match_pct": 3.0
+   },
+   "training_filters": {
+    "n": 2038,
+    "eye": {
+     "head_on_render_pct": 2.7,
+     "head_on_orig_pct": 5.6,
+     "recall": 0.025,
+     "precision": 0.745
+    },
+    "jaw": {
+     "head_on_render_pct": 7.2,
+     "head_on_orig_pct": 21.2,
+     "recall": 0.117,
+     "precision": 0.13
+    },
+    "white": {
+     "head_on_render_pct": 17.3,
+     "head_on_orig_pct": 19.7,
+     "recall": 0.261,
+     "precision": 0.713
+    },
+    "smooth": {
+     "head_on_render_pct": 48.6,
+     "head_on_orig_pct": 14.0,
+     "recall": 0.485,
+     "precision": 0.959
+    },
+    "exact_four_bit_match_pct": 2.3
+   },
+   "Baby_cute_face": {
+    "n": 294,
+    "eye": {
+     "head_on_render_pct": 13.6,
+     "head_on_orig_pct": 7.5,
+     "recall": 0.143,
+     "precision": 0.8
+    },
+    "jaw": {
+     "head_on_render_pct": 31.3,
+     "head_on_orig_pct": 24.8,
+     "recall": 0.231,
+     "precision": 0.065
+    },
+    "white": {
+     "head_on_render_pct": 32.3,
+     "head_on_orig_pct": 17.0,
+     "recall": 0.281,
+     "precision": 0.474
+    },
+    "smooth": {
+     "head_on_render_pct": 92.5,
+     "head_on_orig_pct": 13.6,
+     "recall": 0.928,
+     "precision": 0.996
+    },
+    "exact_four_bit_match_pct": 3.4
+   },
+   "Caramel Macchiato": {
+    "n": 295,
+    "eye": {
+     "head_on_render_pct": 4.1,
+     "head_on_orig_pct": 5.4,
+     "recall": 0.034,
+     "precision": 0.75
+    },
+    "jaw": {
+     "head_on_render_pct": 14.6,
+     "head_on_orig_pct": 21.0,
+     "recall": 0.219,
+     "precision": 0.163
+    },
+    "white": {
+     "head_on_render_pct": 43.7,
+     "head_on_orig_pct": 20.3,
+     "recall": 0.459,
+     "precision": 0.605
+    },
+    "smooth": {
+     "head_on_render_pct": 78.3,
+     "head_on_orig_pct": 12.2,
+     "recall": 0.783,
+     "precision": 1.0
+    },
+    "exact_four_bit_match_pct": 1.0
+   },
+   "Cute baby face": {
+    "n": 298,
+    "eye": {
+     "head_on_render_pct": 11.1,
+     "head_on_orig_pct": 6.7,
+     "recall": 0.114,
+     "precision": 0.758
+    },
+    "jaw": {
+     "head_on_render_pct": 24.2,
+     "head_on_orig_pct": 21.8,
+     "recall": 0.273,
+     "precision": 0.083
+    },
+    "white": {
+     "head_on_render_pct": 52.0,
+     "head_on_orig_pct": 20.1,
+     "recall": 0.519,
+     "precision": 0.884
+    },
+    "smooth": {
+     "head_on_render_pct": 68.1,
+     "head_on_orig_pct": 18.5,
+     "recall": 0.685,
+     "precision": 0.995
+    },
+    "exact_four_bit_match_pct": 3.0
+   },
+   "Just Baby": {
+    "n": 293,
+    "eye": {
+     "head_on_render_pct": 1.4,
+     "head_on_orig_pct": 5.5,
+     "recall": 0.012,
+     "precision": 0.75
+    },
+    "jaw": {
+     "head_on_render_pct": 12.3,
+     "head_on_orig_pct": 20.8,
+     "recall": 0.111,
+     "precision": 0.083
+    },
+    "white": {
+     "head_on_render_pct": 24.9,
+     "head_on_orig_pct": 20.5,
+     "recall": 0.222,
+     "precision": 0.027
+    },
+    "smooth": {
+     "head_on_render_pct": 63.5,
+     "head_on_orig_pct": 15.0,
+     "recall": 0.645,
+     "precision": 0.995
+    },
+    "exact_four_bit_match_pct": 3.8
+   },
+   "Pretty": {
+    "n": 566,
+    "eye": {
+     "head_on_render_pct": 0.4,
+     "head_on_orig_pct": 5.1,
+     "recall": 0.002,
+     "precision": 0.5
+    },
+    "jaw": {
+     "head_on_render_pct": 2.1,
+     "head_on_orig_pct": 20.5,
+     "recall": 0.071,
+     "precision": 0.25
+    },
+    "white": {
+     "head_on_render_pct": 3.2,
+     "head_on_orig_pct": 19.3,
+     "recall": 0.048,
+     "precision": 0.444
+    },
+    "smooth": {
+     "head_on_render_pct": 47.0,
+     "head_on_orig_pct": 12.9,
+     "recall": 0.457,
+     "precision": 0.944
+    },
+    "exact_four_bit_match_pct": 3.9
+   },
+   "Shiny foxy": {
+    "n": 295,
+    "eye": {
+     "head_on_render_pct": 2.7,
+     "head_on_orig_pct": 4.7,
+     "recall": 0.024,
+     "precision": 0.75
+    },
+    "jaw": {
+     "head_on_render_pct": 6.1,
+     "head_on_orig_pct": 22.7,
+     "recall": 0.111,
+     "precision": 0.111
+    },
+    "white": {
+     "head_on_render_pct": 15.6,
+     "head_on_orig_pct": 19.3,
+     "recall": 0.148,
+     "precision": 0.543
+    },
+    "smooth": {
+     "head_on_render_pct": 65.8,
+     "head_on_orig_pct": 13.6,
+     "recall": 0.657,
+     "precision": 0.969
+    },
+    "exact_four_bit_match_pct": 2.4
+   },
+   "big city life": {
+    "n": 294,
+    "eye": {
+     "head_on_render_pct": 3.1,
+     "head_on_orig_pct": 6.8,
+     "recall": 0.033,
+     "precision": 0.889
+    },
+    "jaw": {
+     "head_on_render_pct": 6.5,
+     "head_on_orig_pct": 24.8,
+     "recall": 0.03,
+     "precision": 0.053
+    },
+    "white": {
+     "head_on_render_pct": 18.7,
+     "head_on_orig_pct": 16.3,
+     "recall": 0.4,
+     "precision": 0.073
+    },
+    "smooth": {
+     "head_on_render_pct": 30.6,
+     "head_on_orig_pct": 15.3,
+     "recall": 0.303,
+     "precision": 0.956
+    },
+    "exact_four_bit_match_pct": 1.7
+   },
+   "hary beauty": {
+    "n": 584,
+    "eye": {
+     "head_on_render_pct": 0.0,
+     "head_on_orig_pct": 6.2,
+     "recall": 0.0,
+     "precision": 0.0
+    },
+    "jaw": {
+     "head_on_render_pct": 0.2,
+     "head_on_orig_pct": 21.1,
+     "recall": 0.02,
+     "precision": 1.0
+    },
+    "white": {
+     "head_on_render_pct": 0.7,
+     "head_on_orig_pct": 19.9,
+     "recall": 0.016,
+     "precision": 0.75
+    },
+    "smooth": {
+     "head_on_render_pct": 16.6,
+     "head_on_orig_pct": 13.9,
+     "recall": 0.147,
+     "precision": 0.804
+    },
+    "exact_four_bit_match_pct": 1.0
+   }
+  },
+  "clipe5M_s20260930": {
+   "all": {
+    "n": 2919,
+    "eye": {
+     "head_on_render_pct": 1.2,
+     "head_on_orig_pct": 7.5,
+     "recall": 0.011,
+     "precision": 0.765
+    },
+    "jaw": {
+     "head_on_render_pct": 15.8,
+     "head_on_orig_pct": 27.2,
+     "recall": 0.177,
+     "precision": 0.096
+    },
+    "white": {
+     "head_on_render_pct": 46.7,
+     "head_on_orig_pct": 23.5,
+     "recall": 0.534,
+     "precision": 0.447
+    },
+    "smooth": {
+     "head_on_render_pct": 56.5,
+     "head_on_orig_pct": 15.0,
+     "recall": 0.563,
+     "precision": 0.963
+    },
+    "exact_four_bit_match_pct": 2.9,
+    "quantity_spearman": {
+     "eye": -0.003,
+     "jaw": -0.019,
+     "white": -0.138,
+     "smooth": -0.158
+    }
+   },
+   "held_out_filters": {
+    "n": 881,
+    "eye": {
+     "head_on_render_pct": 1.5,
+     "head_on_orig_pct": 7.5,
+     "recall": 0.014,
+     "precision": 0.769
+    },
+    "jaw": {
+     "head_on_render_pct": 21.7,
+     "head_on_orig_pct": 26.3,
+     "recall": 0.198,
+     "precision": 0.089
+    },
+    "white": {
+     "head_on_render_pct": 46.9,
+     "head_on_orig_pct": 23.2,
+     "recall": 0.603,
+     "precision": 0.262
+    },
+    "smooth": {
+     "head_on_render_pct": 62.0,
+     "head_on_orig_pct": 15.2,
+     "recall": 0.623,
+     "precision": 0.985
+    },
+    "exact_four_bit_match_pct": 3.9
+   },
+   "training_filters": {
+    "n": 2038,
+    "eye": {
+     "head_on_render_pct": 1.0,
+     "head_on_orig_pct": 7.6,
+     "recall": 0.01,
+     "precision": 0.762
+    },
+    "jaw": {
+     "head_on_render_pct": 13.2,
+     "head_on_orig_pct": 27.6,
+     "recall": 0.166,
+     "precision": 0.1
+    },
+    "white": {
+     "head_on_render_pct": 46.6,
+     "head_on_orig_pct": 23.7,
+     "recall": 0.521,
+     "precision": 0.528
+    },
+    "smooth": {
+     "head_on_render_pct": 54.1,
+     "head_on_orig_pct": 15.0,
+     "recall": 0.536,
+     "precision": 0.952
+    },
+    "exact_four_bit_match_pct": 2.5
+   },
+   "Baby_cute_face": {
+    "n": 294,
+    "eye": {
+     "head_on_render_pct": 1.4,
+     "head_on_orig_pct": 11.2,
+     "recall": 0.013,
+     "precision": 0.75
+    },
+    "jaw": {
+     "head_on_render_pct": 41.5,
+     "head_on_orig_pct": 31.0,
+     "recall": 0.462,
+     "precision": 0.098
+    },
+    "white": {
+     "head_on_render_pct": 60.5,
+     "head_on_orig_pct": 23.5,
+     "recall": 0.631,
+     "precision": 0.567
+    },
+    "smooth": {
+     "head_on_render_pct": 85.7,
+     "head_on_orig_pct": 14.6,
+     "recall": 0.86,
+     "precision": 0.996
+    },
+    "exact_four_bit_match_pct": 5.1
+   },
+   "Caramel Macchiato": {
+    "n": 295,
+    "eye": {
+     "head_on_render_pct": 3.4,
+     "head_on_orig_pct": 6.4,
+     "recall": 0.023,
+     "precision": 0.6
+    },
+    "jaw": {
+     "head_on_render_pct": 28.5,
+     "head_on_orig_pct": 31.5,
+     "recall": 0.344,
+     "precision": 0.131
+    },
+    "white": {
+     "head_on_render_pct": 63.7,
+     "head_on_orig_pct": 23.7,
+     "recall": 0.694,
+     "precision": 0.628
+    },
+    "smooth": {
+     "head_on_render_pct": 69.2,
+     "head_on_orig_pct": 12.9,
+     "recall": 0.692,
+     "precision": 1.0
+    },
+    "exact_four_bit_match_pct": 1.4
+   },
+   "Cute baby face": {
+    "n": 298,
+    "eye": {
+     "head_on_render_pct": 2.7,
+     "head_on_orig_pct": 6.7,
+     "recall": 0.037,
+     "precision": 1.0
+    },
+    "jaw": {
+     "head_on_render_pct": 27.2,
+     "head_on_orig_pct": 26.5,
+     "recall": 0.227,
+     "precision": 0.062
+    },
+    "white": {
+     "head_on_render_pct": 59.7,
+     "head_on_orig_pct": 22.5,
+     "recall": 0.595,
+     "precision": 0.882
+    },
+    "smooth": {
+     "head_on_render_pct": 61.4,
+     "head_on_orig_pct": 18.8,
+     "recall": 0.614,
+     "precision": 0.989
+    },
+    "exact_four_bit_match_pct": 2.3
+   },
+   "Just Baby": {
+    "n": 293,
+    "eye": {
+     "head_on_render_pct": 0.3,
+     "head_on_orig_pct": 4.1,
+     "recall": 0.004,
+     "precision": 1.0
+    },
+    "jaw": {
+     "head_on_render_pct": 15.4,
+     "head_on_orig_pct": 22.2,
+     "recall": 0.074,
+     "precision": 0.044
+    },
+    "white": {
+     "head_on_render_pct": 48.8,
+     "head_on_orig_pct": 25.3,
+     "recall": 0.333,
+     "precision": 0.021
+    },
+    "smooth": {
+     "head_on_render_pct": 67.6,
+     "head_on_orig_pct": 15.7,
+     "recall": 0.679,
+     "precision": 0.985
+    },
+    "exact_four_bit_match_pct": 5.5
+   },
+   "Pretty": {
+    "n": 566,
+    "eye": {
+     "head_on_render_pct": 0.2,
+     "head_on_orig_pct": 9.7,
+     "recall": 0.002,
+     "precision": 1.0
+    },
+    "jaw": {
+     "head_on_render_pct": 8.8,
+     "head_on_orig_pct": 28.3,
+     "recall": 0.119,
+     "precision": 0.1
+    },
+    "white": {
+     "head_on_render_pct": 42.9,
+     "head_on_orig_pct": 22.4,
+     "recall": 0.375,
+     "precision": 0.259
+    },
+    "smooth": {
+     "head_on_render_pct": 54.9,
+     "head_on_orig_pct": 13.1,
+     "recall": 0.541,
+     "precision": 0.955
+    },
+    "exact_four_bit_match_pct": 2.5
+   },
+   "Shiny foxy": {
+    "n": 295,
+    "eye": {
+     "head_on_render_pct": 0.7,
+     "head_on_orig_pct": 6.8,
+     "recall": 0.004,
+     "precision": 0.5
+    },
+    "jaw": {
+     "head_on_render_pct": 14.9,
+     "head_on_orig_pct": 24.7,
+     "recall": 0.278,
+     "precision": 0.114
+    },
+    "white": {
+     "head_on_render_pct": 56.9,
+     "head_on_orig_pct": 24.7,
+     "recall": 0.586,
+     "precision": 0.589
+    },
+    "smooth": {
+     "head_on_render_pct": 66.8,
+     "head_on_orig_pct": 16.6,
+     "recall": 0.668,
+     "precision": 0.97
+    },
+    "exact_four_bit_match_pct": 3.7
+   },
+   "big city life": {
+    "n": 294,
+    "eye": {
+     "head_on_render_pct": 2.7,
+     "head_on_orig_pct": 7.1,
+     "recall": 0.025,
+     "precision": 0.75
+    },
+    "jaw": {
+     "head_on_render_pct": 8.2,
+     "head_on_orig_pct": 25.9,
+     "recall": 0.091,
+     "precision": 0.125
+    },
+    "white": {
+     "head_on_render_pct": 31.3,
+     "head_on_orig_pct": 20.7,
+     "recall": 0.4,
+     "precision": 0.043
+    },
+    "smooth": {
+     "head_on_render_pct": 32.7,
+     "head_on_orig_pct": 15.3,
+     "recall": 0.324,
+     "precision": 0.958
+    },
+    "exact_four_bit_match_pct": 1.0
+   },
+   "hary beauty": {
+    "n": 584,
+    "eye": {
+     "head_on_render_pct": 0.0,
+     "head_on_orig_pct": 6.8,
+     "recall": 0.0,
+     "precision": 0.0
+    },
+    "jaw": {
+     "head_on_render_pct": 1.7,
+     "head_on_orig_pct": 26.9,
+     "recall": 0.02,
+     "precision": 0.1
+    },
+    "white": {
+     "head_on_render_pct": 29.5,
+     "head_on_orig_pct": 24.8,
+     "recall": 0.337,
+     "precision": 0.372
+    },
+    "smooth": {
+     "head_on_render_pct": 35.4,
+     "head_on_orig_pct": 15.1,
+     "recall": 0.331,
+     "precision": 0.85
+    },
+    "exact_four_bit_match_pct": 2.4
+   }
+  },
+  "clipe7_s20260929": {
+   "all": {
+    "n": 2919,
+    "eye": {
+     "head_on_render_pct": 52.1,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.512,
+     "precision": 0.792
+    },
+    "jaw": {
+     "head_on_render_pct": 40.5,
+     "head_on_orig_pct": 0.5,
+     "recall": 0.365,
+     "precision": 0.077
+    },
+    "white": {
+     "head_on_render_pct": 91.1,
+     "head_on_orig_pct": 0.1,
+     "recall": 0.921,
+     "precision": 0.395
+    },
+    "smooth": {
+     "head_on_render_pct": 99.9,
+     "head_on_orig_pct": 0.1,
+     "recall": 0.999,
+     "precision": 0.966
+    },
+    "exact_four_bit_match_pct": 7.7,
+    "quantity_spearman": {
+     "eye": 0.091,
+     "jaw": 0.045,
+     "white": -0.028,
+     "smooth": -0.043
+    }
+   },
+   "held_out_filters": {
+    "n": 881,
+    "eye": {
+     "head_on_render_pct": 44.7,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.444,
+     "precision": 0.794
+    },
+    "jaw": {
+     "head_on_render_pct": 35.1,
+     "head_on_orig_pct": 0.7,
+     "recall": 0.314,
+     "precision": 0.087
+    },
+    "white": {
+     "head_on_render_pct": 88.1,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.922,
+     "precision": 0.213
+    },
+    "smooth": {
+     "head_on_render_pct": 99.9,
+     "head_on_orig_pct": 0.2,
+     "recall": 0.999,
+     "precision": 0.98
+    },
+    "exact_four_bit_match_pct": 5.0
+   },
+   "training_filters": {
+    "n": 2038,
+    "eye": {
+     "head_on_render_pct": 55.3,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.541,
+     "precision": 0.791
+    },
+    "jaw": {
+     "head_on_render_pct": 42.8,
+     "head_on_orig_pct": 0.4,
+     "recall": 0.393,
+     "precision": 0.073
+    },
+    "white": {
+     "head_on_render_pct": 92.3,
+     "head_on_orig_pct": 0.1,
+     "recall": 0.921,
+     "precision": 0.47
+    },
+    "smooth": {
+     "head_on_render_pct": 100.0,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.999,
+     "precision": 0.96
+    },
+    "exact_four_bit_match_pct": 8.9
+   },
+   "Baby_cute_face": {
+    "n": 294,
+    "eye": {
+     "head_on_render_pct": 32.7,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.314,
+     "precision": 0.729
+    },
+    "jaw": {
+     "head_on_render_pct": 31.6,
+     "head_on_orig_pct": 0.7,
+     "recall": 0.423,
+     "precision": 0.118
+    },
+    "white": {
+     "head_on_render_pct": 90.5,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.925,
+     "precision": 0.556
+    },
+    "smooth": {
+     "head_on_render_pct": 100.0,
+     "head_on_orig_pct": 0.0,
+     "recall": 1.0,
+     "precision": 0.993
+    },
+    "exact_four_bit_match_pct": 11.6
+   },
+   "Caramel Macchiato": {
+    "n": 295,
+    "eye": {
+     "head_on_render_pct": 34.9,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.346,
+     "precision": 0.893
+    },
+    "jaw": {
+     "head_on_render_pct": 21.7,
+     "head_on_orig_pct": 0.3,
+     "recall": 0.375,
+     "precision": 0.188
+    },
+    "white": {
+     "head_on_render_pct": 86.1,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.894,
+     "precision": 0.598
+    },
+    "smooth": {
+     "head_on_render_pct": 100.0,
+     "head_on_orig_pct": 0.0,
+     "recall": 1.0,
+     "precision": 1.0
+    },
+    "exact_four_bit_match_pct": 11.9
+   },
+   "Cute baby face": {
+    "n": 298,
+    "eye": {
+     "head_on_render_pct": 48.3,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.447,
+     "precision": 0.681
+    },
+    "jaw": {
+     "head_on_render_pct": 50.0,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.5,
+     "precision": 0.074
+    },
+    "white": {
+     "head_on_render_pct": 92.3,
+     "head_on_orig_pct": 0.3,
+     "recall": 0.913,
+     "precision": 0.876
+    },
+    "smooth": {
+     "head_on_render_pct": 100.0,
+     "head_on_orig_pct": 0.0,
+     "recall": 1.0,
+     "precision": 0.99
+    },
+    "exact_four_bit_match_pct": 11.1
+   },
+   "Just Baby": {
+    "n": 293,
+    "eye": {
+     "head_on_render_pct": 36.2,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.353,
+     "precision": 0.802
+    },
+    "jaw": {
+     "head_on_render_pct": 26.3,
+     "head_on_orig_pct": 0.7,
+     "recall": 0.185,
+     "precision": 0.065
+    },
+    "white": {
+     "head_on_render_pct": 82.9,
+     "head_on_orig_pct": 0.0,
+     "recall": 1.0,
+     "precision": 0.037
+    },
+    "smooth": {
+     "head_on_render_pct": 100.0,
+     "head_on_orig_pct": 0.7,
+     "recall": 1.0,
+     "precision": 0.98
+    },
+    "exact_four_bit_match_pct": 1.0
+   },
+   "Pretty": {
+    "n": 566,
+    "eye": {
+     "head_on_render_pct": 59.5,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.601,
+     "precision": 0.822
+    },
+    "jaw": {
+     "head_on_render_pct": 44.9,
+     "head_on_orig_pct": 0.2,
+     "recall": 0.333,
+     "precision": 0.055
+    },
+    "white": {
+     "head_on_render_pct": 92.6,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.893,
+     "precision": 0.286
+    },
+    "smooth": {
+     "head_on_render_pct": 99.8,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.998,
+     "precision": 0.97
+    },
+    "exact_four_bit_match_pct": 6.9
+   },
+   "Shiny foxy": {
+    "n": 295,
+    "eye": {
+     "head_on_render_pct": 53.6,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.539,
+     "precision": 0.867
+    },
+    "jaw": {
+     "head_on_render_pct": 42.7,
+     "head_on_orig_pct": 1.0,
+     "recall": 0.333,
+     "precision": 0.048
+    },
+    "white": {
+     "head_on_render_pct": 94.2,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.923,
+     "precision": 0.561
+    },
+    "smooth": {
+     "head_on_render_pct": 100.0,
+     "head_on_orig_pct": 0.0,
+     "recall": 1.0,
+     "precision": 0.969
+    },
+    "exact_four_bit_match_pct": 10.2
+   },
+   "big city life": {
+    "n": 294,
+    "eye": {
+     "head_on_render_pct": 65.3,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.656,
+     "precision": 0.823
+    },
+    "jaw": {
+     "head_on_render_pct": 47.3,
+     "head_on_orig_pct": 0.7,
+     "recall": 0.333,
+     "precision": 0.079
+    },
+    "white": {
+     "head_on_render_pct": 90.8,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.8,
+     "precision": 0.03
+    },
+    "smooth": {
+     "head_on_render_pct": 99.7,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.996,
+     "precision": 0.966
+    },
+    "exact_four_bit_match_pct": 2.4
+   },
+   "hary beauty": {
+    "n": 584,
+    "eye": {
+     "head_on_render_pct": 65.8,
+     "head_on_orig_pct": 0.0,
+     "recall": 0.643,
+     "precision": 0.747
+    },
+    "jaw": {
+     "head_on_render_pct": 47.8,
+     "head_on_orig_pct": 0.7,
+     "recall": 0.429,
+     "precision": 0.075
+    },
+    "white": {
+     "head_on_render_pct": 94.3,
+     "head_on_orig_pct": 0.2,
+     "recall": 0.979,
+     "precision": 0.338
+    },
+    "smooth": {
+     "head_on_render_pct": 100.0,
+     "head_on_orig_pct": 0.0,
+     "recall": 1.0,
+     "precision": 0.911
+    },
+    "exact_four_bit_match_pct": 7.7
+   }
+  }
+ }
+}

@@ -1,0 +1,26 @@
+{
+ "model": "clipe5_s20260929",
+ "image": "C:\\My_Project\\AIGC\\ffpp_partedit\\test\\donor\\682__f0867__nose.jpg",
+ "p_real_forged_beautified": [
+  0.0,
+  1.0,
+  0.0
+ ],
+ "ops_eye_contour_tone_texture": [
+  0.23,
+  0.043,
+  0.083,
+  0.214
+ ],
+ "evidence_max": 1.0,
+ "M16_cells_over_half": 17,
+ "part_means": {
+  "eyes": 0.25,
+  "nose": 0.992,
+  "mouth": 0.361,
+  "skin": 0.248,
+  "contour": 0.008,
+  "background": 0.003
+ },
+ "named": "nose"
+}

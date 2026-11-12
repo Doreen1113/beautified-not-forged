@@ -26,6 +26,38 @@
 !/docs/demo/
 !/docs/demo_v8_legacy/
 !/docs/demo_ru/
+!/docs/meeting_20261103/
+!/docs/capstone/
+# capstone: the report, poster and video are public; working folders, the human-study material and the forms are not
+/docs/capstone/archive_20261029/
+/docs/capstone/human_study
+/docs/capstone/**/human_study
+/docs/capstone/official_20261029/
+/docs/capstone/__pycache__/
+/docs/capstone/*/__pycache__/
+/docs/capstone/video/audio/
+/docs/capstone/video/demo/
+/docs/capstone/video/preview/
+/docs/capstone/video/check/
+/docs/capstone/video/film_video.mp4
+/docs/capstone/poster/preview/
+/docs/capstone/report_v3/report_pre_*.tex
+/docs/capstone/report_v3/report_body.pdf
+/docs/capstone/report_v3/*.aux
+/docs/capstone/report_v3/*.log
+/docs/capstone/report_v3/*.bbl
+/docs/capstone/report_v3/*.blg
+/docs/capstone/report_v3/*.out
+/docs/demo_ru/cases/
+/docs/demo_ru/site/assets/cases/
+/docs/demo_ru/site/assets/evidence/
+/docs/demo_ru/models/ru4e_effb4.onnx
+/docs/demo_ru/test/backup_*/
+/docs/demo_ru/*_pre_*.html
+/docs/demo_ru/*_pre_*.js
+/docs/demo_ru/examples/backup_*/
+/docs/paper_v2/arxiv_*/
+/docs/meeting_20261103/assets_src/
 # already-tracked folders stay tracked; new files in them are not added automatically
 /docs/paper_v2/main.pdf
 /docs/paper_v2/supplement.pdf
@@ -106,3 +138,12 @@ Thumbs.db
 *.txt
 !/requirements.txt
 /docs/meeting_20260930/notes_user_v4.json
+/docs/meeting_20260930/
+/tools_local/
+/external_refs/
+
+# capstone video: previews and the picture-only intermediate
+docs/capstone/video/preview/
+docs/capstone/video/check/
+docs/capstone/video/film_video.mp4
+/docs/demo_ru/site/

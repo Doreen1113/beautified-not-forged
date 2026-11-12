@@ -1,0 +1,112 @@
+% Draft of the 2026-10 rewrite: problem statement, evaluation rule and method. Merge into main.tex with draft_v3_intro.tex.
+
+\section{Problem and Evaluation Rule}
+\label{sec:protocol}
+A face image $x$ is \emph{forged} if it shows a person or an action that was not captured: an identity swap, a reenactment,
+a synthesised face, or a part replaced by another person's or by generated content. It is \emph{beautified} if its
+appearance was edited after capture while identity, expression, pose and speech stay those of the capture: colour and tone,
+skin texture, or a smooth reshaping of the person's own features. The two attributes are independent; a beautified forgery
+is forged. The tool does not decide: a retouching service that uses a neural network beautifies, and a reenactment that
+keeps the identity forges. Table~\ref{tab:labels} lists cases near the boundary. A detector has to return a forgery score
+that does not move when a face is beautified, and the beautified attribute is reported separately for the user.
+
+\textbf{One rule for every detector.} Each detector is scored by its probability of forgery, $P(\text{fake})$. On every
+source we set the threshold at a false-alarm rate of 5\% on the untreated genuine frames, keep it fixed, and report under
+beautification the false-alarm rate FA (genuine faces called fake) and the miss rate MISS (forgeries not called fake), with
+the AUC of untreated and of beautified pairs. A forgery that a three-way model sends to its beautified class is a miss. An
+earlier version of this work counted only forgeries called \emph{real} as misses, which hid 19.5\% of the beautified
+Celeb-DF-B deepfakes that our model sent to the third class; that rule is withdrawn. Confidence intervals are 95\%
+percentile intervals over 1,000 (Celeb-DF-B) or 500 bootstrap resamples of videos, and differences between detectors use
+identical resamples, so their intervals are paired.
+
+\textbf{Sources.} Celeb-DF-B~\cite{libourel2024}: 231 Celeb-DF-v2 videos, each as recorded, re-encoded, and beautified by
+one of four app presets, for genuine and synthesised faces (32 frames per video). Re-encoding alone changes the scores, so
+the rise in MISS attributed to beautification is the rise under the preset minus the rise under re-encoding. Celeb-DF-v2
+filters: the 516 test videos of Celeb-DF-v2~\cite{celebdf}, 32 frames each, every frame also saved under one of eleven
+colour filters~\cite{pilgram} that no model of ours trained on, assigned per video. DFD filters: the 332 DFD
+videos~\cite{dfd}, 32 frames each, under one of sixteen filters from a second library, grayscale and sepia, none used in
+training or in the diagnosis that motivated the method; the set was built after the method was fixed. Commercial
+retouching: 2,210 FFHQ originals and their renders by a service never seen in training (Sec.~\ref{sec:ali}).
+
+\section{Method}
+\label{sec:method}
+\subsection{A bounded operator over beautification}
+\label{sec:operator}
+We write identity-preserving appearance edits as a differentiable operator $B(x;u)$ on a face crop $x\in[0,1]^{3\times H\times W}$
+with parameters $u$ in an unconstrained space, every component mapped by a sigmoid into a bounded range:
+a per-channel tone curve (gamma, gain and lift), a $3\times3$ colour matrix close to the identity, saturation from
+monochrome to 1.7, contrast about the mean, a smooth spatial field on a $4\times4$ grid that scales luminance and tints each
+channel (vignettes, light leaks and tint gradients), a blend toward a Gaussian-smoothed copy (skin smoothing), and additive
+grain. Table~\ref{tab:operator_params} lists the components and ranges. The operator contains no geometric warp and no
+face-aware mask, so it cannot express face slimming or eye enlargement; these are covered by the commercial renders of
+Sec.~\ref{sec:data}.
+
+\textbf{Range fitted to measured edits.} The ranges are not chosen by hand. For 1,000 pairs each of (original, render) from
+two retouching services and of (frame, filtered frame) for the training colour filters and random grading, we fit $u$ by
+gradient descent on the pixel error. The operator reproduces the colour filters at 39.8\,dB PSNR and explains 7\,dB of a
+Tencent render (21.4 to 28.6\,dB); the remainder is geometry, which a photometric operator cannot express
+(Table~\ref{tab:operator}). Where the 99th percentile of the fitted parameters met a hand-set bound, the bound was widened,
+and the search below is confined to the 0.5th--99.5th percentile range of the fitted edits and starts from a fitted edit.
+A Gaussian fit was tried first and rejected because it excluded monochrome, which the measured filters reach.
+
+\subsection{Robust training against the worst edit}
+\label{sec:robust}
+Let $f_\theta$ be the detector and $\ell$ the cross-entropy of its forgery logit. We minimise
+\begin{equation}
+\mathbb{E}_{(x,y)}\Big[\ell\big(f_\theta(x),y\big)+\max_{u\in U}\ell\big(f_\theta(B(x;u)),y\big)\Big],
+\label{eq:robust}
+\end{equation}
+where $U$ is the fitted range and $y$ the forgery label, which the edit does not change. The inner maximisation is one
+signed-gradient step of size 1 on $u$ from a measured edit (R+FGSM~\cite{tramer2018}; a three-step variant is reported),
+followed by projection onto $U$. The step costs one extra forward and backward pass. The beautified attribute of the edited
+view is set to one. The edit is applied to the genuine and the forged item of every training step with the same
+probability, so that no edit is more frequent under either label: in our earlier runs, random grading applied more often to
+non-forged items taught the model that a graded face is less likely forged, and the filters then raised its miss rate rather
+than its false alarms (Sec.~\ref{sec:results}).
+
+Equation~\ref{eq:robust} is adversarial training~\cite{madry2018} with a perturbation set that is not an $\ell_p$ ball but
+the edits a user can apply. Two controls separate the search from the operator: the same operator with a random $u$ at
+every step, and the worst of four random draws chosen by loss~\cite{fatima2025}. Single-step training can overfit to its
+own step~\cite{wong2020fast}; we therefore report the accuracy of every model under a ten-step search as well.
+
+\subsection{Supervision from paired edits}
+\label{sec:data}
+The operator of Sec.~\ref{sec:operator} covers photometric edits. Geometric and face-aware edits, and the
+beautifications a model should recognise as such, come from paired data in which every edited image has a pixel-aligned
+original $x_0$, so that the footprint of the edit is known exactly, $M(x)=\mathrm{dilate}_\rho(\mathbf{1}[\|x-x_0\|_\infty>\tau])$
+with $\tau=6$ on 8-bit intensities.
+
+\textbf{FF++ triplets.} FF++ c23~\cite{ffpp} under the official 720/140/140 video split. For each genuine training frame
+$x_0$ a step draws a genuine item, a beautified item (one of four landmark and skin operations at a random strength, one of
+14 colour filters~\cite{pilgram}, or a random grading) and a forged item (a self-blend of $x_0$~\cite{sbi}, an observed
+forgery from the four FF++ methods, or a part-level forgery). The same random blur or downscale is applied to all three
+items, so that sharpness does not predict the label. The FF++-only models use nothing else.
+
+\textbf{Commercial renders.} 7,831 FFHQ photographs~\cite{ffhq} and their renders by two retouching services from
+RetouchingFFHQ~\cite{retouchingffhq}, Tencent and Megvii, which apply eye enlargement, face lifting, whitening and
+smoothing together. Each render $R$ of an original $O$ is split into single-operation components in $O$'s geometry: dense
+optical flow~\cite{dis} on locally normalised luminance gives the warp $f$, the photometric residual is
+$P=R\circ(\mathrm{id}-f^{-1})-O$, and the components are the eye and contour warps of $O$ by the masked flow and the
+low- and high-frequency parts of $P$ added to $O$ (Alg.~\ref{alg:decomp}); applying the four in sequence reproduces $R$ at
+108\,dB PSNR. Components whose measured edit falls under the noise floor are dropped, leaving 50,112 of 73,952. The
+decomposition also lets a measured commercial edit be transplanted onto a forgery: the photometric residual of a render is
+added to a self-blend of the same original, so that the same commercial edit appears on genuine and forged faces. The third
+service, Alibaba, is used only for testing.
+
+\textbf{Part-level forgeries.} 61,510 training forgeries on FF++ frames transplant the eyes, nose or mouth of another
+identity or regenerate the part with Stable Diffusion inpainting; pixels outside the feathered mask are copied from $x_0$,
+so the footprint is exact. The held-out test set uses test-split frames and donors from test videos only.
+
+\subsection{Model}
+\label{sec:model}
+The detector is a frozen CLIP ViT-L/14~\cite{clip} with rank-16 LoRA~\cite{lora} on every attention projection (3.2\,M
+trained parameters of 306\,M) and a linear forgery head on the pooled feature. A second linear head gives the beautified
+attribute and a $1\times1$ convolution on the spatial tokens gives the evidence map trained against the exact footprints;
+\pending{in the final model these auxiliary heads read detached features, so they report on the representation without
+shaping it (Sec.~\ref{sec:ablation}); the three-way output real / fake / filter is derived from the two logits}. The
+faithfulness test of the evidence map restores the named region to the original and measures how often the decision
+changes, against the true footprint as ceiling (Sec.~\ref{sec:explain}). Training: 224\,px crops, AdamW at $10^{-4}$ with
+warm-up and cosine decay, 8 epochs, a batch of 16 genuine bases with their forged and beautified items. The checkpoint is
+chosen on validation data only (FF++ validation macro-F1 for FF++-only models; for full-data models the mean of FF++
+validation macro-F1 and balanced accuracy on held-out originals and renders of the training services). No test source is
+used for any choice.

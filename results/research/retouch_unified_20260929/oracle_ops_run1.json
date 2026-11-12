@@ -1,0 +1,82 @@
+{
+ "EyeEnlarging_90": {
+  "lossless": {
+   "auroc": 0.9332,
+   "auroc_ci": [
+    0.9217,
+    0.9429
+   ],
+   "paired_rank": 100.0
+  },
+  "jpeg90_resize256": {
+   "auroc": 0.8331,
+   "auroc_ci": [
+    0.817,
+    0.8511
+   ],
+   "paired_rank": 99.4
+  },
+  "n_train_faces": 1547,
+  "n_test_faces": 663
+ },
+ "FaceLifting_90": {
+  "lossless": {
+   "auroc": 0.9482,
+   "auroc_ci": [
+    0.9385,
+    0.957
+   ],
+   "paired_rank": 100.0
+  },
+  "jpeg90_resize256": {
+   "auroc": 0.8797,
+   "auroc_ci": [
+    0.8653,
+    0.8936
+   ],
+   "paired_rank": 98.9
+  },
+  "n_train_faces": 1547,
+  "n_test_faces": 663
+ },
+ "Whitening_90": {
+  "lossless": {
+   "auroc": 0.9801,
+   "auroc_ci": [
+    0.9734,
+    0.9856
+   ],
+   "paired_rank": 100.0
+  },
+  "jpeg90_resize256": {
+   "auroc": 0.9487,
+   "auroc_ci": [
+    0.9387,
+    0.9581
+   ],
+   "paired_rank": 99.8
+  },
+  "n_train_faces": 1547,
+  "n_test_faces": 663
+ },
+ "Smoothing_90": {
+  "lossless": {
+   "auroc": 0.9995,
+   "auroc_ci": [
+    0.9989,
+    1.0
+   ],
+   "paired_rank": 100.0
+  },
+  "jpeg90_resize256": {
+   "auroc": 0.9966,
+   "auroc_ci": [
+    0.9927,
+    0.9994
+   ],
+   "paired_rank": 100.0
+  },
+  "n_train_faces": 1547,
+  "n_test_faces": 663
+ }
+}

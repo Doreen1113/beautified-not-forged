@@ -1,0 +1,57 @@
+% How a sentence is composed and checked, on one real record (fixture_t2.json, ffhq_demo_edit:17042_nose, model clipe5
+% seed 20260929: nose replaced from donor 17044). The rejected sentence at the bottom is a hand-written counter-example.
+\begin{tikzpicture}[
+  font=\footnotesize, >={Latex[length=2.2mm,width=1.8mm]},
+  col/.style={draw=#1, fill=#1!6, rounded corners=3pt, line width=0.7pt, inner sep=6pt, text width=4.05cm, minimum height=5.3cm, align=left, text=ink, anchor=north},
+  arr/.style={->, line width=0.9pt, draw=ink},
+  lab/.style={font=\scriptsize, text=muted, fill=white, inner sep=1.5pt},
+]
+\definecolor{nn}{HTML}{0F4D92}
+\definecolor{code}{HTML}{1B7F4C}
+\definecolor{chk}{HTML}{6A3D9A}
+\definecolor{bad}{HTML}{D55E00}
+\definecolor{good}{HTML}{009E73}
+\definecolor{ink}{HTML}{222222}
+\definecolor{muted}{HTML}{6B6B6B}
+
+\node[col=nn] (rec) at (0,0) {%
+  \textbf{\textcolor{nn}{Record (model output)}}\\[3pt]
+  {\ttfamily\scriptsize
+  decision:~fake\\
+  p:~real~0.00~~fake~1.00\\
+  ~~~beautified~0.00\\
+  operations:\\
+  ~~eyes~0.05~~~slim~0.01\\
+  ~~white~0.03~~smooth~0.20\\
+  threshold:~0.50\\
+  evidence:\\
+  ~~eyes~0.16~~~nose~0.99\\
+  ~~mouth~0.55~~skin~0.31\\
+  named~part:~nose}};
+\node[col=code] (txt) at (4.75,0) {%
+  \textbf{\textcolor{code}{Sentences (templates)}}\\[3pt]
+  T1 \ The model's decision is \textbf{fake} (score \textbf{1.00}).\\[3pt]
+  T2 \ The evidence is concentrated on the \textbf{nose} (mean evidence \textbf{0.99}).\\[3pt]
+  T3 \ \textit{no operation reaches 0.50: no sentence}\\[3pt]
+  T4 \ The score is the model's raw output, not a calibrated probability.};
+\node[col=chk] (chk) at (9.5,0) {%
+  \textbf{\textcolor{chk}{Checks before display}}\\[3pt]
+  \textcolor{good}{\ding{51}} H1 decision word = record\\
+  \textcolor{good}{\ding{51}} H2 part $\in$ named parts\\
+  \textcolor{good}{\ding{51}} H3 operations = those $\ge 0.50$\\
+  \textcolor{good}{\ding{51}} H4 every number in the record\\
+  \textcolor{good}{\ding{51}} H5 no forbidden phrase\\
+  \textcolor{good}{\ding{51}} H6 three to five sentences\\
+  \textcolor{good}{\ding{51}} G7 score not compared with the threshold\\
+  \textcolor{good}{\ding{51}} G8 no certainty word\\
+  \textcolor{good}{\ding{51}} G9 score not on a part};
+\draw[arr] (rec) -- node[lab, above] {fill} (txt);
+\draw[arr] (txt) -- node[lab, above] {match} (chk);
+
+% counter-example, under the three columns
+\node[draw=bad, fill=bad!5, rounded corners=3pt, line width=0.7pt, inner sep=6pt, text width=13.75cm, align=left, text=ink, anchor=north]
+  at ([yshift=-0.45cm]txt.south |- chk.south) (rej) {%
+  \textbf{\textcolor{bad}{Rejected by the checker}}\quad ``The nose is \emph{certainly} forged with a score of 1.00, and the skin was smoothed.''\\[2pt]
+  \textcolor{bad}{\ding{55}} G8 certainty word\quad \textcolor{bad}{\ding{55}} G9 decision score attached to a part\quad
+  \textcolor{bad}{\ding{55}} H3 smoothing (0.20) is below the threshold.\quad A rejected text is never shown; the templates are shown instead.};
+\end{tikzpicture}

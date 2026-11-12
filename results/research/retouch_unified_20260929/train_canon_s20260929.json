@@ -1,0 +1,62 @@
+[
+ {
+  "edit_before": 25.8,
+  "edit_after": 27.38,
+  "photometric_before": 25.9,
+  "photometric_after": 27.26,
+  "filter_before": 20.98,
+  "filter_after": 22.99,
+  "identity": 32.56,
+  "step": 1000
+ },
+ {
+  "edit_before": 25.8,
+  "edit_after": 26.92,
+  "photometric_before": 25.9,
+  "photometric_after": 26.86,
+  "filter_before": 20.98,
+  "filter_after": 23.19,
+  "identity": 31.83,
+  "step": 2000
+ },
+ {
+  "edit_before": 25.8,
+  "edit_after": 26.85,
+  "photometric_before": 25.9,
+  "photometric_after": 26.86,
+  "filter_before": 20.98,
+  "filter_after": 22.85,
+  "identity": 33.35,
+  "step": 3000
+ },
+ {
+  "edit_before": 25.8,
+  "edit_after": 26.84,
+  "photometric_before": 25.9,
+  "photometric_after": 26.87,
+  "filter_before": 20.98,
+  "filter_after": 22.89,
+  "identity": 33.78,
+  "step": 4000
+ },
+ {
+  "edit_before": 25.8,
+  "edit_after": 26.67,
+  "photometric_before": 25.9,
+  "photometric_after": 26.73,
+  "filter_before": 20.98,
+  "filter_after": 22.75,
+  "identity": 34.32,
+  "step": 5000
+ },
+ {
+  "edit_before": 25.8,
+  "edit_after": 26.68,
+  "photometric_before": 25.9,
+  "photometric_after": 26.73,
+  "filter_before": 20.98,
+  "filter_after": 22.74,
+  "identity": 34.43,
+  "step": 6000
+ }
+]

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Method overview</title>
+<style>
+  @page { margin: 0; }
+  :root { --ink:#1f2937; --muted:#6b7280; --line:#d6dbe3; --panel:#f6f8fb; --nn:#0f4d92; --code:#1b7f4c; --chk:#6a3d9a;
+          --fake:#d55e00; --real:#009e73; --beau:#c98a00; --m:#26a6dc; }
+  * { box-sizing:border-box; }
+  html, body { margin:0; padding:0; background:#fff; }
+  body { width:18.13cm; font-family:Arial, "Liberation Sans", Helvetica, sans-serif; color:var(--ink); font-size:8.5pt;
+         line-height:1.22; padding:0.24cm 0 0.04cm; overflow:hidden; }
+  .top { display:grid; grid-template-columns:6.75cm 0.32cm 5.0cm 0.32cm 5.74cm; align-items:stretch; }
+  .bot { display:grid; grid-template-columns:13.38cm 4.43cm; column-gap:0.32cm; margin-top:0.42cm; }
+  .panel { position:relative; background:var(--panel); border:0.45pt solid var(--line); border-radius:0.24cm; padding:0.42cm 0.2cm 0.16cm; }
+  .chip { position:absolute; top:-0.2cm; left:0.2cm; font-size:8.5pt; font-weight:700; color:#fff; padding:0.04cm 0.22cm; border-radius:0.3cm; white-space:nowrap; }
+  .nn > .chip { background:var(--nn); } .ink > .chip { background:#374151; } .chk > .chip { background:var(--chk); } .code > .chip { background:var(--code); }
+  .join { display:flex; align-items:center; justify-content:center; }
+  .ar { width:0.3cm; height:0.22cm; display:block; }
+  .t { display:block; object-fit:cover; border-radius:0.09cm; box-shadow:0 0.6pt 2pt rgba(0,0,0,.30); }
+  .b-real { outline:1.4pt solid var(--real); } .b-fake { outline:1.4pt solid var(--fake); } .b-beau { outline:1.4pt solid var(--beau); }
+  .card { background:#fff; border:0.45pt solid var(--line); border-radius:0.14cm; padding:0.09cm 0.12cm 0.07cm; margin-bottom:0.11cm; }
+  .card:last-child { margin-bottom:0; }
+  .strip { display:flex; align-items:flex-end; gap:0.06cm; }
+  .cell { display:flex; flex-direction:column; align-items:center; }
+  .lab { font-size:8pt; line-height:1.05; margin-top:0.05cm; text-align:center; white-space:nowrap; }
+  .lab.real { color:var(--real); font-weight:700; } .lab.fake { color:var(--fake); font-weight:700; } .lab.beau { color:var(--beau); font-weight:700; } .lab.m { color:var(--m); font-weight:700; }
+  .mid { align-self:center; margin-bottom:0.32cm; }
+  .foot { display:flex; justify-content:space-between; align-items:baseline; gap:0.2cm; font-size:8pt; color:var(--muted); margin-top:0.05cm; }
+  .foot b { color:var(--ink); font-size:8.5pt; white-space:nowrap; }
+  .foot span { white-space:nowrap; }
+  .heads { display:grid; grid-template-columns:1fr 1.28cm; column-gap:0.12cm; margin-top:0.04cm; align-items:start; }
+  .pill { display:block; background:#fff; border:0.7pt solid var(--nn); border-radius:0.12cm; padding:0.035cm 0.1cm; font-size:8pt; line-height:1.15; margin-bottom:0.07cm; }
+  .pill b { color:var(--nn); }
+  .pill.aux { border-color:#9db4d6; color:var(--muted); }
+  .evmap { text-align:center; font-size:8pt; line-height:1.05; }
+  .evmap img { width:1.28cm; height:1.28cm; display:block; border-radius:0.06cm; margin-bottom:0.04cm; }
+  .mnote { font-size:8pt; color:var(--muted); margin-top:0.02cm; }
+  .mnote b { color:var(--nn); }
+  .ex { display:grid; grid-template-columns:1.5cm 1.5cm 1fr; column-gap:0.1cm; align-items:center; margin-bottom:0.13cm; }
+  .verdict { font-size:8pt; line-height:1.25; }
+  .verdict .v { display:inline-block; font-size:8pt; font-weight:700; padding:0.01cm 0.12cm; white-space:nowrap; border-radius:0.3cm; margin-bottom:0.04cm; }
+  .v.fake { color:var(--fake); background:#fbe8dc; } .v.beau { color:#9a6a00; background:#fbf0d6; }
+  .verdict b { font-weight:700; }
+  .says { background:#fff; border:0.45pt solid var(--line); border-left:2.4pt solid var(--code); border-radius:0.1cm; padding:0.06cm 0.12cm; font-size:8pt; line-height:1.22; }
+  .says .badge { display:inline-block; font-size:7.6pt; color:var(--code); border:0.5pt solid var(--code); border-radius:0.25cm; padding:0 0.12cm; margin-top:0.04cm; }
+  .tests { display:grid; grid-template-columns:repeat(3, 1fr); column-gap:0.18cm; }
+  .metric { background:#fff; border:0.45pt solid var(--line); border-top:2.4pt solid var(--chk); border-radius:0.12cm; padding:0.08cm 0.14cm 0.09cm; }
+  .metric .k { font-size:8pt; font-weight:700; color:var(--chk); }
+  .metric .big { font-size:15pt; font-weight:700; line-height:1.15; letter-spacing:-0.2pt; margin:0.02cm 0; white-space:nowrap; }
+  .metric .big small { font-size:9pt; font-weight:700; color:var(--muted); }
+  .metric .d { font-size:8pt; color:var(--muted); line-height:1.2; }
+  .metric .d b { color:var(--ink); }
+  .metric.dev { border-top-color:var(--code); } .metric.dev .k { color:var(--code); }
+  .good { color:var(--real); } .bad { color:var(--fake); }
+  .legend { font-size:8pt; color:var(--muted); margin-top:0.16cm; white-space:nowrap; }
+  .legend i { display:inline-block; width:0.26cm; height:0.18cm; border-radius:0.05cm; vertical-align:-0.03cm; margin:0 0.08cm 0 0.32cm; }
+  .legend i:first-child { margin-left:0; }
+  .legend i.o { background:#fff; border:1.4pt solid; }
+</style></head><body>
+
+<div class="top">
+  <div class="panel nn"><div class="chip">1&nbsp; Training pairs with exact footprints</div>
+    <div class="card">
+      <div class="strip">
+        <div class="cell"><img class="t b-real" src="method_ffpp_real.png" style="width:1.25cm;height:1.25cm"><div class="lab real">genuine</div></div>
+        <div class="cell mid"><svg class="ar" viewBox="0 0 14 10"><path d="M0 5h9M7 1.2l5 3.8-5 3.8" fill="none" stroke="#374151" stroke-width="1.5"/></svg></div>
+        <div class="cell"><img class="t b-beau" src="method_ffpp_filter.png" style="width:1.25cm;height:1.25cm"><div class="lab beau">beautified</div></div>
+        <div class="cell"><img class="t b-fake" src="method_ffpp_fake.png" style="width:1.25cm;height:1.25cm"><div class="lab fake">forged</div></div>
+        <div class="cell"><img class="t b-fake" src="method_ffpp_fake_filter.png" style="width:1.25cm;height:1.25cm"><div class="lab fake">+ beautified</div></div>
+      </div>
+      <div class="foot"><span><b style="font-size:8pt">both classes see smoothing</b></span><b>41,512 frames</b></div>
+    </div>
+    <div class="card">
+      <div class="strip">
+        <div class="cell"><img class="t b-real" src="method_vendor_O.png" style="width:0.86cm;height:1.03cm"><div class="lab">O</div></div>
+        <div class="cell"><img class="t b-beau" src="method_vendor_R.png" style="width:0.86cm;height:1.03cm"><div class="lab">R</div></div>
+        <div class="cell mid"><svg class="ar" viewBox="0 0 14 10"><path d="M0 5h9M7 1.2l5 3.8-5 3.8" fill="none" stroke="#374151" stroke-width="1.5"/></svg></div>
+        <div class="cell"><img class="t b-beau" src="method_comp_eye.png" style="width:0.86cm;height:1.03cm"><div class="lab">eye</div></div>
+        <div class="cell"><img class="t b-beau" src="method_comp_contour.png" style="width:0.86cm;height:1.03cm"><div class="lab">contour</div></div>
+        <div class="cell"><img class="t b-beau" src="method_comp_tone.png" style="width:0.86cm;height:1.03cm"><div class="lab">tone</div></div>
+        <div class="cell"><img class="t b-beau" src="method_comp_texture.png" style="width:0.86cm;height:1.03cm"><div class="lab">texture</div></div>
+      </div>
+      <div class="foot"><span>one render &rarr; 4 operations</span><b>50,112 items</b></div>
+    </div>
+    <div class="card">
+      <div class="strip">
+        <div class="cell"><img class="t b-real" src="method_part_x0.png" style="width:1.25cm;height:1.25cm"><div class="lab">original</div></div>
+        <div class="cell mid"><svg class="ar" viewBox="0 0 14 10"><path d="M0 5h9M7 1.2l5 3.8-5 3.8" fill="none" stroke="#374151" stroke-width="1.5"/></svg></div>
+        <div class="cell"><img class="t b-fake" src="method_part_x.png" style="width:1.25cm;height:1.25cm"><div class="lab fake">donor nose</div></div>
+        <div class="cell" style="margin-left:0.1cm"><img class="t " src="method_part_M.png" style="width:1.25cm;height:1.25cm"><div class="lab m">footprint M</div></div>
+      </div>
+      <div class="foot"><span>part-level: outside <b style="font-size:8pt;color:#26a6dc">M</b> untouched</span><b>61,510 edits</b></div>
+    </div>
+  </div>
+  <div class="join"><svg class="ar" viewBox="0 0 14 10"><path d="M0 5h9M7 1.2l5 3.8-5 3.8" fill="none" stroke="#374151" stroke-width="1.5"/></svg></div>
+  <div class="panel nn"><div class="chip">2&nbsp; One backbone, four heads</div>
+    <svg viewBox="0 0 175 117" style="width:4.62cm;height:3.1cm;display:block"><text x="12.1" y="9.8" font-size="9.3" text-anchor="middle" fill="#374151">257</text><rect x="5.3" y="15.9" width="13.6" height="9.1" rx="2" fill="#9aa3ad" stroke="#8c939b" stroke-width="0.6"/><rect x="5.3" y="27.2" width="13.6" height="9.1" rx="2" fill="#e3e7ec" stroke="#8c939b" stroke-width="0.6"/><rect x="5.3" y="38.6" width="13.6" height="9.1" rx="2" fill="#e3e7ec" stroke="#8c939b" stroke-width="0.6"/><rect x="5.3" y="49.9" width="13.6" height="9.1" rx="2" fill="#e3e7ec" stroke="#8c939b" stroke-width="0.6"/><rect x="5.3" y="61.2" width="13.6" height="9.1" rx="2" fill="#e3e7ec" stroke="#8c939b" stroke-width="0.6"/><text x="12.1" y="80.9" font-size="10.7" text-anchor="middle" fill="#6b7280">&#8942;</text><rect x="5.3" y="83.9" width="13.6" height="9.1" rx="2" fill="#e3e7ec" stroke="#8c939b" stroke-width="0.6"/><path d="M21.2 49.9h9.8M28.7 46.1l3.0 3.8l-3.0 3.8" fill="none" stroke="#374151" stroke-width="1.3"/><path d="M50.7 95.3 L55.2 83.9 H125.1 L120.6 95.3 Z" fill="#eef1f5" stroke="#8c939b" stroke-width="0.6"/><rect x="107.7" y="86.2" width="11.3" height="6.8" rx="2" fill="#0f4d92"/><path d="M48.4 83.9 L52.9 72.6 H122.8 L118.3 83.9 Z" fill="#eef1f5" stroke="#8c939b" stroke-width="0.6"/><rect x="105.5" y="74.8" width="11.3" height="6.8" rx="2" fill="#0f4d92"/><path d="M46.1 72.6 L50.7 61.2 H120.6 L116.0 72.6 Z" fill="#eef1f5" stroke="#8c939b" stroke-width="0.6"/><rect x="103.2" y="63.5" width="11.3" height="6.8" rx="2" fill="#0f4d92"/><path d="M43.8 61.2 L48.4 49.9 H118.3 L113.8 61.2 Z" fill="#eef1f5" stroke="#8c939b" stroke-width="0.6"/><rect x="100.9" y="52.2" width="11.3" height="6.8" rx="2" fill="#0f4d92"/><path d="M41.6 49.9 L46.1 38.6 H116.0 L111.5 49.9 Z" fill="#eef1f5" stroke="#8c939b" stroke-width="0.6"/><rect x="98.7" y="40.8" width="11.3" height="6.8" rx="2" fill="#0f4d92"/><path d="M39.3 38.6 L43.8 27.2 H113.8 L109.2 38.6 Z" fill="#eef1f5" stroke="#8c939b" stroke-width="0.6"/><rect x="96.4" y="29.5" width="11.3" height="6.8" rx="2" fill="#0f4d92"/><path d="M37.0 27.2 L41.6 15.9 H111.5 L107.0 27.2 Z" fill="#e3e8ee" stroke="#8c939b" stroke-width="0.6"/><rect x="94.1" y="18.1" width="11.3" height="6.8" rx="2" fill="#0f4d92"/><text x="43.8" y="24.6" font-size="10.7" text-anchor="start" fill="#1f2937" font-weight="700">ViT-L/14</text><text x="75.5" y="108.1" font-size="10.7" text-anchor="middle" fill="#374151">24 blocks, frozen</text><text x="118.3" y="17.8" font-size="10.7" text-anchor="start" fill="#0f4d92" font-weight="700">LoRA</text><text x="118.3" y="31.8" font-size="10.7" text-anchor="start" fill="#0f4d92">r = 16</text><path d="M125.1 61.2h11.3M133.4 57.5l3.0 3.8l-3.0 3.8" fill="none" stroke="#374151" stroke-width="1.3"/><text x="139.5" y="54.8" font-size="10.7" text-anchor="start" fill="#374151">CLS</text><text x="139.5" y="68.8" font-size="10.7" text-anchor="start" fill="#374151">+ 256</text></svg>
+    <div class="heads">
+      <div>
+        <span class="pill"><b>forged f, beautified b</b><br>P(forged) = &sigma;(f), the score never reads b</span>
+        <span class="pill"><b>4 operations</b> eye, contour, tone, texture</span>
+        <span class="pill aux">4 measured amounts, auxiliary</span>
+      </div>
+      <div class="evmap"><img src="model_ev16.png"><b style="color:#0f4d92">evidence</b><br>16&times;16, vs <span style="color:#26a6dc;font-weight:700">M</span></div>
+    </div>
+    <div class="mnote"><b>3.2 M</b> of 306 M parameters trained</div>
+  </div>
+  <div class="join"><svg class="ar" viewBox="0 0 14 10"><path d="M0 5h9M7 1.2l5 3.8-5 3.8" fill="none" stroke="#374151" stroke-width="1.5"/></svg></div>
+  <div class="panel ink" style="display:flex;flex-direction:column;justify-content:space-around"><div class="chip">3&nbsp; Outputs on held-out images</div>
+    <div class="ex">
+      <img class="t b-fake" src="method_out_fake_in.png" style="width:1.5cm;height:1.5cm"><img class="t " src="method_out_fake_ev.png" style="width:1.5cm;height:1.5cm">
+      <div class="verdict"><span class="v fake">forged 1.00</span><br>evidence:<br><b>nose</b></div>
+    </div>
+    <div class="ex">
+      <img class="t b-beau" src="method_out_filter_in.png" style="width:1.5cm;height:1.8cm"><img class="t " src="method_out_filter_ev.png" style="width:1.5cm;height:1.8cm">
+      <div class="verdict"><span class="v beau">beautified 0.98</span><br>evidence:<br><b>eyes</b><br><span style="color:#6b7280">unseen service</span></div>
+    </div>
+    <div class="says">The model's decision is fake (score 1.00). The evidence is concentrated on the nose (mean evidence 0.99). The score is the model's raw output, not a calibrated probability.<br><span class="badge">composed by code, checked</span></div>
+  </div>
+</div>
+
+<div class="bot">
+  <div class="panel chk"><div class="chip">4&nbsp; Three tests that could have failed</div>
+    <div class="tests">
+      <div class="metric"><div class="k">Exposure</div><div class="big"><span class="bad">54%</span> <small>&rarr;</small> <span class="good">12%</span></div>
+        <div class="d">smoothed genuine faces accused: no smoothing in training vs <b>smoothing seen by both classes</b></div></div>
+      <div class="metric"><div class="k">Restoration</div><div class="big"><span class="good">94%</span> <small>vs 45&ndash;57%</small></div>
+        <div class="d">forgery decisions removed by restoring the marked region: <b>our evidence head</b> vs heat maps</div></div>
+      <div class="metric"><div class="k">Matching</div><div class="big"><span class="bad">51&ndash;53%</span> <small>&asymp; coin flip</small></div>
+        <div class="d">a judge pairs a VLM description with its own photo; so <b>code writes every sentence</b></div></div>
+    </div>
+  </div>
+  <div class="panel code"><div class="chip">5&nbsp; On the device</div>
+    <div class="metric dev"><div class="k">Browser, iPhone</div><div class="big">0.59 s <small>per photo</small></div>
+      <div class="d">landmarks, model, part and sentences run in the page; <b>nothing is uploaded</b></div></div>
+  </div>
+</div>
+
+<div class="legend"><i class="o" style="border-color:#009e73"></i>genuine<i class="o" style="border-color:#c98a00"></i>beautified<i class="o" style="border-color:#d55e00"></i>forged<i style="background:#26a6dc"></i>exact footprint M<i style="background:#0f4d92"></i>trained (LoRA, heads)<i style="background:#e3e7ec;border:0.5pt solid #8c939b"></i>frozen</div>
+</body></html>

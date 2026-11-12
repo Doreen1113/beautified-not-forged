@@ -1,0 +1,8 @@
+{
+ "arm": "released Effort mapped, untuned",
+ "binary": true,
+ "tune": "effort",
+ "init": "effort",
+ "epochs": 0,
+ "seed": 20260929
+}
